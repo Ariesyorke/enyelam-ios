@@ -1,0 +1,574 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C037AD5C2070A38800DD5CBC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C037AD5B2070A38800DD5CBC /* AppDelegate.swift */; };
+		C037AD5E2070A38800DD5CBC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C037AD5D2070A38800DD5CBC /* ViewController.swift */; };
+		C037AD612070A38800DD5CBC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C037AD5F2070A38800DD5CBC /* Main.storyboard */; };
+		C037AD642070A38800DD5CBC /* Nyelam.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C037AD622070A38800DD5CBC /* Nyelam.xcdatamodeld */; };
+		C037AD662070A38800DD5CBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C037AD652070A38800DD5CBC /* Assets.xcassets */; };
+		C037AD692070A38800DD5CBC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C037AD672070A38800DD5CBC /* LaunchScreen.storyboard */; };
+		C037AD742070A38800DD5CBC /* NyelamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C037AD732070A38800DD5CBC /* NyelamTests.swift */; };
+		C037AD7F2070A38800DD5CBC /* NyelamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C037AD7E2070A38800DD5CBC /* NyelamUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C037AD702070A38800DD5CBC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C037AD502070A38800DD5CBC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C037AD572070A38800DD5CBC;
+			remoteInfo = Nyelam;
+		};
+		C037AD7B2070A38800DD5CBC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C037AD502070A38800DD5CBC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C037AD572070A38800DD5CBC;
+			remoteInfo = Nyelam;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C037AD582070A38800DD5CBC /* Nyelam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nyelam.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C037AD5B2070A38800DD5CBC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C037AD5D2070A38800DD5CBC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C037AD602070A38800DD5CBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C037AD632070A38800DD5CBC /* Nyelam.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Nyelam.xcdatamodel; sourceTree = "<group>"; };
+		C037AD652070A38800DD5CBC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C037AD682070A38800DD5CBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C037AD6A2070A38800DD5CBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C037AD6F2070A38800DD5CBC /* NyelamTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NyelamTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C037AD732070A38800DD5CBC /* NyelamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NyelamTests.swift; sourceTree = "<group>"; };
+		C037AD752070A38800DD5CBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C037AD7A2070A38800DD5CBC /* NyelamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NyelamUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C037AD7E2070A38800DD5CBC /* NyelamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NyelamUITests.swift; sourceTree = "<group>"; };
+		C037AD802070A38800DD5CBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C037AD552070A38800DD5CBC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C037AD6C2070A38800DD5CBC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C037AD772070A38800DD5CBC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C037AD4F2070A38800DD5CBC = {
+			isa = PBXGroup;
+			children = (
+				C037AD5A2070A38800DD5CBC /* Nyelam */,
+				C037AD722070A38800DD5CBC /* NyelamTests */,
+				C037AD7D2070A38800DD5CBC /* NyelamUITests */,
+				C037AD592070A38800DD5CBC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C037AD592070A38800DD5CBC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C037AD582070A38800DD5CBC /* Nyelam.app */,
+				C037AD6F2070A38800DD5CBC /* NyelamTests.xctest */,
+				C037AD7A2070A38800DD5CBC /* NyelamUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C037AD5A2070A38800DD5CBC /* Nyelam */ = {
+			isa = PBXGroup;
+			children = (
+				C037AD5B2070A38800DD5CBC /* AppDelegate.swift */,
+				C037AD5D2070A38800DD5CBC /* ViewController.swift */,
+				C037AD5F2070A38800DD5CBC /* Main.storyboard */,
+				C037AD652070A38800DD5CBC /* Assets.xcassets */,
+				C037AD672070A38800DD5CBC /* LaunchScreen.storyboard */,
+				C037AD6A2070A38800DD5CBC /* Info.plist */,
+				C037AD622070A38800DD5CBC /* Nyelam.xcdatamodeld */,
+			);
+			path = Nyelam;
+			sourceTree = "<group>";
+		};
+		C037AD722070A38800DD5CBC /* NyelamTests */ = {
+			isa = PBXGroup;
+			children = (
+				C037AD732070A38800DD5CBC /* NyelamTests.swift */,
+				C037AD752070A38800DD5CBC /* Info.plist */,
+			);
+			path = NyelamTests;
+			sourceTree = "<group>";
+		};
+		C037AD7D2070A38800DD5CBC /* NyelamUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C037AD7E2070A38800DD5CBC /* NyelamUITests.swift */,
+				C037AD802070A38800DD5CBC /* Info.plist */,
+			);
+			path = NyelamUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C037AD572070A38800DD5CBC /* Nyelam */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C037AD832070A38800DD5CBC /* Build configuration list for PBXNativeTarget "Nyelam" */;
+			buildPhases = (
+				C037AD542070A38800DD5CBC /* Sources */,
+				C037AD552070A38800DD5CBC /* Frameworks */,
+				C037AD562070A38800DD5CBC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Nyelam;
+			productName = Nyelam;
+			productReference = C037AD582070A38800DD5CBC /* Nyelam.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C037AD6E2070A38800DD5CBC /* NyelamTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C037AD862070A38800DD5CBC /* Build configuration list for PBXNativeTarget "NyelamTests" */;
+			buildPhases = (
+				C037AD6B2070A38800DD5CBC /* Sources */,
+				C037AD6C2070A38800DD5CBC /* Frameworks */,
+				C037AD6D2070A38800DD5CBC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C037AD712070A38800DD5CBC /* PBXTargetDependency */,
+			);
+			name = NyelamTests;
+			productName = NyelamTests;
+			productReference = C037AD6F2070A38800DD5CBC /* NyelamTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C037AD792070A38800DD5CBC /* NyelamUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C037AD892070A38800DD5CBC /* Build configuration list for PBXNativeTarget "NyelamUITests" */;
+			buildPhases = (
+				C037AD762070A38800DD5CBC /* Sources */,
+				C037AD772070A38800DD5CBC /* Frameworks */,
+				C037AD782070A38800DD5CBC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C037AD7C2070A38800DD5CBC /* PBXTargetDependency */,
+			);
+			name = NyelamUITests;
+			productName = NyelamUITests;
+			productReference = C037AD7A2070A38800DD5CBC /* NyelamUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C037AD502070A38800DD5CBC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "e-Nyelam";
+				TargetAttributes = {
+					C037AD572070A38800DD5CBC = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					C037AD6E2070A38800DD5CBC = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C037AD572070A38800DD5CBC;
+					};
+					C037AD792070A38800DD5CBC = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C037AD572070A38800DD5CBC;
+					};
+				};
+			};
+			buildConfigurationList = C037AD532070A38800DD5CBC /* Build configuration list for PBXProject "Nyelam" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C037AD4F2070A38800DD5CBC;
+			productRefGroup = C037AD592070A38800DD5CBC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C037AD572070A38800DD5CBC /* Nyelam */,
+				C037AD6E2070A38800DD5CBC /* NyelamTests */,
+				C037AD792070A38800DD5CBC /* NyelamUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C037AD562070A38800DD5CBC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C037AD692070A38800DD5CBC /* LaunchScreen.storyboard in Resources */,
+				C037AD662070A38800DD5CBC /* Assets.xcassets in Resources */,
+				C037AD612070A38800DD5CBC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C037AD6D2070A38800DD5CBC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C037AD782070A38800DD5CBC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C037AD542070A38800DD5CBC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C037AD5E2070A38800DD5CBC /* ViewController.swift in Sources */,
+				C037AD642070A38800DD5CBC /* Nyelam.xcdatamodeld in Sources */,
+				C037AD5C2070A38800DD5CBC /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C037AD6B2070A38800DD5CBC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C037AD742070A38800DD5CBC /* NyelamTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C037AD762070A38800DD5CBC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C037AD7F2070A38800DD5CBC /* NyelamUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C037AD712070A38800DD5CBC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C037AD572070A38800DD5CBC /* Nyelam */;
+			targetProxy = C037AD702070A38800DD5CBC /* PBXContainerItemProxy */;
+		};
+		C037AD7C2070A38800DD5CBC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C037AD572070A38800DD5CBC /* Nyelam */;
+			targetProxy = C037AD7B2070A38800DD5CBC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C037AD5F2070A38800DD5CBC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C037AD602070A38800DD5CBC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C037AD672070A38800DD5CBC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C037AD682070A38800DD5CBC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C037AD812070A38800DD5CBC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C037AD822070A38800DD5CBC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C037AD842070A38800DD5CBC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Nyelam/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "e-nyelam.com.Nyelam";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C037AD852070A38800DD5CBC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Nyelam/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "e-nyelam.com.Nyelam";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C037AD872070A38800DD5CBC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = NyelamTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "e-nyelam.com.NyelamTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nyelam.app/Nyelam";
+			};
+			name = Debug;
+		};
+		C037AD882070A38800DD5CBC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = NyelamTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "e-nyelam.com.NyelamTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nyelam.app/Nyelam";
+			};
+			name = Release;
+		};
+		C037AD8A2070A38800DD5CBC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = NyelamUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "e-nyelam.com.NyelamUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Nyelam;
+			};
+			name = Debug;
+		};
+		C037AD8B2070A38800DD5CBC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = NyelamUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "e-nyelam.com.NyelamUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Nyelam;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C037AD532070A38800DD5CBC /* Build configuration list for PBXProject "Nyelam" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C037AD812070A38800DD5CBC /* Debug */,
+				C037AD822070A38800DD5CBC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C037AD832070A38800DD5CBC /* Build configuration list for PBXNativeTarget "Nyelam" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C037AD842070A38800DD5CBC /* Debug */,
+				C037AD852070A38800DD5CBC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C037AD862070A38800DD5CBC /* Build configuration list for PBXNativeTarget "NyelamTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C037AD872070A38800DD5CBC /* Debug */,
+				C037AD882070A38800DD5CBC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C037AD892070A38800DD5CBC /* Build configuration list for PBXNativeTarget "NyelamUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C037AD8A2070A38800DD5CBC /* Debug */,
+				C037AD8B2070A38800DD5CBC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C037AD622070A38800DD5CBC /* Nyelam.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C037AD632070A38800DD5CBC /* Nyelam.xcdatamodel */,
+			);
+			currentVersion = C037AD632070A38800DD5CBC /* Nyelam.xcdatamodel */;
+			path = Nyelam.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = C037AD502070A38800DD5CBC /* Project object */;
+}
