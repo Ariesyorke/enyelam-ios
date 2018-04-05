@@ -25,14 +25,15 @@
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="NDiveCenter" representedClassName="NDiveCenter" syncable="YES">
-        <attribute name="contactJson" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contact" optional="YES" attributeType="Transformable" customClassName="Contact" syncable="YES"/>
         <attribute name="diveDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="featuredImage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageLogo" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="images" optional="YES" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
-        <attribute name="locationJson" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="memberShipJson" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="Transformable" customClassName="Location" syncable="YES"/>
+        <attribute name="membership" optional="YES" attributeType="Transformable" customClassName="Membership" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="rating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="startFromDays" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="startFromPrice" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -45,10 +46,10 @@
     <entity name="NDiveService" representedClassName="NDiveService" syncable="YES">
         <attribute name="days" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="diveServiceDescription" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="facilitiesJson" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="facilities" optional="YES" attributeType="Transformable" customClassName="Facilities" syncable="YES"/>
         <attribute name="featuredImage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="images" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="images" optional="YES" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
         <attribute name="license" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="maxPerson" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="minPerson" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -56,9 +57,11 @@
         <attribute name="normalPrice" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="rating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="ratingCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="scheduleJson" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="schedule" optional="YES" attributeType="Transformable" customClassName="Schedule" syncable="YES"/>
         <attribute name="specialPrice" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="totalDays" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="totalDives" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="totalDiveSpots" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="visited" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NCategory" syncable="YES"/>
         <relationship name="divecenter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NDiveCenter" syncable="YES"/>
@@ -75,7 +78,7 @@
         <attribute name="hightlight" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="images" optional="YES" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
-        <attribute name="locationJson" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="Transformable" customClassName="Location" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="rating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="recomendedStayMax" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -102,7 +105,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="NOrder" representedClassName="NOrder" syncable="YES">
-        <attribute name="cartJson" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cart" optional="YES" attributeType="Transformable" customClassName="Cart" syncable="YES"/>
         <attribute name="orderId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="schedule" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
@@ -117,9 +120,9 @@
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="NSummary" representedClassName="NSummary" syncable="YES">
-        <attribute name="contactJson" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contact" optional="YES" attributeType="Transformable" customClassName="Contact" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="participantJson" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="participant" optional="YES" attributeType="Transformable" customClassName="[Participant]" syncable="YES"/>
         <relationship name="diveService" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NDiveService" syncable="YES"/>
         <relationship name="order" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NOrder" syncable="YES"/>
     </entity>
@@ -139,10 +142,11 @@
         <attribute name="isVerified" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="picture" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="referralCode" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="socmedJson" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="country" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NCountry" syncable="YES"/>
+        <relationship name="countryCode" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NCountryCode" syncable="YES"/>
         <relationship name="language" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NLanguage" syncable="YES"/>
         <relationship name="nationality" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NNationality" syncable="YES"/>
         <relationship name="socialMedias" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NSocialMedia" syncable="YES"/>
@@ -153,8 +157,8 @@
         <element name="NCity" positionX="-288" positionY="234" width="128" height="90"/>
         <element name="NCountry" positionX="-297" positionY="18" width="128" height="75"/>
         <element name="NCountryCode" positionX="-180" positionY="18" width="128" height="105"/>
-        <element name="NDiveCenter" positionX="-171" positionY="27" width="128" height="285"/>
-        <element name="NDiveService" positionX="-144" positionY="-63" width="128" height="345"/>
+        <element name="NDiveCenter" positionX="-171" positionY="27" width="128" height="300"/>
+        <element name="NDiveService" positionX="-144" positionY="-63" width="128" height="375"/>
         <element name="NDiveSpot" positionX="-153" positionY="-72" width="128" height="390"/>
         <element name="NExperience" positionX="-135" positionY="-54" width="128" height="75"/>
         <element name="NLanguage" positionX="-126" positionY="-45" width="128" height="75"/>
@@ -163,6 +167,6 @@
         <element name="NProvince" positionX="16" positionY="234" width="128" height="90"/>
         <element name="NSocialMedia" positionX="-144" positionY="-63" width="128" height="75"/>
         <element name="NSummary" positionX="-162" positionY="-81" width="128" height="120"/>
-        <element name="NUser" positionX="-153" positionY="-72" width="128" height="375"/>
+        <element name="NUser" positionX="-153" positionY="-72" width="128" height="390"/>
     </elements>
 </model>

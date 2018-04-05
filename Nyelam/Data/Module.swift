@@ -8,6 +8,10 @@
 
 import Foundation
 
-class Module {
+public class Module: NSObject {
+    
     var name: String?
+    override init() {
+        super.init()
+    }
 }

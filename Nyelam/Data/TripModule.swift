@@ -9,3 +9,8 @@
 import Foundation
 import CoreData
 
+public class TripModule: NSObject {
+    override init() {
+        super.init()
+    }
+}

@@ -2,7 +2,7 @@
 //  NDiveService+CoreDataProperties.swift
 //  Nyelam
 //
-//  Created by Bobi on 4/1/18.
+//  Created by Bobi on 4/5/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //
@@ -19,10 +19,10 @@ extension NDiveService {
 
     @NSManaged public var days: Int32
     @NSManaged public var diveServiceDescription: String?
-    @NSManaged public var facilitiesJson: String?
+    @NSManaged public var facilities: Facilities?
     @NSManaged public var featuredImage: String?
     @NSManaged public var id: String?
-    @NSManaged public var images: NSObject?
+    @NSManaged public var images: [String]?
     @NSManaged public var license: Bool
     @NSManaged public var maxPerson: Int32
     @NSManaged public var minPerson: Int32
@@ -30,9 +30,11 @@ extension NDiveService {
     @NSManaged public var normalPrice: Double
     @NSManaged public var rating: Double
     @NSManaged public var ratingCount: Int64
-    @NSManaged public var scheduleJson: String?
+    @NSManaged public var schedule: Schedule?
     @NSManaged public var specialPrice: Double
+    @NSManaged public var totalDays: Int32
     @NSManaged public var totalDives: Int32
+    @NSManaged public var totalDiveSpots: Int32
     @NSManaged public var visited: Int64
     @NSManaged public var categories: NSSet?
     @NSManaged public var divecenter: NDiveCenter?

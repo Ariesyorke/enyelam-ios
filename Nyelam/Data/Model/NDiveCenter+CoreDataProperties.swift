@@ -2,7 +2,7 @@
 //  NDiveCenter+CoreDataProperties.swift
 //  Nyelam
 //
-//  Created by Bobi on 4/1/18.
+//  Created by Bobi on 4/5/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //
@@ -17,14 +17,15 @@ extension NDiveCenter {
         return NSFetchRequest<NDiveCenter>(entityName: "NDiveCenter")
     }
 
-    @NSManaged public var contactJson: String?
+    @NSManaged public var contact: Contact?
     @NSManaged public var diveDescription: String?
     @NSManaged public var featuredImage: String?
     @NSManaged public var id: String?
     @NSManaged public var imageLogo: String?
     @NSManaged public var images: [String]?
-    @NSManaged public var locationJson: String?
-    @NSManaged public var memberShipJson: String?
+    @NSManaged public var location: Location?
+    @NSManaged public var membership: Membership?
+    @NSManaged public var name: String?
     @NSManaged public var rating: Double
     @NSManaged public var startFromDays: Int32
     @NSManaged public var startFromPrice: Double

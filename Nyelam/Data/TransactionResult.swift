@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class TransactionResult {
+public class TransactionResult {
     var statusCode: Int?
     var statusMessage: String?
     var transactionId: String?

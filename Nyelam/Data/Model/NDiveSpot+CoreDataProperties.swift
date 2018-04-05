@@ -2,7 +2,7 @@
 //  NDiveSpot+CoreDataProperties.swift
 //  Nyelam
 //
-//  Created by Bobi on 4/1/18.
+//  Created by Bobi on 4/5/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //
@@ -27,7 +27,7 @@ extension NDiveSpot {
     @NSManaged public var hightlight: String?
     @NSManaged public var id: String?
     @NSManaged public var images: [String]?
-    @NSManaged public var locationJson: String?
+    @NSManaged public var location: Location?
     @NSManaged public var name: String?
     @NSManaged public var rating: Double
     @NSManaged public var recomendedStayMax: Int64

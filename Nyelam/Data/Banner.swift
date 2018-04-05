@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Banner {
+public class Banner: NSObject {
     var id: String?
     var imageUrl: String?
     var caption: String?

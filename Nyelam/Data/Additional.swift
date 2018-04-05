@@ -8,7 +8,40 @@
 
 import Foundation
 
-class Additional {
+public class Additional: NSObject, Parseable {
+    private let KEY_TITLE = "title"
+    private let KEY_VALUE = "value"
+    
     var title: String?
     var value: Double?
+    
+    override init(){}
+    init(json: [String: Any]) {
+        super.init()
+        self.parse(json: json)
+    }
+    
+    func parse(json: [String: Any]) {
+        self.title = json[KEY_TITLE] as? String
+        if let value = json[KEY_VALUE] as? Double {
+            self.value = value
+        } else if let value = json[KEY_VALUE] as? String {
+            if value.isNumber {
+                self.value = Double(value)
+            }
+        }
+    }
+    
+    func serialized() -> [String: Any] {
+        var json: [String: Any] = [:]
+        
+        if let title = self.title {
+            json[KEY_TITLE] = title
+        }
+        if let value = self.value {
+            json[KEY_VALUE] = value
+        }
+        return json
+    }
+    
 }

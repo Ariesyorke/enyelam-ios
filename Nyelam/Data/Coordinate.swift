@@ -8,7 +8,37 @@
 
 import Foundation
 
-class Coordinate {
-    var lat: Double?
-    var lon: Double?
+public class Coordinate: NSObject, Parseable {
+    private let KEY_LAT = "lat"
+    private let KEY_LON = "lon"
+    
+    var latitude: Double = 0
+    var longitude: Double = 0
+    
+    override init(){}
+    init(json: [String: Any]) {
+        super.init()
+        self.parse(json: json)
+    }
+    func parse(json: [String : Any]) {
+        if let latitude = json[KEY_LAT] as? Double {
+            self.latitude = latitude
+        } else if let latitude = json[KEY_LAT] as? String {
+            if latitude.isNumber {
+                self.latitude = Double(latitude)!
+            }
+        }
+        if let longitude = json[KEY_LON] as? Double {
+            self.longitude = longitude
+        } else if let longitude = json[KEY_LON] as? String {
+            self.longitude = Double(longitude)!
+        }
+    }
+    
+    func serialized() -> [String : Any] {
+        var json: [String: Any] = [:]
+        json[KEY_LAT] = latitude
+        json[KEY_LON] = longitude
+        return json
+    }
 }

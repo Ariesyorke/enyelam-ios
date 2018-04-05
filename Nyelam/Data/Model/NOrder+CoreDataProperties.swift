@@ -2,7 +2,7 @@
 //  NOrder+CoreDataProperties.swift
 //  Nyelam
 //
-//  Created by Bobi on 4/1/18.
+//  Created by Bobi on 4/5/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //
@@ -17,7 +17,7 @@ extension NOrder {
         return NSFetchRequest<NOrder>(entityName: "NOrder")
     }
 
-    @NSManaged public var cartJson: String?
+    @NSManaged public var cart: Cart?
     @NSManaged public var orderId: String?
     @NSManaged public var schedule: Double
     @NSManaged public var status: String?
