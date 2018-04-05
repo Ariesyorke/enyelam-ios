@@ -20,6 +20,7 @@ target 'Nyelam' do
   pod 'ImageSlideshow/Alamofire'
   pod 'Gloss', '~> 2.0'
   pod 'Sync', '~> 4'
+  pod 'Alamofire'
   
   target 'NyelamTests' do
     inherit! :search_paths
