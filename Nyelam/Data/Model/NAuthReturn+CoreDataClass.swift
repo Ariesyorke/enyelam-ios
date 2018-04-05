@@ -67,4 +67,20 @@ public class NAuthReturn: NSManagedObject {
         }
         return nil
     }
+    
+    static func deleteAllAuth() -> Bool {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NAuthReturn")
+        do {
+            let authReturns = try managedContext.fetch(fetchRequest) as? [NAuthReturn]
+            if let authReturns = authReturns, !authReturns.isEmpty, let authReturn = authReturns.first {
+                managedContext.delete(authReturn)
+                return true
+            }
+        } catch {
+            print(error)
+        }
+        return false
+    }
+
 }

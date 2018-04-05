@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Alamofire
 import AlamofireImage
+import CoreData
 
 class NHTTPHelper {
     static let API_VER = 1
@@ -29,7 +30,7 @@ class NHTTPHelper {
     static let POST_TIMESTAMP = "timestamp"
     static let POST_DEVICE = "device"
     
-    internal let HOST_URL = { () -> String in
+    internal static var HOST_URL: String {
         switch NConstant.URL_TYPE {
         case .staging:
             return "http://nyelam.dantech.id/"
@@ -40,7 +41,7 @@ class NHTTPHelper {
         }
     }
     
-    internal let API_PATH_LOGIN = { () -> String in
+    internal static var API_PATH_LOGIN: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "user/login"
@@ -49,7 +50,7 @@ class NHTTPHelper {
         }
     }
     
-    internal let API_PATH_UPDATE_VERSION = { () -> String in
+    internal static var API_PATH_UPDATE_VERSION: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "master/UpdateVersion"
@@ -58,7 +59,7 @@ class NHTTPHelper {
         }
     }
     
-    internal let API_PATH_SOCMED_LOGIN = { () -> String in
+    internal static var API_PATH_SOCMED_LOGIN: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "user/socmedlogin"
@@ -67,7 +68,7 @@ class NHTTPHelper {
         }
     }
     
-    internal let API_PATH_REGISTER = { () -> String in
+    internal static var API_PATH_REGISTER: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "user/register"
@@ -76,7 +77,7 @@ class NHTTPHelper {
         }
     }
     
-    internal let API_PATH_FORGOT_PASSWORD = { () -> String in
+    internal static var API_PATH_FORGOT_PASSWORD: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "user/forgotpass"
@@ -85,7 +86,7 @@ class NHTTPHelper {
         }
     }
     
-    internal let API_PATH_MASTER_COUNTRY = { () -> String in
+    internal static var API_PATH_MASTER_COUNTRY: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "master/country"
@@ -94,7 +95,7 @@ class NHTTPHelper {
         }
     }
     
-    internal let API_PATH_MASTER_NATIONALITY = { () -> String in
+    internal static var API_PATH_MASTER_NATIONALITY: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "master/nationality"
@@ -103,7 +104,7 @@ class NHTTPHelper {
         }
     }
     
-    internal let API_PATH_MASTER_LANGUAGE = { () -> String in
+    internal static var API_PATH_MASTER_LANGUAGE: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "master/language"
@@ -112,7 +113,7 @@ class NHTTPHelper {
         }
     }
     
-    internal let API_PATH_MASTER_CATEGORY = { () -> String in
+    internal static var API_PATH_MASTER_CATEGORY: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "service/masterCategory"
@@ -121,7 +122,7 @@ class NHTTPHelper {
         }
     }
     
-    internal let API_PATH_MASTER_DO_DIVE_SEARCH = { () -> String in
+    internal static var API_PATH_MASTER_DO_DIVE_SEARCH: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "master/dodive/search"
@@ -130,7 +131,7 @@ class NHTTPHelper {
         }
     }
     
-    internal let API_PATH_SUGGESTION_SERVICE = { () -> String in
+    internal static var API_PATH_SUGGESTION_SERVICE: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "dodive/sugestion"
@@ -139,7 +140,7 @@ class NHTTPHelper {
         }
     }
     
-    internal let API_PATH_SEARCH_SERVICE_LIST = { () -> String in
+    internal static var API_PATH_SEARCH_SERVICE_LIST: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "service/serviceList"
@@ -148,7 +149,7 @@ class NHTTPHelper {
         }
     }
     
-    internal let API_PATH_SEARCH_SERVICE_LIST_BY_DIVESPOT = { () -> String in
+    internal static var API_PATH_SEARCH_SERVICE_LIST_BY_DIVESPOT: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "service/serviceDivespotList"
@@ -157,7 +158,7 @@ class NHTTPHelper {
         }
     }
     
-    internal let API_PATH_SEARCH_SERVICE_LIST_BY_CATEGORY = { () -> String in
+    internal static var API_PATH_SEARCH_SERVICE_LIST_BY_CATEGORY: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "service/serviceCategoryList"
@@ -166,7 +167,7 @@ class NHTTPHelper {
         }
     }
     
-    internal let API_PATH_SEARCH_SERVICE_LIST_BY_PROVINCE = { () -> String in
+    internal static var API_PATH_SEARCH_SERVICE_LIST_BY_PROVINCE: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "service/serviceProvinceList"
@@ -175,7 +176,7 @@ class NHTTPHelper {
         }
     }
     
-    internal let API_PATH_SEARCH_SERVICE_LIST_BY_CITY = { () -> String in
+    internal static var API_PATH_SEARCH_SERVICE_LIST_BY_CITY: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "service/serviceCityList"
@@ -184,7 +185,7 @@ class NHTTPHelper {
         }
     }
     
-    internal let API_PATH_HOMEPAGE_MODULES = { () -> String in
+    internal static var API_PATH_HOMEPAGE_MODULES: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "master/homepage"
@@ -192,7 +193,7 @@ class NHTTPHelper {
             return "api/master/homepage"
         }
     }
-    internal let API_PATH_DO_DIVE_DETAIL_SERVICE = { () -> String in
+    internal static var API_PATH_DO_DIVE_DETAIL_SERVICE: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "service/detailService"
@@ -200,7 +201,7 @@ class NHTTPHelper {
             return "api/service/detailService"
         }
     }
-    internal let API_PATH_BOOK_SERVICE_CART = { () -> String in
+    internal static var API_PATH_BOOK_SERVICE_CART: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "order/bookservicecart"
@@ -208,14 +209,15 @@ class NHTTPHelper {
             return "api/order/bookservicecart"
         }
     }
-    internal let API_PATH_BOOK_GET_PARTICIPANTS = { () -> String in        switch NConstant.URL_TYPE {
+    internal static var API_PATH_BOOK_GET_PARTICIPANTS: String {
+        switch NConstant.URL_TYPE {
         case .production:
             return "order/getSavedParticipants"
         default:
             return "api/order/getSavedParticipants"
         }
     }
-    internal let API_PATH_SUBMIT_ORDER = { () -> String in
+    internal static var API_PATH_SUBMIT_ORDER: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "order/submit"
@@ -223,7 +225,7 @@ class NHTTPHelper {
             return "api/order/submit"
         }
     }
-    internal let API_PATH_BOOKING_HISTORY = { () -> String in
+    internal static var API_PATH_BOOKING_HISTORY: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "order/orderList"
@@ -231,7 +233,7 @@ class NHTTPHelper {
             return "api/order/orderList"
         }
     }
-    internal let API_PATH_BOOKING_DETAIL = { () -> String in
+    internal static var API_PATH_BOOKING_DETAIL: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "order/detail"
@@ -239,7 +241,7 @@ class NHTTPHelper {
             return "api/order/detail"
         }
     }
-    internal let API_PATH_DIVE_CENTER_DETAIL = { () -> String in
+    internal static var API_PATH_DIVE_CENTER_DETAIL: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "divecenter/detail"
@@ -247,7 +249,7 @@ class NHTTPHelper {
             return "api/divecenter/detail"
         }
     }
-    internal let API_PATH_DIVE_SPOT_DETAIL = { () -> String in
+    internal static var API_PATH_DIVE_SPOT_DETAIL: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "divespot/detail"
@@ -256,7 +258,7 @@ class NHTTPHelper {
         }
     }
     
-    internal let API_PATH_UPLOAD_PAYMENT_PROOF = { () -> String in
+    internal static var API_PATH_UPLOAD_PAYMENT_PROOF: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "order/paymentProof"
@@ -265,7 +267,7 @@ class NHTTPHelper {
         }
     }
     
-    internal let API_PATH_CHANGE_PASSWORD = { () -> String in
+    internal static var API_PATH_CHANGE_PASSWORD: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "user/changepass"
@@ -274,7 +276,7 @@ class NHTTPHelper {
         }
     }
     
-    internal let API_PATH_UPDATE_PROFILE = { () -> String in
+    internal static var API_PATH_UPDATE_PROFILE: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "user/profile/edit"
@@ -282,7 +284,7 @@ class NHTTPHelper {
             return "api/user/profile/edit"
         }
     }
-    internal let API_PATH_UPDATE_PHOTO = { () -> String in
+    internal static var API_PATH_UPDATE_PHOTO: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "user/photo"
@@ -290,12 +292,30 @@ class NHTTPHelper {
             return "api/user/photo"
         }
     }
-    internal let API_PATH_UPLOAD_COVER = { () -> String in
+    internal static var API_PATH_UPLOAD_COVER: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "user/cover"
         default:
             return "api/user/cover"
+        }
+    }
+    internal static func basicAuthRequest(URLString: URLConvertible,
+                                          parameters: [String: Any]? = nil,
+                                          headers: [String: String]? = nil,
+                                          complete: @escaping (Bool, Any?, BaseError?)->()) {
+        if let authReturn = NAuthReturn.authUser(), let token = authReturn.token, let user = authReturn.user, let userId = user.id {
+            var param: [String: Any] = [:]
+            param["user_id"] = userId
+            param["nyelam_token"] = token
+            if let parameters = parameters {
+                for (key, value) in parameters {
+                    param[key] = value
+                }
+            }
+            self.basicAuthRequest(URLString: URLString, parameters: parameters, headers: nil, complete: complete)
+        } else {
+            complete(false, nil, UserNotFoundError(statusCode: -1, title: "User is either not login or token is expired", message: nil))
         }
     }
     internal static func basicUploadRequest(URLString: URLConvertible,
@@ -309,91 +329,95 @@ class NHTTPHelper {
         print("--- multiparts = \(multiparts)")
         print("--- headers = \(headers)")
         print("--- need session = \(headers)")
-        
-        var param: [String: Any] = [:]
-        param[POST_API_VER] = API_VER
-        param[POST_APP_VER] = NConstant.appVersion
-        param[POST_OS_VER] = NConstant.osVersion
-        param[POST_DEVICE] = NConstant.deviceModel
-        param[POST_TIMESTAMP] = String(NConstant.currentTimeStamp)
-
-        if let parameters = parameters {
-            for (key, value) in parameters {
-                param[key] = value
-            }
-        }
-        let headers: HTTPHeaders = [
-            "Content-type": "multipart/form-data"
-        ]
-        
-        Alamofire.upload(multipartFormData: {(multipartFormData) in
-            if let multiparts = multiparts {
-                for (_, value) in multiparts {
-                    multipartFormData.append(value, withName: "picture", fileName: "picture" + value.extensionTypeForImageData, mimeType: value.contentTypeForImageData)
+        if let authReturn = NAuthReturn.authUser(), let token = authReturn.token, let user = authReturn.user, let userId = user.id {
+            var param: [String: Any] = [:]
+            param["user_id"] = userId
+            param["nyelam_token"] = token
+            param[POST_API_VER] = API_VER
+            param[POST_APP_VER] = NConstant.appVersion
+            param[POST_OS_VER] = NConstant.osVersion
+            param[POST_DEVICE] = NConstant.deviceModel
+            param[POST_TIMESTAMP] = String(NConstant.currentTimeStamp)
+            if let parameters = parameters {
+                for (key, value) in parameters {
+                    param[key] = value
                 }
             }
-            for (key, value) in param {
-                if let value = value as? AnyObject {
-                    multipartFormData.append(value.data(using: String.Encoding.utf8.rawValue)!, withName: key)
+            let headers: HTTPHeaders = [
+                "Content-type": "multipart/form-data"
+            ]
+            
+            Alamofire.upload(multipartFormData: {(multipartFormData) in
+                if let multiparts = multiparts {
+                    for (_, value) in multiparts {
+                        multipartFormData.append(value, withName: "picture", fileName: "picture" + value.extensionTypeForImageData, mimeType: value.contentTypeForImageData)
+                    }
                 }
-            }
-        }, usingThreshold: UInt64.init(), to: URLString, method: .post, headers: headers, encodingCompletion: { (encodingResult) in
-            switch encodingResult {
-            case .success(request: let upload, streamingFromDisk: _, streamFileURL: _) :
-                upload.responseJSON(completionHandler: {response in
-                    if let error = response.error as? URLError {
+                for (key, value) in param {
+                    if let value = value as? AnyObject {
+                        multipartFormData.append(value.data(using: String.Encoding.utf8.rawValue)!, withName: key)
+                    }
+                }
+            }, usingThreshold: UInt64.init(), to: URLString, method: .post, headers: headers, encodingCompletion: { (encodingResult) in
+                switch encodingResult {
+                case .success(request: let upload, streamingFromDisk: _, streamFileURL: _) :
+                    upload.responseJSON(completionHandler: {response in
+                        if let error = response.error as? URLError {
+                            if error.code == URLError.Code.notConnectedToInternet {
+                                complete(false, nil, NotConnectedInternetError(statusCode: error.code.rawValue, title: "Connection Error", message: ""))
+                            }
+                            return
+                        }
+                        if let value = response.value, let jsonResult = value as? [String: Any] {
+                            var status = -1
+                            if let s = jsonResult[KEY_STATUS] as? Int {
+                                status = s
+                            } else if let s = jsonResult[KEY_STATUS] as? String {
+                                if s.isNumber {
+                                    status = Int(s)!
+                                }
+                            }
+                            if status < 0 {
+                                complete(false, nil, InvalidReturnValueError(statusCode: 200, title: "no json with key \"status\"", message: nil))
+                            }
+                            if status == STATUS_SUCCESS {
+                                if let _ = jsonResult[KEY_DATA] {
+                                    if let jsonData = jsonResult[KEY_DATA] as? [String: Any] {
+                                        complete(true, jsonData, nil)
+                                    } else if let jsonString = jsonResult[KEY_DATA] as? String {
+                                        do {
+                                            let data = jsonString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                                            let jsonData: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                                            complete(true, jsonData, nil)
+                                            return
+                                        } catch {
+                                            print(error)
+                                        }
+                                    }
+                                    complete(false, nil, UnknownError(statusCode: -1, title: "Unknown Error", message: ""))
+                                } else {
+                                    complete(false, nil, InvalidReturnValueError(statusCode: 200, title: "no json with key \"data\"", message: nil))
+                                }
+                            } else if status == STATUS_INVALID_TOKEN {
+                                complete(false, nil, InvalidTokenError(statusCode: 200, title: "request status invalid token", message: nil))
+                            }
+                        } else {
+                            complete(false, nil, UnknownError(statusCode: -1, title: "Unknown Error", message: ""))
+                        }
+                    })
+                case .failure(let error):
+                    if let error = error as? URLError {
                         if error.code == URLError.Code.notConnectedToInternet {
                             complete(false, nil, NotConnectedInternetError(statusCode: error.code.rawValue, title: "Connection Error", message: ""))
-                        }
-                    }
-                    if let value = response.value, let jsonResult = value as? [String: Any] {
-                        var status = -1
-                        if let s = jsonResult[KEY_STATUS] as? Int {
-                            status = s
-                        } else if let s = jsonResult[KEY_STATUS] as? String {
-                            if s.isNumber {
-                                status = Int(s)!
-                            }
-                        }
-                        if status < 0 {
-                            complete(false, nil, InvalidReturnValueError(statusCode: 200, title: "no json with key \"status\"", message: nil))
-                        }
-                        if status == STATUS_SUCCESS {
-                            if let _ = jsonResult[KEY_DATA] {
-                                if let jsonData = jsonResult[KEY_DATA] as? [String: Any] {
-                                    complete(true, jsonData, nil)
-                                } else if let jsonString = jsonResult[KEY_DATA] as? String {
-                                    do {
-                                        let data = jsonString.data(using: String.Encoding.utf8, allowLossyConversion: true)
-                                        let jsonData: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
-                                        complete(true, jsonData, nil)
-                                        return
-                                    } catch {
-                                        print(error)
-                                    }
-                                }
-                                complete(false, nil, UnknownError(statusCode: -1, title: "Unknown Error", message: ""))
-                            } else {
-                                complete(false, nil, InvalidReturnValueError(statusCode: 200, title: "no json with key \"data\"", message: nil))
-                            }
-                        } else if status == STATUS_INVALID_TOKEN {
-                            complete(false, nil, InvalidTokenError(statusCode: 200, title: "request status invalid token", message: nil))
                         }
                     } else {
                         complete(false, nil, UnknownError(statusCode: -1, title: "Unknown Error", message: ""))
                     }
-                })
-            case .failure(let error):
-                if let error = error as? URLError {
-                    if error.code == URLError.Code.notConnectedToInternet {
-                        complete(false, nil, NotConnectedInternetError(statusCode: error.code.rawValue, title: "Connection Error", message: ""))
-                    }
-                } else {
-                    complete(false, nil, UnknownError(statusCode: -1, title: "Unknown Error", message: ""))
                 }
-            }
-        })
-    
+            })
+        } else {
+            complete(false, nil, UserNotFoundError(statusCode: -1, title: "User is either not login or token is expired", message: nil))
+        }
     }
     internal static func basicPostRequest(URLString: URLConvertible,
                                           parameters: [String: Any]? = nil,
@@ -421,6 +445,7 @@ class NHTTPHelper {
                 if error.code == URLError.Code.notConnectedToInternet {
                     complete(false, nil, NotConnectedInternetError(statusCode: error.code.rawValue, title: "Connection Error", message: ""))
                 }
+                return
             }
             if let value = response.value, let jsonResult = value as? [String: Any] {
                 var status = -1

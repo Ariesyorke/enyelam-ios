@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct GAHTTPResponse<Data> {
+public struct NHTTPResponse<Data> {
     public let resultStatus: Bool!
     public var data: Data?
     public let error: BaseError?

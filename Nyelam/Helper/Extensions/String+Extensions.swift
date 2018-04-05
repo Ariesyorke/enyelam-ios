@@ -10,6 +10,26 @@ import Foundation
 import UIKit
 
 extension String {
+    func md5Data(string: String) -> Data? {
+        
+        guard let messageData = string.data(using:String.Encoding.utf8) else { return nil }
+        var digestData = Data(count: Int(CC_MD5_DIGEST_LENGTH))
+        
+        _ = digestData.withUnsafeMutableBytes {digestBytes in
+            messageData.withUnsafeBytes {messageBytes in
+                CC_MD5(messageBytes, CC_LONG(messageData.count), digestBytes)
+            }
+        }
+        
+        return digestData
+    }
+    
+    var md5: String! {
+        let md5Raw = md5Data(string: self)
+        let md5Hex = md5Raw!.map{String(format: "%02hhx", $0) }.joined()
+        return md5Hex
+    }
+
     var isNumber: Bool {
         return Double(self) != nil
     }
