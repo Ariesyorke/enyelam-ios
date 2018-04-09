@@ -140,7 +140,7 @@ class NHTTPHelper {
         }
     }
     
-    internal static var API_PATH_SEARCH_SERVICE_LIST: String {
+    internal static var API_PATH_SEARCH_SERVICE_LIST_BY_DIVE_CENTER: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "service/serviceList"
@@ -193,7 +193,7 @@ class NHTTPHelper {
             return "api/master/homepage"
         }
     }
-    internal static var API_PATH_DO_DIVE_DETAIL_SERVICE: String {
+    internal static var API_PATH_DETAIL_SERVICE: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "service/detailService"
@@ -463,6 +463,7 @@ class NHTTPHelper {
                     if let _ = jsonResult[KEY_DATA] {
                         if let jsonData = jsonResult[KEY_DATA] as? [String: Any] {
                             complete(true, jsonData, nil)
+                            return
                         } else if let jsonString = jsonResult[KEY_DATA] as? String {
                             do {
                                 let data = jsonString.data(using: String.Encoding.utf8, allowLossyConversion: true)
@@ -481,6 +482,7 @@ class NHTTPHelper {
                     complete(false, nil, InvalidTokenError(statusCode: 200, title: "request status invalid token", message: nil))
                 }
             } else {
+                print("Panggil 18")
                 complete(false, nil, UnknownError(statusCode: -1, title: "Unknown Error", message: ""))
             }
         })

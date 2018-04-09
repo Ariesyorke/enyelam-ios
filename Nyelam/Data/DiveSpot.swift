@@ -1,17 +1,14 @@
 //
-//  NDiveSpot+CoreDataClass.swift
+//  DiveSpot.swift
 //  Nyelam
 //
-//  Created by Bobi on 4/5/18.
+//  Created by Bobi on 4/9/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
-//
 //
 
 import Foundation
-import CoreData
 
-@objc(NDiveSpot)
-public class NDiveSpot: NSManagedObject {
+public class DiveSpot: NSObject, Parseable {
     private let KEY_ID = "id"
     private let KEY_NAME = "name"
     private let KEY_IMAGES = "images"
@@ -34,23 +31,35 @@ public class NDiveSpot: NSManagedObject {
     private let KEY_SHORT_DESCRIPTION = "short_description"
     private let KEY_DESCRIPTION = "description"
     private let KEY_STATUS_ACTIVE = "status_active"
+
+    var currentStatus: String?
+    var depthMax: Double = 0
+    var depthMin: Double = 0
+    var diveSpotDescription: String?
+    var diveSpotShortDescription: String?
+    var featuredImage: String?
+    var greatFor: String?
+    var hightlight: String?
+    var id: String?
+    var images: [String]?
+    var location: Location?
+    var name: String?
+    var rating: Double = 0
+    var recomendedStayMax: Int = 0
+    var recomendedStayMin: Int = 0
+    var statusActive: Int = 0
+    var surfaceCondition: String?
+    var temperatureMax: Double = 0
+    var temperatureMin: Double = 0
+    var visibilityMax: Double = 0
+    var visibiltyMin: Double = 0
+    var experienceMax: NExperience?
+    var experienceMin: NExperience?
     
-    static func getDiveSpot(using id: String) -> NDiveSpot? {
-        let managedContext = AppDelegate.sharedManagedContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NDiveSpot")
-        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
-        do {
-            let diveSpots = try managedContext.fetch(fetchRequest) as? [NDiveSpot]
-            if let diveSpots = diveSpots, !diveSpots.isEmpty {
-                return diveSpots.first
-            }
-        } catch {
-            print(error)
-        }
-        return nil
+    init(json: [String: Any]) {
+        super.init()
+        self.parse(json: json)
     }
-    
-    
     func parse(json: [String : Any]) {
         self.id = json[KEY_ID] as? String
         self.name = json[KEY_NAME] as? String
@@ -162,18 +171,18 @@ public class NDiveSpot: NSManagedObject {
             }
         }
         if let recomendedStayMin = json[KEY_RECOMMENDED_STAY_MIN] as? Int {
-            self.recomendedStayMin = Int64(recomendedStayMin)
+            self.recomendedStayMin = recomendedStayMin
         } else if let recomendedStayMin = json[KEY_RECOMMENDED_STAY_MIN] as? String {
             if recomendedStayMin.isNumber {
-                self.recomendedStayMin = Int64(recomendedStayMin)!
+                self.recomendedStayMin = Int(recomendedStayMin)!
             }
         }
         
         if let recomendedStayMax = json[KEY_RECOMMENDED_STAY_MAX] as? Int {
-            self.recomendedStayMax = Int64(recomendedStayMax)
+            self.recomendedStayMax = recomendedStayMax
         } else if let recomendedStayMax = json[KEY_RECOMMENDED_STAY_MAX] as? String {
             if recomendedStayMax.isNumber {
-                self.recomendedStayMax = Int64(recomendedStayMax)!
+                self.recomendedStayMax = Int(recomendedStayMax)!
             }
         }
         
@@ -198,10 +207,10 @@ public class NDiveSpot: NSManagedObject {
         self.diveSpotShortDescription = json[KEY_SHORT_DESCRIPTION] as? String
         self.diveSpotDescription = json [KEY_DESCRIPTION] as? String
         if let statusActive = json[KEY_STATUS_ACTIVE] as? Int {
-            self.statusActive = Int64(statusActive)
+            self.statusActive = statusActive
         } else if let statusActive = json[KEY_STATUS_ACTIVE] as? String {
             if statusActive.isNumber {
-                self.statusActive = Int64(statusActive)!
+                self.statusActive = Int(statusActive)!
             }
         }
     }
@@ -212,6 +221,7 @@ public class NDiveSpot: NSManagedObject {
         if let id = self.id {
             json[KEY_ID] = id
         }
+        
         if let name = self.name {
             json[KEY_NAME] = name
         }
@@ -257,6 +267,6 @@ public class NDiveSpot: NSManagedObject {
         }
         json[KEY_STATUS_ACTIVE] = Int(self.statusActive)
         return json
-    }
 
+    }
 }

@@ -18,4 +18,8 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
         dtmViewDidLoad()
     }
+    
+    func reload(method: Any?) {
+        
+    }
 }

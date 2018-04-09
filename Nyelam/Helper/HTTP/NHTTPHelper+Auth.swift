@@ -25,7 +25,7 @@ extension NHTTPHelper {
             }
             if let data = data, let json = data as? [String: Any] {
                 NAuthReturn.deleteAllAuth()
-                let authReturn = NAuthReturn()
+                let authReturn = NAuthReturn.init(entity: NSEntityDescription.entity(forEntityName: "NAuthReturn", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                 authReturn.parse(json: json)
                 complete(NHTTPResponse(resultStatus: true, data: authReturn, error: nil))
             }
@@ -50,14 +50,14 @@ extension NHTTPHelper {
                                 }
                                 if let data = data, let json = data as? [String: Any] {
                                     _ = NAuthReturn.deleteAllAuth()
-                                    let authReturn = NAuthReturn()
+                                    let authReturn = NAuthReturn.init(entity: NSEntityDescription.entity(forEntityName: "NAuthReturn", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                                     authReturn.parse(json: json)
                                     complete(NHTTPResponse(resultStatus: true, data: authReturn, error: nil))
                                 }
         })
     }
     
-    static func register(fullname: String, email: String, password: String, confirmPassword: String,
+    static func httpRegister(fullname: String, email: String, password: String, confirmPassword: String,
                          phoneNumber: String?, countryCodeId: String?, gender: String?,
                          socmedType: String?, socmedId: String?, socmedAccessToken: String?, picture: String?,  complete: @escaping (NHTTPResponse<NAuthReturn>)->()) {
         var param: [String: Any] = [:]
@@ -95,14 +95,14 @@ extension NHTTPHelper {
                                 }
                                 if let data = data, let json = data as? [String: Any] {
                                     _ = NAuthReturn.deleteAllAuth()
-                                    let authReturn = NAuthReturn()
+                                    let authReturn = NAuthReturn.init(entity: NSEntityDescription.entity(forEntityName: "NAuthReturn", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                                     authReturn.parse(json: json)
                                     complete(NHTTPResponse(resultStatus: true, data: authReturn, error: nil))
                                 }
         })
     }
     
-    static func forgotPassword(email: String, complete: @escaping (NHTTPResponse<Bool>)->()) {
+    static func httpForgotPassword(email: String, complete: @escaping (NHTTPResponse<Bool>)->()) {
         self.basicPostRequest(URLString: HOST_URL + API_PATH_FORGOT_PASSWORD, parameters: ["email": email], headers: nil, complete: {status, data, error in
             if let error = error {
                 complete(NHTTPResponse(resultStatus: false, data: nil, error: error))

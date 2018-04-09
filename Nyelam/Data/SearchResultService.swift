@@ -9,18 +9,17 @@
 import Foundation
 
 public class SearchResultService: SearchResult {
-    private let KEY_DIVESPOT = "dive_spot"
-    private let KEY_DIVESERVICE = "dive_service"
     private let KEY_LICENSE = "license"
     
-    var diveSpot: String?
-    var diveService: String?
     var license: Bool = false
+    
+    override init(json: [String: Any]) {
+        super.init(json: json)
+        self.parse(json: json)
+    }
     
     override func parse(json: [String : Any]) {
         super.parse(json: json)
-        self.diveSpot = json[KEY_DIVESPOT] as? String
-        self.diveService = json[KEY_DIVESERVICE] as? String
         if let license = json[KEY_LICENSE] as? Bool {
             self.license = license
         } else if let license = json[KEY_LICENSE] as? String {
@@ -30,15 +29,6 @@ public class SearchResultService: SearchResult {
     
     override func serialized() -> [String : Any] {
         var json = super.serialized()
-        
-        if let diveSpot = self.diveSpot {
-            json[KEY_DIVESPOT] = diveSpot
-        }
-        
-        if let diveService = self.diveService {
-            json[KEY_DIVESERVICE] = diveService
-        }
-        
         json[KEY_LICENSE] = license
         
         return json

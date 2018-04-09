@@ -2,7 +2,7 @@
 //  NDiveCenter+CoreDataClass.swift
 //  Nyelam
 //
-//  Created by Bobi on 4/5/18.
+//  Created by Bobi on 4/9/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //
@@ -130,7 +130,7 @@ public class NDiveCenter: NSManagedObject {
                     category = NCategory.getCategory(using: id)
                 }
                 if category == nil {
-                    category = NCategory()
+                    category = NCategory.init(entity: NSEntityDescription.entity(forEntityName: "NCategory", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                 }
                 category!.parse(json: categoryJson)
                 self.addToCategories(category!)
@@ -145,7 +145,7 @@ public class NDiveCenter: NSManagedObject {
                         category = NCategory.getCategory(using: id)
                     }
                     if category == nil {
-                        category = NCategory()
+                        category = NCategory.init(entity: NSEntityDescription.entity(forEntityName: "NCategory", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                     }
                     category!.parse(json: categoryJson)
                     self.addToCategories(category!)

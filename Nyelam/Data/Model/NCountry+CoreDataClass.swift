@@ -2,7 +2,7 @@
 //  NCountry+CoreDataClass.swift
 //  Nyelam
 //
-//  Created by Bobi on 4/5/18.
+//  Created by Bobi on 4/9/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //
@@ -45,4 +45,5 @@ public class NCountry: NSManagedObject {
         }
         return nil
     }
+
 }

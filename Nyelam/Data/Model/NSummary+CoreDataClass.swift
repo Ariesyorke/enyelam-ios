@@ -2,7 +2,7 @@
 //  NSummary+CoreDataClass.swift
 //  Nyelam
 //
-//  Created by Bobi on 4/5/18.
+//  Created by Bobi on 4/9/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //
@@ -23,7 +23,7 @@ public class NSummary: NSManagedObject {
                 self.order = NOrder.getOrder(using: orderId)
             }
             if self.order == nil {
-                self.order = NOrder()
+                self.order = NOrder.init(entity: NSEntityDescription.entity(forEntityName: "NOrder", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
             }
             self.order!.parse(json: json)
             self.id = self.order!.orderId
@@ -35,7 +35,7 @@ public class NSummary: NSManagedObject {
                     self.order = NOrder.getOrder(using: orderId)
                 }
                 if self.order == nil {
-                    self.order = NOrder()
+                    self.order = NOrder.init(entity: NSEntityDescription.entity(forEntityName: "NOrder", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                 }
                 self.order!.parse(json: json)
                 self.id = self.order!.orderId
@@ -131,5 +131,4 @@ public class NSummary: NSManagedObject {
         }
         return nil
     }
-
 }

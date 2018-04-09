@@ -21,6 +21,10 @@ public class SearchResult: Parseable {
     var type: Int = -1
     var count: Int = 0
     
+    init(json: [String: Any]) {
+        self.parse(json: json)
+    }
+    
     func parse(json: [String : Any]) {
         self.id = json[KEY_ID] as? String
         self.name = json[KEY_NAME] as? String
@@ -65,5 +69,24 @@ public class SearchResult: Parseable {
         json[KEY_TYPE] = type
         json[KEY_COUNT] = count
         return json
+    }
+    
+    static func generateSearchResultType(type: Int, json: [String: Any])->SearchResult {
+        switch type {
+        case 1:
+            return SearchResultDiveCenter(json: json)
+        case 2:
+            return SearchResultCategory(json: json)
+        case 3:
+            return SearchResultSpot(json: json)
+        case 4:
+            return SearchResultService(json: json)
+        case 5:
+            return SearchResultProvince(json: json)
+        case 6:
+            return SearchResultCity(json: json)
+        default:
+            return SearchResult(json: json)
+        }
     }
 }
