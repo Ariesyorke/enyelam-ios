@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class BaseViewController: ViewController {
+class BaseViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
