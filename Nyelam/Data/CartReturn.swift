@@ -18,7 +18,10 @@ public class CartReturn: NSObject, Parseable {
     var expiry: Double = 0
     var cart: Cart?
     var additionals: [Additional]?
-    
+    init(json: [String: Any]) {
+        super.init()
+        self.parse(json: json)
+    }
     func parse(json: [String : Any]) {
         self.cartToken = json[KEY_CART_TOKEN] as? String
         if let expiry = json[KEY_EXPIRY] as? Double {

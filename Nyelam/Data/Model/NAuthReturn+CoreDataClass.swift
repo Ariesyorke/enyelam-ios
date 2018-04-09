@@ -2,7 +2,7 @@
 //  NAuthReturn+CoreDataClass.swift
 //  Nyelam
 //
-//  Created by Bobi on 4/5/18.
+//  Created by Bobi on 4/9/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //
@@ -22,7 +22,7 @@ public class NAuthReturn: NSManagedObject {
                 self.user = NUser.getUser(using: id)
             }
             if self.user == nil {
-                self.user = NUser()
+                self.user = NUser.init(entity: NSEntityDescription.entity(forEntityName: "NUser", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
             }
             self.user!.parse(json: userJson)
         } else if let userString = json[KEY_USER] as? String {
@@ -33,7 +33,7 @@ public class NAuthReturn: NSManagedObject {
                     self.user = NUser.getUser(using: id)
                 }
                 if self.user == nil {
-                    self.user = NUser()
+                    self.user = NUser.init(entity: NSEntityDescription.entity(forEntityName: "NUser", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                 }
                 self.user!.parse(json: userJson)
             } catch {

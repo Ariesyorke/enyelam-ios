@@ -29,7 +29,7 @@ extension NHTTPHelper {
                             category = NCategory.getCategory(using: id)
                         }
                         if category == nil {
-                            category = NCategory()
+                            category = NCategory.init(entity: NSEntityDescription.entity(forEntityName: "NCategory", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                         }
                         category!.parse(json: categoryJson)
                         categories!.append(category!)
@@ -45,7 +45,7 @@ extension NHTTPHelper {
                                 category = NCategory.getCategory(using: id)
                             }
                             if category == nil {
-                                category = NCategory()
+                                category = NCategory.init(entity: NSEntityDescription.entity(forEntityName: "NCategory", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                             }
                             category!.parse(json: categoryJson)
                             categories!.append(category!)
@@ -60,7 +60,7 @@ extension NHTTPHelper {
     }
     
     static func httpGetMasterCountryCode(page: String, complete: @escaping (NHTTPResponse<[NCountryCode]>)->()) {
-        self.basicPostRequest(URLString: HOST_URL+API_PATH_MASTER_CATEGORY,
+        self.basicPostRequest(URLString: HOST_URL+API_PATH_MASTER_COUNTRY,
                               parameters: ["page":page],
                               headers: nil,
                               complete: {status, data, error in
@@ -78,7 +78,7 @@ extension NHTTPHelper {
                             countryCode = NCountryCode.getCountryCode(using: id)
                         }
                         if countryCode == nil {
-                            countryCode = NCountryCode()
+                            countryCode = NCountryCode.init(entity: NSEntityDescription.entity(forEntityName: "NCountryCode", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                         }
                         countryCode!.parse(json: countryCodeJson)
                         countryCodes!.append(countryCode!)
@@ -94,7 +94,7 @@ extension NHTTPHelper {
                                 countryCode = NCountryCode.getCountryCode(using: id)
                             }
                             if countryCode == nil {
-                                countryCode = NCountryCode()
+                                countryCode = NCountryCode.init(entity: NSEntityDescription.entity(forEntityName: "NCountryCode", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                             }
                             countryCode!.parse(json: countryCodeJson)
                             countryCodes!.append(countryCode!)
@@ -125,7 +125,7 @@ extension NHTTPHelper {
                                                 language = NLanguage.getLanguage(using: id)
                                             }
                                             if language == nil {
-                                                language = NLanguage()
+                                                language = NLanguage.init(entity: NSEntityDescription.entity(forEntityName: "NLanguage", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                                             }
                                             language!.parse(json: languageJson)
                                             languages!.append(language!)
@@ -141,7 +141,7 @@ extension NHTTPHelper {
                                                     language = NLanguage.getLanguage(using: id)
                                                 }
                                                 if language == nil {
-                                                    language = NLanguage()
+                                                    language = NLanguage.init(entity: NSEntityDescription.entity(forEntityName: "NLanguage", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                                                 }
                                                 language!.parse(json: languageJson)
                                                 languages!.append(language!)
@@ -174,7 +174,7 @@ extension NHTTPHelper {
                                                 nationality = NNationality.getNationality(using: id)
                                             }
                                             if nationality == nil {
-                                                nationality = NNationality()
+                                                nationality = NNationality.init(entity: NSEntityDescription.entity(forEntityName: "NNationality", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                                             }
                                             nationality!.parse(json: nationalityJson)
                                             nationalities!.append(nationality!)
@@ -190,7 +190,7 @@ extension NHTTPHelper {
                                                     nationality = NNationality.getNationality(using: id)
                                                 }
                                                 if nationality == nil {
-                                                    nationality = NNationality()
+                                                    nationality = NNationality.init(entity: NSEntityDescription.entity(forEntityName: "NNationality", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                                                 }
                                                 nationality!.parse(json: nationalityJson)
                                                 nationalities!.append(nationality!)

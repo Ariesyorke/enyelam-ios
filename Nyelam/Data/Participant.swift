@@ -16,10 +16,6 @@ public class Participant: NSObject, Parseable {
     var name: String?
     var email: String?
     
-    override init() {
-        super.init()
-    }
-    
     init(json: [String: Any]) {
         super.init()
         self.parse(json: json)

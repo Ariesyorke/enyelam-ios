@@ -19,6 +19,10 @@ public class Update: Parseable {
     var wording: String?
     var link: String?
     
+    init(json: [String: Any]) {
+        self.parse(json: json)
+    }
+    
     func parse(json: [String : Any]) {
         if let latestVersion = json[KEY_LATEST_VERSION] as? Int {
             self.latestVersion = latestVersion

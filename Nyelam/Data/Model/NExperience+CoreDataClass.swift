@@ -2,7 +2,7 @@
 //  NExperience+CoreDataClass.swift
 //  Nyelam
 //
-//  Created by Bobi on 4/5/18.
+//  Created by Bobi on 4/9/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //
@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 @objc(NExperience)
-public class NExperience: NSManagedObject {    
+public class NExperience: NSManagedObject {
     private let KEY_ID = "id"
     private let KEY_NAME = "name"
     
@@ -45,5 +45,4 @@ public class NExperience: NSManagedObject {
         }
         return nil
     }
-
 }

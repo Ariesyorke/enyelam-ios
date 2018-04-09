@@ -2,7 +2,7 @@
 //  NDiveService+CoreDataClass.swift
 //  Nyelam
 //
-//  Created by Bobi on 4/5/18.
+//  Created by Bobi on 4/9/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //
@@ -62,7 +62,7 @@ public class NDiveService: NSManagedObject {
                     category = NCategory.getCategory(using: id)
                 }
                 if category == nil {
-                    category = NCategory()
+                    category = NCategory.init(entity: NSEntityDescription.entity(forEntityName: "NCategory", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                 }
                 category!.parse(json: categoryJson)
                 self.addToCategories(category!)
@@ -77,7 +77,7 @@ public class NDiveService: NSManagedObject {
                         category = NCategory.getCategory(using: id)
                     }
                     if category == nil {
-                        category = NCategory()
+                        category = NCategory.init(entity: NSEntityDescription.entity(forEntityName: "NCategory", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                     }
                     category!.parse(json: categoryJson)
                     self.addToCategories(category!)
@@ -88,16 +88,22 @@ public class NDiveService: NSManagedObject {
         }
         self.featuredImage = json[KEY_FEATURED_IMAGE] as? String
         if let diveSpotsArray = json[KEY_DIVE_SPOTS] as? Array<[String: Any]>, !diveSpotsArray.isEmpty {
+            self.diveSpots = []
             for diveSpotJson in diveSpotsArray {
-                var diveSpot: NDiveSpot? = nil
-                if let id = diveSpotJson["id"] as? String {
-                    diveSpot = NDiveSpot.getDiveSpot(using: id)
+                var diveSpot = DiveSpot(json: diveSpotJson)
+                self.diveSpots!.append(diveSpot)
+            }
+        } else if let diveSpotString = json[KEY_DIVE_SPOTS] as? String {
+            self.diveSpots = []
+            do {
+                let data = diveSpotString.data(using: String.Encoding.utf8,     allowLossyConversion: true)
+                let diveSpotsArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+                for diveSpotJson in diveSpotsArray {
+                    var diveSpot = DiveSpot(json: diveSpotJson)
+                    self.diveSpots!.append(diveSpot)
                 }
-                if diveSpot == nil {
-                    diveSpot = NDiveSpot()
-                }
-                diveSpot!.parse(json: json)
-                self.addToDivespots(diveSpot!)
+            } catch {
+                print(error)
             }
         }
         
@@ -203,7 +209,8 @@ public class NDiveService: NSManagedObject {
                 self.divecenter = NDiveCenter.getDiveCenter(using: id)
             }
             if self.divecenter == nil {
-                self.divecenter = NDiveCenter()
+                self.divecenter = NDiveCenter.init(entity: NSEntityDescription.entity(forEntityName: "NDiveCenter", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
+
             }
             self.divecenter!.parse(json: diveCenterJson)
         } else if let diveCenterString = json[KEY_DIVE_CENTER] as? String {
@@ -214,7 +221,7 @@ public class NDiveService: NSManagedObject {
                     self.divecenter = NDiveCenter.getDiveCenter(using: id)
                 }
                 if self.divecenter == nil {
-                    self.divecenter = NDiveCenter()
+                    self.divecenter = NDiveCenter.init(entity: NSEntityDescription.entity(forEntityName: "NDiveCenter", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                 }
                 self.divecenter!.parse(json: diveCenterJson)
             } catch {
@@ -255,13 +262,15 @@ public class NDiveService: NSManagedObject {
         if let featuredImage = self.featuredImage {
             json[KEY_FEATURED_IMAGE] = featuredImage
         }
-        if let nsset = self.divespots, let divespots = nsset.allObjects as? [NDiveSpot], !divespots.isEmpty {
+        
+        if let divespots = self.diveSpots, !divespots.isEmpty {
             var array: Array<[String: Any]> = []
             for divespot in divespots {
                 array.append(divespot.serialized())
             }
             json[KEY_DIVE_SPOTS] = array
         }
+        
         json[KEY_DAYS] = Int(self.days)
         json[KEY_TOTAL_DIVES] = Int(self.totalDives)
         json[KEY_TOTAL_DAY] = Int(self.totalDays)
@@ -270,6 +279,7 @@ public class NDiveService: NSManagedObject {
         json[KEY_LICENSE] = self.license
         json[KEY_MIN_PERSON] = Int(self.minPerson)
         json[KEY_MAX_PERSON] = Int(self.maxPerson)
+        
         if let schedule = self.schedule {
             json[KEY_SCHEDULE] = schedule.serialized()
         }

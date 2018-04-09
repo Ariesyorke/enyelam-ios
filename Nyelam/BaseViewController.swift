@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class BaseViewController: ViewController {
+class BaseViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -17,5 +17,9 @@ class BaseViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         dtmViewDidLoad()
+    }
+    
+    func reload(method: Any?) {
+        
     }
 }

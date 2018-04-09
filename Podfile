@@ -18,9 +18,13 @@ target 'Nyelam' do
   pod 'ActionSheetPicker-3.0', '~> 2.3.0'
   pod 'ImageSlideshow', '~> 1.3.0'
   pod 'ImageSlideshow/Alamofire'
-  pod 'Gloss', '~> 2.0'
-  pod 'Sync', '~> 4'
   pod 'Alamofire'
+  pod 'PayPal-iOS-SDK'
+  pod 'EAIntroView'
+  pod 'MidtransCoreKit'
+  pod 'MidtransKit'
+  pod 'MMNumberKeyboard'
+  pod 'PopupController'
   
   target 'NyelamTests' do
     inherit! :search_paths

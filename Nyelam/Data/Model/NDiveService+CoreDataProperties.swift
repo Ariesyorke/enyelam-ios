@@ -2,7 +2,7 @@
 //  NDiveService+CoreDataProperties.swift
 //  Nyelam
 //
-//  Created by Bobi on 4/5/18.
+//  Created by Bobi on 4/9/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //
@@ -36,9 +36,10 @@ extension NDiveService {
     @NSManaged public var totalDives: Int32
     @NSManaged public var totalDiveSpots: Int32
     @NSManaged public var visited: Int64
+    @NSManaged public var diveSpots: [DiveSpot]?
+    @NSManaged public var availability: Int32
     @NSManaged public var categories: NSSet?
     @NSManaged public var divecenter: NDiveCenter?
-    @NSManaged public var divespots: NSSet?
 
 }
 
@@ -56,22 +57,5 @@ extension NDiveService {
 
     @objc(removeCategories:)
     @NSManaged public func removeFromCategories(_ values: NSSet)
-
-}
-
-// MARK: Generated accessors for divespots
-extension NDiveService {
-
-    @objc(addDivespotsObject:)
-    @NSManaged public func addToDivespots(_ value: NDiveSpot)
-
-    @objc(removeDivespotsObject:)
-    @NSManaged public func removeFromDivespots(_ value: NDiveSpot)
-
-    @objc(addDivespots:)
-    @NSManaged public func addToDivespots(_ values: NSSet)
-
-    @objc(removeDivespots:)
-    @NSManaged public func removeFromDivespots(_ values: NSSet)
 
 }

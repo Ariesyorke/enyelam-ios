@@ -40,7 +40,7 @@ extension NHTTPHelper {
             }
             if let data = data, let json = data as? [String: Any] {
                 NAuthReturn.deleteAllAuth()
-                let authReturn = NAuthReturn()
+                let authReturn = NAuthReturn.init(entity: NSEntityDescription.entity(forEntityName: "NAuthReturn", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                 authReturn.parse(json: json)
                 complete(NHTTPResponse(resultStatus: true, data: authReturn, error: nil))
             }
@@ -55,7 +55,7 @@ extension NHTTPHelper {
             }
             if let data = data, let json = data as? [String: Any] {
                 NAuthReturn.deleteAllAuth()
-                let authReturn = NAuthReturn()
+                let authReturn = NAuthReturn.init(entity: NSEntityDescription.entity(forEntityName: "NAuthReturn", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                 authReturn.parse(json: json)
                 complete(NHTTPResponse(resultStatus: true, data: authReturn, error: nil))
             }
@@ -111,12 +111,12 @@ extension NHTTPHelper {
                                 }
                                 if let data = data, let json = data as? [String: Any] {
                                     NAuthReturn.deleteAllAuth()
-                                    let authReturn = NAuthReturn()
+                                    let authReturn = NAuthReturn.init(entity: NSEntityDescription.entity(forEntityName: "NAuthReturn", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                                     authReturn.parse(json: json)
                                     complete(NHTTPResponse(resultStatus: true, data: authReturn, error: nil))
                                 }
 
         })
     }
-
+    
 }

@@ -13,7 +13,7 @@ public class DiveSpotModule: Module, Parseable {
     private let KEY_MODULE_NAME = "module_name"
     private let KEY_DIVE_SPOTS = "dive_spots"
     
-    var divespots: [NDiveSpot]?
+    var divespots: [DiveSpot]?
     
     override init() {
         super.init()
@@ -27,15 +27,8 @@ public class DiveSpotModule: Module, Parseable {
         if let diveSpotArray = json[KEY_DIVE_SPOTS] as? Array<[String: Any]>, !diveSpotArray.isEmpty {
             self.divespots = []
             for diveSpotJson in diveSpotArray {
-                var diveSpot: NDiveSpot? = nil
-                if let id = diveSpotJson["id"] as? String {
-                    diveSpot = NDiveSpot.getDiveSpot(using: id)
-                }
-                if diveSpot == nil {
-                    diveSpot = NDiveSpot()
-                }
-                diveSpot!.parse(json: diveSpotJson)
-                self.divespots!.append(diveSpot!)
+                var diveSpot = DiveSpot(json: diveSpotJson)
+                self.divespots!.append(diveSpot)
             }
         } else if let diveSpotString = json[KEY_DIVE_SPOTS] as? String {
             do {
@@ -43,15 +36,8 @@ public class DiveSpotModule: Module, Parseable {
                 let diveSpotArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
                 self.divespots = []
                 for diveSpotJson in diveSpotArray {
-                    var diveSpot: NDiveSpot? = nil
-                    if let id = diveSpotJson["id"] as? String {
-                        diveSpot = NDiveSpot.getDiveSpot(using: id)
-                    }
-                    if diveSpot == nil {
-                        diveSpot = NDiveSpot()
-                    }
-                    diveSpot!.parse(json: diveSpotJson)
-                    self.divespots!.append(diveSpot!)
+                    var diveSpot = DiveSpot(json: diveSpotJson)
+                    self.divespots!.append(diveSpot)
                 }
             } catch {
                 print(error)

@@ -2,7 +2,7 @@
 //  NUser+CoreDataClass.swift
 //  Nyelam
 //
-//  Created by Bobi on 4/5/18.
+//  Created by Bobi on 4/9/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //
@@ -74,15 +74,24 @@ public class NUser: NSManagedObject {
         self.cover = json[KEY_COVER] as? String
         if let countryCodeJson = json[KEY_COUNTRY_CODE] as? [String: Any] {
             if let id = countryCodeJson["id"] as? String {
-                
+                self.countryCode = NCountryCode.getCountryCode(using: id)
             }
+            if self.countryCode == nil {
+                self.countryCode = NCountryCode.init(entity: NSEntityDescription.entity(forEntityName: "NCountryCode", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
+
+            }
+            self.countryCode!.parse(json: json)
         } else if let countryCodeString = json[KEY_COUNTRY_CODE] as? String {
             do {
                 let data = countryCodeString.data(using: String.Encoding.utf8, allowLossyConversion: true)
                 let countryCodeJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
                 if let id = countryCodeJson["id"] as? String {
-                    
+                    self.countryCode = NCountryCode.getCountryCode(using: id)
                 }
+                if self.countryCode == nil {
+                    self.countryCode = NCountryCode.init(entity: NSEntityDescription.entity(forEntityName: "NCountryCode", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
+                }
+                self.countryCode!.parse(json: json)
             } catch {
                 print(error)
             }
@@ -92,7 +101,7 @@ public class NUser: NSManagedObject {
                 self.country = NCountry.getCountry(using: id)
             }
             if self.country == nil {
-                self.country = NCountry()
+                self.country = NCountry.init(entity: NSEntityDescription.entity(forEntityName: "NCountry", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
             }
             self.country!.parse(json: json)
         } else if let countryString = json[KEY_COUNTRY] as? String {
@@ -103,7 +112,7 @@ public class NUser: NSManagedObject {
                     self.country = NCountry.getCountry(using: id)
                 }
                 if self.country == nil {
-                    self.country = NCountry()
+                    self.country = NCountry.init(entity: NSEntityDescription.entity(forEntityName: "NCountry", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                 }
                 self.country!.parse(json: json)
             } catch {
@@ -117,7 +126,7 @@ public class NUser: NSManagedObject {
                     socialMedia = NSocialMedia.getSocialMedia(using: id, and: type)
                 }
                 if socialMedia == nil {
-                    socialMedia = NSocialMedia()
+                    socialMedia = NSocialMedia.init(entity: NSEntityDescription.entity(forEntityName: "NSocialMedia", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                 }
                 socialMedia!.parse(json: json)
                 self.addToSocialMedias(socialMedia!)
@@ -132,7 +141,7 @@ public class NUser: NSManagedObject {
                         socialMedia = NSocialMedia.getSocialMedia(using: id, and: type)
                     }
                     if socialMedia == nil {
-                        socialMedia = NSocialMedia()
+                        socialMedia = NSocialMedia.init(entity: NSEntityDescription.entity(forEntityName: "NSocialMedia", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                     }
                     socialMedia!.parse(json: json)
                     self.addToSocialMedias(socialMedia!)
@@ -146,7 +155,8 @@ public class NUser: NSManagedObject {
                 self.language = NLanguage.getLanguage(using: id)
             }
             if self.language == nil {
-                self.language = NLanguage()
+                self.language = NLanguage.init(entity: NSEntityDescription.entity(forEntityName: "NLanguage", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
+
             }
             self.language!.parse(json: json)
         } else if let languageString = json[KEY_LANGUAGE] as? String {
@@ -157,7 +167,7 @@ public class NUser: NSManagedObject {
                     self.language = NLanguage.getLanguage(using: id)
                 }
                 if self.language == nil {
-                    self.language = NLanguage()
+                    self.language = NLanguage.init(entity: NSEntityDescription.entity(forEntityName: "NLanguage", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                 }
                 self.language!.parse(json: json)
             } catch {
@@ -169,7 +179,8 @@ public class NUser: NSManagedObject {
                 self.nationality = NNationality.getNationality(using: id)
             }
             if self.nationality == nil {
-                self.nationality = NNationality()
+                self.nationality = NNationality.init(entity: NSEntityDescription.entity(forEntityName: "NNationality", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
+
             }
             self.nationality!.parse(json: json)
         } else if let nationalityString = json[KEY_NATIONALITY] as? String {
@@ -180,7 +191,7 @@ public class NUser: NSManagedObject {
                     self.nationality = NNationality.getNationality(using: id)
                 }
                 if self.nationality == nil {
-                    self.nationality = NNationality()
+                    self.nationality = NNationality.init(entity: NSEntityDescription.entity(forEntityName: "NNationality", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                 }
                 self.nationality!.parse(json: json)
             } catch {
@@ -192,7 +203,7 @@ public class NUser: NSManagedObject {
                 self.countryCode = NCountryCode.getCountryCode(using: id)
             }
             if self.countryCode == nil {
-                self.countryCode = NCountryCode()
+                self.countryCode = NCountryCode.init(entity: NSEntityDescription.entity(forEntityName: "NCountryCode", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
             }
             self.countryCode!.parse(json: countryCodeJson)
         } else if let countryCodeString = json[KEY_COUNTRY_CODE] as? String {
@@ -203,7 +214,7 @@ public class NUser: NSManagedObject {
                     self.countryCode = NCountryCode.getCountryCode(using: id)
                 }
                 if self.countryCode == nil {
-                    self.countryCode = NCountryCode()
+                    self.countryCode = NCountryCode.init(entity: NSEntityDescription.entity(forEntityName: "NCountryCode", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                 }
                 self.countryCode!.parse(json: countryCodeJson)
             } catch {
@@ -299,4 +310,5 @@ public class NUser: NSManagedObject {
         }
         return nil
     }
+
 }
