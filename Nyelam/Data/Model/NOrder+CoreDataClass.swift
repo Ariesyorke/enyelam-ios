@@ -28,12 +28,12 @@ public class NOrder: NSManagedObject {
             }
         }
         if let cartJson = json[KEY_CART] as? [String: Any] {
-            self.cart = Cart(json: json)
+            self.cart = Cart(json: cartJson)
         } else if let cartString = json[KEY_CART] as? String {
             do {
                 let data = cartString.data(using: String.Encoding.utf8, allowLossyConversion: true)
                 let cartJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
-                self.cart = Cart(json: json)
+                self.cart = Cart(json: cartJson)
             } catch {
                 print(error)
             }
@@ -43,7 +43,7 @@ public class NOrder: NSManagedObject {
     func serialized() -> [String : Any] {
         var json: [String: Any] = [:]
         if let orderId = self.orderId {
-            json[KEY_ORDER_ID] = self.orderId
+            json[KEY_ORDER_ID] = orderId
         }
         if let status = self.status {
             json[KEY_STATUS] = status

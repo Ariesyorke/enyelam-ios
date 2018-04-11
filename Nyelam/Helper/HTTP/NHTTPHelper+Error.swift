@@ -448,6 +448,7 @@ class NHTTPHelper {
                 return
             }
             if let value = response.value, let jsonResult = value as? [String: Any] {
+                print("RESULT \(jsonResult)")
                 var status = -1
                 if let s = jsonResult[KEY_STATUS] as? Int {
                     status = s
@@ -480,6 +481,17 @@ class NHTTPHelper {
                     }
                 } else if status == STATUS_INVALID_TOKEN {
                     complete(false, nil, InvalidTokenError(statusCode: 200, title: "request status invalid token", message: nil))
+                } else if status == STATUS_FAILED {
+                    var title = jsonResult[KEY_MESSAGE] as? String
+                    var code = -1
+                    if let codeNumber = jsonResult[KEY_CODE] as? Int {
+                        code = codeNumber
+                    } else if let codeNumber = jsonResult[KEY_CODE] as? String {
+                        if codeNumber.isNumber {
+                            code = Int(codeNumber)!
+                        }
+                    }
+                    complete(false, nil, StatusFailedError(statusCode: code, title: title != nil ? title : "Unknown Error", message: nil))
                 }
             } else {
                 print("Panggil 18")

@@ -10,6 +10,15 @@ import Foundation
 import UIKit
 
 extension UIAlertController {
+    static func handleErrorMessage(viewController: UIViewController, error: String, completion: @escaping ()->()) {
+        var title: String = error
+        var actionButtonTitle: String = "OK"
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: actionButtonTitle, style: .cancel, handler: {alert in
+            completion()
+        }))
+        viewController.present(alert, animated: true, completion: nil)
+    }
     static func handleErrorMessage(viewController: UIViewController, error: BaseError, completion: @escaping (BaseError)->()) {
         var title: String = "Unknown Error"
         var actionButtonTitle: String = "OK"
@@ -18,6 +27,8 @@ extension UIAlertController {
             if #available(iOS 10.0, *) {
                 actionButtonTitle = "Setting"
             }
+        } else {
+            title = error.title!
         }
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: actionButtonTitle, style: .cancel, handler: {alert in
@@ -26,4 +37,11 @@ extension UIAlertController {
         viewController.present(alert, animated: true, completion: nil)
     }
     
+    static func handlePopupMessage(viewController: UIViewController, title: String, actionButtonTitle: String, completion: @escaping ()->()) {
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: actionButtonTitle, style: .cancel, handler: {alert in
+            completion()
+        }))
+        viewController.present(alert, animated: true, completion: nil)
+    }
 }

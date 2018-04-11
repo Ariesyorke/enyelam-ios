@@ -20,7 +20,37 @@
 		C00D0B00207627DB000D8ED6 /* NHTTPHelper+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00D0AFF207627DB000D8ED6 /* NHTTPHelper+Auth.swift */; };
 		C00D0B0420763250000D8ED6 /* Bridging-Header.m in Sources */ = {isa = PBXBuildFile; fileRef = C00D0B0320763250000D8ED6 /* Bridging-Header.m */; };
 		C00D0B0620763591000D8ED6 /* NHTTPHelper+Master.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00D0B0520763591000D8ED6 /* NHTTPHelper+Master.swift */; };
+		C010FAED207CAA95000059AA /* background_blur.png in Resources */ = {isa = PBXBuildFile; fileRef = C010FAEC207CAA94000059AA /* background_blur.png */; };
+		C010FB01207CAF47000059AA /* FiraSans-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C010FAEF207CAF43000059AA /* FiraSans-BlackItalic.ttf */; };
+		C010FB02207CAF47000059AA /* FiraSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C010FAF0207CAF43000059AA /* FiraSans-BoldItalic.ttf */; };
+		C010FB03207CAF47000059AA /* FiraSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C010FAF1207CAF43000059AA /* FiraSans-SemiBoldItalic.ttf */; };
+		C010FB04207CAF47000059AA /* FiraSans-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C010FAF2207CAF43000059AA /* FiraSans-Black.ttf */; };
+		C010FB05207CAF47000059AA /* FiraSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C010FAF3207CAF43000059AA /* FiraSans-Medium.ttf */; };
+		C010FB06207CAF47000059AA /* FiraSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C010FAF4207CAF44000059AA /* FiraSans-Bold.ttf */; };
+		C010FB07207CAF47000059AA /* FiraSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C010FAF5207CAF44000059AA /* FiraSans-Regular.ttf */; };
+		C010FB08207CAF47000059AA /* FiraSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C010FAF6207CAF44000059AA /* FiraSans-ThinItalic.ttf */; };
+		C010FB09207CAF47000059AA /* FiraSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C010FAF7207CAF44000059AA /* FiraSans-ExtraBold.ttf */; };
+		C010FB0A207CAF47000059AA /* FiraSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C010FAF8207CAF45000059AA /* FiraSans-Light.ttf */; };
+		C010FB0B207CAF47000059AA /* FiraSans-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C010FAF9207CAF45000059AA /* FiraSans-ExtraLight.ttf */; };
+		C010FB0C207CAF47000059AA /* FiraSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C010FAFA207CAF45000059AA /* FiraSans-SemiBold.ttf */; };
+		C010FB0D207CAF47000059AA /* FiraSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C010FAFB207CAF45000059AA /* FiraSans-Italic.ttf */; };
+		C010FB0E207CAF47000059AA /* FiraSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C010FAFC207CAF46000059AA /* FiraSans-ExtraBoldItalic.ttf */; };
+		C010FB0F207CAF47000059AA /* FiraSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C010FAFD207CAF46000059AA /* FiraSans-MediumItalic.ttf */; };
+		C010FB10207CAF47000059AA /* FiraSans-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C010FAFE207CAF46000059AA /* FiraSans-ExtraLightItalic.ttf */; };
+		C010FB11207CAF47000059AA /* FiraSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C010FAFF207CAF46000059AA /* FiraSans-LightItalic.ttf */; };
+		C010FB12207CAF47000059AA /* FiraSans-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C010FB00207CAF47000059AA /* FiraSans-Thin.ttf */; };
+		C010FB14207CB2DA000059AA /* ic_nyelam.png in Resources */ = {isa = PBXBuildFile; fileRef = C010FB13207CB2DA000059AA /* ic_nyelam.png */; };
+		C010FB19207CC3BA000059AA /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C010FB18207CC3BA000059AA /* UIView+Extensions.swift */; };
 		C02B9B65207B47CF00BE2508 /* DiveSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02B9B64207B47CF00BE2508 /* DiveSpot.swift */; };
+		C032DF4A207DD50200FE0999 /* MidtransCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C032DF4F207DD50200FE0999 /* MidtransCoreKit.framework */; };
+		C032DF4B207DD50200FE0999 /* MidtransKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C032DF50207DD50200FE0999 /* MidtransKit.framework */; };
+		C032DF4C207DD50200FE0999 /* MMNumberKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C032DF51207DD50200FE0999 /* MMNumberKeyboard.framework */; };
+		C032DF52207DD75900FE0999 /* EAIntroView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C032DF54207DD75900FE0999 /* EAIntroView.framework */; };
+		C032DF53207DD75900FE0999 /* EARestrictedScrollView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C032DF55207DD75900FE0999 /* EARestrictedScrollView.framework */; };
+		C032DF58207DDDCB00FE0999 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C032DF56207DDDCB00FE0999 /* ForgotPasswordViewController.swift */; };
+		C032DF59207DDDCB00FE0999 /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C032DF57207DDDCB00FE0999 /* ForgotPasswordViewController.xib */; };
+		C032DF5C207DDDFF00FE0999 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C032DF5A207DDDFF00FE0999 /* RegisterViewController.swift */; };
+		C032DF5D207DDDFF00FE0999 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C032DF5B207DDDFF00FE0999 /* RegisterViewController.xib */; };
 		C037AD5C2070A38800DD5CBC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C037AD5B2070A38800DD5CBC /* AppDelegate.swift */; };
 		C037AD5E2070A38800DD5CBC /* StarterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C037AD5D2070A38800DD5CBC /* StarterViewController.swift */; };
 		C037AD612070A38800DD5CBC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C037AD5F2070A38800DD5CBC /* Main.storyboard */; };
@@ -122,6 +152,7 @@
 		C0E17FD920775BC4003942D1 /* NHTTPHelper+Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E17FD820775BC4003942D1 /* NHTTPHelper+Detail.swift */; };
 		C0E17FDB20776E47003942D1 /* NHTTPHelper+Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E17FDA20776E47003942D1 /* NHTTPHelper+Book.swift */; };
 		C0E17FDD20778A59003942D1 /* OrderReturn.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E17FDC20778A59003942D1 /* OrderReturn.swift */; };
+		C0E5A4D2207C6C28001BDA9B /* AuthNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E5A4D1207C6C28001BDA9B /* AuthNavigationController.swift */; };
 		C0FC9A15207673A00060FA55 /* NHTTPHelper+Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FC9A14207673A00060FA55 /* NHTTPHelper+Account.swift */; };
 		FA4702D7BC604A7C1211B459 /* Pods_NyelamTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41A3DA3DFF0F2F060A712D75 /* Pods_NyelamTests.framework */; };
 /* End PBXBuildFile section */
@@ -166,7 +197,39 @@
 		C00D0B022076324F000D8ED6 /* Nyelam-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nyelam-Bridging-Header.h"; sourceTree = "<group>"; };
 		C00D0B0320763250000D8ED6 /* Bridging-Header.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "Bridging-Header.m"; path = "Nyelam/Helper/Bridging-Header.m"; sourceTree = SOURCE_ROOT; };
 		C00D0B0520763591000D8ED6 /* NHTTPHelper+Master.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NHTTPHelper+Master.swift"; sourceTree = "<group>"; };
+		C010FAEC207CAA94000059AA /* background_blur.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_blur.png; sourceTree = "<group>"; };
+		C010FAEF207CAF43000059AA /* FiraSans-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-BlackItalic.ttf"; sourceTree = "<group>"; };
+		C010FAF0207CAF43000059AA /* FiraSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		C010FAF1207CAF43000059AA /* FiraSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		C010FAF2207CAF43000059AA /* FiraSans-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-Black.ttf"; sourceTree = "<group>"; };
+		C010FAF3207CAF43000059AA /* FiraSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-Medium.ttf"; sourceTree = "<group>"; };
+		C010FAF4207CAF44000059AA /* FiraSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-Bold.ttf"; sourceTree = "<group>"; };
+		C010FAF5207CAF44000059AA /* FiraSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-Regular.ttf"; sourceTree = "<group>"; };
+		C010FAF6207CAF44000059AA /* FiraSans-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-ThinItalic.ttf"; sourceTree = "<group>"; };
+		C010FAF7207CAF44000059AA /* FiraSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		C010FAF8207CAF45000059AA /* FiraSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-Light.ttf"; sourceTree = "<group>"; };
+		C010FAF9207CAF45000059AA /* FiraSans-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-ExtraLight.ttf"; sourceTree = "<group>"; };
+		C010FAFA207CAF45000059AA /* FiraSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		C010FAFB207CAF45000059AA /* FiraSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-Italic.ttf"; sourceTree = "<group>"; };
+		C010FAFC207CAF46000059AA /* FiraSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		C010FAFD207CAF46000059AA /* FiraSans-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-MediumItalic.ttf"; sourceTree = "<group>"; };
+		C010FAFE207CAF46000059AA /* FiraSans-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		C010FAFF207CAF46000059AA /* FiraSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		C010FB00207CAF47000059AA /* FiraSans-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-Thin.ttf"; sourceTree = "<group>"; };
+		C010FB13207CB2DA000059AA /* ic_nyelam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_nyelam.png; sourceTree = "<group>"; };
+		C010FB18207CC3BA000059AA /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		C02B9B64207B47CF00BE2508 /* DiveSpot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiveSpot.swift; sourceTree = "<group>"; };
+		C032DF4D207DD50200FE0999 /* GradientView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GradientView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C032DF4E207DD50200FE0999 /* MBProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MBProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C032DF4F207DD50200FE0999 /* MidtransCoreKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MidtransCoreKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C032DF50207DD50200FE0999 /* MidtransKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MidtransKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C032DF51207DD50200FE0999 /* MMNumberKeyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MMNumberKeyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C032DF54207DD75900FE0999 /* EAIntroView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EAIntroView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C032DF55207DD75900FE0999 /* EARestrictedScrollView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EARestrictedScrollView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C032DF56207DDDCB00FE0999 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		C032DF57207DDDCB00FE0999 /* ForgotPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordViewController.xib; sourceTree = "<group>"; };
+		C032DF5A207DDDFF00FE0999 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		C032DF5B207DDDFF00FE0999 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		C037AD582070A38800DD5CBC /* Nyelam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nyelam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C037AD5B2070A38800DD5CBC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C037AD5D2070A38800DD5CBC /* StarterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarterViewController.swift; sourceTree = "<group>"; };
@@ -275,6 +338,7 @@
 		C0E17FD820775BC4003942D1 /* NHTTPHelper+Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NHTTPHelper+Detail.swift"; sourceTree = "<group>"; };
 		C0E17FDA20776E47003942D1 /* NHTTPHelper+Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NHTTPHelper+Book.swift"; sourceTree = "<group>"; };
 		C0E17FDC20778A59003942D1 /* OrderReturn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderReturn.swift; sourceTree = "<group>"; };
+		C0E5A4D1207C6C28001BDA9B /* AuthNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNavigationController.swift; sourceTree = "<group>"; };
 		C0FC9A14207673A00060FA55 /* NHTTPHelper+Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NHTTPHelper+Account.swift"; sourceTree = "<group>"; };
 		D473B4B6FAAEB379DE72B736 /* Pods_NyelamUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NyelamUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D968E2C27A913B8C6A6C9029 /* Pods-NyelamUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NyelamUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NyelamUITests/Pods-NyelamUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -289,6 +353,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C032DF52207DD75900FE0999 /* EAIntroView.framework in Frameworks */,
+				C032DF53207DD75900FE0999 /* EARestrictedScrollView.framework in Frameworks */,
+				C032DF4A207DD50200FE0999 /* MidtransCoreKit.framework in Frameworks */,
+				C032DF4B207DD50200FE0999 /* MidtransKit.framework in Frameworks */,
+				C032DF4C207DD50200FE0999 /* MMNumberKeyboard.framework in Frameworks */,
 				C0BE91632070ADD5004E1B92 /* ActionSheetPicker_3_0.framework in Frameworks */,
 				C0BE91642070ADD5004E1B92 /* Alamofire.framework in Frameworks */,
 				C0BE91652070ADD5004E1B92 /* AlamofireImage.framework in Frameworks */,
@@ -332,6 +401,13 @@
 		4B54B573D6047976074AE619 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C032DF54207DD75900FE0999 /* EAIntroView.framework */,
+				C032DF55207DD75900FE0999 /* EARestrictedScrollView.framework */,
+				C032DF4D207DD50200FE0999 /* GradientView.framework */,
+				C032DF4E207DD50200FE0999 /* MBProgressHUD.framework */,
+				C032DF4F207DD50200FE0999 /* MidtransCoreKit.framework */,
+				C032DF50207DD50200FE0999 /* MidtransKit.framework */,
+				C032DF51207DD50200FE0999 /* MMNumberKeyboard.framework */,
 				C0BE91742070ADD5004E1B92 /* ActionSheetPicker_3_0.framework */,
 				C0BE91752070ADD5004E1B92 /* Alamofire.framework */,
 				C0BE91762070ADD5004E1B92 /* AlamofireImage.framework */,
@@ -405,6 +481,31 @@
 			path = HTTP;
 			sourceTree = "<group>";
 		};
+		C010FAEE207CAF2A000059AA /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				C010FAF2207CAF43000059AA /* FiraSans-Black.ttf */,
+				C010FAEF207CAF43000059AA /* FiraSans-BlackItalic.ttf */,
+				C010FAF4207CAF44000059AA /* FiraSans-Bold.ttf */,
+				C010FAF0207CAF43000059AA /* FiraSans-BoldItalic.ttf */,
+				C010FAF7207CAF44000059AA /* FiraSans-ExtraBold.ttf */,
+				C010FAFC207CAF46000059AA /* FiraSans-ExtraBoldItalic.ttf */,
+				C010FAF9207CAF45000059AA /* FiraSans-ExtraLight.ttf */,
+				C010FAFE207CAF46000059AA /* FiraSans-ExtraLightItalic.ttf */,
+				C010FAFB207CAF45000059AA /* FiraSans-Italic.ttf */,
+				C010FAF8207CAF45000059AA /* FiraSans-Light.ttf */,
+				C010FAFF207CAF46000059AA /* FiraSans-LightItalic.ttf */,
+				C010FAF3207CAF43000059AA /* FiraSans-Medium.ttf */,
+				C010FAFD207CAF46000059AA /* FiraSans-MediumItalic.ttf */,
+				C010FAF5207CAF44000059AA /* FiraSans-Regular.ttf */,
+				C010FAFA207CAF45000059AA /* FiraSans-SemiBold.ttf */,
+				C010FAF1207CAF43000059AA /* FiraSans-SemiBoldItalic.ttf */,
+				C010FB00207CAF47000059AA /* FiraSans-Thin.ttf */,
+				C010FAF6207CAF44000059AA /* FiraSans-ThinItalic.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		C037AD4F2070A38800DD5CBC = {
 			isa = PBXGroup;
 			children = (
@@ -431,6 +532,7 @@
 		C037AD5A2070A38800DD5CBC /* Nyelam */ = {
 			isa = PBXGroup;
 			children = (
+				C010FAEE207CAF2A000059AA /* Fonts */,
 				C037AD5B2070A38800DD5CBC /* AppDelegate.swift */,
 				C037AD652070A38800DD5CBC /* Assets.xcassets */,
 				C0B2A274207B84CD00D46336 /* Auth */,
@@ -475,6 +577,8 @@
 		C0B2A266207B539300D46336 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C010FB13207CB2DA000059AA /* ic_nyelam.png */,
+				C010FAEC207CAA94000059AA /* background_blur.png */,
 				C0B2A267207B547700D46336 /* splash.png */,
 			);
 			path = Images;
@@ -485,6 +589,11 @@
 			children = (
 				C0B2A275207B84DC00D46336 /* LoginViewController.swift */,
 				C0B2A276207B84DC00D46336 /* LoginViewController.xib */,
+				C0E5A4D1207C6C28001BDA9B /* AuthNavigationController.swift */,
+				C032DF56207DDDCB00FE0999 /* ForgotPasswordViewController.swift */,
+				C032DF57207DDDCB00FE0999 /* ForgotPasswordViewController.xib */,
+				C032DF5A207DDDFF00FE0999 /* RegisterViewController.swift */,
+				C032DF5B207DDDFF00FE0999 /* RegisterViewController.xib */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -532,6 +641,7 @@
 				C00D0AFD207620C2000D8ED6 /* Data+Extensions.swift */,
 				A6C27087207BEC0E007E4D2A /* UIColor+Nyelam.swift */,
 				C0B2A26D207B5E5A00D46336 /* UIAlertController+Extensions.swift */,
+				C010FB18207CC3BA000059AA /* UIView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -725,14 +835,36 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C010FB03207CAF47000059AA /* FiraSans-SemiBoldItalic.ttf in Resources */,
 				C037AD692070A38800DD5CBC /* LaunchScreen.storyboard in Resources */,
+				C010FB02207CAF47000059AA /* FiraSans-BoldItalic.ttf in Resources */,
+				C010FB0A207CAF47000059AA /* FiraSans-Light.ttf in Resources */,
+				C010FB09207CAF47000059AA /* FiraSans-ExtraBold.ttf in Resources */,
+				C010FB14207CB2DA000059AA /* ic_nyelam.png in Resources */,
+				C032DF59207DDDCB00FE0999 /* ForgotPasswordViewController.xib in Resources */,
+				C010FB0D207CAF47000059AA /* FiraSans-Italic.ttf in Resources */,
+				C010FB11207CAF47000059AA /* FiraSans-LightItalic.ttf in Resources */,
 				C0BE915F2070ACFE004E1B92 /* GoogleService-Info.plist in Resources */,
+				C010FB10207CAF47000059AA /* FiraSans-ExtraLightItalic.ttf in Resources */,
+				C032DF5D207DDDFF00FE0999 /* RegisterViewController.xib in Resources */,
+				C010FB08207CAF47000059AA /* FiraSans-ThinItalic.ttf in Resources */,
+				C010FB12207CAF47000059AA /* FiraSans-Thin.ttf in Resources */,
 				A6C2708E207BF0A2007E4D2A /* MainRootController.xib in Resources */,
+				C010FB0C207CAF47000059AA /* FiraSans-SemiBold.ttf in Resources */,
+				C010FAED207CAA95000059AA /* background_blur.png in Resources */,
+				C010FB07207CAF47000059AA /* FiraSans-Regular.ttf in Resources */,
 				C037AD662070A38800DD5CBC /* Assets.xcassets in Resources */,
+				C010FB0B207CAF47000059AA /* FiraSans-ExtraLight.ttf in Resources */,
+				C010FB01207CAF47000059AA /* FiraSans-BlackItalic.ttf in Resources */,
+				C010FB04207CAF47000059AA /* FiraSans-Black.ttf in Resources */,
+				C010FB0F207CAF47000059AA /* FiraSans-MediumItalic.ttf in Resources */,
+				C010FB06207CAF47000059AA /* FiraSans-Bold.ttf in Resources */,
 				C0BE91932070B758004E1B92 /* DTMDatePickerController.xib in Resources */,
+				C010FB05207CAF47000059AA /* FiraSans-Medium.ttf in Resources */,
 				C0B2A268207B547700D46336 /* splash.png in Resources */,
 				C0B2A278207B84DC00D46336 /* LoginViewController.xib in Resources */,
 				C037AD612070A38800DD5CBC /* Main.storyboard in Resources */,
+				C010FB0E207CAF47000059AA /* FiraSans-ExtraBoldItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -768,7 +900,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		12E81DF76CE6C2FF4D6C6576 /* [CP] Copy Pods Resources */ = {
@@ -879,7 +1011,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		887CF9BA0C01B68038423EC7 /* [CP] Embed Pods Frameworks */ = {
@@ -942,7 +1074,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -964,6 +1096,7 @@
 				C0B2A262207B50A900D46336 /* NNationality+CoreDataClass.swift in Sources */,
 				C0BE924A2070D403004E1B92 /* Facilities.swift in Sources */,
 				C0E17FD920775BC4003942D1 /* NHTTPHelper+Detail.swift in Sources */,
+				C010FB19207CC3BA000059AA /* UIView+Extensions.swift in Sources */,
 				C0E17FD720772FF4003942D1 /* SearchResultCategory.swift in Sources */,
 				C0E17FD520772E81003942D1 /* SearchResultDiveCenter.swift in Sources */,
 				C0BE92542070D50C004E1B92 /* TransactionResult.swift in Sources */,
@@ -974,6 +1107,7 @@
 				C037AD5E2070A38800DD5CBC /* StarterViewController.swift in Sources */,
 				C0B2A256207B50A900D46336 /* NDiveService+CoreDataClass.swift in Sources */,
 				C0BE92562070D59A004E1B92 /* Participant.swift in Sources */,
+				C032DF5C207DDDFF00FE0999 /* RegisterViewController.swift in Sources */,
 				A6C2708D207BF0A2007E4D2A /* MainRootController.swift in Sources */,
 				C037AD642070A38800DD5CBC /* Nyelam.xcdatamodeld in Sources */,
 				A6C2708A207BEF63007E4D2A /* BaseNavigationController.swift in Sources */,
@@ -1015,6 +1149,7 @@
 				C00D0AFC2075FA10000D8ED6 /* NHTTPResponse.swift in Sources */,
 				C0B2A254207B50A900D46336 /* NLanguage+CoreDataClass.swift in Sources */,
 				C0B2A265207B50A900D46336 /* NSummary+CoreDataProperties.swift in Sources */,
+				C0E5A4D2207C6C28001BDA9B /* AuthNavigationController.swift in Sources */,
 				C00D0B0620763591000D8ED6 /* NHTTPHelper+Master.swift in Sources */,
 				C0B2A25B207B50A900D46336 /* NDiveCenter+CoreDataProperties.swift in Sources */,
 				C0BE91972070B758004E1B92 /* UIApplication+DTM.swift in Sources */,
@@ -1036,6 +1171,7 @@
 				C0BE925C2070D6A3004E1B92 /* SearchResultService.swift in Sources */,
 				C037AD5C2070A38800DD5CBC /* AppDelegate.swift in Sources */,
 				C0BE923E2070D168004E1B92 /* BookingContact.swift in Sources */,
+				C032DF58207DDDCB00FE0999 /* ForgotPasswordViewController.swift in Sources */,
 				C0BE91892070B6CA004E1B92 /* BaseViewController.swift in Sources */,
 				C0B2A248207B50A900D46336 /* NCategory+CoreDataClass.swift in Sources */,
 				C0BE924E2070D48B004E1B92 /* Module.swift in Sources */,
@@ -1207,9 +1343,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 2JRT25FDLZ;
 				INFOPLIST_FILE = Nyelam/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nyelam.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1227,9 +1363,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 2JRT25FDLZ;
 				INFOPLIST_FILE = Nyelam/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nyelam.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";

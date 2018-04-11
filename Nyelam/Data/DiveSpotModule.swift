@@ -27,7 +27,7 @@ public class DiveSpotModule: Module, Parseable {
         if let diveSpotArray = json[KEY_DIVE_SPOTS] as? Array<[String: Any]>, !diveSpotArray.isEmpty {
             self.divespots = []
             for diveSpotJson in diveSpotArray {
-                var diveSpot = DiveSpot(json: diveSpotJson)
+                let diveSpot = DiveSpot(json: diveSpotJson)
                 self.divespots!.append(diveSpot)
             }
         } else if let diveSpotString = json[KEY_DIVE_SPOTS] as? String {
@@ -36,7 +36,7 @@ public class DiveSpotModule: Module, Parseable {
                 let diveSpotArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
                 self.divespots = []
                 for diveSpotJson in diveSpotArray {
-                    var diveSpot = DiveSpot(json: diveSpotJson)
+                    let diveSpot = DiveSpot(json: diveSpotJson)
                     self.divespots!.append(diveSpot)
                 }
             } catch {

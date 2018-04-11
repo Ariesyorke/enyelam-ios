@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseNavigationController: UINavigationController {
+class BaseNavigationController: UINavigationController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
