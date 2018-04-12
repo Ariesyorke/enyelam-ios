@@ -16,6 +16,7 @@ extension UIViewController {
         notificationCenter.addObserver(self, selector: #selector(internalKeyboardWillShow), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
         
         notificationCenter.addObserver(self, selector: #selector(internalKeyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        
     }
     
     @objc func internalKeyboardWillShow(notification: NSNotification) {
@@ -71,11 +72,11 @@ extension UIViewController {
     }
     
     // MARK: Keyboard Event Callback
-    public func keyboardWillShow(keyboardFrame: CGRect, animationDuration: TimeInterval) {
+    @objc func keyboardWillShow(keyboardFrame: CGRect, animationDuration: TimeInterval) {
         
     }
     
-    public func keyboardWillHide(animationDuration: TimeInterval) {
+    @objc func keyboardWillHide(animationDuration: TimeInterval) {
         
     }
 }

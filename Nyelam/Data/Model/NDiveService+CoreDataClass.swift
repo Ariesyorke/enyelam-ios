@@ -90,7 +90,7 @@ public class NDiveService: NSManagedObject {
         if let diveSpotsArray = json[KEY_DIVE_SPOTS] as? Array<[String: Any]>, !diveSpotsArray.isEmpty {
             self.diveSpots = []
             for diveSpotJson in diveSpotsArray {
-                var diveSpot = DiveSpot(json: diveSpotJson)
+                let diveSpot = DiveSpot(json: diveSpotJson)
                 self.diveSpots!.append(diveSpot)
             }
         } else if let diveSpotString = json[KEY_DIVE_SPOTS] as? String {
@@ -99,7 +99,7 @@ public class NDiveService: NSManagedObject {
                 let data = diveSpotString.data(using: String.Encoding.utf8,     allowLossyConversion: true)
                 let diveSpotsArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
                 for diveSpotJson in diveSpotsArray {
-                    var diveSpot = DiveSpot(json: diveSpotJson)
+                    let diveSpot = DiveSpot(json: diveSpotJson)
                     self.diveSpots!.append(diveSpot)
                 }
             } catch {
@@ -180,12 +180,12 @@ public class NDiveService: NSManagedObject {
             }
         }
         if let facilitiesJson = json[KEY_FACILITIES] as? [String: Any] {
-            self.facilities = Facilities(json: json)
+            self.facilities = Facilities(json: facilitiesJson)
         } else if let facilitesString = json[KEY_FACILITIES] as? String {
             do {
                 let data = facilitesString.data(using: String.Encoding.utf8, allowLossyConversion: true)
                 let facilitiesJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
-                self.facilities = Facilities(json: json)
+                self.facilities = Facilities(json: facilitiesJson)
             } catch {
                 print(error)
             }

@@ -229,10 +229,10 @@ public class NUser: NSManagedObject {
             json[KEY_USER_ID] = id
         }
         if let fullname = self.fullname {
-            json[KEY_FULLNAME] = self.fullname
+            json[KEY_FULLNAME] = fullname
         }
         if let firstName = self.firstName {
-            json[KEY_FIRSTNAME] = self.firstName
+            json[KEY_FIRSTNAME] = firstName
         }
         if let lastName = self.lastName {
             json[KEY_LASTNAME] = lastName
@@ -254,13 +254,13 @@ public class NUser: NSManagedObject {
             json[KEY_ADDRESS] = address
         }
         if let birthPlace = self.birthPlace {
-            json[KEY_BIRTHPLACE] = self.birthPlace
+            json[KEY_BIRTHPLACE] = birthPlace
         }
         if let birthDate = self.birthDate {
             json[KEY_BIRTHDATE] = birthDate.timeIntervalSince1970
         }
         if let certificateNumber = self.certificateNumber {
-            json[KEY_CERTIFICATE_NUMBER] = self.certificateNumber
+            json[KEY_CERTIFICATE_NUMBER] = certificateNumber
         }
         if let certificateDate = self.certificateDate {
             json[KEY_CERTIFICATE_DATE] = certificateDate.timeIntervalSince1970

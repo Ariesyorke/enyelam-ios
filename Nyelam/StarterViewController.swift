@@ -74,12 +74,16 @@ class StarterViewController: BaseViewController {
                 self.loadCountryCodes(page: nextPage)
                 return
             }
-            self.goToHomepage()
+            self.goAuth()
         })
     }
     
     internal func goToHomepage() {
         let _ = MainNavigationController.present(on: self)
+    }
+    
+    internal func goAuth() {
+        let _ = AuthNavigationController.present(on: self, dismissCompletion: {})
     }
 }
 

@@ -92,7 +92,7 @@ extension NHTTPHelper {
                 return
             }
             if let data = data, let json = data as? [String: Any] {
-                var order = OrderReturn(json: json)
+                let order = OrderReturn(json: json)
                 complete(NHTTPResponse(resultStatus: true, data: order, error: nil))
             }
         })
