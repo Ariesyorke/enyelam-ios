@@ -18,7 +18,7 @@ target 'Nyelam' do
   pod 'ActionSheetPicker-3.0', '~> 2.3.0'
   pod 'ImageSlideshow', '~> 1.3.0'
   pod 'ImageSlideshow/Alamofire'
-  pod 'GradientView', '~> 2.2.0'
+  pod 'EZYGradientView', :git => 'https://github.com/Niphery/EZYGradientView'
   pod 'Alamofire'
   pod 'PayPal-iOS-SDK'
   pod 'EAIntroView'
