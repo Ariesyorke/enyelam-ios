@@ -61,6 +61,7 @@
 		C032DF59207DDDCB00FE0999 /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C032DF57207DDDCB00FE0999 /* ForgotPasswordViewController.xib */; };
 		C032DF5C207DDDFF00FE0999 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C032DF5A207DDDFF00FE0999 /* RegisterViewController.swift */; };
 		C032DF5D207DDDFF00FE0999 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C032DF5B207DDDFF00FE0999 /* RegisterViewController.xib */; };
+		C0366F1C207F0C4F0027FEF8 /* SkyFloatingLabelTextField.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0366F1D207F0C4F0027FEF8 /* SkyFloatingLabelTextField.framework */; };
 		C037AD5C2070A38800DD5CBC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C037AD5B2070A38800DD5CBC /* AppDelegate.swift */; };
 		C037AD5E2070A38800DD5CBC /* StarterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C037AD5D2070A38800DD5CBC /* StarterViewController.swift */; };
 		C037AD612070A38800DD5CBC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C037AD5F2070A38800DD5CBC /* Main.storyboard */; };
@@ -251,6 +252,7 @@
 		C032DF57207DDDCB00FE0999 /* ForgotPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordViewController.xib; sourceTree = "<group>"; };
 		C032DF5A207DDDFF00FE0999 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		C032DF5B207DDDFF00FE0999 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
+		C0366F1D207F0C4F0027FEF8 /* SkyFloatingLabelTextField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SkyFloatingLabelTextField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C037AD582070A38800DD5CBC /* Nyelam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nyelam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C037AD5B2070A38800DD5CBC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C037AD5D2070A38800DD5CBC /* StarterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarterViewController.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0366F1C207F0C4F0027FEF8 /* SkyFloatingLabelTextField.framework in Frameworks */,
 				C032DF52207DD75900FE0999 /* EAIntroView.framework in Frameworks */,
 				C032DF53207DD75900FE0999 /* EARestrictedScrollView.framework in Frameworks */,
 				C032DF4A207DD50200FE0999 /* MidtransCoreKit.framework in Frameworks */,
@@ -422,6 +425,7 @@
 		4B54B573D6047976074AE619 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C0366F1D207F0C4F0027FEF8 /* SkyFloatingLabelTextField.framework */,
 				C032DF54207DD75900FE0999 /* EAIntroView.framework */,
 				C032DF55207DD75900FE0999 /* EARestrictedScrollView.framework */,
 				C032DF4D207DD50200FE0999 /* GradientView.framework */,
