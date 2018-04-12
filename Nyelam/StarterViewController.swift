@@ -83,7 +83,9 @@ class StarterViewController: BaseViewController {
     }
     
     internal func goAuth() {
-        let _ = AuthNavigationController.present(on: self, dismissCompletion: {})
+        // TODO: TESTING
+        MainNavigationController.present(on: self)
+//        let _ = AuthNavigationController.present(on: self, dismissCompletion: {})
     }
 }
 

@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		1DD978E2838F59B314D3178D /* Pods_NyelamUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D473B4B6FAAEB379DE72B736 /* Pods_NyelamUITests.framework */; };
 		79B7B08C8E22A9DEC8DE57A8 /* Pods_Nyelam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF69D846D69A5AF2FE532956 /* Pods_Nyelam.framework */; };
+		A60A285B207F700D004A8FC2 /* DiveServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60A2859207F700D004A8FC2 /* DiveServiceCell.swift */; };
+		A60A285C207F700D004A8FC2 /* DiveServiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A60A285A207F700D004A8FC2 /* DiveServiceCell.xib */; };
+		A60A285E207F7998004A8FC2 /* SearchFormCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A60A285D207F7998004A8FC2 /* SearchFormCell.xib */; };
 		A60E1F1F207D9E7D00427CF8 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60E1F1D207D9E7D00427CF8 /* HomeController.swift */; };
 		A60E1F20207D9E7D00427CF8 /* HomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A60E1F1E207D9E7D00427CF8 /* HomeController.xib */; };
 		A60E1F23207E06EB00427CF8 /* NServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60E1F22207E06EB00427CF8 /* NServiceView.swift */; };
@@ -185,6 +188,9 @@
 		41A3DA3DFF0F2F060A712D75 /* Pods_NyelamTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NyelamTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		637A0843453D39C5ECAF0620 /* Pods-Nyelam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyelam.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nyelam/Pods-Nyelam.release.xcconfig"; sourceTree = "<group>"; };
 		6C8268AB7332ABCC5EF130D5 /* Pods-Nyelam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyelam.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Nyelam/Pods-Nyelam.debug.xcconfig"; sourceTree = "<group>"; };
+		A60A2859207F700D004A8FC2 /* DiveServiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiveServiceCell.swift; sourceTree = "<group>"; };
+		A60A285A207F700D004A8FC2 /* DiveServiceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiveServiceCell.xib; sourceTree = "<group>"; };
+		A60A285D207F7998004A8FC2 /* SearchFormCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchFormCell.xib; sourceTree = "<group>"; };
 		A60E1F1D207D9E7D00427CF8 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		A60E1F1E207D9E7D00427CF8 /* HomeController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeController.xib; sourceTree = "<group>"; };
 		A60E1F22207E06EB00427CF8 /* NServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NServiceView.swift; sourceTree = "<group>"; };
@@ -476,6 +482,9 @@
 			children = (
 				A6691A4D207E78BF004B1C2E /* SearchFormController.swift */,
 				A6691A4E207E78BF004B1C2E /* SearchFormController.xib */,
+				A60A2859207F700D004A8FC2 /* DiveServiceCell.swift */,
+				A60A285A207F700D004A8FC2 /* DiveServiceCell.xib */,
+				A60A285D207F7998004A8FC2 /* SearchFormCell.xib */,
 			);
 			path = "Dive Service";
 			sourceTree = "<group>";
@@ -875,6 +884,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C010FB03207CAF47000059AA /* FiraSans-SemiBoldItalic.ttf in Resources */,
+				A60A285E207F7998004A8FC2 /* SearchFormCell.xib in Resources */,
 				C037AD692070A38800DD5CBC /* LaunchScreen.storyboard in Resources */,
 				A60E1F25207E070300427CF8 /* NServiceView.xib in Resources */,
 				C010FB02207CAF47000059AA /* FiraSans-BoldItalic.ttf in Resources */,
@@ -891,6 +901,7 @@
 				C010FB12207CAF47000059AA /* FiraSans-Thin.ttf in Resources */,
 				A6C2708E207BF0A2007E4D2A /* MainRootController.xib in Resources */,
 				C010FB0C207CAF47000059AA /* FiraSans-SemiBold.ttf in Resources */,
+				A60A285C207F700D004A8FC2 /* DiveServiceCell.xib in Resources */,
 				C010FAED207CAA95000059AA /* background_blur.png in Resources */,
 				C010FB07207CAF47000059AA /* FiraSans-Regular.ttf in Resources */,
 				C037AD662070A38800DD5CBC /* Assets.xcassets in Resources */,
@@ -1209,6 +1220,7 @@
 				C0B2A25B207B50A900D46336 /* NDiveCenter+CoreDataProperties.swift in Sources */,
 				C0BE91972070B758004E1B92 /* UIApplication+DTM.swift in Sources */,
 				C0B2A255207B50A900D46336 /* NLanguage+CoreDataProperties.swift in Sources */,
+				A60A285B207F700D004A8FC2 /* DiveServiceCell.swift in Sources */,
 				C0E17FDD20778A59003942D1 /* OrderReturn.swift in Sources */,
 				A60E1F1F207D9E7D00427CF8 /* HomeController.swift in Sources */,
 				C0BE92502070D4AC004E1B92 /* DiveSpotModule.swift in Sources */,
