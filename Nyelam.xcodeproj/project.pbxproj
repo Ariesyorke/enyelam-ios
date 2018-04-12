@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		1DD978E2838F59B314D3178D /* Pods_NyelamUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D473B4B6FAAEB379DE72B736 /* Pods_NyelamUITests.framework */; };
 		79B7B08C8E22A9DEC8DE57A8 /* Pods_Nyelam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF69D846D69A5AF2FE532956 /* Pods_Nyelam.framework */; };
+		A60E1F1F207D9E7D00427CF8 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60E1F1D207D9E7D00427CF8 /* HomeController.swift */; };
+		A60E1F20207D9E7D00427CF8 /* HomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A60E1F1E207D9E7D00427CF8 /* HomeController.xib */; };
+		A60E1F23207E06EB00427CF8 /* NServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60E1F22207E06EB00427CF8 /* NServiceView.swift */; };
+		A60E1F25207E070300427CF8 /* NServiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A60E1F24207E070300427CF8 /* NServiceView.xib */; };
+		A60E1F28207E5A5900427CF8 /* RateView.m in Sources */ = {isa = PBXBuildFile; fileRef = A60E1F26207E5A5700427CF8 /* RateView.m */; };
+		A6691A4F207E78BF004B1C2E /* SearchFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6691A4D207E78BF004B1C2E /* SearchFormController.swift */; };
+		A6691A50207E78BF004B1C2E /* SearchFormController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6691A4E207E78BF004B1C2E /* SearchFormController.xib */; };
 		A6C27086207BEBDE007E4D2A /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C27085207BEBDE007E4D2A /* MainNavigationController.swift */; };
 		A6C27088207BEC0E007E4D2A /* UIColor+Nyelam.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C27087207BEC0E007E4D2A /* UIColor+Nyelam.swift */; };
 		A6C2708A207BEF63007E4D2A /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C27089207BEF63007E4D2A /* BaseNavigationController.swift */; };
@@ -147,6 +154,14 @@
 		41A3DA3DFF0F2F060A712D75 /* Pods_NyelamTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NyelamTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		637A0843453D39C5ECAF0620 /* Pods-Nyelam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyelam.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nyelam/Pods-Nyelam.release.xcconfig"; sourceTree = "<group>"; };
 		6C8268AB7332ABCC5EF130D5 /* Pods-Nyelam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyelam.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Nyelam/Pods-Nyelam.debug.xcconfig"; sourceTree = "<group>"; };
+		A60E1F1D207D9E7D00427CF8 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		A60E1F1E207D9E7D00427CF8 /* HomeController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeController.xib; sourceTree = "<group>"; };
+		A60E1F22207E06EB00427CF8 /* NServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NServiceView.swift; sourceTree = "<group>"; };
+		A60E1F24207E070300427CF8 /* NServiceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NServiceView.xib; sourceTree = "<group>"; };
+		A60E1F26207E5A5700427CF8 /* RateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RateView.m; sourceTree = "<group>"; };
+		A60E1F27207E5A5800427CF8 /* RateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RateView.h; sourceTree = "<group>"; };
+		A6691A4D207E78BF004B1C2E /* SearchFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFormController.swift; sourceTree = "<group>"; };
+		A6691A4E207E78BF004B1C2E /* SearchFormController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchFormController.xib; sourceTree = "<group>"; };
 		A6C27085207BEBDE007E4D2A /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		A6C27087207BEC0E007E4D2A /* UIColor+Nyelam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Nyelam.swift"; sourceTree = "<group>"; };
 		A6C27089207BEF63007E4D2A /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
@@ -369,6 +384,26 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A60E1F21207E061300427CF8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A60E1F22207E06EB00427CF8 /* NServiceView.swift */,
+				A60E1F24207E070300427CF8 /* NServiceView.xib */,
+				A60E1F27207E5A5800427CF8 /* RateView.h */,
+				A60E1F26207E5A5700427CF8 /* RateView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A6691A4C207E7896004B1C2E /* Dive Service */ = {
+			isa = PBXGroup;
+			children = (
+				A6691A4D207E78BF004B1C2E /* SearchFormController.swift */,
+				A6691A4E207E78BF004B1C2E /* SearchFormController.xib */,
+			);
+			path = "Dive Service";
+			sourceTree = "<group>";
+		};
 		A6C27090207C01DD007E4D2A /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -385,6 +420,8 @@
 		A6F5061D207630A400E9938C /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				A60E1F1D207D9E7D00427CF8 /* HomeController.swift */,
+				A60E1F1E207D9E7D00427CF8 /* HomeController.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -431,6 +468,7 @@
 		C037AD5A2070A38800DD5CBC /* Nyelam */ = {
 			isa = PBXGroup;
 			children = (
+				A6691A4C207E7896004B1C2E /* Dive Service */,
 				C037AD5B2070A38800DD5CBC /* AppDelegate.swift */,
 				C037AD652070A38800DD5CBC /* Assets.xcassets */,
 				C0B2A274207B84CD00D46336 /* Auth */,
@@ -450,6 +488,7 @@
 				A6C2708F207BFD02007E4D2A /* Nyelam-Bridging-Header.h */,
 				C037AD622070A38800DD5CBC /* Nyelam.xcdatamodeld */,
 				C037AD5D2070A38800DD5CBC /* StarterViewController.swift */,
+				A60E1F21207E061300427CF8 /* Views */,
 			);
 			path = Nyelam;
 			sourceTree = "<group>";
@@ -726,12 +765,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				C037AD692070A38800DD5CBC /* LaunchScreen.storyboard in Resources */,
+				A60E1F25207E070300427CF8 /* NServiceView.xib in Resources */,
 				C0BE915F2070ACFE004E1B92 /* GoogleService-Info.plist in Resources */,
 				A6C2708E207BF0A2007E4D2A /* MainRootController.xib in Resources */,
 				C037AD662070A38800DD5CBC /* Assets.xcassets in Resources */,
+				A60E1F20207D9E7D00427CF8 /* HomeController.xib in Resources */,
 				C0BE91932070B758004E1B92 /* DTMDatePickerController.xib in Resources */,
 				C0B2A268207B547700D46336 /* splash.png in Resources */,
 				C0B2A278207B84DC00D46336 /* LoginViewController.xib in Resources */,
+				A6691A50207E78BF004B1C2E /* SearchFormController.xib in Resources */,
 				C037AD612070A38800DD5CBC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -796,12 +838,14 @@
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MidtransKit/MidtransKit.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MidtransKit.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -819,6 +863,9 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/EAIntroView/EAIntroView.framework",
+				"${BUILT_PRODUCTS_DIR}/EARestrictedScrollView/EARestrictedScrollView.framework",
+				"${BUILT_PRODUCTS_DIR}/EZYGradientView/EZYGradientView.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
@@ -827,13 +874,12 @@
 				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/Gloss/Gloss.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/GradientView/GradientView.framework",
 				"${BUILT_PRODUCTS_DIR}/ImageSlideshow/ImageSlideshow.framework",
 				"${BUILT_PRODUCTS_DIR}/JRSwizzle/JRSwizzle.framework",
+				"${BUILT_PRODUCTS_DIR}/MMNumberKeyboard/MMNumberKeyboard.framework",
+				"${BUILT_PRODUCTS_DIR}/PopupController/PopupController.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
-				"${BUILT_PRODUCTS_DIR}/Sync/Sync.framework",
 				"${BUILT_PRODUCTS_DIR}/UINavigationControllerWithCompletionBlock/UINavigationControllerWithCompletionBlock.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -842,6 +888,9 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EAIntroView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EARestrictedScrollView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EZYGradientView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
@@ -850,13 +899,12 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Gloss.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GradientView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImageSlideshow.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JRSwizzle.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MMNumberKeyboard.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sync.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UINavigationControllerWithCompletionBlock.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -964,8 +1012,10 @@
 				C0B2A262207B50A900D46336 /* NNationality+CoreDataClass.swift in Sources */,
 				C0BE924A2070D403004E1B92 /* Facilities.swift in Sources */,
 				C0E17FD920775BC4003942D1 /* NHTTPHelper+Detail.swift in Sources */,
+				A60E1F23207E06EB00427CF8 /* NServiceView.swift in Sources */,
 				C0E17FD720772FF4003942D1 /* SearchResultCategory.swift in Sources */,
 				C0E17FD520772E81003942D1 /* SearchResultDiveCenter.swift in Sources */,
+				A6691A4F207E78BF004B1C2E /* SearchFormController.swift in Sources */,
 				C0BE92542070D50C004E1B92 /* TransactionResult.swift in Sources */,
 				C0B2A259207B50A900D46336 /* NOrder+CoreDataProperties.swift in Sources */,
 				C0BE925A2070D5EC004E1B92 /* SearchResult.swift in Sources */,
@@ -989,6 +1039,7 @@
 				C0B2A26E207B5E5A00D46336 /* UIAlertController+Extensions.swift in Sources */,
 				C0BE91962070B758004E1B92 /* UIViewController+DTM.swift in Sources */,
 				C0BE91622070AD27004E1B92 /* NConstant.swift in Sources */,
+				A60E1F28207E5A5900427CF8 /* RateView.m in Sources */,
 				C00D0AFA2075F779000D8ED6 /* NHTTPHelper+Error.swift in Sources */,
 				A6C27086207BEBDE007E4D2A /* MainNavigationController.swift in Sources */,
 				C02B9B65207B47CF00BE2508 /* DiveSpot.swift in Sources */,
@@ -1020,6 +1071,7 @@
 				C0BE91972070B758004E1B92 /* UIApplication+DTM.swift in Sources */,
 				C0B2A255207B50A900D46336 /* NLanguage+CoreDataProperties.swift in Sources */,
 				C0E17FDD20778A59003942D1 /* OrderReturn.swift in Sources */,
+				A60E1F1F207D9E7D00427CF8 /* HomeController.swift in Sources */,
 				C0BE92502070D4AC004E1B92 /* DiveSpotModule.swift in Sources */,
 				C00D0AFE207620C2000D8ED6 /* Data+Extensions.swift in Sources */,
 				C0B2A25C207B50A900D46336 /* NProvince+CoreDataClass.swift in Sources */,

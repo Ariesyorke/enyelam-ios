@@ -21,13 +21,27 @@ class MainRootController: BaseViewController {
     var tabMenuTypes: [TabItemType] {
         return [TabItemType.Home, TabItemType.Order, TabItemType.Account]
     }
+    var currentController: UIViewController?
+    var homeController: HomeController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.onClick(tabItem: self.tabMenus.first!)
     }
     
     func onSelectTab(type: TabItemType) {
-        
+        if type == TabItemType.Home {
+            if self.currentController != nil && self.currentController == self.homeController {
+                return
+            }
+            
+            if self.homeController == nil {
+                self.homeController = HomeController(nibName: "HomeController", bundle: nil)
+                self.homeController!.view.translatesAutoresizingMaskIntoConstraints = false
+            }
+            self.put(controller: self.homeController!)
+        }
     }
     
     @IBAction func onClick(tabItem: MainRootTabItemView) {
@@ -39,6 +53,26 @@ class MainRootController: BaseViewController {
             }
             index += 1
         }
+    }
+    
+    fileprivate func put(controller: UIViewController) {
+        self.addChildViewController(controller)
+        self.contentContainer.addSubview(controller.view)
+        self.contentContainer.addConstraints([
+            NSLayoutConstraint(item: self.contentContainer, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: controller.view, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: self.contentContainer, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: controller.view, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: self.contentContainer, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: controller.view, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: self.contentContainer, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: controller.view, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0)
+            ])
+        controller.didMove(toParentViewController: self)
+        
+        if self.currentController != nil {
+            self.currentController!.willMove(toParentViewController: nil)
+            self.currentController!.view.removeFromSuperview()
+            self.currentController!.removeFromParentViewController()
+        }
+        
+        self.currentController = controller
     }
 
     override func didReceiveMemoryWarning() {
