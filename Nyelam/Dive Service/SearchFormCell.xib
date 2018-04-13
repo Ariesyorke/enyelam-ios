@@ -58,7 +58,7 @@
                                     <action selector="onClicked:" destination="H87-9u-AQQ" eventType="touchUpInside" id="cHC-WC-C7E"/>
                                 </connections>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZSX-xr-WlN">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_search_place" translatesAutoresizingMaskIntoConstraints="NO" id="ZSX-xr-WlN">
                                 <rect key="frame" x="0.0" y="15.5" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="88a-3g-nNW"/>
@@ -119,7 +119,7 @@
                                     <action selector="onClicked:" destination="H87-9u-AQQ" eventType="touchUpInside" id="XNS-Ts-HSe"/>
                                 </connections>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ptw-j0-uIJ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_search_date" translatesAutoresizingMaskIntoConstraints="NO" id="ptw-j0-uIJ">
                                 <rect key="frame" x="0.0" y="15.5" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="cyH-9R-YpP"/>
@@ -180,7 +180,7 @@
                                     <action selector="onClicked:" destination="H87-9u-AQQ" eventType="touchUpInside" id="ODJ-ER-2sK"/>
                                 </connections>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xem-co-kNa">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_search_diver" translatesAutoresizingMaskIntoConstraints="NO" id="xem-co-kNa">
                                 <rect key="frame" x="0.0" y="15.5" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="1zV-Yz-0aO"/>
@@ -228,6 +228,9 @@
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s9W-4W-j8h">
                                         <rect key="frame" x="262" y="0.0" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="onSwitch:" destination="H87-9u-AQQ" eventType="valueChanged" id="aBM-dr-KMN"/>
+                                        </connections>
                                     </switch>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -244,7 +247,7 @@
                                     <constraint firstItem="s9W-4W-j8h" firstAttribute="top" secondItem="hbu-vO-qG3" secondAttribute="top" id="y2y-C8-lE9"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nb1-ds-Aak">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_search_diving_license" translatesAutoresizingMaskIntoConstraints="NO" id="nb1-ds-Aak">
                                 <rect key="frame" x="0.0" y="20" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="Z2m-lk-RZk"/>
@@ -313,4 +316,10 @@
             <point key="canvasLocation" x="110.5" y="22"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="icon_search_date" width="24" height="24"/>
+        <image name="icon_search_diver" width="24" height="24"/>
+        <image name="icon_search_diving_license" width="24" height="24"/>
+        <image name="icon_search_place" width="24" height="24"/>
+    </resources>
 </document>
