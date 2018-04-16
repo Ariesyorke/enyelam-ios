@@ -137,6 +137,7 @@ extension HomeController {
     @objc func onDoTripClicked(at sender: UIControl) {
         let index: Int = sender.tag
         // TODO:
+        SearchFormController.push(on: self.navigationController!, forDoTrip: false)
     }
 }
 

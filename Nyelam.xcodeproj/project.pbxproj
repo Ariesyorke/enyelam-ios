@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		1DD978E2838F59B314D3178D /* Pods_NyelamUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D473B4B6FAAEB379DE72B736 /* Pods_NyelamUITests.framework */; };
 		79B7B08C8E22A9DEC8DE57A8 /* Pods_Nyelam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF69D846D69A5AF2FE532956 /* Pods_Nyelam.framework */; };
+		A60A285B207F700D004A8FC2 /* DiveServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60A2859207F700D004A8FC2 /* DiveServiceCell.swift */; };
+		A60A285C207F700D004A8FC2 /* DiveServiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A60A285A207F700D004A8FC2 /* DiveServiceCell.xib */; };
+		A60A285E207F7998004A8FC2 /* SearchFormCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A60A285D207F7998004A8FC2 /* SearchFormCell.xib */; };
+		A60A2861207FB888004A8FC2 /* SearchKeywordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60A285F207FB888004A8FC2 /* SearchKeywordController.swift */; };
+		A60A2862207FB888004A8FC2 /* SearchKeywordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A60A2860207FB888004A8FC2 /* SearchKeywordController.xib */; };
+		A60A286520809DF8004A8FC2 /* SearchKeywordResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60A286320809DF8004A8FC2 /* SearchKeywordResultCell.swift */; };
+		A60A286620809DF8004A8FC2 /* SearchKeywordResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A60A286420809DF8004A8FC2 /* SearchKeywordResultCell.xib */; };
+		A60A28682080D03B004A8FC2 /* MonthYearPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60A28672080D038004A8FC2 /* MonthYearPickerView.swift */; };
 		A60E1F1F207D9E7D00427CF8 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60E1F1D207D9E7D00427CF8 /* HomeController.swift */; };
 		A60E1F20207D9E7D00427CF8 /* HomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A60E1F1E207D9E7D00427CF8 /* HomeController.xib */; };
 		A60E1F23207E06EB00427CF8 /* NServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60E1F22207E06EB00427CF8 /* NServiceView.swift */; };
@@ -200,6 +208,14 @@
 		41A3DA3DFF0F2F060A712D75 /* Pods_NyelamTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NyelamTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		637A0843453D39C5ECAF0620 /* Pods-Nyelam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyelam.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nyelam/Pods-Nyelam.release.xcconfig"; sourceTree = "<group>"; };
 		6C8268AB7332ABCC5EF130D5 /* Pods-Nyelam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nyelam.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Nyelam/Pods-Nyelam.debug.xcconfig"; sourceTree = "<group>"; };
+		A60A2859207F700D004A8FC2 /* DiveServiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiveServiceCell.swift; sourceTree = "<group>"; };
+		A60A285A207F700D004A8FC2 /* DiveServiceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiveServiceCell.xib; sourceTree = "<group>"; };
+		A60A285D207F7998004A8FC2 /* SearchFormCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchFormCell.xib; sourceTree = "<group>"; };
+		A60A285F207FB888004A8FC2 /* SearchKeywordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchKeywordController.swift; sourceTree = "<group>"; };
+		A60A2860207FB888004A8FC2 /* SearchKeywordController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchKeywordController.xib; sourceTree = "<group>"; };
+		A60A286320809DF8004A8FC2 /* SearchKeywordResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchKeywordResultCell.swift; sourceTree = "<group>"; };
+		A60A286420809DF8004A8FC2 /* SearchKeywordResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchKeywordResultCell.xib; sourceTree = "<group>"; };
+		A60A28672080D038004A8FC2 /* MonthYearPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthYearPickerView.swift; sourceTree = "<group>"; };
 		A60E1F1D207D9E7D00427CF8 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		A60E1F1E207D9E7D00427CF8 /* HomeController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeController.xib; sourceTree = "<group>"; };
 		A60E1F22207E06EB00427CF8 /* NServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NServiceView.swift; sourceTree = "<group>"; };
@@ -520,6 +536,13 @@
 			children = (
 				A6691A4D207E78BF004B1C2E /* SearchFormController.swift */,
 				A6691A4E207E78BF004B1C2E /* SearchFormController.xib */,
+				A60A2859207F700D004A8FC2 /* DiveServiceCell.swift */,
+				A60A285A207F700D004A8FC2 /* DiveServiceCell.xib */,
+				A60A285D207F7998004A8FC2 /* SearchFormCell.xib */,
+				A60A285F207FB888004A8FC2 /* SearchKeywordController.swift */,
+				A60A2860207FB888004A8FC2 /* SearchKeywordController.xib */,
+				A60A286320809DF8004A8FC2 /* SearchKeywordResultCell.swift */,
+				A60A286420809DF8004A8FC2 /* SearchKeywordResultCell.xib */,
 			);
 			path = "Dive Service";
 			sourceTree = "<group>";
@@ -700,6 +723,7 @@
 			isa = PBXGroup;
 			children = (
 				C0D3C9042084AC5200FF587B /* PEPhotoCropEditor  */,
+				A60A28672080D038004A8FC2 /* MonthYearPickerView.swift */,
 				C0BE918B2070B723004E1B92 /* DTM */,
 				C00D0B0320763250000D8ED6 /* Bridging-Header.m */,
 				C00D0B022076324F000D8ED6 /* Nyelam-Bridging-Header.h */,
@@ -961,6 +985,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C010FB03207CAF47000059AA /* FiraSans-SemiBoldItalic.ttf in Resources */,
+				A60A285E207F7998004A8FC2 /* SearchFormCell.xib in Resources */,
 				C037AD692070A38800DD5CBC /* LaunchScreen.storyboard in Resources */,
 				A60E1F25207E070300427CF8 /* NServiceView.xib in Resources */,
 				C010FB02207CAF47000059AA /* FiraSans-BoldItalic.ttf in Resources */,
@@ -973,6 +998,8 @@
 				C032DF59207DDDCB00FE0999 /* ForgotPasswordViewController.xib in Resources */,
 				C010FB0D207CAF47000059AA /* FiraSans-Italic.ttf in Resources */,
 				C010FB11207CAF47000059AA /* FiraSans-LightItalic.ttf in Resources */,
+				A60A286620809DF8004A8FC2 /* SearchKeywordResultCell.xib in Resources */,
+				A60A2862207FB888004A8FC2 /* SearchKeywordController.xib in Resources */,
 				C0BE915F2070ACFE004E1B92 /* GoogleService-Info.plist in Resources */,
 				C010FB10207CAF47000059AA /* FiraSans-ExtraLightItalic.ttf in Resources */,
 				C032DF5D207DDDFF00FE0999 /* RegisterViewController.xib in Resources */,
@@ -980,6 +1007,7 @@
 				C010FB12207CAF47000059AA /* FiraSans-Thin.ttf in Resources */,
 				A6C2708E207BF0A2007E4D2A /* MainRootController.xib in Resources */,
 				C010FB0C207CAF47000059AA /* FiraSans-SemiBold.ttf in Resources */,
+				A60A285C207F700D004A8FC2 /* DiveServiceCell.xib in Resources */,
 				C010FAED207CAA95000059AA /* background_blur.png in Resources */,
 				C010FB07207CAF47000059AA /* FiraSans-Regular.ttf in Resources */,
 				C037AD662070A38800DD5CBC /* Assets.xcassets in Resources */,
@@ -1248,12 +1276,14 @@
 				A6691A4F207E78BF004B1C2E /* SearchFormController.swift in Sources */,
 				C0BE92542070D50C004E1B92 /* TransactionResult.swift in Sources */,
 				C0B2A259207B50A900D46336 /* NOrder+CoreDataProperties.swift in Sources */,
+				A60A2861207FB888004A8FC2 /* SearchKeywordController.swift in Sources */,
 				C0BE925A2070D5EC004E1B92 /* SearchResult.swift in Sources */,
 				A6C27088207BEC0E007E4D2A /* UIColor+Nyelam.swift in Sources */,
 				C0BE91992070B758004E1B92 /* DTMDatePickerController.swift in Sources */,
 				C037AD5E2070A38800DD5CBC /* StarterViewController.swift in Sources */,
 				C0B2A256207B50A900D46336 /* NDiveService+CoreDataClass.swift in Sources */,
 				C0BE92562070D59A004E1B92 /* Participant.swift in Sources */,
+				A60A286520809DF8004A8FC2 /* SearchKeywordResultCell.swift in Sources */,
 				C032DF5C207DDDFF00FE0999 /* RegisterViewController.swift in Sources */,
 				A6C2708D207BF0A2007E4D2A /* MainRootController.swift in Sources */,
 				C0D3C9252084AD8600FF587B /* PEResizeControl.m in Sources */,
@@ -1309,6 +1339,7 @@
 				C0B2A25B207B50A900D46336 /* NDiveCenter+CoreDataProperties.swift in Sources */,
 				C0BE91972070B758004E1B92 /* UIApplication+DTM.swift in Sources */,
 				C0B2A255207B50A900D46336 /* NLanguage+CoreDataProperties.swift in Sources */,
+				A60A285B207F700D004A8FC2 /* DiveServiceCell.swift in Sources */,
 				C0E17FDD20778A59003942D1 /* OrderReturn.swift in Sources */,
 				A60E1F1F207D9E7D00427CF8 /* HomeController.swift in Sources */,
 				C0BE92502070D4AC004E1B92 /* DiveSpotModule.swift in Sources */,
@@ -1317,6 +1348,7 @@
 				C0E17FD320772E76003942D1 /* SearchResultCity.swift in Sources */,
 				C0BE92522070D4E2004E1B92 /* TripModule.swift in Sources */,
 				C0B2A261207B50A900D46336 /* NCity+CoreDataProperties.swift in Sources */,
+				A60A28682080D03B004A8FC2 /* MonthYearPickerView.swift in Sources */,
 				C0E17FCF20772E3F003942D1 /* SearchResultSpot.swift in Sources */,
 				C0B2A251207B50A900D46336 /* NExperience+CoreDataProperties.swift in Sources */,
 				C0B2A253207B50A900D46336 /* NCountryCode+CoreDataProperties.swift in Sources */,
@@ -1499,7 +1531,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2JRT25FDLZ;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Nyelam/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1519,7 +1551,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2JRT25FDLZ;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Nyelam/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
