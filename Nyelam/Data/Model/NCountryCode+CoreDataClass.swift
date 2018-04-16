@@ -43,6 +43,20 @@ public class NCountryCode: NSManagedObject {
         return json
     }
     
+    static func getCountryCodes()->[NCountryCode]? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NCountryCode")
+        do {
+            let countryCodes = try managedContext.fetch(fetchRequest) as? [NCountryCode]
+            if let countryCodes = countryCodes, !countryCodes.isEmpty {
+                return countryCodes
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+    
     static func getCountryCode(using id: String) -> NCountryCode? {
         let managedContext = AppDelegate.sharedManagedContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NCountryCode")
@@ -57,7 +71,33 @@ public class NCountryCode: NSManagedObject {
         }
         return nil
     }
-    
+    static func getPosition(by regionCode: String) -> Int {
+        if let countryCodes = self.getCountryCodes(), !countryCodes.isEmpty {
+            var position = 0
+            for countryCode in countryCodes {
+                if countryCode.countryCode == regionCode {
+                    return position
+                }
+                position += 1
+            }
+        }
+        return 0
+    }
+    static func getCountryCode(by regionCode: String) -> NCountryCode? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NCountryCode")
+        fetchRequest.predicate = NSPredicate(format: "countryCode == %@", regionCode)
+        do {
+            let countryCodes = try managedContext.fetch(fetchRequest) as? [NCountryCode]
+            if let countryCodes = countryCodes, !countryCodes.isEmpty {
+                return countryCodes.first
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+
+    }
     static func deleteCountryCode(by id: String) -> Bool {
         let managedContext = AppDelegate.sharedManagedContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NCountryCode")

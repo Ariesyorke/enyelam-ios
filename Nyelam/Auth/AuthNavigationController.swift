@@ -9,10 +9,12 @@
 import UIKit
 
 class AuthNavigationController: BaseNavigationController {
+    
     var dismissCompletion: ()->() = {}
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         // Do any additional setup after loading the view.
     }
 
@@ -24,11 +26,15 @@ class AuthNavigationController: BaseNavigationController {
     static func present(on controller: UIViewController, dismissCompletion: @escaping ()->()) -> AuthNavigationController {
         let loginController: LoginViewController = LoginViewController(nibName: "LoginViewController", bundle: nil)
         let nav: AuthNavigationController = AuthNavigationController(rootViewController: loginController)
-        nav.dismissCompletion = dismissCompletion
+//        nav.dismissCompletion = dismissCompletion
+        nav.dismissCompletion = {
+            let vc = AccountTableViewController(nibName: "AccountTableViewController", bundle: nil)
+            nav.present(vc, animated: true, completion: nil)
+        }
         controller.present(nav, animated: true, completion: nil)
         return nav
     }
-
+    
     /*
     // MARK: - Navigation
 

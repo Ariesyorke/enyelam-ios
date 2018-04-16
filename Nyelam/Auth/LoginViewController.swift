@@ -10,11 +10,14 @@ import UIKit
 import GoogleSignIn
 import FacebookLogin
 import MBProgressHUD
+import FBSDKLoginKit
 
 class LoginViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDelegate {
     @IBOutlet weak var emailAddressTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var scrollViewBottomConstraint: NSLayoutConstraint!
+    var googleUser: GIDGoogleUser?
+    var facebookUser: [String: Any]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +69,33 @@ class LoginViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDel
     
     @IBAction func facebookButtonAction(_ sender: Any) {
         self.view.endEditing(true)
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
+        fbLoginManager.logOut()
+        fbLoginManager.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
+            if let error = error {
+                MBProgressHUD.hide(for: self.view, animated: true)
+                print(error.localizedDescription)
+                return
+            }
+            if let result = result, !result.isCancelled {
+                if let token = FBSDKAccessToken.current() {
+                    FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, gender, picture.type(large), email"]).start(completionHandler: { connection, result, error in
+                        if let error = error {
+                            print(error.localizedDescription)
+                            return
+                        }
+                        self.facebookUser = result as! [String : Any]
+                        var email = self.facebookUser!["email"] as! String
+                        var id = self.facebookUser!["id"] as! String
+                        self.tryLoginUsingSocmed(accessToken: token.tokenString, emailAddress: email, type: "facebook", id: id)
+                    })
+                }
+            } else {
+                MBProgressHUD.hide(for: self.view, animated: true)
+                fbLoginManager.logOut()
+            }
+        }
     }
     
     @IBAction func googleButtonAction(_ sender: Any) {
@@ -74,6 +104,7 @@ class LoginViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDel
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        self.googleUser = signIn.currentUser
         self.tryLoginUsingSocmed(accessToken: signIn.currentUser.authentication.accessToken, emailAddress: signIn.currentUser.profile.email, type: "google", id: signIn.currentUser.userID)
         GIDSignIn.sharedInstance().signOut()
     }
@@ -93,10 +124,16 @@ class LoginViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDel
         MBProgressHUD.showAdded(to: self.view, animated: true)
         NHTTPHelper.httpLogin(email: emailAddress, password: password, complete: {response in
             MBProgressHUD.hide(for: self.view, animated: true)
-            self.handleAuthResponse(response: response, completion: {error in
+            self.handleAuthResponse(response: response, errorCompletion: {error in
                 if error.isKind(of: NotConnectedInternetError.self) {
                     NHelper.handleConnectionError(completion: {
                         self.tryLoginUsingEmail(emailAddress: emailAddress, password: password)
+                    })
+                }
+            }, successCompletion: {authReturn in
+                if let navigation = self.navigationController as? AuthNavigationController {
+                    navigation.dismiss(animated: true, completion: {
+                        navigation.dismissCompletion()
                     })
                 }
             })
@@ -106,32 +143,65 @@ class LoginViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDel
         MBProgressHUD.showAdded(to: self.view, animated: true)
         NHTTPHelper.httpLoginSocmed(email: emailAddress, type: type, id: id, accessToken: accessToken, complete: {response in
             MBProgressHUD.hide(for: self.view, animated: true)
-            self.handleAuthResponse(response: response, completion: {error in
+            self.handleAuthResponse(response: response, errorCompletion: {error in
                 if error.isKind(of: NotConnectedInternetError.self) {
                     NHelper.handleConnectionError(completion: {
                         self.tryLoginUsingSocmed(accessToken: accessToken, emailAddress: emailAddress, type: type, id: id)
                     })
                 } else if error.isKind(of: StatusFailedError.self) {
-                    
+                    UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {error in
+                        let registerViewController = RegisterViewController(nibName: "RegisterViewController", bundle: nil)
+                        registerViewController.emailAddressTextField.text = emailAddress
+                        registerViewController.accessToken = accessToken
+                        registerViewController.socmedId = id
+                        registerViewController.type = type
+                        if type == "google" {
+                            registerViewController.fullName = ("\(self.googleUser!.profile.givenName) \(self.googleUser!.profile.familyName)")
+                            if self.googleUser!.profile.hasImage {
+                                registerViewController.pictureUrl = self.googleUser!.profile.imageURL(withDimension: 200).absoluteString
+                            }
+                        } else if type == "facebook" {
+                            var fullName: String? = nil
+                            var firstName = self.facebookUser!["first_name"] as! String
+                            var lastName = self.facebookUser!["last_name"] as? String
+                            if let lastName = lastName {
+                                fullName = "\(firstName) \(lastName)"
+                            } else {
+                                fullName = firstName
+                            }
+                            registerViewController.fullName = fullName
+                            var gender = self.facebookUser!["gender"] as? String
+                            if let gender = gender {
+                                if gender.lowercased() == "male" {
+                                    registerViewController.gender = "1"
+                                } else {
+                                    registerViewController.gender = "2"
+                                }
+                                if let pictureJson = self.facebookUser!["picture"] as? [String: Any] {
+                                    if let pictureData = pictureJson["data"] as? [String: Any] {
+                                        registerViewController.pictureUrl = pictureData["url"] as? String
+                                    }
+                                }
+                            }
+                        }
+                        if let navigation = self.navigationController {
+                            navigation.pushViewController(registerViewController, animated: true)
+                        } else {
+                            self.present(registerViewController, animated: true, completion: nil)
+                        }
+                    })
+                }
+            },successCompletion: {authReturn in
+                if let navigation = self.navigationController as? AuthNavigationController {
+                    navigation.dismiss(animated: true, completion: {
+                        navigation.dismissCompletion()
+                    })
                 }
             })
+            
         })
     }
-    
-    internal func handleAuthResponse(response: NHTTPResponse<NAuthReturn>, completion: @escaping (BaseError)->()) {
-        MBProgressHUD.hide(for: self.view, animated: true)
-        if let error = response.error {
-            UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {error in
-                completion(error)
-            })
-            return
-        }
-        if let data = response.data {
-            
-        }
-
-    }
-    
+        
     internal func validateForm(emailAddress: String, password: String )-> String? {
         if emailAddress.isEmpty {
             return "Email address cannot be empty"
@@ -144,6 +214,7 @@ class LoginViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDel
     }
     
     override func keyboardWillShow(keyboardFrame: CGRect, animationDuration: TimeInterval) {
+        super.keyboardWillShow(keyboardFrame: keyboardFrame, animationDuration: animationDuration)
         self.view.layoutIfNeeded()
         UIView.animate(withDuration: animationDuration) {
             self.scrollViewBottomConstraint.constant = keyboardFrame.height
@@ -152,6 +223,7 @@ class LoginViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDel
     }
     
     override func keyboardWillHide(animationDuration: TimeInterval) {
+        super.keyboardWillHide(animationDuration: animationDuration)
         self.view.layoutIfNeeded()
         UIView.animate(withDuration: animationDuration) {
             self.scrollViewBottomConstraint.constant = 0

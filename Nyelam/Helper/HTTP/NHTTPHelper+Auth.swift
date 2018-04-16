@@ -57,14 +57,16 @@ extension NHTTPHelper {
         })
     }
     
-    static func httpRegister(fullname: String, email: String, password: String, confirmPassword: String,
+    static func httpRegister(fullname: String?, email: String, password: String, confirmPassword: String,
                          phoneNumber: String?, countryCodeId: String?, gender: String?,
                          socmedType: String?, socmedId: String?, socmedAccessToken: String?, picture: String?,  complete: @escaping (NHTTPResponse<NAuthReturn>)->()) {
         var param: [String: Any] = [:]
-        param["fullname"] = fullname
         param["email"] = email
         param["password"] = password.md5
         param["confirm_password"] = confirmPassword.md5
+        if let fullname = fullname {
+            param["fullname"] = fullname
+        }
         if let phoneNumber = phoneNumber {
             param["phone"] = phoneNumber
         }

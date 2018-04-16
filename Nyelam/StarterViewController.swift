@@ -34,7 +34,7 @@ class StarterViewController: BaseViewController {
                 return
             }
             if let data = response.data {
-                //TODO CREATE POPUP
+                
                 return
             }
             self.loadCategories(page: 1)
@@ -74,7 +74,7 @@ class StarterViewController: BaseViewController {
                 self.loadCountryCodes(page: nextPage)
                 return
             }
-            self.goAuth()
+            self.goToHomepage()
         })
     }
     
@@ -83,7 +83,9 @@ class StarterViewController: BaseViewController {
     }
     
     internal func goAuth() {
-        let _ = AuthNavigationController.present(on: self, dismissCompletion: {})
+        let vc = AccountTableViewController(nibName: "AccountTableViewController", bundle: nil)
+        self.present(vc, animated: true, completion: nil)
+//        let _ = AuthNavigationController.present(on: self, dismissCompletion: {})
     }
 }
 

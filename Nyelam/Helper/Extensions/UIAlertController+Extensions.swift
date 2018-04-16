@@ -44,4 +44,13 @@ extension UIAlertController {
         }))
         viewController.present(alert, animated: true, completion: nil)
     }
+    
+    static func showAlertWithMultipleChoices(title: String, message: String?, viewController: UIViewController, buttons: [UIAlertAction]) -> Void {
+        let dialog = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        for button in buttons {
+            dialog.addAction(button)
+        }
+        viewController.present(dialog, animated: true, completion: nil)
+    }
+
 }

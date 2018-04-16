@@ -17,9 +17,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterViewController" customModule="Nyelam" customModuleProvider="target">
             <connections>
                 <outlet property="confirmPasswordTextField" destination="GBg-cd-RMR" id="xkI-bQ-6Zc"/>
+                <outlet property="countryCodeLabel" destination="ozo-mV-aQh" id="Yhz-ZG-E4u"/>
                 <outlet property="emailAddressTextField" destination="PSp-KP-bhy" id="u16-ic-ffe"/>
                 <outlet property="passwordTextField" destination="iNi-cJ-rdT" id="SyZ-T5-WVi"/>
                 <outlet property="phoneNumberTextField" destination="tey-vg-zKd" id="Ceg-Jq-xKR"/>
+                <outlet property="scrollViewBottomConstraint" destination="X9k-2e-n9V" id="ybd-4y-2jB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -66,12 +68,6 @@
                                 <action selector="registerButtonAction:" destination="-1" eventType="touchUpInside" id="Ube-Ow-zKP"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account? Log In" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LSi-Ot-g5X">
-                            <rect key="frame" x="82.5" y="374.5" width="209" height="17"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kuo-7i-lDu" customClass="UIControl">
                             <rect key="frame" x="16" y="71" width="62" height="39.5"/>
                             <subviews>
@@ -161,23 +157,51 @@
                                 <constraint firstAttribute="width" constant="18" id="ju3-Ex-bEz"/>
                             </constraints>
                         </imageView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MyB-2E-MoR">
+                            <rect key="frame" x="84" y="374" width="207.5" height="17"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LSi-Ot-g5X">
+                                    <rect key="frame" x="0.0" y="0.0" width="165.5" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ctd-LL-vwh">
+                                    <rect key="frame" x="167.5" y="-6" width="40" height="29"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <state key="normal" title="Log In"/>
+                                    <connections>
+                                        <action selector="loginButtonAction:" destination="-1" eventType="touchUpInside" id="Pap-VU-t8U"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="LSi-Ot-g5X" firstAttribute="top" secondItem="MyB-2E-MoR" secondAttribute="top" id="JNT-jV-X2w"/>
+                                <constraint firstItem="ctd-LL-vwh" firstAttribute="leading" secondItem="LSi-Ot-g5X" secondAttribute="trailing" constant="2" id="NtN-y4-Grc"/>
+                                <constraint firstAttribute="bottom" secondItem="LSi-Ot-g5X" secondAttribute="bottom" id="OYJ-cg-aov"/>
+                                <constraint firstAttribute="trailing" secondItem="ctd-LL-vwh" secondAttribute="trailing" id="Q9l-j9-17D"/>
+                                <constraint firstItem="ctd-LL-vwh" firstAttribute="top" secondItem="MyB-2E-MoR" secondAttribute="top" constant="-6" id="Y9g-By-xuu"/>
+                                <constraint firstItem="LSi-Ot-g5X" firstAttribute="leading" secondItem="MyB-2E-MoR" secondAttribute="leading" id="mp8-1v-hxy"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <constraints>
                         <constraint firstItem="GBg-cd-RMR" firstAttribute="trailing" secondItem="PSp-KP-bhy" secondAttribute="trailing" id="31H-gg-nIY"/>
                         <constraint firstItem="tey-vg-zKd" firstAttribute="top" secondItem="PSp-KP-bhy" secondAttribute="bottom" constant="16" id="4gd-xl-hXR"/>
                         <constraint firstAttribute="trailing" secondItem="PSp-KP-bhy" secondAttribute="trailing" constant="16" id="6fZ-Ci-3gs"/>
-                        <constraint firstItem="LSi-Ot-g5X" firstAttribute="top" secondItem="hxc-Zt-6IA" secondAttribute="bottom" constant="32" id="75X-cj-jbs"/>
                         <constraint firstItem="PSp-KP-bhy" firstAttribute="centerX" secondItem="lS7-Md-SFZ" secondAttribute="centerX" id="COg-tg-dck"/>
                         <constraint firstItem="P3p-hq-7Kb" firstAttribute="trailing" secondItem="GBg-cd-RMR" secondAttribute="trailing" id="Eh8-0Z-F41"/>
                         <constraint firstItem="tey-vg-zKd" firstAttribute="leading" secondItem="kuo-7i-lDu" secondAttribute="trailing" constant="8" id="FQA-ag-VaX"/>
                         <constraint firstItem="PSp-KP-bhy" firstAttribute="leading" secondItem="lS7-Md-SFZ" secondAttribute="leading" constant="16" id="LpS-zg-10a"/>
+                        <constraint firstItem="MyB-2E-MoR" firstAttribute="centerX" secondItem="lS7-Md-SFZ" secondAttribute="centerX" id="M1S-LV-MuN"/>
                         <constraint firstItem="P3p-hq-7Kb" firstAttribute="top" secondItem="GBg-cd-RMR" secondAttribute="bottom" constant="32" id="MhN-R3-8FT"/>
                         <constraint firstItem="P3p-hq-7Kb" firstAttribute="leading" secondItem="raG-pP-3yW" secondAttribute="trailing" constant="8" id="N7s-73-FCP"/>
                         <constraint firstItem="raG-pP-3yW" firstAttribute="leading" secondItem="GBg-cd-RMR" secondAttribute="leading" id="RUc-Wb-RuH"/>
                         <constraint firstItem="hxc-Zt-6IA" firstAttribute="leading" secondItem="GBg-cd-RMR" secondAttribute="leading" id="VzW-TM-ed5"/>
+                        <constraint firstItem="MyB-2E-MoR" firstAttribute="top" secondItem="hxc-Zt-6IA" secondAttribute="bottom" constant="31.5" id="Z5P-X7-gf1"/>
                         <constraint firstItem="hxc-Zt-6IA" firstAttribute="top" secondItem="raG-pP-3yW" secondAttribute="bottom" constant="32" id="aB1-Jg-oZO"/>
                         <constraint firstItem="kuo-7i-lDu" firstAttribute="bottom" secondItem="tey-vg-zKd" secondAttribute="bottom" id="aEl-1i-lKz"/>
-                        <constraint firstAttribute="bottom" secondItem="LSi-Ot-g5X" secondAttribute="bottom" constant="16" id="aWL-Bs-9yj"/>
                         <constraint firstItem="kuo-7i-lDu" firstAttribute="leading" secondItem="PSp-KP-bhy" secondAttribute="leading" id="c4q-6B-Tf0"/>
                         <constraint firstItem="hxc-Zt-6IA" firstAttribute="trailing" secondItem="GBg-cd-RMR" secondAttribute="trailing" id="fOE-0V-j6n"/>
                         <constraint firstItem="PSp-KP-bhy" firstAttribute="top" secondItem="lS7-Md-SFZ" secondAttribute="top" constant="16" id="gPa-5W-pCI"/>
@@ -186,10 +210,10 @@
                         <constraint firstItem="iNi-cJ-rdT" firstAttribute="leading" secondItem="PSp-KP-bhy" secondAttribute="leading" id="lQQ-pG-aP4"/>
                         <constraint firstItem="kuo-7i-lDu" firstAttribute="top" secondItem="tey-vg-zKd" secondAttribute="top" id="mFs-bV-jwM"/>
                         <constraint firstItem="iNi-cJ-rdT" firstAttribute="trailing" secondItem="PSp-KP-bhy" secondAttribute="trailing" id="nR4-ah-O2f"/>
+                        <constraint firstAttribute="bottom" secondItem="MyB-2E-MoR" secondAttribute="bottom" constant="276" id="q7X-aQ-Tba"/>
                         <constraint firstItem="tey-vg-zKd" firstAttribute="trailing" secondItem="PSp-KP-bhy" secondAttribute="trailing" id="qMb-p0-gp5"/>
                         <constraint firstItem="GBg-cd-RMR" firstAttribute="top" secondItem="iNi-cJ-rdT" secondAttribute="bottom" constant="16" id="uLZ-GQ-H4g"/>
                         <constraint firstItem="P3p-hq-7Kb" firstAttribute="centerY" secondItem="raG-pP-3yW" secondAttribute="centerY" id="xGJ-PJ-To0"/>
-                        <constraint firstItem="LSi-Ot-g5X" firstAttribute="centerX" secondItem="lS7-Md-SFZ" secondAttribute="centerX" id="zH4-LX-hpF"/>
                     </constraints>
                 </scrollView>
             </subviews>

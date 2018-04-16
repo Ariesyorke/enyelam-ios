@@ -12,7 +12,8 @@ class BaseNavigationController: UINavigationController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        dtmViewDidLoad()
+        
         self.navigationBar.barTintColor = UIColor.primary
         self.navigationBar.isTranslucent = false
         self.navigationBar.tintColor = UIColor.white
@@ -27,5 +28,4 @@ class BaseNavigationController: UINavigationController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 }

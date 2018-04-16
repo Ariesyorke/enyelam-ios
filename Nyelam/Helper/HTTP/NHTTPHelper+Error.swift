@@ -33,9 +33,9 @@ class NHTTPHelper {
     internal static var HOST_URL: String {
         switch NConstant.URL_TYPE {
         case .staging:
-            return "http://nyelam.dantech.id/"
+            return "https://nyelam.dantech.id/"
         case .development:
-            return "http://nyelam-adam.dantech.id/"
+            return "https://nyelam-adam.dantech.id/"
         default:
             return "https://api.e-nyelam.com/"
         }
