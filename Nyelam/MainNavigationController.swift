@@ -25,4 +25,8 @@ class MainNavigationController: BaseNavigationController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func goToAuth(dismisCompletion: ()->()) {
+        let auth = AuthNavigationController.present(on: self, dismissCompletion: dismissCompletion)
+    }
 }

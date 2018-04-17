@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="FiraSans-SemiBold.ttf">
+            <string>FiraSans-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TermsViewController" customModule="Nyelam" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eqQ-yl-K21">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E6j-wn-PzE">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="2204"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright 2018 All Rights Reserved." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39P-Zo-jlk">
+                                    <rect key="frame" x="16" y="2171" width="343" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NC8-Tq-Jrd">
+                                    <rect key="frame" x="16" y="16" width="31" height="17"/>
+                                    <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQt-m9-Ex4">
+                                    <rect key="frame" x="47" y="37" width="312" height="117"/>
+                                    <string key="text">e-Nyelam is offered to you, the user, conditioned on your acceptance of the terms, conditions and notices contained or incorporated by reference herein and such additional terms and conditions, agreements, and notices that may apply to any page or section of the site.</string>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pcg-tM-xCw">
+                                    <rect key="frame" x="16" y="162" width="31" height="17"/>
+                                    <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbj-Ym-IY0">
+                                    <rect key="frame" x="16" y="358.5" width="31" height="17"/>
+                                    <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oxm-3k-XDK">
+                                    <rect key="frame" x="16" y="655.5" width="31" height="17"/>
+                                    <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Oz-P7-d2z" userLabel="5.">
+                                    <rect key="frame" x="16" y="885" width="31" height="17"/>
+                                    <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cHj-NX-Dwu">
+                                    <rect key="frame" x="16" y="1198.5" width="31" height="17"/>
+                                    <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voM-7W-Jz5">
+                                    <rect key="frame" x="16" y="1361.5" width="31" height="17"/>
+                                    <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1yj-iv-yNf">
+                                    <rect key="frame" x="16" y="1507.5" width="31" height="17"/>
+                                    <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ECv-Jx-4np">
+                                    <rect key="frame" x="16" y="1653.5" width="31" height="17"/>
+                                    <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPp-Yo-Tgm">
+                                    <rect key="frame" x="16" y="1799.5" width="31" height="17"/>
+                                    <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aga-1C-lCi">
+                                    <rect key="frame" x="16" y="1962.5" width="31" height="17"/>
+                                    <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edx-Yk-vA2">
+                                    <rect key="frame" x="16" y="2025" width="31" height="17"/>
+                                    <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CONDITIONS OF USE" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQ6-zp-YYE">
+                                    <rect key="frame" x="47" y="16" width="312" height="17"/>
+                                    <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OVERVIEW" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9g-Vm-48q">
+                                    <rect key="frame" x="47" y="162" width="312" height="17"/>
+                                    <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MODIFICATION OF THE SITE AND THESE TERMS &amp; CONDITIONS" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajx-qK-A8b">
+                                    <rect key="frame" x="47" y="358.5" width="312" height="34"/>
+                                    <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COPYRIGHTS" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFO-Ll-RuR">
+                                    <rect key="frame" x="47" y="655.5" width="312" height="17"/>
+                                    <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SIGN UP" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vy8-Dk-5TZ">
+                                    <rect key="frame" x="47" y="885" width="312" height="17"/>
+                                    <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ELECTRONIC COMMUNICATIONS" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJJ-AV-cq4">
+                                    <rect key="frame" x="47" y="1198.5" width="312" height="17"/>
+                                    <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SERVICES DESCRIPTIONS" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DTv-Qi-7an">
+                                    <rect key="frame" x="47" y="1361.5" width="312" height="17"/>
+                                    <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PRIVACY POLICY" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CnF-sI-p8d">
+                                    <rect key="frame" x="47" y="1507.5" width="312" height="17"/>
+                                    <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INDEMNITY" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NOX-EP-tu5">
+                                    <rect key="frame" x="47" y="1653.5" width="312" height="17"/>
+                                    <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DISCLAIMER" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0lC-Az-euS">
+                                    <rect key="frame" x="47" y="1799.5" width="312" height="17"/>
+                                    <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="APPLICABLE LAWS" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1kj-db-bUF">
+                                    <rect key="frame" x="47" y="1962.5" width="312" height="17"/>
+                                    <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QUESTIONS AND FEEDBACK" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zbu-iE-2ZD">
+                                    <rect key="frame" x="47" y="2025" width="312" height="17"/>
+                                    <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="e-nyelam is a brand by PT Wimiku Indo Digital" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3Q-ED-Ijg">
+                                    <rect key="frame" x="16" y="2146" width="343" height="17"/>
+                                    <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SqS-XT-4Ab">
+                                    <rect key="frame" x="47" y="183" width="312" height="167.5"/>
+                                    <string key="text">Your use of this site constitutes your agreement to all terms, conditions and notices. Please read them carefully. By using this Site, you agree to these Terms and Conditions, as well as any other terms, guidelines or rules that are applicable to any portion of this Site, without limitation or qualification. If you do not agree to these Terms and Conditions, you must exit the Site immediately and discontinue any use of information or products from this site.</string>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9lt-YP-E9J">
+                                    <rect key="frame" x="47" y="396.5" width="312" height="251"/>
+                                    <mutableString key="text">e-Nyelam reserves the right to change, modify, alter, update or discontinue the terms, conditions, and notices under which this Site is offered and the links, content, information, prices and any other materials offered via this Site at any time and from time to time without notice or further obligation to you except as may be provided therein. We have the right to adjust prices from time to time. If for some reason there may have been a price mistake, e-nyelam has the right to refuse the order. By your continued use of the Site following such modifications, alterations, or updates you agree to be bound by such modifications, alterations, or updates.</mutableString>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKV-MB-11M">
+                                    <rect key="frame" x="47" y="676.5" width="312" height="200.5"/>
+                                    <mutableString key="text">This site is owned and operated by e-Nyelam. Unless otherwise specified, all materials on this Site, trademarks, service marks, logos are the property of e-Nyelam and are protected by the copyright laws of Indonesia and, throughout the world by the applicable copyright laws. No materials published by e-Nyelam on this Site, in whole or in part, may be copied, reproduced, modified, republished, uploaded, posted, transmitted, or distributed in any form or by any means without prior written permission from e-Nyelam.</mutableString>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8EE-4y-jA1">
+                                    <rect key="frame" x="47" y="906" width="312" height="284.5"/>
+                                    <mutableString key="text">You need to sign up this site to order the services by insert your username and password. You will get benefits such as newsletters, updates, and special offers by signing up. You will be asked to provide accurate and current information on all registration forms on this site. You are solely responsible for maintaining the confidentiality of any username and password that you choose or is chosen by your web administrator on your behalf, to access this site as well as any activity that occur under your username/password. You will not misuse or share your username or password, misrepresent your identity or your affiliation with an entity, impersonate any person or entity, or misstate the origin of any materials you are exposed to through this site.</mutableString>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3K-qW-Aml">
+                                    <rect key="frame" x="47" y="1219.5" width="312" height="134"/>
+                                    <string key="text">You agree that e-Nyelam may send electronic mails to you for the purpose of advising you of changes or additions to this site, about any of e-Nyelam’s services, or for such other purpose(s) as we deem appropriate. If you wish to unsubscribe from our newsletters, please click on "Newsletters" in your account page and unsubscribe.</string>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZdR-uo-9Zf">
+                                    <rect key="frame" x="47" y="1382.5" width="312" height="117"/>
+                                    <string key="text">We always try our best to display the information and colors of the products that appear on the Site as accurately as possible. However, we cannot guarantee that your monitor's display of any color will be accurate as the actual colors you see depends on your monitor quality.</string>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OAV-Uj-nz6">
+                                    <rect key="frame" x="47" y="1528.5" width="312" height="117"/>
+                                    <string key="text">Your information is safe with us. e-Nyelam understands that privacy concerns are extremely important to our customers. You can rest assured that any information you submit to us will not be misused, abused or sold to any other parties. We only use your personal information to complete your order.</string>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ceU-1W-0UV">
+                                    <rect key="frame" x="47" y="1674.5" width="312" height="117"/>
+                                    <string key="text">You agree to indemnify, defend and hold e-Nyelam harmless from and against any and all third party claims, liabilities, damages, losses or expenses (including reasonable attorney's fees and costs) arising out of, based on or in connection with your access and/or use of this site.</string>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="15t-qG-gy0">
+                                    <rect key="frame" x="47" y="1820.5" width="312" height="134"/>
+                                    <string key="text">e-Nyelam assumes no responsibility for accuracy, correctness, timeliness, or content of the Materials provided on this Site. You should not assume that the Materials on this Site are continuously updated or otherwise contain current information. e-nyelam is not responsible for supplying content or materials from the site that have expired or have been removed.</string>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="These Terms and Conditions are governed by the law in force in Indonesia." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3jZ-Wl-CQ3">
+                                    <rect key="frame" x="47" y="1983.5" width="312" height="33.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9C-lF-cwh">
+                                    <rect key="frame" x="47" y="2046" width="312" height="84"/>
+                                    <string key="text">We welcome your questions, comments, and concerns about privacy or any of the information collected from you or about you. Please send us any and all feedback pertaining to privacy, or any other issue. Legal Notice</string>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="pcg-tM-xCw" firstAttribute="trailing" secondItem="NC8-Tq-Jrd" secondAttribute="trailing" id="0KU-3f-5Bh"/>
+                                <constraint firstItem="8EE-4y-jA1" firstAttribute="trailing" secondItem="NKV-MB-11M" secondAttribute="trailing" id="0bT-5h-Dy3"/>
+                                <constraint firstItem="9lt-YP-E9J" firstAttribute="leading" secondItem="ajx-qK-A8b" secondAttribute="leading" id="0bu-Na-Yty"/>
+                                <constraint firstItem="ECv-Jx-4np" firstAttribute="trailing" secondItem="1yj-iv-yNf" secondAttribute="trailing" id="0eG-Hf-Wj6"/>
+                                <constraint firstItem="ceU-1W-0UV" firstAttribute="top" secondItem="NOX-EP-tu5" secondAttribute="bottom" constant="4" id="17o-LV-QIz"/>
+                                <constraint firstItem="Zbu-iE-2ZD" firstAttribute="top" secondItem="edx-Yk-vA2" secondAttribute="top" id="190-p9-oGw"/>
+                                <constraint firstItem="ECv-Jx-4np" firstAttribute="leading" secondItem="1yj-iv-yNf" secondAttribute="leading" id="3YA-XL-OPN"/>
+                                <constraint firstItem="ajx-qK-A8b" firstAttribute="trailing" secondItem="b9g-Vm-48q" secondAttribute="trailing" id="3qD-23-mhD"/>
+                                <constraint firstItem="aga-1C-lCi" firstAttribute="trailing" secondItem="aPp-Yo-Tgm" secondAttribute="trailing" id="3th-R2-idc"/>
+                                <constraint firstItem="3Oz-P7-d2z" firstAttribute="leading" secondItem="Oxm-3k-XDK" secondAttribute="leading" id="441-dg-fHs"/>
+                                <constraint firstItem="NOX-EP-tu5" firstAttribute="trailing" secondItem="CnF-sI-p8d" secondAttribute="trailing" id="4gb-AW-66O"/>
+                                <constraint firstItem="39P-Zo-jlk" firstAttribute="trailing" secondItem="b3Q-ED-Ijg" secondAttribute="trailing" id="6Cc-di-ZsZ"/>
+                                <constraint firstItem="Q9C-lF-cwh" firstAttribute="leading" secondItem="3jZ-Wl-CQ3" secondAttribute="leading" id="6JZ-Ps-yX2"/>
+                                <constraint firstItem="ZdR-uo-9Zf" firstAttribute="trailing" secondItem="DTv-Qi-7an" secondAttribute="trailing" id="6Wg-CX-GwM"/>
+                                <constraint firstItem="NKV-MB-11M" firstAttribute="bottom" secondItem="3Oz-P7-d2z" secondAttribute="top" constant="-8" id="7Ra-Br-cw1"/>
+                                <constraint firstItem="SqS-XT-4Ab" firstAttribute="bottom" secondItem="dbj-Ym-IY0" secondAttribute="top" constant="-8" id="7ly-9l-ae3"/>
+                                <constraint firstItem="NC8-Tq-Jrd" firstAttribute="top" secondItem="E6j-wn-PzE" secondAttribute="top" constant="16" id="7nC-HR-tj4"/>
+                                <constraint firstItem="b9g-Vm-48q" firstAttribute="top" secondItem="pcg-tM-xCw" secondAttribute="top" id="8Ne-Wx-ONx"/>
+                                <constraint firstItem="1kj-db-bUF" firstAttribute="trailing" secondItem="0lC-Az-euS" secondAttribute="trailing" id="8g4-N6-3Qv"/>
+                                <constraint firstItem="TQt-m9-Ex4" firstAttribute="leading" secondItem="KQ6-zp-YYE" secondAttribute="leading" id="BWb-zE-3gI"/>
+                                <constraint firstItem="KQ6-zp-YYE" firstAttribute="top" secondItem="NC8-Tq-Jrd" secondAttribute="top" id="Bg8-QM-gqY"/>
+                                <constraint firstItem="KQ6-zp-YYE" firstAttribute="width" secondItem="NC8-Tq-Jrd" secondAttribute="width" multiplier="10:1" id="C9G-qs-5he"/>
+                                <constraint firstItem="pcg-tM-xCw" firstAttribute="leading" secondItem="NC8-Tq-Jrd" secondAttribute="leading" id="CRK-Zm-1aP"/>
+                                <constraint firstItem="dbj-Ym-IY0" firstAttribute="leading" secondItem="pcg-tM-xCw" secondAttribute="leading" id="DfC-7O-mKT"/>
+                                <constraint firstItem="Zbu-iE-2ZD" firstAttribute="trailing" secondItem="1kj-db-bUF" secondAttribute="trailing" id="Dl4-0h-L9I"/>
+                                <constraint firstItem="1kj-db-bUF" firstAttribute="leading" secondItem="0lC-Az-euS" secondAttribute="leading" id="EBF-62-ZHL"/>
+                                <constraint firstItem="SqS-XT-4Ab" firstAttribute="leading" secondItem="TQt-m9-Ex4" secondAttribute="leading" id="EKq-a6-gJL"/>
+                                <constraint firstItem="DTv-Qi-7an" firstAttribute="leading" secondItem="BJJ-AV-cq4" secondAttribute="leading" id="FVg-SO-Olg"/>
+                                <constraint firstItem="NKV-MB-11M" firstAttribute="trailing" secondItem="9lt-YP-E9J" secondAttribute="trailing" id="G7i-PI-e0S"/>
+                                <constraint firstItem="cHj-NX-Dwu" firstAttribute="leading" secondItem="3Oz-P7-d2z" secondAttribute="leading" id="Hpw-G9-cLf"/>
+                                <constraint firstItem="NOX-EP-tu5" firstAttribute="leading" secondItem="CnF-sI-p8d" secondAttribute="leading" id="Hsf-j6-yiR"/>
+                                <constraint firstItem="DTv-Qi-7an" firstAttribute="top" secondItem="voM-7W-Jz5" secondAttribute="top" id="Hyc-Kw-Dir"/>
+                                <constraint firstItem="CnF-sI-p8d" firstAttribute="top" secondItem="1yj-iv-yNf" secondAttribute="top" id="JbO-tl-o53"/>
+                                <constraint firstItem="vy8-Dk-5TZ" firstAttribute="top" secondItem="3Oz-P7-d2z" secondAttribute="top" id="JqD-yp-npb"/>
+                                <constraint firstItem="aPp-Yo-Tgm" firstAttribute="leading" secondItem="ECv-Jx-4np" secondAttribute="leading" id="KR6-ju-3yn"/>
+                                <constraint firstItem="f3K-qW-Aml" firstAttribute="trailing" secondItem="8EE-4y-jA1" secondAttribute="trailing" id="Kax-lI-4Dg"/>
+                                <constraint firstItem="TQt-m9-Ex4" firstAttribute="trailing" secondItem="KQ6-zp-YYE" secondAttribute="trailing" id="KgU-rr-Tt3"/>
+                                <constraint firstItem="TQt-m9-Ex4" firstAttribute="bottom" secondItem="pcg-tM-xCw" secondAttribute="top" constant="-8" id="MGe-Ah-XW3"/>
+                                <constraint firstItem="SqS-XT-4Ab" firstAttribute="trailing" secondItem="TQt-m9-Ex4" secondAttribute="trailing" id="MSF-hz-fgq"/>
+                                <constraint firstItem="1kj-db-bUF" firstAttribute="bottom" secondItem="3jZ-Wl-CQ3" secondAttribute="top" constant="-4" id="Mfs-Bg-XZB"/>
+                                <constraint firstItem="edx-Yk-vA2" firstAttribute="trailing" secondItem="aga-1C-lCi" secondAttribute="trailing" id="NJZ-l1-AZO"/>
+                                <constraint firstItem="15t-qG-gy0" firstAttribute="bottom" secondItem="aga-1C-lCi" secondAttribute="top" constant="-8" id="Oqb-Ap-Gub"/>
+                                <constraint firstItem="TFO-Ll-RuR" firstAttribute="bottom" secondItem="NKV-MB-11M" secondAttribute="top" constant="-4" id="Os4-To-GEj"/>
+                                <constraint firstItem="CnF-sI-p8d" firstAttribute="trailing" secondItem="DTv-Qi-7an" secondAttribute="trailing" id="Qea-uy-mXI"/>
+                                <constraint firstItem="Oxm-3k-XDK" firstAttribute="trailing" secondItem="dbj-Ym-IY0" secondAttribute="trailing" id="RVv-2c-YXK"/>
+                                <constraint firstItem="vy8-Dk-5TZ" firstAttribute="bottom" secondItem="8EE-4y-jA1" secondAttribute="top" constant="-4" id="S8F-oI-S85"/>
+                                <constraint firstItem="dbj-Ym-IY0" firstAttribute="trailing" secondItem="pcg-tM-xCw" secondAttribute="trailing" id="SYs-js-cmM"/>
+                                <constraint firstItem="9lt-YP-E9J" firstAttribute="bottom" secondItem="Oxm-3k-XDK" secondAttribute="top" constant="-8" id="Tfo-z9-LJm"/>
+                                <constraint firstItem="1kj-db-bUF" firstAttribute="top" secondItem="aga-1C-lCi" secondAttribute="top" id="UDO-hD-7tK"/>
+                                <constraint firstItem="b9g-Vm-48q" firstAttribute="leading" secondItem="KQ6-zp-YYE" secondAttribute="leading" id="Um2-TY-yrc"/>
+                                <constraint firstItem="15t-qG-gy0" firstAttribute="leading" secondItem="ceU-1W-0UV" secondAttribute="leading" id="V2N-1M-ngy"/>
+                                <constraint firstItem="3jZ-Wl-CQ3" firstAttribute="leading" secondItem="15t-qG-gy0" secondAttribute="leading" id="VFZ-nF-vSU"/>
+                                <constraint firstItem="ceU-1W-0UV" firstAttribute="leading" secondItem="OAV-Uj-nz6" secondAttribute="leading" id="VRo-vF-ekb"/>
+                                <constraint firstItem="ajx-qK-A8b" firstAttribute="leading" secondItem="b9g-Vm-48q" secondAttribute="leading" id="VWO-V2-l0j"/>
+                                <constraint firstItem="BJJ-AV-cq4" firstAttribute="trailing" secondItem="vy8-Dk-5TZ" secondAttribute="trailing" id="Vrf-A1-37u"/>
+                                <constraint firstItem="DTv-Qi-7an" firstAttribute="bottom" secondItem="ZdR-uo-9Zf" secondAttribute="top" constant="-4" id="W3P-P1-k7U"/>
+                                <constraint firstItem="OAV-Uj-nz6" firstAttribute="leading" secondItem="CnF-sI-p8d" secondAttribute="leading" id="WUh-mr-0Mn"/>
+                                <constraint firstItem="ceU-1W-0UV" firstAttribute="bottom" secondItem="aPp-Yo-Tgm" secondAttribute="top" constant="-8" id="WxA-qY-sdu"/>
+                                <constraint firstItem="aga-1C-lCi" firstAttribute="leading" secondItem="aPp-Yo-Tgm" secondAttribute="leading" id="XCX-cY-5As"/>
+                                <constraint firstItem="3jZ-Wl-CQ3" firstAttribute="trailing" secondItem="15t-qG-gy0" secondAttribute="trailing" id="XiM-kB-XEN"/>
+                                <constraint firstItem="Oxm-3k-XDK" firstAttribute="leading" secondItem="dbj-Ym-IY0" secondAttribute="leading" id="Ylk-kZ-xrD"/>
+                                <constraint firstItem="ajx-qK-A8b" firstAttribute="top" secondItem="dbj-Ym-IY0" secondAttribute="top" id="Z56-ga-PsS"/>
+                                <constraint firstItem="39P-Zo-jlk" firstAttribute="leading" secondItem="b3Q-ED-Ijg" secondAttribute="leading" id="ZGO-uN-cHh"/>
+                                <constraint firstItem="15t-qG-gy0" firstAttribute="top" secondItem="0lC-Az-euS" secondAttribute="bottom" constant="4" id="Zlb-pW-INh"/>
+                                <constraint firstItem="OAV-Uj-nz6" firstAttribute="bottom" secondItem="ECv-Jx-4np" secondAttribute="top" constant="-8" id="Zq1-dC-LYh"/>
+                                <constraint firstItem="8EE-4y-jA1" firstAttribute="leading" secondItem="NKV-MB-11M" secondAttribute="leading" id="a6D-Ub-tiw"/>
+                                <constraint firstItem="TFO-Ll-RuR" firstAttribute="trailing" secondItem="ajx-qK-A8b" secondAttribute="trailing" id="aO2-2S-4yA"/>
+                                <constraint firstItem="ceU-1W-0UV" firstAttribute="trailing" secondItem="OAV-Uj-nz6" secondAttribute="trailing" id="abO-Fx-EFE"/>
+                                <constraint firstItem="voM-7W-Jz5" firstAttribute="leading" secondItem="cHj-NX-Dwu" secondAttribute="leading" id="apn-wU-BsW"/>
+                                <constraint firstItem="TQt-m9-Ex4" firstAttribute="top" secondItem="KQ6-zp-YYE" secondAttribute="bottom" constant="4" id="bXz-fd-71b"/>
+                                <constraint firstItem="0lC-Az-euS" firstAttribute="leading" secondItem="NOX-EP-tu5" secondAttribute="leading" id="c8m-az-2qm"/>
+                                <constraint firstItem="TFO-Ll-RuR" firstAttribute="top" secondItem="Oxm-3k-XDK" secondAttribute="top" id="cKt-V6-11O"/>
+                                <constraint firstItem="ZdR-uo-9Zf" firstAttribute="leading" secondItem="DTv-Qi-7an" secondAttribute="leading" id="cXZ-V5-bLQ"/>
+                                <constraint firstItem="aPp-Yo-Tgm" firstAttribute="trailing" secondItem="ECv-Jx-4np" secondAttribute="trailing" id="dM7-cn-yT4"/>
+                                <constraint firstItem="1yj-iv-yNf" firstAttribute="trailing" secondItem="voM-7W-Jz5" secondAttribute="trailing" id="dfn-0o-eRe"/>
+                                <constraint firstItem="Q9C-lF-cwh" firstAttribute="trailing" secondItem="3jZ-Wl-CQ3" secondAttribute="trailing" id="dmJ-Td-95A"/>
+                                <constraint firstItem="3Oz-P7-d2z" firstAttribute="trailing" secondItem="Oxm-3k-XDK" secondAttribute="trailing" id="dpH-Cb-C3M"/>
+                                <constraint firstItem="b3Q-ED-Ijg" firstAttribute="leading" secondItem="edx-Yk-vA2" secondAttribute="leading" id="enf-49-ngG"/>
+                                <constraint firstItem="BJJ-AV-cq4" firstAttribute="top" secondItem="cHj-NX-Dwu" secondAttribute="top" id="ez2-q7-OiM"/>
+                                <constraint firstItem="15t-qG-gy0" firstAttribute="trailing" secondItem="ceU-1W-0UV" secondAttribute="trailing" id="fRQ-ia-2W2"/>
+                                <constraint firstItem="NOX-EP-tu5" firstAttribute="top" secondItem="ECv-Jx-4np" secondAttribute="top" id="gft-0l-TEz"/>
+                                <constraint firstItem="0lC-Az-euS" firstAttribute="trailing" secondItem="NOX-EP-tu5" secondAttribute="trailing" id="gtI-HM-S7w"/>
+                                <constraint firstItem="b9g-Vm-48q" firstAttribute="bottom" secondItem="SqS-XT-4Ab" secondAttribute="top" constant="-4" id="gw6-JP-6Tq"/>
+                                <constraint firstItem="OAV-Uj-nz6" firstAttribute="trailing" secondItem="CnF-sI-p8d" secondAttribute="trailing" id="i92-O7-qRk"/>
+                                <constraint firstItem="vy8-Dk-5TZ" firstAttribute="trailing" secondItem="TFO-Ll-RuR" secondAttribute="trailing" id="jNA-mI-euJ"/>
+                                <constraint firstAttribute="bottom" secondItem="39P-Zo-jlk" secondAttribute="bottom" constant="16" id="kTy-B0-0HP"/>
+                                <constraint firstItem="NKV-MB-11M" firstAttribute="leading" secondItem="9lt-YP-E9J" secondAttribute="leading" id="lQt-dJ-pDe"/>
+                                <constraint firstItem="b3Q-ED-Ijg" firstAttribute="trailing" secondItem="SqS-XT-4Ab" secondAttribute="trailing" id="mQ9-h3-9bd"/>
+                                <constraint firstAttribute="trailing" secondItem="KQ6-zp-YYE" secondAttribute="trailing" constant="16" id="mpE-2m-POd"/>
+                                <constraint firstItem="b3Q-ED-Ijg" firstAttribute="bottom" secondItem="39P-Zo-jlk" secondAttribute="top" constant="-8" id="ntT-dJ-10d"/>
+                                <constraint firstItem="BJJ-AV-cq4" firstAttribute="leading" secondItem="vy8-Dk-5TZ" secondAttribute="leading" id="pMW-bo-wHk"/>
+                                <constraint firstItem="cHj-NX-Dwu" firstAttribute="trailing" secondItem="3Oz-P7-d2z" secondAttribute="trailing" id="pXX-0J-cdB"/>
+                                <constraint firstItem="KQ6-zp-YYE" firstAttribute="leading" secondItem="NC8-Tq-Jrd" secondAttribute="trailing" id="pYD-Ke-z2x"/>
+                                <constraint firstItem="3jZ-Wl-CQ3" firstAttribute="bottom" secondItem="edx-Yk-vA2" secondAttribute="top" constant="-8" id="qCZ-rl-nnL"/>
+                                <constraint firstItem="CnF-sI-p8d" firstAttribute="leading" secondItem="DTv-Qi-7an" secondAttribute="leading" id="qLK-QN-rvT"/>
+                                <constraint firstItem="NC8-Tq-Jrd" firstAttribute="leading" secondItem="E6j-wn-PzE" secondAttribute="leading" constant="16" id="qUE-X3-pJ1"/>
+                                <constraint firstItem="b9g-Vm-48q" firstAttribute="trailing" secondItem="KQ6-zp-YYE" secondAttribute="trailing" id="qyW-Ap-ncn"/>
+                                <constraint firstItem="Zbu-iE-2ZD" firstAttribute="leading" secondItem="1kj-db-bUF" secondAttribute="leading" id="rZg-sh-5Dx"/>
+                                <constraint firstItem="f3K-qW-Aml" firstAttribute="leading" secondItem="8EE-4y-jA1" secondAttribute="leading" id="rip-5V-iUj"/>
+                                <constraint firstItem="OAV-Uj-nz6" firstAttribute="top" secondItem="CnF-sI-p8d" secondAttribute="bottom" constant="4" id="ru1-b4-kZP"/>
+                                <constraint firstItem="voM-7W-Jz5" firstAttribute="trailing" secondItem="cHj-NX-Dwu" secondAttribute="trailing" id="sGZ-uo-HFw"/>
+                                <constraint firstItem="DTv-Qi-7an" firstAttribute="trailing" secondItem="BJJ-AV-cq4" secondAttribute="trailing" id="sJP-kb-dGa"/>
+                                <constraint firstItem="1yj-iv-yNf" firstAttribute="leading" secondItem="voM-7W-Jz5" secondAttribute="leading" id="smB-WF-3cS"/>
+                                <constraint firstItem="Q9C-lF-cwh" firstAttribute="top" secondItem="Zbu-iE-2ZD" secondAttribute="bottom" constant="4" id="vLE-DT-qLz"/>
+                                <constraint firstItem="ZdR-uo-9Zf" firstAttribute="bottom" secondItem="1yj-iv-yNf" secondAttribute="top" constant="-8" id="wDT-EC-3fS"/>
+                                <constraint firstItem="f3K-qW-Aml" firstAttribute="bottom" secondItem="voM-7W-Jz5" secondAttribute="top" constant="-8" id="wwG-Ha-hdQ"/>
+                                <constraint firstItem="ajx-qK-A8b" firstAttribute="bottom" secondItem="9lt-YP-E9J" secondAttribute="top" constant="-4" id="x3h-cT-sqp"/>
+                                <constraint firstItem="edx-Yk-vA2" firstAttribute="leading" secondItem="aga-1C-lCi" secondAttribute="leading" id="xBg-ac-L0R"/>
+                                <constraint firstItem="BJJ-AV-cq4" firstAttribute="bottom" secondItem="f3K-qW-Aml" secondAttribute="top" constant="-4" id="xlV-5F-ROp"/>
+                                <constraint firstItem="TFO-Ll-RuR" firstAttribute="leading" secondItem="ajx-qK-A8b" secondAttribute="leading" id="y2t-FO-Nkz"/>
+                                <constraint firstItem="8EE-4y-jA1" firstAttribute="bottom" secondItem="cHj-NX-Dwu" secondAttribute="top" constant="-8" id="yrb-mh-mY3"/>
+                                <constraint firstItem="9lt-YP-E9J" firstAttribute="trailing" secondItem="ajx-qK-A8b" secondAttribute="trailing" id="ysZ-5E-GpH"/>
+                                <constraint firstItem="Q9C-lF-cwh" firstAttribute="bottom" secondItem="b3Q-ED-Ijg" secondAttribute="top" constant="-16" id="zbM-eF-AWb"/>
+                                <constraint firstItem="0lC-Az-euS" firstAttribute="top" secondItem="aPp-Yo-Tgm" secondAttribute="top" id="zbN-7s-oVp"/>
+                                <constraint firstItem="vy8-Dk-5TZ" firstAttribute="leading" secondItem="TFO-Ll-RuR" secondAttribute="leading" id="zn7-f8-1b6"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="E6j-wn-PzE" firstAttribute="top" secondItem="eqQ-yl-K21" secondAttribute="top" id="41a-xG-PvU"/>
+                        <constraint firstItem="E6j-wn-PzE" firstAttribute="leading" secondItem="eqQ-yl-K21" secondAttribute="leading" id="4Ty-fB-PyQ"/>
+                        <constraint firstAttribute="bottom" secondItem="E6j-wn-PzE" secondAttribute="bottom" id="OYI-tM-3Fw"/>
+                        <constraint firstItem="E6j-wn-PzE" firstAttribute="centerX" secondItem="eqQ-yl-K21" secondAttribute="centerX" id="bMe-96-LPu"/>
+                        <constraint firstAttribute="trailing" secondItem="E6j-wn-PzE" secondAttribute="trailing" id="sYx-f5-oae"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="eqQ-yl-K21" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="9t4-Jt-KEL"/>
+                <constraint firstAttribute="trailing" secondItem="eqQ-yl-K21" secondAttribute="trailing" id="Jsh-YY-x8Z"/>
+                <constraint firstItem="eqQ-yl-K21" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="p9L-2k-BWb"/>
+                <constraint firstAttribute="bottom" secondItem="eqQ-yl-K21" secondAttribute="bottom" id="u1W-xi-bj3"/>
+            </constraints>
+            <point key="canvasLocation" x="88.5" y="1113.5"/>
+        </view>
+    </objects>
+</document>

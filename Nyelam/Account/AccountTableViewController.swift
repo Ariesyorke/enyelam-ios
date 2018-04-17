@@ -11,7 +11,6 @@ import MBProgressHUD
 
 class AccountTableViewController: BaseTableViewController, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate, PECropViewControllerDelegate {
-    
     var viewContents: [Int: [String]] = [
         0: ["header", ""],
         1: ["section", "e-Nyelam Profile", "active"],
@@ -25,6 +24,7 @@ UINavigationControllerDelegate, PECropViewControllerDelegate {
         9: ["content", "Newsletter & Promo Info", "inactive"],
         10:["content", "Push Notification", "inactive"]
     ]
+    
     let picker = UIImagePickerController()
     var pickedData: Data?
     var changePhotoProfile: Bool = false
@@ -32,6 +32,7 @@ UINavigationControllerDelegate, PECropViewControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Account Profile"
         self.tableView.register(UINib(nibName: "HeaderViewCell", bundle: nil), forCellReuseIdentifier: "HeaderViewCell")
         self.tableView.register(UINib(nibName: "SectionViewCell", bundle: nil), forCellReuseIdentifier: "SectionViewCell")
         self.tableView.register(UINib(nibName: "ContentViewCell", bundle: nil), forCellReuseIdentifier: "ContentViewCell")
@@ -52,6 +53,49 @@ UINavigationControllerDelegate, PECropViewControllerDelegate {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return viewContents.count
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 0:
+            break
+        case 1:
+            break
+        case 2:
+            let vc = EditProfileViewController(nibName: "EditProfileViewController", bundle: nil)
+            var controller: UIViewController? = nil
+            if let parent = self.parent as? MainRootController {
+                controller = parent
+            } else {
+                controller = self
+            }
+            if let navigation = controller!.navigationController {
+                navigation.pushViewController(vc, animated: true)
+            } else {
+                self.present(vc, animated: true, completion: nil)
+            }
+            break
+        case 3:
+            let vc = ChangePasswordViewController(nibName: "ChangePasswordViewController", bundle: nil)
+            print("VC \(vc)")
+            var controller: UIViewController? = nil
+            if let parent = self.parent as? MainRootController {
+                controller = parent
+            } else {
+                controller = self
+            }
+            if let navigation = controller!.navigationController {
+                navigation.pushViewController(vc, animated: true)
+            } else {
+                self.present(vc, animated: true, completion: nil)
+            }
+            break
+        case 4:
+            //todo logout
+            break
+        default:
+            break
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -157,13 +201,11 @@ UINavigationControllerDelegate, PECropViewControllerDelegate {
                 controller.toolbarHidden = true
                 if self.changePhotoProfile {
                     let length = width/2
-                    print("PANGGIL CHANGE PHOTO PROFILE \(length)")
                     controller.imageCropRect = CGRect(x: width/2,
                                                       y: height/2,
                                                       width: length/2,
                                                       height: length/2)
                 } else {
-                    print("PANGGIL CHANGE COVER")
                     let length = width/2
                     controller.imageCropRect = CGRect(x: width / 2,
                                                       y: height / 2,
@@ -228,7 +270,6 @@ UINavigationControllerDelegate, PECropViewControllerDelegate {
                 self.tableView.reloadData()
             })
         })
-
     }
     
     internal func tryUploadProfile(data: Data) {
@@ -301,6 +342,7 @@ UINavigationControllerDelegate, PECropViewControllerDelegate {
 class ContentViewCell: NTableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var circleView: UIView!
+    @IBOutlet weak var arrowView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -354,6 +396,10 @@ class HeaderViewCell: NTableViewCell {
     @IBAction func changeProfilePictureAction(_ sender: Any) {
         self.onChangePhotoProfile()
     }
+}
 
-    
+enum AccountMenuItemType {
+    case editprofile
+    case changepassword
+    case logout
 }

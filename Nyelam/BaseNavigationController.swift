@@ -9,6 +9,7 @@
 import UIKit
 
 class BaseNavigationController: UINavigationController, UITextFieldDelegate {
+    var dismissCompletion: ()->() = {}
 
     override func viewDidLoad() {
         super.viewDidLoad()

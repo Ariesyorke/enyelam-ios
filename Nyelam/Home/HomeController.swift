@@ -9,8 +9,11 @@
 import UIKit
 import AlamofireImage
 import CoreData
+import SideMenu
+import MessageUI
 
 class HomeController: BaseViewController, UIScrollViewDelegate {
+    private var bannerImages: [String] = ["banner_1", "banner_2", "banner_3"]
     @IBOutlet weak var bannerScroller: UIScrollView!
     @IBOutlet weak var bannerPageControl: UIPageControl!
     @IBOutlet weak var btDoDive: UIControl!
@@ -19,22 +22,26 @@ class HomeController: BaseViewController, UIScrollViewDelegate {
     @IBOutlet weak var btDoCourse: UIControl!
     @IBOutlet weak var btSeeAllDoTrip: UIControl!
     @IBOutlet weak var doTripScroller: UIScrollView!
+    var contentViews: [UIView] = []
+    var sideMenuController: SideMenuController?
     
     var banners: [Banner]? {
         didSet {
             for subview: UIView in self.bannerScroller.subviews {
                 subview.removeFromSuperview()
             }
-            
             if self.banners != nil {
                 var i: Int = 0
                 var leftView: UIView? = nil
+    
                 for banner: Banner in self.banners! {
-                    let view: UIControl = self.createView(for: banner)
+
+                    let view: UIControl = self.createView(for: banner, atindex: i)
                     view.tag = i
                     view.addTarget(self, action: #selector(HomeController.onBannerClicked(at:)), for: UIControlEvents.touchUpInside)
-                    
                     self.bannerScroller.addSubview(view)
+                    self.bannerScroller.delegate = self
+                    self.contentViews.append(view)
                     self.bannerScroller.addConstraints([
                         NSLayoutConstraint(item: self.bannerScroller, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0),
                         NSLayoutConstraint(item: self.bannerScroller, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0),
@@ -51,9 +58,11 @@ class HomeController: BaseViewController, UIScrollViewDelegate {
                         self.bannerScroller.addConstraint(NSLayoutConstraint(item: self.bannerScroller, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 0))
                     }
                     
+
                     i += 1
                     leftView = view
                 }
+
             }
         }
     }
@@ -97,7 +106,7 @@ class HomeController: BaseViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.setupSideMenu()
         // TESTING
         self.banners = [Banner(), Banner(), Banner()]
         self.doTrips = [
@@ -116,11 +125,18 @@ class HomeController: BaseViewController, UIScrollViewDelegate {
     }
 
     // MARK: UIScrollViewDelegate
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+    }
+    
 }
 
 // MARK: - Outlets & Actions
 extension HomeController {
-    
+    @IBAction func sideMenuButtonAction(_ sender: Any) {
+        self.present(SideMenuManager.menuRightNavigationController!, animated: true, completion: nil)
+    }
+
     @IBAction func onMenuClicked(_ sender: UIControl) {
         // TODO:
     }
@@ -139,6 +155,79 @@ extension HomeController {
         // TODO:
         SearchFormController.push(on: self.navigationController!, forDoTrip: false)
     }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let gap = Int((scrollView.contentSize.width - scrollView.contentOffset.x)/scrollView.bounds.width)
+        let index = Int(contentViews.count - gap)
+        self.bannerPageControl.currentPage = index
+        
+    }
+    
+    internal func setupSideMenu() {
+        SideMenuManager.menuPresentMode = .menuSlideIn
+        SideMenuManager.menuFadeStatusBar = false
+        self.sideMenuController = SideMenuController(nibName: "SideMenuController", bundle: nil)
+        let sideMenuNavController: UISideMenuNavigationController = UISideMenuNavigationController(rootViewController: sideMenuController!)
+        sideMenuNavController.setNavigationBarHidden(true, animated: false)
+        SideMenuManager.menuRightNavigationController = sideMenuNavController
+        SideMenuManager.menuAddScreenEdgePanGesturesToPresent(toView: self.view, forMenu: UIRectEdge.right)
+        sideMenuController!.handleMenuItem = {item in
+            switch item {
+            case SideMenuItemType.login:
+                self.goToAuth()
+                break
+            case SideMenuItemType.contactus:
+                self.contactUs()
+                break
+            case SideMenuItemType.account:
+                self.openAccount()
+                break
+            case SideMenuItemType.logout:
+                self.logout()
+                break
+            case SideMenuItemType.terms:
+                self.terms()
+                break
+            default:
+                break
+            }
+        }
+    }
+    internal func contactUs() {
+        let composeVC = MFMailComposeViewController()
+        composeVC.setToRecipients(["info@e-nyelam.com"])
+        if let parent = self.parent {
+            parent.present(composeVC, animated: true, completion: nil)
+        } else {
+            self.present(composeVC, animated: true, completion: nil)
+        }
+    }
+    
+    internal func openAccount() {
+        if let parent = self.parent as? BaseViewController {
+            parent.goToAccount()
+        }
+    }
+    internal func logout() {
+        _ = NAuthReturn.deleteAllAuth()
+        if let sideMenu = self.sideMenuController {
+            sideMenu.tableView.reloadData()
+        }
+    }
+    
+    internal func terms() {
+        let vc = TermsViewController(nibName: "TermsViewController", bundle: nil)
+        if let parent = self.parent {
+            if let navigation = parent.navigationController {
+                navigation.pushViewController(vc, animated: true)
+            }
+        } else {
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
 }
 
 // MARK: - Views Setup
@@ -151,7 +240,7 @@ extension HomeController {
         return view
     }
     
-    fileprivate func createView(for banner: Banner) -> UIControl {
+    fileprivate func createView(for banner: Banner, atindex: Int) -> UIControl {
         let control: UIControl = UIControl(frame: CGRect(x: 0, y: 0, width: 0, height: 0    ))
         control.translatesAutoresizingMaskIntoConstraints = false
         
@@ -169,8 +258,9 @@ extension HomeController {
         let imgView: UIImageView = UIImageView()
         imgView.translatesAutoresizingMaskIntoConstraints = false
         imgView.contentMode = UIViewContentMode.scaleAspectFill
+        imgView.clipsToBounds = true
         imgView.backgroundColor = UIColor.clear
-        imgView.image = nil
+        imgView.image = UIImage(named: bannerImages[atindex])!
         if banner.imageUrl != nil, let url: URL = URL(string: banner.imageUrl!) {
             imgView.af_setImage(withURL: url)
         } else {
@@ -179,11 +269,13 @@ extension HomeController {
         control.addSubview(imgView)
         control.addConstraints([
             NSLayoutConstraint(item: control, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: imgView, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: control, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: imgView, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: control, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: imgView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: control, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: imgView, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: control, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: imgView, attribute: NSLayoutAttribute.left, multiplier: 1, constant: 0)
+            NSLayoutConstraint(item: control, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: imgView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: control, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 250)
             ])
-        
         return control
     }
+    
+    
 }

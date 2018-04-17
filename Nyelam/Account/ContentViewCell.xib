@@ -73,6 +73,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="arrowView" destination="0aK-Jy-Dua" id="82h-lj-W9P"/>
                 <outlet property="circleView" destination="k4a-2D-TCt" id="vVn-yC-SIV"/>
                 <outlet property="nameLabel" destination="yco-XO-Sgz" id="3Fb-W0-mmc"/>
             </connections>

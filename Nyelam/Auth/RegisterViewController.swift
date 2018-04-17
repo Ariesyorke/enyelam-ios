@@ -89,12 +89,9 @@ class RegisterViewController: BaseViewController, MMNumberKeyboardDelegate {
                 }
             },successCompletion: {authReturn in
                 if let navigation = self.navigationController as? AuthNavigationController {
-                    navigation.dismiss(animated: true, completion: {
-                        navigation.dismissCompletion()
-                    })
+                    navigation.authentificationSuccess()
                 }
             })
-            
         })
 
     }

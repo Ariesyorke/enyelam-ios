@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class NHelper {
     static func handleConnectionError(completion: @escaping ()->()) {
@@ -24,5 +25,12 @@ class NHelper {
         } else {
             completion()
         }
+    }
+    
+    static func isLogin()->Bool {
+        if let _ = NAuthReturn.authUser() {
+            return true
+        }
+        return false
     }
 }

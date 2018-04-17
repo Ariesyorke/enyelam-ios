@@ -81,11 +81,4 @@ class StarterViewController: BaseViewController {
     internal func goToHomepage() {
         let _ = MainNavigationController.present(on: self)
     }
-    
-    internal func goAuth() {
-        let vc = AccountTableViewController(nibName: "AccountTableViewController", bundle: nil)
-        self.present(vc, animated: true, completion: nil)
-//        let _ = AuthNavigationController.present(on: self, dismissCompletion: {})
-    }
 }
-

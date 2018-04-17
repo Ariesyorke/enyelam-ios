@@ -56,6 +56,8 @@
 		C010FB12207CAF47000059AA /* FiraSans-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C010FB00207CAF47000059AA /* FiraSans-Thin.ttf */; };
 		C010FB14207CB2DA000059AA /* ic_nyelam.png in Resources */ = {isa = PBXBuildFile; fileRef = C010FB13207CB2DA000059AA /* ic_nyelam.png */; };
 		C010FB19207CC3BA000059AA /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C010FB18207CC3BA000059AA /* UIView+Extensions.swift */; };
+		C026FF822084C87300357EE5 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C026FF802084C87300357EE5 /* EditProfileViewController.swift */; };
+		C026FF832084C87300357EE5 /* EditProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C026FF812084C87300357EE5 /* EditProfileViewController.xib */; };
 		C02B9B65207B47CF00BE2508 /* DiveSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02B9B64207B47CF00BE2508 /* DiveSpot.swift */; };
 		C032DF4A207DD50200FE0999 /* MidtransCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C032DF4F207DD50200FE0999 /* MidtransCoreKit.framework */; };
 		C032DF4B207DD50200FE0999 /* MidtransKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C032DF50207DD50200FE0999 /* MidtransKit.framework */; };
@@ -75,6 +77,16 @@
 		C037AD692070A38800DD5CBC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C037AD672070A38800DD5CBC /* LaunchScreen.storyboard */; };
 		C037AD742070A38800DD5CBC /* NyelamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C037AD732070A38800DD5CBC /* NyelamTests.swift */; };
 		C037AD7F2070A38800DD5CBC /* NyelamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C037AD7E2070A38800DD5CBC /* NyelamUITests.swift */; };
+		C037E8A72085A409000EB5CF /* banner_1.png in Resources */ = {isa = PBXBuildFile; fileRef = C037E8A42085A408000EB5CF /* banner_1.png */; };
+		C037E8A82085A409000EB5CF /* banner_2.png in Resources */ = {isa = PBXBuildFile; fileRef = C037E8A52085A409000EB5CF /* banner_2.png */; };
+		C037E8A92085A409000EB5CF /* banner_3.png in Resources */ = {isa = PBXBuildFile; fileRef = C037E8A62085A409000EB5CF /* banner_3.png */; };
+		C037E8AB2085AB30000EB5CF /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C037E8AA2085AB30000EB5CF /* UIImage+Extensions.swift */; };
+		C037E8AE2085B420000EB5CF /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C037E8AC2085B420000EB5CF /* SideMenuController.swift */; };
+		C037E8AF2085B420000EB5CF /* SideMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C037E8AD2085B420000EB5CF /* SideMenuController.xib */; };
+		C037E8B32085C434000EB5CF /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C037E8B12085C434000EB5CF /* TermsViewController.swift */; };
+		C037E8B42085C434000EB5CF /* TermsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C037E8B22085C434000EB5CF /* TermsViewController.xib */; };
+		C037E8B72085FF53000EB5CF /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C037E8B52085FF53000EB5CF /* ChangePasswordViewController.swift */; };
+		C037E8B82085FF53000EB5CF /* ChangePasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C037E8B62085FF53000EB5CF /* ChangePasswordViewController.xib */; };
 		C09F22FB2071E0A700B48D32 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09F22FA2071E0A700B48D32 /* String+Extensions.swift */; };
 		C09F22FD2071E32F00B48D32 /* Parseable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09F22FC2071E32F00B48D32 /* Parseable.swift */; };
 		C0B2A248207B50A900D46336 /* NCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2A22A207B50A900D46336 /* NCategory+CoreDataClass.swift */; };
@@ -264,6 +276,8 @@
 		C010FB00207CAF47000059AA /* FiraSans-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-Thin.ttf"; sourceTree = "<group>"; };
 		C010FB13207CB2DA000059AA /* ic_nyelam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_nyelam.png; sourceTree = "<group>"; };
 		C010FB18207CC3BA000059AA /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		C026FF802084C87300357EE5 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		C026FF812084C87300357EE5 /* EditProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditProfileViewController.xib; sourceTree = "<group>"; };
 		C02B9B64207B47CF00BE2508 /* DiveSpot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiveSpot.swift; sourceTree = "<group>"; };
 		C032DF4D207DD50200FE0999 /* GradientView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GradientView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C032DF4E207DD50200FE0999 /* MBProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MBProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -291,6 +305,16 @@
 		C037AD7A2070A38800DD5CBC /* NyelamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NyelamUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C037AD7E2070A38800DD5CBC /* NyelamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NyelamUITests.swift; sourceTree = "<group>"; };
 		C037AD802070A38800DD5CBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C037E8A42085A408000EB5CF /* banner_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = banner_1.png; sourceTree = "<group>"; };
+		C037E8A52085A409000EB5CF /* banner_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = banner_2.png; sourceTree = "<group>"; };
+		C037E8A62085A409000EB5CF /* banner_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = banner_3.png; sourceTree = "<group>"; };
+		C037E8AA2085AB30000EB5CF /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		C037E8AC2085B420000EB5CF /* SideMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
+		C037E8AD2085B420000EB5CF /* SideMenuController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuController.xib; sourceTree = "<group>"; };
+		C037E8B12085C434000EB5CF /* TermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
+		C037E8B22085C434000EB5CF /* TermsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermsViewController.xib; sourceTree = "<group>"; };
+		C037E8B52085FF53000EB5CF /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		C037E8B62085FF53000EB5CF /* ChangePasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangePasswordViewController.xib; sourceTree = "<group>"; };
 		C09F22FA2071E0A700B48D32 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		C09F22FC2071E32F00B48D32 /* Parseable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parseable.swift; sourceTree = "<group>"; };
 		C0A2E4B9207F42FA00DE81DE /* MTLLinkLabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MTLLinkLabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -610,6 +634,15 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		C026FF842084C9EA00357EE5 /* Side Menu */ = {
+			isa = PBXGroup;
+			children = (
+				C037E8AC2085B420000EB5CF /* SideMenuController.swift */,
+				C037E8AD2085B420000EB5CF /* SideMenuController.xib */,
+			);
+			path = "Side Menu";
+			sourceTree = "<group>";
+		};
 		C037AD4F2070A38800DD5CBC = {
 			isa = PBXGroup;
 			children = (
@@ -636,6 +669,8 @@
 		C037AD5A2070A38800DD5CBC /* Nyelam */ = {
 			isa = PBXGroup;
 			children = (
+				C037E8B02085C41A000EB5CF /* General */,
+				C026FF842084C9EA00357EE5 /* Side Menu */,
 				A6C2708F207BFD02007E4D2A /* Nyelam-Bridging-Header.h */,
 				C0BE915E2070ACFE004E1B92 /* GoogleService-Info.plist */,
 				C037AD6A2070A38800DD5CBC /* Info.plist */,
@@ -682,9 +717,21 @@
 			path = NyelamUITests;
 			sourceTree = "<group>";
 		};
+		C037E8B02085C41A000EB5CF /* General */ = {
+			isa = PBXGroup;
+			children = (
+				C037E8B12085C434000EB5CF /* TermsViewController.swift */,
+				C037E8B22085C434000EB5CF /* TermsViewController.xib */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
 		C0B2A266207B539300D46336 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C037E8A42085A408000EB5CF /* banner_1.png */,
+				C037E8A52085A409000EB5CF /* banner_2.png */,
+				C037E8A62085A409000EB5CF /* banner_3.png */,
 				C0FD7C862084875100FC4508 /* image_default.png */,
 				C010FB13207CB2DA000059AA /* ic_nyelam.png */,
 				C010FAEC207CAA94000059AA /* background_blur.png */,
@@ -753,6 +800,7 @@
 				A6C27087207BEC0E007E4D2A /* UIColor+Nyelam.swift */,
 				C0B2A26D207B5E5A00D46336 /* UIAlertController+Extensions.swift */,
 				C010FB18207CC3BA000059AA /* UIView+Extensions.swift */,
+				C037E8AA2085AB30000EB5CF /* UIImage+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -837,6 +885,10 @@
 				C0FD7C7720845A0B00FC4508 /* HeaderViewCell.xib */,
 				C0FD7C7B20845B8B00FC4508 /* SectionViewCell.xib */,
 				C0FD7C7F20845C2300FC4508 /* ContentViewCell.xib */,
+				C026FF802084C87300357EE5 /* EditProfileViewController.swift */,
+				C026FF812084C87300357EE5 /* EditProfileViewController.xib */,
+				C037E8B52085FF53000EB5CF /* ChangePasswordViewController.swift */,
+				C037E8B62085FF53000EB5CF /* ChangePasswordViewController.xib */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -991,6 +1043,7 @@
 				C010FB02207CAF47000059AA /* FiraSans-BoldItalic.ttf in Resources */,
 				C010FB0A207CAF47000059AA /* FiraSans-Light.ttf in Resources */,
 				C0FD7C8120845C2300FC4508 /* ContentViewCell.xib in Resources */,
+				C037E8A72085A409000EB5CF /* banner_1.png in Resources */,
 				C0FD7C75208451EA00FC4508 /* AccountTableViewController.xib in Resources */,
 				C0FD7C872084875100FC4508 /* image_default.png in Resources */,
 				C010FB09207CAF47000059AA /* FiraSans-ExtraBold.ttf in Resources */,
@@ -1000,9 +1053,12 @@
 				C010FB11207CAF47000059AA /* FiraSans-LightItalic.ttf in Resources */,
 				A60A286620809DF8004A8FC2 /* SearchKeywordResultCell.xib in Resources */,
 				A60A2862207FB888004A8FC2 /* SearchKeywordController.xib in Resources */,
+				C037E8A92085A409000EB5CF /* banner_3.png in Resources */,
+				C026FF832084C87300357EE5 /* EditProfileViewController.xib in Resources */,
 				C0BE915F2070ACFE004E1B92 /* GoogleService-Info.plist in Resources */,
 				C010FB10207CAF47000059AA /* FiraSans-ExtraLightItalic.ttf in Resources */,
 				C032DF5D207DDDFF00FE0999 /* RegisterViewController.xib in Resources */,
+				C037E8B82085FF53000EB5CF /* ChangePasswordViewController.xib in Resources */,
 				C010FB08207CAF47000059AA /* FiraSans-ThinItalic.ttf in Resources */,
 				C010FB12207CAF47000059AA /* FiraSans-Thin.ttf in Resources */,
 				A6C2708E207BF0A2007E4D2A /* MainRootController.xib in Resources */,
@@ -1015,9 +1071,11 @@
 				C010FB0B207CAF47000059AA /* FiraSans-ExtraLight.ttf in Resources */,
 				C010FB01207CAF47000059AA /* FiraSans-BlackItalic.ttf in Resources */,
 				C010FB04207CAF47000059AA /* FiraSans-Black.ttf in Resources */,
+				C037E8B42085C434000EB5CF /* TermsViewController.xib in Resources */,
 				C010FB0F207CAF47000059AA /* FiraSans-MediumItalic.ttf in Resources */,
 				C010FB06207CAF47000059AA /* FiraSans-Bold.ttf in Resources */,
 				C0FD7C7920845A0B00FC4508 /* HeaderViewCell.xib in Resources */,
+				C037E8AF2085B420000EB5CF /* SideMenuController.xib in Resources */,
 				C0BE91932070B758004E1B92 /* DTMDatePickerController.xib in Resources */,
 				C010FB05207CAF47000059AA /* FiraSans-Medium.ttf in Resources */,
 				C0B2A268207B547700D46336 /* splash.png in Resources */,
@@ -1026,6 +1084,7 @@
 				C0FD7C7D20845B8B00FC4508 /* SectionViewCell.xib in Resources */,
 				A6691A50207E78BF004B1C2E /* SearchFormController.xib in Resources */,
 				C037AD612070A38800DD5CBC /* Main.storyboard in Resources */,
+				C037E8A82085A409000EB5CF /* banner_2.png in Resources */,
 				C010FB0E207CAF47000059AA /* FiraSans-ExtraBoldItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1290,17 +1349,20 @@
 				C037AD642070A38800DD5CBC /* Nyelam.xcdatamodeld in Sources */,
 				A6C2708A207BEF63007E4D2A /* BaseNavigationController.swift in Sources */,
 				C0E17FD120772E69003942D1 /* SearchResultProvince.swift in Sources */,
+				C037E8B32085C434000EB5CF /* TermsViewController.swift in Sources */,
 				C0B2A24B207B50A900D46336 /* NUser+CoreDataProperties.swift in Sources */,
 				C0BE92582070D5BC004E1B92 /* Schedule.swift in Sources */,
 				C0D3C9262084AD8600FF587B /* PECropView.m in Sources */,
 				C00D0B00207627DB000D8ED6 /* NHTTPHelper+Auth.swift in Sources */,
 				C0D3C9232084AD8600FF587B /* PECropRectView.m in Sources */,
 				C0FC9A15207673A00060FA55 /* NHTTPHelper+Account.swift in Sources */,
+				C037E8B72085FF53000EB5CF /* ChangePasswordViewController.swift in Sources */,
 				C0BE91942070B758004E1B92 /* MenuBarView.swift in Sources */,
 				C0B2A249207B50A900D46336 /* NCategory+CoreDataProperties.swift in Sources */,
 				C0E17FCD207721E1003942D1 /* NHTTPHelper+DoDive.swift in Sources */,
 				C0BE91982070B758004E1B92 /* DTMCore.swift in Sources */,
 				C0B2A26E207B5E5A00D46336 /* UIAlertController+Extensions.swift in Sources */,
+				C037E8AE2085B420000EB5CF /* SideMenuController.swift in Sources */,
 				C0BE91962070B758004E1B92 /* UIViewController+DTM.swift in Sources */,
 				C0BE91622070AD27004E1B92 /* NConstant.swift in Sources */,
 				A60E1F28207E5A5900427CF8 /* RateView.m in Sources */,
@@ -1317,6 +1379,7 @@
 				C0BE92462070D23D004E1B92 /* Coordinate.swift in Sources */,
 				C0B2A257207B50A900D46336 /* NDiveService+CoreDataProperties.swift in Sources */,
 				C0BE92442070D21A004E1B92 /* Location.swift in Sources */,
+				C037E8AB2085AB30000EB5CF /* UIImage+Extensions.swift in Sources */,
 				C0B2A26C207B5C5C00D46336 /* NHTTPHelper+General.swift in Sources */,
 				C0BE92402070D1B6004E1B92 /* Cart.swift in Sources */,
 				C0B2A24F207B50A900D46336 /* NCountry+CoreDataProperties.swift in Sources */,
@@ -1336,6 +1399,7 @@
 				C0B2A265207B50A900D46336 /* NSummary+CoreDataProperties.swift in Sources */,
 				C0E5A4D2207C6C28001BDA9B /* AuthNavigationController.swift in Sources */,
 				C00D0B0620763591000D8ED6 /* NHTTPHelper+Master.swift in Sources */,
+				C026FF822084C87300357EE5 /* EditProfileViewController.swift in Sources */,
 				C0B2A25B207B50A900D46336 /* NDiveCenter+CoreDataProperties.swift in Sources */,
 				C0BE91972070B758004E1B92 /* UIApplication+DTM.swift in Sources */,
 				C0B2A255207B50A900D46336 /* NLanguage+CoreDataProperties.swift in Sources */,
@@ -1531,7 +1595,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 2JRT25FDLZ;
 				INFOPLIST_FILE = Nyelam/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1551,7 +1615,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 2JRT25FDLZ;
 				INFOPLIST_FILE = Nyelam/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

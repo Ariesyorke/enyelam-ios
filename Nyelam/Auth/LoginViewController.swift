@@ -26,7 +26,6 @@ class LoginViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDel
         self.passwordTextField.delegate = self
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().delegate = self
-        
         // Do any additional setup after loading the view.
     }
 
@@ -52,6 +51,7 @@ class LoginViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDel
         let password = self.passwordTextField.text!
         if let error = self.validateForm(emailAddress: emailAddress, password: password) {
             UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {
+                
                 //TODO NOTHING
             })
             return
@@ -132,9 +132,7 @@ class LoginViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDel
                 }
             }, successCompletion: {authReturn in
                 if let navigation = self.navigationController as? AuthNavigationController {
-                    navigation.dismiss(animated: true, completion: {
-                        navigation.dismissCompletion()
-                    })
+                    navigation.authentificationSuccess()
                 }
             })
         })
@@ -193,9 +191,7 @@ class LoginViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDel
                 }
             },successCompletion: {authReturn in
                 if let navigation = self.navigationController as? AuthNavigationController {
-                    navigation.dismiss(animated: true, completion: {
-                        navigation.dismissCompletion()
-                    })
+                    navigation.authentificationSuccess()
                 }
             })
             
@@ -240,7 +236,6 @@ class LoginViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDel
         }
         return true
     }
-    
     /*
     // MARK: - Navigation
 

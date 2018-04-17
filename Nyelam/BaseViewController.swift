@@ -18,6 +18,11 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         dtmViewDidLoad()
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_back_button_white"), style: .plain, target: self, action: #selector(backButtonAction(_:)))
+    }
+    
+    func disableLeftBarButton() {
+        self.navigationItem.leftBarButtonItem = nil
     }
     
     func handleAuthResponse(response: NHTTPResponse<NAuthReturn>, errorCompletion: @escaping (BaseError)->(), successCompletion: @escaping(NAuthReturn)->()) {
@@ -50,5 +55,32 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
     }
 
+    func goToAuth() {
+        let auth = AuthNavigationController.present(on: self, dismissCompletion: {
+        })
+    }
+    
+    func goToAccount() {
+        let accountViewController = AccountTableViewController(nibName: "AccountTableViewController", bundle: nil)
+        if let navigation = navigationController {
+            navigation.pushViewController(accountViewController, animated: true)
+        } else {
+            self.present(accountViewController, animated: true, completion: nil)
+        }
+    }
+    
+    
+    @objc func backButtonAction(_ sender: UIBarButtonItem) {
+        self.view.endEditing(true)
+        if let navigation = self.navigationController as? BaseNavigationController {
+            if navigation.viewControllers.count == 1 {
+                navigation.dismiss(animated: true, completion: navigation.dismissCompletion)
+            } else {
+                navigation.popViewController(animated: true)
+            }
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
 
 }

@@ -15,6 +15,7 @@ class MainRootController: BaseViewController {
     @IBOutlet weak var tabMenuHome: MainRootTabItemView!
     @IBOutlet weak var tabMenuOrder: MainRootTabItemView!
     @IBOutlet weak var tabMenuAccount: MainRootTabItemView!
+    
     var tabMenus: [MainRootTabItemView] {
         return [tabMenuHome, tabMenuOrder, tabMenuAccount]
     }
@@ -23,11 +24,12 @@ class MainRootController: BaseViewController {
     }
     var currentController: UIViewController?
     var homeController: HomeController?
-
+    var accountController: AccountTableViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.onClick(tabItem: self.tabMenus.first!)
+        self.disableLeftBarButton()
     }
     
     func onSelectTab(type: TabItemType) {
@@ -41,6 +43,12 @@ class MainRootController: BaseViewController {
                 self.homeController!.view.translatesAutoresizingMaskIntoConstraints = false
             }
             self.put(controller: self.homeController!)
+        } else if type == TabItemType.Account {
+            if self.accountController == nil {
+                self.accountController = AccountTableViewController(nibName: "AccountTableViewController", bundle: nil)
+                self.accountController!.view.translatesAutoresizingMaskIntoConstraints = false
+            }
+            self.put(controller: self.accountController!)
         }
     }
     
@@ -49,6 +57,10 @@ class MainRootController: BaseViewController {
         for tab: MainRootTabItemView in self.tabMenus {
             tab.tabSelected = tab == tabItem
             if tab == tabItem {
+                if NAuthReturn.authUser() == nil && (index == 1 || index == 2) {
+                    self.goToAuth()
+                    return
+                }
                 self.onSelectTab(type: self.tabMenuTypes[index])
             }
             index += 1
@@ -79,6 +91,30 @@ class MainRootController: BaseViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func goToAuth() {
+        let _ = AuthNavigationController.present(on: self, dismissCompletion: {
+            var index = 0
+            if let _ = NAuthReturn.authUser() {
+                for tab: MainRootTabItemView in self.tabMenus {
+                    if tab.tabSelected {
+                        self.onSelectTab(type: self.tabMenuTypes[index])
+                    }
+                    index += 1
+                }
+            } else {
+                for tab: MainRootTabItemView in self.tabMenus {
+                    if index == 0 {
+                        tab.tabSelected = true
+                    } else {
+                        tab.tabSelected = false
+                    }
+                    index += 1
+                }
+            }
+        })
+    }
+
 
 }
 
