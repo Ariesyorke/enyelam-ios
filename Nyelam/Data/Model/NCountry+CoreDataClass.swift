@@ -31,6 +31,32 @@ public class NCountry: NSManagedObject {
         return json
     }
     
+    static func getCountries() -> [NCountry]? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NCountry")
+        do {
+            let countries = try managedContext.fetch(fetchRequest) as? [NCountry]
+            if let countries = countries, !countries.isEmpty {
+                return countries
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+    static func getCountryPosition(by id: String) -> Int {
+        if let countries = getCountries(), !countries.isEmpty {
+            var position = 0
+            for country in countries {
+                if country.id! == id {
+                    return position
+                }
+                position += 1
+            }
+        }
+        return 0
+    }
+    
     static func getCountry(using id: String) -> NCountry? {
         let managedContext = AppDelegate.sharedManagedContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NCountry")

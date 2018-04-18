@@ -9,7 +9,7 @@
 import UIKit
 
 class StarterViewController: BaseViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getUpdate()
@@ -72,6 +72,22 @@ class StarterViewController: BaseViewController {
             if let data = response.data, !data.isEmpty {
                 let nextPage = page + 1
                 self.loadCountryCodes(page: nextPage)
+                return
+            }
+            self.loadLanguages()
+        })
+    }
+    
+    internal func loadLanguages() {
+        NHTTPHelper.httpGetMasterLanguage(complete: {response in
+            if let error = response.error {
+                UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {error in
+                    if error.isKind(of: NotConnectedInternetError.self) {
+                        NHelper.handleConnectionError(completion: {
+                            self.loadLanguages()
+                        })
+                    }
+                })
                 return
             }
             self.goToHomepage()

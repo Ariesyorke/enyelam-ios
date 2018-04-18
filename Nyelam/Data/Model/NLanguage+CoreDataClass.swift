@@ -44,5 +44,33 @@ public class NLanguage: NSManagedObject {
         }
         return nil
     }
+    
+    static func getPosition(by id: String) -> Int {
+        if let languages = getLanguages(), !languages.isEmpty {
+            var position = 0
+            for language in languages {
+                if language.id! == id {
+                    return position
+                }
+                position += 1
+            }
+        }
+        return 0
+    }
+    
+    static func getLanguages() -> [NLanguage]? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NLanguage")
+        do {
+            let languages = try managedContext.fetch(fetchRequest) as? [NLanguage]
+            if let languages = languages, !languages.isEmpty {
+                return languages
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+
+    }
 
 }

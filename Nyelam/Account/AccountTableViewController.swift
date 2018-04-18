@@ -77,7 +77,6 @@ UINavigationControllerDelegate, PECropViewControllerDelegate {
             break
         case 3:
             let vc = ChangePasswordViewController(nibName: "ChangePasswordViewController", bundle: nil)
-            print("VC \(vc)")
             var controller: UIViewController? = nil
             if let parent = self.parent as? MainRootController {
                 controller = parent
@@ -91,7 +90,12 @@ UINavigationControllerDelegate, PECropViewControllerDelegate {
             }
             break
         case 4:
-            //todo logout
+            if let parent = self.parent as? MainRootController {
+                _ = NAuthReturn.deleteAllAuth()
+                parent.checkLoginState()
+            } else if let navigation = self.navigationController {
+                navigation.popViewController(animated: true)
+            }
             break
         default:
             break
@@ -262,6 +266,11 @@ UINavigationControllerDelegate, PECropViewControllerDelegate {
                     NHelper.handleConnectionError(completion: {
                         self.tryUploadCover(data: data)
                     })
+                } else {
+                    let err = error as! StatusFailedError
+                    UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {_ in
+                        
+                    })
                 }
                 return
             }
@@ -278,6 +287,11 @@ UINavigationControllerDelegate, PECropViewControllerDelegate {
                 if error.isKind(of: NotConnectedInternetError.self) {
                     NHelper.handleConnectionError(completion: {
                         self.tryUploadProfile(data: data)
+                    })
+                } else {
+                    let err = error as! StatusFailedError
+                    UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {_ in
+                        
                     })
                 }
                 return

@@ -59,7 +59,6 @@ public class NAuthReturn: NSManagedObject {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NAuthReturn")
         do {
             let authReturns = try managedContext.fetch(fetchRequest) as? [NAuthReturn]
-            print("AUTH RETURNS \(authReturns)")
             if let authReturns = authReturns, !authReturns.isEmpty {
                 return authReturns.first
             }

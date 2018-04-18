@@ -109,7 +109,7 @@ extension NHTTPHelper {
     }
     
     static func httpGetMasterLanguage(complete: @escaping (NHTTPResponse<[NLanguage]>)->()) {
-        self.basicAuthRequest(URLString: HOST_URL + API_PATH_MASTER_LANGUAGE,
+        self.basicPostRequest(URLString: HOST_URL + API_PATH_MASTER_LANGUAGE,
                               complete: {status, data, error in
                                 if let error = error {
                                     complete(NHTTPResponse(resultStatus: false, data: nil, error: error))

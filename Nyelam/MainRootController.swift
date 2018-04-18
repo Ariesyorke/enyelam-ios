@@ -94,27 +94,30 @@ class MainRootController: BaseViewController {
     
     override func goToAuth() {
         let _ = AuthNavigationController.present(on: self, dismissCompletion: {
-            var index = 0
-            if let _ = NAuthReturn.authUser() {
-                for tab: MainRootTabItemView in self.tabMenus {
-                    if tab.tabSelected {
-                        self.onSelectTab(type: self.tabMenuTypes[index])
-                    }
-                    index += 1
-                }
-            } else {
-                for tab: MainRootTabItemView in self.tabMenus {
-                    if index == 0 {
-                        tab.tabSelected = true
-                    } else {
-                        tab.tabSelected = false
-                    }
-                    index += 1
-                }
-            }
+            self.checkLoginState()
         })
     }
 
+    func checkLoginState() {
+        var index = 0
+        if let _ = NAuthReturn.authUser() {
+            for tab: MainRootTabItemView in self.tabMenus {
+                if tab.tabSelected {
+                    self.onSelectTab(type: self.tabMenuTypes[index])
+                }
+                index += 1
+            }
+        } else {
+            for tab: MainRootTabItemView in self.tabMenus {
+                if index == 0 {
+                    tab.tabSelected = true
+                } else {
+                    tab.tabSelected = false
+                }
+                index += 1
+            }
+        }
+    }
 
 }
 

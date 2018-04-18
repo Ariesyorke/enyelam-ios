@@ -8,6 +8,7 @@
 
 import UIKit
 import SkyFloatingLabelTextField
+import MBProgressHUD
 
 class ChangePasswordViewController: BaseViewController {
     @IBOutlet weak var currentPasswordTextField: SkyFloatingLabelTextField!
@@ -25,7 +26,51 @@ class ChangePasswordViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func changeButtonAction(_ sender: Any) {
+        let currentPassword = self.currentPasswordTextField.text!
+        let newPassword = self.newPasswordTextField.text!
+        let confirmPassword = self.confirmPasswordTextField.text!
+        if let error = validateForm(currentPassword: currentPassword, newPassword: newPassword, confirmPassword: confirmPassword) {
+            UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {})
+            return
+        }
+        self.tryChangePassword(currentPassword: currentPassword, newPassword: newPassword, confirmPassword: confirmPassword)
+    }
+    
+    internal func validateForm(currentPassword: String, newPassword: String, confirmPassword: String) -> String? {
+        if currentPassword.isEmpty {
+            return "Current password cannot be empty"
+        } else if newPassword.isEmpty {
+            return "New password cannot be empty"
+        } else if confirmPassword.isEmpty {
+            return "Confirm password cannot be empty"
+        } else if newPassword != confirmPassword {
+            return "Confirm password doesn't match"
+        }
+        return nil
+    }
+    
+    internal func tryChangePassword(currentPassword: String, newPassword: String, confirmPassword: String) {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        NHTTPHelper.httpChangePassword(currentPassword: currentPassword, newPasword: newPassword, confirmNewPassword: confirmPassword, complete: {response in
+            if let error = response.error {
+                if error.isKind(of: NotConnectedInternetError.self) {
+                    NHelper.handleConnectionError(completion: {
+                        self.tryChangePassword(currentPassword: currentPassword, newPassword: newPassword, confirmPassword: confirmPassword)
+                    })
+                } else {
+                    let err = error as! StatusFailedError
+                    UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {_ in
+                        
+                    })
+                }
+                return
+            }
+            UIAlertController.handlePopupMessage(viewController: self, title: "Change password success!", actionButtonTitle: "OK", completion: {
+                self.backButtonAction(UIBarButtonItem())
+            })
+        })
+    }
     /*
     // MARK: - Navigation
 
