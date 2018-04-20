@@ -15,6 +15,10 @@ class NConstant {
         return nsObject as! String
     }
     
+    static var ecotripStatic: [String: Any] {
+        return ["id":"23","name":"Save Our Small Island", "type":3]
+    }
+    
     static var deviceModel: String {
         return "Apple/ \(UIDevice.current.model)"
     }
@@ -28,7 +32,7 @@ class NConstant {
     }
     
     static var URL_TYPE: NURLType {
-        return .development
+        return .staging
     }
     
     static var GOOGLE_CLIENT_ID: String {

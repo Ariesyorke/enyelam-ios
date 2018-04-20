@@ -44,6 +44,7 @@ class RegisterViewController: BaseViewController, MMNumberKeyboardDelegate {
     }
     
     @IBAction func countryCodeButtonAction(_ sender: Any) {
+        print("COUNTRY CODES AFTER \(NCountryCode.getCountryCodes())")
         if let countryCodes = self.countryCodes, !countryCodes.isEmpty {
             var c: [String] = []
             for countryCode in countryCodes {

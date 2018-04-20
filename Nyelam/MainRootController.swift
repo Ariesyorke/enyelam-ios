@@ -44,6 +44,10 @@ class MainRootController: BaseViewController {
             }
             self.put(controller: self.homeController!)
         } else if type == TabItemType.Account {
+            if self.currentController != nil && self.currentController == self.homeController {
+                return
+            }
+
             if self.accountController == nil {
                 self.accountController = AccountTableViewController(nibName: "AccountTableViewController", bundle: nil)
                 self.accountController!.view.translatesAutoresizingMaskIntoConstraints = false

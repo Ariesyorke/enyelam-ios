@@ -19,7 +19,10 @@
                 <outlet property="btDoShop" destination="FU7-4m-WtW" id="zr4-It-OgP"/>
                 <outlet property="btEcoTrip" destination="BBx-Wi-ysF" id="afG-tA-nab"/>
                 <outlet property="btSeeAllDoTrip" destination="IbM-N8-KsN" id="pXI-p1-Y9Z"/>
+                <outlet property="doTripContainer" destination="fC0-ux-WbJ" id="EPC-sv-U9N"/>
+                <outlet property="doTripLoadingView" destination="QZE-54-jdE" id="TKP-2n-Be7"/>
                 <outlet property="doTripScroller" destination="HqC-Yd-Ngz" id="MTM-e5-WA3"/>
+                <outlet property="doTripScrollerHeight" destination="ytx-bh-Kuf" id="BDS-vZ-Idy"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -71,7 +74,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eoz-fB-OFe" customClass="UIControl">
                                                     <rect key="frame" x="0.0" y="4" width="163.5" height="130"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DNa-cX-Mm0">
+                                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DNa-cX-Mm0">
                                                             <rect key="frame" x="54.5" y="32" width="56" height="66"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do Dive" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hK1-Li-ia2">
@@ -134,7 +137,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BBx-Wi-ysF" customClass="UIControl">
                                                     <rect key="frame" x="0.0" y="4" width="163.5" height="130"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cRq-c2-tZO">
+                                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cRq-c2-tZO">
                                                             <rect key="frame" x="52.5" y="32" width="59.5" height="66"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Eco Trip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aoo-y1-QyT">
@@ -197,7 +200,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FU7-4m-WtW" customClass="UIControl">
                                                     <rect key="frame" x="0.0" y="4" width="163.5" height="130"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xUL-cw-MLb">
+                                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xUL-cw-MLb">
                                                             <rect key="frame" x="51" y="32" width="61.5" height="66"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do Shop" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQf-uF-OXJ">
@@ -260,7 +263,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ta2-ZV-IAx" customClass="UIControl">
                                                     <rect key="frame" x="0.0" y="4" width="163.5" height="130"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zC6-Oq-HzT">
+                                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zC6-Oq-HzT">
                                                             <rect key="frame" x="43.5" y="32.5" width="76.5" height="66"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do Course" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwb-51-WLU">
@@ -363,6 +366,9 @@
                                                 <action selector="onSeeAllDoTripClicked:" destination="-1" eventType="touchUpInside" id="paw-h0-cZr"/>
                                             </connections>
                                         </button>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="QZE-54-jdE">
+                                            <rect key="frame" x="177" y="50" width="20" height="20"/>
+                                        </activityIndicatorView>
                                         <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HqC-Yd-Ngz">
                                             <rect key="frame" x="0.0" y="44.5" width="375" height="354"/>
                                             <constraints>
@@ -373,10 +379,12 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="IbM-N8-KsN" firstAttribute="leading" secondItem="Omg-II-NY4" secondAttribute="trailing" id="04x-bV-Q1C"/>
+                                        <constraint firstItem="QZE-54-jdE" firstAttribute="centerX" secondItem="fC0-ux-WbJ" secondAttribute="centerX" id="0we-IQ-4A4"/>
                                         <constraint firstItem="HqC-Yd-Ngz" firstAttribute="leading" secondItem="fC0-ux-WbJ" secondAttribute="leading" id="6DG-SA-QTY"/>
                                         <constraint firstItem="IbM-N8-KsN" firstAttribute="top" secondItem="fC0-ux-WbJ" secondAttribute="top" id="Aqb-Cp-aLs"/>
                                         <constraint firstAttribute="trailing" secondItem="IbM-N8-KsN" secondAttribute="trailing" id="FIo-hY-Xxw"/>
                                         <constraint firstItem="HqC-Yd-Ngz" firstAttribute="width" secondItem="fC0-ux-WbJ" secondAttribute="width" id="OW0-LA-m9x"/>
+                                        <constraint firstItem="QZE-54-jdE" firstAttribute="top" secondItem="IbM-N8-KsN" secondAttribute="bottom" constant="16" id="Q23-Ty-PIb"/>
                                         <constraint firstItem="wIP-2B-pOX" firstAttribute="top" secondItem="fC0-ux-WbJ" secondAttribute="top" constant="8" id="Q8G-DW-DTv"/>
                                         <constraint firstItem="Omg-II-NY4" firstAttribute="centerY" secondItem="wIP-2B-pOX" secondAttribute="centerY" id="Weh-ai-xlv"/>
                                         <constraint firstItem="wIP-2B-pOX" firstAttribute="leading" secondItem="fC0-ux-WbJ" secondAttribute="leading" constant="16" id="f80-W5-fzc"/>

@@ -9,8 +9,7 @@
 import Foundation
 import CoreData
 
-public class DiveSpotModule: Module, Parseable {
-    private let KEY_MODULE_NAME = "module_name"
+public class DiveSpotModule: Module {
     private let KEY_DIVE_SPOTS = "dive_spots"
     
     var divespots: [DiveSpot]?
@@ -22,8 +21,8 @@ public class DiveSpotModule: Module, Parseable {
         super.init()
         self.parse(json: json)
     }
-    func parse(json: [String : Any]) {
-        self.name = json[KEY_MODULE_NAME] as? String
+    override func parse(json: [String : Any]) {
+        super.parse(json: json)
         if let diveSpotArray = json[KEY_DIVE_SPOTS] as? Array<[String: Any]>, !diveSpotArray.isEmpty {
             self.divespots = []
             for diveSpotJson in diveSpotArray {
@@ -45,12 +44,9 @@ public class DiveSpotModule: Module, Parseable {
         }
     }
     
-    func serialized() -> [String : Any] {
-        var json: [String: Any] = [:]
+    override func serialized() -> [String : Any] {
+        var json: [String: Any] = super.serialized()
         
-        if let name = self.name {
-            json[KEY_MODULE_NAME] = name
-        }
         
         if let divespots = self.divespots, !divespots.isEmpty {
             var array: Array<[String: Any]> = []

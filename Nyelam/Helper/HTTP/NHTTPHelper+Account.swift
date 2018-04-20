@@ -68,37 +68,37 @@ extension NHTTPHelper {
                                   countryId: String?, nationalityId: String?, languageId: String?, complete: @escaping (NHTTPResponse<NAuthReturn>)->()) {
         var param: [String: Any] = [:]
         param["fullname"] = fullname
-        if let username = username {
+        if let username = username, !username.isEmpty {
             param["username"] = username
         }
-        if let gender = gender {
+        if let gender = gender, !gender.isEmpty {
             param["gender"] = gender
         }
         if let birthDate = birthDate {
             param["birth_date"] = String(birthDate.timeIntervalSince1970)
         }
-        if let countryCodeId = countryCodeId {
+        if let countryCodeId = countryCodeId, !countryCodeId.isEmpty {
             param["country_code"] = countryCodeId
         }
-        if let phoneNumber = phoneNumber {
+        if let phoneNumber = phoneNumber, !phoneNumber.isEmpty {
             param["phone_number"] = phoneNumber
         }
         if let certificateDate = certificateDate {
             param["certificate_date"] = String(certificateDate.timeIntervalSince1970)
         }
-        if let certificateNumber = certificateNumber {
+        if let certificateNumber = certificateNumber, !certificateNumber.isEmpty {
             param["certificate_number"] = certificateNumber
         }
-        if let birthPlace = birthPlace {
+        if let birthPlace = birthPlace, !birthPlace.isEmpty {
             param["birth_place"] = birthPlace
         }
-        if let countryId = countryId {
+        if let countryId = countryId, !countryId.isEmpty {
             param["country_id"] = countryId
         }
-        if let nationalityId = nationalityId {
+        if let nationalityId = nationalityId, !nationalityId.isEmpty {
             param["nationality_id"] = nationalityId
         }
-        if let languageId = languageId {
+        if let languageId = languageId, !languageId.isEmpty {
             param["language_id"] = languageId
         }
         self.basicAuthRequest(URLString: HOST_URL+API_PATH_UPDATE_PROFILE,
@@ -106,9 +106,11 @@ extension NHTTPHelper {
                               headers: nil,
                               complete: {status, data, error in
                                 if let error = error {
+                                    print("ERROR \(error)")
                                     complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
                                     return
                                 }
+                                print("SUCCESS DATA \(data)")
                                 if let data = data, let json = data as? [String: Any] {
                                     NAuthReturn.deleteAllAuth()
                                     let authReturn = NAuthReturn.init(entity: NSEntityDescription.entity(forEntityName: "NAuthReturn", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)

@@ -28,6 +28,8 @@ target 'Nyelam' do
   pod 'PopupController'
   pod 'MBProgressHUD', '~> 1.1.0'
   pod 'SkyFloatingLabelTextField', '~> 3.0'
+  pod 'Cosmos'
+  pod 'SwiftDate'
   
   target 'NyelamTests' do
     inherit! :search_paths

@@ -27,6 +27,7 @@ extension NHTTPHelper {
                 NAuthReturn.deleteAllAuth()
                 let authReturn = NAuthReturn.init(entity: NSEntityDescription.entity(forEntityName: "NAuthReturn", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                 authReturn.parse(json: json)
+                NSManagedObjectContext.saveData()
                 complete(NHTTPResponse(resultStatus: true, data: authReturn, error: nil))
             }
         })
@@ -52,7 +53,7 @@ extension NHTTPHelper {
                                     _ = NAuthReturn.deleteAllAuth()
                                     let authReturn = NAuthReturn.init(entity: NSEntityDescription.entity(forEntityName: "NAuthReturn", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                                     authReturn.parse(json: json)
-                                    NAuthReturn.authUser()
+                                    NSManagedObjectContext.saveData()
                                     complete(NHTTPResponse(resultStatus: true, data: authReturn, error: nil))
                                 }
         })
@@ -100,6 +101,7 @@ extension NHTTPHelper {
                                     _ = NAuthReturn.deleteAllAuth()
                                     let authReturn = NAuthReturn.init(entity: NSEntityDescription.entity(forEntityName: "NAuthReturn", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                                     authReturn.parse(json: json)
+                                    NSManagedObjectContext.saveData()
                                     complete(NHTTPResponse(resultStatus: true, data: authReturn, error: nil))
                                 }
         })

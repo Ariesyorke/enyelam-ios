@@ -73,6 +73,10 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
     @objc func backButtonAction(_ sender: UIBarButtonItem) {
         self.view.endEditing(true)
         if let navigation = self.navigationController as? BaseNavigationController {
+            if self.isKind(of: SearchFormController.self) {
+                navigation.navigationBar.barTintColor = UIColor.primary
+            }
+
             if navigation.viewControllers.count == 1 {
                 navigation.dismiss(animated: true, completion: navigation.dismissCompletion)
             } else {

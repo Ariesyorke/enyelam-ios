@@ -1,27 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="FiraSans-Bold.ttf">
+            <string>FiraSans-Bold</string>
+        </array>
+        <array key="FiraSans-Regular.ttf">
+            <string>FiraSans-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NServiceView" customModule="Nyelam" customModuleProvider="target">
             <connections>
                 <outlet property="control" destination="KRT-I8-rtl" id="CNI-0T-oUM"/>
+                <outlet property="diveDaysVerticalSpacingConstraint" destination="NAj-XJ-slj" id="1Gn-5I-P0D"/>
                 <outlet property="linceseNeededImageView" destination="i9e-d2-y1m" id="0Ft-3b-3MH"/>
+                <outlet property="normalPriceContainerView" destination="3u2-Ws-O6m" id="Yx4-gw-Iya"/>
                 <outlet property="normalPriceLabel" destination="yU1-ef-eVx" id="Sle-7K-Ugj"/>
-                <outlet property="rateView" destination="ykN-tn-ir2" id="K4J-o8-7Fc"/>
+                <outlet property="rateView" destination="ykN-tn-ir2" id="GfH-AQ-1Bj"/>
+                <outlet property="scheduleHeightConstant" destination="Qc9-ja-Rzl" id="MdR-hW-Rwn"/>
                 <outlet property="serviceImageView" destination="9kx-N2-A7y" id="FUy-oP-tmK"/>
                 <outlet property="serviceNameLabel" destination="SpE-Pp-u7N" id="CxJ-6C-b0u"/>
                 <outlet property="serviceStartDateEndDateLabel" destination="guM-CP-Fif" id="w46-Hf-7Cy"/>
                 <outlet property="specialPriceLabel" destination="SVZ-V9-yNZ" id="sDD-uA-rgh"/>
+                <outlet property="specialPriceVerticalConstraint" destination="HVZ-TU-cQw" id="9jb-rL-5XK"/>
                 <outlet property="totalDaysLabel" destination="bto-e3-t19" id="49O-lO-2pj"/>
-                <outlet property="totalDiveSpotLabel" destination="IXJ-0w-VCn" id="ony-dj-ZQG"/>
                 <outlet property="totalDivesLabel" destination="04j-Qb-vFy" id="iHa-va-ziz"/>
             </connections>
         </placeholder>
@@ -30,56 +41,50 @@
             <rect key="frame" x="0.0" y="0.0" width="300" height="354"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9kx-N2-A7y">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_default.png" translatesAutoresizingMaskIntoConstraints="NO" id="9kx-N2-A7y">
                     <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="9kx-N2-A7y" secondAttribute="height" multiplier="6:4" id="NIY-7E-Ckq"/>
                     </constraints>
                 </imageView>
+                <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BrZ-ka-FCO">
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SpE-Pp-u7N">
                     <rect key="frame" x="16" y="160" width="268" height="24"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                    <fontDescription key="fontDescription" name="FiraSans-Bold" family="Fira Sans" pointSize="20"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Date - End Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="guM-CP-Fif">
-                    <rect key="frame" x="16" y="208" width="147.5" height="18"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <rect key="frame" x="16" y="208" width="144" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="18" id="Qc9-ja-Rzl"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="15"/>
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kn5-2U-tiw">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kn5-2U-tiw" userLabel="Dive Days Container">
                     <rect key="frame" x="16" y="234" width="268" height="18"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Dives" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="04j-Qb-vFy">
-                            <rect key="frame" x="0.0" y="0.0" width="51" height="18"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <rect key="frame" x="0.0" y="0.0" width="49" height="18"/>
+                            <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="15"/>
                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h03-jG-fH1">
-                            <rect key="frame" x="59" y="0.0" width="1" height="18"/>
+                            <rect key="frame" x="57" y="0.0" width="1" height="18"/>
                             <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="1" id="s3V-Qg-VfL"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Dive Spots" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXJ-0w-VCn">
-                            <rect key="frame" x="68" y="0.0" width="87" height="18"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qU3-3G-7IC">
-                            <rect key="frame" x="163" y="0.0" width="1" height="18"/>
-                            <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="1" id="lCC-p0-tbj"/>
-                            </constraints>
-                        </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="0 Days" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bto-e3-t19">
-                            <rect key="frame" x="172" y="0.0" width="96" height="18"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <rect key="frame" x="66" y="0.0" width="202" height="18"/>
+                            <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="15"/>
                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -88,39 +93,52 @@
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="04j-Qb-vFy" secondAttribute="bottom" id="3QK-q4-55J"/>
                         <constraint firstItem="h03-jG-fH1" firstAttribute="bottom" secondItem="04j-Qb-vFy" secondAttribute="bottom" id="CjX-Gf-hGz"/>
-                        <constraint firstItem="IXJ-0w-VCn" firstAttribute="leading" secondItem="h03-jG-fH1" secondAttribute="trailing" constant="8" id="Ft9-bg-0Pu"/>
-                        <constraint firstItem="qU3-3G-7IC" firstAttribute="bottom" secondItem="IXJ-0w-VCn" secondAttribute="bottom" id="IgA-FU-2ec"/>
                         <constraint firstItem="h03-jG-fH1" firstAttribute="top" secondItem="04j-Qb-vFy" secondAttribute="top" id="JD4-HO-E3y"/>
-                        <constraint firstItem="bto-e3-t19" firstAttribute="top" secondItem="qU3-3G-7IC" secondAttribute="top" id="Nyp-n4-GOW"/>
-                        <constraint firstItem="qU3-3G-7IC" firstAttribute="leading" secondItem="IXJ-0w-VCn" secondAttribute="trailing" constant="8" id="PPC-uQ-KjV"/>
+                        <constraint firstItem="bto-e3-t19" firstAttribute="leading" secondItem="h03-jG-fH1" secondAttribute="trailing" constant="8" id="NGY-yZ-4N2"/>
+                        <constraint firstAttribute="height" constant="18" id="dZa-9H-3hW"/>
+                        <constraint firstItem="bto-e3-t19" firstAttribute="top" secondItem="04j-Qb-vFy" secondAttribute="top" id="ene-ow-INt"/>
                         <constraint firstAttribute="trailing" secondItem="bto-e3-t19" secondAttribute="trailing" id="kCV-KL-bwc"/>
                         <constraint firstItem="04j-Qb-vFy" firstAttribute="leading" secondItem="kn5-2U-tiw" secondAttribute="leading" id="lvF-Qo-Uel"/>
                         <constraint firstItem="h03-jG-fH1" firstAttribute="leading" secondItem="04j-Qb-vFy" secondAttribute="trailing" constant="8" id="mLM-xb-b8j"/>
                         <constraint firstItem="04j-Qb-vFy" firstAttribute="top" secondItem="kn5-2U-tiw" secondAttribute="top" id="oba-95-l7R"/>
-                        <constraint firstItem="bto-e3-t19" firstAttribute="leading" secondItem="qU3-3G-7IC" secondAttribute="trailing" constant="8" id="qUW-Xh-Rd4"/>
-                        <constraint firstItem="qU3-3G-7IC" firstAttribute="top" secondItem="IXJ-0w-VCn" secondAttribute="top" id="rky-uq-sPS"/>
-                        <constraint firstItem="IXJ-0w-VCn" firstAttribute="top" secondItem="h03-jG-fH1" secondAttribute="top" id="vGm-N4-5Ya"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ykN-tn-ir2" customClass="RateView">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ykN-tn-ir2" customClass="CosmosView" customModule="Cosmos">
                     <rect key="frame" x="16" y="260" width="100" height="20"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="ScE-iY-xLm"/>
                         <constraint firstAttribute="height" constant="20" id="oib-Ld-v9G"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="starSize">
+                            <real key="value" value="18"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="fillMode">
+                            <integer key="value" value="0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="minTouchRating">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3u2-Ws-O6m">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3u2-Ws-O6m" userLabel="Normal Price Container">
                     <rect key="frame" x="16" y="288" width="268" height="18"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rp. 99.999.999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yU1-ef-eVx">
-                            <rect key="frame" x="0.0" y="0.0" width="107.5" height="18"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <rect key="frame" x="0.0" y="0.0" width="103" height="18"/>
+                            <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="15"/>
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b9h-UC-2ZM">
-                            <rect key="frame" x="0.0" y="8.5" width="107.5" height="1"/>
+                            <rect key="frame" x="0.0" y="8.5" width="103" height="1"/>
                             <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="9lU-g9-HKl"/>
@@ -138,18 +156,21 @@
                         <constraint firstItem="b9h-UC-2ZM" firstAttribute="trailing" secondItem="yU1-ef-eVx" secondAttribute="trailing" id="xz0-QH-mZh"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dvH-8Y-nAe">
-                    <rect key="frame" x="16" y="314" width="189" height="24"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dvH-8Y-nAe" userLabel="Special Price Container">
+                    <rect key="frame" x="16" y="314" width="177" height="24"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rp. 99.999.999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SVZ-V9-yNZ">
-                            <rect key="frame" x="0.0" y="0.0" width="151" height="24"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <rect key="frame" x="0.0" y="0.0" width="137" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="24" id="nmi-1b-a9S"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="FiraSans-Bold" family="Fira Sans" pointSize="20"/>
                             <color key="textColor" red="1" green="0.59607843140000005" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/ pax" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UiU-PO-aMm">
-                            <rect key="frame" x="159" y="8" width="30" height="16"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <rect key="frame" x="145" y="4" width="32" height="17"/>
+                            <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -160,7 +181,8 @@
                         <constraint firstAttribute="bottom" secondItem="SVZ-V9-yNZ" secondAttribute="bottom" id="MhX-Go-lT0"/>
                         <constraint firstItem="SVZ-V9-yNZ" firstAttribute="top" secondItem="dvH-8Y-nAe" secondAttribute="top" id="OqR-4i-WYn"/>
                         <constraint firstItem="UiU-PO-aMm" firstAttribute="leading" secondItem="SVZ-V9-yNZ" secondAttribute="trailing" constant="8" id="YXY-bh-FYA"/>
-                        <constraint firstItem="UiU-PO-aMm" firstAttribute="bottom" secondItem="SVZ-V9-yNZ" secondAttribute="bottom" id="ceq-Le-HLA"/>
+                        <constraint firstItem="UiU-PO-aMm" firstAttribute="bottom" secondItem="SVZ-V9-yNZ" secondAttribute="bottom" constant="-3" id="ceq-Le-HLA"/>
+                        <constraint firstAttribute="height" constant="24" id="eZy-Um-nTT"/>
                         <constraint firstAttribute="trailing" secondItem="UiU-PO-aMm" secondAttribute="trailing" id="nTZ-tw-DHj"/>
                     </constraints>
                 </view>
@@ -192,9 +214,12 @@
                 <constraint firstAttribute="trailing" secondItem="3u2-Ws-O6m" secondAttribute="trailing" constant="16" id="Klk-ex-zLh"/>
                 <constraint firstItem="SpE-Pp-u7N" firstAttribute="trailing" secondItem="9kx-N2-A7y" secondAttribute="trailing" constant="-16" id="MIj-6A-KU5"/>
                 <constraint firstItem="kn5-2U-tiw" firstAttribute="top" secondItem="guM-CP-Fif" secondAttribute="bottom" constant="8" id="NAj-XJ-slj"/>
+                <constraint firstItem="BrZ-ka-FCO" firstAttribute="trailing" secondItem="9kx-N2-A7y" secondAttribute="trailing" id="Vdv-Eu-gby"/>
                 <constraint firstItem="guM-CP-Fif" firstAttribute="top" secondItem="9kx-N2-A7y" secondAttribute="bottom" constant="8" id="Yxn-Ys-i2N"/>
                 <constraint firstItem="kn5-2U-tiw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="ZRn-t6-Qv3"/>
+                <constraint firstItem="BrZ-ka-FCO" firstAttribute="bottom" secondItem="9kx-N2-A7y" secondAttribute="bottom" id="aTp-kt-E3u"/>
                 <constraint firstItem="ykN-tn-ir2" firstAttribute="top" secondItem="kn5-2U-tiw" secondAttribute="bottom" constant="8" id="bpe-tI-VUy"/>
+                <constraint firstItem="BrZ-ka-FCO" firstAttribute="leading" secondItem="9kx-N2-A7y" secondAttribute="leading" id="bzo-pA-gIM"/>
                 <constraint firstAttribute="bottom" secondItem="dvH-8Y-nAe" secondAttribute="bottom" constant="16" id="dnG-av-dZp"/>
                 <constraint firstItem="9kx-N2-A7y" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ejZ-Jf-a85"/>
                 <constraint firstItem="KRT-I8-rtl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="iYE-eu-qd5"/>
@@ -203,6 +228,7 @@
                 <constraint firstAttribute="trailing" secondItem="kn5-2U-tiw" secondAttribute="trailing" constant="16" id="oWM-by-594"/>
                 <constraint firstAttribute="bottom" secondItem="i9e-d2-y1m" secondAttribute="bottom" constant="16" id="sf3-V2-nFL"/>
                 <constraint firstItem="guM-CP-Fif" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="ucg-kd-Vio"/>
+                <constraint firstItem="BrZ-ka-FCO" firstAttribute="top" secondItem="9kx-N2-A7y" secondAttribute="top" id="zH6-YB-sXc"/>
                 <constraint firstItem="i9e-d2-y1m" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dvH-8Y-nAe" secondAttribute="trailing" constant="8" id="zLi-dG-UYT"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -216,5 +242,6 @@
     </objects>
     <resources>
         <image name="icon_license_off" width="24" height="24"/>
+        <image name="image_default.png" width="500" height="375"/>
     </resources>
 </document>

@@ -46,6 +46,9 @@ public class NCountryCode: NSManagedObject {
     static func getCountryCodes()->[NCountryCode]? {
         let managedContext = AppDelegate.sharedManagedContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NCountryCode")
+        let sortDescriptor = NSSortDescriptor(key: "countryName", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        fetchRequest.predicate = NSPredicate(format: "id != nil && countryName != nil")
         do {
             let countryCodes = try managedContext.fetch(fetchRequest) as? [NCountryCode]
             if let countryCodes = countryCodes, !countryCodes.isEmpty {

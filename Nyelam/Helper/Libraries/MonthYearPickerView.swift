@@ -63,6 +63,7 @@ class MonthYearPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataS
         self.dataSource = self
         
         self.selectRow(0, inComponent: 0, animated: false)
+        self.rowSelected(row: 0, inComponent: 0)
     }
     
     // Mark: UIPicker Delegate / Data Source
@@ -94,6 +95,10 @@ class MonthYearPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataS
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.rowSelected(row: row, inComponent: component)
+    }
+    
+    internal func rowSelected(row: Int,  inComponent component: Int) {
         let year = years[self.selectedRow(inComponent: 1)]
         let month = self.selectedRow(inComponent: 0)+1
         if component == 0 {
@@ -123,9 +128,7 @@ class MonthYearPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataS
         if let block = onDateSelected {
             block(month, year)
         }
-        
         self.month = month
         self.year = year
     }
-    
 }

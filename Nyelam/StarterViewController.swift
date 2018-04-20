@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class StarterViewController: BaseViewController {
     
@@ -37,6 +38,7 @@ class StarterViewController: BaseViewController {
                 
                 return
             }
+        
             self.loadCategories(page: 1)
         })
     }
@@ -44,7 +46,7 @@ class StarterViewController: BaseViewController {
     internal func loadCategories(page: Int) {
         NHTTPHelper.httpGetMasterCategories(page: String(page), complete: {response in
             if let error = response.error {
-                UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {error in
+                UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {error in 
                     if error.isKind(of: NotConnectedInternetError.self) {
                         NHelper.handleConnectionError(completion: {
                             self.loadCategories(page: page)
@@ -53,6 +55,7 @@ class StarterViewController: BaseViewController {
                 })
                 return
             }
+            NSManagedObjectContext.saveData()
             self.loadCountryCodes(page: page)
         })
     }
@@ -74,6 +77,7 @@ class StarterViewController: BaseViewController {
                 self.loadCountryCodes(page: nextPage)
                 return
             }
+            NSManagedObjectContext.saveData()
             self.loadLanguages()
         })
     }
@@ -90,6 +94,7 @@ class StarterViewController: BaseViewController {
                 })
                 return
             }
+            NSManagedObjectContext.saveData()
             self.goToHomepage()
         })
     }

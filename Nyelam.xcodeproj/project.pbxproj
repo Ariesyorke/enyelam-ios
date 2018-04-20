@@ -87,6 +87,10 @@
 		C037E8B42085C434000EB5CF /* TermsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C037E8B22085C434000EB5CF /* TermsViewController.xib */; };
 		C037E8B72085FF53000EB5CF /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C037E8B52085FF53000EB5CF /* ChangePasswordViewController.swift */; };
 		C037E8B82085FF53000EB5CF /* ChangePasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C037E8B62085FF53000EB5CF /* ChangePasswordViewController.xib */; };
+		C060AB11208997DE008FA607 /* NHTTPHelper+DoTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C060AB10208997DE008FA607 /* NHTTPHelper+DoTrip.swift */; };
+		C060AB132089A2C0008FA607 /* Price.swift in Sources */ = {isa = PBXBuildFile; fileRef = C060AB122089A2C0008FA607 /* Price.swift */; };
+		C060AB142089C9DE008FA607 /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C060AB152089C9DE008FA607 /* SwiftDate.framework */; };
+		C060AB172089EC19008FA607 /* EcoTripPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C060AB162089EC19008FA607 /* EcoTripPickerView.swift */; };
 		C07FA9992086FDD100000E43 /* NSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA9982086FDD100000E43 /* NSDate+Extensions.swift */; };
 		C09F22FB2071E0A700B48D32 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09F22FA2071E0A700B48D32 /* String+Extensions.swift */; };
 		C09F22FD2071E32F00B48D32 /* Parseable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09F22FC2071E32F00B48D32 /* Parseable.swift */; };
@@ -178,6 +182,13 @@
 		C0D3C9262084AD8600FF587B /* PECropView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D3C91E2084AD8500FF587B /* PECropView.m */; };
 		C0D3C9272084AD8600FF587B /* PECropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D3C9212084AD8500FF587B /* PECropViewController.m */; };
 		C0D3C9292084AD8D00FF587B /* PEPhotoCropEditor.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C0D3C9282084AD8D00FF587B /* PEPhotoCropEditor.bundle */; };
+		C0DE14142088543400A67494 /* CoreData+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE14132088543400A67494 /* CoreData+Extensions.swift */; };
+		C0DE14162088730A00A67494 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE14152088730A00A67494 /* UIImageView+Extensions.swift */; };
+		C0DE141820887F5000A67494 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE141720887F5000A67494 /* Double+Extensions.swift */; };
+		C0DE14192088939F00A67494 /* Cosmos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DE141A2088939F00A67494 /* Cosmos.framework */; };
+		C0DE141B2088951900A67494 /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DE141C2088951900A67494 /* MBProgressHUD.framework */; };
+		C0DE14202088A1E500A67494 /* EcoTripIntroductionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE141E2088A1E500A67494 /* EcoTripIntroductionController.swift */; };
+		C0DE14212088A1E500A67494 /* EcoTripIntroductionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0DE141F2088A1E500A67494 /* EcoTripIntroductionController.xib */; };
 		C0E17FCD207721E1003942D1 /* NHTTPHelper+DoDive.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E17FCC207721E1003942D1 /* NHTTPHelper+DoDive.swift */; };
 		C0E17FCF20772E3F003942D1 /* SearchResultSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E17FCE20772E3F003942D1 /* SearchResultSpot.swift */; };
 		C0E17FD120772E69003942D1 /* SearchResultProvince.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E17FD020772E69003942D1 /* SearchResultProvince.swift */; };
@@ -316,6 +327,10 @@
 		C037E8B22085C434000EB5CF /* TermsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermsViewController.xib; sourceTree = "<group>"; };
 		C037E8B52085FF53000EB5CF /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		C037E8B62085FF53000EB5CF /* ChangePasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangePasswordViewController.xib; sourceTree = "<group>"; };
+		C060AB10208997DE008FA607 /* NHTTPHelper+DoTrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NHTTPHelper+DoTrip.swift"; sourceTree = "<group>"; };
+		C060AB122089A2C0008FA607 /* Price.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Price.swift; sourceTree = "<group>"; };
+		C060AB152089C9DE008FA607 /* SwiftDate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftDate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C060AB162089EC19008FA607 /* EcoTripPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EcoTripPickerView.swift; sourceTree = "<group>"; };
 		C07FA9982086FDD100000E43 /* NSDate+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDate+Extensions.swift"; sourceTree = "<group>"; };
 		C09F22FA2071E0A700B48D32 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		C09F22FC2071E32F00B48D32 /* Parseable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parseable.swift; sourceTree = "<group>"; };
@@ -414,6 +429,13 @@
 		C0D3C9212084AD8500FF587B /* PECropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECropViewController.m; sourceTree = "<group>"; };
 		C0D3C9222084AD8600FF587B /* UIImage+PECrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+PECrop.h"; sourceTree = "<group>"; };
 		C0D3C9282084AD8D00FF587B /* PEPhotoCropEditor.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PEPhotoCropEditor.bundle; sourceTree = "<group>"; };
+		C0DE14132088543400A67494 /* CoreData+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData+Extensions.swift"; sourceTree = "<group>"; };
+		C0DE14152088730A00A67494 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
+		C0DE141720887F5000A67494 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
+		C0DE141A2088939F00A67494 /* Cosmos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Cosmos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0DE141C2088951900A67494 /* MBProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MBProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0DE141E2088A1E500A67494 /* EcoTripIntroductionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EcoTripIntroductionController.swift; sourceTree = "<group>"; };
+		C0DE141F2088A1E500A67494 /* EcoTripIntroductionController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EcoTripIntroductionController.xib; sourceTree = "<group>"; };
 		C0E17FCC207721E1003942D1 /* NHTTPHelper+DoDive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NHTTPHelper+DoDive.swift"; sourceTree = "<group>"; };
 		C0E17FCE20772E3F003942D1 /* SearchResultSpot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultSpot.swift; sourceTree = "<group>"; };
 		C0E17FD020772E69003942D1 /* SearchResultProvince.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultProvince.swift; sourceTree = "<group>"; };
@@ -448,6 +470,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C060AB142089C9DE008FA607 /* SwiftDate.framework in Frameworks */,
+				C0DE141B2088951900A67494 /* MBProgressHUD.framework in Frameworks */,
+				C0DE14192088939F00A67494 /* Cosmos.framework in Frameworks */,
 				C0366F1C207F0C4F0027FEF8 /* SkyFloatingLabelTextField.framework in Frameworks */,
 				C032DF52207DD75900FE0999 /* EAIntroView.framework in Frameworks */,
 				C032DF53207DD75900FE0999 /* EARestrictedScrollView.framework in Frameworks */,
@@ -497,6 +522,9 @@
 		4B54B573D6047976074AE619 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C060AB152089C9DE008FA607 /* SwiftDate.framework */,
+				C0DE141C2088951900A67494 /* MBProgressHUD.framework */,
+				C0DE141A2088939F00A67494 /* Cosmos.framework */,
 				C0FD7C8D20849FEB00FC4508 /* IGRPhotoTweaks.framework */,
 				C0FD7C8B2084968C00FC4508 /* PEPhotoCropEditor.framework */,
 				C0A2E4B9207F42FA00DE81DE /* MTLLinkLabel.framework */,
@@ -553,6 +581,7 @@
 				A60E1F27207E5A5800427CF8 /* RateView.h */,
 				A60E1F26207E5A5700427CF8 /* RateView.m */,
 				C0FD7C822084764900FC4508 /* NTableViewCell.swift */,
+				C060AB162089EC19008FA607 /* EcoTripPickerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -607,6 +636,7 @@
 				C0E17FD820775BC4003942D1 /* NHTTPHelper+Detail.swift */,
 				C0E17FDA20776E47003942D1 /* NHTTPHelper+Book.swift */,
 				C0B2A26B207B5C5C00D46336 /* NHTTPHelper+General.swift */,
+				C060AB10208997DE008FA607 /* NHTTPHelper+DoTrip.swift */,
 			);
 			path = HTTP;
 			sourceTree = "<group>";
@@ -671,8 +701,6 @@
 		C037AD5A2070A38800DD5CBC /* Nyelam */ = {
 			isa = PBXGroup;
 			children = (
-				C037E8B02085C41A000EB5CF /* General */,
-				C026FF842084C9EA00357EE5 /* Side Menu */,
 				A6C2708F207BFD02007E4D2A /* Nyelam-Bridging-Header.h */,
 				C0BE915E2070ACFE004E1B92 /* GoogleService-Info.plist */,
 				C037AD6A2070A38800DD5CBC /* Info.plist */,
@@ -689,13 +717,16 @@
 				C0B2A274207B84CD00D46336 /* Auth */,
 				C0BE919B2070BFB8004E1B92 /* Data */,
 				A6691A4C207E7896004B1C2E /* Dive Service */,
+				C0DE141D2088A1C400A67494 /* EcoTrip */,
 				C010FAEE207CAF2A000059AA /* Fonts */,
+				C037E8B02085C41A000EB5CF /* General */,
 				C0BE91602070AD15004E1B92 /* Helper */,
 				A6F5061D207630A400E9938C /* Home */,
 				C0B2A266207B539300D46336 /* Images */,
 				C037AD672070A38800DD5CBC /* LaunchScreen.storyboard */,
 				C037AD5F2070A38800DD5CBC /* Main.storyboard */,
 				C037AD622070A38800DD5CBC /* Nyelam.xcdatamodeld */,
+				C026FF842084C9EA00357EE5 /* Side Menu */,
 				A60E1F21207E061300427CF8 /* Views */,
 			);
 			path = Nyelam;
@@ -804,6 +835,9 @@
 				C010FB18207CC3BA000059AA /* UIView+Extensions.swift */,
 				C037E8AA2085AB30000EB5CF /* UIImage+Extensions.swift */,
 				C07FA9982086FDD100000E43 /* NSDate+Extensions.swift */,
+				C0DE14132088543400A67494 /* CoreData+Extensions.swift */,
+				C0DE14152088730A00A67494 /* UIImageView+Extensions.swift */,
+				C0DE141720887F5000A67494 /* Double+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -839,6 +873,7 @@
 				C0E17FD620772FF4003942D1 /* SearchResultCategory.swift */,
 				C0E17FDC20778A59003942D1 /* OrderReturn.swift */,
 				C02B9B64207B47CF00BE2508 /* DiveSpot.swift */,
+				C060AB122089A2C0008FA607 /* Price.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -920,6 +955,15 @@
 				C0D3C9282084AD8D00FF587B /* PEPhotoCropEditor.bundle */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		C0DE141D2088A1C400A67494 /* EcoTrip */ = {
+			isa = PBXGroup;
+			children = (
+				C0DE141E2088A1E500A67494 /* EcoTripIntroductionController.swift */,
+				C0DE141F2088A1E500A67494 /* EcoTripIntroductionController.xib */,
+			);
+			path = EcoTrip;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1078,6 +1122,7 @@
 				C010FB0F207CAF47000059AA /* FiraSans-MediumItalic.ttf in Resources */,
 				C010FB06207CAF47000059AA /* FiraSans-Bold.ttf in Resources */,
 				C0FD7C7920845A0B00FC4508 /* HeaderViewCell.xib in Resources */,
+				C0DE14212088A1E500A67494 /* EcoTripIntroductionController.xib in Resources */,
 				C037E8AF2085B420000EB5CF /* SideMenuController.xib in Resources */,
 				C0BE91932070B758004E1B92 /* DTMDatePickerController.xib in Resources */,
 				C010FB05207CAF47000059AA /* FiraSans-Medium.ttf in Resources */,
@@ -1333,12 +1378,14 @@
 				A60E1F23207E06EB00427CF8 /* NServiceView.swift in Sources */,
 				C010FB19207CC3BA000059AA /* UIView+Extensions.swift in Sources */,
 				C0D3C9242084AD8600FF587B /* UIImage+PECrop.m in Sources */,
+				C0DE14202088A1E500A67494 /* EcoTripIntroductionController.swift in Sources */,
 				C0E17FD720772FF4003942D1 /* SearchResultCategory.swift in Sources */,
 				C0E17FD520772E81003942D1 /* SearchResultDiveCenter.swift in Sources */,
 				A6691A4F207E78BF004B1C2E /* SearchFormController.swift in Sources */,
 				C0BE92542070D50C004E1B92 /* TransactionResult.swift in Sources */,
 				C0B2A259207B50A900D46336 /* NOrder+CoreDataProperties.swift in Sources */,
 				A60A2861207FB888004A8FC2 /* SearchKeywordController.swift in Sources */,
+				C060AB132089A2C0008FA607 /* Price.swift in Sources */,
 				C0BE925A2070D5EC004E1B92 /* SearchResult.swift in Sources */,
 				A6C27088207BEC0E007E4D2A /* UIColor+Nyelam.swift in Sources */,
 				C0BE91992070B758004E1B92 /* DTMDatePickerController.swift in Sources */,
@@ -1354,8 +1401,10 @@
 				A6C2708A207BEF63007E4D2A /* BaseNavigationController.swift in Sources */,
 				C0E17FD120772E69003942D1 /* SearchResultProvince.swift in Sources */,
 				C037E8B32085C434000EB5CF /* TermsViewController.swift in Sources */,
+				C0DE141820887F5000A67494 /* Double+Extensions.swift in Sources */,
 				C0B2A24B207B50A900D46336 /* NUser+CoreDataProperties.swift in Sources */,
 				C0BE92582070D5BC004E1B92 /* Schedule.swift in Sources */,
+				C060AB172089EC19008FA607 /* EcoTripPickerView.swift in Sources */,
 				C0D3C9262084AD8600FF587B /* PECropView.m in Sources */,
 				C00D0B00207627DB000D8ED6 /* NHTTPHelper+Auth.swift in Sources */,
 				C0D3C9232084AD8600FF587B /* PECropRectView.m in Sources */,
@@ -1418,6 +1467,7 @@
 				C0B2A261207B50A900D46336 /* NCity+CoreDataProperties.swift in Sources */,
 				A60A28682080D03B004A8FC2 /* MonthYearPickerView.swift in Sources */,
 				C0E17FCF20772E3F003942D1 /* SearchResultSpot.swift in Sources */,
+				C0DE14162088730A00A67494 /* UIImageView+Extensions.swift in Sources */,
 				C0B2A251207B50A900D46336 /* NExperience+CoreDataProperties.swift in Sources */,
 				C0B2A253207B50A900D46336 /* NCountryCode+CoreDataProperties.swift in Sources */,
 				C0E17FDB20776E47003942D1 /* NHTTPHelper+Book.swift in Sources */,
@@ -1425,11 +1475,13 @@
 				C0B2A277207B84DC00D46336 /* LoginViewController.swift in Sources */,
 				C0B2A25A207B50A900D46336 /* NDiveCenter+CoreDataClass.swift in Sources */,
 				C0BE925C2070D6A3004E1B92 /* SearchResultService.swift in Sources */,
+				C060AB11208997DE008FA607 /* NHTTPHelper+DoTrip.swift in Sources */,
 				C037AD5C2070A38800DD5CBC /* AppDelegate.swift in Sources */,
 				C0BE923E2070D168004E1B92 /* BookingContact.swift in Sources */,
 				C032DF58207DDDCB00FE0999 /* ForgotPasswordViewController.swift in Sources */,
 				C0BE91892070B6CA004E1B92 /* BaseViewController.swift in Sources */,
 				C0B2A248207B50A900D46336 /* NCategory+CoreDataClass.swift in Sources */,
+				C0DE14142088543400A67494 /* CoreData+Extensions.swift in Sources */,
 				C0BE924E2070D48B004E1B92 /* Module.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

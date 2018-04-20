@@ -73,22 +73,7 @@ extension NHTTPHelper {
                 if let countryCodeArray = json["area_code"] as? Array<[String: Any]>, !countryCodeArray.isEmpty {
                     countryCodes = []
                     for countryCodeJson in countryCodeArray {
-                        var countryCode: NCountryCode? = nil
-                        if let id = countryCodeJson["id"] as? String {
-                            countryCode = NCountryCode.getCountryCode(using: id)
-                        }
-                        if countryCode == nil {
-                            countryCode = NCountryCode.init(entity: NSEntityDescription.entity(forEntityName: "NCountryCode", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
-                        }
-                        countryCode!.parse(json: countryCodeJson)
-                        countryCodes!.append(countryCode!)
-                    }
-                } else if let countryCodeString = json["area_code"] as? String {
-                    do {
-                        let data = countryCodeString.data(using: String.Encoding.utf8, allowLossyConversion: true)
-                        let countryCodeArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
-                        countryCodes = []
-                        for countryCodeJson in countryCodeArray {
+                        if countryCodeJson["id"] != nil {
                             var countryCode: NCountryCode? = nil
                             if let id = countryCodeJson["id"] as? String {
                                 countryCode = NCountryCode.getCountryCode(using: id)
@@ -98,6 +83,25 @@ extension NHTTPHelper {
                             }
                             countryCode!.parse(json: countryCodeJson)
                             countryCodes!.append(countryCode!)
+                        }
+                    }
+                } else if let countryCodeString = json["area_code"] as? String {
+                    do {
+                        let data = countryCodeString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                        let countryCodeArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+                        countryCodes = []
+                        for countryCodeJson in countryCodeArray {
+                            if countryCodeJson["id"] != nil {
+                                var countryCode: NCountryCode? = nil
+                                if let id = countryCodeJson["id"] as? String {
+                                    countryCode = NCountryCode.getCountryCode(using: id)
+                                }
+                                if countryCode == nil {
+                                    countryCode = NCountryCode.init(entity: NSEntityDescription.entity(forEntityName: "NCountryCode", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
+                                }
+                                countryCode!.parse(json: countryCodeJson)
+                                countryCodes!.append(countryCode!)
+                            }
                         }
                     } catch {
                         print(error)

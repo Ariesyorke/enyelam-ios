@@ -300,10 +300,76 @@ class NHTTPHelper {
             return "api/user/cover"
         }
     }
+    internal static var API_PATH_DO_TRIP_SUGGESTION: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "dotrip/suggestion"
+        default:
+            return "api/dotrip/suggestion"
+        }
+    }
+    internal static var API_PATH_DO_TRIP_SEARCH_BY_DIVE_CENTER: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "dotrip/search/divecenter"
+        default:
+            return "api/dotrip/search/divecenter"
+        }
+    }
+    internal static var API_PATH_DO_TRIP_SEARCH_BY_DIVE_SPOT: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "dotrip/search/divespot"
+        default:
+            return "api/dotrip/search/divespot"
+        }
+    }
+    internal static var API_PATH_DO_TRIP_SEARCH_BY_CATEGORY: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "dotrip/search/category"
+        default:
+            return "api/dotrip/search/category"
+        }
+    }
+    internal static var API_PATH_DO_TRIP_SEARCH_BY_PROVINCE: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "dotrip/search/province"
+        default:
+            return "api/dotrip/search/province"
+        }
+    }
+    internal static var API_PATH_DO_TRIP_SEARCH_BY_CITY: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "dotrip/search/city"
+        default:
+            return "api/dotrip/search/city"
+        }
+    }
+    internal static var API_PATH_MIN_MAX_PRICE: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "service/minMaxPrice"
+        default:
+            return "api/service/minMaxPrice"
+        }
+    }
+    internal static var API_PATH_CHANGE_PAYMENT_METHOD: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "order/changePaymentMethod"
+        default:
+            return "api/order/changePaymentMethod"
+        }
+
+    }
     internal static func basicAuthRequest(URLString: URLConvertible,
                                           parameters: [String: Any]? = nil,
                                           headers: [String: String]? = nil,
                                           complete: @escaping (Bool, Any?, BaseError?)->()) {
+        let authReturn = NAuthReturn.authUser()
         if let authReturn = NAuthReturn.authUser(), let token = authReturn.token, let user = authReturn.user, let userId = user.id {
             var param: [String: Any] = [:]
             param["user_id"] = userId
@@ -313,7 +379,7 @@ class NHTTPHelper {
                     param[key] = value
                 }
             }
-            self.basicAuthRequest(URLString: URLString, parameters: parameters, headers: nil, complete: complete)
+            self.basicPostRequest(URLString: URLString, parameters: param, headers: nil, complete: complete)
         } else {
             complete(false, nil, UserNotFoundError(statusCode: -1, title: "User is either not login or token is expired", message: nil))
         }
@@ -494,7 +560,6 @@ class NHTTPHelper {
                     complete(false, nil, StatusFailedError(statusCode: code, title: title != nil ? title : "Unknown Error", message: nil))
                 }
             } else {
-                print("Panggil 18")
                 complete(false, nil, UnknownError(statusCode: -1, title: "Unknown Error", message: ""))
             }
         })

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment version="2304" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,11 +19,8 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cy3-aH-1O7" customClass="NServiceView" customModule="Nyelam" customModuleProvider="target">
-                        <rect key="frame" x="16" y="8" width="300" height="354"/>
+                        <rect key="frame" x="16" y="16" width="300" height="338.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="300" placeholder="YES" id="5Xs-gC-fN6"/>
-                        </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                 <integer key="value" value="8"/>
@@ -34,15 +30,13 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="cy3-aH-1O7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="B4D-Xu-Xhr"/>
-                    <constraint firstItem="cy3-aH-1O7" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" constant="-32" id="DQV-HL-PH7"/>
-                    <constraint firstItem="cy3-aH-1O7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Kc6-v0-ceZ"/>
-                    <constraint firstAttribute="trailing" secondItem="cy3-aH-1O7" secondAttribute="trailing" constant="16" id="Yjp-ry-uPV"/>
-                    <constraint firstAttribute="bottom" secondItem="cy3-aH-1O7" secondAttribute="bottom" constant="8" id="q9G-PE-uBU"/>
+                    <constraint firstItem="cy3-aH-1O7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="3qI-5v-PG2"/>
+                    <constraint firstAttribute="trailing" secondItem="cy3-aH-1O7" secondAttribute="trailing" constant="16" id="6Wc-BH-Q8r"/>
+                    <constraint firstItem="cy3-aH-1O7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="OdN-he-6GZ"/>
+                    <constraint firstAttribute="bottom" secondItem="cy3-aH-1O7" secondAttribute="bottom" constant="16" id="UxB-LG-9gF"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="serviceView" destination="cy3-aH-1O7" id="CiX-lJ-77U"/>
             </connections>

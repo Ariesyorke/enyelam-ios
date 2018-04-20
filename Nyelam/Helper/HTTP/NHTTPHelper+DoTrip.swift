@@ -1,8 +1,8 @@
 //
-//  NHTTPHelper+DoDive.swift
+//  NHTTPHelper+DoTrip.swift
 //  Nyelam
 //
-//  Created by Bobi on 4/6/18.
+//  Created by Bobi on 4/20/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 
@@ -10,65 +10,62 @@ import Foundation
 import CoreData
 
 extension NHTTPHelper {
-    static func httpDoDiveSearchBy(keyword: String, ecoTrip: Int?, complete: @escaping (NHTTPResponse<[SearchResult]>)->()) {
+    static func httpDoTripSearchBy(keyword: String, complete: @escaping (NHTTPResponse<[SearchResult]>)->()) {
         var param: [String: Any] = [:]
         param["keyword"] = keyword
-        if let ecoTrip = ecoTrip {
-            param["eco_trip"] = ecoTrip
-        }
         self.basicPostRequest(URLString: HOST_URL+API_PATH_MASTER_DO_DIVE_SEARCH,
                               parameters: param,
                               headers: nil,
                               complete: {status, data, error in
-            if let error = error {
-                complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
-                return
-            }
-            if let data = data, let json = data as? [String: Any] {
-                var searchResults: [SearchResult]? = nil
-                if let searchResultArray = json["search_results"] as? Array<[String: Any]>, !searchResultArray.isEmpty {
-                    searchResults = []
-                    for searchResultJson in searchResultArray {
-                        var searchResult: SearchResult? = nil
-                        if let type = searchResultJson["type"] as? Int {
-                            searchResult = SearchResult.generateSearchResultType(type: type, json: searchResultJson)
-                        } else if let type = searchResultJson["type"] as? String {
-                            if type.isNumber {
-                                searchResult = SearchResult.generateSearchResultType(type: Int(type)!, json: searchResultJson)
-                            }
-                        } else {
-                            searchResult = SearchResult(json: searchResultJson)
-                        }
-                        searchResults!.append(searchResult!)
-                    }
-                } else if let searchResultString = json["search_results"] as? String {
-                    do {
-                        let data = searchResultString.data(using: String.Encoding.utf8, allowLossyConversion: true)
-                        let searchResultArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
-                        searchResults = []
-                        for searchResultJson in searchResultArray {
-                            var searchResult: SearchResult? = nil
-                            if let type = searchResultJson["type"] as? Int {
-                                searchResult = SearchResult.generateSearchResultType(type: type, json: searchResultJson)
-                            } else if let type = searchResultJson["type"] as? String {
-                                if type.isNumber {
-                                    searchResult = SearchResult.generateSearchResultType(type: Int(type)!, json: searchResultJson)
+                                if let error = error {
+                                    complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
+                                    return
                                 }
-                            } else {
-                                searchResult = SearchResult(json: searchResultJson)
-                            }
-                            searchResults!.append(searchResult!)
-                        }
-                    } catch {
-                        print(error)
-                    }
-                }
-                complete(NHTTPResponse(resultStatus: true, data: searchResults, error: nil))
-            }
+                                if let data = data, let json = data as? [String: Any] {
+                                    var searchResults: [SearchResult]? = nil
+                                    if let searchResultArray = json["search_results"] as? Array<[String: Any]>, !searchResultArray.isEmpty {
+                                        searchResults = []
+                                        for searchResultJson in searchResultArray {
+                                            var searchResult: SearchResult? = nil
+                                            if let type = searchResultJson["type"] as? Int {
+                                                searchResult = SearchResult.generateSearchResultType(type: type, json: searchResultJson)
+                                            } else if let type = searchResultJson["type"] as? String {
+                                                if type.isNumber {
+                                                    searchResult = SearchResult.generateSearchResultType(type: Int(type)!, json: searchResultJson)
+                                                }
+                                            } else {
+                                                searchResult = SearchResult(json: searchResultJson)
+                                            }
+                                            searchResults!.append(searchResult!)
+                                        }
+                                    } else if let searchResultString = json["search_results"] as? String {
+                                        do {
+                                            let data = searchResultString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                                            let searchResultArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+                                            searchResults = []
+                                            for searchResultJson in searchResultArray {
+                                                var searchResult: SearchResult? = nil
+                                                if let type = searchResultJson["type"] as? Int {
+                                                    searchResult = SearchResult.generateSearchResultType(type: type, json: searchResultJson)
+                                                } else if let type = searchResultJson["type"] as? String {
+                                                    if type.isNumber {
+                                                        searchResult = SearchResult.generateSearchResultType(type: Int(type)!, json: searchResultJson)
+                                                    }
+                                                } else {
+                                                    searchResult = SearchResult(json: searchResultJson)
+                                                }
+                                                searchResults!.append(searchResult!)
+                                            }
+                                        } catch {
+                                            print(error)
+                                        }
+                                    }
+                                    complete(NHTTPResponse(resultStatus: true, data: searchResults, error: nil))
+                                }
         })
     }
     
-    static func httpDoDiveSearchBy(categories: [String], page: String, diver: Int, certificate: Int, date: TimeInterval, sortBy: Int, ecoTrip: Int?, totalDives: [String]?, facilities: [String]?, priceMin: Int?, priceMax: Int?, complete: @escaping (NHTTPResponse<[NDiveService]>)->()) {
+    static func httpDoTripSearchBy(categories: [String], page: String, diver: Int, certificate: Int, date: TimeInterval, sortBy: Int, totalDives: [String]?, facilities: [String]?, priceMin: Int?, priceMax: Int?, complete: @escaping (NHTTPResponse<[NDiveService]>)->()) {
         var param: [String: Any] = [:]
         param["page"] = page
         param["category_id"] = categories
@@ -82,16 +79,13 @@ extension NHTTPHelper {
         if let facilities = facilities, !facilities.isEmpty {
             param["facilities"] = facilities
         }
-        if let ecoTrip = ecoTrip {
-            param["eco_trip"] = String(ecoTrip)
-        }
         if let priceMin = priceMin {
             param["price_min"] = String(priceMin)
         }
         if let priceMax = priceMax {
             param["price_max"] = String(priceMax)
         }
-        self.basicPostRequest(URLString: HOST_URL+API_PATH_SEARCH_SERVICE_LIST_BY_CATEGORY,
+        self.basicPostRequest(URLString: HOST_URL+API_PATH_DO_TRIP_SEARCH_BY_CATEGORY,
                               parameters: param, headers: nil, complete: {status, data, error in
                                 if let error = error {
                                     complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
@@ -99,7 +93,7 @@ extension NHTTPHelper {
                                 }
                                 if let data = data, let json = data as? [String: Any] {
                                     var diveservices: [NDiveService]? = nil
-                                    if let diveServiceArray = json["dive_services"] as? Array<[String: Any]>, !diveServiceArray.isEmpty {
+                                    if let diveServiceArray = json["trips"] as? Array<[String: Any]>, !diveServiceArray.isEmpty {
                                         diveservices = []
                                         for diveServiceJson in diveServiceArray {
                                             var diveService: NDiveService? = nil
@@ -112,7 +106,7 @@ extension NHTTPHelper {
                                             diveService!.parse(json: diveServiceJson)
                                             diveservices!.append(diveService!)
                                         }
-                                    } else if let diveServiceString = json["dive_services"] as? String {
+                                    } else if let diveServiceString = json["trips"] as? String {
                                         do {
                                             let data = diveServiceString.data(using: String.Encoding.utf8, allowLossyConversion: true)
                                             let diveServiceArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
@@ -133,11 +127,11 @@ extension NHTTPHelper {
                                         }
                                     }
                                 }
-
+                                
         })
     }
     
-    static func httpDoDiveSearchBy(diveSpotId: String, page: String, diver: Int, certificate: Int, date: TimeInterval, sortBy: Int, ecoTrip: Int?, totalDives: [String]?, categories: [String]?, facilities: [String]?, priceMin: Int?, priceMax: Int?, complete: @escaping (NHTTPResponse<[NDiveService]>)->()) {
+    static func httpDoTripSearchBy(diveSpotId: String, page: String, diver: Int, certificate: Int, date: TimeInterval, sortBy: Int, ecoTrip: Int?, totalDives: [String]?, categories: [String]?, facilities: [String]?, priceMin: Int?, priceMax: Int?, complete: @escaping (NHTTPResponse<[NDiveService]>)->()) {
         var param: [String: Any] = [:]
         param["page"] = page
         param["diver"] = String(diver)
@@ -163,7 +157,7 @@ extension NHTTPHelper {
         if let priceMax = priceMax {
             param["price_max"] = String(priceMax)
         }
-        self.basicPostRequest(URLString: HOST_URL+API_PATH_SEARCH_SERVICE_LIST_BY_DIVESPOT,
+        self.basicPostRequest(URLString: HOST_URL+API_PATH_DO_TRIP_SEARCH_BY_DIVE_SPOT,
                               parameters: param, headers: nil, complete: {status, data, error in
                                 if let error = error {
                                     complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
@@ -171,7 +165,7 @@ extension NHTTPHelper {
                                 }
                                 if let data = data, let json = data as? [String: Any] {
                                     var diveservices: [NDiveService]? = nil
-                                    if let diveServiceArray = json["dive_services"] as? Array<[String: Any]>, !diveServiceArray.isEmpty {
+                                    if let diveServiceArray = json["trips"] as? Array<[String: Any]>, !diveServiceArray.isEmpty {
                                         diveservices = []
                                         for diveServiceJson in diveServiceArray {
                                             var diveService: NDiveService? = nil
@@ -184,7 +178,7 @@ extension NHTTPHelper {
                                             diveService!.parse(json: diveServiceJson)
                                             diveservices!.append(diveService!)
                                         }
-                                    } else if let diveServiceString = json["dive_services"] as? String {
+                                    } else if let diveServiceString = json["trips"] as? String {
                                         do {
                                             let data = diveServiceString.data(using: String.Encoding.utf8, allowLossyConversion: true)
                                             let diveServiceArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
@@ -209,7 +203,7 @@ extension NHTTPHelper {
         })
     }
     
-    static func httpDoDiveSearchBy(provinceId: String, page: String, diver: Int, certificate: Int, date: TimeInterval, sortBy: Int, ecoTrip: Int?, totalDives: [String]?, categories: [String]?, facilities: [String]?, priceMin: Int?, priceMax: Int?, complete: @escaping (NHTTPResponse<[NDiveService]>)->()) {
+    static func httpDoTripSearchBy(provinceId: String, page: String, diver: Int, certificate: Int, date: TimeInterval, sortBy: Int, ecoTrip: Int?, totalDives: [String]?, categories: [String]?, facilities: [String]?, priceMin: Int?, priceMax: Int?, complete: @escaping (NHTTPResponse<[NDiveService]>)->()) {
         var param: [String: Any] = [:]
         param["page"] = page
         param["diver"] = String(diver)
@@ -235,7 +229,7 @@ extension NHTTPHelper {
         if let priceMax = priceMax {
             param["price_max"] = String(priceMax)
         }
-        self.basicPostRequest(URLString: HOST_URL+API_PATH_SEARCH_SERVICE_LIST_BY_PROVINCE,
+        self.basicPostRequest(URLString: HOST_URL+API_PATH_DO_TRIP_SEARCH_BY_PROVINCE,
                               parameters: param, headers: nil, complete: {status, data, error in
                                 if let error = error {
                                     complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
@@ -243,7 +237,7 @@ extension NHTTPHelper {
                                 }
                                 if let data = data, let json = data as? [String: Any] {
                                     var diveservices: [NDiveService]? = nil
-                                    if let diveServiceArray = json["dive_services"] as? Array<[String: Any]>, !diveServiceArray.isEmpty {
+                                    if let diveServiceArray = json["trips"] as? Array<[String: Any]>, !diveServiceArray.isEmpty {
                                         diveservices = []
                                         for diveServiceJson in diveServiceArray {
                                             var diveService: NDiveService? = nil
@@ -252,12 +246,12 @@ extension NHTTPHelper {
                                             }
                                             if diveService == nil {
                                                 diveService = NDiveService.init(entity: NSEntityDescription.entity(forEntityName: "NDiveService", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
-
+                                                
                                             }
                                             diveService!.parse(json: diveServiceJson)
                                             diveservices!.append(diveService!)
                                         }
-                                    } else if let diveServiceString = json["dive_services"] as? String {
+                                    } else if let diveServiceString = json["trips"] as? String {
                                         do {
                                             let data = diveServiceString.data(using: String.Encoding.utf8, allowLossyConversion: true)
                                             let diveServiceArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
@@ -282,7 +276,7 @@ extension NHTTPHelper {
         })
     }
     
-    static func httpDoDiveSearchBy(cityId: String, page: String, diver: Int, certificate: Int, date: TimeInterval, sortBy: Int, ecoTrip: Int?, totalDives: [String]?, categories: [String]?, facilities: [String]?, priceMin: Int?, priceMax: Int?, complete: @escaping (NHTTPResponse<[NDiveService]>)->()) {
+    static func httpDoTripSearchBy(cityId: String, page: String, diver: Int, certificate: Int, date: TimeInterval, sortBy: Int, ecoTrip: Int?, totalDives: [String]?, categories: [String]?, facilities: [String]?, priceMin: Int?, priceMax: Int?, complete: @escaping (NHTTPResponse<[NDiveService]>)->()) {
         var param: [String: Any] = [:]
         param["page"] = page
         param["diver"] = String(diver)
@@ -308,7 +302,7 @@ extension NHTTPHelper {
         if let priceMax = priceMax {
             param["price_max"] = String(priceMax)
         }
-        self.basicPostRequest(URLString: HOST_URL+API_PATH_SEARCH_SERVICE_LIST_BY_CITY,
+        self.basicPostRequest(URLString: HOST_URL+API_PATH_DO_TRIP_SEARCH_BY_CITY,
                               parameters: param, headers: nil, complete: {status, data, error in
                                 if let error = error {
                                     complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
@@ -316,7 +310,7 @@ extension NHTTPHelper {
                                 }
                                 if let data = data, let json = data as? [String: Any] {
                                     var diveservices: [NDiveService]? = nil
-                                    if let diveServiceArray = json["dive_services"] as? Array<[String: Any]>, !diveServiceArray.isEmpty {
+                                    if let diveServiceArray = json["trips"] as? Array<[String: Any]>, !diveServiceArray.isEmpty {
                                         diveservices = []
                                         for diveServiceJson in diveServiceArray {
                                             var diveService: NDiveService? = nil
@@ -325,12 +319,12 @@ extension NHTTPHelper {
                                             }
                                             if diveService == nil {
                                                 diveService = NDiveService.init(entity: NSEntityDescription.entity(forEntityName: "NDiveService", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
-
+                                                
                                             }
                                             diveService!.parse(json: diveServiceJson)
                                             diveservices!.append(diveService!)
                                         }
-                                    } else if let diveServiceString = json["dive_services"] as? String {
+                                    } else if let diveServiceString = json["trips"] as? String {
                                         do {
                                             let data = diveServiceString.data(using: String.Encoding.utf8, allowLossyConversion: true)
                                             let diveServiceArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
@@ -342,7 +336,7 @@ extension NHTTPHelper {
                                                 }
                                                 if diveService == nil {
                                                     diveService = NDiveService.init(entity: NSEntityDescription.entity(forEntityName: "NDiveService", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
-
+                                                    
                                                 }
                                                 diveService!.parse(json: diveServiceJson)
                                                 diveservices!.append(diveService!)
@@ -357,7 +351,7 @@ extension NHTTPHelper {
     }
     
     
-    static func httpDoDiveSearchBy(diveCenterId: String, page: String, diver: Int, certificate: Int, date: TimeInterval, sortBy: Int, ecoTrip: Int?, totalDives: [String]?, categories: [String]?, facilities: [String]?, priceMin: Int?, priceMax: Int?, complete: @escaping (NHTTPResponse<[NDiveService]>)->()) {
+    static func httpDoTripSearchBy(diveCenterId: String, page: String, diver: Int, certificate: Int, date: TimeInterval, sortBy: Int, ecoTrip: Int?, totalDives: [String]?, categories: [String]?, facilities: [String]?, priceMin: Int?, priceMax: Int?, complete: @escaping (NHTTPResponse<[NDiveService]>)->()) {
         var param: [String: Any] = [:]
         param["page"] = page
         param["diver"] = String(diver)
@@ -383,7 +377,7 @@ extension NHTTPHelper {
         if let priceMax = priceMax {
             param["price_max"] = String(priceMax)
         }
-        self.basicPostRequest(URLString: HOST_URL+API_PATH_SEARCH_SERVICE_LIST_BY_DIVE_CENTER,
+        self.basicPostRequest(URLString: HOST_URL+API_PATH_DO_TRIP_SEARCH_BY_DIVE_CENTER,
                               parameters: param, headers: nil, complete: {status, data, error in
                                 if let error = error {
                                     complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
@@ -391,7 +385,7 @@ extension NHTTPHelper {
                                 }
                                 if let data = data, let json = data as? [String: Any] {
                                     var diveservices: [NDiveService]? = nil
-                                    if let diveServiceArray = json["dive_services"] as? Array<[String: Any]>, !diveServiceArray.isEmpty {
+                                    if let diveServiceArray = json["trips"] as? Array<[String: Any]>, !diveServiceArray.isEmpty {
                                         diveservices = []
                                         for diveServiceJson in diveServiceArray {
                                             var diveService: NDiveService? = nil
@@ -404,7 +398,7 @@ extension NHTTPHelper {
                                             diveService!.parse(json: diveServiceJson)
                                             diveservices!.append(diveService!)
                                         }
-                                    } else if let diveServiceString = json["dive_services"] as? String {
+                                    } else if let diveServiceString = json["trips"] as? String {
                                         do {
                                             let data = diveServiceString.data(using: String.Encoding.utf8, allowLossyConversion: true)
                                             let diveServiceArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
@@ -429,33 +423,16 @@ extension NHTTPHelper {
         })
     }
     
-    static func httpDoDiveSuggestion(complete: @escaping (NHTTPResponse<[NDiveService]>)->()) {
-        self.basicPostRequest(URLString: HOST_URL+API_PATH_SUGGESTION_SERVICE,
+    static func httpDoTripSuggestion(complete: @escaping (NHTTPResponse<[NDiveService]>)->()) {
+        self.basicPostRequest(URLString: HOST_URL+API_PATH_DO_TRIP_SUGGESTION,
                               complete: {status, data, error in
-                            if let error = error {
-                                complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
-                                return
-                            }
-                            if let data = data, let json = data as? [String: Any] {
-                                var diveservices: [NDiveService]? = nil
-                                if let diveServiceArray = json["dive_services"] as? Array<[String: Any]>, !diveServiceArray.isEmpty {
-                                    diveservices = []
-                                    for diveServiceJson in diveServiceArray {
-                                        var diveService: NDiveService? = nil
-                                        if let id = diveServiceJson["id"] as? String {
-                                            diveService = NDiveService.getDiveService(using: id)
-                                        }
-                                        if diveService == nil {
-                                            diveService = NDiveService.init(entity: NSEntityDescription.entity(forEntityName: "NDiveService", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
-
-                                        }
-                                        diveService!.parse(json: diveServiceJson)
-                                        diveservices!.append(diveService!)
-                                    }
-                                } else if let diveServiceString = json["dive_services"] as? String {
-                                    do {
-                                        let data = diveServiceString.data(using: String.Encoding.utf8, allowLossyConversion: true)
-                                        let diveServiceArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+                                if let error = error {
+                                    complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
+                                    return
+                                }
+                                if let data = data, let json = data as? [String: Any] {
+                                    var diveservices: [NDiveService]? = nil
+                                    if let diveServiceArray = json["trips"] as? Array<[String: Any]>, !diveServiceArray.isEmpty {
                                         diveservices = []
                                         for diveServiceJson in diveServiceArray {
                                             var diveService: NDiveService? = nil
@@ -464,18 +441,34 @@ extension NHTTPHelper {
                                             }
                                             if diveService == nil {
                                                 diveService = NDiveService.init(entity: NSEntityDescription.entity(forEntityName: "NDiveService", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
+                                                
                                             }
                                             diveService!.parse(json: diveServiceJson)
                                             diveservices!.append(diveService!)
                                         }
-                                    } catch {
-                                        print(error)
+                                    } else if let diveServiceString = json["trips"] as? String {
+                                        do {
+                                            let data = diveServiceString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                                            let diveServiceArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+                                            diveservices = []
+                                            for diveServiceJson in diveServiceArray {
+                                                var diveService: NDiveService? = nil
+                                                if let id = diveServiceJson["id"] as? String {
+                                                    diveService = NDiveService.getDiveService(using: id)
+                                                }
+                                                if diveService == nil {
+                                                    diveService = NDiveService.init(entity: NSEntityDescription.entity(forEntityName: "NDiveService", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
+                                                }
+                                                diveService!.parse(json: diveServiceJson)
+                                                diveservices!.append(diveService!)
+                                            }
+                                        } catch {
+                                            print(error)
+                                        }
                                     }
+                                    complete(NHTTPResponse(resultStatus: true, data: diveservices, error: nil))
                                 }
-                                complete(NHTTPResponse(resultStatus: true, data: diveservices, error: nil))
-                            }
         })
     }
-    
-}
 
+}

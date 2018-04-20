@@ -31,6 +31,13 @@ public class Schedule: NSObject, Parseable {
                 self.startDate = Double(startDate)!
             }
         }
+        if let endDate = json[KEY_END_DATE] as? Double {
+            self.endDate = endDate
+        } else if let endDate = json[KEY_END_DATE] as? String {
+            if endDate.isNumber {
+                self.endDate = Double(endDate)!
+            }
+        }
     }
     
     func serialized() -> [String : Any] {

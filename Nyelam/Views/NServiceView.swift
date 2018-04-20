@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Cosmos
 
 @IBDesignable
 class NServiceView: UIView {
@@ -17,13 +18,18 @@ class NServiceView: UIView {
     @IBOutlet weak var serviceImageView: UIImageView!
     @IBOutlet weak var serviceStartDateEndDateLabel: UILabel!
     @IBOutlet weak var totalDivesLabel: UILabel!
-    @IBOutlet weak var totalDiveSpotLabel: UILabel!
     @IBOutlet weak var totalDaysLabel: UILabel!
-    @IBOutlet weak var rateView: RateView!
     @IBOutlet weak var normalPriceLabel: UILabel!
     @IBOutlet weak var specialPriceLabel: UILabel!
     @IBOutlet weak var linceseNeededImageView: UIImageView!
     @IBOutlet weak var control: UIControl!
+    @IBOutlet weak var scheduleHeightConstant: NSLayoutConstraint!
+    @IBOutlet weak var diveDaysVerticalSpacingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var specialPriceVerticalConstraint: NSLayoutConstraint!
+    @IBOutlet weak var normalPriceContainerView: UIView!
+    @IBOutlet weak var rateView: CosmosView!
+    
+    var isDoTrip: Bool = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -70,5 +76,44 @@ class NServiceView: UIView {
 
     func addTarget(_ target: Any?, action: Selector) {
         self.control.addTarget(target, action: action, for: UIControlEvents.touchUpInside)
+    }
+    
+    func initData(diveService: NDiveService) {
+        self.serviceNameLabel.text = diveService.name
+        self.totalDivesLabel.text = String(diveService.totalDives) + " Dive" + (diveService.totalDives>1 ? "s" : "")
+        self.totalDaysLabel.text = String(diveService.totalDays) + " Day" + (diveService.totalDays>1 ? "s" : "")
+        if let url = diveService.featuredImage {
+           self.serviceImageView.loadImage(from: url, contentMode: .scaleAspectFill, with: "image_default")
+        }
+        if let schedule = diveService.schedule {
+            let startDate = Date(timeIntervalSince1970: schedule.startDate).formatDate(dateFormat: "MMMM yyyy")
+            let endDate = Date(timeIntervalSince1970: schedule.endDate).formatDate(dateFormat: "MMMM yyyy")
+            self.serviceStartDateEndDateLabel.text = "\(startDate) - \(endDate)"
+        }
+        
+        if isDoTrip {
+            self.diveDaysVerticalSpacingConstraint.constant = 8
+            self.scheduleHeightConstant.constant = 18
+            self.serviceStartDateEndDateLabel.isHidden = false
+        } else {
+            self.diveDaysVerticalSpacingConstraint.constant = 0
+            self.scheduleHeightConstant.constant = 0
+            self.serviceStartDateEndDateLabel.isHidden = true
+        }
+        
+        self.normalPriceLabel.text = diveService.normalPrice.toCurrencyFormatString(currency: "Rp.")
+        self.specialPriceLabel.text = diveService.specialPrice.toCurrencyFormatString(currency:"Rp.")
+        if diveService.normalPrice == diveService.specialPrice {
+            self.normalPriceContainerView.isHidden = true
+        } else {
+            self.normalPriceContainerView.isHidden = false
+        }
+        
+        if diveService.license {
+            self.linceseNeededImageView.image = UIImage(named: "icon_license_on")
+        } else {
+            self.linceseNeededImageView.image = UIImage(named: "icon_license_off")
+        }
+        self.rateView.rating = Double(Int(diveService.rating))
     }
 }

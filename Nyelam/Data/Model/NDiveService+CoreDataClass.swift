@@ -109,9 +109,11 @@ public class NDiveService: NSManagedObject {
         
         if let days = json[KEY_DAYS] as? Int {
             self.days = Int32(days)
+            self.totalDays = Int32(days)
         } else if let days = json[KEY_DAYS] as? String {
             if days.isNumber {
                 self.days = Int32(days)!
+                self.totalDays = Int32(days)!
             }
         }
         if let totalDives = json[KEY_TOTAL_DIVES] as? Int {

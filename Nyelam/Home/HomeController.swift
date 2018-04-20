@@ -22,6 +22,10 @@ class HomeController: BaseViewController, UIScrollViewDelegate {
     @IBOutlet weak var btDoCourse: UIControl!
     @IBOutlet weak var btSeeAllDoTrip: UIControl!
     @IBOutlet weak var doTripScroller: UIScrollView!
+    @IBOutlet weak var doTripLoadingView: UIActivityIndicatorView!
+    @IBOutlet weak var doTripContainer: UIView!
+    @IBOutlet weak var doTripScrollerHeight: NSLayoutConstraint!
+    
     var contentViews: [UIView] = []
     var sideMenuController: SideMenuController?
     
@@ -78,6 +82,8 @@ class HomeController: BaseViewController, UIScrollViewDelegate {
                 var leftView: UIView? = nil
                 for doTrip: NDiveService in self.doTrips! {
                     let view: NServiceView = self.createView(forDoTrip: doTrip)
+                    view.isDoTrip = true
+                    view.initData(diveService: doTrip)
                     view.addTarget(self, action: #selector(HomeController.onDoTripClicked(at:)))
                     DTMHelper.addShadow(view)
                     
@@ -107,16 +113,37 @@ class HomeController: BaseViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupSideMenu()
-        // TESTING
         self.banners = [Banner(), Banner(), Banner()]
-        self.doTrips = [
-            NDiveService(entity: NSEntityDescription.entity(forEntityName: "NDiveService", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext),
-            NDiveService(entity: NSEntityDescription.entity(forEntityName: "NDiveService", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext),
-            NDiveService(entity: NSEntityDescription.entity(forEntityName: "NDiveService", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext),
-            NDiveService(entity: NSEntityDescription.entity(forEntityName: "NDiveService", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext),
-            NDiveService(entity: NSEntityDescription.entity(forEntityName: "NDiveService", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext),
-            NDiveService(entity: NSEntityDescription.entity(forEntityName: "NDiveService", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
-        ]
+        self.getDoTrips()
+    }
+    
+    internal func getDoTrips() {
+        self.doTripScrollerHeight.constant = 0
+        self.doTripLoadingView.isHidden = false
+        NHTTPHelper.httpGetHomepageModule(complete: {response in
+            self.doTripLoadingView.isHidden = true
+            if let error = response.error {
+                if error.isKind(of: NotConnectedInternetError.self) {
+                    NHelper.handleConnectionError(completion: {
+                        self.getDoTrips()
+                    })
+                }
+                return
+            }
+            if let modules = response.data {
+                var diveServices: [NDiveService] = []
+                for module in modules {
+                    if module.isKind(of: TripModule.self) {
+                        let tripModule = module as! TripModule
+                        if let services = tripModule.diveServices, !services.isEmpty {
+                            diveServices.append(contentsOf: services)
+                        }
+                    }
+                }
+                self.doTripScrollerHeight.constant = 384
+                self.doTrips = diveServices
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -138,11 +165,17 @@ extension HomeController {
     }
 
     @IBAction func onMenuClicked(_ sender: UIControl) {
-        // TODO:
+        if sender == self.btDoDive {
+            SearchFormController.push(on: self.navigationController!, forDoTrip: false)
+        } else if sender == self.btEcoTrip {
+            SearchFormController.push(on: self.navigationController!, forDoTrip: false, isEcotrip: true)
+        } else if sender == self.btDoShop || sender == self.btDoCourse {
+            UIAlertController.handlePopupMessage(viewController: self, title: "Coming Soon!", actionButtonTitle: "OK", completion: {})
+        }
     }
     
     @IBAction func onSeeAllDoTripClicked(_ sender: UIControl) {
-        // TODO:
+        SearchFormController.push(on: self.navigationController!, forDoTrip: true)
     }
     
     @objc func onBannerClicked(at sender: UIControl) {
@@ -152,8 +185,7 @@ extension HomeController {
     
     @objc func onDoTripClicked(at sender: UIControl) {
         let index: Int = sender.tag
-        // TODO:
-        SearchFormController.push(on: self.navigationController!, forDoTrip: false)
+        // TODO: OPEN SERVICE DETAIL
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

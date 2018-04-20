@@ -28,14 +28,15 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
     @IBOutlet weak var certificateNumberTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var bottomScrollView: NSLayoutConstraint!
     
-    var regionCode: String = "ID"
+    var phoneRegionCode: String = "ID"
+    var userRegionCode: String = "ID"
+    
     var countryCodes: [NCountryCode]? = NCountryCode.getCountryCodes()
-    var countries: [NCountry]? = NCountry.getCountries()
     var languages: [NLanguage]? = NLanguage.getLanguages()
     var numberKeyboard: MMNumberKeyboard?
     var pickedCountryCode: NCountryCode?
     
-    var pickedCountry: NCountry?
+    var pickedCountry: NCountryCode?
     var pickedLanguage: NLanguage?
     var pickedNationality: NNationality?
     var pickedBirthdate: Date?
@@ -44,6 +45,7 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.initView()
         self.initData()
         self.title = "Edit Profile"
         // Do any additional setup after loading the view.
@@ -78,6 +80,7 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
         if !lastName.isEmpty {
             fullName = ("\(firstName) \(lastName)")
         }
+
         self.tryEditProfile(fullname: fullName, countryCode: countryCodeId!, emailAddress: emailAddress, phoneNumber: phoneNumber, gender: pickedGender, birthPlace: birthPlace, birthDate: pickedBirthdate, countryId: countryId, nationalityId: nationalityId, languageId: languageId, certificateDate: certificateDate, certificateNumber: certificateNumber)
     }
     
@@ -119,21 +122,24 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
         }
     }
     @IBAction func countryButtonAction(_ sender: Any) {
-        if let countries = self.countries, !countries.isEmpty {
+        if let countryCodes = self.countryCodes, !countryCodes.isEmpty {
             var c: [String] = []
-            for country in countries {
-                c.append(country.name!)
+            for countryCode in countryCodes {
+                if let countryName = countryCode.countryName {
+                    c.append("\(countryName)")
+                }
             }
-            let position = self.pickedCountry != nil ? NCountry.getCountryPosition(by: self.pickedCountry!.id!) : 0
-            let actionSheet = ActionSheetStringPicker.init(title: "Country", rows: c, initialSelection:position, doneBlock: {picker, index, value in
-                self.pickedCountry = countries[index]
-                self.countryTextField.text = value as! String
+            let actionSheet = ActionSheetStringPicker.init(title: "Country", rows: c, initialSelection: NCountryCode.getPosition(by: userRegionCode), doneBlock: {picker, index, value in
+                self.pickedCountry = countryCodes[index]
+                self.userRegionCode = countryCodes[index].countryCode!
+                self.countryTextField.text = ("\(countryCodes[index].countryName!)")
             }, cancel: {_ in return
+                
             }, origin: sender)
+            
             actionSheet!.show()
         }
     }
-    
     @IBAction func birthdateButtonAction(_ sender: Any) {
         let datePickerController = DTMDatePickerController(nibName: "DTMDatePickerController", bundle: nil)
         datePickerController.modalPresentationStyle = .popover
@@ -150,6 +156,7 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
         popoverPresentationController!.sourceView = sender as? UIView
         popoverPresentationController!.sourceRect = CGRect(x: 0, y: 0, width: (sender as AnyObject).frame.size.width, height: (sender as AnyObject).frame.size.height)
     }
+    
     @IBAction func genderButtonAction(_ sender: Any) {
         var genders: [String] = ["Male", "Female"]
         var position = 0
@@ -172,11 +179,13 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
         if let countryCodes = self.countryCodes, !countryCodes.isEmpty {
             var c: [String] = []
             for countryCode in countryCodes {
-                c.append("+\(countryCode.countryNumber!) \(countryCode.countryName!)")
+                if let number = countryCode.countryNumber, let countryName = countryCode.countryName {
+                    c.append("+\(number) \(countryName)")
+                }
             }
-            let actionSheet = ActionSheetStringPicker.init(title: "Country Code", rows: c, initialSelection: NCountryCode.getPosition(by: regionCode), doneBlock: {picker, index, value in
+            let actionSheet = ActionSheetStringPicker.init(title: "Country Code", rows: c, initialSelection: NCountryCode.getPosition(by: self.phoneRegionCode), doneBlock: {picker, index, value in
                 self.pickedCountryCode = countryCodes[index]
-                self.regionCode = countryCodes[index].countryCode!
+                self.phoneRegionCode = countryCodes[index].countryCode!
                 self.countryCodeLabel.text = ("+ \(countryCodes[index].countryNumber!)")
             }, cancel: {_ in return
                 
@@ -191,6 +200,7 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
         self.numberKeyboard!.returnKeyTitle = "Done"
         self.numberKeyboard!.allowsDecimalPoint = false
         self.numberKeyboard!.delegate = self
+        self.birthPlaceTextField.delegate = self
         self.firstNameTextField.delegate = self
         self.lastNameTextField.delegate = self
         self.emailTextField.delegate = self
@@ -202,13 +212,6 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
         self.languageTextField.delegate = self
         self.certificateDateTextFIeld.delegate = self
         self.certificateNumberTextField.delegate = self
-        self.emailTextField.isEnabled = false
-        self.genderTextField.isEnabled = false
-        self.birthdateTextField.isEnabled = false
-        self.countryTextField.isEnabled = false
-        self.nationalityTextField.isEnabled = false
-        self.languageTextField.isEnabled = false
-        self.certificateDateTextFIeld.isEnabled = false
         self.phoneNumberTextField.inputView = self.numberKeyboard
     }
     
@@ -220,6 +223,7 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
             self.emailTextField.text = user.email
             self.phoneNumberTextField.text = user.phone
             if let countryCode = user.countryCode {
+                self.pickedCountryCode = user.countryCode
                 self.countryCodeLabel.text = ("+\(countryCode.countryNumber!)")
             }
             self.genderTextField.text = user.gender
@@ -268,6 +272,7 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
     }
     
     func numberKeyboardShouldReturn(_ numberKeyboard: MMNumberKeyboard!) -> Bool {
+        print("DONE PRESSED!")
         numberKeyboard.resignFirstResponder()
         return true
     }
@@ -312,6 +317,7 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
         MBProgressHUD.showAdded(to: self.view, animated: true)
         NHTTPHelper.httpUpdateProfile(fullname: fullname, username: nil, gender: gender, birthDate: birthDate, countryCodeId: countryCode, phoneNumber: phoneNumber, certificateDate: certificateDate, certificateNumber: certificateNumber, birthPlace: birthPlace, countryId: countryId, nationalityId: nationalityId, languageId: languageId, complete: {response in
             MBProgressHUD.hide(for: self.view, animated: true)
+
             if let error = response.error {
                 if error.isKind(of: NotConnectedInternetError.self) {
                     NHelper.handleConnectionError(completion: {
@@ -329,6 +335,7 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
             })
         })
     }
+    
         /*
     // MARK: - Navigation
 

@@ -33,6 +33,8 @@ public class NLanguage: NSManagedObject {
     static func getLanguage(using id: String) -> NLanguage? {
         let managedContext = AppDelegate.sharedManagedContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NLanguage")
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
         fetchRequest.predicate = NSPredicate(format: "id == %@", id)
         do {
             let languages = try managedContext.fetch(fetchRequest) as? [NLanguage]
@@ -61,6 +63,7 @@ public class NLanguage: NSManagedObject {
     static func getLanguages() -> [NLanguage]? {
         let managedContext = AppDelegate.sharedManagedContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NLanguage")
+        fetchRequest.predicate = NSPredicate(format: "id != nil && name != nil")
         do {
             let languages = try managedContext.fetch(fetchRequest) as? [NLanguage]
             if let languages = languages, !languages.isEmpty {

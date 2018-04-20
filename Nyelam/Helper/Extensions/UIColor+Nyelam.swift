@@ -38,6 +38,10 @@ extension UIColor {
         return UIColor(red: 222/255, green: 229/255, blue: 37/255, alpha: 1.0)
     }
     
+    static var nyGreen: UIColor {
+        return UIColor(red: 8/255, green: 128/255, blue: 2/255, alpha: 1.0)
+    }
+    
     static var nyOrange: UIColor {
         return UIColor(red: 1, green: 152/255, blue: 18/255, alpha: 1.0)
     }
