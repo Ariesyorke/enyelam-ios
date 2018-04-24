@@ -30,6 +30,9 @@ target 'Nyelam' do
   pod 'SkyFloatingLabelTextField', '~> 3.0'
   pod 'Cosmos'
   pod 'SwiftDate'
+  pod 'UIScrollView-InfiniteScroll'
+  pod 'SwiftRangeSlider'
+  pod 'DLRadioButton', '~> 1.4'
   
   target 'NyelamTests' do
     inherit! :search_paths

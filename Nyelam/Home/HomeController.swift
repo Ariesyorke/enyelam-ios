@@ -168,14 +168,14 @@ extension HomeController {
         if sender == self.btDoDive {
             SearchFormController.push(on: self.navigationController!, forDoTrip: false)
         } else if sender == self.btEcoTrip {
-            SearchFormController.push(on: self.navigationController!, forDoTrip: false, isEcotrip: true)
+            EcoTripIntroductionController.push(on: self.navigationController!)
         } else if sender == self.btDoShop || sender == self.btDoCourse {
             UIAlertController.handlePopupMessage(viewController: self, title: "Coming Soon!", actionButtonTitle: "OK", completion: {})
         }
     }
     
     @IBAction func onSeeAllDoTripClicked(_ sender: UIControl) {
-        SearchFormController.push(on: self.navigationController!, forDoTrip: true)
+        DiveServiceSearchResultController.push(on: self.navigationController!, forDoTrip: true, selectedDiver: 1)
     }
     
     @objc func onBannerClicked(at sender: UIControl) {

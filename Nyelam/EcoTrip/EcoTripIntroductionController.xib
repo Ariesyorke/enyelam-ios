@@ -1,12 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="FiraSans-SemiBold.ttf">
+            <string>FiraSans-SemiBold</string>
+        </array>
+    </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EcoTripIntroductionController" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EcoTripIntroductionController" customModule="Nyelam" customModuleProvider="target">
             <connections>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -15,8 +24,57 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eco_trip_6_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="JFA-9E-31D">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eco_trip_6.png" translatesAutoresizingMaskIntoConstraints="NO" id="0Ha-sd-NjE">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zd5-RT-b6f">
+                    <rect key="frame" x="63" y="602" width="250" height="33"/>
+                    <color key="backgroundColor" red="0.5450980392" green="0.74901960779999999" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="17"/>
+                    <state key="normal" title="Book Your Eco-Trip Now">
+                        <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="bookButtonAction:" destination="-1" eventType="touchUpInside" id="tXW-gU-4CT"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QVE-Qh-ddE">
+                    <rect key="frame" x="62" y="522" width="250" height="30"/>
+                    <connections>
+                        <action selector="openUrlAction:" destination="-1" eventType="touchUpInside" id="puF-IB-JDo"/>
+                    </connections>
+                </button>
+            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="JFA-9E-31D" secondAttribute="trailing" id="9CH-Ef-1B8"/>
+                <constraint firstItem="Zd5-RT-b6f" firstAttribute="top" secondItem="QVE-Qh-ddE" secondAttribute="bottom" constant="50" id="B1H-Ux-deB"/>
+                <constraint firstItem="Zd5-RT-b6f" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="1:1.5" id="DwR-ms-uLU"/>
+                <constraint firstItem="0Ha-sd-NjE" firstAttribute="trailing" secondItem="JFA-9E-31D" secondAttribute="trailing" id="LUT-8z-sQL"/>
+                <constraint firstItem="Zd5-RT-b6f" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Vce-Bc-bOG"/>
+                <constraint firstItem="JFA-9E-31D" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XI2-Ex-rO2"/>
+                <constraint firstItem="0Ha-sd-NjE" firstAttribute="bottom" secondItem="JFA-9E-31D" secondAttribute="bottom" id="aKK-rK-wjn"/>
+                <constraint firstAttribute="bottom" secondItem="Zd5-RT-b6f" secondAttribute="bottom" constant="32" id="dVf-Mo-3N1"/>
+                <constraint firstItem="QVE-Qh-ddE" firstAttribute="width" secondItem="Zd5-RT-b6f" secondAttribute="width" id="gkS-4O-DiK"/>
+                <constraint firstItem="0Ha-sd-NjE" firstAttribute="top" secondItem="JFA-9E-31D" secondAttribute="top" id="hd6-PN-iSO"/>
+                <constraint firstItem="QVE-Qh-ddE" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="lNs-8A-y6a"/>
+                <constraint firstItem="JFA-9E-31D" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="oT4-UU-loi"/>
+                <constraint firstAttribute="bottom" secondItem="JFA-9E-31D" secondAttribute="bottom" id="vSx-dk-5bn"/>
+                <constraint firstItem="0Ha-sd-NjE" firstAttribute="leading" secondItem="JFA-9E-31D" secondAttribute="leading" id="xTE-zm-dea"/>
+            </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="eco_trip_6.png" width="582" height="1033"/>
+        <image name="eco_trip_6_bg.png" width="582" height="1033"/>
+    </resources>
 </document>

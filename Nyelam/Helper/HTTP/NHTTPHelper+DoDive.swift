@@ -132,6 +132,7 @@ extension NHTTPHelper {
                                             print(error)
                                         }
                                     }
+                                    complete(NHTTPResponse(resultStatus: true, data: diveservices, error: nil))
                                 }
 
         })
@@ -204,6 +205,7 @@ extension NHTTPHelper {
                                             print(error)
                                         }
                                     }
+                                    complete(NHTTPResponse(resultStatus: true, data: diveservices, error: nil))
                                 }
                                 
         })
@@ -277,6 +279,7 @@ extension NHTTPHelper {
                                             print(error)
                                         }
                                     }
+                                    complete(NHTTPResponse(resultStatus: true, data: diveservices, error: nil))
                                 }
                                 
         })
@@ -351,6 +354,7 @@ extension NHTTPHelper {
                                             print(error)
                                         }
                                     }
+                                    complete(NHTTPResponse(resultStatus: true, data: diveservices, error: nil))
                                 }
                                 
         })
@@ -424,6 +428,7 @@ extension NHTTPHelper {
                                             print(error)
                                         }
                                     }
+                                    complete(NHTTPResponse(resultStatus: true, data: diveservices, error: nil))
                                 }
                                 
         })
@@ -463,7 +468,7 @@ extension NHTTPHelper {
                                                 diveService = NDiveService.getDiveService(using: id)
                                             }
                                             if diveService == nil {
-                                                diveService = NDiveService.init(entity: NSEntityDescription.entity(forEntityName: "NDiveService", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
+                                                diveService = NSEntityDescription.insertNewObject(forEntityName: "NDiveService", into: AppDelegate.sharedManagedContext) as! NDiveService
                                             }
                                             diveService!.parse(json: diveServiceJson)
                                             diveservices!.append(diveService!)

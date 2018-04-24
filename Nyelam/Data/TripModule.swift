@@ -9,9 +9,20 @@
 import Foundation
 import CoreData
 
-public class TripModule: Module {
+public class TripModule: Module, NSCoding {
     private let KEY_TRIPS = "trips"
     var diveServices: [NDiveService]?
+    
+    public convenience required init?(coder aDecoder: NSCoder) {
+        guard let json = aDecoder.decodeObject(forKey: "json") as? [String: Any] else {
+            return nil
+        }
+        self.init(json: json)
+    }
+    
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.serialized(), forKey: "json")
+    }
     
     override func parse(json: [String : Any]) {
         super.parse(json: json)
@@ -23,7 +34,7 @@ public class TripModule: Module {
                     diveService = NDiveService.getDiveService(using: id)
                 }
                 if diveService == nil {
-                    diveService = NDiveService.init(entity: NSEntityDescription.entity(forEntityName: "NDiveService", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
+                    diveService = NSEntityDescription.insertNewObject(forEntityName: "NDiveService", into: AppDelegate.sharedManagedContext) as! NDiveService
                 }
                 diveService!.parse(json: diveServiceJson)
                 diveServices!.append(diveService!)
@@ -39,7 +50,7 @@ public class TripModule: Module {
                         diveService = NDiveService.getDiveService(using: id)
                     }
                     if diveService == nil {
-                        diveService = NDiveService.init(entity: NSEntityDescription.entity(forEntityName: "NDiveService", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
+                        diveService = NSEntityDescription.insertNewObject(forEntityName: "NDiveService", into: AppDelegate.sharedManagedContext) as! NDiveService
                     }
                     diveService!.parse(json: diveServiceJson)
                     diveServices!.append(diveService!)

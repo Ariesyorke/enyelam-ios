@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import CoreData
 
-public class Location: NSObject, Parseable {
+public class Location: NSObject, NSCoding, Parseable {
     private let KEY_COUNTRY = "country"
     private let KEY_PROVINCE = "province"
     private let KEY_CITY = "city"
@@ -24,6 +25,18 @@ public class Location: NSObject, Parseable {
         super.init()
         self.parse(json: json)
     }
+    
+    public convenience required init?(coder aDecoder: NSCoder) {
+        guard let json = aDecoder.decodeObject(forKey: "json") as? [String: Any] else {
+            return nil
+        }
+        self.init(json: json)
+    }
+    
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.serialized(), forKey: "json")
+    }
+
     func parse(json: [String : Any]) {
         self.country = json[KEY_COUNTRY] as? String
         if let provinceJson = json[KEY_PROVINCE] as? [String: Any] {
@@ -31,7 +44,7 @@ public class Location: NSObject, Parseable {
                 self.province = NProvince.getProvince(using: id)
             }
             if self.province == nil {
-                self.province = NProvince()
+                self.province = NSEntityDescription.insertNewObject(forEntityName: "NProvince", into: AppDelegate.sharedManagedContext) as! NProvince
             }
             self.province!.parse(json: provinceJson)
         } else if let provinceString = json[KEY_PROVINCE] as? String {
@@ -42,7 +55,8 @@ public class Location: NSObject, Parseable {
                     self.province = NProvince.getProvince(using: id)
                 }
                 if self.province == nil {
-                    self.province = NProvince()
+                    self.province = NSEntityDescription.insertNewObject(forEntityName: "NProvince", into: AppDelegate.sharedManagedContext) as! NProvince
+                    
                 }
                 self.province!.parse(json: provinceJson)
             } catch {
@@ -54,7 +68,7 @@ public class Location: NSObject, Parseable {
                 self.city = NCity.getCity(using: id)
             }
             if self.city == nil {
-                self.city = NCity()
+                self.city = NSEntityDescription.insertNewObject(forEntityName: "NCity", into: AppDelegate.sharedManagedContext) as! NCity
             }
             self.city!.parse(json: cityJson)
         } else if let cityString = json[KEY_CITY] as? String {
@@ -65,7 +79,7 @@ public class Location: NSObject, Parseable {
                     self.city = NCity.getCity(using: id)
                 }
                 if self.city == nil {
-                    self.city = NCity()
+                    self.city = NSEntityDescription.insertNewObject(forEntityName: "NCity", into: AppDelegate.sharedManagedContext) as! NCity
                 }
                 self.city!.parse(json: cityJson)
             } catch {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Facilities: NSObject, Parseable {
+public class Facilities: NSObject, NSCoding, Parseable {
     private let KEY_DIVE_GUIDE = "dive_guide"
     private let KEY_FOOD = "food"
     private let KEY_TOWEL = "towel"
@@ -23,11 +23,23 @@ public class Facilities: NSObject, Parseable {
     var license: Bool = false
     var transportation: Bool = false
     
+    public convenience required init?(coder aDecoder: NSCoder) {
+        guard let json = aDecoder.decodeObject(forKey: "json") as? [String: Any] else {
+            return nil
+        }
+        self.init(json: json)
+    }
+    
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.serialized(), forKey: "json")
+    }
+    
     override init() {}
     init(json: [String: Any]) {
         super.init()
         self.parse(json: json)
     }
+
     func parse(json: [String : Any]) {
         if let diveGuide = json[KEY_DIVE_GUIDE] as? Bool {
             self.diveGuide = diveGuide

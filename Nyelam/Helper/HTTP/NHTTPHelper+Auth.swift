@@ -25,7 +25,7 @@ extension NHTTPHelper {
             }
             if let data = data, let json = data as? [String: Any] {
                 NAuthReturn.deleteAllAuth()
-                let authReturn = NAuthReturn.init(entity: NSEntityDescription.entity(forEntityName: "NAuthReturn", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
+                let authReturn = NSEntityDescription.insertNewObject(forEntityName: "NAuthReturn", into: AppDelegate.sharedManagedContext) as! NAuthReturn
                 authReturn.parse(json: json)
                 NSManagedObjectContext.saveData()
                 complete(NHTTPResponse(resultStatus: true, data: authReturn, error: nil))
@@ -51,7 +51,7 @@ extension NHTTPHelper {
                                 }
                                 if let data = data, let json = data as? [String: Any] {
                                     _ = NAuthReturn.deleteAllAuth()
-                                    let authReturn = NAuthReturn.init(entity: NSEntityDescription.entity(forEntityName: "NAuthReturn", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
+                                    let authReturn = NSEntityDescription.insertNewObject(forEntityName: "NAuthReturn", into: AppDelegate.sharedManagedContext) as! NAuthReturn
                                     authReturn.parse(json: json)
                                     NSManagedObjectContext.saveData()
                                     complete(NHTTPResponse(resultStatus: true, data: authReturn, error: nil))
@@ -99,7 +99,7 @@ extension NHTTPHelper {
                                 }
                                 if let data = data, let json = data as? [String: Any] {
                                     _ = NAuthReturn.deleteAllAuth()
-                                    let authReturn = NAuthReturn.init(entity: NSEntityDescription.entity(forEntityName: "NAuthReturn", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
+                                    let authReturn = NSEntityDescription.insertNewObject(forEntityName: "NAuthReturn", into: AppDelegate.sharedManagedContext) as! NAuthReturn
                                     authReturn.parse(json: json)
                                     NSManagedObjectContext.saveData()
                                     complete(NHTTPResponse(resultStatus: true, data: authReturn, error: nil))

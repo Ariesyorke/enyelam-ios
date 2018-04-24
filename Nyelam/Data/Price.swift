@@ -8,12 +8,28 @@
 
 import Foundation
 
-class Price: NSObject, Parseable {
+class Price: NSObject, NSCoding, Parseable {
     private let KEY_LOWEST_PRICE = "lowest_price"
     private let KEY_HIGHEST_PRICE = "highest_price"
     
     var lowestPrice: Int = 0
     var highestPrice: Int = 0
+    
+    init(json: [String: Any]) {
+        super.init()
+        self.parse(json: json)
+    }
+    
+    public convenience required init?(coder aDecoder: NSCoder) {
+        guard let json = aDecoder.decodeObject(forKey: "json") as? [String: Any] else {
+            return nil
+        }
+        self.init(json: json)
+    }
+    
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.serialized(), forKey: "json")
+    }
     
     func parse(json: [String : Any]) {
         if let lowestPrice = json[KEY_LOWEST_PRICE] as? Int {

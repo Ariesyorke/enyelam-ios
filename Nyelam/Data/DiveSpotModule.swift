@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-public class DiveSpotModule: Module {
+public class DiveSpotModule: Module, NSCoding {
     private let KEY_DIVE_SPOTS = "dive_spots"
     
     var divespots: [DiveSpot]?
@@ -21,6 +21,20 @@ public class DiveSpotModule: Module {
         super.init()
         self.parse(json: json)
     }
+    
+    public convenience required init?(coder aDecoder: NSCoder) {
+        guard let json = aDecoder.decodeObject(forKey: "json") as? [String: Any] else {
+            return nil
+        }
+        self.init(json: json)
+    }
+    
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.serialized(), forKey: "json")
+    }
+    
+
+    
     override func parse(json: [String : Any]) {
         super.parse(json: json)
         if let diveSpotArray = json[KEY_DIVE_SPOTS] as? Array<[String: Any]>, !diveSpotArray.isEmpty {

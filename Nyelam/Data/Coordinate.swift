@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Coordinate: NSObject, Parseable {
+public class Coordinate: NSObject, NSCoding, Parseable {
     private let KEY_LAT = "lat"
     private let KEY_LON = "lon"
     
@@ -20,6 +20,18 @@ public class Coordinate: NSObject, Parseable {
         super.init()
         self.parse(json: json)
     }
+    
+    public convenience required init?(coder aDecoder: NSCoder) {
+        guard let json = aDecoder.decodeObject(forKey: "json") as? [String: Any] else {
+            return nil
+        }
+        self.init(json: json)
+    }
+    
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.serialized(), forKey: "json")
+    }
+
     func parse(json: [String : Any]) {
         if let latitude = json[KEY_LAT] as? Double {
             self.latitude = latitude

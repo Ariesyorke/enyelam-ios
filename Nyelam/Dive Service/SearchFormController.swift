@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftDate
+import CoreData
 
 class SearchFormController: BaseViewController {
 
@@ -32,17 +33,30 @@ class SearchFormController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     var isEcoTrip: Bool = false
     var forDoTrip: Bool = false
+    var formIndexPath: IndexPath = IndexPath(row: 0, section: 0)
+    
     fileprivate var diveServices: [NDiveService]?
     fileprivate var selectedKeyword: SearchResult?
     fileprivate var selectedDate: Date?
     fileprivate var selectedDiver: Int?
     fileprivate var selectedLicense: Bool! = false
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if self.isEcoTrip {
+            self.navigationController?.navigationBar.barTintColor = UIColor.nyGreen
+        } else {
+            self.navigationController?.navigationBar.barTintColor = UIColor.primary
 
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tableView.register(UINib(nibName: "SearchFormCell", bundle: nil), forCellReuseIdentifier: "SearchFormCell")
         self.tableView.register(UINib(nibName: "DiveServiceCell", bundle: nil), forCellReuseIdentifier: "DiveServiceCell")
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         self.getRecommendation()
     }
 
@@ -53,8 +67,17 @@ class SearchFormController: BaseViewController {
 
     fileprivate func onKeywordSelectedHandler() -> (SearchKeywordController, SearchResult?) -> Void {
         return { controller, keyword in
-            self.selectedKeyword = keyword
-            self.tableView.reloadData()
+            controller.view.endEditing(true)
+            if let navigation = controller.navigationController {
+                navigation.popViewController(animated: true, withCompletionBlock: {
+                    if let keyword = keyword as? SearchResultService {
+                        let searchResultService = keyword as! SearchResultService
+                        self.selectedLicense = searchResultService.license
+                    }
+                    self.selectedKeyword = keyword
+                    self.tableView.reloadData()
+                })
+            }
         }
     }
     
@@ -182,6 +205,10 @@ extension SearchFormController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell: SearchFormCell = tableView.dequeueReusableCell(withIdentifier: "SearchFormCell", for: indexPath) as! SearchFormCell
@@ -192,7 +219,9 @@ extension SearchFormController: UITableViewDelegate, UITableViewDataSource {
                 cell.diveNowButton.backgroundColor = UIColor.orange
             }
             cell.onKeywordHandler = { keyword in
-                let _ = SearchKeywordController.push(on: self.navigationController!, with: self.onKeywordSelectedHandler())
+                if !self.isEcoTrip {
+                    let _ = SearchKeywordController.push(on: self.navigationController!, with: self.onKeywordSelectedHandler())
+                }
             }
             cell.onDateHandler = { string in
                 self.showDatePicker(forDoTrip: self.forDoTrip, isEcoTrip: self.isEcoTrip, indexPath: indexPath)
@@ -218,19 +247,32 @@ extension SearchFormController: UITableViewDelegate, UITableViewDataSource {
                 self.selectedLicense = isOn
             }
             cell.onDiveNowHandler = { cell in
-//                self.selectedKeyword
-//                self.selectedDates
-//                self.selectedDiver
-//                self.selectedLicense
+                if let error = self.validateError() {
+                    UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {})
+                    return
+                }
+                if let keyword = self.selectedKeyword as? SearchResultService {
+                    //TODO OPEN DIVESERVICE DETAIL INSTEAD!
+                    
+                } else {
+                    DiveServiceSearchResultController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: self.selectedKeyword!, selectedLicense: self.selectedLicense, selectedDiver: self.selectedDiver!, selectedDate: self.selectedDate!)
+                }
             }
             cell.keywordLabel.text = self.selectedKeyword != nil ? self.selectedKeyword!.name : "Province, Area, Spot, Dive Center"
             cell.selectedDateLabel.text = self.selectedDate != nil ? SearchFormCell.string(from: self.selectedDate!, forDoTrip: self.forDoTrip) : "Day, Month, Year"
             cell.selectedDiverLabel.text = self.selectedDiver != nil ? String(format: "%d Diver(s)", arguments: [self.selectedDiver!]) : "0 Diver(s)"
             cell.needLicense.isOn = self.selectedLicense
+            if let keyword = self.selectedKeyword as? SearchResultService {
+                cell.needLicense.isUserInteractionEnabled = false
+            } else {
+                cell.needLicense.isUserInteractionEnabled = true
+            }
             return cell
         } else {
             let row = indexPath.row
             let cell: DiveServiceCell = tableView.dequeueReusableCell(withIdentifier: "DiveServiceCell", for: indexPath) as! DiveServiceCell
+            cell.serviceView.control.tag = row
+            cell.serviceView.addTarget(self, action: #selector(SearchFormController.onDiveServiceClicked(at:)))
             cell.serviceView.isDoTrip = self.forDoTrip
             cell.serviceView.initData(diveService: self.diveServices![row])
             return cell
@@ -295,8 +337,19 @@ extension SearchFormController: UITableViewDelegate, UITableViewDataSource {
                     self.diveServices = data
                     self.tableView.reloadData()
                 }
+                NSManagedObjectContext.saveData()
             })
         }
+    }
+    internal func validateError() -> String? {
+        if self.selectedKeyword == nil {
+            return "Please search keyword first!"
+        } else if self.selectedDate == nil {
+            return "Please pick date!"
+        } else if self.selectedDiver == nil {
+            return "Please pick diver!"
+        }
+        return nil
     }
 }
 
@@ -311,7 +364,6 @@ extension SearchFormController: UIPickerViewDataSource, UIPickerViewDelegate {
             return (ecotripPickerView.dates?.count)!
         }
         return 10
-            
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -321,6 +373,22 @@ extension SearchFormController: UIPickerViewDataSource, UIPickerViewDelegate {
         }
         return "\((row + 1))"
     }
+
+    @objc func onDiveServiceClicked(at sender: UIControl) {
+        let index: Int = sender.tag
+        let diveservice = self.diveServices![index]
+        let keyword = SearchResultService()
+        
+        keyword.type = 4
+        keyword.id = diveservice.id
+        keyword.name = diveservice.name
+        keyword.rating = diveservice.rating
+        
+        self.selectedKeyword = keyword
+        self.selectedLicense = diveservice.license
+        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .none, animated: true)
+    }
+
     
 }
 

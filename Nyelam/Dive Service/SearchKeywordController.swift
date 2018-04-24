@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SearchKeywordController: BaseViewController {
     
@@ -18,7 +19,10 @@ class SearchKeywordController: BaseViewController {
     }
     
     @IBOutlet weak var tableView: UITableView!
+    
     var results: [SearchResult]? = nil
+    var savedResults: [SearchResult]? = nil
+    
     var _searchTextField: UITextField? = nil
     var searchTextField: UITextField! {
         if _searchTextField != nil {
@@ -29,7 +33,6 @@ class SearchKeywordController: BaseViewController {
         _searchTextField!.borderStyle = UITextBorderStyle.none
         _searchTextField!.translatesAutoresizingMaskIntoConstraints = false
         _searchTextField!.placeholder = "Search here..."
-        
         return _searchTextField
     }
     fileprivate var handler: (SearchKeywordController, SearchResult?) -> Void = { controller, result in }
@@ -39,19 +42,27 @@ class SearchKeywordController: BaseViewController {
 
         self.setupUI()
         self.setupNavigationItem()
-        
-        // TODO: TESTING
-        let jsonString: String = "[{\"id\":\"3\",\"name\":\"Bali\",\"type\":5},{\"id\":\"1\",\"name\":\"Bali Aqua Dive Center\",\"province\":\"Bali\",\"rating\":\"5\",\"type\":3},{\"id\":\"5\",\"name\":\"Bali Bubbles Dive Center\",\"province\":\"Bali\",\"rating\":\"4\",\"type\":3},{\"id\":\"7\",\"name\":\"Bali Trip\",\"province\":\"Bali\",\"rating\":\"0\",\"type\":3},{\"id\":\"13\",\"name\":\"Balistingray Divers\",\"province\":\"Bali\",\"rating\":\"0\",\"type\":3},{\"id\":\"14\",\"name\":\"Bali Marine Diving\",\"province\":\"Bali\",\"rating\":\"0\",\"type\":3},{\"id\":\"17\",\"name\":\"Nautilus Diving Bali\",\"province\":\"Bali\",\"rating\":\"0\",\"type\":3},{\"id\":\"18\",\"name\":\"Absolute Scuba Bali\",\"province\":\"Bali\",\"rating\":\"0\",\"type\":3},{\"id\":\"179\",\"name\":\"Go Dive Bali (1 Dives)\",\"rating\":\"0\",\"license\":\"1\",\"type\":4},{\"id\":\"180\",\"name\":\"Go Dive Bali (2 Dives)\",\"rating\":\"0\",\"license\":\"1\",\"type\":4},{\"id\":\"181\",\"name\":\"Go Dive Bali (3 Dives)\",\"rating\":\"0\",\"license\":\"1\",\"type\":4},{\"id\":\"182\",\"name\":\"Go Dive Bali (2D1N with 4 Dives)\",\"rating\":\"0\",\"license\":\"1\",\"type\":4},{\"id\":\"183\",\"name\":\"Go Dive Bali (3D2N with 5 Dives)\",\"rating\":\"0\",\"license\":\"1\",\"type\":4},{\"id\":\"184\",\"name\":\"Go Dive Bali (4D3N with 7 Dives)\",\"rating\":\"0\",\"license\":\"1\",\"type\":4},{\"id\":\"185\",\"name\":\"Go Dive Bali (5D4N with 10 Dives)\",\"rating\":\"0\",\"license\":\"1\",\"type\":4}]"
-        let json = try! JSONSerialization.jsonObject(with: jsonString.data(using: String.Encoding.utf8)!, options: JSONSerialization.ReadingOptions.allowFragments)
-        if let array: [[String: Any]] = json as? [[String: Any]] {
-            self.results = []
-            for j: [String: Any] in array {
-                let i: SearchResult = SearchResult.generateSearchResultType(type: j["type"] as! Int, json: j)
-                self.results!.append(i)
-            }
-        }
+        self.setupSavedData()
         self.tableView.reloadData()
         // TODO: end of testing
+    }
+    
+    fileprivate func setupSavedData() {
+        if let savedResults = NSearchResult.getSavedResults() {
+            self.savedResults = []
+            for result in savedResults {
+                var json = result.serialized()
+                if let type = json["type"] as? Int {
+                    var searchResult = SearchResult.generateSearchResultType(type: type, json: json)
+                    self.savedResults!.append(searchResult)
+                } else if let type = json["type"] as? String {
+                    if type.isNumber {
+                        var searchResult = SearchResult.generateSearchResultType(type: Int(type)!, json: json)
+                        self.savedResults!.append(searchResult)
+                    }
+                }
+            }
+        }
     }
     
     fileprivate func setupNavigationItem() {
@@ -71,7 +82,15 @@ class SearchKeywordController: BaseViewController {
 
 extension SearchKeywordController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.results != nil ? self.results!.count : 0
+        if section == 0 {
+            if let savedResults = self.savedResults, !savedResults.isEmpty, self.results == nil || self.results!.isEmpty {
+                return savedResults.count
+            } else {
+                return self.results != nil ? self.results!.count : 0
+            }
+        } else {
+            return self.savedResults != nil ? self.savedResults!.count : 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -81,9 +100,65 @@ extension SearchKeywordController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.navigationController!.popViewController(animated: true)
-        self.handler(self, self.results![indexPath.row])
+        var result: SearchResult? = nil
+        var pickedFromServer: Bool = false
+        if indexPath.section == 0 {
+            if let savedResults = self.savedResults, !savedResults.isEmpty, (self.results == nil || self.results!.isEmpty)  {
+                result = savedResults[indexPath.row]
+            } else {
+                pickedFromServer = true
+                result = self.results![indexPath.row]
+            }
+        } else {
+            result = savedResults![indexPath.row]
+        }
+        if pickedFromServer {
+            var searchResult = NSearchResult.getSavedResult(using: String(result!.type), and: (result!.name!))
+            if searchResult == nil {
+                searchResult = NSEntityDescription.insertNewObject(forEntityName: "NSearchResult", into: AppDelegate.sharedManagedContext) as! NSearchResult
+                searchResult!.parse(json: result!.serialized())
+                NSManagedObjectContext.saveData()
+            }
+        }
+        self.handler(self, result!)
     }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        var section = 0
+        if let results = self.results, !results.isEmpty {
+            section += 1
+        }
+        if let results = self.savedResults, !results.isEmpty {
+            section += 1
+        }
+        return section
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
+            if let savedResults = self.savedResults, !savedResults.isEmpty, (self.results == nil || !self.results!.isEmpty) {
+                return self.savedResultHeader()
+            }
+            return nil
+        } else {
+            return self.savedResultHeader()
+        }
+        return nil
+    }
+    
+    fileprivate func savedResultHeader()->UIView {
+        let header: UIView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
+        header.backgroundColor = UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1)
+        
+        let label: UILabel = UILabel(frame: CGRect(x: 16, y: 8, width: tableView.frame.width - 32, height: 40 - 16))
+        label.text = "Recent Search"
+        label.textColor = UIColor(white: 0.3, alpha: 1)
+        label.font = UIFont.systemFont(ofSize: 14)
+        header.addSubview(label)
+        return header
+
+    }
+
 }
 
 extension SearchKeywordController {
@@ -112,6 +187,7 @@ extension SearchKeywordController {
             ])
         
         view.addSubview(self.searchTextField)
+        self.searchTextField.delegate = self
         self.searchTextField.addConstraint(NSLayoutConstraint(item: self.searchTextField, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 40))
         view.addConstraints([
             NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: self.searchTextField, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 8),
@@ -120,5 +196,37 @@ extension SearchKeywordController {
             ])
         
         return view
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        NHTTPHelper.httpCancelRequest(apiUrl: NHTTPHelper.API_PATH_MASTER_DO_DIVE_SEARCH)
+        if let text = textField.text,
+            let textRange = Range(range, in: text) {
+            let keyword = text.replacingCharacters(in: textRange,
+                                                       with: string)
+            if keyword.count >= 3 {
+                self.trySearch(with: keyword)
+            }
+        }
+        return true
+    }
+
+    func trySearch(with keyword: String) {
+        NHTTPHelper.httpDoDiveSearchBy(keyword: keyword, ecoTrip: nil, complete: {response in
+            if let error = response.error {
+                UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {error in
+                    if error.isKind(of: NotConnectedInternetError.self) {
+                        NHelper.handleConnectionError(completion: {
+                            self.trySearch(with: keyword)
+                        })
+                    }
+                })
+                return
+            }
+            if let data = response.data, !data.isEmpty {
+                self.results = data
+                self.tableView.reloadData()
+            }
+        })
     }
 }

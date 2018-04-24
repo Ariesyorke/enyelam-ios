@@ -8,12 +8,23 @@
 
 import Foundation
 
-public class Schedule: NSObject, Parseable {
+public class Schedule: NSObject, NSCoding, Parseable {
     private let KEY_START_DATE = "start_date"
     private let KEY_END_DATE = "end_date"
     
     var startDate: Double = 0
     var endDate: Double = 0
+    
+    public convenience required init?(coder aDecoder: NSCoder) {
+        guard let json = aDecoder.decodeObject(forKey: "json") as? [String: Any] else {
+            return nil
+        }
+        self.init(json: json)
+    }
+    
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.serialized(), forKey: "json")
+    }
     
     override init() {
         super.init()

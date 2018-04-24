@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-public class BookingContact: NSObject, Parseable {
+public class BookingContact: NSObject, NSCoding, Parseable {
     private let KEY_NAME = "name"
     private let KEY_PHONE_NUMBER = "phone_number"
     private let KEY_EMAIL = "email"
@@ -27,6 +27,18 @@ public class BookingContact: NSObject, Parseable {
         super.init()
         self.parse(json: json)
     }
+    
+    public convenience required init?(coder aDecoder: NSCoder) {
+        guard let json = aDecoder.decodeObject(forKey: "json") as? [String: Any] else {
+            return nil
+        }
+        self.init(json: json)
+    }
+    
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.serialized(), forKey: "json")
+    }
+    
     func parse (json: [String: Any]) {
         self.name = json[KEY_NAME] as? String
         self.phoneNumber = json[KEY_PHONE_NUMBER] as? String
@@ -36,7 +48,7 @@ public class BookingContact: NSObject, Parseable {
                 countryCode = NCountryCode.getCountryCode(using: id)
             }
             if countryCode == nil {
-                countryCode = NCountryCode()
+                countryCode = NSEntityDescription.insertNewObject(forEntityName: "NCountryCode", into: AppDelegate.sharedManagedContext) as! NCountryCode
             }
             countryCode!.parse(json: countryCodeJson)
         } else if let countryCodeString = json[KEY_COUNTRY_CODE] as? String {
@@ -47,7 +59,7 @@ public class BookingContact: NSObject, Parseable {
                     countryCode = NCountryCode.getCountryCode(using: id)
                 }
                 if countryCode == nil {
-                    countryCode = NCountryCode()
+                    countryCode = NSEntityDescription.insertNewObject(forEntityName: "NCountryCode", into: AppDelegate.sharedManagedContext) as! NCountryCode
                 }
                 countryCode!.parse(json: countryCodeJson)
             } catch {

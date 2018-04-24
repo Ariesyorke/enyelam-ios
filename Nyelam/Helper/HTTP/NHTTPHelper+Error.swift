@@ -30,7 +30,17 @@ class NHTTPHelper {
     static let POST_TIMESTAMP = "timestamp"
     static let POST_DEVICE = "device"
     
-    internal static var HOST_URL: String {
+    internal static func httpCancelRequest(apiUrl: String) {
+        let sessionManager = Alamofire.SessionManager.default
+        sessionManager.session.getTasksWithCompletionHandler { dataTasks, uploadTasks, downloadTasks in
+            dataTasks.forEach {
+                if $0.originalRequest?.url?.absoluteString == HOST_URL + apiUrl {
+                    $0.cancel()
+                }
+            }
+        }
+    }
+    static var HOST_URL: String {
         switch NConstant.URL_TYPE {
         case .staging:
             return "https://nyelam.dantech.id/"
@@ -41,7 +51,7 @@ class NHTTPHelper {
         }
     }
     
-    internal static var API_PATH_LOGIN: String {
+    static var API_PATH_LOGIN: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "user/login"
@@ -50,7 +60,7 @@ class NHTTPHelper {
         }
     }
     
-    internal static var API_PATH_UPDATE_VERSION: String {
+    static var API_PATH_UPDATE_VERSION: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "master/UpdateVersion"
@@ -59,7 +69,7 @@ class NHTTPHelper {
         }
     }
     
-    internal static var API_PATH_SOCMED_LOGIN: String {
+    static var API_PATH_SOCMED_LOGIN: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "user/socmedlogin"
@@ -68,7 +78,7 @@ class NHTTPHelper {
         }
     }
     
-    internal static var API_PATH_REGISTER: String {
+    static var API_PATH_REGISTER: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "user/register"
@@ -77,7 +87,7 @@ class NHTTPHelper {
         }
     }
     
-    internal static var API_PATH_FORGOT_PASSWORD: String {
+    static var API_PATH_FORGOT_PASSWORD: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "user/forgotpass"
@@ -86,7 +96,7 @@ class NHTTPHelper {
         }
     }
     
-    internal static var API_PATH_MASTER_COUNTRY: String {
+    static var API_PATH_MASTER_COUNTRY: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "master/country"
@@ -95,7 +105,7 @@ class NHTTPHelper {
         }
     }
     
-    internal static var API_PATH_MASTER_NATIONALITY: String {
+    static var API_PATH_MASTER_NATIONALITY: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "master/nationality"
@@ -104,7 +114,7 @@ class NHTTPHelper {
         }
     }
     
-    internal static var API_PATH_MASTER_LANGUAGE: String {
+    static var API_PATH_MASTER_LANGUAGE: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "master/language"
@@ -113,7 +123,7 @@ class NHTTPHelper {
         }
     }
     
-    internal static var API_PATH_MASTER_CATEGORY: String {
+    static var API_PATH_MASTER_CATEGORY: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "service/masterCategory"
@@ -122,7 +132,7 @@ class NHTTPHelper {
         }
     }
     
-    internal static var API_PATH_MASTER_DO_DIVE_SEARCH: String {
+    static var API_PATH_MASTER_DO_DIVE_SEARCH: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "master/dodive/search"
@@ -131,7 +141,7 @@ class NHTTPHelper {
         }
     }
     
-    internal static var API_PATH_SUGGESTION_SERVICE: String {
+    static var API_PATH_SUGGESTION_SERVICE: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "dodive/sugestion"
@@ -140,52 +150,52 @@ class NHTTPHelper {
         }
     }
     
-    internal static var API_PATH_SEARCH_SERVICE_LIST_BY_DIVE_CENTER: String {
+    static var API_PATH_SEARCH_SERVICE_LIST_BY_DIVE_CENTER: String {
         switch NConstant.URL_TYPE {
         case .production:
-            return "service/serviceList"
+            return "dodive/search/divecenter"
         default:
-            return "api/service/serviceList"
+            return "api/dodive/search/divecenter"
         }
     }
     
-    internal static var API_PATH_SEARCH_SERVICE_LIST_BY_DIVESPOT: String {
+    static var API_PATH_SEARCH_SERVICE_LIST_BY_DIVESPOT: String {
         switch NConstant.URL_TYPE {
         case .production:
-            return "service/serviceDivespotList"
+            return "dodive/search/divespot"
         default:
-            return "api/service/serviceDivespotList"
+            return "api/dodive/search/divespot"
         }
     }
     
-    internal static var API_PATH_SEARCH_SERVICE_LIST_BY_CATEGORY: String {
+    static var API_PATH_SEARCH_SERVICE_LIST_BY_CATEGORY: String {
         switch NConstant.URL_TYPE {
         case .production:
-            return "service/serviceCategoryList"
+            return "dodive/search/category"
         default:
-            return "api/service/serviceCategoryList"
+            return "api/dodive/search/category"
         }
     }
     
-    internal static var API_PATH_SEARCH_SERVICE_LIST_BY_PROVINCE: String {
+    static var API_PATH_SEARCH_SERVICE_LIST_BY_PROVINCE: String {
         switch NConstant.URL_TYPE {
         case .production:
-            return "service/serviceProvinceList"
+            return "dodive/search/province"
         default:
-            return "api/service/serviceProvinceList"
+            return "api/dodive/search/province"
         }
     }
     
-    internal static var API_PATH_SEARCH_SERVICE_LIST_BY_CITY: String {
+    static var API_PATH_SEARCH_SERVICE_LIST_BY_CITY: String {
         switch NConstant.URL_TYPE {
         case .production:
-            return "service/serviceCityList"
+            return "dodive/search/city"
         default:
-            return "api/service/serviceCityList"
+            return "api/dodive/search/city"
         }
     }
     
-    internal static var API_PATH_HOMEPAGE_MODULES: String {
+    static var API_PATH_HOMEPAGE_MODULES: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "master/homepage"
@@ -193,7 +203,7 @@ class NHTTPHelper {
             return "api/master/homepage"
         }
     }
-    internal static var API_PATH_DETAIL_SERVICE: String {
+    static var API_PATH_DETAIL_SERVICE: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "service/detailService"
@@ -201,7 +211,7 @@ class NHTTPHelper {
             return "api/service/detailService"
         }
     }
-    internal static var API_PATH_BOOK_SERVICE_CART: String {
+    static var API_PATH_BOOK_SERVICE_CART: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "order/bookservicecart"
@@ -209,7 +219,7 @@ class NHTTPHelper {
             return "api/order/bookservicecart"
         }
     }
-    internal static var API_PATH_BOOK_GET_PARTICIPANTS: String {
+    static var API_PATH_BOOK_GET_PARTICIPANTS: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "order/getSavedParticipants"
@@ -217,7 +227,7 @@ class NHTTPHelper {
             return "api/order/getSavedParticipants"
         }
     }
-    internal static var API_PATH_SUBMIT_ORDER: String {
+    static var API_PATH_SUBMIT_ORDER: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "order/submit"
@@ -225,7 +235,7 @@ class NHTTPHelper {
             return "api/order/submit"
         }
     }
-    internal static var API_PATH_BOOKING_HISTORY: String {
+    static var API_PATH_BOOKING_HISTORY: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "order/orderList"
@@ -233,7 +243,7 @@ class NHTTPHelper {
             return "api/order/orderList"
         }
     }
-    internal static var API_PATH_BOOKING_DETAIL: String {
+    static var API_PATH_BOOKING_DETAIL: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "order/detail"
@@ -241,7 +251,7 @@ class NHTTPHelper {
             return "api/order/detail"
         }
     }
-    internal static var API_PATH_DIVE_CENTER_DETAIL: String {
+    static var API_PATH_DIVE_CENTER_DETAIL: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "divecenter/detail"
@@ -249,7 +259,7 @@ class NHTTPHelper {
             return "api/divecenter/detail"
         }
     }
-    internal static var API_PATH_DIVE_SPOT_DETAIL: String {
+    static var API_PATH_DIVE_SPOT_DETAIL: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "divespot/detail"
@@ -258,7 +268,7 @@ class NHTTPHelper {
         }
     }
     
-    internal static var API_PATH_UPLOAD_PAYMENT_PROOF: String {
+    static var API_PATH_UPLOAD_PAYMENT_PROOF: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "order/paymentProof"
@@ -267,7 +277,7 @@ class NHTTPHelper {
         }
     }
     
-    internal static var API_PATH_CHANGE_PASSWORD: String {
+    static var API_PATH_CHANGE_PASSWORD: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "user/changepass"
@@ -276,7 +286,7 @@ class NHTTPHelper {
         }
     }
     
-    internal static var API_PATH_UPDATE_PROFILE: String {
+    static var API_PATH_UPDATE_PROFILE: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "user/profile/edit"
@@ -284,7 +294,7 @@ class NHTTPHelper {
             return "api/user/profile/edit"
         }
     }
-    internal static var API_PATH_UPDATE_PHOTO: String {
+    static var API_PATH_UPDATE_PHOTO: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "user/photo"
@@ -292,7 +302,7 @@ class NHTTPHelper {
             return "api/user/photo"
         }
     }
-    internal static var API_PATH_UPLOAD_COVER: String {
+    static var API_PATH_UPLOAD_COVER: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "user/cover"
@@ -300,7 +310,7 @@ class NHTTPHelper {
             return "api/user/cover"
         }
     }
-    internal static var API_PATH_DO_TRIP_SUGGESTION: String {
+    static var API_PATH_DO_TRIP_SUGGESTION: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "dotrip/suggestion"
@@ -308,7 +318,7 @@ class NHTTPHelper {
             return "api/dotrip/suggestion"
         }
     }
-    internal static var API_PATH_DO_TRIP_SEARCH_BY_DIVE_CENTER: String {
+    static var API_PATH_DO_TRIP_SEARCH_BY_DIVE_CENTER: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "dotrip/search/divecenter"
@@ -316,7 +326,7 @@ class NHTTPHelper {
             return "api/dotrip/search/divecenter"
         }
     }
-    internal static var API_PATH_DO_TRIP_SEARCH_BY_DIVE_SPOT: String {
+    static var API_PATH_DO_TRIP_SEARCH_BY_DIVE_SPOT: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "dotrip/search/divespot"
@@ -324,7 +334,7 @@ class NHTTPHelper {
             return "api/dotrip/search/divespot"
         }
     }
-    internal static var API_PATH_DO_TRIP_SEARCH_BY_CATEGORY: String {
+    static var API_PATH_DO_TRIP_SEARCH_BY_CATEGORY: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "dotrip/search/category"
@@ -332,7 +342,7 @@ class NHTTPHelper {
             return "api/dotrip/search/category"
         }
     }
-    internal static var API_PATH_DO_TRIP_SEARCH_BY_PROVINCE: String {
+    static var API_PATH_DO_TRIP_SEARCH_BY_PROVINCE: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "dotrip/search/province"
@@ -340,7 +350,7 @@ class NHTTPHelper {
             return "api/dotrip/search/province"
         }
     }
-    internal static var API_PATH_DO_TRIP_SEARCH_BY_CITY: String {
+    static var API_PATH_DO_TRIP_SEARCH_BY_CITY: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "dotrip/search/city"
@@ -348,7 +358,7 @@ class NHTTPHelper {
             return "api/dotrip/search/city"
         }
     }
-    internal static var API_PATH_MIN_MAX_PRICE: String {
+    static var API_PATH_MIN_MAX_PRICE: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "service/minMaxPrice"
@@ -356,7 +366,7 @@ class NHTTPHelper {
             return "api/service/minMaxPrice"
         }
     }
-    internal static var API_PATH_CHANGE_PAYMENT_METHOD: String {
+    static var API_PATH_CHANGE_PAYMENT_METHOD: String {
         switch NConstant.URL_TYPE {
         case .production:
             return "order/changePaymentMethod"
@@ -365,6 +375,15 @@ class NHTTPHelper {
         }
 
     }
+    static var API_PATH_GET_ALL_DO_TRIP: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "dotrip/seeAll"
+        default:
+            return "api/dotrip/seeAll"
+        }
+    }
+    
     internal static func basicAuthRequest(URLString: URLConvertible,
                                           parameters: [String: Any]? = nil,
                                           headers: [String: String]? = nil,

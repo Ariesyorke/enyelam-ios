@@ -13,6 +13,10 @@ public class SearchResultService: SearchResult {
     
     var license: Bool = false
     
+    override init() {
+        super.init()
+    }
+    
     override init(json: [String: Any]) {
         super.init(json: json)
         self.parse(json: json)

@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import CoreData
 
-public class DiveSpot: NSObject, Parseable {
+public class DiveSpot: NSObject, NSCoding, Parseable {
     private let KEY_ID = "id"
     private let KEY_NAME = "name"
     private let KEY_IMAGES = "images"
@@ -60,6 +61,18 @@ public class DiveSpot: NSObject, Parseable {
         super.init()
         self.parse(json: json)
     }
+    
+    public convenience required init?(coder aDecoder: NSCoder) {
+        guard let json = aDecoder.decodeObject(forKey: "json") as? [String: Any] else {
+            return nil
+        }
+        self.init(json: json)
+    }
+    
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.serialized(), forKey: "json")
+    }
+    
     func parse(json: [String : Any]) {
         self.id = json[KEY_ID] as? String
         self.name = json[KEY_NAME] as? String
@@ -126,7 +139,7 @@ public class DiveSpot: NSObject, Parseable {
                 self.experienceMin = NExperience.getExperience(using: id)
             }
             if self.experienceMin == nil {
-                self.experienceMin = NExperience()
+                self.experienceMin = NSEntityDescription.insertNewObject(forEntityName: "NExperience", into: AppDelegate.sharedManagedContext) as! NExperience
             }
             self.experienceMin!.parse(json: experienceMinJson)
         } else if let experienceMinString = json[KEY_EXPERIENCE_MIN] as? String {
@@ -137,7 +150,7 @@ public class DiveSpot: NSObject, Parseable {
                     self.experienceMin = NExperience.getExperience(using: id)
                 }
                 if self.experienceMin == nil {
-                    self.experienceMin = NExperience()
+                    self.experienceMin = NSEntityDescription.insertNewObject(forEntityName: "NExperience", into: AppDelegate.sharedManagedContext) as! NExperience
                 }
                 self.experienceMin!.parse(json: experienceMinJson)
             } catch {
@@ -149,7 +162,7 @@ public class DiveSpot: NSObject, Parseable {
                 self.experienceMax = NExperience.getExperience(using: id)
             }
             if self.experienceMax == nil {
-                self.experienceMax = NExperience()
+                self.experienceMax = NSEntityDescription.insertNewObject(forEntityName: "NExperience", into: AppDelegate.sharedManagedContext) as! NExperience
             }
             self.experienceMax!.parse(json: experienceMaxJson)
         } else if let experienceMaxString = json[KEY_EXPERIENCE_MAX] as? String {
@@ -162,8 +175,7 @@ public class DiveSpot: NSObject, Parseable {
                 }
                 
                 if self.experienceMax == nil {
-                    self.experienceMax = NExperience()
-                }
+                    self.experienceMax = NSEntityDescription.insertNewObject(forEntityName: "NExperience", into: AppDelegate.sharedManagedContext) as! NExperience                }
                 
                 self.experienceMax!.parse(json: experienceMaxJson)
             } catch {

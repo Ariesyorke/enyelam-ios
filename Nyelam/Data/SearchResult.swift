@@ -20,7 +20,8 @@ public class SearchResult: Parseable {
     var rating: Double = 0
     var type: Int = -1
     var count: Int = 0
-    
+    init() {
+    }
     init(json: [String: Any]) {
         self.parse(json: json)
     }

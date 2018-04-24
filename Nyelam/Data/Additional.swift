@@ -8,7 +8,18 @@
 
 import Foundation
 
-public class Additional: NSObject, Parseable {
+public class Additional: NSObject, NSCoding, Parseable {
+    public convenience required init?(coder aDecoder: NSCoder) {
+        guard let json = aDecoder.decodeObject(forKey: "json") as? [String: Any] else {
+            return nil
+        }
+        self.init(json: json)
+    }
+    
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.serialized(), forKey: "json")
+    }
+    
     private let KEY_TITLE = "title"
     private let KEY_VALUE = "value"
     
@@ -21,6 +32,7 @@ public class Additional: NSObject, Parseable {
         self.parse(json: json)
     }
     
+        
     func parse(json: [String: Any]) {
         self.title = json[KEY_TITLE] as? String
         if let value = json[KEY_VALUE] as? Double {

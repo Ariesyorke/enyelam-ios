@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class CartReturn: NSObject, Parseable {
+public class CartReturn: NSObject, NSCoding, Parseable {
     private let KEY_CART_TOKEN = "cart_token"
     private let KEY_EXPIRY = "expiry"
     private let KEY_CART = "cart"
@@ -18,10 +18,23 @@ public class CartReturn: NSObject, Parseable {
     var expiry: Double = 0
     var cart: Cart?
     var additionals: [Additional]?
+
     init(json: [String: Any]) {
         super.init()
         self.parse(json: json)
     }
+    
+    public convenience required init?(coder aDecoder: NSCoder) {
+        guard let json = aDecoder.decodeObject(forKey: "json") as? [String: Any] else {
+            return nil
+        }
+        self.init(json: json)
+    }
+    
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.serialized(), forKey: "json")
+    }
+    
     func parse(json: [String : Any]) {
         self.cartToken = json[KEY_CART_TOKEN] as? String
         if let expiry = json[KEY_EXPIRY] as? Double {

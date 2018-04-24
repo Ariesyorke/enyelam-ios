@@ -7,8 +7,15 @@
 //
 
 import UIKit
+import UINavigationControllerWithCompletionBlock
 
 class EcoTripIntroductionController: BaseViewController {
+    static func push(on controller: UINavigationController) -> EcoTripIntroductionController {
+        let vc: EcoTripIntroductionController = EcoTripIntroductionController(nibName: "EcoTripIntroductionController", bundle: nil)
+        controller.navigationBar.barTintColor = UIColor.nyGreen
+        controller.pushViewController(vc, animated: true)
+        return vc
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +28,25 @@ class EcoTripIntroductionController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func openUrlAction(_ sender: Any) {
+        guard let url = URL(string: "https://www.sosis.id") else {
+            return //be safe
+        }
+        
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.openURL(url)
+        }
+    }
+    
+    @IBAction func bookButtonAction(_ sender: Any) {
+        if let navigation = self.navigationController {
+            navigation.popViewController(animated: true, withCompletionBlock: {
+                SearchFormController.push(on: navigation, forDoTrip: false, isEcotrip: true)
+            })
+        }
+    }
     /*
     // MARK: - Navigation
 

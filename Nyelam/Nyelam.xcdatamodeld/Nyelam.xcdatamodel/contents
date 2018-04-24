@@ -91,6 +91,15 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="city" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NCity" inverseName="province" inverseEntity="NCity" syncable="YES"/>
     </entity>
+    <entity name="NSearchResult" representedClassName="NSearchResult" syncable="YES">
+        <attribute name="count" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="license" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="province" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
     <entity name="NSocialMedia" representedClassName="NSocialMedia" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
@@ -143,5 +152,6 @@
         <element name="NSocialMedia" positionX="-144" positionY="-63" width="128" height="75"/>
         <element name="NSummary" positionX="-162" positionY="-81" width="128" height="120"/>
         <element name="NUser" positionX="-153" positionY="-72" width="128" height="390"/>
+        <element name="NSearchResult" positionX="-180" positionY="-99" width="128" height="150"/>
     </elements>
 </model>

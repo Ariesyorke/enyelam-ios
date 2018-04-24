@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Membership: NSObject, Parseable {
+public class Membership: NSObject, NSCoding, Parseable {
     private let KEY_MEMBERSHIP_TYPE = "membership_type"
     private let KEY_MEMBERSHIP_EXPIRED = "membership_expired"
     
@@ -22,6 +22,17 @@ public class Membership: NSObject, Parseable {
     init(json: [String: Any]) {
         super.init()
         self.parse(json: json)
+    }
+    
+    public convenience required init?(coder aDecoder: NSCoder) {
+        guard let json = aDecoder.decodeObject(forKey: "json") as? [String: Any] else {
+            return nil
+        }
+        self.init(json: json)
+    }
+    
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.serialized(), forKey: "json")
     }
     
     func parse(json: [String : Any]) {

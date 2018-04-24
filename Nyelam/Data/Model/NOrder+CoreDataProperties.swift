@@ -2,7 +2,7 @@
 //  NOrder+CoreDataProperties.swift
 //  Nyelam
 //
-//  Created by Bobi on 4/9/18.
+//  Created by Bobi on 4/23/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //

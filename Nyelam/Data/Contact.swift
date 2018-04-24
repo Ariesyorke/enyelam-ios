@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Contact: NSObject, Parseable {
+public class Contact: NSObject, NSCoding, Parseable {
     private let KEY_NAME = "name"
     private let KEY_EMAIL_ADDRESS = "email_address"
     private let KEY_EMAIL = "email"
@@ -26,6 +26,18 @@ public class Contact: NSObject, Parseable {
         super.init()
         self.parse(json: json)
     }
+    
+    public convenience required init?(coder aDecoder: NSCoder) {
+        guard let json = aDecoder.decodeObject(forKey: "json") as? [String: Any] else {
+            return nil
+        }
+        self.init(json: json)
+    }
+    
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.serialized(), forKey: "json")
+    }
+
     func parse(json: [String : Any]) {
         self.name = json[KEY_NAME] as? String
         if let email = json[KEY_EMAIL] as? String {

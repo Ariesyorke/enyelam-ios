@@ -1,0 +1,1669 @@
+//
+//  CoreDataModel+Extensions.swift
+//  Nyelam
+//
+//  Created by Bobi on 4/23/18.
+//  Copyright © 2018 e-Nyelam. All rights reserved.
+//
+
+import Foundation
+import CoreData
+
+//
+//  NCoreParser.swift
+//  Nyelam
+//
+//  Created by Bobi on 4/23/18.
+//  Copyright © 2018 e-Nyelam. All rights reserved.
+//
+
+import Foundation
+import CoreData
+
+
+extension NCategory {
+    func parse(json: [String : Any]) {
+        self.id = json["id"] as? String
+        self.name = json["name"] as? String
+        self.icon = json["icon"] as? String
+    }
+    
+    func serialized() -> [String : Any] {
+        var json: [String: Any] = [:]
+        if let id = self.id {
+            json["id"] = id
+        }
+        if let name = self.name {
+            json["name"] = name
+        }
+        if let icon = self.icon {
+            json["icon"] = icon
+        }
+        return json
+    }
+    
+    static func getCategory(using id: String) -> NCategory? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NCategory")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        do {
+            let categories = try managedContext.fetch(fetchRequest) as? [NCategory]
+            if let categories = categories, !categories.isEmpty {
+                return categories.first
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+}
+
+extension NUser {
+    func parse(json: [String : Any]) {
+        self.id = json["user_id"] as? String
+        self.fullname = json["fullname"] as? String
+        self.firstName = json["firstname"] as? String
+        self.lastName = json["lastname"] as? String
+        self.phone = json["phone_number"] as? String
+        self.email = json["email"] as? String
+        self.gender = json["gender"] as? String
+        self.picture = json["picture"] as? String
+        if let isVerified = json["is_verified"] as? Bool {
+            self.isVerified = isVerified
+        } else if let isVerified = json["is_verified"] as? String {
+            self.isVerified = isVerified.toBool
+        }
+        self.referralCode = json["referral_code"] as? String
+        self.address = json["address"] as? String
+        self.birthPlace = json["birthplace"] as? String
+        if let birthDateTimeStamp = json["birthdate"] as? Double {
+            self.birthDate = NSDate(timeIntervalSince1970: birthDateTimeStamp)
+        } else if let birthDateTimeStamp = json["birthdate"] as? String {
+            if birthDateTimeStamp.isNumber {
+                let timestamp = Double(birthDateTimeStamp)!
+                self.birthDate = NSDate(timeIntervalSince1970: timestamp)
+            }
+        }
+        self.certificateNumber = json["certificate_number"] as? String
+        if let certificateTimeStamp = json["certificate_date"] as? Double {
+            self.certificateDate = NSDate(timeIntervalSince1970: certificateTimeStamp)
+        } else if let certificateTimestamp = json["certificate_date"] as? String {
+            if certificateTimestamp.isNumber {
+                let timestamp = Double(certificateTimestamp)!
+                self.birthDate = NSDate(timeIntervalSince1970: timestamp)
+            }
+        }
+        self.username = json["username"] as? String
+        self.cover = json["cover"] as? String
+        if let countryCodeJson = json["country_code"] as? [String: Any] {
+            if let id = countryCodeJson["id"] as? String {
+                self.countryCode = NCountryCode.getCountryCode(using: id)
+            }
+            if self.countryCode == nil {
+                self.countryCode = NSEntityDescription.insertNewObject(forEntityName: "NCountryCode", into: AppDelegate.sharedManagedContext) as! NCountryCode
+
+            }
+            self.countryCode!.parse(json: json)
+        } else if let countryCodeString = json["country_code"] as? String {
+            do {
+                let data = countryCodeString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let countryCodeJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                if let id = countryCodeJson["id"] as? String {
+                    self.countryCode = NCountryCode.getCountryCode(using: id)
+                }
+                if self.countryCode == nil {
+                    self.countryCode = NSEntityDescription.insertNewObject(forEntityName: "NCountryCode", into: AppDelegate.sharedManagedContext) as! NCountryCode                }
+                self.countryCode!.parse(json: json)
+            } catch {
+                print(error)
+            }
+        }
+        if let countryJson = json["country"] as? [String: Any] {
+            if let id = countryJson["id"] as? String {
+                self.country = NCountry.getCountry(using: id)
+            }
+            if self.country == nil {
+                self.country = NSEntityDescription.insertNewObject(forEntityName: "NCountry", into: AppDelegate.sharedManagedContext) as! NCountry
+            }
+            self.country!.parse(json: json)
+        } else if let countryString = json["country"] as? String {
+            do {
+                let data = countryString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let countryJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                if let id = countryJson["id"] as? String {
+                    self.country = NCountry.getCountry(using: id)
+                }
+                if self.country == nil {
+                    self.country = NSEntityDescription.insertNewObject(forEntityName: "NCountry", into: AppDelegate.sharedManagedContext) as! NCountry
+                }
+                self.country!.parse(json: json)
+            } catch {
+                print(error)
+            }
+        }
+        if let socialMediaArray = json["social_media"] as? Array<[String: Any]>, !socialMediaArray.isEmpty {
+            for socialMediaJson in socialMediaArray {
+                var socialMedia: NSocialMedia? = nil
+                if let id = socialMediaJson["id"] as? String, let type = socialMediaJson["type"] as? String {
+                    socialMedia = NSocialMedia.getSocialMedia(using: id, and: type)
+                }
+                if socialMedia == nil {
+                    socialMedia = NSEntityDescription.insertNewObject(forEntityName: "NSocialMedia", into: AppDelegate.sharedManagedContext) as! NSocialMedia
+
+                }
+                socialMedia!.parse(json: json)
+                self.addToSocialMedias(socialMedia!)
+            }
+        } else if let socialMediaSring = json["social_media"] as? String {
+            do {
+                let data = socialMediaSring.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let socialMediaArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+                for socialMediaJson in socialMediaArray {
+                    var socialMedia: NSocialMedia? = nil
+                    if let id = socialMediaJson["id"] as? String, let type = socialMediaJson["type"] as? String {
+                        socialMedia = NSocialMedia.getSocialMedia(using: id, and: type)
+                    }
+                    if socialMedia == nil {
+                        socialMedia = NSEntityDescription.insertNewObject(forEntityName: "NSocialMedia", into: AppDelegate.sharedManagedContext) as! NSocialMedia
+                    }
+                    socialMedia!.parse(json: json)
+                    self.addToSocialMedias(socialMedia!)
+                }
+            } catch {
+                print(error)
+            }
+        }
+        if let languageJson = json["language"] as? [String: Any] {
+            if let id = languageJson["id"] as? String {
+                self.language = NLanguage.getLanguage(using: id)
+            }
+            if self.language == nil {
+                self.language = NSEntityDescription.insertNewObject(forEntityName: "NLanguage", into: AppDelegate.sharedManagedContext) as! NLanguage
+
+            }
+            self.language!.parse(json: json)
+        } else if let languageString = json["language"] as? String {
+            do {
+                let data = languageString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let languageJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                if let id = languageJson["id"] as? String {
+                    self.language = NLanguage.getLanguage(using: id)
+                }
+                if self.language == nil {
+                    self.language = NSEntityDescription.insertNewObject(forEntityName: "NLanguage", into: AppDelegate.sharedManagedContext) as! NLanguage
+                }
+                self.language!.parse(json: json)
+            } catch {
+                print(error)
+            }
+        }
+        if let nationalityJson = json["nationality"] as? [String: Any] {
+            if let id = nationalityJson["id"] as? String {
+                self.nationality = NNationality.getNationality(using: id)
+            }
+            if self.nationality == nil {
+                self.nationality = NSEntityDescription.insertNewObject(forEntityName: "NNationality", into: AppDelegate.sharedManagedContext) as! NNationality
+            }
+            self.nationality!.parse(json: json)
+        } else if let nationalityString = json["nationality"] as? String {
+            do {
+                let data = nationalityString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let nationalityJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                if let id = nationalityJson["id"] as? String {
+                    self.nationality = NNationality.getNationality(using: id)
+                }
+                if self.nationality == nil {
+                    self.nationality = NSEntityDescription.insertNewObject(forEntityName: "NNationality", into: AppDelegate.sharedManagedContext) as! NNationality
+                }
+                self.nationality!.parse(json: json)
+            } catch {
+                print(error)
+            }
+        }
+        if let countryCodeJson = json["country_code"] as? [String: Any] {
+            if let id = countryCodeJson["id"] as? String {
+                self.countryCode = NCountryCode.getCountryCode(using: id)
+            }
+            if self.countryCode == nil {
+                self.countryCode = NSEntityDescription.insertNewObject(forEntityName: "NCountryCode", into: AppDelegate.sharedManagedContext) as! NCountryCode
+            }
+            self.countryCode!.parse(json: countryCodeJson)
+        } else if let countryCodeString = json["country_code"] as? String {
+            do {
+                let data = countryCodeString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let countryCodeJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                if let id = countryCodeJson["id"] as? String {
+                    self.countryCode = NCountryCode.getCountryCode(using: id)
+                }
+                if self.countryCode == nil {
+                    self.countryCode = NSEntityDescription.insertNewObject(forEntityName: "NCountryCode", into: AppDelegate.sharedManagedContext) as! NCountryCode
+                }
+                self.countryCode!.parse(json: countryCodeJson)
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    func serialized() -> [String : Any] {
+        var json: [String: Any] = [:]
+        if let id = self.id {
+            json["user_id"] = id
+        }
+        if let fullname = self.fullname {
+            json["fullname"] = fullname
+        }
+        if let firstName = self.firstName {
+            json["firstname"] = firstName
+        }
+        if let lastName = self.lastName {
+            json["lastname"] = lastName
+        }
+        if let phoneNumber = self.phone {
+            json["phone_number"] = phoneNumber
+        }
+        if let email = self.email {
+            json["email"] = email
+        }
+        if let gender = self.gender {
+            json["gender"] = gender
+        }
+        json["is_verified"] = self.isVerified
+        if let referralCode = self.referralCode {
+            json["referral_code"] = referralCode
+        }
+        if let address = self.address {
+            json["address"] = address
+        }
+        if let birthPlace = self.birthPlace {
+            json["birthplace"] = birthPlace
+        }
+        if let birthDate = self.birthDate {
+            json["birthdate"] = birthDate.timeIntervalSince1970
+        }
+        if let certificateNumber = self.certificateNumber {
+            json["certificate_number"] = certificateNumber
+        }
+        if let certificateDate = self.certificateDate {
+            json["certificate_date"] = certificateDate.timeIntervalSince1970
+        }
+        if let userName = self.username {
+            json["username"] = userName
+        }
+        if let cover = self.cover {
+            json["cover"] = cover
+        }
+        if let nsset = self.socialMedias, let socialMedias = nsset.allObjects as? [NSocialMedia] {
+            var array: Array<[String: Any]> = []
+            for socialMedia in socialMedias {
+                array.append(socialMedia.serialized())
+            }
+            json["social_media"] = array
+        }
+        if let country = self.country {
+            json["country"] = country.serialized()
+        }
+        if let nationality = self.nationality {
+            json["nationality"] = nationality.serialized()
+        }
+        if let language = self.language {
+            json["language"] = language.serialized()
+        }
+        if let picture = self.picture {
+            json["picture"] = picture
+        }
+        if let countryCode = self.countryCode {
+            json["country_code"] = countryCode.serialized()
+        }
+        return json
+    }
+    
+    static func getUser(using id: String) -> NUser? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NUser")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        do {
+            let users = try managedContext.fetch(fetchRequest) as? [NUser]
+            if let users = users, !users.isEmpty {
+                return users.first
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+    
+}
+
+extension NAuthReturn {
+    private var KEY_TOKEN: String {
+        return "token"
+    }
+    private var KEY_USER: String {
+        return "user"
+    }
+    
+    func parse(json: [String : Any]) {
+        self.token = json[KEY_TOKEN] as? String
+        if let userJson = json[KEY_USER] as? [String: Any] {
+            if let id = userJson["user_id"] as? String {
+                self.user = NUser.getUser(using: id)
+            }
+            if self.user == nil {
+                self.user = NSEntityDescription.insertNewObject(forEntityName: "NUser", into: AppDelegate.sharedManagedContext) as! NUser
+            }
+            self.user!.parse(json: userJson)
+        } else if let userString = json[KEY_USER] as? String {
+            do {
+                let data = userString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let userJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                if let id = userJson["user_id"] as? String {
+                    self.user = NUser.getUser(using: id)
+                }
+                if self.user == nil {
+                    self.user = NSEntityDescription.insertNewObject(forEntityName: "NUser", into: AppDelegate.sharedManagedContext) as! NUser
+                }
+                self.user!.parse(json: userJson)
+            } catch {
+                print(error)
+            }
+            
+        }
+    }
+    
+    func serialized() -> [String : Any] {
+        var json: [String: Any] = [:]
+        if let token = self.token {
+            json[KEY_TOKEN] = token
+        }
+        if let user = self.user {
+            json[KEY_USER] = user
+        }
+        return json
+    }
+    
+    static func authUser() -> NAuthReturn? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NAuthReturn")
+        do {
+            let authReturns = try managedContext.fetch(fetchRequest) as? [NAuthReturn]
+            if let authReturns = authReturns, !authReturns.isEmpty {
+                return authReturns.first
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+    
+    static func deleteAllAuth() -> Bool {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NAuthReturn")
+        do {
+            let authReturns = try managedContext.fetch(fetchRequest) as? [NAuthReturn]
+            if let authReturns = authReturns, !authReturns.isEmpty, let authReturn = authReturns.first {
+                managedContext.delete(authReturn)
+                return true
+            }
+        } catch {
+            print(error)
+        }
+        return false
+    }
+    
+}
+
+extension NCountry {
+    
+    func parse(json: [String : Any]) {
+        self.id = json["id"] as? String
+        self.name = json["name"] as? String
+    }
+    
+    func serialized() -> [String : Any] {
+        var json: [String: Any] = [:]
+        if let id = self.id {
+            json["id"] = id
+        }
+        if let name = self.name {
+            json["name"] = name
+        }
+        return json
+    }
+    
+    static func getCountries() -> [NCountry]? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NCountry")
+        do {
+            let countries = try managedContext.fetch(fetchRequest) as? [NCountry]
+            if let countries = countries, !countries.isEmpty {
+                return countries
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+    static func getCountryPosition(by id: String) -> Int {
+        if let countries = getCountries(), !countries.isEmpty {
+            var position = 0
+            for country in countries {
+                if country.id! == id {
+                    return position
+                }
+                position += 1
+            }
+        }
+        return 0
+    }
+    
+    static func getCountry(using id: String) -> NCountry? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NCountry")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        do {
+            let countries = try managedContext.fetch(fetchRequest) as? [NCountry]
+            if let countries = countries, !countries.isEmpty {
+                return countries.first
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+    
+}
+
+extension NExperience {
+    private var KEY_ID: String {
+        return "id"
+    }
+    private var KEY_NAME: String {
+        return "name"
+    }
+    
+    func parse(json: [String : Any]) {
+        self.id = json[KEY_ID] as? String
+        self.name = json[KEY_NAME] as? String
+    }
+    
+    func serialized() -> [String : Any] {
+        var json: [String: Any] = [:]
+        if let id = self.id {
+            json[KEY_ID] = id
+        }
+        if let name = self.name {
+            json[KEY_NAME] = name
+        }
+        return json
+        
+    }
+    static func getExperience(using id: String) -> NExperience? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NExperience")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        do {
+            let experiences = try managedContext.fetch(fetchRequest) as? [NExperience]
+            if let experiences = experiences, !experiences.isEmpty {
+                return experiences.first
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+}
+
+extension NCountryCode {
+    private var KEY_ID: String { return "id" }
+    private var KEY_COUNTRY_CODE: String { return "country_code" }
+    private var KEY_COUNTRY_NAME: String { return "country_name" }
+    private var KEY_COUNTRY_NUMBER: String { return "country_number" }
+    
+    func parse(json: [String : Any]) {
+        self.id = json[KEY_ID] as? String
+        self.countryCode = json[KEY_COUNTRY_CODE] as? String
+        self.countryName = json[KEY_COUNTRY_NAME] as? String
+        self.countryNumber = json[KEY_COUNTRY_NUMBER] as? String
+    }
+    
+    func serialized() -> [String : Any] {
+        var json: [String: Any] = [:]
+        
+        if let id = self.id {
+            json[KEY_ID] = id
+        }
+        if let countryCode = self.countryCode {
+            json[KEY_COUNTRY_CODE] = countryCode
+        }
+        if let countryName = self.countryName {
+            json[KEY_COUNTRY_NAME] = countryName
+        }
+        if let countryNumber = self.countryNumber {
+            json[KEY_COUNTRY_NUMBER] = countryNumber
+        }
+        
+        return json
+    }
+    
+    static func getCountryCodes()->[NCountryCode]? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NCountryCode")
+        let sortDescriptor = NSSortDescriptor(key: "countryName", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        fetchRequest.predicate = NSPredicate(format: "id != nil && countryName != nil")
+        do {
+            let countryCodes = try managedContext.fetch(fetchRequest) as? [NCountryCode]
+            if let countryCodes = countryCodes, !countryCodes.isEmpty {
+                return countryCodes
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+    
+    static func getCountryCode(using id: String) -> NCountryCode? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NCountryCode")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        do {
+            let countryCodes = try managedContext.fetch(fetchRequest) as? [NCountryCode]
+            if let countryCodes = countryCodes, !countryCodes.isEmpty {
+                return countryCodes.first
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+    static func getPosition(by regionCode: String) -> Int {
+        if let countryCodes = self.getCountryCodes(), !countryCodes.isEmpty {
+            var position = 0
+            for countryCode in countryCodes {
+                if countryCode.countryCode == regionCode {
+                    return position
+                }
+                position += 1
+            }
+        }
+        return 0
+    }
+    static func getCountryCode(by regionCode: String) -> NCountryCode? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NCountryCode")
+        fetchRequest.predicate = NSPredicate(format: "countryCode == %@", regionCode)
+        do {
+            let countryCodes = try managedContext.fetch(fetchRequest) as? [NCountryCode]
+            if let countryCodes = countryCodes, !countryCodes.isEmpty {
+                return countryCodes.first
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+        
+    }
+    static func deleteCountryCode(by id: String) -> Bool {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NCountryCode")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        do {
+            let countryCodes = try managedContext.fetch(fetchRequest) as? [NCountryCode]
+            if let countryCodes = countryCodes, !countryCodes.isEmpty {
+                let countryCode = countryCodes.first!
+                managedContext.delete(countryCode)
+                return true
+            }
+        } catch {
+            print(error)
+        }
+        return false
+    }
+    
+}
+
+extension NLanguage {
+    private var KEY_ID: String { return "id" }
+    private var KEY_NAME: String { return "name" }
+    
+    func parse(json: [String : Any]) {
+        self.id = json[KEY_ID] as? String
+        self.name = json[KEY_NAME] as? String
+    }
+    
+    func serialized() -> [String : Any] {
+        var json: [String: Any] = [:]
+        if let id = self.id {
+            json[KEY_ID] = id
+        }
+        if let name = self.name {
+            json[KEY_NAME] = name
+        }
+        return json
+    }
+    static func getLanguage(using id: String) -> NLanguage? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NLanguage")
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        do {
+            let languages = try managedContext.fetch(fetchRequest) as? [NLanguage]
+            if let languages = languages, !languages.isEmpty {
+                return languages.first
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+    
+    static func getPosition(by id: String) -> Int {
+        if let languages = getLanguages(), !languages.isEmpty {
+            var position = 0
+            for language in languages {
+                if language.id! == id {
+                    return position
+                }
+                position += 1
+            }
+        }
+        return 0
+    }
+    
+    static func getLanguages() -> [NLanguage]? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NLanguage")
+        fetchRequest.predicate = NSPredicate(format: "id != nil && name != nil")
+        do {
+            let languages = try managedContext.fetch(fetchRequest) as? [NLanguage]
+            if let languages = languages, !languages.isEmpty {
+                return languages
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+        
+    }
+}
+
+extension NDiveService {
+    private var KEY_ID: String { return "id" }
+    private var KEY_NAME: String { return "name" }
+    private var KEY_RATING: String { return "rating" }
+    private var KEY_RATING_COUNT: String { return "rating_count" }
+    private var KEY_CATEGORY: String { return "category" }
+    private var KEY_FEATURED_IMAGE: String { return "featured_image" }
+    private var KEY_DIVE_SPOTS: String { return "dive_spot" }
+    private var KEY_DAYS: String { return "days" }
+    private var KEY_TOTAL_DIVES: String { return "total_dives" }
+    private var KEY_TOTAL_DAY: String { return "total_day" }
+    private var KEY_TOTAL_DIVESPOTS: String { return "total_divespot" }
+    private var KEY_VISITED: String { return "visited" }
+    private var KEY_LICENSE: String { return "license" }
+    private var KEY_MIN_PERSON: String { return "min_person" }
+    private var KEY_MAX_PERSON: String { return "max_person" }
+    private var KEY_SCHEDULE: String { return "schedule" }
+    private var KEY_FACILITIES: String { return "facilities" }
+    private var KEY_NORMAL_PRICE: String { return "normal_price" }
+    private var KEY_SPECIAL_PRICE: String { return "special_price" }
+    private var KEY_DIVE_CENTER: String { return "dive_center" }
+    private var KEY_IMAGES: String { return "images" }
+    private var KEY_DESCRIPTION: String { return "description" }
+    
+    func parse(json: [String : Any]) {
+        self.id = json[KEY_ID] as? String
+        self.name = json[KEY_NAME] as? String
+        if let rating = json[KEY_RATING] as? Double {
+            self.rating = rating
+        } else if let rating = json[KEY_RATING] as? String {
+            if rating.isNumber {
+                self.rating = Double(rating)!
+            }
+        }
+        
+        if let ratingCount = json[KEY_RATING_COUNT] as? Int {
+            self.ratingCount = Int64(ratingCount)
+        } else if let ratingCount = json[KEY_RATING_COUNT] as? String {
+            if ratingCount.isNumber {
+                self.ratingCount = Int64(ratingCount)!
+            }
+        }
+        
+        if let categoriesArray = json[KEY_CATEGORY] as? Array<[String: Any]>, !categoriesArray.isEmpty {
+            for categoryJson in categoriesArray {
+                var category: NCategory? = nil
+                
+                if let id = categoryJson["id"] as? String {
+                    category = NCategory.getCategory(using: id)
+                }
+                if category == nil {
+                    category = NSEntityDescription.insertNewObject(forEntityName: "NCategory", into: AppDelegate.sharedManagedContext) as! NCategory
+                }
+                category!.parse(json: categoryJson)
+                self.addToCategories(category!)
+            }
+        } else if let categoriesString = json[KEY_CATEGORY] as? String {
+            do {
+                let data = categoriesString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let categoriesArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+                for categoryJson in categoriesArray {
+                    var category: NCategory? = nil
+                    if let id = categoryJson["id"] as? String {
+                        category = NCategory.getCategory(using: id)
+                    }
+                    if category == nil {
+                        category = NSEntityDescription.insertNewObject(forEntityName: "NCategory", into: AppDelegate.sharedManagedContext) as! NCategory
+                    }
+                    category!.parse(json: categoryJson)
+                    self.addToCategories(category!)
+                }
+            } catch {
+                print(error)
+            }
+        }
+        self.featuredImage = json[KEY_FEATURED_IMAGE] as? String
+        if let diveSpotsArray = json[KEY_DIVE_SPOTS] as? Array<[String: Any]>, !diveSpotsArray.isEmpty {
+            self.diveSpots = []
+            for diveSpotJson in diveSpotsArray {
+                let diveSpot = DiveSpot(json: diveSpotJson)
+                self.diveSpots!.append(diveSpot)
+            }
+        } else if let diveSpotString = json[KEY_DIVE_SPOTS] as? String {
+            self.diveSpots = []
+            do {
+                let data = diveSpotString.data(using: String.Encoding.utf8,     allowLossyConversion: true)
+                let diveSpotsArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+                for diveSpotJson in diveSpotsArray {
+                    let diveSpot = DiveSpot(json: diveSpotJson)
+                    self.diveSpots!.append(diveSpot)
+                }
+            } catch {
+                print(error)
+            }
+        }
+        
+        if let days = json[KEY_DAYS] as? Int {
+            self.days = Int32(days)
+            self.totalDays = Int32(days)
+        } else if let days = json[KEY_DAYS] as? String {
+            if days.isNumber {
+                self.days = Int32(days)!
+                self.totalDays = Int32(days)!
+            }
+        }
+        if let totalDives = json[KEY_TOTAL_DIVES] as? Int {
+            self.totalDives = Int32(totalDives)
+        } else if let totalDives = json[KEY_TOTAL_DIVES] as? String {
+            if totalDives.isNumber {
+                self.totalDives = Int32(totalDives)!
+            }
+        }
+        if let totalDays = json[KEY_TOTAL_DAY] as? Int {
+            self.totalDays = Int32(totalDays)
+        } else if let totalDays = json[KEY_TOTAL_DAY] as? String {
+            if totalDays.isNumber {
+                self.totalDays = Int32(totalDays)!
+            }
+        }
+        if let totalDiveSpots = json[KEY_DIVE_SPOTS] as? Int {
+            self.totalDiveSpots = Int32(totalDiveSpots)
+        } else if let totalDiveSpots = json[KEY_DIVE_SPOTS] as? String {
+            if totalDiveSpots.isNumber {
+                self.totalDiveSpots = Int32(totalDiveSpots)!
+            }
+        }
+        if let visited = json[KEY_VISITED] as? Int {
+            self.visited = Int64(visited)
+        } else if let visited = json[KEY_VISITED] as? String {
+            if visited.isNumber {
+                self.visited = Int64(visited)!
+            }
+        }
+        if let license = json[KEY_LICENSE] as? Bool {
+            self.license = license
+        } else if let license = json[KEY_LICENSE] as? String {
+            self.license = license.toBool
+        }
+        if let minPerson = json[KEY_MIN_PERSON] as? Int {
+            self.minPerson = Int32(minPerson)
+        } else if let minPerson = json[KEY_MIN_PERSON] as? String {
+            if minPerson.isNumber {
+                self.minPerson = Int32(minPerson)!
+            }
+        }
+        if let maxPerson = json[KEY_MAX_PERSON] as? Int {
+            self.maxPerson = Int32(maxPerson)
+        } else if let maxPerson = json[KEY_MAX_PERSON] as? String {
+            if maxPerson.isNumber {
+                self.maxPerson = Int32(maxPerson)!
+            }
+        }
+        if let minPerson = json[KEY_MIN_PERSON] as? Int {
+            self.minPerson = Int32(minPerson)
+        } else if let minPerson = json[KEY_MIN_PERSON] as? String {
+            if minPerson.isNumber {
+                self.minPerson = Int32(minPerson)!
+            }
+        }
+        if let scheduleJson = json[KEY_SCHEDULE] as? [String: Any] {
+            self.schedule = Schedule(json: scheduleJson)
+        } else if let scheduleString = json[KEY_SCHEDULE] as? String {
+            do {
+                let data = scheduleString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let scheduleJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                self.schedule = Schedule(json: scheduleJson)
+            } catch {
+                print(error)
+            }
+        }
+        if let facilitiesJson = json[KEY_FACILITIES] as? [String: Any] {
+            self.facilities = Facilities(json: facilitiesJson)
+        } else if let facilitesString = json[KEY_FACILITIES] as? String {
+            do {
+                let data = facilitesString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let facilitiesJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                self.facilities = Facilities(json: facilitiesJson)
+            } catch {
+                print(error)
+            }
+        }
+        if let normalPrice = json[KEY_NORMAL_PRICE] as? Double {
+            self.normalPrice = normalPrice
+        } else if let normalPrice = json[KEY_NORMAL_PRICE] as? String {
+            if normalPrice.isNumber {
+                self.normalPrice = Double(normalPrice)!
+            }
+        }
+        if let specialPrice = json[KEY_SPECIAL_PRICE] as? Double {
+            self.specialPrice = specialPrice
+        } else if let specialPrice = json[KEY_SPECIAL_PRICE] as? String {
+            if specialPrice.isNumber {
+                self.specialPrice = Double(specialPrice)!
+            }
+        }
+        if let diveCenterJson = json[KEY_DIVE_CENTER] as? [String: Any] {
+            if let id = diveCenterJson["id"] as? String {
+                self.divecenter = NDiveCenter.getDiveCenter(using: id)
+            }
+            if self.divecenter == nil {
+                self.divecenter =  NSEntityDescription.insertNewObject(forEntityName: "NDiveCenter", into: AppDelegate.sharedManagedContext) as! NDiveCenter
+
+            }
+            self.divecenter!.parse(json: diveCenterJson)
+        } else if let diveCenterString = json[KEY_DIVE_CENTER] as? String {
+            do {
+                let data = diveCenterString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let diveCenterJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                if let id = diveCenterJson["id"] as? String {
+                    self.divecenter = NDiveCenter.getDiveCenter(using: id)
+                }
+                if self.divecenter == nil {
+                    self.divecenter = NSEntityDescription.insertNewObject(forEntityName: "NDiveCenter", into: AppDelegate.sharedManagedContext) as! NDiveCenter
+                }
+                self.divecenter!.parse(json: diveCenterJson)
+            } catch {
+                print(error)
+            }
+        }
+        if let images = json[KEY_IMAGES] as? [String], !images.isEmpty {
+            self.images = images
+        } else if let imagesString = json[KEY_IMAGES] as? String {
+            do {
+                let data = imagesString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let images: Array<String> = try JSONSerialization.jsonObject(with: data!, options: []) as! [String]
+                self.images = images
+            } catch {
+                print(error)
+            }
+        }
+        
+    }
+    
+    func serialized() -> [String : Any] {
+        var json: [String: Any] = [:]
+        if let id = self.id {
+            json[KEY_ID] = id
+        }
+        if let name = self.name {
+            json[KEY_NAME] = name
+        }
+        json[KEY_RATING] = rating
+        json[KEY_RATING_COUNT] = Int(rating)
+        if let nsset = self.categories, let categories = nsset.allObjects as? [NCategory], !categories.isEmpty  {
+            var array: Array<[String: Any]> = []
+            for category in categories {
+                array.append(category.serialized())
+            }
+            json[KEY_CATEGORY] = array
+        }
+        if let featuredImage = self.featuredImage {
+            json[KEY_FEATURED_IMAGE] = featuredImage
+        }
+        
+        if let divespots = self.diveSpots, !divespots.isEmpty {
+            var array: Array<[String: Any]> = []
+            for divespot in divespots {
+                array.append(divespot.serialized())
+            }
+            json[KEY_DIVE_SPOTS] = array
+        }
+        
+        json[KEY_DAYS] = Int(self.days)
+        json[KEY_TOTAL_DIVES] = Int(self.totalDives)
+        json[KEY_TOTAL_DAY] = Int(self.totalDays)
+        json[KEY_TOTAL_DIVESPOTS] = Int(self.totalDiveSpots)
+        json[KEY_VISITED] = Int(self.visited)
+        json[KEY_LICENSE] = self.license
+        json[KEY_MIN_PERSON] = Int(self.minPerson)
+        json[KEY_MAX_PERSON] = Int(self.maxPerson)
+        
+        if let schedule = self.schedule {
+            json[KEY_SCHEDULE] = schedule.serialized()
+        }
+        if let facilities = self.facilities {
+            json[KEY_FACILITIES] = facilities.serialized()
+        }
+        json[KEY_NORMAL_PRICE] = normalPrice
+        json[KEY_SPECIAL_PRICE] = specialPrice
+        if let divecenter = self.divecenter {
+            json[KEY_DIVE_CENTER] = divecenter.serialized()
+        }
+        if let images = self.images, !images.isEmpty {
+            json[KEY_IMAGES] = images
+        }
+        if let desc = self.diveServiceDescription {
+            json[KEY_DESCRIPTION] = desc
+        }
+        return json
+    }
+    
+    static func getDiveService(using id: String) -> NDiveService? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NDiveService")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        do {
+            let diveServices = try managedContext.fetch(fetchRequest) as? [NDiveService]
+            if let diveServices = diveServices, !diveServices.isEmpty {
+                return diveServices.first
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+
+}
+
+
+extension NOrder {
+    private var KEY_ORDER_ID: String { return "order_id" }
+    private var KEY_STATUS: String  { return "status" }
+    private var KEY_SCHEDULE: String { return "schedule" }
+    private var KEY_CART: String { return "cart" }
+    
+    func parse(json: [String : Any]) {
+        self.orderId = json[KEY_ORDER_ID] as? String
+        self.status = json[KEY_STATUS] as? String
+        if let schedule = json[KEY_SCHEDULE] as? Double {
+            self.schedule = schedule
+        } else if let schedule = json[KEY_SCHEDULE] as? String {
+            if schedule.isNumber {
+                self.schedule = Double(schedule)!
+            }
+        }
+        if let cartJson = json[KEY_CART] as? [String: Any] {
+            self.cart = Cart(json: cartJson)
+        } else if let cartString = json[KEY_CART] as? String {
+            do {
+                let data = cartString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let cartJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                self.cart = Cart(json: cartJson)
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    func serialized() -> [String : Any] {
+        var json: [String: Any] = [:]
+        if let orderId = self.orderId {
+            json[KEY_ORDER_ID] = orderId
+        }
+        if let status = self.status {
+            json[KEY_STATUS] = status
+        }
+        json[KEY_SCHEDULE] = self.schedule
+        if let cart = self.cart {
+            json[KEY_CART] = cart.serialized()
+        }
+        return json
+    }
+    
+    static func getDiveService(using id: String) -> NDiveService? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NDiveService")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        do {
+            let diveServices = try managedContext.fetch(fetchRequest) as? [NDiveService]
+            if let diveServices = diveServices, !diveServices.isEmpty {
+                return diveServices.first
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+    
+    static func getOrder(using orderId: String) -> NOrder? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NOrder")
+        fetchRequest.predicate = NSPredicate(format: "orderId == %@", orderId)
+        do {
+            let orders = try managedContext.fetch(fetchRequest) as? [NOrder]
+            if let orders = orders, !orders.isEmpty {
+                return orders.first
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+}
+
+extension NDiveCenter {
+    private var KEY_ID: String { return "id" }
+    private var KEY_NAME: String { return "name" }
+    private var KEY_SUBTITLE: String { return "subtitle" }
+    private var KEY_IMAGE_LOGO: String { return "image_logo" }
+    private var KEY_IMAGES: String { return "images" }
+    private var KEY_RATING: String { return "rating" }
+    private var KEY_CONTACT: String { return "contact" }
+    private var KEY_MEMBERSHIP: String { return "membership" }
+    private var KEY_STATUS: String { return "status" }
+    private var KEY_DESCRIPTION: String { return "description" }
+    private var KEY_LOCATION: String { return "location" }
+    private var KEY_FEATURED_IMAGE: String { return "featured_image" }
+    private var KEY_CATEGORIES: String { return  "categories" }
+    private var KEY_START_FROM_PRICE: String { return "start_from_price" }
+    private var KEY_START_FROM_SPECIAL_PRICE: String { return "start_from_special_price" }
+    private var KEY_START_FROM_TOTAL_DIVES: String { return "start_from_total_dives" }
+    private var KEY_START_FROM_DAYS: String { return "start_from_days" }
+    private var KEY_LOCATIONS: String { return "locations" }
+    
+    static func getDiveCenter(using id: String) -> NDiveCenter? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NDiveCenter")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        do {
+            let diveCenters = try managedContext.fetch(fetchRequest) as? [NDiveCenter]
+            if let diveCenters = diveCenters, !diveCenters.isEmpty {
+                return diveCenters.first
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+    
+    
+    func parse(json: [String : Any]) {
+        self.id = json[KEY_ID] as? String
+        self.name = json[KEY_NAME] as? String
+        self.subtitle = json[KEY_SUBTITLE] as? String
+        self.imageLogo = json[KEY_IMAGE_LOGO] as? String
+        if let rating = json[KEY_RATING] as? Double {
+            self.rating = rating
+        } else if let rating = json[KEY_RATING] as? String {
+            if rating.isNumber {
+                self.rating = Double(rating)!
+            }
+        }
+        if let images = json[KEY_IMAGES] as? [String], !images.isEmpty {
+            self.images = images
+        } else if let imagesString = json[KEY_IMAGES] as? String {
+            do {
+                let data = imagesString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let images: Array<String> = try JSONSerialization.jsonObject(with: data!, options: []) as! [String]
+                self.images = images
+            } catch {
+                print(error)
+            }
+        }
+        if let contactJson = json[KEY_CONTACT] as? [String: Any] {
+            self.contact = Contact(json: contactJson)
+        } else if let contactString = json[KEY_CONTACT] as? String {
+            do {
+                let data = contactString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let contactJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                self.contact = Contact(json: contactJson)
+            } catch {
+                print(error)
+            }
+        }
+        if let membershipJson = json[KEY_MEMBERSHIP] as? [String: Any] {
+            self.membership = Membership(json: membershipJson)
+        } else if let membershipString = json[KEY_MEMBERSHIP] as? String {
+            do {
+                let data = membershipString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let membershipJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                self.membership = Membership(json: membershipJson)
+            } catch {
+                print(error)
+            }
+        }
+        if let status = json[KEY_STATUS] as? Int {
+            self.status = Int32(status)
+        } else if let status = json[KEY_STATUS] as? String {
+            if status.isNumber {
+                self.status = Int32(status)!
+            }
+        }
+        self.diveDescription = json[KEY_DESCRIPTION] as? String
+        if let locationJson = json[KEY_LOCATION] as? [String: Any] {
+            self.location = Location(json: locationJson)
+        } else if let locationJson = json[KEY_LOCATIONS] as? [String: Any] {
+            self.location = Location(json: locationJson)
+        } else if let locationString = json[KEY_LOCATION] as? String {
+            do {
+                let data = locationString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let locationJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                self.location = Location(json: locationJson)
+            } catch {
+                print(error)
+            }
+        } else if let locationString = json[KEY_LOCATIONS] as? String {
+            do {
+                let data = locationString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let locationJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                self.location = Location(json: locationJson)
+            } catch {
+                print(error)
+            }
+        }
+        self.featuredImage = json[KEY_FEATURED_IMAGE] as? String
+        if let categoriesArray = json[KEY_CATEGORIES] as? Array<[String: Any]>, !categoriesArray.isEmpty {
+            for categoryJson in categoriesArray {
+                var category: NCategory? = nil
+                if let id = categoryJson["id"] as? String {
+                    category = NCategory.getCategory(using: id)
+                }
+                if category == nil {
+                    category = NSEntityDescription.insertNewObject(forEntityName: "NCategory", into: AppDelegate.sharedManagedContext) as! NCategory
+                }
+                category!.parse(json: categoryJson)
+                self.addToCategories(category!)
+            }
+        } else if let categoriesString = json[KEY_CATEGORIES] as? String {
+            do {
+                let data = categoriesString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let categoriesArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+                for categoryJson in categoriesArray {
+                    var category: NCategory? = nil
+                    if let id = categoryJson["id"] as? String {
+                        category = NCategory.getCategory(using: id)
+                    }
+                    if category == nil {
+                        category = NSEntityDescription.insertNewObject(forEntityName: "NCategory", into: AppDelegate.sharedManagedContext) as! NCategory
+                    }
+                    category!.parse(json: categoryJson)
+                    self.addToCategories(category!)
+                }
+            } catch {
+                print(error)
+            }
+        }
+        if let startFromPrice = json[KEY_START_FROM_PRICE] as? Double {
+            self.startFromPrice = startFromPrice
+        } else if let startFromPrice = json[KEY_START_FROM_PRICE] as? String {
+            if startFromPrice.isNumber {
+                self.startFromPrice = Double(startFromPrice)!
+            }
+        }
+        if let startFromSpecialPrice = json[KEY_START_FROM_SPECIAL_PRICE] as? Double {
+            self.startFromSpecialPrice = startFromSpecialPrice
+        } else if let startFromSpecialPrice = json[KEY_START_FROM_SPECIAL_PRICE] as? String {
+            if startFromSpecialPrice.isNumber {
+                self.startFromSpecialPrice = Double(startFromSpecialPrice)!
+            }
+        }
+        if let startFromTotalDives = json[KEY_START_FROM_TOTAL_DIVES] as? Int {
+            self.startFromTotalDives = Int32(startFromTotalDives)
+        } else if let startFromTotalDives = json[KEY_START_FROM_TOTAL_DIVES] as? String  {
+            if startFromTotalDives.isNumber {
+                self.startFromTotalDives = Int32(startFromTotalDives)!
+            }
+        }
+        if let startFromDays = json[KEY_START_FROM_DAYS] as? Double {
+            self.startFromDays = Int32(startFromDays)
+        } else if let startFromDays = json[KEY_START_FROM_DAYS] as? String {
+            if startFromDays.isNumber {
+                self.startFromDays = Int32(startFromDays)!
+            }
+        }
+    }
+    
+    func serialized() -> [String : Any] {
+        var json: [String: Any] = [:]
+        
+        if let id = self.id {
+            json[KEY_ID] = id
+        }
+        
+        if let name = self.name {
+            json[KEY_NAME] = name
+        }
+        
+        if let subtitle = self.subtitle {
+            json[KEY_SUBTITLE] = subtitle
+        }
+        
+        if let imageLogo = self.imageLogo {
+            json[KEY_IMAGE_LOGO] = imageLogo
+        }
+        
+        if let images = self.images, !images.isEmpty {
+            json[KEY_IMAGES] = images
+        }
+        json[KEY_RATING] = self.rating
+        if let contact = self.contact {
+            json[KEY_CONTACT] = contact.serialized()
+        }
+        if let membership = self.membership {
+            json[KEY_MEMBERSHIP] = membership.serialized()
+        }
+        json[KEY_STATUS] = Int(status)
+        if let desc = self.diveDescription {
+            json[KEY_DESCRIPTION] = desc
+        }
+        if let location = self.location {
+            json[KEY_LOCATION] = location.serialized()
+        }
+        if let featuredImage = self.featuredImage {
+            json[KEY_FEATURED_IMAGE] = featuredImage
+        }
+        if let nsset = self.categories, let categories = nsset.allObjects as? [NCategory] {
+            var array: Array<[String: Any]> = []
+            for category in categories {
+                array.append(category.serialized())
+            }
+            json[KEY_CATEGORIES] = array
+        }
+        json[KEY_START_FROM_PRICE] = Int(self.startFromPrice)
+        json[KEY_START_FROM_TOTAL_DIVES] = Int(self.startFromTotalDives)
+        json[KEY_START_FROM_DAYS] = Int(self.startFromDays)
+        
+        return json
+    }
+}
+
+extension NProvince {
+    private var KEY_ID: String { return "id" }
+    private var KEY_NAME: String{ return "name" }
+    
+    func parse(json: [String : Any]) {
+        self.id = json[KEY_ID] as? String
+        self.name = json[KEY_NAME] as? String
+    }
+    
+    func serialized() -> [String : Any] {
+        var json: [String: Any] = [:]
+        
+        if let id = self.id {
+            json[KEY_ID] = id
+        }
+        
+        if let name = self.name {
+            json[KEY_NAME] = name
+        }
+        
+        return json
+    }
+    
+    static func getProvince(using id: String) -> NProvince? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NProvince")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        do {
+            let provinces = try managedContext.fetch(fetchRequest) as? [NProvince]
+            if let provinces = provinces, !provinces.isEmpty {
+                return provinces.first
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+}
+
+extension NSocialMedia {
+    private var KEY_TYPE: String { return "type" }
+    private var KEY_ID: String { return "id" }
+    
+    func parse(json: [String : Any]) {
+        self.type = json[KEY_TYPE] as? String
+        self.id = json[KEY_ID] as? String
+    }
+    
+    func serialized() -> [String : Any] {
+        var json: [String: Any] = [:]
+        if let type = self.type {
+            json[KEY_TYPE] = type
+        }
+        if let id = self.id {
+            json[KEY_ID] = id
+        }
+        return json
+    }
+    
+    static func getSocialMedia(using id: String, and type: String) -> NSocialMedia? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NSocialMedia")
+        fetchRequest.predicate = NSPredicate(format: "id == %@ AND type == %@", id, type)
+        do {
+            let socialMedias = try managedContext.fetch(fetchRequest) as? [NSocialMedia]
+            if let socialMedias = socialMedias, !socialMedias.isEmpty {
+                return socialMedias.first
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+}
+
+extension NCity {
+    private var KEY_ID: String { return "id" }
+    private var KEY_NAME: String { return "name" }
+    
+    func parse(json: [String : Any]) {
+        self.id = json[KEY_ID] as? String
+        self.name = json[KEY_NAME] as? String
+    }
+    
+    func serialized() -> [String : Any] {
+        var json: [String: Any] = [:]
+        if let id = self.id {
+            json[KEY_ID] = id
+        }
+        if let name = self.name {
+            json[KEY_NAME] = name
+        }
+        return json
+    }
+    
+    static func getCity(using id: String) -> NCity? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NCity")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        do {
+            let cities = try managedContext.fetch(fetchRequest) as? [NCity]
+            if let cities = cities, !cities.isEmpty {
+                return cities.first
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+
+}
+
+extension NNationality {
+    private var KEY_ID: String { return "id" }
+    private var KEY_NAME: String { return "name" }
+    
+    func parse(json: [String : Any]) {
+        self.id = json[KEY_ID] as? String
+        self.name = json[KEY_NAME] as? String
+    }
+    
+    func serialized() -> [String : Any] {
+        var json: [String: Any] = [:]
+        if let id = self.id {
+            json[KEY_ID] = id
+        }
+        if let name = self.name {
+            json[KEY_NAME] = name
+        }
+        return json
+    }
+    
+    static func getNationality(using id: String) -> NNationality? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NNationality")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        do {
+            let nationalities = try managedContext.fetch(fetchRequest) as? [NNationality]
+            if let nationalities = nationalities, !nationalities.isEmpty {
+                return nationalities.first
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+}
+
+extension NSummary {
+    private var KEY_ORDER: String { return "order" }
+    private var KEY_SERVICE: String { return "service" }
+    private var KEY_CONTACT: String { return "contact" }
+    private var KEY_PARTICIPANTS: String { return "participants" }
+    
+    func parse(json: [String : Any]) {
+        if let orderJson = json[KEY_ORDER] as? [String: Any] {
+            if let orderId = orderJson["order_id"] as? String {
+                self.order = NOrder.getOrder(using: orderId)
+            }
+            if self.order == nil {
+                self.order = NSEntityDescription.insertNewObject(forEntityName: "NOrder", into: AppDelegate.sharedManagedContext) as! NOrder
+            }
+            self.order!.parse(json: json)
+            self.id = self.order!.orderId
+        } else if let orderString = json[KEY_ORDER] as? String {
+            do {
+                let data = orderString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let orderJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                if let orderId = orderJson["order_id"] as? String {
+                    self.order = NOrder.getOrder(using: orderId)
+                }
+                if self.order == nil {
+                    self.order = NSEntityDescription.insertNewObject(forEntityName: "NOrder", into: AppDelegate.sharedManagedContext) as! NOrder
+                }
+                self.order!.parse(json: json)
+                self.id = self.order!.orderId
+            } catch {
+                print(error)
+            }
+        }
+        if let serviceJson = json[KEY_SERVICE] as? [String: Any] {
+            if let id = serviceJson["id"] as? String {
+                self.diveService = NDiveService.getDiveService(using: id)
+            }
+            if self.diveService == nil {
+                self.diveService = NDiveService()
+            }
+            self.diveService!.parse(json: json)
+        } else if let serviceString = json[KEY_SERVICE] as? String {
+            do {
+                let data = serviceString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let serviceJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                if let id = serviceJson["id"] as? String {
+                    self.diveService = NDiveService.getDiveService(using: id)
+                }
+                if self.diveService == nil {
+                    self.diveService = NDiveService()
+                }
+                self.diveService!.parse(json: json)
+            } catch {
+                print(error)
+            }
+        }
+        if let contactJson = json[KEY_CONTACT] as? [String: Any] {
+            self.contact = Contact(json: contactJson)
+        } else if let contactString = json[KEY_CONTACT] as? String {
+            do {
+                let data = contactString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let contactJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                self.contact = Contact(json: contactJson)
+            } catch {
+                print(error)
+            }
+        }
+        if let participantArray = json[KEY_PARTICIPANTS] as? Array<[String: Any]>, !participantArray.isEmpty {
+            self.participant = []
+            for participant in participantArray {
+                self.participant!.append(Participant(json: participant))
+            }
+        } else if let participantString = json[KEY_PARTICIPANTS] as? String {
+            do {
+                let data = participantString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let participantArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+                self.participant = []
+                for participant in participantArray {
+                    self.participant!.append(Participant(json: participant))
+                }
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    func serialized() -> [String : Any] {
+        var json: [String: Any] = [:]
+        if let order = self.order {
+            json[KEY_ORDER] = order.serialized()
+        }
+        if let service = self.diveService {
+            json[KEY_SERVICE] = service.serialized()
+        }
+        if let contact = self.contact {
+            json[KEY_CONTACT] = contact.serialized()
+        }
+        if let participants = self.participant, !participants.isEmpty {
+            var array: Array<[String: Any]> = []
+            for participant in participants {
+                array.append(participant.serialized())
+            }
+            json[KEY_PARTICIPANTS] = array
+        }
+        return json
+    }
+    
+    static func getSummary(using id: String) -> NSummary? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NSummary")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        do {
+            let summaries = try managedContext.fetch(fetchRequest) as? [NSummary]
+            if let summaries = summaries, !summaries.isEmpty {
+                return summaries.first
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+
+}
+
+extension NSearchResult {
+    private var KEY_ID: String { return "id" }
+    private var KEY_NAME: String { return "name" }
+    private var KEY_RATING: String { return "rating" }
+    private var KEY_TYPE: String { return "type" }
+    private var KEY_COUNT: String { return "count" }
+    private var KEY_PROVINCE: String { return "province" }
+    private var KEY_LICENSE: String { return "license" }
+
+    func parse(json: [String : Any]) {
+        self.id = json[KEY_ID] as? String
+        self.name = json[KEY_NAME] as? String
+        self.province = json[KEY_PROVINCE] as? String
+
+        if let rating = json[KEY_RATING] as? Double {
+            self.rating = rating
+        } else if let rating = json[KEY_RATING] as? String {
+            if rating.isNumber {
+                self.rating = Double(rating)!
+            }
+        }
+        
+        if let type = json[KEY_TYPE] as? Int {
+            self.type = Int16(type)
+        } else if let type = json[KEY_TYPE] as? String {
+            if type.isNumber {
+                self.type = Int16(type)!
+            }
+        }
+        
+        if let count = json[KEY_COUNT] as? Int {
+            self.count = Int64(count)
+        } else if let count = json[KEY_COUNT] as? String {
+            if count.isNumber {
+                self.count = Int64(count)!
+            }
+        }
+        if let license = json[KEY_LICENSE] as? Bool {
+            self.license = license
+        } else if let license = json[KEY_LICENSE] as? String {
+            self.license = license.toBool
+        }
+
+    }
+    
+    func serialized() -> [String : Any] {
+        var json: [String: Any] = [:]
+        
+        if let id = self.id {
+            json[KEY_ID] = id
+        }
+        
+        if let name = self.name {
+            json[KEY_NAME] = name
+        }
+        if let province = self.province {
+            json[KEY_PROVINCE] = province
+        }
+        json[KEY_LICENSE] = license
+        json[KEY_RATING] = rating
+        json[KEY_TYPE] = type
+        json[KEY_COUNT] = count
+        return json
+    }
+
+    static func getSavedResult(using name: String, and type: String)->NSearchResult? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NSearchResult")
+        do {
+            let results = try managedContext.fetch(fetchRequest) as? [NSearchResult]
+            fetchRequest.predicate = NSPredicate(format: "type == %@ AND name == %@", type, name)
+
+            if let results = results, !results.isEmpty {
+                return results.first
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+
+    }
+    static func getSavedResults() -> [NSearchResult]? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NSearchResult")
+//        fetchRequest.predicate = NSPredicate(format: "id != nil && name != nil && type > 0")
+        do {
+            let results = try managedContext.fetch(fetchRequest) as? [NSearchResult]
+            if let results = results, !results.isEmpty {
+                return results
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+
+}

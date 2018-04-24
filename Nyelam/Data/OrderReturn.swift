@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import CoreData
 
-class OrderReturn: NSObject, Parseable {
+class OrderReturn: NSObject, NSCoding, Parseable {
     private let KEY_SUMMARY = "summary"
     private let KEY_VERITRANS_TOKEN = "veritrans_token"
     
@@ -20,6 +21,17 @@ class OrderReturn: NSObject, Parseable {
         self.parse(json: json)
     }
     
+    public convenience required init?(coder aDecoder: NSCoder) {
+        guard let json = aDecoder.decodeObject(forKey: "json") as? [String: Any] else {
+            return nil
+        }
+        self.init(json: json)
+    }
+    
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.serialized(), forKey: "json")
+    }
+    
     func parse(json: [String : Any]) {
         self.veritransToken = json[KEY_VERITRANS_TOKEN] as? String
         if let summaryJson = json[KEY_SUMMARY] as? [String: Any] {
@@ -28,7 +40,7 @@ class OrderReturn: NSObject, Parseable {
                     self.summary = NSummary.getSummary(using: id)
                 }
                 if self.summary == nil {
-                    self.summary = NSummary()
+                    self.summary = NSEntityDescription.insertNewObject(forEntityName: "NSummary", into: AppDelegate.sharedManagedContext) as! NSummary
                 }
                 self.summary!.parse(json: summaryJson)
             } else if let orderString = summaryJson["order"] as? String {
@@ -39,7 +51,7 @@ class OrderReturn: NSObject, Parseable {
                         self.summary = NSummary.getSummary(using: id)
                     }
                     if self.summary == nil {
-                        self.summary = NSummary()
+                        self.summary = NSEntityDescription.insertNewObject(forEntityName: "NSummary", into: AppDelegate.sharedManagedContext) as! NSummary
                     }
                     self.summary!.parse(json: summaryJson)
                 } catch {
@@ -55,7 +67,7 @@ class OrderReturn: NSObject, Parseable {
                         self.summary = NSummary.getSummary(using: id)
                     }
                     if self.summary == nil {
-                        self.summary = NSummary()
+                        self.summary = NSEntityDescription.insertNewObject(forEntityName: "NSummary", into: AppDelegate.sharedManagedContext) as! NSummary
                     }
                     self.summary!.parse(json: summaryJson)
                 } else if let orderString = summaryJson["order"] as? String {
@@ -66,7 +78,7 @@ class OrderReturn: NSObject, Parseable {
                             self.summary = NSummary.getSummary(using: id)
                         }
                         if self.summary == nil {
-                            self.summary = NSummary()
+                            self.summary = NSEntityDescription.insertNewObject(forEntityName: "NSummary", into: AppDelegate.sharedManagedContext) as! NSummary
                         }
                         self.summary!.parse(json: summaryJson)
                     } catch {

@@ -29,7 +29,7 @@ extension NHTTPHelper {
                             category = NCategory.getCategory(using: id)
                         }
                         if category == nil {
-                            category = NCategory.init(entity: NSEntityDescription.entity(forEntityName: "NCategory", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
+                            category = NSEntityDescription.insertNewObject(forEntityName: "NCategory", into: AppDelegate.sharedManagedContext) as! NCategory
                         }
                         category!.parse(json: categoryJson)
                         categories!.append(category!)

@@ -78,8 +78,11 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
             }
 
             if navigation.viewControllers.count == 1 {
-                navigation.dismiss(animated: true, completion: navigation.dismissCompletion)
+//                navigation.dismiss(animated: true, completion: navigation.dismissCompletion)
             } else {
+                if navigation.viewControllers[navigation.viewControllers.count - 1].isKind(of: MainRootController.self) {
+                    return
+                }
                 navigation.popViewController(animated: true)
             }
         } else {

@@ -1,5 +1,5 @@
 //
-//  NCity+CoreDataClass.swift
+//  NSearchResult+CoreDataClass.swift
 //  Nyelam
 //
 //  Created by Bobi on 4/23/18.
@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-@objc(NCity)
-public class NCity: NSManagedObject {
+@objc(NSearchResult)
+public class NSearchResult: NSManagedObject {
 
 }
