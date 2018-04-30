@@ -41,7 +41,7 @@
             <rect key="frame" x="0.0" y="0.0" width="300" height="354"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_default.png" translatesAutoresizingMaskIntoConstraints="NO" id="9kx-N2-A7y">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_placeholder.png" translatesAutoresizingMaskIntoConstraints="NO" id="9kx-N2-A7y">
                     <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="9kx-N2-A7y" secondAttribute="height" multiplier="6:4" id="NIY-7E-Ckq"/>
@@ -58,7 +58,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Date - End Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="guM-CP-Fif">
-                    <rect key="frame" x="16" y="208" width="144" height="18"/>
+                    <rect key="frame" x="16" y="208" width="142.5" height="18"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="18" id="Qc9-ja-Rzl"/>
                     </constraints>
@@ -132,13 +132,13 @@
                     <rect key="frame" x="16" y="288" width="268" height="18"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rp. 99.999.999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yU1-ef-eVx">
-                            <rect key="frame" x="0.0" y="0.0" width="103" height="18"/>
+                            <rect key="frame" x="0.0" y="0.0" width="95" height="18"/>
                             <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="15"/>
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b9h-UC-2ZM">
-                            <rect key="frame" x="0.0" y="8.5" width="103" height="1"/>
+                            <rect key="frame" x="0.0" y="8.5" width="95" height="1"/>
                             <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="9lU-g9-HKl"/>
@@ -157,10 +157,10 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dvH-8Y-nAe" userLabel="Special Price Container">
-                    <rect key="frame" x="16" y="314" width="177" height="24"/>
+                    <rect key="frame" x="16" y="314" width="174" height="24"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rp. 99.999.999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SVZ-V9-yNZ">
-                            <rect key="frame" x="0.0" y="0.0" width="137" height="24"/>
+                            <rect key="frame" x="0.0" y="0.0" width="132" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="24" id="nmi-1b-a9S"/>
                             </constraints>
@@ -169,7 +169,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/ pax" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UiU-PO-aMm">
-                            <rect key="frame" x="145" y="4" width="32" height="17"/>
+                            <rect key="frame" x="140" y="4" width="34" height="17"/>
                             <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -241,7 +241,7 @@
         </view>
     </objects>
     <resources>
+        <image name="bg_placeholder.png" width="900" height="600"/>
         <image name="icon_license_off" width="24" height="24"/>
-        <image name="image_default.png" width="500" height="375"/>
     </resources>
 </document>

@@ -36,6 +36,7 @@ extension NHTTPHelper {
                               parameters: ["dive_service_id": diveServiceId,
                                            "dive_center_id": diveCenterId,
                                            "diver": String(diver),
+                                           "type": String(type),
                                            "schedule": String(schedule.timeIntervalSince1970)],
                               headers: nil,
                               complete: {status, data, error in
@@ -43,6 +44,7 @@ extension NHTTPHelper {
                                     complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
                                     return
                                 }
+                                print("DATA \(data)")
                                 if let data = data, let json = data as? [String: Any] {
                                     let cartReturn = CartReturn(json: json)
                                     complete(NHTTPResponse(resultStatus: true, data: cartReturn, error: nil))

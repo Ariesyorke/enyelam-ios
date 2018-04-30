@@ -153,7 +153,7 @@ extension SearchKeywordController: UITableViewDelegate, UITableViewDataSource {
         let label: UILabel = UILabel(frame: CGRect(x: 16, y: 8, width: tableView.frame.width - 32, height: 40 - 16))
         label.text = "Recent Search"
         label.textColor = UIColor(white: 0.3, alpha: 1)
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont(name: "FiraSans-Bold", size: 14)
         header.addSubview(label)
         return header
 

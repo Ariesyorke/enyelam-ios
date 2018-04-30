@@ -47,8 +47,8 @@ class SearchFormController: BaseViewController {
             self.navigationController?.navigationBar.barTintColor = UIColor.nyGreen
         } else {
             self.navigationController?.navigationBar.barTintColor = UIColor.primary
-
         }
+        self.title = "Search"
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -251,18 +251,22 @@ extension SearchFormController: UITableViewDelegate, UITableViewDataSource {
                     UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {})
                     return
                 }
+                var ecoTrip: Int? = nil
+                if self.isEcoTrip {
+                    ecoTrip = 1
+                }
                 if let keyword = self.selectedKeyword as? SearchResultService {
                     //TODO OPEN DIVESERVICE DETAIL INSTEAD!
-                    
+                    _ = DiveServiceController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: keyword, selectedLicense: self.selectedLicense!, selectedDiver: self.selectedDiver!, selectedDate: self.selectedDate!, ecoTrip: ecoTrip)
                 } else {
-                    DiveServiceSearchResultController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: self.selectedKeyword!, selectedLicense: self.selectedLicense, selectedDiver: self.selectedDiver!, selectedDate: self.selectedDate!)
+                    _ = DiveServiceSearchResultController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: self.selectedKeyword!, selectedLicense: self.selectedLicense, selectedDiver: self.selectedDiver!, selectedDate: self.selectedDate!, ecoTrip: ecoTrip)
                 }
             }
             cell.keywordLabel.text = self.selectedKeyword != nil ? self.selectedKeyword!.name : "Province, Area, Spot, Dive Center"
             cell.selectedDateLabel.text = self.selectedDate != nil ? SearchFormCell.string(from: self.selectedDate!, forDoTrip: self.forDoTrip) : "Day, Month, Year"
             cell.selectedDiverLabel.text = self.selectedDiver != nil ? String(format: "%d Diver(s)", arguments: [self.selectedDiver!]) : "0 Diver(s)"
             cell.needLicense.isOn = self.selectedLicense
-            if let keyword = self.selectedKeyword as? SearchResultService {
+            if let _ = self.selectedKeyword as? SearchResultService {
                 cell.needLicense.isUserInteractionEnabled = false
             } else {
                 cell.needLicense.isUserInteractionEnabled = true
@@ -287,7 +291,7 @@ extension SearchFormController: UITableViewDelegate, UITableViewDataSource {
             let label: UILabel = UILabel(frame: CGRect(x: 16, y: 8, width: tableView.frame.width - 32, height: 40 - 16))
             label.text = "Our Recommended Services"
             label.textColor = UIColor(white: 0.3, alpha: 1)
-            label.font = UIFont.systemFont(ofSize: 20)
+            label.font = UIFont(name: "FiraSans-Regular", size: 18)
             header.addSubview(label)
             return header
         } else {

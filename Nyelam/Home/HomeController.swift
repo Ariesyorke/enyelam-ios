@@ -11,6 +11,7 @@ import AlamofireImage
 import CoreData
 import SideMenu
 import MessageUI
+import SwiftDate
 
 class HomeController: BaseViewController, UIScrollViewDelegate {
     private var bannerImages: [String] = ["banner_1", "banner_2", "banner_3"]
@@ -48,7 +49,7 @@ class HomeController: BaseViewController, UIScrollViewDelegate {
                     self.contentViews.append(view)
                     self.bannerScroller.addConstraints([
                         NSLayoutConstraint(item: self.bannerScroller, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0),
-                        NSLayoutConstraint(item: self.bannerScroller, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0),
+                        NSLayoutConstraint(item: self.bannerScroller, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: -16),
                         NSLayoutConstraint(item: self.bannerScroller, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.width, multiplier: 1, constant: 0)
                         ])
                     
@@ -161,7 +162,9 @@ class HomeController: BaseViewController, UIScrollViewDelegate {
 // MARK: - Outlets & Actions
 extension HomeController {
     @IBAction func sideMenuButtonAction(_ sender: Any) {
-        self.present(SideMenuManager.menuRightNavigationController!, animated: true, completion: nil)
+        self.present(SideMenuManager.menuRightNavigationController!, animated: true, completion: {
+            self.sideMenuController!.tableView.reloadData()
+        })
     }
 
     @IBAction func onMenuClicked(_ sender: UIControl) {
@@ -185,14 +188,17 @@ extension HomeController {
     
     @objc func onDoTripClicked(at sender: UIControl) {
         let index: Int = sender.tag
-        // TODO: OPEN SERVICE DETAIL
+        let trip = self.doTrips![index]
+        let result = SearchResultService()
+        let schedule = trip.schedule!
+        let date = Date(timeIntervalSince1970: schedule.startDate)
+        _ = DiveServiceController.push(on: self.navigationController!, forDoTrip: true, selectedKeyword: result, selectedLicense: trip.license, selectedDiver: 1, selectedDate: date, ecoTrip: nil, diveService: trip)
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let gap = Int((scrollView.contentSize.width - scrollView.contentOffset.x)/scrollView.bounds.width)
         let index = Int(contentViews.count - gap)
         self.bannerPageControl.currentPage = index
-        
     }
     
     internal func setupSideMenu() {
@@ -308,6 +314,5 @@ extension HomeController {
             ])
         return control
     }
-    
     
 }

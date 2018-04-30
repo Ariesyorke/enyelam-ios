@@ -31,7 +31,7 @@ class RegisterViewController: BaseViewController, MMNumberKeyboardDelegate {
     var pictureUrl: String?
     var socmedId: String?
     var gender: String?
-    
+    var emailAddress: String?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initView()
@@ -125,6 +125,10 @@ class RegisterViewController: BaseViewController, MMNumberKeyboardDelegate {
         self.phoneNumberTextField.delegate = self
         self.passwordTextField.delegate = self
         self.confirmPasswordTextField.delegate = self
+        if let email = self.emailAddress {
+            self.emailAddressTextField.text = email
+            self.emailAddressTextField.isEnabled = false
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="63" id="KGk-i7-Jjw" customClass="TotalDivesCell" customModule="Nyelam" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="62.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZB-6w-OU1" customClass="DLRadioButton">
+                        <rect key="frame" x="16" y="16" width="50" height="30.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="jed-cx-XUr"/>
+                        </constraints>
+                        <state key="normal" title="1x">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="iconSquare" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="totalDivesButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kWI-Qh-XqX"/>
+                            <outletCollection property="otherButtons" destination="A4H-qg-UlR" id="2uj-X1-bvu"/>
+                            <outletCollection property="otherButtons" destination="XDR-AH-N8T" id="xno-dM-HLg"/>
+                            <outletCollection property="otherButtons" destination="La7-tt-kEu" id="yke-h6-r8K"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A4H-qg-UlR" customClass="DLRadioButton">
+                        <rect key="frame" x="74" y="16" width="50" height="30.5"/>
+                        <state key="normal" title="2x">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="iconSquare" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="totalDivesButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="cZ2-KW-BdP"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XDR-AH-N8T" customClass="DLRadioButton">
+                        <rect key="frame" x="132" y="16" width="50" height="30.5"/>
+                        <state key="normal" title="3x">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="iconSquare" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="totalDivesButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="r2m-ne-X2a"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="La7-tt-kEu" customClass="DLRadioButton">
+                        <rect key="frame" x="190" y="16" width="50" height="30.5"/>
+                        <state key="normal" title="&gt;4">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="iconSquare" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="totalDivesButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ghN-p6-HC6"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="A4H-qg-UlR" firstAttribute="width" secondItem="aZB-6w-OU1" secondAttribute="width" id="2VI-l9-Elz"/>
+                    <constraint firstItem="aZB-6w-OU1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="2me-Wl-U8A"/>
+                    <constraint firstItem="XDR-AH-N8T" firstAttribute="bottom" secondItem="A4H-qg-UlR" secondAttribute="bottom" id="860-CO-wmr"/>
+                    <constraint firstItem="XDR-AH-N8T" firstAttribute="leading" secondItem="A4H-qg-UlR" secondAttribute="trailing" constant="8" id="GyH-Dz-tvu"/>
+                    <constraint firstItem="XDR-AH-N8T" firstAttribute="top" secondItem="A4H-qg-UlR" secondAttribute="top" id="HUm-u7-MWo"/>
+                    <constraint firstItem="aZB-6w-OU1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="KJl-bi-7xP"/>
+                    <constraint firstItem="La7-tt-kEu" firstAttribute="bottom" secondItem="XDR-AH-N8T" secondAttribute="bottom" id="Nsz-yB-rYZ"/>
+                    <constraint firstItem="La7-tt-kEu" firstAttribute="leading" secondItem="XDR-AH-N8T" secondAttribute="trailing" constant="8" id="Odr-za-XpB"/>
+                    <constraint firstItem="A4H-qg-UlR" firstAttribute="top" secondItem="aZB-6w-OU1" secondAttribute="top" id="awz-AI-74v"/>
+                    <constraint firstItem="La7-tt-kEu" firstAttribute="width" secondItem="aZB-6w-OU1" secondAttribute="width" id="eYb-pY-02Y"/>
+                    <constraint firstItem="XDR-AH-N8T" firstAttribute="width" secondItem="aZB-6w-OU1" secondAttribute="width" id="gqk-Xt-pxD"/>
+                    <constraint firstItem="A4H-qg-UlR" firstAttribute="bottom" secondItem="aZB-6w-OU1" secondAttribute="bottom" id="iGe-uP-zjz"/>
+                    <constraint firstAttribute="bottom" secondItem="aZB-6w-OU1" secondAttribute="bottom" constant="16" id="m1o-zp-Iv5"/>
+                    <constraint firstItem="A4H-qg-UlR" firstAttribute="leading" secondItem="aZB-6w-OU1" secondAttribute="trailing" constant="8" id="nZG-4o-OUE"/>
+                    <constraint firstItem="La7-tt-kEu" firstAttribute="top" secondItem="XDR-AH-N8T" secondAttribute="top" id="zEH-hV-XhQ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="totalDiveSort" destination="aZB-6w-OU1" id="yLC-Vg-upF"/>
+            </connections>
+            <point key="canvasLocation" x="114" y="118.5"/>
+        </tableViewCell>
+    </objects>
+</document>

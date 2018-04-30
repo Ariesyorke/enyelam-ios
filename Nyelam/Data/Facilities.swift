@@ -15,6 +15,7 @@ public class Facilities: NSObject, NSCoding, Parseable {
     private let KEY_DIVE_EQUIPMENT = "dive_equipment"
     private let KEY_LICENSE = "license"
     private let KEY_TRANSPORTATION = "transportation"
+    private let KEY_ACCOMODATION = "accomodation"
     
     var diveGuide: Bool = false
     var food: Bool = false
@@ -22,6 +23,7 @@ public class Facilities: NSObject, NSCoding, Parseable {
     var diveEquipment: Bool = false
     var license: Bool = false
     var transportation: Bool = false
+    var accomodation: Bool = false
     
     public convenience required init?(coder aDecoder: NSCoder) {
         guard let json = aDecoder.decodeObject(forKey: "json") as? [String: Any] else {
@@ -71,16 +73,22 @@ public class Facilities: NSObject, NSCoding, Parseable {
         } else if let transportation = json[KEY_TRANSPORTATION] as? String {
             self.transportation = transportation.toBool
         }
+        if let accomodation = json[KEY_ACCOMODATION] as? Bool {
+            self.accomodation = accomodation
+        } else if let accomodation = json[KEY_TRANSPORTATION] as? String {
+            self.accomodation = accomodation.toBool
+        }
     }
     
     func serialized() -> [String : Any] {
         var json: [String: Any] = [:]
-        json[KEY_DIVE_GUIDE] = diveGuide
-        json[KEY_FOOD] = food
-        json[KEY_TOWEL] = towel
-        json[KEY_DIVE_EQUIPMENT] = diveEquipment
-        json[KEY_LICENSE] = license
-        json[KEY_TRANSPORTATION] = transportation
+        json[KEY_DIVE_GUIDE] = self.diveGuide
+        json[KEY_FOOD] = self.food
+        json[KEY_TOWEL] = self.towel
+        json[KEY_DIVE_EQUIPMENT] = self.diveEquipment
+        json[KEY_LICENSE] = self.license
+        json[KEY_TRANSPORTATION] = self.transportation
+        json[KEY_ACCOMODATION] = self.accomodation
         return json
     }
     

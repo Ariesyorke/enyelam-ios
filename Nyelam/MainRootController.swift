@@ -28,6 +28,7 @@ class MainRootController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = nil
         self.onClick(tabItem: self.tabMenus.first!)
         self.disableLeftBarButton()
     }

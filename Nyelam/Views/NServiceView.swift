@@ -83,7 +83,7 @@ class NServiceView: UIView {
         self.totalDivesLabel.text = String(diveService.totalDives) + " Dive" + (diveService.totalDives>1 ? "s" : "")
         self.totalDaysLabel.text = String(diveService.totalDays) + " Day" + (diveService.totalDays>1 ? "s" : "")
         if let url = diveService.featuredImage {
-           self.serviceImageView.loadImage(from: url, contentMode: .scaleAspectFill, with: "image_default")
+           self.serviceImageView.loadImage(from: url, contentMode: .scaleAspectFill, with: "bg_placeholder.png")
         }
         if let schedule = diveService.schedule {
             let startDate = Date(timeIntervalSince1970: schedule.startDate).formatDate(dateFormat: "MMMM yyyy")

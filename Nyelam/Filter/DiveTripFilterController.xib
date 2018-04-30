@@ -1,13 +1,23 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="FiraSans-Regular.ttf">
+            <string>FiraSans-Regular</string>
+        </array>
+    </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DiveTripFilterController" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DiveTripFilterController" customModule="Nyelam" customModuleProvider="target">
             <connections>
+                <outlet property="clearButton" destination="Die-oR-LnU" id="iW4-0H-bIF"/>
+                <outlet property="tableView" destination="jsy-cG-eeE" id="KXs-u1-G4f"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,8 +25,72 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jsy-cG-eeE">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="595"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y2u-Q1-D3j">
+                    <rect key="frame" x="0.0" y="595" width="375" height="72"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5va-YP-Qw9">
+                            <rect key="frame" x="8" y="16" width="171.5" height="40"/>
+                            <color key="backgroundColor" red="0.086274509799999996" green="0.45882352939999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="l78-b4-p0x"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="17"/>
+                            <state key="normal" title="Apply">
+                                <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                    <real key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="applyButtonAction:" destination="-1" eventType="touchUpInside" id="CEC-kL-RaO"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Die-oR-LnU">
+                            <rect key="frame" x="187.5" y="16" width="171.5" height="40"/>
+                            <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="17"/>
+                            <state key="normal" title="Clear">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                    <real key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="clearButtonAction:" destination="-1" eventType="touchUpInside" id="QLS-6b-rKk"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="5va-YP-Qw9" firstAttribute="width" secondItem="Die-oR-LnU" secondAttribute="width" id="DcV-tg-Od4"/>
+                        <constraint firstAttribute="trailing" secondItem="Die-oR-LnU" secondAttribute="trailing" constant="16" id="Ia2-a2-C9V"/>
+                        <constraint firstAttribute="bottom" secondItem="5va-YP-Qw9" secondAttribute="bottom" constant="16" id="OWO-Xn-sLJ"/>
+                        <constraint firstItem="Die-oR-LnU" firstAttribute="top" secondItem="5va-YP-Qw9" secondAttribute="top" id="Oro-Ai-zbf"/>
+                        <constraint firstItem="5va-YP-Qw9" firstAttribute="top" secondItem="Y2u-Q1-D3j" secondAttribute="top" constant="16" id="gJ1-80-Gth"/>
+                        <constraint firstItem="5va-YP-Qw9" firstAttribute="leading" secondItem="Y2u-Q1-D3j" secondAttribute="leading" constant="8" id="n3H-kN-QXX"/>
+                        <constraint firstItem="Die-oR-LnU" firstAttribute="leading" secondItem="5va-YP-Qw9" secondAttribute="trailing" constant="8" id="tLb-Oj-p26"/>
+                        <constraint firstItem="Die-oR-LnU" firstAttribute="bottom" secondItem="5va-YP-Qw9" secondAttribute="bottom" id="v3e-ze-lfj"/>
+                    </constraints>
+                </view>
+            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="jsy-cG-eeE" secondAttribute="trailing" id="3KP-2W-Po6"/>
+                <constraint firstAttribute="bottom" secondItem="Y2u-Q1-D3j" secondAttribute="bottom" id="DgD-ef-gzN"/>
+                <constraint firstItem="jsy-cG-eeE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Usx-6Y-tcL"/>
+                <constraint firstItem="Y2u-Q1-D3j" firstAttribute="top" secondItem="jsy-cG-eeE" secondAttribute="bottom" id="j2X-VN-9K5"/>
+                <constraint firstItem="jsy-cG-eeE" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="mq7-vj-IBv"/>
+                <constraint firstItem="Y2u-Q1-D3j" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="oie-SX-rpN"/>
+                <constraint firstAttribute="trailing" secondItem="Y2u-Q1-D3j" secondAttribute="trailing" id="yxs-uA-9K7"/>
+            </constraints>
         </view>
     </objects>
 </document>

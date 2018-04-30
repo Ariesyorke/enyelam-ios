@@ -42,6 +42,23 @@ extension NCategory {
         return json
     }
     
+    static func getCategories() -> [NCategory]? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NCategory")
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+
+        do {
+            let categories = try managedContext.fetch(fetchRequest) as? [NCategory]
+            if let categories = categories, !categories.isEmpty {
+                return categories
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+    
     static func getCategory(using id: String) -> NCategory? {
         let managedContext = AppDelegate.sharedManagedContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NCategory")
@@ -434,6 +451,9 @@ extension NCountry {
     static func getCountries() -> [NCountry]? {
         let managedContext = AppDelegate.sharedManagedContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NCountry")
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+
         do {
             let countries = try managedContext.fetch(fetchRequest) as? [NCountry]
             if let countries = countries, !countries.isEmpty {
@@ -712,15 +732,25 @@ extension NDiveService {
     private var KEY_DIVE_CENTER: String { return "dive_center" }
     private var KEY_IMAGES: String { return "images" }
     private var KEY_DESCRIPTION: String { return "description" }
+    private var KEY_AVAILABILITY_STOCK: String { return "availability_stock" }
     
     func parse(json: [String : Any]) {
         self.id = json[KEY_ID] as? String
         self.name = json[KEY_NAME] as? String
+        self.diveServiceDescription = json[KEY_DESCRIPTION] as? String
+        
         if let rating = json[KEY_RATING] as? Double {
             self.rating = rating
         } else if let rating = json[KEY_RATING] as? String {
             if rating.isNumber {
                 self.rating = Double(rating)!
+            }
+        }
+        if let stock = json[KEY_AVAILABILITY_STOCK] as? Int {
+            self.availability = Int32(stock)
+        } else if let stock = json[KEY_AVAILABILITY_STOCK] as? String {
+            if stock.isNumber {
+                self.availability = Int32(stock)!
             }
         }
         
@@ -929,6 +959,9 @@ extension NDiveService {
         }
         if let name = self.name {
             json[KEY_NAME] = name
+        }
+        if let description = self.diveServiceDescription {
+            json[KEY_DESCRIPTION] = description
         }
         json[KEY_RATING] = rating
         json[KEY_RATING_COUNT] = Int(rating)

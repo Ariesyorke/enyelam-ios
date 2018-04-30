@@ -38,8 +38,33 @@ extension NHTTPHelper {
         })
     }
     
-    static func httpGetMinMaxPrice(type: String) {
-        
+    static func httpGetMinMaxPrice(type: String, complete: @escaping (NHTTPResponse<Price>) -> ()) {
+        self.basicPostRequest(
+            URLString: HOST_URL+API_PATH_MIN_MAX_PRICE,
+            parameters: ["type":type],
+            headers:nil,
+            complete:
+            {status, data, error in
+                if let error = error {
+                    complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
+                    return
+                }
+                if let data = data, let json = data as? [String: Any] {
+                    var price: Price? = nil
+                    if let priceJson = json["price"] as? [String: Any] {
+                        price = Price(json: priceJson)
+                    } else if let priceString = json["price"] as? String {
+                        do {
+                            let data = priceString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                            let priceJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                            price = Price(json: priceJson)
+                        } catch {
+                            print(error)
+                        }
+                    }
+                    complete(NHTTPResponse(resultStatus: true, data: price, error: nil))
+                }
+        })
     }
     
     static func httpGetHomepageModule(complete: @escaping (NHTTPResponse<[Module]>)->()) {

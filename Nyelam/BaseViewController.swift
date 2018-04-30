@@ -77,8 +77,8 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
                 navigation.navigationBar.barTintColor = UIColor.primary
             }
 
-            if navigation.viewControllers.count == 1 {
-//                navigation.dismiss(animated: true, completion: navigation.dismissCompletion)
+            if navigation.viewControllers.count == 1, navigation.isKind(of: AuthNavigationController.self) {
+                navigation.dismiss(animated: true, completion: navigation.dismissCompletion)
             } else {
                 if navigation.viewControllers[navigation.viewControllers.count - 1].isKind(of: MainRootController.self) {
                     return

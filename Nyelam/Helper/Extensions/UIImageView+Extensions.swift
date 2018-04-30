@@ -39,7 +39,6 @@ extension UIImageView {
         self.image = UIImage(named: placeHolder)
         Alamofire.request(url).responseImage(completionHandler: {response in
             if let _ = response.error {
-                
                 return
             }
             if let image = response.result.value {

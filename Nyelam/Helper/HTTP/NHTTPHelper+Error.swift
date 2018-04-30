@@ -384,6 +384,15 @@ class NHTTPHelper {
         }
     }
     
+    static var API_PATH_DO_TRIP_DETAIL: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "dotrip/detail"
+        default:
+            return "api/dotrip/detail"
+        }
+    }
+    
     internal static func basicAuthRequest(URLString: URLConvertible,
                                           parameters: [String: Any]? = nil,
                                           headers: [String: String]? = nil,

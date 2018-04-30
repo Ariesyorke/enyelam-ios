@@ -31,8 +31,10 @@ target 'Nyelam' do
   pod 'Cosmos'
   pod 'SwiftDate'
   pod 'UIScrollView-InfiniteScroll'
-  pod 'SwiftRangeSlider'
   pod 'DLRadioButton', '~> 1.4'
+  pod 'RangeSeekSlider'
+  pod 'TangramKit'
+  pod 'GSKStretchyHeaderView'
   
   target 'NyelamTests' do
     inherit! :search_paths

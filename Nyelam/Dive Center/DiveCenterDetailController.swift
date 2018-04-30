@@ -1,14 +1,14 @@
 //
-//  DiveServiceDetailController.swift
+//  DiveCenterDetailController.swift
 //  Nyelam
 //
-//  Created by Bobi on 4/24/18.
+//  Created by Bobi on 4/27/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 
 import UIKit
 
-class DiveServiceDetailController: BaseViewController {
+class DiveCenterDetailController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

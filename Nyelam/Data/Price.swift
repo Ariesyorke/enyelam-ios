@@ -12,12 +12,18 @@ class Price: NSObject, NSCoding, Parseable {
     private let KEY_LOWEST_PRICE = "lowest_price"
     private let KEY_HIGHEST_PRICE = "highest_price"
     
-    var lowestPrice: Int = 0
-    var highestPrice: Int = 0
+    var lowestPrice: CGFloat = 0
+    var highestPrice: CGFloat = 0
     
     init(json: [String: Any]) {
         super.init()
         self.parse(json: json)
+    }
+    
+    init(lowestPrice: CGFloat, highestPrice: CGFloat) {
+        super.init()
+        self.lowestPrice = lowestPrice
+        self.highestPrice = highestPrice
     }
     
     public convenience required init?(coder aDecoder: NSCoder) {
@@ -32,15 +38,19 @@ class Price: NSObject, NSCoding, Parseable {
     }
     
     func parse(json: [String : Any]) {
-        if let lowestPrice = json[KEY_LOWEST_PRICE] as? Int {
-            self.lowestPrice = lowestPrice
+        if let lowestPrice = json[KEY_LOWEST_PRICE] as? Double {
+            self.lowestPrice = CGFloat(lowestPrice)
         } else if let lowestPrice = json[KEY_LOWEST_PRICE] as? String {
-            self.lowestPrice = Int(lowestPrice)!
+            if lowestPrice.isNumber {
+                self.lowestPrice = CGFloat(Double(lowestPrice)!)
+            }
         }
-        if let highestPrice = json[KEY_HIGHEST_PRICE] as? Int {
-            self.highestPrice = highestPrice
+        if let highestPrice = json[KEY_HIGHEST_PRICE] as? Double {
+            self.highestPrice = CGFloat(highestPrice)
         } else if let highestPrice = json[KEY_HIGHEST_PRICE] as? String {
-            self.highestPrice = Int(highestPrice)!
+            if highestPrice.isNumber {
+                self.highestPrice = CGFloat(Double(highestPrice)!)
+            }
         }
     }
     

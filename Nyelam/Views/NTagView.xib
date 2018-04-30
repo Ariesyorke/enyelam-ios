@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="FiraSans-Regular.ttf">
+            <string>FiraSans-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_ferry_inactive" translatesAutoresizingMaskIntoConstraints="NO" id="ZEy-37-nQu">
+                    <rect key="frame" x="16" y="16" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="24" id="8WT-88-YUj"/>
+                        <constraint firstAttribute="height" constant="24" id="aSl-4d-ch4"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRh-vi-nz0">
+                    <rect key="frame" x="48" y="19" width="311" height="17"/>
+                    <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="ZEy-37-nQu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="9gE-lo-afd"/>
+                <constraint firstItem="DRh-vi-nz0" firstAttribute="centerY" secondItem="ZEy-37-nQu" secondAttribute="centerY" id="D4J-FL-7dI"/>
+                <constraint firstItem="ZEy-37-nQu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="LnD-ug-tIS"/>
+                <constraint firstItem="DRh-vi-nz0" firstAttribute="leading" secondItem="ZEy-37-nQu" secondAttribute="trailing" constant="8" id="PLv-0H-Qdy"/>
+                <constraint firstAttribute="bottom" secondItem="ZEy-37-nQu" secondAttribute="bottom" constant="16" id="h8D-21-6f7"/>
+                <constraint firstAttribute="trailing" secondItem="DRh-vi-nz0" secondAttribute="trailing" constant="16" id="q4c-lc-s0F"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="40.5" y="-326.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_ferry_inactive" width="20" height="20"/>
+    </resources>
+</document>

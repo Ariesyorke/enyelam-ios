@@ -147,47 +147,45 @@ class LoginViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDel
                         self.tryLoginUsingSocmed(accessToken: accessToken, emailAddress: emailAddress, type: type, id: id)
                     })
                 } else if error.isKind(of: StatusFailedError.self) {
-                    UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {error in
-                        let registerViewController = RegisterViewController(nibName: "RegisterViewController", bundle: nil)
-                        registerViewController.emailAddressTextField.text = emailAddress
-                        registerViewController.accessToken = accessToken
-                        registerViewController.socmedId = id
-                        registerViewController.type = type
-                        if type == "google" {
-                            registerViewController.fullName = ("\(self.googleUser!.profile.givenName) \(self.googleUser!.profile.familyName)")
-                            if self.googleUser!.profile.hasImage {
-                                registerViewController.pictureUrl = self.googleUser!.profile.imageURL(withDimension: 200).absoluteString
-                            }
-                        } else if type == "facebook" {
-                            var fullName: String? = nil
-                            var firstName = self.facebookUser!["first_name"] as! String
-                            var lastName = self.facebookUser!["last_name"] as? String
-                            if let lastName = lastName {
-                                fullName = "\(firstName) \(lastName)"
-                            } else {
-                                fullName = firstName
-                            }
-                            registerViewController.fullName = fullName
-                            var gender = self.facebookUser!["gender"] as? String
-                            if let gender = gender {
-                                if gender.lowercased() == "male" {
-                                    registerViewController.gender = "1"
-                                } else {
-                                    registerViewController.gender = "2"
-                                }
-                                if let pictureJson = self.facebookUser!["picture"] as? [String: Any] {
-                                    if let pictureData = pictureJson["data"] as? [String: Any] {
-                                        registerViewController.pictureUrl = pictureData["url"] as? String
-                                    }
-                                }
-                            }
+                    let registerViewController = RegisterViewController(nibName: "RegisterViewController", bundle: nil)
+                    registerViewController.emailAddress = emailAddress
+                    registerViewController.accessToken = accessToken
+                    registerViewController.socmedId = id
+                    registerViewController.type = type
+                    if type == "google" {
+                        registerViewController.fullName = ("\(self.googleUser!.profile.givenName) \(self.googleUser!.profile.familyName)")
+                        if self.googleUser!.profile.hasImage {
+                            registerViewController.pictureUrl = self.googleUser!.profile.imageURL(withDimension: 200).absoluteString
                         }
-                        if let navigation = self.navigationController {
-                            navigation.pushViewController(registerViewController, animated: true)
+                    } else if type == "facebook" {
+                        var fullName: String? = nil
+                        var firstName = self.facebookUser!["first_name"] as! String
+                        var lastName = self.facebookUser!["last_name"] as? String
+                        if let lastName = lastName {
+                            fullName = "\(firstName) \(lastName)"
                         } else {
-                            self.present(registerViewController, animated: true, completion: nil)
+                            fullName = firstName
                         }
-                    })
+                        registerViewController.fullName = fullName
+                        var gender = self.facebookUser!["gender"] as? String
+                        if let gender = gender {
+                            if gender.lowercased() == "male" {
+                                registerViewController.gender = "1"
+                            } else {
+                                registerViewController.gender = "2"
+                            }
+                            if let pictureJson = self.facebookUser!["picture"] as? [String: Any] {
+                                if let pictureData = pictureJson["data"] as? [String: Any] {
+                                    registerViewController.pictureUrl = pictureData["url"] as? String
+                                }
+                            }
+                        }
+                    }
+                    if let navigation = self.navigationController {
+                        navigation.pushViewController(registerViewController, animated: true)
+                    } else {
+                        self.present(registerViewController, animated: true, completion: nil)
+                    }
                 }
             },successCompletion: {authReturn in
                 if let navigation = self.navigationController as? AuthNavigationController {

@@ -13,12 +13,14 @@ class DiveServiceSearchResultController: BaseViewController, UITableViewDataSour
     @IBOutlet weak var notFoundLabel: UILabel!
     @IBOutlet weak var loadingView: UIActivityIndicatorView!
     
-    static func push(on controller: UINavigationController, forDoTrip: Bool, selectedKeyword: SearchResult, selectedLicense: Bool, selectedDiver: Int, selectedDate: Date) -> DiveServiceSearchResultController {
+    static func push(on controller: UINavigationController, forDoTrip: Bool, selectedKeyword: SearchResult, selectedLicense: Bool, selectedDiver: Int, selectedDate: Date, ecoTrip: Int?) -> DiveServiceSearchResultController {
         let vc: DiveServiceSearchResultController = DiveServiceSearchResultController(nibName: "DiveServiceSearchResultController", bundle: nil)
         vc.selectedLicense = selectedLicense
         vc.selectedDiver = selectedDiver
         vc.selectedDate = selectedDate
         vc.selectedKeyword = selectedKeyword
+        vc.forDoTrip = forDoTrip
+        vc.ecotrip = ecoTrip
         controller.navigationBar.barTintColor = UIColor.primary
         controller.pushViewController(vc, animated: true)
         return vc
@@ -33,8 +35,8 @@ class DiveServiceSearchResultController: BaseViewController, UITableViewDataSour
         return vc
     }
 
-    var forDoTrip: Bool = false
-    var ecotrip: Int?
+    fileprivate var forDoTrip: Bool = false
+    fileprivate var ecotrip: Int?
     
     fileprivate var diveServices: [NDiveService]?
     fileprivate var selectedKeyword: SearchResult?
@@ -52,12 +54,8 @@ class DiveServiceSearchResultController: BaseViewController, UITableViewDataSour
         self.tableView.delegate = self
         self.tableView.addInfiniteScroll(handler: self.infiniteScroll)
         self.tableView.register(UINib(nibName: "DiveServiceCell", bundle: nil), forCellReuseIdentifier: "DiveServiceCell")
-        if forDoTrip {
-            self.getAllDoTrip(page: page, selectedDiver: selectedDiver!, filter: filter)
-        } else {
-            self.searchDiveService(selectedKeyword: self.selectedKeyword!, selectedDate: self.selectedDate!, selectedDiver: self.selectedDiver!, selectedLicense: self.selectedLicense, forDoTrip: self.forDoTrip, filter: self.filter, ecotrip: self.ecotrip)
-        }
-        // Do any additional setup after loading the view.
+        self.loadDiveServices()
+                        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,10 +65,25 @@ class DiveServiceSearchResultController: BaseViewController, UITableViewDataSour
     
 
     @IBAction func filterButtonAction(_ sender: Any) {
-        
+        _ = DiveTripFilterController.push(on: self.navigationController!, filter: self.filter, onUpdateFilter: {filter in
+                self.page = 1
+                self.diveServices = nil
+                self.tableView.reloadData()
+                self.filter = filter
+                self.loadDiveServices()
+            })
     }
     
-    
+    fileprivate func loadDiveServices() {
+        if forDoTrip {
+            self.title = "Do Trip"
+            self.getAllDoTrip(page: page, selectedDiver: selectedDiver!, filter: filter)
+        } else {
+            let title = self.selectedDate!.formatDate(dateFormat: "dd MMMM yyyy") + " " + String(self.selectedDiver!) + " pax(s)"
+            self.title = title
+            self.searchDiveService(selectedKeyword: self.selectedKeyword!, selectedDate: self.selectedDate!, selectedDiver: self.selectedDiver!, selectedLicense: self.selectedLicense, forDoTrip: self.forDoTrip, filter: self.filter, ecotrip: self.ecotrip)
+        }
+    }
     fileprivate func searchDiveService(selectedKeyword: SearchResult, selectedDate: Date, selectedDiver: Int, selectedLicense: Bool, forDoTrip: Bool, filter: NFilter, ecotrip: Int?) {
         self.loadingView.isHidden = false
         
@@ -244,6 +257,7 @@ class DiveServiceSearchResultController: BaseViewController, UITableViewDataSour
     }
     
     fileprivate func initServices(diveServices: [NDiveService]?) {
+        print("RESPONSE DATA \(diveServices)")
         self.loadingView.isHidden = true
         if let diveServices = diveServices, !diveServices.isEmpty {
             if self.diveServices == nil {
@@ -320,10 +334,18 @@ extension DiveServiceSearchResultController {
         let row = indexPath.row
         let cell: DiveServiceCell = tableView.dequeueReusableCell(withIdentifier: "DiveServiceCell", for: indexPath) as! DiveServiceCell
         cell.serviceView.isDoTrip = self.forDoTrip
+        cell.serviceView.tag = row
+        cell.serviceView.addTarget(self, action: #selector(DiveServiceSearchResultController.onDoTripClicked(at:)))
         cell.serviceView.initData(diveService: self.diveServices![row])
         return cell
     }
     
+    @objc func onDoTripClicked(at sender: UIControl) {
+        let index = sender.tag
+        let diveService = self.diveServices![index]
+        _ = DiveServiceController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: self.selectedKeyword!, selectedLicense: diveService.license, selectedDiver: self.selectedDiver!, selectedDate: self.selectedDate!, ecoTrip: self.ecotrip, diveService: diveService)
+
+    }
     
 }
 
@@ -333,5 +355,5 @@ class NFilter  {
     var categories: [String]?
     var facilities: [String]?
     var totalDives: [String]?
-    var sortBy: Int = 1
+    var sortBy: Int = 2
 }
