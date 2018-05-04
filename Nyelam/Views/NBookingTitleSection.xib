@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="FiraSans-SemiBold.ttf">
+            <string>FiraSans-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NBookingTitleSection" customModule="Nyelam" customModuleProvider="target">
+            <connections>
+                <outlet property="subtitleLabel" destination="1nW-X9-Bs2" id="SDt-nk-sAc"/>
+                <outlet property="titleLabel" destination="Tla-yO-rUe" id="2L2-nB-gTz"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tsn-RJ-tYG">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LABEL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tla-yO-rUe">
+                            <rect key="frame" x="16" y="0.0" width="33" height="667"/>
+                            <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="12"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1nW-X9-Bs2">
+                            <rect key="frame" x="359" y="334" width="0.0" height="0.0"/>
+                            <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="12"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.66666666669999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="Tla-yO-rUe" firstAttribute="top" secondItem="tsn-RJ-tYG" secondAttribute="top" id="8J7-Yf-eDc"/>
+                        <constraint firstItem="Tla-yO-rUe" firstAttribute="leading" secondItem="tsn-RJ-tYG" secondAttribute="leading" constant="16" id="Lhv-HU-vCQ"/>
+                        <constraint firstItem="1nW-X9-Bs2" firstAttribute="centerY" secondItem="tsn-RJ-tYG" secondAttribute="centerY" id="bGv-u2-iSD"/>
+                        <constraint firstItem="Tla-yO-rUe" firstAttribute="centerY" secondItem="tsn-RJ-tYG" secondAttribute="centerY" id="mjN-6C-Zgn"/>
+                        <constraint firstAttribute="trailing" secondItem="1nW-X9-Bs2" secondAttribute="trailing" constant="16" id="sIh-Ba-y43"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="tsn-RJ-tYG" secondAttribute="trailing" id="6oR-Dw-gGD"/>
+                <constraint firstAttribute="top" secondItem="tsn-RJ-tYG" secondAttribute="top" id="Aqa-ZO-tzS"/>
+                <constraint firstAttribute="bottom" secondItem="tsn-RJ-tYG" secondAttribute="bottom" id="EQf-uv-TCs"/>
+                <constraint firstItem="tsn-RJ-tYG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="aLc-HW-h2W"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

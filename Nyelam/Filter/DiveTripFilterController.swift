@@ -439,7 +439,7 @@ class TripCategoryCell: NTableViewCell {
                 self.flowLayout.addSubview(button)
                 i+=1
             }
-            self.flowLayoutHeight.constant = 270 + additional
+            self.flowLayoutHeight.constant = 200 + additional
         }
     }
 }

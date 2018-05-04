@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="FiraSans-Regular.ttf">
+            <string>FiraSans-Regular</string>
+        </array>
+        <array key="FiraSans-SemiBold.ttf">
+            <string>FiraSans-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="237" id="KGk-i7-Jjw" customClass="PaymentMethodCell" customModule="Nyelam" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="237"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="236.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zu2-60-KBm" userLabel="Bank Transfer" customClass="UIControl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                        <subviews>
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HBa-dr-q3Z" userLabel="Bank Transfer Button" customClass="DLRadioButton">
+                                <rect key="frame" x="16" y="18" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="Uvr-h5-qc6"/>
+                                </constraints>
+                            </button>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p7g-3q-7KI">
+                                <rect key="frame" x="54" y="16" width="250" height="34"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bank Transfer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fuh-WS-5xj">
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="17"/>
+                                        <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pay from ATM Transfer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IiV-gN-eTx">
+                                        <rect key="frame" x="0.0" y="17" width="250" height="17"/>
+                                        <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
+                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="fuh-WS-5xj" firstAttribute="top" secondItem="p7g-3q-7KI" secondAttribute="top" id="12P-lo-tAx"/>
+                                    <constraint firstItem="IiV-gN-eTx" firstAttribute="top" secondItem="fuh-WS-5xj" secondAttribute="bottom" id="6Pe-jd-enz"/>
+                                    <constraint firstItem="IiV-gN-eTx" firstAttribute="leading" secondItem="fuh-WS-5xj" secondAttribute="leading" id="CSt-hm-cBt"/>
+                                    <constraint firstItem="fuh-WS-5xj" firstAttribute="leading" secondItem="p7g-3q-7KI" secondAttribute="leading" id="JdM-p0-ZLz"/>
+                                    <constraint firstItem="IiV-gN-eTx" firstAttribute="trailing" secondItem="fuh-WS-5xj" secondAttribute="trailing" id="Z4u-zK-yqq"/>
+                                    <constraint firstAttribute="trailing" secondItem="fuh-WS-5xj" secondAttribute="trailing" id="aox-kl-yqY"/>
+                                    <constraint firstAttribute="bottom" secondItem="IiV-gN-eTx" secondAttribute="bottom" id="dcX-sQ-gbx"/>
+                                </constraints>
+                            </view>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tN9-kz-OAo">
+                                <rect key="frame" x="0.0" y="58" width="320" height="1"/>
+                                <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="wf0-Py-NK7"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="p7g-3q-7KI" firstAttribute="bottom" secondItem="tN9-kz-OAo" secondAttribute="top" constant="-8" id="CcW-fz-VRe"/>
+                            <constraint firstItem="tN9-kz-OAo" firstAttribute="leading" secondItem="zu2-60-KBm" secondAttribute="leading" id="Fti-en-29A"/>
+                            <constraint firstAttribute="trailing" secondItem="tN9-kz-OAo" secondAttribute="trailing" id="LD6-bu-WvZ"/>
+                            <constraint firstAttribute="bottom" secondItem="tN9-kz-OAo" secondAttribute="bottom" id="Nni-KZ-eSq"/>
+                            <constraint firstItem="HBa-dr-q3Z" firstAttribute="leading" secondItem="zu2-60-KBm" secondAttribute="leading" constant="16" id="UHL-Vr-S0K"/>
+                            <constraint firstItem="p7g-3q-7KI" firstAttribute="leading" secondItem="HBa-dr-q3Z" secondAttribute="trailing" constant="8" id="dyC-e0-SNs"/>
+                            <constraint firstItem="HBa-dr-q3Z" firstAttribute="centerY" secondItem="p7g-3q-7KI" secondAttribute="centerY" id="eOE-VC-tXC"/>
+                            <constraint firstItem="p7g-3q-7KI" firstAttribute="top" secondItem="zu2-60-KBm" secondAttribute="top" constant="16" id="lgx-WA-Wxv"/>
+                            <constraint firstAttribute="trailing" secondItem="p7g-3q-7KI" secondAttribute="trailing" constant="16" id="zkd-4C-6Xt"/>
+                        </constraints>
+                        <connections>
+                            <action selector="changePaymentButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="5NX-Br-i3t"/>
+                        </connections>
+                    </view>
+                    <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fRP-dU-Eoe" userLabel="Virtual Account" customClass="UIControl">
+                        <rect key="frame" x="0.0" y="59" width="320" height="59"/>
+                        <subviews>
+                            <button opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S2N-XL-xYt" userLabel="VA Button" customClass="DLRadioButton">
+                                <rect key="frame" x="16" y="18" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="9y8-LS-DWz"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="otherButtons" destination="HBa-dr-q3Z" id="6Sr-SV-OsN"/>
+                                </connections>
+                            </button>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OBW-TU-JCg">
+                                <rect key="frame" x="54" y="16" width="250" height="34"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Virtual Account Transfer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YBH-n6-xOw">
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="17"/>
+                                        <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pay using Midtrans Transfer Gateway" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vvb-h1-ohJ">
+                                        <rect key="frame" x="0.0" y="17" width="250" height="17"/>
+                                        <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
+                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="YBH-n6-xOw" firstAttribute="top" secondItem="OBW-TU-JCg" secondAttribute="top" id="9T2-Mr-Sfp"/>
+                                    <constraint firstItem="vvb-h1-ohJ" firstAttribute="leading" secondItem="YBH-n6-xOw" secondAttribute="leading" id="BCY-jb-QZw"/>
+                                    <constraint firstItem="vvb-h1-ohJ" firstAttribute="trailing" secondItem="YBH-n6-xOw" secondAttribute="trailing" id="Nvo-iw-gh4"/>
+                                    <constraint firstAttribute="trailing" secondItem="YBH-n6-xOw" secondAttribute="trailing" id="Yo9-fU-Eo8"/>
+                                    <constraint firstItem="vvb-h1-ohJ" firstAttribute="top" secondItem="YBH-n6-xOw" secondAttribute="bottom" id="bNM-b5-Qsg"/>
+                                    <constraint firstItem="YBH-n6-xOw" firstAttribute="leading" secondItem="OBW-TU-JCg" secondAttribute="leading" id="xtH-yb-ziq"/>
+                                    <constraint firstAttribute="bottom" secondItem="vvb-h1-ohJ" secondAttribute="bottom" id="xyf-Bi-tLS"/>
+                                </constraints>
+                            </view>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p5y-d6-1sJ">
+                                <rect key="frame" x="0.0" y="58" width="320" height="1"/>
+                                <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="xLI-7Y-A6Q"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="S2N-XL-xYt" firstAttribute="leading" secondItem="fRP-dU-Eoe" secondAttribute="leading" constant="16" id="0t6-SC-7K1"/>
+                            <constraint firstAttribute="trailing" secondItem="OBW-TU-JCg" secondAttribute="trailing" constant="16" id="1l7-x3-3oo"/>
+                            <constraint firstItem="OBW-TU-JCg" firstAttribute="bottom" secondItem="p5y-d6-1sJ" secondAttribute="top" constant="-8" id="4Td-gq-wMb"/>
+                            <constraint firstItem="OBW-TU-JCg" firstAttribute="leading" secondItem="S2N-XL-xYt" secondAttribute="trailing" constant="8" id="8ZN-83-vlK"/>
+                            <constraint firstItem="OBW-TU-JCg" firstAttribute="top" secondItem="fRP-dU-Eoe" secondAttribute="top" constant="16" id="EwD-FO-X1V"/>
+                            <constraint firstItem="S2N-XL-xYt" firstAttribute="centerY" secondItem="OBW-TU-JCg" secondAttribute="centerY" id="Hjk-yV-QeN"/>
+                            <constraint firstAttribute="trailing" secondItem="p5y-d6-1sJ" secondAttribute="trailing" id="Vf2-Dp-eAC"/>
+                            <constraint firstAttribute="bottom" secondItem="p5y-d6-1sJ" secondAttribute="bottom" id="dtc-L5-t9A"/>
+                            <constraint firstItem="p5y-d6-1sJ" firstAttribute="leading" secondItem="fRP-dU-Eoe" secondAttribute="leading" id="rZv-KH-VQu"/>
+                        </constraints>
+                        <connections>
+                            <action selector="changePaymentButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="yW2-gS-31f"/>
+                        </connections>
+                    </view>
+                    <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xRi-oF-7EX" userLabel="Credit Card" customClass="UIControl">
+                        <rect key="frame" x="0.0" y="118" width="320" height="59"/>
+                        <subviews>
+                            <button opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bqN-wY-DTs" userLabel="CC Button" customClass="DLRadioButton">
+                                <rect key="frame" x="16" y="18" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="C3x-2z-jKj"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="otherButtons" destination="HBa-dr-q3Z" id="crk-ce-Mgs"/>
+                                </connections>
+                            </button>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ro-qk-b1z">
+                                <rect key="frame" x="54" y="16" width="250" height="34"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credit Card" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QIq-OB-N8M">
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="17"/>
+                                        <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pay using Midtrans Transfer Gateway" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aum-1B-Ufc">
+                                        <rect key="frame" x="0.0" y="17" width="250" height="17"/>
+                                        <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
+                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="QIq-OB-N8M" firstAttribute="top" secondItem="5ro-qk-b1z" secondAttribute="top" id="5FQ-Vl-Yya"/>
+                                    <constraint firstItem="Aum-1B-Ufc" firstAttribute="trailing" secondItem="QIq-OB-N8M" secondAttribute="trailing" id="Qsy-PE-T1a"/>
+                                    <constraint firstItem="Aum-1B-Ufc" firstAttribute="leading" secondItem="QIq-OB-N8M" secondAttribute="leading" id="VeJ-ev-9bg"/>
+                                    <constraint firstItem="QIq-OB-N8M" firstAttribute="leading" secondItem="5ro-qk-b1z" secondAttribute="leading" id="WoR-Fl-WYS"/>
+                                    <constraint firstAttribute="bottom" secondItem="Aum-1B-Ufc" secondAttribute="bottom" id="fna-Oq-GFh"/>
+                                    <constraint firstItem="Aum-1B-Ufc" firstAttribute="top" secondItem="QIq-OB-N8M" secondAttribute="bottom" id="of6-9I-6ZY"/>
+                                    <constraint firstAttribute="trailing" secondItem="QIq-OB-N8M" secondAttribute="trailing" id="wBF-Cd-XBj"/>
+                                </constraints>
+                            </view>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vnl-pN-h1R">
+                                <rect key="frame" x="0.0" y="58" width="320" height="1"/>
+                                <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="WVR-Li-kqI"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bqN-wY-DTs" firstAttribute="leading" secondItem="xRi-oF-7EX" secondAttribute="leading" constant="16" id="0Yh-0c-dlq"/>
+                            <constraint firstItem="5ro-qk-b1z" firstAttribute="leading" secondItem="bqN-wY-DTs" secondAttribute="trailing" constant="8" id="6iD-sY-iRo"/>
+                            <constraint firstItem="5ro-qk-b1z" firstAttribute="top" secondItem="xRi-oF-7EX" secondAttribute="top" constant="16" id="83Y-vl-Idb"/>
+                            <constraint firstItem="bqN-wY-DTs" firstAttribute="centerY" secondItem="5ro-qk-b1z" secondAttribute="centerY" id="9gA-Yr-VdP"/>
+                            <constraint firstAttribute="bottom" secondItem="Vnl-pN-h1R" secondAttribute="bottom" id="Bgt-2l-Tye"/>
+                            <constraint firstAttribute="trailing" secondItem="5ro-qk-b1z" secondAttribute="trailing" constant="16" id="RGe-B6-MN0"/>
+                            <constraint firstItem="Vnl-pN-h1R" firstAttribute="leading" secondItem="xRi-oF-7EX" secondAttribute="leading" id="jyp-7G-1Ys"/>
+                            <constraint firstAttribute="trailing" secondItem="Vnl-pN-h1R" secondAttribute="trailing" id="mmW-qk-bje"/>
+                            <constraint firstItem="5ro-qk-b1z" firstAttribute="bottom" secondItem="Vnl-pN-h1R" secondAttribute="top" constant="-8" id="wg3-JL-zG2"/>
+                        </constraints>
+                        <connections>
+                            <action selector="changePaymentButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="mwU-3C-Fd7"/>
+                        </connections>
+                    </view>
+                    <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ot7-sD-b83" userLabel="Paypal" customClass="UIControl">
+                        <rect key="frame" x="0.0" y="177" width="320" height="59"/>
+                        <subviews>
+                            <button opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbb-i6-2zp" userLabel="Paypal Button" customClass="DLRadioButton">
+                                <rect key="frame" x="16" y="18" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="f9e-02-QOk"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="otherButtons" destination="HBa-dr-q3Z" id="TZI-ef-qpG"/>
+                                </connections>
+                            </button>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zqn-3x-6aK">
+                                <rect key="frame" x="54" y="16" width="250" height="34"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Paypal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ISH-VK-UEO">
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="17"/>
+                                        <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pay using Paypal Transfer Gateway" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6K-P5-3hF">
+                                        <rect key="frame" x="0.0" y="17" width="250" height="17"/>
+                                        <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
+                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="G6K-P5-3hF" firstAttribute="trailing" secondItem="ISH-VK-UEO" secondAttribute="trailing" id="AUa-BM-xSQ"/>
+                                    <constraint firstItem="G6K-P5-3hF" firstAttribute="top" secondItem="ISH-VK-UEO" secondAttribute="bottom" id="XHN-6w-S7h"/>
+                                    <constraint firstItem="ISH-VK-UEO" firstAttribute="leading" secondItem="zqn-3x-6aK" secondAttribute="leading" id="akD-Zd-kcb"/>
+                                    <constraint firstAttribute="trailing" secondItem="ISH-VK-UEO" secondAttribute="trailing" id="e2P-ay-TOW"/>
+                                    <constraint firstItem="ISH-VK-UEO" firstAttribute="top" secondItem="zqn-3x-6aK" secondAttribute="top" id="gyA-aa-3Rl"/>
+                                    <constraint firstItem="G6K-P5-3hF" firstAttribute="leading" secondItem="ISH-VK-UEO" secondAttribute="leading" id="wP8-bd-H8J"/>
+                                    <constraint firstAttribute="bottom" secondItem="G6K-P5-3hF" secondAttribute="bottom" id="zKO-g3-0q5"/>
+                                </constraints>
+                            </view>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xmY-Q6-OE4">
+                                <rect key="frame" x="0.0" y="58" width="320" height="1"/>
+                                <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="aIc-pl-Qi1"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zqn-3x-6aK" firstAttribute="bottom" secondItem="xmY-Q6-OE4" secondAttribute="top" constant="-8" id="68w-nd-7U6"/>
+                            <constraint firstAttribute="trailing" secondItem="zqn-3x-6aK" secondAttribute="trailing" constant="16" id="C5c-o2-rJT"/>
+                            <constraint firstItem="zqn-3x-6aK" firstAttribute="leading" secondItem="mbb-i6-2zp" secondAttribute="trailing" constant="8" id="HjA-aV-wZ2"/>
+                            <constraint firstAttribute="trailing" secondItem="xmY-Q6-OE4" secondAttribute="trailing" id="Jdg-Py-9Jk"/>
+                            <constraint firstItem="zqn-3x-6aK" firstAttribute="top" secondItem="ot7-sD-b83" secondAttribute="top" constant="16" id="SLP-xo-uK0"/>
+                            <constraint firstItem="mbb-i6-2zp" firstAttribute="centerY" secondItem="zqn-3x-6aK" secondAttribute="centerY" id="SN3-Iv-T7y"/>
+                            <constraint firstItem="mbb-i6-2zp" firstAttribute="leading" secondItem="ot7-sD-b83" secondAttribute="leading" constant="16" id="Wwe-K3-qzK"/>
+                            <constraint firstItem="xmY-Q6-OE4" firstAttribute="leading" secondItem="ot7-sD-b83" secondAttribute="leading" id="gfr-eN-Gqr"/>
+                            <constraint firstAttribute="bottom" secondItem="xmY-Q6-OE4" secondAttribute="bottom" id="mpf-sN-B9M"/>
+                        </constraints>
+                        <connections>
+                            <action selector="changePaymentButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="697-7E-BEQ"/>
+                        </connections>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="fRP-dU-Eoe" firstAttribute="top" secondItem="zu2-60-KBm" secondAttribute="bottom" id="8QI-ba-Uyk"/>
+                    <constraint firstItem="ot7-sD-b83" firstAttribute="leading" secondItem="zu2-60-KBm" secondAttribute="leading" id="Ms8-WV-xPX"/>
+                    <constraint firstAttribute="trailing" secondItem="fRP-dU-Eoe" secondAttribute="trailing" id="N8W-0n-i5e"/>
+                    <constraint firstAttribute="trailing" secondItem="zu2-60-KBm" secondAttribute="trailing" id="R7e-29-Qwr"/>
+                    <constraint firstItem="zu2-60-KBm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="SBZ-aJ-1hj"/>
+                    <constraint firstItem="ot7-sD-b83" firstAttribute="top" secondItem="xRi-oF-7EX" secondAttribute="bottom" id="WlY-bi-fuU"/>
+                    <constraint firstItem="xRi-oF-7EX" firstAttribute="leading" secondItem="zu2-60-KBm" secondAttribute="leading" id="XIo-jL-fmF"/>
+                    <constraint firstItem="zu2-60-KBm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Xcm-u1-FaP"/>
+                    <constraint firstItem="xRi-oF-7EX" firstAttribute="top" secondItem="fRP-dU-Eoe" secondAttribute="bottom" id="eIv-rO-BfN"/>
+                    <constraint firstItem="xRi-oF-7EX" firstAttribute="trailing" secondItem="zu2-60-KBm" secondAttribute="trailing" id="g3T-QY-oyJ"/>
+                    <constraint firstAttribute="bottom" secondItem="ot7-sD-b83" secondAttribute="bottom" constant="0.5" id="iwP-eI-7VE"/>
+                    <constraint firstItem="fRP-dU-Eoe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="sOA-Ed-6Id"/>
+                    <constraint firstItem="ot7-sD-b83" firstAttribute="trailing" secondItem="zu2-60-KBm" secondAttribute="trailing" id="sWr-qB-YYc"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="paymentButton" destination="HBa-dr-q3Z" id="KoS-7i-Q1J"/>
+            </connections>
+            <point key="canvasLocation" x="73" y="238.5"/>
+        </tableViewCell>
+    </objects>
+</document>

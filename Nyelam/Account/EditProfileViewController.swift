@@ -222,9 +222,11 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
             self.lastNameTextField.text = names[1]
             self.emailTextField.text = user.email
             self.phoneNumberTextField.text = user.phone
-            if let countryCode = user.countryCode {
+            if let countryCode = user.countryCode, let countryNumber = countryCode.countryNumber {
                 self.pickedCountryCode = user.countryCode
-                self.countryCodeLabel.text = ("+\(countryCode.countryNumber!)")
+                self.countryCodeLabel.text = ("+\(countryNumber)")
+            } else {
+                self.pickedCountryCode =  NCountryCode.getCountryCode(by: self.userRegionCode)
             }
             self.genderTextField.text = user.gender
             if let birthDate = user.birthDate {
@@ -272,7 +274,6 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
     }
     
     func numberKeyboardShouldReturn(_ numberKeyboard: MMNumberKeyboard!) -> Bool {
-        print("DONE PRESSED!")
         numberKeyboard.resignFirstResponder()
         return true
     }

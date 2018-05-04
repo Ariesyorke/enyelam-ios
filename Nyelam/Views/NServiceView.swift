@@ -86,8 +86,8 @@ class NServiceView: UIView {
            self.serviceImageView.loadImage(from: url, contentMode: .scaleAspectFill, with: "bg_placeholder.png")
         }
         if let schedule = diveService.schedule {
-            let startDate = Date(timeIntervalSince1970: schedule.startDate).formatDate(dateFormat: "MMMM yyyy")
-            let endDate = Date(timeIntervalSince1970: schedule.endDate).formatDate(dateFormat: "MMMM yyyy")
+            let startDate = Date(timeIntervalSince1970: schedule.startDate).formatDate(dateFormat: "MMM yyyy")
+            let endDate = Date(timeIntervalSince1970: schedule.endDate).formatDate(dateFormat: "MMM yyyy")
             self.serviceStartDateEndDateLabel.text = "\(startDate) - \(endDate)"
         }
         
@@ -103,6 +103,7 @@ class NServiceView: UIView {
         
         self.normalPriceLabel.text = diveService.normalPrice.toCurrencyFormatString(currency: "Rp.")
         self.specialPriceLabel.text = diveService.specialPrice.toCurrencyFormatString(currency:"Rp.")
+        
         if diveService.normalPrice == diveService.specialPrice {
             self.normalPriceContainerView.isHidden = true
         } else {

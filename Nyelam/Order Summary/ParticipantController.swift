@@ -1,15 +1,15 @@
 //
-//  DiveCenterDetailController.swift
+//  ParticipantController.swift
 //  Nyelam
 //
-//  Created by Bobi on 4/27/18.
+//  Created by Bobi on 5/3/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 
 import UIKit
 
-class DiveCenterDetailController: BaseViewController {
-    
+class ParticipantController: BaseViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

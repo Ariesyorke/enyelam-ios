@@ -9,8 +9,8 @@
 import UIKit
 import CoreData
 
-class SearchKeywordController: BaseViewController {
-    
+class SearchKeywordController: BaseViewController, UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate {
+    var searchController : UISearchController!
     static func push(on controller: UINavigationController, with handler: @escaping (SearchKeywordController, SearchResult?) -> Void) -> SearchKeywordController {
         let vc: SearchKeywordController = SearchKeywordController(nibName: "SearchKeywordController", bundle: nil)
         vc.handler = handler
@@ -65,8 +65,30 @@ class SearchKeywordController: BaseViewController {
         }
     }
     
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        let keyword = searchController.searchBar.text
+        if let keyword = keyword, keyword.count >= 3 {
+            self.trySearch(with: keyword)
+        }
+    }
+    
     fileprivate func setupNavigationItem() {
-        self.navigationItem.titleView = self.createSearchBarView(size: CGSize(width: self.view.frame.width, height: 44))
+        self.searchController = UISearchController(searchResultsController:  nil)
+        
+        self.searchController.searchResultsUpdater = self
+        self.searchController.delegate = self
+        self.searchController.searchBar.placeholder = "Enter keywords..."
+        self.searchController.searchBar.delegate = self
+        
+        self.searchController.hidesNavigationBarDuringPresentation = false
+        self.searchController.dimsBackgroundDuringPresentation = true
+        
+        self.navigationItem.titleView = searchController.searchBar
+        
+        self.definesPresentationContext = true
+
+//        self.navigationItem.titleView = self.createSearchBarView(size: CGSize(width: self.view.frame.width, height: 44))
     }
     
     fileprivate func setupUI() {
@@ -229,4 +251,9 @@ extension SearchKeywordController {
             }
         })
     }
+    
+    override func keyboardWillShow(keyboardFrame: CGRect, animationDuration: TimeInterval) {
+        
+    }
+    
 }

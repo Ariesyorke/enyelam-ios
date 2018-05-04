@@ -52,17 +52,17 @@
                     <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SpE-Pp-u7N">
-                    <rect key="frame" x="16" y="160" width="268" height="24"/>
-                    <fontDescription key="fontDescription" name="FiraSans-Bold" family="Fira Sans" pointSize="20"/>
+                    <rect key="frame" x="16" y="162" width="268" height="22"/>
+                    <fontDescription key="fontDescription" name="FiraSans-Bold" family="Fira Sans" pointSize="18"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Date - End Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="guM-CP-Fif">
-                    <rect key="frame" x="16" y="208" width="142.5" height="18"/>
+                    <rect key="frame" x="16" y="208" width="133" height="18"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="18" id="Qc9-ja-Rzl"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="15"/>
+                    <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -70,21 +70,21 @@
                     <rect key="frame" x="16" y="234" width="268" height="18"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Dives" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="04j-Qb-vFy">
-                            <rect key="frame" x="0.0" y="0.0" width="49" height="18"/>
-                            <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="15"/>
+                            <rect key="frame" x="0.0" y="0.0" width="45.5" height="18"/>
+                            <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h03-jG-fH1">
-                            <rect key="frame" x="57" y="0.0" width="1" height="18"/>
+                            <rect key="frame" x="53.5" y="0.0" width="1" height="18"/>
                             <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="1" id="s3V-Qg-VfL"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="0 Days" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bto-e3-t19">
-                            <rect key="frame" x="66" y="0.0" width="202" height="18"/>
-                            <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="15"/>
+                            <rect key="frame" x="62.5" y="0.0" width="205.5" height="17"/>
+                            <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -132,13 +132,13 @@
                     <rect key="frame" x="16" y="288" width="268" height="18"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rp. 99.999.999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yU1-ef-eVx">
-                            <rect key="frame" x="0.0" y="0.0" width="95" height="18"/>
-                            <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="15"/>
+                            <rect key="frame" x="0.0" y="0.0" width="89" height="18"/>
+                            <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b9h-UC-2ZM">
-                            <rect key="frame" x="0.0" y="8.5" width="95" height="1"/>
+                            <rect key="frame" x="0.0" y="8.5" width="89" height="1"/>
                             <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="9lU-g9-HKl"/>
@@ -157,19 +157,19 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dvH-8Y-nAe" userLabel="Special Price Container">
-                    <rect key="frame" x="16" y="314" width="174" height="24"/>
+                    <rect key="frame" x="16" y="314" width="161" height="24"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rp. 99.999.999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SVZ-V9-yNZ">
-                            <rect key="frame" x="0.0" y="0.0" width="132" height="24"/>
+                            <rect key="frame" x="0.0" y="0.0" width="119" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="24" id="nmi-1b-a9S"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="FiraSans-Bold" family="Fira Sans" pointSize="20"/>
+                            <fontDescription key="fontDescription" name="FiraSans-Bold" family="Fira Sans" pointSize="18"/>
                             <color key="textColor" red="1" green="0.59607843140000005" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/ pax" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UiU-PO-aMm">
-                            <rect key="frame" x="140" y="4" width="34" height="17"/>
+                            <rect key="frame" x="127" y="4" width="34" height="17"/>
                             <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>

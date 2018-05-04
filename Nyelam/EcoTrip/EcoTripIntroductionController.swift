@@ -12,6 +12,7 @@ import UINavigationControllerWithCompletionBlock
 class EcoTripIntroductionController: BaseViewController {
     static func push(on controller: UINavigationController) -> EcoTripIntroductionController {
         let vc: EcoTripIntroductionController = EcoTripIntroductionController(nibName: "EcoTripIntroductionController", bundle: nil)
+        controller.setNavigationBarHidden(false, animated: true)
         controller.navigationBar.barTintColor = UIColor.nyGreen
         controller.pushViewController(vc, animated: true)
         return vc

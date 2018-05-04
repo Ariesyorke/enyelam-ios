@@ -15,6 +15,7 @@ class SearchFormController: BaseViewController {
     static func push(on controller: UINavigationController, forDoTrip: Bool) -> SearchFormController {
         let vc: SearchFormController = SearchFormController(nibName: "SearchFormController", bundle: nil)
         vc.forDoTrip = forDoTrip
+        controller.setNavigationBarHidden(false, animated: true)
         controller.pushViewController(vc, animated: true)
         return vc
     }
@@ -25,6 +26,7 @@ class SearchFormController: BaseViewController {
         vc.forDoTrip = forDoTrip
         vc.selectedKeyword = SearchResult(json:NConstant.ecotripStatic)
         vc.selectedLicense = true
+        controller.setNavigationBarHidden(false, animated: true)
         controller.navigationBar.barTintColor = UIColor.nyGreen
         controller.pushViewController(vc, animated: true)
         return vc
@@ -38,7 +40,7 @@ class SearchFormController: BaseViewController {
     fileprivate var diveServices: [NDiveService]?
     fileprivate var selectedKeyword: SearchResult?
     fileprivate var selectedDate: Date?
-    fileprivate var selectedDiver: Int?
+    fileprivate var selectedDiver: Int = 1
     fileprivate var selectedLicense: Bool! = false
     
     override func viewWillAppear(_ animated: Bool) {
@@ -256,15 +258,14 @@ extension SearchFormController: UITableViewDelegate, UITableViewDataSource {
                     ecoTrip = 1
                 }
                 if let keyword = self.selectedKeyword as? SearchResultService {
-                    //TODO OPEN DIVESERVICE DETAIL INSTEAD!
-                    _ = DiveServiceController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: keyword, selectedLicense: self.selectedLicense!, selectedDiver: self.selectedDiver!, selectedDate: self.selectedDate!, ecoTrip: ecoTrip)
+                    _ = DiveServiceController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: keyword, selectedLicense: self.selectedLicense!, selectedDiver: self.selectedDiver, selectedDate: self.selectedDate!, ecoTrip: ecoTrip)
                 } else {
-                    _ = DiveServiceSearchResultController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: self.selectedKeyword!, selectedLicense: self.selectedLicense, selectedDiver: self.selectedDiver!, selectedDate: self.selectedDate!, ecoTrip: ecoTrip)
+                    _ = DiveServiceSearchResultController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: self.selectedKeyword!, selectedLicense: self.selectedLicense, selectedDiver: self.selectedDiver, selectedDate: self.selectedDate!, ecoTrip: ecoTrip)
                 }
             }
             cell.keywordLabel.text = self.selectedKeyword != nil ? self.selectedKeyword!.name : "Province, Area, Spot, Dive Center"
             cell.selectedDateLabel.text = self.selectedDate != nil ? SearchFormCell.string(from: self.selectedDate!, forDoTrip: self.forDoTrip) : "Day, Month, Year"
-            cell.selectedDiverLabel.text = self.selectedDiver != nil ? String(format: "%d Diver(s)", arguments: [self.selectedDiver!]) : "0 Diver(s)"
+//            cell.selectedDiverLabel.text = self.selectedDiver != nil ? String(format: "%d Diver(s)", arguments: [self.selectedDiver]) : "0 Diver(s)"
             cell.needLicense.isOn = self.selectedLicense
             if let _ = self.selectedKeyword as? SearchResultService {
                 cell.needLicense.isUserInteractionEnabled = false
@@ -291,7 +292,7 @@ extension SearchFormController: UITableViewDelegate, UITableViewDataSource {
             let label: UILabel = UILabel(frame: CGRect(x: 16, y: 8, width: tableView.frame.width - 32, height: 40 - 16))
             label.text = "Our Recommended Services"
             label.textColor = UIColor(white: 0.3, alpha: 1)
-            label.font = UIFont(name: "FiraSans-Regular", size: 18)
+            label.font = UIFont(name: "FiraSans-Regular", size: 15)
             header.addSubview(label)
             return header
         } else {
@@ -390,7 +391,25 @@ extension SearchFormController: UIPickerViewDataSource, UIPickerViewDelegate {
         
         self.selectedKeyword = keyword
         self.selectedLicense = diveservice.license
-        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .none, animated: true)
+        if let indexPaths = self.tableView.indexPathsForVisibleRows {
+            var visible = false
+            for indexPath in indexPaths {
+                if indexPath.row == 0 && indexPath.section == 0 {
+                    visible = true
+                    break
+                }
+            }
+            if visible {
+                self.tableView.reloadRows(at: [IndexPath(item: 0, section: 0)], with: .automatic)
+            } else {
+                self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .none, animated: true)
+            }
+        }
+//        if index == 0 {
+//            self.tableView.reloadRows(at: [IndexPath(item: 0, section: 0)], with: .automatic)
+//        } else {
+//            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .none, animated: true)
+//        }
     }
 
     

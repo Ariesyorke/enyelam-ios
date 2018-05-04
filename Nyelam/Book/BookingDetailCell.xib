@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="FiraSans-Bold.ttf">
+            <string>FiraSans-Bold</string>
+        </array>
+        <array key="FiraSans-Regular.ttf">
+            <string>FiraSans-Regular</string>
+        </array>
+        <array key="FiraSans-SemiBold.ttf">
+            <string>FiraSans-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="147" id="KGk-i7-Jjw" customClass="BookingDetailCell" customModule="Nyelam" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="147"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="146.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28 Juli 2017" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="flV-lv-SWU">
+                        <rect key="frame" x="16" y="16" width="288" height="18"/>
+                        <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="15"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGl-iq-72I">
+                        <rect key="frame" x="16" y="42" width="288" height="20"/>
+                        <fontDescription key="fontDescription" name="FiraSans-Bold" family="Fira Sans" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yqz-El-6IR" customClass="CosmosView" customModule="Cosmos">
+                        <rect key="frame" x="16" y="70" width="100" height="20"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="Eb3-Ue-T0c"/>
+                            <constraint firstAttribute="width" constant="100" id="JsM-kI-CDg"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="starSize">
+                                <real key="value" value="18"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="fillMode">
+                                <integer key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="updateOnTouch" value="NO"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="minTouchRating">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 / 0 visited" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ivw-Tl-Gol">
+                        <rect key="frame" x="130" y="71" width="174" height="18"/>
+                        <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="15"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i1a-U2-A8h" userLabel="Dive Center Container">
+                        <rect key="frame" x="16" y="98" width="288" height="32.5"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_pin_map" translatesAutoresizingMaskIntoConstraints="NO" id="X0e-Kg-846">
+                                <rect key="frame" x="0.0" y="4.5" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="7nT-18-bU0"/>
+                                    <constraint firstAttribute="width" constant="24" id="X1L-IH-IuA"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eem-1t-ziG">
+                                <rect key="frame" x="32" y="0.0" width="232" height="32.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UCU-EO-aRF">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="18"/>
+                                        <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2uJ-VR-Wgp">
+                                        <rect key="frame" x="0.0" y="18" width="240" height="14.5"/>
+                                        <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="12"/>
+                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="UCU-EO-aRF" secondAttribute="trailing" constant="-8" id="5p0-PO-7sf"/>
+                                    <constraint firstItem="UCU-EO-aRF" firstAttribute="top" secondItem="Eem-1t-ziG" secondAttribute="top" id="BF3-OV-Dc5"/>
+                                    <constraint firstItem="2uJ-VR-Wgp" firstAttribute="leading" secondItem="UCU-EO-aRF" secondAttribute="leading" id="Ooz-9y-DwN"/>
+                                    <constraint firstAttribute="bottom" secondItem="2uJ-VR-Wgp" secondAttribute="bottom" id="RPt-QR-hED"/>
+                                    <constraint firstItem="2uJ-VR-Wgp" firstAttribute="top" secondItem="UCU-EO-aRF" secondAttribute="bottom" id="emc-P8-HgO"/>
+                                    <constraint firstItem="UCU-EO-aRF" firstAttribute="leading" secondItem="Eem-1t-ziG" secondAttribute="leading" id="fg1-cu-inF"/>
+                                    <constraint firstItem="2uJ-VR-Wgp" firstAttribute="trailing" secondItem="UCU-EO-aRF" secondAttribute="trailing" id="uPy-p9-Fpj"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Eem-1t-ziG" firstAttribute="leading" secondItem="X0e-Kg-846" secondAttribute="trailing" constant="8" id="2Ww-cB-g0b"/>
+                            <constraint firstAttribute="trailing" secondItem="Eem-1t-ziG" secondAttribute="trailing" constant="24" id="OGk-nT-FCb"/>
+                            <constraint firstItem="X0e-Kg-846" firstAttribute="leading" secondItem="i1a-U2-A8h" secondAttribute="leading" id="Xx4-77-vzN"/>
+                            <constraint firstItem="X0e-Kg-846" firstAttribute="centerY" secondItem="Eem-1t-ziG" secondAttribute="centerY" id="aSJ-Ez-8Nl"/>
+                            <constraint firstItem="Eem-1t-ziG" firstAttribute="top" secondItem="i1a-U2-A8h" secondAttribute="top" id="teo-au-PtE"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Yqz-El-6IR" firstAttribute="top" secondItem="lGl-iq-72I" secondAttribute="bottom" constant="8" id="8QI-0B-637"/>
+                    <constraint firstItem="lGl-iq-72I" firstAttribute="top" secondItem="flV-lv-SWU" secondAttribute="bottom" constant="8" id="9tk-sk-lix"/>
+                    <constraint firstItem="ivw-Tl-Gol" firstAttribute="leading" secondItem="Yqz-El-6IR" secondAttribute="trailing" constant="14" id="AIH-VS-ECh"/>
+                    <constraint firstItem="i1a-U2-A8h" firstAttribute="trailing" secondItem="flV-lv-SWU" secondAttribute="trailing" id="BO1-H0-QnF"/>
+                    <constraint firstAttribute="bottom" secondItem="i1a-U2-A8h" secondAttribute="bottom" constant="16" id="OXI-ND-eZX"/>
+                    <constraint firstItem="lGl-iq-72I" firstAttribute="trailing" secondItem="flV-lv-SWU" secondAttribute="trailing" id="Rmu-8f-ZUK"/>
+                    <constraint firstItem="flV-lv-SWU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="VaJ-Od-ddG"/>
+                    <constraint firstAttribute="bottom" secondItem="Eem-1t-ziG" secondAttribute="bottom" constant="16" id="Y1P-cs-HRW"/>
+                    <constraint firstAttribute="trailing" secondItem="flV-lv-SWU" secondAttribute="trailing" constant="16" id="ZQ3-rE-O0J"/>
+                    <constraint firstItem="ivw-Tl-Gol" firstAttribute="centerY" secondItem="Yqz-El-6IR" secondAttribute="centerY" id="ZrT-oC-6oW"/>
+                    <constraint firstItem="Yqz-El-6IR" firstAttribute="leading" secondItem="lGl-iq-72I" secondAttribute="leading" id="fmP-Ky-yjg"/>
+                    <constraint firstItem="lGl-iq-72I" firstAttribute="leading" secondItem="flV-lv-SWU" secondAttribute="leading" id="lxS-dl-Au7"/>
+                    <constraint firstItem="i1a-U2-A8h" firstAttribute="leading" secondItem="flV-lv-SWU" secondAttribute="leading" id="nsy-CA-TPs"/>
+                    <constraint firstItem="flV-lv-SWU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="p4D-aG-1PH"/>
+                    <constraint firstItem="i1a-U2-A8h" firstAttribute="top" secondItem="Yqz-El-6IR" secondAttribute="bottom" constant="8" id="rAb-4Z-87e"/>
+                    <constraint firstItem="ivw-Tl-Gol" firstAttribute="trailing" secondItem="lGl-iq-72I" secondAttribute="trailing" id="xhc-Fy-OU0"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="bookingDateLabel" destination="flV-lv-SWU" id="xac-4z-OvT"/>
+                <outlet property="diveCenterLocationName" destination="2uJ-VR-Wgp" id="zTl-dp-MUY"/>
+                <outlet property="diveCenterNameLabel" destination="UCU-EO-aRF" id="apP-BN-y7P"/>
+                <outlet property="eventLabel" destination="lGl-iq-72I" id="2H2-UZ-oGV"/>
+                <outlet property="rateView" destination="Yqz-El-6IR" id="UKK-nP-BXq"/>
+                <outlet property="visitedLabel" destination="ivw-Tl-Gol" id="OJB-fa-6FQ"/>
+            </connections>
+            <point key="canvasLocation" x="73" y="199.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic_pin_map" width="24" height="24"/>
+    </resources>
+</document>

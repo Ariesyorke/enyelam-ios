@@ -31,6 +31,7 @@ class MainRootController: BaseViewController {
         self.title = nil
         self.onClick(tabItem: self.tabMenus.first!)
         self.disableLeftBarButton()
+        self.navigationController!.setNavigationBarHidden(true, animated: true)
     }
     
     func onSelectTab(type: TabItemType) {
@@ -45,7 +46,7 @@ class MainRootController: BaseViewController {
             }
             self.put(controller: self.homeController!)
         } else if type == TabItemType.Account {
-            if self.currentController != nil && self.currentController == self.homeController {
+            if self.currentController != nil && self.currentController == self.accountController {
                 return
             }
 
@@ -99,6 +100,7 @@ class MainRootController: BaseViewController {
     
     override func goToAuth() {
         let _ = AuthNavigationController.present(on: self, dismissCompletion: {
+            self.navigationController!.setNavigationBarHidden(false, animated: true)
             self.checkLoginState()
         })
     }

@@ -13,6 +13,7 @@ class AuthNavigationController: BaseNavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setNavigationBarHidden(false, animated: true)
         // Do any additional setup after loading the view.
     }
     

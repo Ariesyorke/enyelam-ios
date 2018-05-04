@@ -21,6 +21,7 @@ class DiveServiceSearchResultController: BaseViewController, UITableViewDataSour
         vc.selectedKeyword = selectedKeyword
         vc.forDoTrip = forDoTrip
         vc.ecotrip = ecoTrip
+        controller.setNavigationBarHidden(false, animated: true)
         controller.navigationBar.barTintColor = UIColor.primary
         controller.pushViewController(vc, animated: true)
         return vc
@@ -30,6 +31,7 @@ class DiveServiceSearchResultController: BaseViewController, UITableViewDataSour
         let vc: DiveServiceSearchResultController = DiveServiceSearchResultController(nibName: "DiveServiceSearchResultController", bundle: nil)
         vc.selectedDiver = selectedDiver
         vc.forDoTrip = forDoTrip
+        controller.setNavigationBarHidden(false, animated: true)
         controller.navigationBar.barTintColor = UIColor.primary
         controller.pushViewController(vc, animated: true)
         return vc
@@ -257,7 +259,6 @@ class DiveServiceSearchResultController: BaseViewController, UITableViewDataSour
     }
     
     fileprivate func initServices(diveServices: [NDiveService]?) {
-        print("RESPONSE DATA \(diveServices)")
         self.loadingView.isHidden = true
         if let diveServices = diveServices, !diveServices.isEmpty {
             if self.diveServices == nil {
@@ -343,6 +344,7 @@ extension DiveServiceSearchResultController {
     @objc func onDoTripClicked(at sender: UIControl) {
         let index = sender.tag
         let diveService = self.diveServices![index]
+        self.selectedDate = Date(timeIntervalSince1970: diveService.schedule!.startDate)
         _ = DiveServiceController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: self.selectedKeyword!, selectedLicense: diveService.license, selectedDiver: self.selectedDiver!, selectedDate: self.selectedDate!, ecoTrip: self.ecotrip, diveService: diveService)
 
     }

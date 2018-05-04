@@ -44,7 +44,6 @@ class RegisterViewController: BaseViewController, MMNumberKeyboardDelegate {
     }
     
     @IBAction func countryCodeButtonAction(_ sender: Any) {
-        print("COUNTRY CODES AFTER \(NCountryCode.getCountryCodes())")
         if let countryCodes = self.countryCodes, !countryCodes.isEmpty {
             var c: [String] = []
             for countryCode in countryCodes {
@@ -63,16 +62,17 @@ class RegisterViewController: BaseViewController, MMNumberKeyboardDelegate {
     }
     
     @IBAction func registerButtonAction(_ sender: Any) {
-        var emailAddress = self.emailAddressTextField.text!
-        var phoneNumber = self.phoneNumberTextField.text!
-        var password = self.passwordTextField.text!
-        var confirmPassword = self.confirmPasswordTextField.text!
+        let emailAddress = self.emailAddressTextField.text!
+        let phoneNumber = self.phoneNumberTextField.text!
+        let password = self.passwordTextField.text!
+        let confirmPassword = self.confirmPasswordTextField.text!
+        
         if let error = validateForm(emailAddress: emailAddress, phoneNumber: phoneNumber, password: password, confirmPassword: confirmPassword) {
             UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {
             })
             return
         }
-        self.tryRegister(fullname: self.fullName, email: emailAddress, password: password, confirmPassword: confirmPassword, phoneNumber: phoneNumber, countryCodeId: self.pickedCountryCode!.countryCode!, gender: self.gender, socmedType: self.type, socmedId: self.socmedId, socmedAccessToken: self.accessToken, picture: self.pictureUrl)
+        self.tryRegister(fullname: self.fullName, email: emailAddress, password: password, confirmPassword: confirmPassword, phoneNumber: phoneNumber, countryCodeId: self.pickedCountryCode!.id!, gender: self.gender, socmedType: self.type, socmedId: self.socmedId, socmedAccessToken: self.accessToken, picture: self.pictureUrl)
     }
     internal func tryRegister(fullname: String?, email: String, password: String, confirmPassword: String, phoneNumber: String, countryCodeId: String, gender: String?, socmedType: String?, socmedId: String?, socmedAccessToken: String?, picture: String?) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
@@ -176,6 +176,7 @@ class RegisterViewController: BaseViewController, MMNumberKeyboardDelegate {
         self.passwordTextField.becomeFirstResponder()
         return true
     }
+    
     /*
     // MARK: - Navigation
 

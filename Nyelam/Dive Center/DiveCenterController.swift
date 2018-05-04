@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DiveCenterController: UIViewController {
+class DiveCenterController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

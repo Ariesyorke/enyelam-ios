@@ -13,7 +13,7 @@ import SideMenu
 import MessageUI
 import SwiftDate
 
-class HomeController: BaseViewController, UIScrollViewDelegate {
+class HomeController: BaseViewController, UIScrollViewDelegate, MFMailComposeViewControllerDelegate {
     private var bannerImages: [String] = ["banner_1", "banner_2", "banner_3"]
     @IBOutlet weak var bannerScroller: UIScrollView!
     @IBOutlet weak var bannerPageControl: UIPageControl!
@@ -49,7 +49,7 @@ class HomeController: BaseViewController, UIScrollViewDelegate {
                     self.contentViews.append(view)
                     self.bannerScroller.addConstraints([
                         NSLayoutConstraint(item: self.bannerScroller, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0),
-                        NSLayoutConstraint(item: self.bannerScroller, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: -16),
+                        NSLayoutConstraint(item: self.bannerScroller, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0),
                         NSLayoutConstraint(item: self.bannerScroller, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.width, multiplier: 1, constant: 0)
                         ])
                     
@@ -234,6 +234,7 @@ extension HomeController {
     internal func contactUs() {
         let composeVC = MFMailComposeViewController()
         composeVC.setToRecipients(["info@e-nyelam.com"])
+        composeVC.mailComposeDelegate = self
         if let parent = self.parent {
             parent.present(composeVC, animated: true, completion: nil)
         } else {
@@ -274,7 +275,7 @@ extension HomeController {
     fileprivate func createView(forDoTrip service: NDiveService) -> NServiceView {
         let view: NServiceView = NServiceView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 300))
+        view.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.view.frame.width * 75/100))
         return view
     }
     
@@ -314,5 +315,10 @@ extension HomeController {
             ])
         return control
     }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+
     
 }

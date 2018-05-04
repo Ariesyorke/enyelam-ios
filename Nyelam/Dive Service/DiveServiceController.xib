@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -43,7 +44,7 @@
                     <rect key="frame" x="0.0" y="605" width="375" height="62"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UEg-HP-3bQ">
-                            <rect key="frame" x="16" y="0.0" width="167.5" height="62"/>
+                            <rect key="frame" x="16" y="0.0" width="223.5" height="62"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e2U-HZ-sy4" customClass="UIControl">
                                     <rect key="frame" x="0.0" y="16" width="30" height="30"/>
@@ -98,8 +99,8 @@
                                         <action selector="addButtonAction:" destination="-1" eventType="touchUpInside" id="b1c-I4-qup"/>
                                     </connections>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Diver" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hFr-uO-S2p">
-                                    <rect key="frame" x="112" y="22" width="55.5" height="18"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Diver(s)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hFr-uO-S2p">
+                                    <rect key="frame" x="112" y="22" width="111.5" height="18"/>
                                     <fontDescription key="fontDescription" name="FiraSans-Light" family="Fira Sans" pointSize="15"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -119,10 +120,10 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jvV-20-yOB">
-                            <rect key="frame" x="191.5" y="16" width="167.5" height="30"/>
+                            <rect key="frame" x="247.5" y="16" width="111.5" height="30"/>
                             <color key="backgroundColor" red="0.086274509799999996" green="0.45882352939999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="15"/>
-                            <state key="normal" title="Book Now">
+                            <state key="normal" title="Book">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <userDefinedRuntimeAttributes>
@@ -142,7 +143,7 @@
                         <constraint firstAttribute="trailing" secondItem="jvV-20-yOB" secondAttribute="trailing" constant="16" id="7R4-le-51o"/>
                         <constraint firstItem="UEg-HP-3bQ" firstAttribute="top" secondItem="4FW-xr-LdF" secondAttribute="top" id="Nhl-0X-fzl"/>
                         <constraint firstItem="jvV-20-yOB" firstAttribute="top" secondItem="4FW-xr-LdF" secondAttribute="top" constant="16" id="S8g-M0-N48"/>
-                        <constraint firstItem="UEg-HP-3bQ" firstAttribute="width" secondItem="jvV-20-yOB" secondAttribute="width" id="alp-0A-rTG"/>
+                        <constraint firstItem="UEg-HP-3bQ" firstAttribute="width" secondItem="jvV-20-yOB" secondAttribute="width" multiplier="2:1" id="alp-0A-rTG"/>
                         <constraint firstItem="jvV-20-yOB" firstAttribute="leading" secondItem="UEg-HP-3bQ" secondAttribute="trailing" constant="8" id="epj-JD-q9X"/>
                         <constraint firstItem="UEg-HP-3bQ" firstAttribute="leading" secondItem="4FW-xr-LdF" secondAttribute="leading" constant="16" id="hTX-Q3-1Pb"/>
                     </constraints>
