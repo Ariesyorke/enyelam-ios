@@ -25,6 +25,7 @@ class MainRootController: BaseViewController {
     var currentController: UIViewController?
     var homeController: HomeController?
     var accountController: AccountTableViewController?
+    var bookingController: BookingViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +56,15 @@ class MainRootController: BaseViewController {
                 self.accountController!.view.translatesAutoresizingMaskIntoConstraints = false
             }
             self.put(controller: self.accountController!)
+        } else if type == TabItemType.Order {
+            if self.currentController != nil && self.currentController == self.bookingController {
+                return
+            }
+            if self.bookingController == nil {
+                self.bookingController = BookingViewController(nibName: "BookingViewController", bundle: nil)
+                self.bookingController!.view.translatesAutoresizingMaskIntoConstraints = false
+            }
+            self.put(controller: self.bookingController!)
         }
     }
     

@@ -290,12 +290,13 @@ class DiveServiceController: BaseViewController, UITableViewDelegate, UITableVie
         })
     }
     
-    func createContact(user: NUser) -> Contact {
-        let contact = Contact()
+    func createContact(user: NUser) -> BookingContact {
+        let contact = BookingContact()
         contact.name = user.fullname
-        contact.emailAddress = user.email
+        contact.email = user.email
         if let countryCode = user.countryCode {
-            contact.phoneNumber = "+\(countryCode.countryNumber!) \(user.phone!)"
+            contact.countryCode = countryCode
+            contact.phoneNumber = user.phone
         }
         return contact
     }
@@ -462,7 +463,8 @@ class DiveServiceDetailCell: NTableViewCell {
                 self.accomodationImageView.image = UIImage(named: self.faciltyMapping["accomodation"]![1])
             }
             if let descript = diveService.diveServiceDescription {
-                self.descriptionLabel.attributedText = NSAttributedString.htmlAttriButedText(str: descript, fontName: "FiraSans-Regular", size: 15, color: UIColor.lightGray)
+                self.descriptionLabel.attributedText = NSAttributedString.htmlAttriButedText(str: descript, fontName: "FiraSans-Regular", size: 14, color: UIColor.darkGray
+                )
             } else {
                 self.descriptionLabel.text = "-"
             }

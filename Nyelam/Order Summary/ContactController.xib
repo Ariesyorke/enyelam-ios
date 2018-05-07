@@ -16,6 +16,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContactController" customModule="Nyelam" customModuleProvider="target">
             <connections>
+                <outlet property="countryCodeLabel" destination="1ha-OU-2Ss" id="FYi-MN-qe2"/>
                 <outlet property="emailAddressTextField" destination="1ID-kJ-RXa" id="IPT-eG-QcA"/>
                 <outlet property="fullnameTextField" destination="9is-CX-Nao" id="p0s-WZ-RnJ"/>
                 <outlet property="phoneNumberTextField" destination="NdJ-Mg-p7R" id="6ki-4j-ui2"/>
@@ -102,6 +103,9 @@
                                 <constraint firstItem="LDe-G7-Feo" firstAttribute="centerY" secondItem="1ha-OU-2Ss" secondAttribute="centerY" id="ucf-vk-c3C"/>
                                 <constraint firstItem="1ha-OU-2Ss" firstAttribute="trailing" secondItem="LDe-G7-Feo" secondAttribute="leading" constant="-8" id="xf2-kn-W60"/>
                             </constraints>
+                            <connections>
+                                <action selector="countryCodeButtonAction:" destination="-1" eventType="touchUpInside" id="JmY-nx-jrK"/>
+                            </connections>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ExQ-Pc-2bv">
                             <rect key="frame" x="16" y="181.5" width="343" height="40"/>
@@ -118,6 +122,9 @@
                                     <integer key="value" value="5"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="submitButtonAction:" destination="-1" eventType="touchUpInside" id="g9b-Om-G1h"/>
+                            </connections>
                         </button>
                     </subviews>
                     <constraints>

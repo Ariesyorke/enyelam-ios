@@ -74,14 +74,11 @@ public class BookingContact: NSObject, NSCoding, Parseable {
         if let name = self.name {
             json[KEY_NAME] = name
         }
-        if let phoneNumber = self.phoneNumber {
-            json[KEY_PHONE_NUMBER] = phoneNumber
+        if let countryCode = self.countryCode, let phoneNumber = self.phoneNumber {
+            json[KEY_PHONE_NUMBER] = "+\(countryCode.countryNumber!)\(phoneNumber)"
         }
         if let email = self.email {
             json[KEY_EMAIL] = email
-        }
-        if let countryCode = self.countryCode {
-            json[KEY_COUNTRY_CODE] = countryCode
         }
         return json
     }

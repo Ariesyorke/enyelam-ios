@@ -289,6 +289,7 @@ class TotalDivesCell: NTableViewCell {
     }
     
     @IBAction func totalDivesButtonAction(_ sender: DLRadioButton) {
+        
         self.total = nil
         for radioButton in self.totalDiveSort.selectedButtons() {
             if total == nil {
@@ -381,7 +382,7 @@ class TripCategoryCell: NTableViewCell {
                 button.isSelected = true
                 button.backgroundColor = UIColor.nyOrange
                 button.setImage(UIImage(named:"ic_ferry"), for: .normal)
-                button.setTitleColor(UIColor.black, for: .normal)
+                button.setTitleColor(UIColor.white, for: .normal)
             } else {
                 button.isSelected = false
                 button.setImage(UIImage(named:"ic_ferry_inactive"), for: .normal)
@@ -439,7 +440,7 @@ class TripCategoryCell: NTableViewCell {
                 self.flowLayout.addSubview(button)
                 i+=1
             }
-            self.flowLayoutHeight.constant = 200 + additional
+            self.flowLayoutHeight.constant = 250 + additional
         }
     }
 }

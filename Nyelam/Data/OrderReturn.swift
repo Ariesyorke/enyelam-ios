@@ -12,9 +12,10 @@ import CoreData
 class OrderReturn: NSObject, NSCoding, Parseable {
     private let KEY_SUMMARY = "summary"
     private let KEY_VERITRANS_TOKEN = "veritrans_token"
-    
+    private let KEY_PAYPAL_CURRENCY = "paypal_currency"
     var summary: NSummary?
     var veritransToken: String?
+    var paypalCurrency: PaypalCurrency?
     
     init(json: [String: Any]) {
         super.init()
@@ -33,7 +34,32 @@ class OrderReturn: NSObject, NSCoding, Parseable {
     }
     
     func parse(json: [String : Any]) {
-        self.veritransToken = json[KEY_VERITRANS_TOKEN] as? String
+        if let veritransJson = json[KEY_VERITRANS_TOKEN] as? [String: Any] {
+            if let id = veritransJson["token_id"] as? String {
+                self.veritransToken = id
+            }
+        } else if let veritransString = json[KEY_VERITRANS_TOKEN] as? String {
+            do {
+                let data = veritransString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let veritransJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                if let id = veritransJson["token_id"] as? String {
+                    self.veritransToken = id
+                }
+            } catch {
+                print(error)
+            }
+        }
+        if let paypalCurrencyJson = json[KEY_PAYPAL_CURRENCY] as? [String: Any] {
+            self.paypalCurrency = PaypalCurrency(json: paypalCurrencyJson)
+        } else if let paypalCurrencyString = json[KEY_PAYPAL_CURRENCY] as? String {
+            do {
+                let data = paypalCurrencyString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let paypalCurrencyJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                self.paypalCurrency = PaypalCurrency(json: paypalCurrencyJson)
+            } catch {
+                print(error)
+            }
+        }
         if let summaryJson = json[KEY_SUMMARY] as? [String: Any] {
             if let orderJson = summaryJson["order"] as? [String: Any] {
                 if let id = orderJson["order_id"] as? String {
@@ -89,6 +115,7 @@ class OrderReturn: NSObject, NSCoding, Parseable {
                 print(error)
             }
         }
+        
     }
     
     func serialized() -> [String : Any] {
@@ -98,6 +125,9 @@ class OrderReturn: NSObject, NSCoding, Parseable {
         }
         if let summary = self.summary {
             json[KEY_SUMMARY] = summary.serialized()
+        }
+        if let paypalCurrency = self.paypalCurrency {
+            json[KEY_PAYPAL_CURRENCY] = paypalCurrency
         }
         return json
     }

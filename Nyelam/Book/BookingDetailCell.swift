@@ -35,8 +35,8 @@ class BookingDetailCell: NTableViewCell {
         self.visitedLabel.text = "\(diveService.ratingCount) / \(diveService.visited) visited"
         if let diveCenter = diveService.divecenter {
             self.diveCenterNameLabel.text = diveCenter.name
-            if let location = diveCenter.location {
-                self.diveCenterLocationName.text = "\(diveCenter.location!.city!), \(diveCenter.location!.province!) - \(diveCenter.location!.country!)"
+            if let contact = diveCenter.contact, let location = diveCenter.location {
+                self.diveCenterLocationName.text = "\(location.city!.name!), \(location.province!.name!) - \(location.country!)"
             }
         }
     }

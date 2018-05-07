@@ -70,7 +70,7 @@ extension String {
         return result
     }
     
-    static func JSONStringify(value: AnyObject, prettyPrinted:Bool = false) -> String {
+    static func JSONStringify(value: Any, prettyPrinted:Bool = false) -> String {
         let options = prettyPrinted ? JSONSerialization.WritingOptions.prettyPrinted : JSONSerialization.WritingOptions(rawValue: 0)
         if JSONSerialization.isValidJSONObject(value) {
             do {

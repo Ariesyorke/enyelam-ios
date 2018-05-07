@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="FiraSans-Regular.ttf">
+            <string>FiraSans-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="109" id="KGk-i7-Jjw" customClass="BookingCell" customModule="Nyelam" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="109"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="108.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cqs-O4-ulv">
+                        <rect key="frame" x="16" y="11" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="0Qx-ZW-5i4"/>
+                            <constraint firstAttribute="width" constant="50" id="KEr-Rl-y2e"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_arrow_right_grey" translatesAutoresizingMaskIntoConstraints="NO" id="zmg-ax-dnU">
+                        <rect key="frame" x="288" y="28" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="16" id="cNE-06-zDd"/>
+                            <constraint firstAttribute="height" constant="16" id="u8t-gp-uDm"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mhG-fs-VU7">
+                        <rect key="frame" x="74" y="11" width="206" height="17"/>
+                        <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dive Center" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTa-wY-f5o">
+                        <rect key="frame" x="74" y="28" width="206" height="16"/>
+                        <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sRw-la-h3i">
+                        <rect key="frame" x="0.0" y="69" width="320" height="1"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="ceW-5E-Q8h"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_calendar" translatesAutoresizingMaskIntoConstraints="NO" id="4vs-3G-Die">
+                        <rect key="frame" x="16" y="78" width="14" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="3yk-G8-Bnw"/>
+                            <constraint firstAttribute="width" constant="14" id="ObG-qU-jSg"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_money" translatesAutoresizingMaskIntoConstraints="NO" id="5w0-fO-NLc">
+                        <rect key="frame" x="257" y="78" width="14" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="14" id="MZo-tM-mwK"/>
+                            <constraint firstAttribute="height" constant="14" id="Xy1-az-c7r"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9HA-T6-WdV">
+                        <rect key="frame" x="38" y="79" width="211" height="12"/>
+                        <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="10"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lba-Kg-Fzd">
+                        <rect key="frame" x="279" y="79" width="25" height="12"/>
+                        <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="10"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="sRw-la-h3i" firstAttribute="bottom" secondItem="4vs-3G-Die" secondAttribute="top" constant="-8" id="0aZ-Wt-7AA"/>
+                    <constraint firstItem="Cqs-O4-ulv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="36w-fT-Sls"/>
+                    <constraint firstAttribute="trailing" secondItem="sRw-la-h3i" secondAttribute="trailing" id="3KI-Rh-EeD"/>
+                    <constraint firstItem="sRw-la-h3i" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="3lL-i8-ig0"/>
+                    <constraint firstItem="zmg-ax-dnU" firstAttribute="centerY" secondItem="Cqs-O4-ulv" secondAttribute="centerY" id="BQR-mx-oJM"/>
+                    <constraint firstItem="5w0-fO-NLc" firstAttribute="top" secondItem="4vs-3G-Die" secondAttribute="top" id="CqN-As-m2r"/>
+                    <constraint firstItem="Lba-Kg-Fzd" firstAttribute="leading" secondItem="5w0-fO-NLc" secondAttribute="trailing" constant="8" id="DIG-Fp-KQv"/>
+                    <constraint firstItem="gTa-wY-f5o" firstAttribute="leading" secondItem="mhG-fs-VU7" secondAttribute="leading" id="Ifo-Cd-ZFY"/>
+                    <constraint firstItem="gTa-wY-f5o" firstAttribute="height" secondItem="zmg-ax-dnU" secondAttribute="height" id="MSs-Td-BjC"/>
+                    <constraint firstItem="9HA-T6-WdV" firstAttribute="leading" secondItem="4vs-3G-Die" secondAttribute="trailing" constant="8" id="QYE-xX-l80"/>
+                    <constraint firstItem="gTa-wY-f5o" firstAttribute="trailing" secondItem="mhG-fs-VU7" secondAttribute="trailing" id="Qmn-Pp-bed"/>
+                    <constraint firstItem="Lba-Kg-Fzd" firstAttribute="centerY" secondItem="5w0-fO-NLc" secondAttribute="centerY" id="RcN-65-qHe"/>
+                    <constraint firstAttribute="trailing" secondItem="zmg-ax-dnU" secondAttribute="trailing" constant="16" id="Tfe-lb-Kzl"/>
+                    <constraint firstItem="9HA-T6-WdV" firstAttribute="centerY" secondItem="4vs-3G-Die" secondAttribute="centerY" id="UxT-pF-Mz5"/>
+                    <constraint firstItem="Cqs-O4-ulv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Yue-Ir-0hv"/>
+                    <constraint firstItem="mhG-fs-VU7" firstAttribute="top" secondItem="Cqs-O4-ulv" secondAttribute="top" id="fdA-bq-EkR"/>
+                    <constraint firstItem="sRw-la-h3i" firstAttribute="top" secondItem="Cqs-O4-ulv" secondAttribute="bottom" constant="8" id="fjH-Po-amy"/>
+                    <constraint firstItem="gTa-wY-f5o" firstAttribute="top" secondItem="mhG-fs-VU7" secondAttribute="bottom" id="fkh-1a-juU"/>
+                    <constraint firstAttribute="bottom" secondItem="4vs-3G-Die" secondAttribute="bottom" constant="16" id="kBD-U7-xYf"/>
+                    <constraint firstItem="Lba-Kg-Fzd" firstAttribute="trailing" secondItem="zmg-ax-dnU" secondAttribute="trailing" id="mvi-P0-Cik"/>
+                    <constraint firstItem="mhG-fs-VU7" firstAttribute="leading" secondItem="Cqs-O4-ulv" secondAttribute="trailing" constant="8" id="ni7-jy-Zsr"/>
+                    <constraint firstItem="4vs-3G-Die" firstAttribute="leading" secondItem="Cqs-O4-ulv" secondAttribute="leading" id="pKP-TN-mGV"/>
+                    <constraint firstItem="zmg-ax-dnU" firstAttribute="leading" secondItem="mhG-fs-VU7" secondAttribute="trailing" constant="8" id="q8T-ID-7ub"/>
+                    <constraint firstItem="5w0-fO-NLc" firstAttribute="leading" secondItem="9HA-T6-WdV" secondAttribute="trailing" constant="8" id="qEG-iJ-ChJ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="bookingDateLabel" destination="9HA-T6-WdV" id="mQm-mO-opG"/>
+                <outlet property="diveCenterNameLabel" destination="gTa-wY-f5o" id="8hB-TR-nUJ"/>
+                <outlet property="priceLabel" destination="Lba-Kg-Fzd" id="F34-NY-k6E"/>
+                <outlet property="serviceImageView" destination="Cqs-O4-ulv" id="jf7-52-uq2"/>
+                <outlet property="serviceNameLabel" destination="mhG-fs-VU7" id="CXs-OC-5ZS"/>
+            </connections>
+            <point key="canvasLocation" x="73" y="173.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic_arrow_right_grey" width="32" height="32"/>
+        <image name="ic_calendar" width="14" height="14"/>
+        <image name="ic_money" width="14" height="14"/>
+    </resources>
+</document>

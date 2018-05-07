@@ -44,13 +44,29 @@ extension NHTTPHelper {
                                     complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
                                     return
                                 }
-                                print("DATA \(data)")
                                 if let data = data, let json = data as? [String: Any] {
                                     let cartReturn = CartReturn(json: json)
                                     complete(NHTTPResponse(resultStatus: true, data: cartReturn, error: nil))
                                 }
 
 
+        })
+    }
+    
+    static func changePaymentMethod(cartToken: String, paymentType: Int, complete: @escaping(NHTTPResponse<CartReturn>)->()) {
+        self.basicAuthRequest(URLString: HOST_URL + API_PATH_CHANGE_PAYMENT_METHOD,
+                              parameters: ["cart_token": cartToken,
+                                           "type":String(paymentType)],
+                              headers: nil,
+                              complete: {status, data, error in
+            if let error = error {
+                complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
+                return
+            }
+            if let data = data, let json = data as? [String: Any] {
+                let cartReturn = CartReturn(json: json)
+                complete(NHTTPResponse(resultStatus: true, data: cartReturn, error: nil))
+            }
         })
     }
     

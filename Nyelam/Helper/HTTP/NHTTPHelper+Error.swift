@@ -393,6 +393,27 @@ class NHTTPHelper {
         }
     }
     
+    static var API_VERITRANS_PAYPAL_NOTIFICATION: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "https://e-nyelam.com/notification/veritrans"
+        case .development:
+            return "https://nyelam-adam.dantech.id/notification/veritrans"
+        default:
+            return "https://nyelam.dantech.id/notification/veritrans"
+        }
+    }
+    
+    static var API_PATH_PAYPAL_NOTIFICATION: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "https://e-nyelam.com/notification/paypal"
+        case .development:
+            return "https://nyelam-adam.dantech.id/notification/paypal"
+        default:
+            return "https://nyelam.dantech.id/notification/paypal"
+        }
+    }
     internal static func basicAuthRequest(URLString: URLConvertible,
                                           parameters: [String: Any]? = nil,
                                           headers: [String: String]? = nil,
@@ -542,7 +563,6 @@ class NHTTPHelper {
                 return
             }
             if let value = response.value, let jsonResult = value as? [String: Any] {
-                print("RESULT \(jsonResult)")
                 var status = -1
                 if let s = jsonResult[KEY_STATUS] as? Int {
                     status = s

@@ -21,6 +21,7 @@
             <connections>
                 <outlet property="payNowButton" destination="0fM-HD-Hu4" id="JBS-2J-DEM"/>
                 <outlet property="priceLabel" destination="Z3F-bx-9d0" id="Uz5-Ue-uQv"/>
+                <outlet property="tableBottomConstraint" destination="VRD-5y-Abn" id="Mks-mq-ByT"/>
                 <outlet property="tableView" destination="e4o-gJ-oZc" id="Dj7-kj-SCK"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

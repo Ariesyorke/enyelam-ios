@@ -29,6 +29,17 @@
 		A6C2708A207BEF63007E4D2A /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C27089207BEF63007E4D2A /* BaseNavigationController.swift */; };
 		A6C2708D207BF0A2007E4D2A /* MainRootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C2708B207BF0A2007E4D2A /* MainRootController.swift */; };
 		A6C2708E207BF0A2007E4D2A /* MainRootController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6C2708C207BF0A2007E4D2A /* MainRootController.xib */; };
+		C003A26A20A010EA003B217B /* libopencv_imgproc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C003A25E20A010E8003B217B /* libopencv_imgproc.a */; };
+		C003A26B20A010EA003B217B /* libCardIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C003A26420A010E9003B217B /* libCardIO.a */; };
+		C003A26C20A010EA003B217B /* CardIO.m in Sources */ = {isa = PBXBuildFile; fileRef = C003A26720A010E9003B217B /* CardIO.m */; };
+		C003A26D20A010EA003B217B /* libopencv_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C003A26920A010EA003B217B /* libopencv_core.a */; };
+		C003A27720A01119003B217B /* libPayPalMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C003A27320A01118003B217B /* libPayPalMobile.a */; };
+		C003A27820A03354003B217B /* PopupController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C003A27920A03354003B217B /* PopupController.framework */; };
+		C003A27C20A0337F003B217B /* DiveEthicAgreementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C003A27A20A0337F003B217B /* DiveEthicAgreementController.swift */; };
+		C003A27D20A0337F003B217B /* DiveEthicAgreementController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C003A27B20A0337F003B217B /* DiveEthicAgreementController.xib */; };
+		C003A27F20A03CD7003B217B /* logo_dca.png in Resources */ = {isa = PBXBuildFile; fileRef = C003A27E20A03CD6003B217B /* logo_dca.png */; };
+		C003A28120A051F1003B217B /* NHTTPHelper+Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = C003A28020A051F1003B217B /* NHTTPHelper+Notification.swift */; };
+		C003A28320A0624D003B217B /* NTransactionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C003A28220A0624D003B217B /* NTransactionResult.swift */; };
 		C00D0AFA2075F779000D8ED6 /* NHTTPHelper+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00D0AF92075F779000D8ED6 /* NHTTPHelper+Error.swift */; };
 		C00D0AFC2075FA10000D8ED6 /* NHTTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00D0AFB2075FA10000D8ED6 /* NHTTPResponse.swift */; };
 		C00D0AFE207620C2000D8ED6 /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00D0AFD207620C2000D8ED6 /* Data+Extensions.swift */; };
@@ -91,6 +102,15 @@
 		C01AACD8208DBCBA00EDDB37 /* NCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01AACB8208DBCBA00EDDB37 /* NCategory+CoreDataProperties.swift */; };
 		C01AACDB208DCA3600EDDB37 /* DiveServiceSearchResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01AACD9208DCA3600EDDB37 /* DiveServiceSearchResultController.swift */; };
 		C01AACDC208DCA3600EDDB37 /* DiveServiceSearchResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C01AACDA208DCA3600EDDB37 /* DiveServiceSearchResultController.xib */; };
+		C022B203209ED28E009472A3 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C022B202209ED28E009472A3 /* Accelerate.framework */; };
+		C022B205209ED29F009472A3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C022B204209ED29E009472A3 /* AudioToolbox.framework */; };
+		C022B207209ED2A7009472A3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C022B206209ED2A7009472A3 /* AVFoundation.framework */; };
+		C022B209209ED2B0009472A3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C022B208209ED2B0009472A3 /* CoreLocation.framework */; };
+		C022B20B209ED2B9009472A3 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C022B20A209ED2B9009472A3 /* CoreMedia.framework */; };
+		C022B20D209ED2D4009472A3 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C022B20C209ED2D4009472A3 /* MessageUI.framework */; };
+		C022B20F209ED2DF009472A3 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C022B20E209ED2DF009472A3 /* MobileCoreServices.framework */; };
+		C022B211209ED2E8009472A3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C022B210209ED2E8009472A3 /* SystemConfiguration.framework */; };
+		C022B213209ED2F1009472A3 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C022B212209ED2F0009472A3 /* SafariServices.framework */; };
 		C026FF822084C87300357EE5 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C026FF802084C87300357EE5 /* EditProfileViewController.swift */; };
 		C026FF832084C87300357EE5 /* EditProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C026FF812084C87300357EE5 /* EditProfileViewController.xib */; };
 		C02B9B65207B47CF00BE2508 /* DiveSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02B9B64207B47CF00BE2508 /* DiveSpot.swift */; };
@@ -122,6 +142,10 @@
 		C037E8B42085C434000EB5CF /* TermsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C037E8B22085C434000EB5CF /* TermsViewController.xib */; };
 		C037E8B72085FF53000EB5CF /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C037E8B52085FF53000EB5CF /* ChangePasswordViewController.swift */; };
 		C037E8B82085FF53000EB5CF /* ChangePasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C037E8B62085FF53000EB5CF /* ChangePasswordViewController.xib */; };
+		C055B9C4209F1D1B0033A0D4 /* XLPagerTabStrip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C055B9C5209F1D1B0033A0D4 /* XLPagerTabStrip.framework */; };
+		C055B9C7209F1DFE0033A0D4 /* BasePagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C055B9C6209F1DFE0033A0D4 /* BasePagerViewController.swift */; };
+		C055B9D2209F216F0033A0D4 /* BookingListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C055B9D0209F216F0033A0D4 /* BookingListController.swift */; };
+		C055B9D3209F21700033A0D4 /* BookingListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C055B9D1209F216F0033A0D4 /* BookingListController.xib */; };
 		C060AB11208997DE008FA607 /* NHTTPHelper+DoTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C060AB10208997DE008FA607 /* NHTTPHelper+DoTrip.swift */; };
 		C060AB132089A2C0008FA607 /* Price.swift in Sources */ = {isa = PBXBuildFile; fileRef = C060AB122089A2C0008FA607 /* Price.swift */; };
 		C060AB142089C9DE008FA607 /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C060AB152089C9DE008FA607 /* SwiftDate.framework */; };
@@ -218,6 +242,11 @@
 		C0E17FDB20776E47003942D1 /* NHTTPHelper+Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E17FDA20776E47003942D1 /* NHTTPHelper+Book.swift */; };
 		C0E17FDD20778A59003942D1 /* OrderReturn.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E17FDC20778A59003942D1 /* OrderReturn.swift */; };
 		C0E5A4D2207C6C28001BDA9B /* AuthNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E5A4D1207C6C28001BDA9B /* AuthNavigationController.swift */; };
+		C0EB1EF1209F1726001E40D7 /* BookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EB1EEF209F1726001E40D7 /* BookingViewController.swift */; };
+		C0EB1EF2209F1726001E40D7 /* BookingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0EB1EF0209F1726001E40D7 /* BookingViewController.xib */; };
+		C0EB1EF6209F1969001E40D7 /* BookingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0EB1EF4209F1969001E40D7 /* BookingCell.xib */; };
+		C0EB1EF9209F1980001E40D7 /* BookingDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EB1EF7209F1980001E40D7 /* BookingDetailController.swift */; };
+		C0EB1EFA209F1980001E40D7 /* BookingDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0EB1EF8209F1980001E40D7 /* BookingDetailController.xib */; };
 		C0EE27FB209992B9006ACA5D /* OrderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EE27F9209992B9006ACA5D /* OrderController.swift */; };
 		C0EE27FC209992B9006ACA5D /* OrderController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0EE27FA209992B9006ACA5D /* OrderController.xib */; };
 		C0EE280020999602006ACA5D /* BookingDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EE27FE20999602006ACA5D /* BookingDetailCell.swift */; };
@@ -260,6 +289,7 @@
 		C0FD8C372095BD7800B6BE7B /* DiveServiceController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0FD8C352095BD7800B6BE7B /* DiveServiceController.xib */; };
 		C0FD8C3B2095CAEC00B6BE7B /* DiveServiceDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0FD8C392095CAEC00B6BE7B /* DiveServiceDetailCell.xib */; };
 		C0FD8C3F2095CB0D00B6BE7B /* DiveServiceRelatedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0FD8C3D2095CB0D00B6BE7B /* DiveServiceRelatedCell.xib */; };
+		C0FDF6E1209EEC0A009E1F04 /* PaypalCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FDF6E0209EEC0A009E1F04 /* PaypalCurrency.swift */; };
 		FA4702D7BC604A7C1211B459 /* Pods_NyelamTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41A3DA3DFF0F2F060A712D75 /* Pods_NyelamTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -306,6 +336,32 @@
 		A6C2708B207BF0A2007E4D2A /* MainRootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRootController.swift; sourceTree = "<group>"; };
 		A6C2708C207BF0A2007E4D2A /* MainRootController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainRootController.xib; sourceTree = "<group>"; };
 		A6C2708F207BFD02007E4D2A /* Nyelam-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nyelam-Bridging-Header.h"; sourceTree = "<group>"; };
+		C003A25E20A010E8003B217B /* libopencv_imgproc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_imgproc.a; path = Nyelam/Helper/Libraries/CardIO/libopencv_imgproc.a; sourceTree = SOURCE_ROOT; };
+		C003A25F20A010E8003B217B /* CardIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardIO.h; path = Nyelam/Helper/Libraries/CardIO/CardIO.h; sourceTree = SOURCE_ROOT; };
+		C003A26020A010E8003B217B /* CardIODetectionMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardIODetectionMode.h; path = Nyelam/Helper/Libraries/CardIO/CardIODetectionMode.h; sourceTree = SOURCE_ROOT; };
+		C003A26120A010E8003B217B /* CardIOView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardIOView.h; path = Nyelam/Helper/Libraries/CardIO/CardIOView.h; sourceTree = SOURCE_ROOT; };
+		C003A26220A010E8003B217B /* CardIOPaymentViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardIOPaymentViewControllerDelegate.h; path = Nyelam/Helper/Libraries/CardIO/CardIOPaymentViewControllerDelegate.h; sourceTree = SOURCE_ROOT; };
+		C003A26320A010E8003B217B /* CardIOUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardIOUtilities.h; path = Nyelam/Helper/Libraries/CardIO/CardIOUtilities.h; sourceTree = SOURCE_ROOT; };
+		C003A26420A010E9003B217B /* libCardIO.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCardIO.a; path = Nyelam/Helper/Libraries/CardIO/libCardIO.a; sourceTree = SOURCE_ROOT; };
+		C003A26520A010E9003B217B /* CardIOCreditCardInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardIOCreditCardInfo.h; path = Nyelam/Helper/Libraries/CardIO/CardIOCreditCardInfo.h; sourceTree = SOURCE_ROOT; };
+		C003A26620A010E9003B217B /* CardIOViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardIOViewDelegate.h; path = Nyelam/Helper/Libraries/CardIO/CardIOViewDelegate.h; sourceTree = SOURCE_ROOT; };
+		C003A26720A010E9003B217B /* CardIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardIO.m; path = Nyelam/Helper/Libraries/CardIO/CardIO.m; sourceTree = SOURCE_ROOT; };
+		C003A26820A010E9003B217B /* CardIOPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardIOPaymentViewController.h; path = Nyelam/Helper/Libraries/CardIO/CardIOPaymentViewController.h; sourceTree = SOURCE_ROOT; };
+		C003A26920A010EA003B217B /* libopencv_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_core.a; path = Nyelam/Helper/Libraries/CardIO/libopencv_core.a; sourceTree = SOURCE_ROOT; };
+		C003A26F20A01118003B217B /* PayPalConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PayPalConfiguration.h; path = Nyelam/Helper/Libraries/PayPalMobile/PayPalConfiguration.h; sourceTree = SOURCE_ROOT; };
+		C003A27020A01118003B217B /* PayPalPayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PayPalPayment.h; path = Nyelam/Helper/Libraries/PayPalMobile/PayPalPayment.h; sourceTree = SOURCE_ROOT; };
+		C003A27120A01118003B217B /* PayPalMobile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PayPalMobile.h; path = Nyelam/Helper/Libraries/PayPalMobile/PayPalMobile.h; sourceTree = SOURCE_ROOT; };
+		C003A27220A01118003B217B /* PayPalPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PayPalPaymentViewController.h; path = Nyelam/Helper/Libraries/PayPalMobile/PayPalPaymentViewController.h; sourceTree = SOURCE_ROOT; };
+		C003A27320A01118003B217B /* libPayPalMobile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPayPalMobile.a; path = Nyelam/Helper/Libraries/PayPalMobile/libPayPalMobile.a; sourceTree = SOURCE_ROOT; };
+		C003A27420A01119003B217B /* PayPalFuturePaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PayPalFuturePaymentViewController.h; path = Nyelam/Helper/Libraries/PayPalMobile/PayPalFuturePaymentViewController.h; sourceTree = SOURCE_ROOT; };
+		C003A27520A01119003B217B /* PayPalOAuthScopes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PayPalOAuthScopes.h; path = Nyelam/Helper/Libraries/PayPalMobile/PayPalOAuthScopes.h; sourceTree = SOURCE_ROOT; };
+		C003A27620A01119003B217B /* PayPalProfileSharingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PayPalProfileSharingViewController.h; path = Nyelam/Helper/Libraries/PayPalMobile/PayPalProfileSharingViewController.h; sourceTree = SOURCE_ROOT; };
+		C003A27920A03354003B217B /* PopupController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PopupController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C003A27A20A0337F003B217B /* DiveEthicAgreementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiveEthicAgreementController.swift; sourceTree = "<group>"; };
+		C003A27B20A0337F003B217B /* DiveEthicAgreementController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiveEthicAgreementController.xib; sourceTree = "<group>"; };
+		C003A27E20A03CD6003B217B /* logo_dca.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_dca.png; sourceTree = "<group>"; };
+		C003A28020A051F1003B217B /* NHTTPHelper+Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NHTTPHelper+Notification.swift"; sourceTree = "<group>"; };
+		C003A28220A0624D003B217B /* NTransactionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTransactionResult.swift; sourceTree = "<group>"; };
 		C00D0AB92075F375000D8ED6 /* NNationality+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NNationality+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C00D0ABB2075F375000D8ED6 /* NSocialMedia+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSocialMedia+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C00D0ABC2075F375000D8ED6 /* NCountry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NCountry+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -375,6 +431,15 @@
 		C01AACB8208DBCBA00EDDB37 /* NCategory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NCategory+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C01AACD9208DCA3600EDDB37 /* DiveServiceSearchResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiveServiceSearchResultController.swift; sourceTree = "<group>"; };
 		C01AACDA208DCA3600EDDB37 /* DiveServiceSearchResultController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiveServiceSearchResultController.xib; sourceTree = "<group>"; };
+		C022B202209ED28E009472A3 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		C022B204209ED29E009472A3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		C022B206209ED2A7009472A3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		C022B208209ED2B0009472A3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C022B20A209ED2B9009472A3 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		C022B20C209ED2D4009472A3 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		C022B20E209ED2DF009472A3 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		C022B210209ED2E8009472A3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C022B212209ED2F0009472A3 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		C026FF802084C87300357EE5 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		C026FF812084C87300357EE5 /* EditProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditProfileViewController.xib; sourceTree = "<group>"; };
 		C02B9B64207B47CF00BE2508 /* DiveSpot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiveSpot.swift; sourceTree = "<group>"; };
@@ -414,6 +479,10 @@
 		C037E8B22085C434000EB5CF /* TermsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermsViewController.xib; sourceTree = "<group>"; };
 		C037E8B52085FF53000EB5CF /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		C037E8B62085FF53000EB5CF /* ChangePasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangePasswordViewController.xib; sourceTree = "<group>"; };
+		C055B9C5209F1D1B0033A0D4 /* XLPagerTabStrip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = XLPagerTabStrip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C055B9C6209F1DFE0033A0D4 /* BasePagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePagerViewController.swift; sourceTree = "<group>"; };
+		C055B9D0209F216F0033A0D4 /* BookingListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingListController.swift; sourceTree = "<group>"; };
+		C055B9D1209F216F0033A0D4 /* BookingListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookingListController.xib; sourceTree = "<group>"; };
 		C060AB10208997DE008FA607 /* NHTTPHelper+DoTrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NHTTPHelper+DoTrip.swift"; sourceTree = "<group>"; };
 		C060AB122089A2C0008FA607 /* Price.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Price.swift; sourceTree = "<group>"; };
 		C060AB152089C9DE008FA607 /* SwiftDate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftDate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -522,6 +591,11 @@
 		C0E17FDA20776E47003942D1 /* NHTTPHelper+Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NHTTPHelper+Book.swift"; sourceTree = "<group>"; };
 		C0E17FDC20778A59003942D1 /* OrderReturn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderReturn.swift; sourceTree = "<group>"; };
 		C0E5A4D1207C6C28001BDA9B /* AuthNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNavigationController.swift; sourceTree = "<group>"; };
+		C0EB1EEF209F1726001E40D7 /* BookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingViewController.swift; sourceTree = "<group>"; };
+		C0EB1EF0209F1726001E40D7 /* BookingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookingViewController.xib; sourceTree = "<group>"; };
+		C0EB1EF4209F1969001E40D7 /* BookingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookingCell.xib; sourceTree = "<group>"; };
+		C0EB1EF7209F1980001E40D7 /* BookingDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingDetailController.swift; sourceTree = "<group>"; };
+		C0EB1EF8209F1980001E40D7 /* BookingDetailController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookingDetailController.xib; sourceTree = "<group>"; };
 		C0EE27F9209992B9006ACA5D /* OrderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderController.swift; sourceTree = "<group>"; };
 		C0EE27FA209992B9006ACA5D /* OrderController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderController.xib; sourceTree = "<group>"; };
 		C0EE27FE20999602006ACA5D /* BookingDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingDetailCell.swift; sourceTree = "<group>"; };
@@ -568,6 +642,7 @@
 		C0FD8C352095BD7800B6BE7B /* DiveServiceController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiveServiceController.xib; sourceTree = "<group>"; };
 		C0FD8C392095CAEC00B6BE7B /* DiveServiceDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiveServiceDetailCell.xib; sourceTree = "<group>"; };
 		C0FD8C3D2095CB0D00B6BE7B /* DiveServiceRelatedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiveServiceRelatedCell.xib; sourceTree = "<group>"; };
+		C0FDF6E0209EEC0A009E1F04 /* PaypalCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaypalCurrency.swift; sourceTree = "<group>"; };
 		D473B4B6FAAEB379DE72B736 /* Pods_NyelamUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NyelamUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D968E2C27A913B8C6A6C9029 /* Pods-NyelamUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NyelamUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NyelamUITests/Pods-NyelamUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F2823381922EE88E66402C72 /* Pods-NyelamTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NyelamTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NyelamTests/Pods-NyelamTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -581,6 +656,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C003A27820A03354003B217B /* PopupController.framework in Frameworks */,
+				C055B9C4209F1D1B0033A0D4 /* XLPagerTabStrip.framework in Frameworks */,
+				C022B213209ED2F1009472A3 /* SafariServices.framework in Frameworks */,
+				C022B211209ED2E8009472A3 /* SystemConfiguration.framework in Frameworks */,
+				C022B20F209ED2DF009472A3 /* MobileCoreServices.framework in Frameworks */,
+				C022B20D209ED2D4009472A3 /* MessageUI.framework in Frameworks */,
+				C022B20B209ED2B9009472A3 /* CoreMedia.framework in Frameworks */,
+				C022B209209ED2B0009472A3 /* CoreLocation.framework in Frameworks */,
+				C022B207209ED2A7009472A3 /* AVFoundation.framework in Frameworks */,
+				C003A27720A01119003B217B /* libPayPalMobile.a in Frameworks */,
+				C022B205209ED29F009472A3 /* AudioToolbox.framework in Frameworks */,
+				C022B203209ED28E009472A3 /* Accelerate.framework in Frameworks */,
 				C0CB3F31209320A400BE5644 /* GSKStretchyHeaderView.framework in Frameworks */,
 				C0CB3F2D2092F07000BE5644 /* TangramKit.framework in Frameworks */,
 				C08E967620908D0700270CF9 /* DLRadioButton.framework in Frameworks */,
@@ -592,6 +679,7 @@
 				C0366F1C207F0C4F0027FEF8 /* SkyFloatingLabelTextField.framework in Frameworks */,
 				C032DF52207DD75900FE0999 /* EAIntroView.framework in Frameworks */,
 				C032DF53207DD75900FE0999 /* EARestrictedScrollView.framework in Frameworks */,
+				C003A26A20A010EA003B217B /* libopencv_imgproc.a in Frameworks */,
 				C032DF4A207DD50200FE0999 /* MidtransCoreKit.framework in Frameworks */,
 				C032DF4B207DD50200FE0999 /* MidtransKit.framework in Frameworks */,
 				C032DF4C207DD50200FE0999 /* MMNumberKeyboard.framework in Frameworks */,
@@ -608,11 +696,13 @@
 				C0BE916D2070ADD5004E1B92 /* GoogleToolboxForMac.framework in Frameworks */,
 				C0BE916E2070ADD5004E1B92 /* GTMOAuth2.framework in Frameworks */,
 				C0BE916F2070ADD5004E1B92 /* GTMSessionFetcher.framework in Frameworks */,
+				C003A26D20A010EA003B217B /* libopencv_core.a in Frameworks */,
 				C0BE91702070ADD5004E1B92 /* ImageSlideshow.framework in Frameworks */,
 				C0BE91712070ADD5004E1B92 /* JRSwizzle.framework in Frameworks */,
 				C0BE91722070ADD5004E1B92 /* SideMenu.framework in Frameworks */,
 				C0BE91732070ADD5004E1B92 /* UINavigationControllerWithCompletionBlock.framework in Frameworks */,
 				79B7B08C8E22A9DEC8DE57A8 /* Pods_Nyelam.framework in Frameworks */,
+				C003A26B20A010EA003B217B /* libCardIO.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -638,6 +728,17 @@
 		4B54B573D6047976074AE619 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C003A27920A03354003B217B /* PopupController.framework */,
+				C055B9C5209F1D1B0033A0D4 /* XLPagerTabStrip.framework */,
+				C022B212209ED2F0009472A3 /* SafariServices.framework */,
+				C022B210209ED2E8009472A3 /* SystemConfiguration.framework */,
+				C022B20E209ED2DF009472A3 /* MobileCoreServices.framework */,
+				C022B20C209ED2D4009472A3 /* MessageUI.framework */,
+				C022B20A209ED2B9009472A3 /* CoreMedia.framework */,
+				C022B208209ED2B0009472A3 /* CoreLocation.framework */,
+				C022B206209ED2A7009472A3 /* AVFoundation.framework */,
+				C022B204209ED29E009472A3 /* AudioToolbox.framework */,
+				C022B202209ED28E009472A3 /* Accelerate.framework */,
 				C0B05BF62096C4AA003FE74B /* Atributika.framework */,
 				C0CB3F32209320A400BE5644 /* GSKStretchyHeaderView.framework */,
 				C0CB3F2E2092F07000BE5644 /* TangramKit.framework */,
@@ -766,6 +867,42 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		C003A25D20A010D8003B217B /* CardIO */ = {
+			isa = PBXGroup;
+			children = (
+				C003A25F20A010E8003B217B /* CardIO.h */,
+				C003A26720A010E9003B217B /* CardIO.m */,
+				C003A26520A010E9003B217B /* CardIOCreditCardInfo.h */,
+				C003A26020A010E8003B217B /* CardIODetectionMode.h */,
+				C003A26820A010E9003B217B /* CardIOPaymentViewController.h */,
+				C003A26220A010E8003B217B /* CardIOPaymentViewControllerDelegate.h */,
+				C003A26320A010E8003B217B /* CardIOUtilities.h */,
+				C003A26120A010E8003B217B /* CardIOView.h */,
+				C003A26620A010E9003B217B /* CardIOViewDelegate.h */,
+				C003A26420A010E9003B217B /* libCardIO.a */,
+				C003A26920A010EA003B217B /* libopencv_core.a */,
+				C003A25E20A010E8003B217B /* libopencv_imgproc.a */,
+			);
+			name = CardIO;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		C003A26E20A01103003B217B /* PaypalMobile */ = {
+			isa = PBXGroup;
+			children = (
+				C003A27320A01118003B217B /* libPayPalMobile.a */,
+				C003A26F20A01118003B217B /* PayPalConfiguration.h */,
+				C003A27420A01119003B217B /* PayPalFuturePaymentViewController.h */,
+				C003A27120A01118003B217B /* PayPalMobile.h */,
+				C003A27520A01119003B217B /* PayPalOAuthScopes.h */,
+				C003A27020A01118003B217B /* PayPalPayment.h */,
+				C003A27220A01118003B217B /* PayPalPaymentViewController.h */,
+				C003A27620A01119003B217B /* PayPalProfileSharingViewController.h */,
+			);
+			name = PaypalMobile;
+			path = "New Group1";
+			sourceTree = "<group>";
+		};
 		C00D0AF82075F62C000D8ED6 /* HTTP */ = {
 			isa = PBXGroup;
 			children = (
@@ -779,6 +916,7 @@
 				C0E17FDA20776E47003942D1 /* NHTTPHelper+Book.swift */,
 				C0B2A26B207B5C5C00D46336 /* NHTTPHelper+General.swift */,
 				C060AB10208997DE008FA607 /* NHTTPHelper+DoTrip.swift */,
+				C003A28020A051F1003B217B /* NHTTPHelper+Notification.swift */,
 			);
 			path = HTTP;
 			sourceTree = "<group>";
@@ -848,11 +986,11 @@
 				A6C2708F207BFD02007E4D2A /* Nyelam-Bridging-Header.h */,
 				C0BE915E2070ACFE004E1B92 /* GoogleService-Info.plist */,
 				C037AD6A2070A38800DD5CBC /* Info.plist */,
+				A6C27085207BEBDE007E4D2A /* MainNavigationController.swift */,
 				C037AD5B2070A38800DD5CBC /* AppDelegate.swift */,
 				A6C27089207BEF63007E4D2A /* BaseNavigationController.swift */,
 				C0FD7C882084888900FC4508 /* BaseTableViewController.swift */,
 				C0BE91882070B6CA004E1B92 /* BaseViewController.swift */,
-				A6C27085207BEBDE007E4D2A /* MainNavigationController.swift */,
 				A6C2708B207BF0A2007E4D2A /* MainRootController.swift */,
 				C037AD5D2070A38800DD5CBC /* StarterViewController.swift */,
 				C037AD652070A38800DD5CBC /* Assets.xcassets */,
@@ -874,6 +1012,7 @@
 				C037AD622070A38800DD5CBC /* Nyelam.xcdatamodeld */,
 				C026FF842084C9EA00357EE5 /* Side Menu */,
 				A60E1F21207E061300427CF8 /* Views */,
+				C055B9C6209F1DFE0033A0D4 /* BasePagerViewController.swift */,
 			);
 			path = Nyelam;
 			sourceTree = "<group>";
@@ -908,6 +1047,7 @@
 		C0B2A266207B539300D46336 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C003A27E20A03CD6003B217B /* logo_dca.png */,
 				C0EFFF9820972AC300083914 /* bg_placeholder.png */,
 				C0FC0C382091A0E200C8D428 /* splash.png */,
 				C0F90380208F2301009F5104 /* eco_trip_6.png */,
@@ -951,6 +1091,8 @@
 		C0BE918A2070B715004E1B92 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				C003A26E20A01103003B217B /* PaypalMobile */,
+				C003A25D20A010D8003B217B /* CardIO */,
 				C0D3C9042084AC5200FF587B /* PEPhotoCropEditor  */,
 				A60A28672080D038004A8FC2 /* MonthYearPickerView.swift */,
 				C0BE918B2070B723004E1B92 /* DTM */,
@@ -1027,6 +1169,8 @@
 				C02B9B64207B47CF00BE2508 /* DiveSpot.swift */,
 				C060AB122089A2C0008FA607 /* Price.swift */,
 				C08E967A2090929800270CF9 /* PriceRangeManager.swift */,
+				C0FDF6E0209EEC0A009E1F04 /* PaypalCurrency.swift */,
+				C003A28220A0624D003B217B /* NTransactionResult.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1144,6 +1288,8 @@
 				C0EFE34C209B3F35009E084F /* ContactController.xib */,
 				C0EFE34F209B3F47009E084F /* ParticipantController.swift */,
 				C0EFE350209B3F47009E084F /* ParticipantController.xib */,
+				C003A27A20A0337F003B217B /* DiveEthicAgreementController.swift */,
+				C003A27B20A0337F003B217B /* DiveEthicAgreementController.xib */,
 			);
 			path = "Order Summary";
 			sourceTree = "<group>";
@@ -1155,6 +1301,13 @@
 				C0EE27FF20999602006ACA5D /* BookingDetailCell.xib */,
 				C0EE2820209ACBA7006ACA5D /* BookingSummaryCell.swift */,
 				C0EE2821209ACBA7006ACA5D /* BookingSummaryCell.xib */,
+				C0EB1EEF209F1726001E40D7 /* BookingViewController.swift */,
+				C0EB1EF0209F1726001E40D7 /* BookingViewController.xib */,
+				C0EB1EF4209F1969001E40D7 /* BookingCell.xib */,
+				C0EB1EF7209F1980001E40D7 /* BookingDetailController.swift */,
+				C0EB1EF8209F1980001E40D7 /* BookingDetailController.xib */,
+				C055B9D0209F216F0033A0D4 /* BookingListController.swift */,
+				C055B9D1209F216F0033A0D4 /* BookingListController.xib */,
 			);
 			path = Book;
 			sourceTree = "<group>";
@@ -1299,6 +1452,7 @@
 				C0F90381208F2301009F5104 /* eco_trip_6.png in Resources */,
 				A60E1F25207E070300427CF8 /* NServiceView.xib in Resources */,
 				C0FD8C3B2095CAEC00B6BE7B /* DiveServiceDetailCell.xib in Resources */,
+				C0EB1EF6209F1969001E40D7 /* BookingCell.xib in Resources */,
 				C0CB3F182092CAEB00BE5644 /* DiveCenterDetailController.xib in Resources */,
 				C010FB02207CAF47000059AA /* FiraSans-BoldItalic.ttf in Resources */,
 				C08E967F20909A9C00270CF9 /* TotalDivesCell.xib in Resources */,
@@ -1320,10 +1474,12 @@
 				C01AACDC208DCA3600EDDB37 /* DiveServiceSearchResultController.xib in Resources */,
 				A60A2862207FB888004A8FC2 /* SearchKeywordController.xib in Resources */,
 				C037E8A92085A409000EB5CF /* banner_3.png in Resources */,
+				C055B9D3209F21700033A0D4 /* BookingListController.xib in Resources */,
 				C026FF832084C87300357EE5 /* EditProfileViewController.xib in Resources */,
 				C0EE2823209ACBA7006ACA5D /* BookingSummaryCell.xib in Resources */,
 				C0EE2817209AB766006ACA5D /* ContactCell.xib in Resources */,
 				C0EFE348209B2BB1009E084F /* NAdditionalView.xib in Resources */,
+				C0EB1EFA209F1980001E40D7 /* BookingDetailController.xib in Resources */,
 				C0BE915F2070ACFE004E1B92 /* GoogleService-Info.plist in Resources */,
 				C010FB10207CAF47000059AA /* FiraSans-ExtraLightItalic.ttf in Resources */,
 				C032DF5D207DDDFF00FE0999 /* RegisterViewController.xib in Resources */,
@@ -1333,6 +1489,7 @@
 				A6C2708E207BF0A2007E4D2A /* MainRootController.xib in Resources */,
 				C010FB0C207CAF47000059AA /* FiraSans-SemiBold.ttf in Resources */,
 				C0FD8C3F2095CB0D00B6BE7B /* DiveServiceRelatedCell.xib in Resources */,
+				C0EB1EF2209F1726001E40D7 /* BookingViewController.xib in Resources */,
 				C0EE28072099A089006ACA5D /* NBookingTitleSection.xib in Resources */,
 				C0CB3F34209328C300BE5644 /* NStickyHeaderView.xib in Resources */,
 				C0FC0C3F2091D74900C8D428 /* FacilityCell.xib in Resources */,
@@ -1356,6 +1513,7 @@
 				C0FD7C7920845A0B00FC4508 /* HeaderViewCell.xib in Resources */,
 				C0DE14212088A1E500A67494 /* EcoTripIntroductionController.xib in Resources */,
 				C0FC0C3520919D9000C8D428 /* NTagView.xib in Resources */,
+				C003A27D20A0337F003B217B /* DiveEthicAgreementController.xib in Resources */,
 				C0EE27FC209992B9006ACA5D /* OrderController.xib in Resources */,
 				C037E8AF2085B420000EB5CF /* SideMenuController.xib in Resources */,
 				C0BE91932070B758004E1B92 /* DTMDatePickerController.xib in Resources */,
@@ -1368,6 +1526,7 @@
 				C037AD612070A38800DD5CBC /* Main.storyboard in Resources */,
 				C037E8A82085A409000EB5CF /* banner_2.png in Resources */,
 				C010FB0E207CAF47000059AA /* FiraSans-ExtraBoldItalic.ttf in Resources */,
+				C003A27F20A03CD7003B217B /* logo_dca.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1607,6 +1766,7 @@
 				C0EE280020999602006ACA5D /* BookingDetailCell.swift in Sources */,
 				C0E17FD920775BC4003942D1 /* NHTTPHelper+Detail.swift in Sources */,
 				C01AACD1208DBCBA00EDDB37 /* NCountryCode+CoreDataClass.swift in Sources */,
+				C0EB1EF1209F1726001E40D7 /* BookingViewController.swift in Sources */,
 				A60E1F23207E06EB00427CF8 /* NServiceView.swift in Sources */,
 				C010FB19207CC3BA000059AA /* UIView+Extensions.swift in Sources */,
 				C01AACBF208DBCBA00EDDB37 /* NUser+CoreDataClass.swift in Sources */,
@@ -1629,6 +1789,7 @@
 				A6C27088207BEC0E007E4D2A /* UIColor+Nyelam.swift in Sources */,
 				C01AACD0208DBCBA00EDDB37 /* NOrder+CoreDataProperties.swift in Sources */,
 				C0BE91992070B758004E1B92 /* DTMDatePickerController.swift in Sources */,
+				C003A26C20A010EA003B217B /* CardIO.m in Sources */,
 				C01AACCE208DBCBA00EDDB37 /* NDiveService+CoreDataProperties.swift in Sources */,
 				C07FA9992086FDD100000E43 /* NSDate+Extensions.swift in Sources */,
 				C037AD5E2070A38800DD5CBC /* StarterViewController.swift in Sources */,
@@ -1649,6 +1810,7 @@
 				C0DE141820887F5000A67494 /* Double+Extensions.swift in Sources */,
 				C0BE92582070D5BC004E1B92 /* Schedule.swift in Sources */,
 				C060AB172089EC19008FA607 /* EcoTripPickerView.swift in Sources */,
+				C0FDF6E1209EEC0A009E1F04 /* PaypalCurrency.swift in Sources */,
 				C0D3C9262084AD8600FF587B /* PECropView.m in Sources */,
 				C00D0B00207627DB000D8ED6 /* NHTTPHelper+Auth.swift in Sources */,
 				C0D3C9232084AD8600FF587B /* PECropRectView.m in Sources */,
@@ -1662,11 +1824,13 @@
 				C01AACCC208DBCBA00EDDB37 /* NCity+CoreDataProperties.swift in Sources */,
 				C01AACD4208DBCBA00EDDB37 /* NSocialMedia+CoreDataProperties.swift in Sources */,
 				C0E17FCD207721E1003942D1 /* NHTTPHelper+DoDive.swift in Sources */,
+				C003A27C20A0337F003B217B /* DiveEthicAgreementController.swift in Sources */,
 				C01AACD8208DBCBA00EDDB37 /* NCategory+CoreDataProperties.swift in Sources */,
 				C0BE91982070B758004E1B92 /* DTMCore.swift in Sources */,
 				C0B2A26E207B5E5A00D46336 /* UIAlertController+Extensions.swift in Sources */,
 				C037E8AE2085B420000EB5CF /* SideMenuController.swift in Sources */,
 				C0BE91962070B758004E1B92 /* UIViewController+DTM.swift in Sources */,
+				C003A28320A0624D003B217B /* NTransactionResult.swift in Sources */,
 				C0BE91622070AD27004E1B92 /* NConstant.swift in Sources */,
 				A60E1F28207E5A5900427CF8 /* RateView.m in Sources */,
 				C00D0AFA2075F779000D8ED6 /* NHTTPHelper+Error.swift in Sources */,
@@ -1710,6 +1874,7 @@
 				C0E17FD320772E76003942D1 /* SearchResultCity.swift in Sources */,
 				C0BE92522070D4E2004E1B92 /* TripModule.swift in Sources */,
 				A60A28682080D03B004A8FC2 /* MonthYearPickerView.swift in Sources */,
+				C003A28120A051F1003B217B /* NHTTPHelper+Notification.swift in Sources */,
 				C01AACCB208DBCBA00EDDB37 /* NCity+CoreDataClass.swift in Sources */,
 				C01AACBD208DBCBA00EDDB37 /* NProvince+CoreDataClass.swift in Sources */,
 				C01AACC9208DBCBA00EDDB37 /* NAuthReturn+CoreDataClass.swift in Sources */,
@@ -1719,6 +1884,7 @@
 				C0B05BF82096C96D003FE74B /* NSAttributedString.swift in Sources */,
 				C0F90379208EE23E009F5104 /* Bool+Extensions.swift in Sources */,
 				C0E17FDB20776E47003942D1 /* NHTTPHelper+Book.swift in Sources */,
+				C055B9D2209F216F0033A0D4 /* BookingListController.swift in Sources */,
 				C0B2A277207B84DC00D46336 /* LoginViewController.swift in Sources */,
 				C01AACCF208DBCBA00EDDB37 /* NOrder+CoreDataClass.swift in Sources */,
 				C01AACBA208DBCBA00EDDB37 /* NDiveCenter+CoreDataProperties.swift in Sources */,
@@ -1730,10 +1896,12 @@
 				C037AD5C2070A38800DD5CBC /* AppDelegate.swift in Sources */,
 				C01AACDB208DCA3600EDDB37 /* DiveServiceSearchResultController.swift in Sources */,
 				C01AACBB208DBCBA00EDDB37 /* NLanguage+CoreDataClass.swift in Sources */,
+				C0EB1EF9209F1980001E40D7 /* BookingDetailController.swift in Sources */,
 				C0BE923E2070D168004E1B92 /* BookingContact.swift in Sources */,
 				C01AACCA208DBCBA00EDDB37 /* NAuthReturn+CoreDataProperties.swift in Sources */,
 				C032DF58207DDDCB00FE0999 /* ForgotPasswordViewController.swift in Sources */,
 				C0BE91892070B6CA004E1B92 /* BaseViewController.swift in Sources */,
+				C055B9C7209F1DFE0033A0D4 /* BasePagerViewController.swift in Sources */,
 				C0DE14142088543400A67494 /* CoreData+Extensions.swift in Sources */,
 				C0BE924E2070D48B004E1B92 /* Module.swift in Sources */,
 				C0FD8C362095BD7800B6BE7B /* DiveServiceController.swift in Sources */,
@@ -1909,6 +2077,11 @@
 				INFOPLIST_FILE = Nyelam/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Nyelam/Helper/Libraries/CardIO",
+					"$(PROJECT_DIR)/Nyelam/Helper/Libraries/PayPalMobile",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nyelam.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/Helper/Libraries/Nyelam-Bridging-Header.h";
@@ -1929,6 +2102,11 @@
 				INFOPLIST_FILE = Nyelam/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Nyelam/Helper/Libraries/CardIO",
+					"$(PROJECT_DIR)/Nyelam/Helper/Libraries/PayPalMobile",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nyelam.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/Helper/Libraries/Nyelam-Bridging-Header.h";

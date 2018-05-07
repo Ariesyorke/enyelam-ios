@@ -8,14 +8,27 @@
 
 import UIKit
 import DLRadioButton
+import MidtransKit
+import MBProgressHUD
+import PopupController
 
 class OrderController: BaseViewController {
     private let sections = ["Your Booking", "Contact Details", "Participant Details","Payment Options", "Booking Summary"]
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var payNowButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableBottomConstraint: NSLayoutConstraint!
+    var environment:String = PayPalEnvironmentSandbox {
+        willSet(newEnvironment) {
+            if (newEnvironment != environment) {
+                PayPalMobile.preconnect(withEnvironment: newEnvironment)
+            }
+        }
+    }
     
-    static func push(on controller: UINavigationController, diveService: NDiveService, cartReturn: CartReturn, contact: Contact, participants: [Participant], selectedDate: Date) -> OrderController {
+    var payPalConfig = PayPalConfiguration()
+    
+    static func push(on controller: UINavigationController, diveService: NDiveService, cartReturn: CartReturn, contact: BookingContact, participants: [Participant], selectedDate: Date) -> OrderController {
         let vc: OrderController = OrderController(nibName: "OrderController", bundle: nil)
         vc.diveService = diveService
         vc.cartReturn = cartReturn
@@ -26,27 +39,25 @@ class OrderController: BaseViewController {
         return vc
     }
 
-    fileprivate var summary: NSummary?
+    fileprivate var orderReturn: OrderReturn?
     fileprivate var diveService: NDiveService?
     fileprivate var cartReturn: CartReturn?
-    fileprivate var contact: Contact?
+    fileprivate var contact: BookingContact?
     fileprivate var participants: [Participant]?
     fileprivate var isLoadAdditionalFee: Bool = false
-    fileprivate var paymentMethodType: Int = 0
+    fileprivate var paymentMethodType: Int = 1
     fileprivate var selectedDate: Date?
     fileprivate var note: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.register(UINib(nibName: "ContactCell", bundle: nil), forCellReuseIdentifier: "ContactCell")
-        self.tableView.register(UINib(nibName: "ParticipantCell", bundle: nil), forCellReuseIdentifier: "ParticipantCell")
-        self.tableView.register(UINib(nibName: "PaymentMethodCell", bundle: nil), forCellReuseIdentifier: "PaymentMethodCell")
-        self.tableView.register(UINib(nibName: "BookingDetailCell", bundle: nil), forCellReuseIdentifier: "BookingDetailCell")
-        self.tableView.register(UINib(nibName: "BookingSummaryCell", bundle: nil), forCellReuseIdentifier: "BookingSummaryCell")
-        self.tableView.reloadData()
+        self.initView()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        PayPalMobile.preconnect(withEnvironment: self.environment)
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,10 +66,107 @@ class OrderController: BaseViewController {
     }
     
     @IBAction func payButtonAction(_ sender: Any) {
+        if let error = self.checkDataCompletion(bookingContact: self.contact!, participants: self.participants!) {
+            UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {})
+            return
+        }
         
+        if let orderReturn = self.orderReturn, let summary = orderReturn.summary, let order = summary.order {
+            
+        } else if let cartReturn = self.cartReturn {
+            var diveEthicAgreementController = DiveEthicAgreementController(nibName: "DiveEthicAgreementController", bundle: nil)
+            var size = CGSize(width: (self.navigationController!.view.frame.width * 3.5)/4, height: (self.navigationController!.view.frame.height * 3)/4)
+            diveEthicAgreementController.popupSize = size
+            let popup = PopupController.create(self.navigationController!).customize(
+                [
+                    .animation(.fadeIn),
+                    .backgroundStyle(.blackFilter(alpha: 0.7)),
+                    .dismissWhenTaps(false),
+                    .layout(.center)
+                ])
+            
+            popup.show(diveEthicAgreementController)
+            diveEthicAgreementController.dismissCompletion = {complete in
+                popup.dismiss({
+                    if complete {
+                        var participantsJson: Array<[String: Any]> = []
+                        for participant in self.participants! {
+                            participantsJson.append(participant.serialized())
+                        }
+                        self.trySubmitOrder(cartToken: cartReturn.cartToken!, contactJson: String.JSONStringify(value: self.contact!.serialized()), diverJson: String.JSONStringify(value: participantsJson), paymentMethodType: String(self.paymentMethodType), note: self.note)
+                    }
+                })
+            }
+        }
     }
     
-
+    fileprivate func initView() {
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.register(UINib(nibName: "ContactCell", bundle: nil), forCellReuseIdentifier: "ContactCell")
+        self.tableView.register(UINib(nibName: "ParticipantCell", bundle: nil), forCellReuseIdentifier: "ParticipantCell")
+        self.tableView.register(UINib(nibName: "PaymentMethodCell", bundle: nil), forCellReuseIdentifier: "PaymentMethodCell")
+        self.tableView.register(UINib(nibName: "BookingDetailCell", bundle: nil), forCellReuseIdentifier: "BookingDetailCell")
+        self.tableView.register(UINib(nibName: "BookingSummaryCell", bundle: nil), forCellReuseIdentifier: "BookingSummaryCell")
+        self.tableView.reloadData()
+        self.priceLabel.text = self.cartReturn!.cart!.total.toCurrencyFormatString(currency: "Rp")
+        self.title = "Booking Summary"
+        self.payPalConfig.acceptCreditCards = true
+    }
+    fileprivate func tryResubmitOrder(orderId: String, paymentType: String)  {
+        
+    }
+    fileprivate func trySubmitOrder(cartToken: String, contactJson: String, diverJson: String, paymentMethodType: String, note: String) {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        NHTTPHelper.httpOrderSubmit(cartToken: cartToken, contactJson: contactJson, diverJson: diverJson, paymentMethodType: paymentMethodType, note: note, complete: {response in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            if let error = response.error {
+                if error.isKind(of: NotConnectedInternetError.self) {
+                    NHelper.handleConnectionError(completion: {
+                        self.trySubmitOrder(cartToken: cartToken, contactJson: contactJson, diverJson: diverJson, paymentMethodType: paymentMethodType, note: note)
+                    })
+                }
+                return
+            }
+            if let data = response.data {
+                self.orderReturn = data
+                self.handlePaymentMethodType(orderReturn: self.orderReturn!, paymentType: paymentMethodType)
+            }
+        })
+    }
+    
+    fileprivate func handlePaymentMethodType(orderReturn: OrderReturn, paymentType: String) {
+        if paymentType == "2" || paymentType == "3" {
+            self.payUsingMidtrans(order: orderReturn.summary!.order!, contact: self.contact!, amount: Int(self.cartReturn!.cart!.total), veritransToken: orderReturn.veritransToken!, diveService: self.diveService!, divers: self.participants!.count, paymentType: self.paymentMethodType, additionals: self.cartReturn!.additionals)
+        } else if paymentType == "4" {
+            self.payUsingPaypal(orderReturn: orderReturn)
+        } else {
+            UIAlertController.handlePopupMessage(viewController: self, title: "Order Success!", actionButtonTitle: "OK", completion: {
+                if let navigation = self.navigationController {
+                    navigation.popToRootViewController(animated: true)
+                }
+            })
+        }
+    }
+    
+    fileprivate func checkDataCompletion(bookingContact: BookingContact, participants: [Participant]) -> String? {
+        if bookingContact.name == nil || bookingContact.name!.isEmpty {
+            return "Contact name cannot be empty"
+        } else if bookingContact.email == nil || bookingContact.email!.isEmpty {
+            return "Contact email cannot be empty"
+        } else if bookingContact.phoneNumber == nil || bookingContact.phoneNumber!.isEmpty {
+            return "Contact phone cannot be empty"
+        }
+        for participant in participants {
+            if participant.name == nil || participant.name!.isEmpty {
+                return "Participant name cannot be empty"
+            } else if participant.email == nil || participant.email!.isEmpty {
+                return "Participant email cannot be empty"
+            }
+        }
+        return nil
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -86,6 +194,8 @@ extension OrderController: UITableViewDelegate, UITableViewDataSource {
             return self.participants != nil ? self.participants!.count : 0
         case 3:
             return 1
+        case 4:
+            return 1
         default:
             return 0
         }
@@ -105,34 +215,145 @@ extension OrderController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "BookingDetailCell", for: indexPath) as! BookingDetailCell
-            cell.initData(diveService: diveService!, selectedDate: self.selectedDate!)
+            cell.initData(diveService: self.diveService!, selectedDate: self.selectedDate!)
             return cell
         } else if indexPath.section == 1 {
             let row = indexPath.row
             let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath) as! ContactCell
             cell.initData(contact: self.contact!)
+            cell.onChangeContact = {
+                _ = ContactController.push(on: self.navigationController!, contact: self.contact!, completion: {contact in
+                    self.contact! = contact
+                    self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                })
+            }
             return cell
         } else if indexPath.section == 2 {
             let row = indexPath.row
             let cell = tableView.dequeueReusableCell(withIdentifier: "ParticipantCell", for: indexPath) as! ParticipantCell
             let participant = participants![row]
             cell.initData(participant: participant)
+            cell.onChangeParticipant = {
+                _ = ParticipantController.push(on: self.navigationController!, participant: participant,  completion: {participant in
+                    self.participants![row] = participant
+                    self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                })
+            }
             return cell
         } else if indexPath.section == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PaymentMethodCell", for: indexPath) as! PaymentMethodCell
             cell.paymentType = self.paymentMethodType
             cell.onChangePaymentType = {paymentType in
                 self.paymentMethodType = paymentType
+                self.isLoadAdditionalFee = true
+                self.tableView.reloadRows(at: [IndexPath(item: 0, section: 4)], with: .automatic)
+                self.tryChangePayment(paymentType: self.paymentMethodType)
             }
             cell.initPayment(paymentType: self.paymentMethodType)
             return cell
         } else if indexPath.section == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "BookingSummaryCell", for: indexPath) as! BookingSummaryCell
             let diver = self.participants!.count
-            cell.initData(note: self.note, cart: cartReturn!.cart!, selectedDiver: diver, servicePrice: self.diveService!.specialPrice, additionals: self.cartReturn!.additionals)
+            cell.noteTextField.delegate = self
+            if self.isLoadAdditionalFee {
+                cell.loadAdditionalFee()
+            } else {
+                cell.initData(note: self.note, cart: cartReturn!.cart!, selectedDiver: diver, servicePrice: self.diveService!.specialPrice, additionals: self.cartReturn!.additionals)
+            }
             return cell
         }
         return UITableViewCell()
+    }
+    
+    
+    override func keyboardWillHide(animationDuration: TimeInterval) {
+        super.keyboardWillHide(animationDuration: animationDuration)
+        UIView.animate(withDuration: animationDuration) {
+            self.tableBottomConstraint.constant = 0
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    override func keyboardWillShow(keyboardFrame: CGRect, animationDuration: TimeInterval) {
+//        super.keyboardWillShow(keyboardFrame: keyboardFrame, animationDuration: animationDuration)
+        UIView.animate(withDuration: animationDuration) {
+            self.tableBottomConstraint.constant = keyboardFrame.height - 84
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        self.note = textField.text!
+        return true
+    }
+    
+    fileprivate func tryChangePayment(paymentType: Int) {
+        var id: String = ""
+        if let orderReturn = self.orderReturn, let summary = orderReturn.summary, let order = summary.order {
+            id = order.orderId!
+        } else if let cartReturn = self.cartReturn {
+            id = cartReturn.cartToken!
+        }
+        
+        self.payNowButton.backgroundColor = UIColor.darkGray
+        self.payNowButton.isEnabled = false
+        self.priceLabel.text = "Calculating..."
+        NHTTPHelper.changePaymentMethod(cartToken: id, paymentType: paymentType, complete: {response in
+            if let error = response.error {
+                if error.isKind(of: NotConnectedInternetError.self) {
+                    NHelper.handleConnectionError(completion: {
+                        self.tryChangePayment(paymentType: paymentType)
+                    })
+                }
+                return
+            }
+            self.payNowButton.backgroundColor = UIColor.primary
+            self.payNowButton.isEnabled = true
+            if let data = response.data {
+                self.cartReturn = data
+                self.isLoadAdditionalFee = false
+                self.priceLabel.text = self.cartReturn!.cart!.total.toCurrencyFormatString(currency: "Rp")
+                self.tableView.reloadRows(at: [IndexPath(item: 0, section: 4)], with: .automatic)
+            }
+        })
+    }
+    
+    fileprivate func payUsingMidtrans(order: NOrder, contact: BookingContact, amount: Int, veritransToken: String, diveService: NDiveService, divers: Int, paymentType: Int, additionals: [Additional]?) {
+        let transactionDetails = MidtransTransactionDetails.init(orderID: order.orderId!, andGrossAmount: amount as NSNumber)
+        let customerDetails = MidtransCustomerDetails()
+        customerDetails.firstName = contact.name!
+        customerDetails.email = contact.email!
+        if let countryCode = contact.countryCode {
+            customerDetails.phone = "+\(countryCode.countryCode!)\(contact.phoneNumber!)"
+        }
+        var itemDetails: [MidtransItemDetail] = []
+        let itemDetail = MidtransItemDetail(itemID: diveService.id!, name: diveService.name!, price: diveService.specialPrice as NSNumber, quantity: divers as NSNumber)
+        itemDetails.append(itemDetail!)
+        if let additionals = additionals, !additionals.isEmpty {
+            var itemID = -1
+            for additional in additionals {
+                itemDetails.append(MidtransItemDetail(itemID: String(itemID), name: additional.title!, price: additional.value as! NSNumber, quantity: 1))
+                itemID -= 1
+            }
+        }
+        let paymentFeature = (paymentType==2 ? MidtransPaymentFeature.MidtransPaymentFeatureCreditCard : MidtransPaymentFeature.MidtransPaymentFeatureBankTransfer)
+        let response = MidtransTransactionTokenResponse()
+        response.customerDetails = customerDetails
+        response.tokenId = veritransToken
+        response.itemDetails = itemDetails
+        response.transactionDetails = transactionDetails
+        
+        let vc = MidtransUIPaymentViewController(token: response, andPaymentFeature: paymentFeature)
+        vc?.paymentDelegate = self
+        self.present(vc!, animated: true, completion: nil)
+    }
+    
+    fileprivate func payUsingPaypal(orderReturn: OrderReturn) {
+        let amount = NSDecimalNumber(value: orderReturn.paypalCurrency!.amount)
+        let paypalPayment = PayPalPayment(amount: amount, currencyCode: orderReturn.paypalCurrency!.currency!, shortDescription: "#\(orderReturn.summary!.order!.orderId!)", intent: PayPalPaymentIntent.sale)
+        let paymentController = PayPalPaymentViewController(payment: paypalPayment, configuration: payPalConfig, delegate: self)
+        self.present(paymentController!, animated: true, completion: nil)
     }
 }
 
@@ -140,9 +361,8 @@ class ContactCell: NTableViewCell {
     @IBOutlet weak var fullNameLabel: UILabel!
     @IBOutlet weak var phoneNumberLabel: UILabel!
     @IBOutlet weak var emailAddressLabel: UILabel!
-    var indexPath: IndexPath?
 
-    var onChangeContact: (IndexPath) -> () = {indexPath in }
+    var onChangeContact: () -> () = { }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -157,17 +377,19 @@ class ContactCell: NTableViewCell {
     
     
     @IBAction func changeButtonAction(_ sender: Any) {
-        self.onChangeContact(indexPath!)
+        self.onChangeContact()
     }
     
-    func initData(contact: Contact) {
+    func initData(contact: BookingContact) {
         if let name = contact.name {
             self.fullNameLabel.text = name
         } else {
             self.fullNameLabel.text = "Fullname"
         }
-        self.phoneNumberLabel.text = contact.phoneNumber
-        self.emailAddressLabel.text = contact.emailAddress
+        if let countryCode = contact.countryCode {
+            self.phoneNumberLabel.text = "+\(countryCode.countryNumber!)\(contact.phoneNumber!)"
+        }
+        self.emailAddressLabel.text = contact.email
     }
     
 }
@@ -177,34 +399,37 @@ class ParticipantCell: NTableViewCell {
     @IBOutlet weak var fullnameLabel: UILabel!
     @IBOutlet weak var changeLabel: UILabel!
     @IBOutlet weak var emailAddressLabel: UILabel!
-    var indexPath: IndexPath?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-    var onChangePartcipant: (IndexPath) -> () = {indexPath in }
+    var onChangeParticipant: () -> () = { }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
     }
     @IBAction func changeButtonAction(_ sender: Any) {
-        self.onChangePartcipant(indexPath!)
+        self.onChangeParticipant()
     }
     
     func initData(participant: Participant) {
+        self.changeLabel.text = "Change"
         if let name = participant.name {
             self.fullnameLabel.text = name
+        } else {
+            self.changeLabel.text = "Fill In"
         }
         if let email = participant.email {
             self.emailAddressLabel.text = email
+        } else {
+            self.changeLabel.text = "Fill In"
         }
     }
 }
 
 class PaymentMethodCell: NTableViewCell {
-    
     @IBOutlet weak var paymentButton: DLRadioButton!
     var paymentType: Int = 0
     var onChangePaymentType: (Int)->() = {paymentType in }
@@ -220,7 +445,7 @@ class PaymentMethodCell: NTableViewCell {
     }
     
     @IBAction func changePaymentButtonAction(_ sender: UIControl) {
-        if sender.tag == 0 {
+        if sender.tag == 1 {
             self.paymentButton.isSelected = true
             for button in self.paymentButton.otherButtons {
                 button.isSelected = false
@@ -238,8 +463,8 @@ class PaymentMethodCell: NTableViewCell {
     }
     
     func initPayment(paymentType: Int) {
-        self.paymentType = 0
-        if paymentType == 0 {
+        self.paymentType = paymentType
+        if paymentType == 1 {
             self.paymentButton.isSelected = true
         } else {
             for button in self.paymentButton.otherButtons {
@@ -250,6 +475,90 @@ class PaymentMethodCell: NTableViewCell {
             }
         }
     }
+}
+
+extension OrderController: MidtransUIPaymentViewControllerDelegate, PayPalPaymentDelegate, PayPalFuturePaymentDelegate, PayPalProfileSharingDelegate {
+    func payPalPaymentDidCancel(_ paymentViewController: PayPalPaymentViewController) {
+        paymentViewController.dismiss(animated: true, completion: {})
+    }
+    
+    func payPalPaymentViewController(_ paymentViewController: PayPalPaymentViewController, didComplete completedPayment: PayPalPayment) {
+        paymentViewController.dismiss(animated: true, completion: {
+            UIAlertController.handlePopupMessage(viewController: self, title: "Order Success!", actionButtonTitle: "OK", completion: {
+                print("COMPLETED PAYMENT \(completedPayment.confirmation)")
+                MBProgressHUD.showAdded(to: self.view, animated: true)
+                NHTTPHelper.httpPaypalNotification(paypalId: completedPayment.confirmation["id"] as! String, complete: {response in
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    if let navigation = self.navigationController {
+                        navigation.popToRootViewController(animated: true)
+                    }
+                })
+            })
+        })
+    }
+    
+    func payPalFuturePaymentDidCancel(_ futurePaymentViewController: PayPalFuturePaymentViewController) {
+        futurePaymentViewController.dismiss(animated: true, completion: nil)
+    }
+    
+    func payPalFuturePaymentViewController(_ futurePaymentViewController: PayPalFuturePaymentViewController, didAuthorizeFuturePayment futurePaymentAuthorization: [AnyHashable : Any]) {
+        
+    }
+    
+    func userDidCancel(_ profileSharingViewController: PayPalProfileSharingViewController) {
+        
+    }
+    
+    func payPalProfileSharingViewController(_ profileSharingViewController: PayPalProfileSharingViewController, userDidLogInWithAuthorization profileSharingAuthorization: [AnyHashable : Any]) {
+        
+    }
+    
+    func paymentViewController_paymentCanceled(_ viewController: MidtransUIPaymentViewController!) {
+        
+    }
+    
+    func paymentViewController(_ viewController: MidtransUIPaymentViewController!, paymentFailed error: Error!) {
+        
+    }
+    func paymentViewController(_ viewController: MidtransUIPaymentViewController!, saveCardFailed error: Error!) {
+        
+    }
+    
+    func paymentViewController(_ viewController: MidtransUIPaymentViewController!, paymentPending result: MidtransTransactionResult!) {
+        viewController.dismiss(animated: true, completion: {
+            UIAlertController.handlePopupMessage(viewController: self, title: "Order Success!", actionButtonTitle: "OK", completion: {
+                let transactionResult = NTransactionResult(transactionData: result, fraudStatus: "pending")
+                MBProgressHUD.showAdded(to: self.view, animated: true)
+                NHTTPHelper.httpVeritransNotification(parameters: transactionResult.serialized(), complete: {response in
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    if let navigation = self.navigationController {
+                        navigation.popToRootViewController(animated: true)
+                    }
+                })
+            })
+        })
+    }
+    
+    func paymentViewController(_ viewController: MidtransUIPaymentViewController!, paymentSuccess result: MidtransTransactionResult!) {
+        viewController.dismiss(animated: true, completion: {
+            UIAlertController.handlePopupMessage(viewController: self, title: "Order Success!", actionButtonTitle: "OK", completion: {
+                let transactionResult = NTransactionResult(transactionData: result, fraudStatus: "accept")
+                MBProgressHUD.showAdded(to: self.view, animated: true)
+                NHTTPHelper.httpVeritransNotification(parameters: transactionResult.serialized(), complete: {response in
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    if let navigation = self.navigationController {
+                        navigation.popToRootViewController(animated: true)
+                    }
+                })
+            })
+        })
+    }
+    
+    
+    func paymentViewController(_ viewController: MidtransUIPaymentViewController!, save result: MidtransMaskedCreditCard!) {
+        
+    }
+
 }
 
 

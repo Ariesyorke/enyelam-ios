@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="FiraSans-Regular.ttf">
+            <string>FiraSans-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BookingListController" customModule="Nyelam" customModuleProvider="target">
+            <connections>
+                <outlet property="loadingView" destination="1NS-2D-Q0T" id="Tu9-xk-EHK"/>
+                <outlet property="noPurchaseLabel" destination="tnP-Pz-cHP" id="byW-dB-b57"/>
+                <outlet property="tableView" destination="BQh-Hr-jA8" id="0OO-2S-LKs"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BQh-Hr-jA8">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="1NS-2D-Q0T">
+                    <rect key="frame" x="169" y="315" width="37" height="37"/>
+                    <color key="color" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                </activityIndicatorView>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sorry, no purchase available" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tnP-Pz-cHP">
+                    <rect key="frame" x="16" y="323.5" width="343" height="20"/>
+                    <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="17"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="tnP-Pz-cHP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="1ZR-2C-ekr"/>
+                <constraint firstItem="tnP-Pz-cHP" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3Pl-e0-xBP"/>
+                <constraint firstItem="tnP-Pz-cHP" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="GLc-sZ-y1t"/>
+                <constraint firstItem="1NS-2D-Q0T" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Gzf-SY-sAc"/>
+                <constraint firstAttribute="trailing" secondItem="tnP-Pz-cHP" secondAttribute="trailing" constant="16" id="LAw-Sz-5lk"/>
+                <constraint firstItem="BQh-Hr-jA8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="N9v-TK-eFH"/>
+                <constraint firstAttribute="bottom" secondItem="BQh-Hr-jA8" secondAttribute="bottom" id="TdI-TZ-2lX"/>
+                <constraint firstAttribute="trailing" secondItem="BQh-Hr-jA8" secondAttribute="trailing" id="qhV-1w-uT0"/>
+                <constraint firstItem="BQh-Hr-jA8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="rgk-1L-fZ4"/>
+                <constraint firstItem="1NS-2D-Q0T" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="zSM-VW-2eb"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

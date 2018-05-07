@@ -20,7 +20,6 @@ target 'Nyelam' do
   pod 'ImageSlideshow/Alamofire'
   pod 'EZYGradientView', :git => 'https://github.com/Niphery/EZYGradientView'
   pod 'Alamofire'
-  pod 'PayPal-iOS-SDK'
   pod 'EAIntroView'
   pod 'MidtransCoreKit'
   pod 'MidtransKit'
@@ -35,7 +34,8 @@ target 'Nyelam' do
   pod 'RangeSeekSlider'
   pod 'TangramKit'
   pod 'GSKStretchyHeaderView'
-  
+  pod 'XLPagerTabStrip', '~> 8.0'
+
   target 'NyelamTests' do
     inherit! :search_paths
     # Pods for testing

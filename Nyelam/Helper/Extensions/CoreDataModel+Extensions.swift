@@ -735,9 +735,17 @@ extension NDiveService {
     private var KEY_AVAILABILITY_STOCK: String { return "availability_stock" }
     
     func parse(json: [String : Any]) {
-        self.id = json[KEY_ID] as? String
-        self.name = json[KEY_NAME] as? String
-        self.diveServiceDescription = json[KEY_DESCRIPTION] as? String
+        if let id = json[KEY_ID] as? String {
+            self.id = id
+        } else if let id = json[KEY_ID] as? Int {
+            self.id = String(id)
+        }
+        if let name = json[KEY_NAME] as? String {
+            self.name = name
+        }
+        if let diveServiceDecription = json[KEY_DESCRIPTION] as? String {
+            self.diveServiceDescription = diveServiceDecription
+        }
         
         if let rating = json[KEY_RATING] as? Double {
             self.rating = rating
@@ -1038,7 +1046,11 @@ extension NOrder {
     private var KEY_CART: String { return "cart" }
     
     func parse(json: [String : Any]) {
-        self.orderId = json[KEY_ORDER_ID] as? String
+        if let orderId = json[KEY_ORDER_ID] as? String {
+            self.orderId = orderId
+        } else if let orderId = json[KEY_ORDER_ID] as? Int {
+            self.orderId = String(orderId)
+        }
         self.status = json[KEY_STATUS] as? String
         if let schedule = json[KEY_SCHEDULE] as? Double {
             self.schedule = schedule
@@ -1494,7 +1506,7 @@ extension NSummary {
             if self.order == nil {
                 self.order = NSEntityDescription.insertNewObject(forEntityName: "NOrder", into: AppDelegate.sharedManagedContext) as! NOrder
             }
-            self.order!.parse(json: json)
+            self.order!.parse(json: orderJson)
             self.id = self.order!.orderId
         } else if let orderString = json[KEY_ORDER] as? String {
             do {
@@ -1506,7 +1518,7 @@ extension NSummary {
                 if self.order == nil {
                     self.order = NSEntityDescription.insertNewObject(forEntityName: "NOrder", into: AppDelegate.sharedManagedContext) as! NOrder
                 }
-                self.order!.parse(json: json)
+                self.order!.parse(json: orderJson)
                 self.id = self.order!.orderId
             } catch {
                 print(error)

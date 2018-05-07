@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import MidtransCoreKit
 
 class NConstant {
     static var appVersion: String {
@@ -37,6 +38,51 @@ class NConstant {
     
     static var GOOGLE_CLIENT_ID: String {
         return "359054383364-qu2ipqnfu6ues5r6bllc5cbk98rlre80.apps.googleusercontent.com"
+    }
+    
+    static var PAYPAL_CLIENT_ID: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "AZpSKWx_d3bY8qO23Rr7hUbd5uUappmzGliQ1A2W5VWz4DVP011eNGN9k5NKu_sLhKFFQPvp5qgF4ptJ"
+        default:
+            return "AesXhJkhDyCXfFEiuR31DCeLPH4UqHB6nNTrjpvOmgh2VfRYzJTX-Cfq8X4h2GVvyyBoc81rXm8D8-1Z"
+        }
+    }
+    
+    static var PAYPAL_ENVIRONTMENT: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return PayPalEnvironmentProduction
+        default:
+            return PayPalEnvironmentSandbox
+        }
+    }
+    
+    static var MIDTRANS_CLIENT_ID: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "Mid-client-LmqmZSunNywXQf-f"
+        default:
+            return "SB-Mid-client-_2uec0T1LQec4odt"
+        }
+    }
+    
+    static var MIDTRANS_URL: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "https://api.veritrans.co.id/v2"
+        default:
+            return "https://api.sandbox.midtrans.com/v2"
+        }
+    }
+    
+    static var MIDTRANS_ENVIRONTMENT: MidtransServerEnvironment {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return MidtransServerEnvironment.production
+        default:
+            return MidtransServerEnvironment.sandbox
+        }
     }
 }
 

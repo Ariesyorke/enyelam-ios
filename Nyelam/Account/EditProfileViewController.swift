@@ -227,6 +227,7 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
                 self.countryCodeLabel.text = ("+\(countryNumber)")
             } else {
                 self.pickedCountryCode =  NCountryCode.getCountryCode(by: self.userRegionCode)
+                self.countryCodeLabel.text = ("+\(self.pickedCountryCode!.countryNumber!)")
             }
             self.genderTextField.text = user.gender
             if let birthDate = user.birthDate {

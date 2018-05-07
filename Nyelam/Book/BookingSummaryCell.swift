@@ -18,7 +18,6 @@ class BookingSummaryCell: NTableViewCell {
     
     var note: String = ""
     
-    var delegate: UITextFieldDelegate?
     var additionalViews: [UIView]?
     
     override func awakeFromNib() {
@@ -48,45 +47,45 @@ class BookingSummaryCell: NTableViewCell {
         self.subTotalPriceLabel.text = "\(cart.subtotal.toCurrencyFormatString(currency: "Rp")),-"
     
         var serviceAddtionalView: NAdditionalView = NAdditionalView(frame: CGRect.zero)
-        serviceAddtionalView.translatesAutoresizingMaskIntoConstraints = true
+        serviceAddtionalView.translatesAutoresizingMaskIntoConstraints = false
         serviceAddtionalView.initData(title: "Service Trip Package x \(selectedDiver)", price: servicePrice)
         self.additionalViews = []
         for view in self.detailContainer.subviews {
             view.removeFromSuperview()
         }
-        
+
         self.detailContainer.addSubview(serviceAddtionalView)
         self.additionalViews!.append(serviceAddtionalView)
         self.detailContainer.addConstraints([
-            NSLayoutConstraint(item: self.detailContainer, attribute: .leading, relatedBy: .equal, toItem: serviceAddtionalView, attribute: .leading, multiplier: 1, constant: 16),
-            NSLayoutConstraint(item: self.detailContainer, attribute: .trailing, relatedBy: .equal, toItem: serviceAddtionalView, attribute: .trailing, multiplier: 1, constant: 16),
-            NSLayoutConstraint(item: self.detailContainer, attribute: .top, relatedBy: .equal, toItem: serviceAddtionalView, attribute: .top, multiplier: 1, constant: 16)
+            NSLayoutConstraint(item: self.detailContainer, attribute: .leading, relatedBy: .equal, toItem: serviceAddtionalView, attribute: .leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: self.detailContainer, attribute: .trailing, relatedBy: .equal, toItem: serviceAddtionalView, attribute: .trailing, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: self.detailContainer, attribute: .top, relatedBy: .equal, toItem: serviceAddtionalView, attribute: .top, multiplier: 1, constant: 0)
             ])
-        serviceAddtionalView.addConstraint(NSLayoutConstraint(item: serviceAddtionalView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 54))
+//        serviceAddtionalView.addConstraint(NSLayoutConstraint(item: serviceAddtionalView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 54))
         if let additionals = additionals, !additionals.isEmpty {
             var i: Int = 0
             for additional in additionals {
                 var additionalView = NAdditionalView(frame: CGRect.zero)
                 additionalView.translatesAutoresizingMaskIntoConstraints = false
                 additionalView.initData(title: additional.title!, price: additional.value!)
-                additionalView.addConstraint(NSLayoutConstraint(item: additionalView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 54))
+//                additionalView.addConstraint(NSLayoutConstraint(item: additionalView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 54))
+                self.detailContainer.addSubview(additionalView)
                 self.detailContainer.addConstraints([
-                    NSLayoutConstraint(item: self.detailContainer, attribute: .leading, relatedBy: .equal, toItem: serviceAddtionalView, attribute: .leading, multiplier: 1, constant: 16),
-                    NSLayoutConstraint(item: self.detailContainer, attribute: .trailing, relatedBy: .equal, toItem: serviceAddtionalView, attribute: .trailing, multiplier: 1, constant: 16),
+                    NSLayoutConstraint(item: self.detailContainer, attribute: .leading, relatedBy: .equal, toItem: additionalView, attribute: .leading, multiplier: 1, constant: 0),
+                    NSLayoutConstraint(item: self.detailContainer, attribute: .trailing, relatedBy: .equal, toItem: additionalView, attribute: .trailing, multiplier: 1, constant: 0),
                     NSLayoutConstraint(item: self.additionalViews![i], attribute: .bottom,
                                        relatedBy: .equal, toItem: additionalView, attribute: .top,
-                                       multiplier: 1, constant: 8)
+                                       multiplier: 1, constant: -4)
                     ])
                 if i >= additionals.count - 1 {
-                    self.detailContainer.addConstraint(NSLayoutConstraint(item: self.detailContainer, attribute: .bottom, relatedBy: .equal, toItem: additionalView, attribute: .bottom, multiplier: 1, constant: 16))
+                    self.detailContainer.addConstraint(NSLayoutConstraint(item: self.detailContainer, attribute: .bottom, relatedBy: .equal, toItem: additionalView, attribute: .bottom, multiplier: 1, constant: 0))
                 }
                 self.additionalViews!.append(additionalView)
                 i += 1
             }
         } else {
-            self.detailContainer.addConstraint(NSLayoutConstraint(item: self.detailContainer, attribute: .bottom, relatedBy: .equal, toItem: serviceAddtionalView, attribute: .bottom, multiplier: 1, constant: 16))
+            self.detailContainer.addConstraint(NSLayoutConstraint(item: self.detailContainer, attribute: .bottom, relatedBy: .equal, toItem: serviceAddtionalView, attribute: .bottom, multiplier: 1, constant: 0))
         }
     }
-    
     
 }
