@@ -178,7 +178,7 @@ extension HomeController {
     }
     
     @IBAction func onSeeAllDoTripClicked(_ sender: UIControl) {
-        DiveServiceSearchResultController.push(on: self.navigationController!, forDoTrip: true, selectedDiver: 1)
+        DiveServiceSearchResultController.push(on: self.navigationController!, forDoTrip: true, selectedDiver: 1, selectedDate: Date())
     }
     
     @objc func onBannerClicked(at sender: UIControl) {

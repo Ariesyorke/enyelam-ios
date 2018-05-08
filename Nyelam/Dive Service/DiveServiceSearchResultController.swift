@@ -27,10 +27,11 @@ class DiveServiceSearchResultController: BaseViewController, UITableViewDataSour
         return vc
     }
     
-    static func push(on controller: UINavigationController, forDoTrip: Bool, selectedDiver: Int) -> DiveServiceSearchResultController {
+    static func push(on controller: UINavigationController, forDoTrip: Bool, selectedDiver: Int, selectedDate: Date) -> DiveServiceSearchResultController {
         let vc: DiveServiceSearchResultController = DiveServiceSearchResultController(nibName: "DiveServiceSearchResultController", bundle: nil)
         vc.selectedDiver = selectedDiver
         vc.forDoTrip = forDoTrip
+        vc.selectedDate = selectedDate
         controller.setNavigationBarHidden(false, animated: true)
         controller.navigationBar.barTintColor = UIColor.primary
         controller.pushViewController(vc, animated: true)
@@ -47,7 +48,8 @@ class DiveServiceSearchResultController: BaseViewController, UITableViewDataSour
     fileprivate var selectedLicense: Bool = false
     fileprivate var page: Int = 1
     fileprivate var filter: NFilter = NFilter()
-    
+    fileprivate var price: Price = Price(lowestPrice: 50000, highestPrice: 10000000)
+
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,8 +58,7 @@ class DiveServiceSearchResultController: BaseViewController, UITableViewDataSour
         self.tableView.delegate = self
         self.tableView.addInfiniteScroll(handler: self.infiniteScroll)
         self.tableView.register(UINib(nibName: "DiveServiceCell", bundle: nil), forCellReuseIdentifier: "DiveServiceCell")
-        self.loadDiveServices()
-                        // Do any additional setup after loading the view.
+        self.loadPrice(keyword: self.selectedKeyword, forDoTrip: self.forDoTrip, selectedDiver: self.selectedDiver!, certificate: self.selectedLicense, selectedDate: self.selectedDate, ecoTrip: self.ecotrip)
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,7 +68,7 @@ class DiveServiceSearchResultController: BaseViewController, UITableViewDataSour
     
 
     @IBAction func filterButtonAction(_ sender: Any) {
-        _ = DiveTripFilterController.push(on: self.navigationController!, filter: self.filter, onUpdateFilter: {filter in
+        _ = DiveTripFilterController.push(on: self.navigationController!, price: self.price, filter: self.filter, onUpdateFilter: {filter in
                 self.page = 1
                 self.diveServices = nil
                 self.tableView.reloadData()
@@ -76,6 +77,38 @@ class DiveServiceSearchResultController: BaseViewController, UITableViewDataSour
             })
     }
     
+    fileprivate func loadPrice(keyword: SearchResult?, forDoTrip: Bool, selectedDiver: Int, certificate: Bool, selectedDate: Date?, ecoTrip: Int?) {
+        var provinceId: String? = nil
+        var cityId: String? = nil
+        var diveSpotId: String? = nil
+        var diveCenterId: String? = nil
+        var categories: [String]? = nil
+        if let keyword = keyword as? SearchResultProvince {
+            provinceId = keyword.id
+        } else if let keyword = keyword as? SearchResultCity {
+            cityId = keyword.id
+        } else if let keyword = keyword as? SearchResultSpot {
+            diveSpotId = keyword.id
+        } else if let keyword = keyword as? SearchResultDiveCenter {
+            diveCenterId = keyword.id
+        }
+        if let keyword = keyword as? SearchResultCategory {
+            categories = []
+            categories!.append(keyword.id!)
+        }
+        NHTTPHelper.httpGetMinMaxPrice(type: forDoTrip ? "2" : "1", diver: selectedDiver, certificate: certificate ? 1 : 0, date: selectedDate, categories: categories, diveSpotId: diveSpotId, provinceId: provinceId, cityId: cityId, diveCenterId: diveCenterId, ecoTrip: ecoTrip, totalDives: nil, facilites: nil, complete: {response in
+            if let error = response.error {
+                NHelper.handleConnectionError(completion: {
+                    self.loadPrice(keyword: keyword, forDoTrip: forDoTrip, selectedDiver: selectedDiver, certificate: certificate, selectedDate: selectedDate, ecoTrip: ecoTrip)
+                })
+                return
+            }
+            if let data = response.data {
+                self.price = data
+                self.loadDiveServices()
+            }
+        })
+    }
     fileprivate func loadDiveServices() {
         if forDoTrip {
             self.title = "Do Trip"
@@ -358,4 +391,5 @@ class NFilter  {
     var facilities: [String]?
     var totalDives: [String]?
     var sortBy: Int = 2
+    
 }

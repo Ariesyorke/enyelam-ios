@@ -94,34 +94,7 @@ class StarterViewController: BaseViewController {
                 return
             }
             NSManagedObjectContext.saveData()
-            self.loadMinMaxPrice(type: "1")
-        })
-    }
-    
-    internal func loadMinMaxPrice(type: String) {
-        NHTTPHelper.httpGetMinMaxPrice(type: type, complete: {response in
-            if let error = response.error {
-                UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {error in
-                    if error.isKind(of: NotConnectedInternetError.self) {
-                        NHelper.handleConnectionError(completion: {
-                            self.loadMinMaxPrice(type: type)
-                        })
-                    }
-                })
-                return
-            }
-            if let data = response.data {
-                if type == "1" {
-                    PriceRangeManager.shared.doDivePriceRange = data
-                } else {
-                    PriceRangeManager.shared.doTripPriceRange = data
-                }
-            }
-            if type == "1" {
-                self.loadMinMaxPrice(type: "2")
-            } else {
-                self.goToHomepage()
-            }
+            self.goToHomepage()
         })
     }
     

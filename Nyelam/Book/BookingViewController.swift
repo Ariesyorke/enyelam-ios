@@ -11,15 +11,15 @@ import XLPagerTabStrip
 
 class BookingViewController: ButtonBarPagerTabStripViewController {
     override func viewDidLoad() {
-        settings.style.buttonBarBackgroundColor = UIColor.blueActive
-        settings.style.buttonBarItemFont = UIFont(name: "FiraSans-Bold", size: 18)!
-        settings.style.buttonBarItemTitleColor = UIColor.darkGray
-        settings.style.selectedBarBackgroundColor = UIColor.primary
-        settings.style.buttonBarItemBackgroundColor = UIColor.white
-        settings.style.buttonBarItemsShouldFillAvailableWidth = true
-        settings.style.buttonBarHeight = 64
-        settings.style.selectedBarHeight = 2
-        changeCurrentIndexProgressive = { [weak self] (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
+        self.settings.style.buttonBarBackgroundColor = UIColor.blueActive
+        self.settings.style.buttonBarItemFont = UIFont(name: "FiraSans-Bold", size: 14)!
+        self.settings.style.buttonBarItemTitleColor = UIColor.darkGray
+        self.settings.style.selectedBarBackgroundColor = UIColor.white
+        self.settings.style.buttonBarItemBackgroundColor = UIColor.blueActive
+        self.settings.style.buttonBarItemsShouldFillAvailableWidth = true
+        self.settings.style.buttonBarHeight = 66
+        self.settings.style.selectedBarHeight = 3
+        self.changeCurrentIndexProgressive = { [weak self] (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage: CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
             guard changeCurrentIndex == true else { return }
             oldCell?.label.textColor = UIColor.white
             newCell?.label.textColor = UIColor.white

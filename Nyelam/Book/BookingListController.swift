@@ -67,7 +67,7 @@ class BookingListController: BaseViewController, IndicatorInfoProvider {
                 self.summaries!.append(contentsOf: data)
                 self.tableView.reloadData()
             }
-            if self.summaries == nil || !self.summaries!.isEmpty {
+            if self.summaries == nil || self.summaries!.isEmpty {
                 self.noPurchaseLabel.isHidden = false
             }
         })
@@ -87,7 +87,8 @@ class BookingListController: BaseViewController, IndicatorInfoProvider {
 
 extension BookingListController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let summary = self.summaries![indexPath.row]
+        BookingDetailController.push(on: self.navigationController!, bookingId: summary.id!, type: String(bookingType))
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -98,7 +99,7 @@ extension BookingListController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BookingDetailCell", for: indexPath) as! BookingCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BookingCell", for: indexPath) as! BookingCell
         let row = indexPath.row
         let summary = self.summaries![row]
         cell.initData(summary: summary)

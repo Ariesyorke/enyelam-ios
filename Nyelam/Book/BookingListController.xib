@@ -27,8 +27,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BQh-Hr-jA8">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BQh-Hr-jA8">
+                    <rect key="frame" x="0.0" y="16" width="375" height="651"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="1NS-2D-Q0T">
@@ -49,7 +49,7 @@
                 <constraint firstItem="tnP-Pz-cHP" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="GLc-sZ-y1t"/>
                 <constraint firstItem="1NS-2D-Q0T" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Gzf-SY-sAc"/>
                 <constraint firstAttribute="trailing" secondItem="tnP-Pz-cHP" secondAttribute="trailing" constant="16" id="LAw-Sz-5lk"/>
-                <constraint firstItem="BQh-Hr-jA8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="N9v-TK-eFH"/>
+                <constraint firstItem="BQh-Hr-jA8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="16" id="N9v-TK-eFH"/>
                 <constraint firstAttribute="bottom" secondItem="BQh-Hr-jA8" secondAttribute="bottom" id="TdI-TZ-2lX"/>
                 <constraint firstAttribute="trailing" secondItem="BQh-Hr-jA8" secondAttribute="trailing" id="qhV-1w-uT0"/>
                 <constraint firstItem="BQh-Hr-jA8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="rgk-1L-fZ4"/>

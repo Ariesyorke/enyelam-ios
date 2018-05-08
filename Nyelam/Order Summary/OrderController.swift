@@ -18,6 +18,8 @@ class OrderController: BaseViewController {
     @IBOutlet weak var payNowButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableBottomConstraint: NSLayoutConstraint!
+    
+    
     var environment:String = PayPalEnvironmentSandbox {
         willSet(newEnvironment) {
             if (newEnvironment != environment) {
@@ -72,10 +74,11 @@ class OrderController: BaseViewController {
         }
         
         if let orderReturn = self.orderReturn, let summary = orderReturn.summary, let order = summary.order {
-            
+            let orderID = order.orderId!
+            self.tryResubmitOrder(orderId: orderID, paymentType: self.paymentMethodType)
         } else if let cartReturn = self.cartReturn {
-            var diveEthicAgreementController = DiveEthicAgreementController(nibName: "DiveEthicAgreementController", bundle: nil)
-            var size = CGSize(width: (self.navigationController!.view.frame.width * 3.5)/4, height: (self.navigationController!.view.frame.height * 3)/4)
+            let diveEthicAgreementController = DiveEthicAgreementController(nibName: "DiveEthicAgreementController", bundle: nil)
+            let size = CGSize(width: (self.navigationController!.view.frame.width * 3.5)/4, height: (self.navigationController!.view.frame.height * 3)/4)
             diveEthicAgreementController.popupSize = size
             let popup = PopupController.create(self.navigationController!).customize(
                 [
@@ -85,7 +88,8 @@ class OrderController: BaseViewController {
                     .layout(.center)
                 ])
             
-            popup.show(diveEthicAgreementController)
+            _ = popup.show(diveEthicAgreementController)
+            
             diveEthicAgreementController.dismissCompletion = {complete in
                 popup.dismiss({
                     if complete {
@@ -113,9 +117,26 @@ class OrderController: BaseViewController {
         self.title = "Booking Summary"
         self.payPalConfig.acceptCreditCards = true
     }
-    fileprivate func tryResubmitOrder(orderId: String, paymentType: String)  {
-        
+    
+    fileprivate func tryResubmitOrder(orderId: String, paymentType: Int)  {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        NHTTPHelper.httpResubmitOrder(orderId: orderId, paymentType: paymentType, complete: {response in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            if let error = response.error {
+                if error.isKind(of: NotConnectedInternetError.self) {
+                    NHelper.handleConnectionError(completion: {
+                        self.tryResubmitOrder(orderId: orderId, paymentType: paymentType)
+                    })
+                }
+                return
+            }
+            if let data = response.data {
+                self.orderReturn = data
+                self.handlePaymentMethodType(orderReturn: self.orderReturn!, paymentType: String(paymentType))
+            }
+        })
     }
+    
     fileprivate func trySubmitOrder(cartToken: String, contactJson: String, diverJson: String, paymentMethodType: String, note: String) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
         NHTTPHelper.httpOrderSubmit(cartToken: cartToken, contactJson: contactJson, diverJson: diverJson, paymentMethodType: paymentMethodType, note: note, complete: {response in
@@ -361,7 +382,8 @@ class ContactCell: NTableViewCell {
     @IBOutlet weak var fullNameLabel: UILabel!
     @IBOutlet weak var phoneNumberLabel: UILabel!
     @IBOutlet weak var emailAddressLabel: UILabel!
-
+    @IBOutlet weak var changeButton: UIButton!
+    
     var onChangeContact: () -> () = { }
     
     override func awakeFromNib() {
@@ -399,7 +421,7 @@ class ParticipantCell: NTableViewCell {
     @IBOutlet weak var fullnameLabel: UILabel!
     @IBOutlet weak var changeLabel: UILabel!
     @IBOutlet weak var emailAddressLabel: UILabel!
-    
+    @IBOutlet weak var changeButton: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -485,7 +507,6 @@ extension OrderController: MidtransUIPaymentViewControllerDelegate, PayPalPaymen
     func payPalPaymentViewController(_ paymentViewController: PayPalPaymentViewController, didComplete completedPayment: PayPalPayment) {
         paymentViewController.dismiss(animated: true, completion: {
             UIAlertController.handlePopupMessage(viewController: self, title: "Order Success!", actionButtonTitle: "OK", completion: {
-                print("COMPLETED PAYMENT \(completedPayment.confirmation)")
                 MBProgressHUD.showAdded(to: self.view, animated: true)
                 NHTTPHelper.httpPaypalNotification(paypalId: completedPayment.confirmation["id"] as! String, complete: {response in
                     MBProgressHUD.hide(for: self.view, animated: true)

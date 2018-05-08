@@ -92,6 +92,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="changeButton" destination="s91-3R-UvQ" id="KHf-cZ-F0K"/>
                 <outlet property="emailAddressLabel" destination="ic1-rW-qrK" id="mQS-vh-Uck"/>
                 <outlet property="fullNameLabel" destination="DKT-af-fLz" id="rQB-hJ-H3r"/>
                 <outlet property="phoneNumberLabel" destination="sTp-It-bIa" id="Eqf-Dr-6gj"/>

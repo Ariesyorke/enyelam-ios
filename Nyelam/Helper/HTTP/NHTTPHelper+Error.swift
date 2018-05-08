@@ -361,9 +361,9 @@ class NHTTPHelper {
     static var API_PATH_MIN_MAX_PRICE: String {
         switch NConstant.URL_TYPE {
         case .production:
-            return "service/minMaxPrice"
+            return "service/minMaxPriceList"
         default:
-            return "api/service/minMaxPrice"
+            return "api/service/minMaxPriceList"
         }
     }
     static var API_PATH_CHANGE_PAYMENT_METHOD: String {
@@ -414,6 +414,16 @@ class NHTTPHelper {
             return "https://nyelam.dantech.id/notification/paypal"
         }
     }
+    
+    static var API_PATH_RESUBMIT_ORDER: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "order/resubmitOrder"
+        default:
+            return "api/order/resubmitOrder"
+        }
+    }
+    
     internal static func basicAuthRequest(URLString: URLConvertible,
                                           parameters: [String: Any]? = nil,
                                           headers: [String: String]? = nil,

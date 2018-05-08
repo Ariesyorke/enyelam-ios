@@ -38,10 +38,42 @@ extension NHTTPHelper {
         })
     }
     
-    static func httpGetMinMaxPrice(type: String, complete: @escaping (NHTTPResponse<Price>) -> ()) {
+    static func httpGetMinMaxPrice(type: String,  diver: Int, certificate: Int, date: Date?, categories: [String]?, diveSpotId: String?, provinceId: String?, cityId: String?, diveCenterId: String?,ecoTrip: Int?, totalDives: [Int]?, facilites: [String]?, complete: @escaping (NHTTPResponse<Price>) -> ()) {
+        var param: [String: Any] = ["type": type,
+                                    "diver": String(diver),
+                                    "certificate": String(certificate)]
+        if let date = date {
+            param["date"] = String(date.timeIntervalSince1970)
+        }
+        if let categories = categories, !categories.isEmpty {
+            param["dive_category"] = categories
+        }
+        if let diveSpotId = diveSpotId {
+            param["dive_spot_id"] = diveSpotId
+        }
+        if let provinceId = provinceId {
+            param["province_id"] = provinceId
+        }
+        if let cityId = cityId  {
+            param["city_id"] = cityId
+        }
+        if let diveCenterId = diveCenterId {
+            param["dive_center_id"] = diveCenterId
+        }
+        if let ecotrip = ecoTrip {
+            param["eco_trip"] = ecotrip
+        }
+        if let totalDives = totalDives, !totalDives.isEmpty {
+            param["total_dives"] = totalDives
+            
+        }
+        if let facilites = facilites {
+            param["facilities"] = facilites
+        }
+        
         self.basicPostRequest(
             URLString: HOST_URL+API_PATH_MIN_MAX_PRICE,
-            parameters: ["type":type],
+            parameters:param,
             headers:nil,
             complete:
             {status, data, error in
@@ -49,8 +81,8 @@ extension NHTTPHelper {
                     complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
                     return
                 }
+                var price: Price? = nil
                 if let data = data, let json = data as? [String: Any] {
-                    var price: Price? = nil
                     if let priceJson = json["price"] as? [String: Any] {
                         price = Price(json: priceJson)
                     } else if let priceString = json["price"] as? String {
@@ -62,8 +94,8 @@ extension NHTTPHelper {
                             print(error)
                         }
                     }
-                    complete(NHTTPResponse(resultStatus: true, data: price, error: nil))
                 }
+                complete(NHTTPResponse(resultStatus: true, data: price, error: nil))
         })
     }
     

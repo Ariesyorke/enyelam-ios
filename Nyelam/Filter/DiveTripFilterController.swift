@@ -18,15 +18,17 @@ class DiveTripFilterController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var clearButton: UIButton!
     var onUpdateFilter: (NFilter) -> () = {filter in}
-    static func push(on controller: UINavigationController, filter: NFilter, onUpdateFilter: @escaping (NFilter)->()) -> DiveTripFilterController {
+    static func push(on controller: UINavigationController, price: Price, filter: NFilter, onUpdateFilter: @escaping (NFilter)->()) -> DiveTripFilterController {
         let vc: DiveTripFilterController = DiveTripFilterController(nibName: "DiveTripFilterController", bundle: nil)
         vc.filter = filter
+        vc.price = price
         vc.onUpdateFilter = onUpdateFilter
         controller.pushViewController(vc, animated: true)
         return vc
     }
 
-    var filter: NFilter?
+    fileprivate var filter: NFilter?
+    fileprivate var price: Price?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,8 +112,10 @@ extension DiveTripFilterController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else if section == 1 {
             let cell: PriceRangeCell = tableView.dequeueReusableCell(withIdentifier: "PriceRangeCell", for: indexPath) as! PriceRangeCell
+            cell.price = self.price
             cell.priceMin = self.filter!.priceMin
             cell.priceMax = self.filter!.priceMax
+            cell.initData()
             cell.onChangePrice = {priceMin, priceMax in
                 self.filter!.priceMin = priceMin
                 self.filter!.priceMax = priceMax
@@ -196,22 +200,10 @@ class PriceRangeCell: NTableViewCell, RangeSeekSliderDelegate {
     var priceMax: Int?
     var forDoTrip: Bool = false
     var onChangePrice: (Int, Int) -> () = {minPrice, maxPrice in }
+    var price: Price?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        if self.forDoTrip {
-            let price = PriceRangeManager.shared.doTripPriceRange
-            self.priceRangeSlider.maxValue = CGFloat(price.highestPrice)
-            self.priceRangeSlider.minValue = CGFloat(price.lowestPrice)
-            self.priceRangeSlider.selectedMaxValue = CGFloat(price.highestPrice)
-            self.priceRangeSlider.selectedMinValue = CGFloat(price.lowestPrice)
-        } else {
-            let price = PriceRangeManager.shared.doDivePriceRange
-            self.priceRangeSlider.maxValue = CGFloat(price.highestPrice)
-            self.priceRangeSlider.minValue = CGFloat(price.lowestPrice)
-            self.priceRangeSlider.selectedMaxValue = CGFloat(price.highestPrice)
-            self.priceRangeSlider.selectedMinValue = CGFloat(price.lowestPrice)
-
-        }
         self.priceRangeSlider.delegate = self
         
         // Initialization code
@@ -224,6 +216,12 @@ class PriceRangeCell: NTableViewCell, RangeSeekSliderDelegate {
     }
     
     func initData() {
+        if let price = price {
+            self.priceRangeSlider.maxValue = CGFloat(price.highestPrice)
+            self.priceRangeSlider.minValue = CGFloat(price.lowestPrice)
+            self.priceRangeSlider.selectedMaxValue = CGFloat(price.highestPrice)
+            self.priceRangeSlider.selectedMinValue = CGFloat(price.lowestPrice)
+        }
         if let priceMin = self.priceMin {
             self.priceRangeSlider.selectedMinValue =  CGFloat(priceMin)
         }

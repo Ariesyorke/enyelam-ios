@@ -123,6 +123,25 @@ extension NHTTPHelper {
         })
     }
     
+    static func httpResubmitOrder(orderId: String, paymentType: Int, complete: @escaping (NHTTPResponse<OrderReturn>)->()) {
+        self.basicAuthRequest(URLString: HOST_URL + API_PATH_SUBMIT_ORDER,
+                              parameters: [
+                                "order_id": orderId,
+                                "payment_type": String(paymentType)
+                                ],
+                              headers: nil,
+                              complete: {status, data, error in
+            if let error = error {
+                complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
+                return
+            }
+            if let data = data, let json = data as? [String: Any] {
+                let order = OrderReturn(json: json)
+                complete(NHTTPResponse(resultStatus: true, data: order, error: nil))
+            }
+        })
+
+    }
     static func httpBookingHistory(page: String, type: String, complete: @escaping(NHTTPResponse<[NSummary]>)->()) {
         self.basicAuthRequest(URLString: HOST_URL + API_PATH_BOOKING_HISTORY,
                               parameters: ["page":page, "type": type], headers: nil,

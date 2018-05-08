@@ -265,6 +265,7 @@
 		C0EFE351209B3F47009E084F /* ParticipantController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EFE34F209B3F47009E084F /* ParticipantController.swift */; };
 		C0EFE352209B3F47009E084F /* ParticipantController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0EFE350209B3F47009E084F /* ParticipantController.xib */; };
 		C0EFFF9920972AC500083914 /* bg_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = C0EFFF9820972AC300083914 /* bg_placeholder.png */; };
+		C0F42B5320A1857E0095C649 /* PaymentProofCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0F42B5120A1857E0095C649 /* PaymentProofCell.xib */; };
 		C0F90372208EDB9E009F5104 /* DiveTripFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F90370208EDB9E009F5104 /* DiveTripFilterController.swift */; };
 		C0F90373208EDB9E009F5104 /* DiveTripFilterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0F90371208EDB9E009F5104 /* DiveTripFilterController.xib */; };
 		C0F90375208EE04F009F5104 /* UIScrollView_InfiniteScroll.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F90377208EE04F009F5104 /* UIScrollView_InfiniteScroll.framework */; };
@@ -614,6 +615,7 @@
 		C0EFE34F209B3F47009E084F /* ParticipantController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantController.swift; sourceTree = "<group>"; };
 		C0EFE350209B3F47009E084F /* ParticipantController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParticipantController.xib; sourceTree = "<group>"; };
 		C0EFFF9820972AC300083914 /* bg_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_placeholder.png; sourceTree = "<group>"; };
+		C0F42B5120A1857E0095C649 /* PaymentProofCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentProofCell.xib; sourceTree = "<group>"; };
 		C0F90370208EDB9E009F5104 /* DiveTripFilterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiveTripFilterController.swift; sourceTree = "<group>"; };
 		C0F90371208EDB9E009F5104 /* DiveTripFilterController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiveTripFilterController.xib; sourceTree = "<group>"; };
 		C0F90376208EE04F009F5104 /* SwiftRangeSlider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftRangeSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1308,6 +1310,7 @@
 				C0EB1EF8209F1980001E40D7 /* BookingDetailController.xib */,
 				C055B9D0209F216F0033A0D4 /* BookingListController.swift */,
 				C055B9D1209F216F0033A0D4 /* BookingListController.xib */,
+				C0F42B5120A1857E0095C649 /* PaymentProofCell.xib */,
 			);
 			path = Book;
 			sourceTree = "<group>";
@@ -1445,6 +1448,7 @@
 			files = (
 				C0EE280120999602006ACA5D /* BookingDetailCell.xib in Resources */,
 				C0EFE352209B3F47009E084F /* ParticipantController.xib in Resources */,
+				C0F42B5320A1857E0095C649 /* PaymentProofCell.xib in Resources */,
 				C010FB03207CAF47000059AA /* FiraSans-SemiBoldItalic.ttf in Resources */,
 				A60A285E207F7998004A8FC2 /* SearchFormCell.xib in Resources */,
 				C0FC0C312091908D00C8D428 /* TripCategoryCell.xib in Resources */,
