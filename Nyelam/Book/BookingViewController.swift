@@ -11,11 +11,11 @@ import XLPagerTabStrip
 
 class BookingViewController: ButtonBarPagerTabStripViewController {
     override func viewDidLoad() {
-        self.settings.style.buttonBarBackgroundColor = UIColor.blueActive
+        self.settings.style.buttonBarBackgroundColor = UIColor.primary
         self.settings.style.buttonBarItemFont = UIFont(name: "FiraSans-Bold", size: 14)!
         self.settings.style.buttonBarItemTitleColor = UIColor.darkGray
         self.settings.style.selectedBarBackgroundColor = UIColor.white
-        self.settings.style.buttonBarItemBackgroundColor = UIColor.blueActive
+        self.settings.style.buttonBarItemBackgroundColor = UIColor.primary
         self.settings.style.buttonBarItemsShouldFillAvailableWidth = true
         self.settings.style.buttonBarHeight = 66
         self.settings.style.selectedBarHeight = 3

@@ -97,6 +97,7 @@ public class Location: NSObject, NSCoding, Parseable {
                 print(error)
             }
         }
+        print("SERIALIZED LOCATION \(self.serialized())")
     }
     
     

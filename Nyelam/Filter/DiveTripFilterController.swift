@@ -15,6 +15,8 @@ import UINavigationControllerWithCompletionBlock
 
 class DiveTripFilterController: BaseViewController {
     private let sectionTitles = ["Sort by", "Price Range", "Total Dive(s)", "Category", "Facilities"]
+    private let doCourseTitle = ["Sort by", "Price Range", "Facilities"]
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var clearButton: UIButton!
     var onUpdateFilter: (NFilter) -> () = {filter in}
@@ -26,10 +28,20 @@ class DiveTripFilterController: BaseViewController {
         controller.pushViewController(vc, animated: true)
         return vc
     }
+    
+    static func push(on controller: UINavigationController, price: Price, forDoCourse: Bool, filter: NFilter, onUpdateFilter: @escaping (NFilter)->()) -> DiveTripFilterController {
+        let vc: DiveTripFilterController = DiveTripFilterController(nibName: "DiveTripFilterController", bundle: nil)
+        vc.filter = filter
+        vc.price = price
+        vc.onUpdateFilter = onUpdateFilter
+        vc.forDoCourse = forDoCourse
+        controller.pushViewController(vc, animated: true)
+        return vc
+    }
 
     fileprivate var filter: NFilter?
     fileprivate var price: Price?
-    
+    fileprivate var forDoCourse: Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         self.clearButton.layer.borderColor = UIColor.blueActive.cgColor
@@ -93,7 +105,11 @@ extension DiveTripFilterController: UITableViewDelegate, UITableViewDataSource {
         let header: UIView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
         header.backgroundColor = UIColor.lightGray
         let label: UILabel = UILabel(frame: CGRect(x: 16, y: 2, width: tableView.frame.width - 32, height: 40 - 16))
-        label.text = sectionTitles[section]
+        if self.forDoCourse {
+            label.text = self.doCourseTitle[section]
+        } else {
+            label.text = self.sectionTitles[section]
+        }
         label.textColor = UIColor.black
         label.font = UIFont(name: "FiraSans-Regular", size: 14)
         header.addSubview(label)
@@ -122,13 +138,24 @@ extension DiveTripFilterController: UITableViewDelegate, UITableViewDataSource {
             }
             return cell
         } else if section == 2 {
-            let cell: TotalDivesCell = tableView.dequeueReusableCell(withIdentifier: "TotalDivesCell", for: indexPath) as! TotalDivesCell
-            cell.total = self.filter!.totalDives
-            cell.initTotal()
-            cell.onChangeTotalDives = {totalDives in
-                self.filter!.totalDives = totalDives
+            if self.forDoCourse {
+                let cell: FacilityCell = tableView.dequeueReusableCell(withIdentifier: "FacilityCell", for: indexPath) as! FacilityCell
+                cell.selectedFacilities = filter!.facilities
+                cell.initView()
+                cell.reloadData = {facilities in
+                    self.filter!.facilities = facilities
+                    self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                }
+                return cell
+            } else {
+                let cell: TotalDivesCell = tableView.dequeueReusableCell(withIdentifier: "TotalDivesCell", for: indexPath) as! TotalDivesCell
+                cell.total = self.filter!.totalDives
+                cell.initTotal()
+                cell.onChangeTotalDives = {totalDives in
+                    self.filter!.totalDives = totalDives
+                }
+                return cell
             }
-            return cell
         } else if section == 3 {
             let cell: TripCategoryCell = tableView.dequeueReusableCell(withIdentifier: "TripCategoryCell", for: indexPath) as! TripCategoryCell
             cell.selectedCategories = filter!.categories
@@ -152,7 +179,11 @@ extension DiveTripFilterController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        if self.forDoCourse {
+            return 3
+        } else {
+            return 5
+        }
     }
 }
 
@@ -218,9 +249,18 @@ class PriceRangeCell: NTableViewCell, RangeSeekSliderDelegate {
     func initData() {
         if let price = price {
             self.priceRangeSlider.maxValue = CGFloat(price.highestPrice)
-            self.priceRangeSlider.minValue = CGFloat(price.lowestPrice)
+            if price.highestPrice == price.lowestPrice {
+                self.priceRangeSlider.minValue = CGFloat(0)
+            } else {
+                self.priceRangeSlider.minValue = CGFloat(price.lowestPrice)
+            }
+            
             self.priceRangeSlider.selectedMaxValue = CGFloat(price.highestPrice)
-            self.priceRangeSlider.selectedMinValue = CGFloat(price.lowestPrice)
+            if price.highestPrice == price.lowestPrice {
+                self.priceRangeSlider.selectedMinValue = CGFloat(0)
+            } else {
+                self.priceRangeSlider.selectedMinValue = CGFloat(price.lowestPrice)
+            }
         }
         if let priceMin = self.priceMin {
             self.priceRangeSlider.selectedMinValue =  CGFloat(priceMin)
@@ -238,7 +278,7 @@ class PriceRangeCell: NTableViewCell, RangeSeekSliderDelegate {
 }
 
 class TotalDivesCell: NTableViewCell {
-    private let totalDives: [String] = ["1","2","3",">4"]
+    private let totalDives: [String] = ["=1","=2","=3",">=4"]
     @IBOutlet var totalDiveSort: DLRadioButton!
     
     var onChangeTotalDives: ([String]?) -> () = {totalDives in}

@@ -28,16 +28,6 @@ class SearchKeywordResultCell: UITableViewCell {
             let rating: String?
             switch self.searchResult!.type {
             case 1:
-                icon = UIImage(named: "icon_search_divecenter")
-                type = "Dive Center"
-                province = nil
-                rating = String(format: "%d/5", arguments: [self.searchResult!.rating])
-            case 2:
-                icon = UIImage(named: "icon_search_category")
-                type = "Service Category"
-                province = nil
-                rating = nil
-            case 3:
                 icon = UIImage(named: "icon_search_spot")
                 type = "Spot"
                 if let spot: SearchResultSpot = self.searchResult as? SearchResultSpot {
@@ -45,6 +35,16 @@ class SearchKeywordResultCell: UITableViewCell {
                 } else {
                     province = nil
                 }
+                rating = String(format: "%d/5", arguments: [self.searchResult!.rating])
+            case 2:
+                icon = UIImage(named: "icon_search_category")
+                type = "Service Category"
+                province = nil
+                rating = nil
+            case 3:
+                icon = UIImage(named: "icon_search_divecenter")
+                type = "Dive Center"
+                province = nil
                 rating = String(format: "%d/5", arguments: [self.searchResult!.rating])
             case 4:
                 icon = UIImage(named: "icon_search_service")

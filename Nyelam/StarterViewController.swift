@@ -94,7 +94,25 @@ class StarterViewController: BaseViewController {
                 return
             }
             NSManagedObjectContext.saveData()
-            self.goToHomepage()
+            self.loadMasterOrganization()
+        })
+    }
+    
+    internal func loadMasterOrganization() {
+        NHTTPHelper.httpGetMasterOrganization(complete: {response in
+            if let error = response.error {
+                UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {error in
+                    if error.isKind(of: NotConnectedInternetError.self) {
+                        NHelper.handleConnectionError(completion: {
+                            self.loadMasterOrganization()
+                        })
+                    }
+                })
+                return
+            }
+            NSManagedObjectContext.saveData {
+                self.goToHomepage()
+            }
         })
     }
     

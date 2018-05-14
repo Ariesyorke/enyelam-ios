@@ -22,14 +22,22 @@ class BookingListController: BaseViewController, IndicatorInfoProvider {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loadingView: UIActivityIndicatorView!
     
-    var summaries: [NSummary]?
-    var bookingType: Int = 1
-    var page: Int = 1
+    fileprivate var summaries: [NSummary]?
+    fileprivate var bookingType: Int = 1
+    fileprivate var page: Int = 1
+    fileprivate let refreshControl = UIRefreshControl()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadingView.isHidden = false
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+        self.refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
         self.tableView.register(UINib(nibName: "BookingCell", bundle: nil), forCellReuseIdentifier: "BookingCell")
         self.tryGetBookingList(bookingType: self.bookingType)
         self.tableView.addInfiniteScroll(handler: {tableView in
@@ -47,6 +55,11 @@ class BookingListController: BaseViewController, IndicatorInfoProvider {
         return IndicatorInfo(title: self.bookingType == 1 ? "Upcoming" : "Past")
     }
     
+    @objc private func refreshData(_ sender: Any) {
+        self.page = 1
+        self.summaries = nil
+        self.tryGetBookingList(bookingType: self.bookingType)
+    }
     fileprivate func tryGetBookingList(bookingType: Int) {
         NHTTPHelper.httpBookingHistory(page: String(self.page), type: String(bookingType), complete: {response in
             if let error = response.error {
@@ -57,6 +70,7 @@ class BookingListController: BaseViewController, IndicatorInfoProvider {
                 }
                 return
             }
+            self.refreshControl.endRefreshing()
             self.loadingView.isHidden = true
             if let data = response.data {
                 self.noPurchaseLabel.isHidden = true
@@ -88,7 +102,8 @@ class BookingListController: BaseViewController, IndicatorInfoProvider {
 extension BookingListController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let summary = self.summaries![indexPath.row]
-        BookingDetailController.push(on: self.navigationController!, bookingId: summary.id!, type: String(bookingType))
+        print("BOOKING TYPE \(bookingType)")
+        BookingDetailController.push(on: self.navigationController!, bookingId: summary.id!, type: String(self.bookingType))
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

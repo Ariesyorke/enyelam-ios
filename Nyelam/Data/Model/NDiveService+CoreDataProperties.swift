@@ -2,7 +2,7 @@
 //  NDiveService+CoreDataProperties.swift
 //  Nyelam
 //
-//  Created by Bobi on 4/23/18.
+//  Created by Bobi on 5/13/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //
@@ -18,6 +18,7 @@ extension NDiveService {
     }
 
     @NSManaged public var availability: Int32
+    @NSManaged public var dayOnSite: Int32
     @NSManaged public var days: Int32
     @NSManaged public var diveServiceDescription: String?
     @NSManaged public var diveSpots: [DiveSpot]?
@@ -38,8 +39,11 @@ extension NDiveService {
     @NSManaged public var totalDives: Int32
     @NSManaged public var totalDiveSpots: Int32
     @NSManaged public var visited: Int64
+    @NSManaged public var openWater: Bool
     @NSManaged public var categories: NSSet?
     @NSManaged public var divecenter: NDiveCenter?
+    @NSManaged public var organization: NMasterOrganization?
+    @NSManaged public var licenseType: NLicenseType?
 
 }
 

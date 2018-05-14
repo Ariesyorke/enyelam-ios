@@ -47,12 +47,15 @@
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pOx-ND-O3Z">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="ic_app" translatesAutoresizingMaskIntoConstraints="NO" id="pOx-ND-O3Z">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="YpP-mA-YxX"/>
                                             <constraint firstAttribute="height" constant="50" id="niG-D6-wc4"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="circled" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -298,6 +301,7 @@
                         <constraints>
                             <constraint firstItem="G0p-jM-yTE" firstAttribute="centerY" secondItem="WhI-bB-2sc" secondAttribute="centerY" id="1Dt-VN-7pG"/>
                             <constraint firstItem="WhI-bB-2sc" firstAttribute="top" secondItem="UKS-O0-dQh" secondAttribute="top" constant="4" id="4KE-BA-BOd"/>
+                            <constraint firstAttribute="height" constant="32" id="5CK-p2-lXm"/>
                             <constraint firstItem="G0p-jM-yTE" firstAttribute="leading" secondItem="WhI-bB-2sc" secondAttribute="trailing" constant="4" id="GAW-Ht-H4Y"/>
                             <constraint firstAttribute="bottom" secondItem="WhI-bB-2sc" secondAttribute="bottom" constant="4" id="T3S-SU-Tr8"/>
                             <constraint firstAttribute="trailing" secondItem="G0p-jM-yTE" secondAttribute="trailing" constant="4" id="TBP-NP-MLQ"/>
@@ -599,7 +603,11 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="accomodationImageView" destination="brw-y1-kfx" id="LlW-FP-ItA"/>
+                <outlet property="additionalLabel1" destination="TaH-0l-bwi" id="PB5-UC-RKm"/>
+                <outlet property="additionalLabel2" destination="709-0I-96Q" id="awg-3V-ynI"/>
+                <outlet property="additionalLabel3" destination="iBT-QO-fzC" id="Dbm-2e-q12"/>
                 <outlet property="categoryContainer" destination="UKS-O0-dQh" id="M5T-pH-EmI"/>
+                <outlet property="categoryHeightConstraint" destination="5CK-p2-lXm" id="7Nn-Vl-1hP"/>
                 <outlet property="categoryImageView" destination="WhI-bB-2sc" id="F75-HF-Jyh"/>
                 <outlet property="categoryLabel" destination="G0p-jM-yTE" id="mi0-ob-64e"/>
                 <outlet property="descriptionLabel" destination="q1Y-u9-bqv" id="eX8-aN-fj4"/>
@@ -608,11 +616,13 @@
                 <outlet property="diveGuideImageView" destination="Usg-SQ-ddW" id="a7h-cr-9Ef"/>
                 <outlet property="divespotCounterLabel" destination="cEB-ax-uIh" id="bcP-R9-7Wf"/>
                 <outlet property="divespotLabel" destination="4gK-A7-oQg" id="gnQ-Cw-RlJ"/>
+                <outlet property="divespotTopSpacing" destination="XHk-gH-oiA" id="91A-sO-1HI"/>
                 <outlet property="equipmentImageView" destination="KWc-NF-oCH" id="wNu-v3-WEk"/>
                 <outlet property="foodAndDrinkImageView" destination="1sB-78-Ksg" id="en3-jn-FSG"/>
                 <outlet property="licenseContainer" destination="F0q-d0-aue" id="gUd-Ms-eEm"/>
                 <outlet property="licenseImageView" destination="Bzq-oQ-hgi" id="BIb-c4-CiZ"/>
                 <outlet property="licenseLabel" destination="gOx-SJ-Nak" id="ue6-Xe-WhO"/>
+                <outlet property="licenseTopSpacing" destination="6uA-ev-dp3" id="Ht8-il-bCe"/>
                 <outlet property="normalPriceContainer" destination="n85-DW-gBq" id="NaD-Cj-c9L"/>
                 <outlet property="normalPriceLabel" destination="WXR-sW-xNN" id="JzN-lv-qpj"/>
                 <outlet property="ratingView" destination="8Vf-7I-6mm" id="7Yr-bI-Na0"/>
@@ -629,6 +639,7 @@
     </objects>
     <resources>
         <image name="ic_accomodation_unactive" width="24" height="24"/>
+        <image name="ic_app" width="50" height="50"/>
         <image name="ic_dive_guide_unactive" width="24" height="24"/>
         <image name="ic_equipment_unactive" width="24" height="24"/>
         <image name="ic_ferry" width="24" height="24"/>

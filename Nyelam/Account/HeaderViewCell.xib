@@ -71,8 +71,8 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="coverImageView" destination="hwk-H7-ZR9" id="B8H-tH-GaP"/>
-                <outlet property="photoImageView" destination="gxG-eI-9q6" id="Swd-J4-WB9"/>
+                <outlet property="coverImageView" destination="gxG-eI-9q6" id="AvC-O3-fH4"/>
+                <outlet property="photoImageView" destination="hwk-H7-ZR9" id="SVn-pL-AYc"/>
             </connections>
             <point key="canvasLocation" x="73" y="66"/>
         </tableViewCell>

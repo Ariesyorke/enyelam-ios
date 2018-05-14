@@ -355,14 +355,16 @@ extension NHTTPHelper {
     }
     
     
-    static func httpDoTripSearchBy(diveCenterId: String, page: String, diver: Int, certificate: Int, date: TimeInterval, sortBy: Int, ecoTrip: Int?, totalDives: [String]?, categories: [String]?, facilities: [String]?, priceMin: Int?, priceMax: Int?, complete: @escaping (NHTTPResponse<[NDiveService]>)->()) {
+    static func httpDoTripSearchBy(diveCenterId: String, page: String, diver: Int, certificate: Int?, date: TimeInterval, sortBy: Int, ecoTrip: Int?, totalDives: [String]?, categories: [String]?, facilities: [String]?, priceMin: Int?, priceMax: Int?, complete: @escaping (NHTTPResponse<[NDiveService]>)->()) {
         var param: [String: Any] = [:]
         param["page"] = page
         param["diver"] = String(diver)
-        param["license"] = String(certificate)
         param["date"] = String(date)
         param["sort_by"] = String(sortBy)
         param["dive_center_id"] = diveCenterId
+        if let certificate = certificate {
+            param["license"] = String(certificate)
+        }
         if let categories = categories, !categories.isEmpty {
             param["category_id"] = categories
         }

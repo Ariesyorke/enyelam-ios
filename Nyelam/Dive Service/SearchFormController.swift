@@ -9,6 +9,8 @@
 import UIKit
 import SwiftDate
 import CoreData
+import ActionSheetPicker_3_0
+import MBProgressHUD
 
 class SearchFormController: BaseViewController {
 
@@ -31,10 +33,19 @@ class SearchFormController: BaseViewController {
         controller.pushViewController(vc, animated: true)
         return vc
     }
+    
+    static func push(on controller: UINavigationController, forDoCourse: Bool) -> SearchFormController {
+        let vc: SearchFormController = SearchFormController(nibName: "SearchFormController", bundle: nil)
+        vc.forDoCourse = forDoCourse
+        controller.setNavigationBarHidden(false, animated: true)
+        controller.pushViewController(vc, animated: true)
+        return vc
+    }
 
     @IBOutlet weak var tableView: UITableView!
     var isEcoTrip: Bool = false
     var forDoTrip: Bool = false
+    var forDoCourse: Bool = false
     var formIndexPath: IndexPath = IndexPath(row: 0, section: 0)
     
     fileprivate var diveServices: [NDiveService]?
@@ -42,6 +53,8 @@ class SearchFormController: BaseViewController {
     fileprivate var selectedDate: Date?
     fileprivate var selectedDiver: Int = 1
     fileprivate var selectedLicense: Bool! = false
+    fileprivate var selectedOrganization: NMasterOrganization?
+    fileprivate var selectedLicenseType: NLicenseType?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -57,6 +70,7 @@ class SearchFormController: BaseViewController {
         
         self.tableView.register(UINib(nibName: "SearchFormCell", bundle: nil), forCellReuseIdentifier: "SearchFormCell")
         self.tableView.register(UINib(nibName: "DiveServiceCell", bundle: nil), forCellReuseIdentifier: "DiveServiceCell")
+        self.tableView.register(UINib(nibName: "CourseFormCell", bundle: nil), forCellReuseIdentifier: "CourseFormCell")
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.getRecommendation()
@@ -83,12 +97,12 @@ class SearchFormController: BaseViewController {
         }
     }
     
-    fileprivate func showDatePicker(forDoTrip: Bool, isEcoTrip: Bool, indexPath: IndexPath) {
+    fileprivate func showDatePicker(forDoCourse: Bool, isEcoTrip: Bool, indexPath: IndexPath) {
         let vc = UIViewController()
         vc.preferredContentSize = CGSize(width: 250, height: 300)
         let pickerView: UIView
         if !isEcoTrip {
-            if forDoTrip {
+            if forDoCourse {
                 pickerView = MonthYearPickerView(frame: CGRect(x: 0, y: 0, width: 250, height: 300))
             } else {
                 let datePicker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: 250, height: 300))
@@ -213,72 +227,108 @@ extension SearchFormController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let cell: SearchFormCell = tableView.dequeueReusableCell(withIdentifier: "SearchFormCell", for: indexPath) as! SearchFormCell
-            if self.isEcoTrip {
-                cell.setEcoTripData()
-                cell.diveNowButton.backgroundColor = UIColor.nyGreen
+            if self.forDoCourse {
+                let cell: CourseFormCell = tableView.dequeueReusableCell(withIdentifier: "CourseFormCell", for: indexPath) as! CourseFormCell
+                cell.onKeywordHandler = { keyword in
+                    if !self.isEcoTrip {
+                        let _ = SearchKeywordController.push(on: self.navigationController!, type: 3, with: self.onKeywordSelectedHandler())
+                    }
+                }
+                cell.onDateHandler = { string in
+                    self.showDatePicker(forDoCourse: self.forDoCourse, isEcoTrip: self.isEcoTrip, indexPath: indexPath)
+                }
+                cell.onOrganizationHandler = { string in
+                    self.onShowMasterOrganization()
+                }
+                cell.onLicenseTypeHandler = { string in
+                    if let selectedOrganization = self.selectedOrganization {
+                        let organizaitonId = selectedOrganization.id!
+                        self.onShowLicenseType(organizaitonId: organizaitonId)
+                    }
+                }
+                cell.initData(selectedKeyword: self.selectedKeyword, organization: self.selectedOrganization, licenseType: self.selectedLicenseType, selectedDate: self.selectedDate)
+                cell.onGetCertifiedHandler = {cell in
+                    if let error = self.validateError(forDoCourse: self.forDoCourse) {
+                        UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {})
+                        return
+                    }
+                    
+                    if let keyword = self.selectedKeyword as? SearchResultService {
+                        _ = DiveServiceController.push(on: self.navigationController!, forDoCourse: self.forDoCourse, selectedKeyword: keyword, selectedDiver: self.selectedDiver, selectedDate: self.selectedDate!, diveService: nil, selectedOrganization: self.selectedOrganization!, selectedLicenseType: self.selectedLicenseType!)
+                    } else {
+                        _ = DiveServiceSearchResultController.push(on: self.navigationController!, forDoCourse: self.forDoCourse, selectedDiver: self.selectedDiver, selectedDate: self.selectedDate!, selectedKeyword: self.selectedKeyword!, selectedOrganization: self.selectedOrganization!, selectedLicenseType: self.selectedLicenseType!)
+                    }
+                }
+                return cell
             } else {
-                cell.diveNowButton.backgroundColor = UIColor.orange
-            }
-            cell.onKeywordHandler = { keyword in
-                if !self.isEcoTrip {
-                    let _ = SearchKeywordController.push(on: self.navigationController!, with: self.onKeywordSelectedHandler())
-                }
-            }
-            cell.onDateHandler = { string in
-                self.showDatePicker(forDoTrip: self.forDoTrip, isEcoTrip: self.isEcoTrip, indexPath: indexPath)
-            }
-            cell.onDiverHandler = {
-                let vc = UIViewController()
-                vc.preferredContentSize = CGSize(width: 250, height: 300)
-                let pickerView: UIPickerView = UIPickerView(frame: CGRect(x: 0, y: 0, width: 250, height: 300))
-                pickerView.delegate = self
-                pickerView.dataSource = self
-                pickerView.reloadAllComponents()
-                vc.view.addSubview(pickerView)
-                let editRadiusAlert = UIAlertController(title: "Please choose", message: "", preferredStyle: UIAlertControllerStyle.alert)
-                editRadiusAlert.setValue(vc, forKey: "contentViewController")
-                editRadiusAlert.addAction(UIAlertAction(title: "Done", style: .default, handler: { action in
-                    self.selectedDiver = pickerView.selectedRow(inComponent: 0) + 1
-                    self.tableView.reloadRows(at: [indexPath], with: .automatic)
-                }))
-                editRadiusAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-                self.present(editRadiusAlert, animated: true)
-            }
-            cell.onNeedLicenseHandler = { isOn in
-                self.selectedLicense = isOn
-            }
-            cell.onDiveNowHandler = { cell in
-                if let error = self.validateError() {
-                    UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {})
-                    return
-                }
-                var ecoTrip: Int? = nil
+                let cell: SearchFormCell = tableView.dequeueReusableCell(withIdentifier: "SearchFormCell", for: indexPath) as! SearchFormCell
                 if self.isEcoTrip {
-                    ecoTrip = 1
-                }
-                if let keyword = self.selectedKeyword as? SearchResultService {
-                    _ = DiveServiceController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: keyword, selectedLicense: self.selectedLicense!, selectedDiver: self.selectedDiver, selectedDate: self.selectedDate!, ecoTrip: ecoTrip)
+                    cell.setEcoTripData()
+                    cell.diveNowButton.backgroundColor = UIColor.nyGreen
                 } else {
-                    _ = DiveServiceSearchResultController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: self.selectedKeyword!, selectedLicense: self.selectedLicense, selectedDiver: self.selectedDiver, selectedDate: self.selectedDate!, ecoTrip: ecoTrip)
+                    cell.diveNowButton.backgroundColor = UIColor.orange
                 }
+                cell.onKeywordHandler = { keyword in
+                    if !self.isEcoTrip {
+                        let _ = SearchKeywordController.push(on: self.navigationController!, with: self.onKeywordSelectedHandler())
+                    }
+                }
+                cell.onDateHandler = { string in
+                    self.showDatePicker(forDoCourse: self.forDoCourse, isEcoTrip: self.isEcoTrip, indexPath: indexPath)
+                }
+                cell.onDiverHandler = {
+                    let vc = UIViewController()
+                    vc.preferredContentSize = CGSize(width: 250, height: 300)
+                    let pickerView: UIPickerView = UIPickerView(frame: CGRect(x: 0, y: 0, width: 250, height: 300))
+                    pickerView.delegate = self
+                    pickerView.dataSource = self
+                    pickerView.reloadAllComponents()
+                    vc.view.addSubview(pickerView)
+                    let editRadiusAlert = UIAlertController(title: "Please choose", message: "", preferredStyle: UIAlertControllerStyle.alert)
+                    editRadiusAlert.setValue(vc, forKey: "contentViewController")
+                    editRadiusAlert.addAction(UIAlertAction(title: "Done", style: .default, handler: { action in
+                        self.selectedDiver = pickerView.selectedRow(inComponent: 0) + 1
+                        self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                    }))
+                    editRadiusAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                    self.present(editRadiusAlert, animated: true)
+                }
+                cell.onNeedLicenseHandler = { isOn in
+                    self.selectedLicense = isOn
+                }
+                cell.onDiveNowHandler = { cell in
+                    if let error = self.validateError() {
+                        UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {})
+                        return
+                    }
+                    var ecoTrip: Int? = nil
+                    if self.isEcoTrip {
+                        ecoTrip = 1
+                    }
+                    if let keyword = self.selectedKeyword as? SearchResultService {
+                        _ = DiveServiceController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: keyword, selectedLicense: self.selectedLicense!, selectedDiver: self.selectedDiver, selectedDate: self.selectedDate!, ecoTrip: ecoTrip)
+                    } else {
+                        _ = DiveServiceSearchResultController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: self.selectedKeyword!, selectedLicense: self.selectedLicense, selectedDiver: self.selectedDiver, selectedDate: self.selectedDate!, ecoTrip: ecoTrip)
+                    }
+                }
+                cell.keywordLabel.text = self.selectedKeyword != nil ? self.selectedKeyword!.name : "Province, Area, Spot, Dive Center"
+                cell.selectedDateLabel.text = self.selectedDate != nil ? SearchFormCell.string(from: self.selectedDate!, forDoTrip: self.forDoTrip) : "Day, Month, Year"
+                //            cell.selectedDiverLabel.text = self.selectedDiver != nil ? String(format: "%d Diver(s)", arguments: [self.selectedDiver]) : "0 Diver(s)"
+                cell.needLicense.isOn = self.selectedLicense
+                if let _ = self.selectedKeyword as? SearchResultService {
+                    cell.needLicense.isUserInteractionEnabled = false
+                } else {
+                    cell.needLicense.isUserInteractionEnabled = true
+                }
+                return cell
             }
-            cell.keywordLabel.text = self.selectedKeyword != nil ? self.selectedKeyword!.name : "Province, Area, Spot, Dive Center"
-            cell.selectedDateLabel.text = self.selectedDate != nil ? SearchFormCell.string(from: self.selectedDate!, forDoTrip: self.forDoTrip) : "Day, Month, Year"
-//            cell.selectedDiverLabel.text = self.selectedDiver != nil ? String(format: "%d Diver(s)", arguments: [self.selectedDiver]) : "0 Diver(s)"
-            cell.needLicense.isOn = self.selectedLicense
-            if let _ = self.selectedKeyword as? SearchResultService {
-                cell.needLicense.isUserInteractionEnabled = false
-            } else {
-                cell.needLicense.isUserInteractionEnabled = true
-            }
-            return cell
         } else {
             let row = indexPath.row
             let cell: DiveServiceCell = tableView.dequeueReusableCell(withIdentifier: "DiveServiceCell", for: indexPath) as! DiveServiceCell
             cell.serviceView.control.tag = row
             cell.serviceView.addTarget(self, action: #selector(SearchFormController.onDiveServiceClicked(at:)))
             cell.serviceView.isDoTrip = self.forDoTrip
+            cell.serviceView.isDoCourse = self.forDoCourse
             cell.serviceView.initData(diveService: self.diveServices![row])
             return cell
         }
@@ -290,7 +340,11 @@ extension SearchFormController: UITableViewDelegate, UITableViewDataSource {
             header.backgroundColor = UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1)
             
             let label: UILabel = UILabel(frame: CGRect(x: 16, y: 8, width: tableView.frame.width - 32, height: 40 - 16))
-            label.text = "Our Recommended Services"
+            if self.forDoCourse {
+                label.text = "Our Recommended Course(s)"
+            } else {
+                label.text = "Our Recommended Service(s)"
+            }
             label.textColor = UIColor(white: 0.3, alpha: 1)
             label.font = UIFont(name: "FiraSans-Regular", size: 15)
             header.addSubview(label)
@@ -309,7 +363,7 @@ extension SearchFormController: UITableViewDelegate, UITableViewDataSource {
     }
     
     internal func getRecommendation() {
-        if forDoTrip {
+        if self.forDoTrip {
 //            NHTTPHelper.httpDoTripSuggestion(complete: {response in
 //                if let error = response.error {
 //                    UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {error in
@@ -326,6 +380,24 @@ extension SearchFormController: UITableViewDelegate, UITableViewDataSource {
 //                    self.tableView.reloadData()
 //                }
 //            })
+        } else if self.forDoCourse {
+            NHTTPHelper.httpDoCourseSuggestion(complete: {response in
+                if let error = response.error {
+                    UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {error in
+                        if error.isKind(of: NotConnectedInternetError.self) {
+                            NHelper.handleConnectionError(completion: {
+                                self.getRecommendation()
+                            })
+                        }
+                    })
+                    return
+                }
+                if let data = response.data, !data.isEmpty {
+                    self.diveServices = data
+                    self.tableView.reloadData()
+                }
+                NSManagedObjectContext.saveData()
+            })
         } else {
             NHTTPHelper.httpDoDiveSuggestion(complete: {response in
                 if let error = response.error {
@@ -346,13 +418,68 @@ extension SearchFormController: UITableViewDelegate, UITableViewDataSource {
             })
         }
     }
-    internal func validateError() -> String? {
+    internal func onShowMasterOrganization() {
+        if let organizations = NMasterOrganization.getOrganizations(), !organizations.isEmpty {
+            var c: [String] = []
+            for organization in organizations {
+                c.append(organization.name!)
+            }
+            let actionSheet = ActionSheetStringPicker.init(title: "Association", rows: c, initialSelection: self.selectedOrganization != nil ? NMasterOrganization.getPosition(by: self.selectedOrganization!.id!) : 0, doneBlock: {picker, index, value in
+                self.selectedOrganization = organizations[index]
+                self.selectedLicenseType = nil
+                self.tableView.reloadData()
+            }, cancel: {_ in return
+            }, origin: self.view)
+            actionSheet!.show()
+        }
+    }
+    
+    internal func onShowLicenseType(organizaitonId: String) {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        NHTTPHelper.httpGetLicenseType(organizationId: organizaitonId, complete: {response in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            if let error = response.error {
+                if error.isKind(of: NotConnectedInternetError.self) {
+                    NHelper.handleConnectionError(completion: {
+                        self.onShowLicenseType(organizaitonId: organizaitonId)
+                    })
+                }
+                return
+            }
+            if let licenseTypes = response.data, !licenseTypes.isEmpty {
+                var c: [String] = []
+                for licenseType in licenseTypes {
+                    c.append(licenseType.name!)
+                }
+                let actionSheet = ActionSheetStringPicker.init(title: "License Type", rows: c, initialSelection: 0, doneBlock: {picker, index, value in
+                    self.selectedLicenseType = licenseTypes[index]
+                    self.tableView.reloadData()
+                }, cancel: {_ in return
+                }, origin: self.view)
+                actionSheet!.show()
+            } else {
+                UIAlertController.handleErrorMessage(viewController: self, error: "License not found!", completion: {})
+            }
+        })
+    }
+    
+    internal func validateError(forDoCourse: Bool = false) -> String? {
         if self.selectedKeyword == nil {
             return "Please search keyword first!"
-        } else if self.selectedDate == nil {
+        }
+        if self.selectedDate == nil {
             return "Please pick date!"
-        } else if self.selectedDiver == nil {
+        }
+        if self.selectedDiver == nil {
             return "Please pick diver!"
+        }
+        if forDoCourse {
+            if self.selectedOrganization == nil {
+                return "Please pick association!"
+            }
+            if self.selectedLicenseType == nil {
+                return "Please pick license type!"
+            }
         }
         return nil
     }
@@ -390,7 +517,14 @@ extension SearchFormController: UIPickerViewDataSource, UIPickerViewDelegate {
         keyword.rating = diveservice.rating
         
         self.selectedKeyword = keyword
-        self.selectedLicense = diveservice.license
+        if self.forDoCourse {
+            self.selectedDate = Date(timeIntervalSince1970: diveservice.schedule!.startDate)
+            self.selectedLicenseType = diveservice.licenseType
+            self.selectedOrganization = diveservice.organization
+        } else {
+            self.selectedLicense = diveservice.license
+        }
+        
         if let indexPaths = self.tableView.indexPathsForVisibleRows {
             var visible = false
             for indexPath in indexPaths {
@@ -415,7 +549,7 @@ extension SearchFormController: UIPickerViewDataSource, UIPickerViewDelegate {
     
 }
 
-class SearchFormCell: UITableViewCell {
+class SearchFormCell: NTableViewCell {
     @IBOutlet weak var keywordBt: UIControl!
     @IBOutlet weak var keywordLabel: UILabel!
     @IBOutlet weak var dateBt: UIControl!
@@ -483,3 +617,61 @@ class SearchFormCell: UITableViewCell {
     var onNeedLicenseHandler: (Bool) -> Void = { isOn in }
     var onDiveNowHandler: (SearchFormCell) -> Void = { cell in }
 }
+
+class CourseFormCell: NTableViewCell {
+    
+    @IBOutlet weak var associationLabel: UILabel!
+    @IBOutlet weak var licenseTypeLabel: UILabel!
+    @IBOutlet weak var scheduleLabel: UILabel!
+    @IBOutlet weak var keywordLabel: UILabel!
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        // Configure the view for the selected state
+    }
+    
+    
+    @IBAction func onClicked(_ sender: Any) {
+        if let sender = sender as? UIView {
+            if sender.tag == 0 {
+                self.onKeywordHandler(self.keywordLabel.text)
+            } else if sender.tag == 1 {
+                self.onOrganizationHandler(self.associationLabel.text)
+            } else if sender.tag == 2 {
+                self.onLicenseTypeHandler(self.licenseTypeLabel.text)
+            } else if sender.tag == 3 {
+                self.onDateHandler(self.scheduleLabel.text)
+            } else if sender.tag == 4 {
+                self.onGetCertifiedHandler(self)
+            }
+        }
+    }
+ 
+    func initData(selectedKeyword: SearchResult?, organization: NMasterOrganization?, licenseType: NLicenseType?, selectedDate: Date?) {
+        if let keyword = selectedKeyword {
+            self.keywordLabel.text = keyword.name
+        }
+        if let organization = organization {
+            self.associationLabel.text = organization.name
+        }
+        if let licenseType = licenseType {
+            self.licenseTypeLabel.text = licenseType.name
+        }
+        if let selectedDate = selectedDate {
+            self.scheduleLabel.text = selectedDate.formatDate(dateFormat: "MMM yyyy")
+        }
+    }
+    var onKeywordHandler: (String?) -> Void = { keyword in }
+    var onDateHandler: (String?) -> Void = { date in }
+    var onOrganizationHandler: (String?) -> Void = {organization in }
+    var onLicenseTypeHandler: (String?) -> Void = {licenseType in }
+    var onGetCertifiedHandler: (CourseFormCell) -> Void = { cell in }
+
+}
+

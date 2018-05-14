@@ -42,7 +42,9 @@ extension NHTTPHelper {
                 NAuthReturn.deleteAllAuth()
                 let authReturn = NAuthReturn.init(entity: NSEntityDescription.entity(forEntityName: "NAuthReturn", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                 authReturn.parse(json: json)
-                complete(NHTTPResponse(resultStatus: true, data: authReturn, error: nil))
+                NSManagedObjectContext.saveData {
+                    complete(NHTTPResponse(resultStatus: true, data: authReturn, error: nil))
+                }
             }
         })
     }
@@ -57,7 +59,9 @@ extension NHTTPHelper {
                 NAuthReturn.deleteAllAuth()
                 let authReturn = NAuthReturn.init(entity: NSEntityDescription.entity(forEntityName: "NAuthReturn", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                 authReturn.parse(json: json)
-                complete(NHTTPResponse(resultStatus: true, data: authReturn, error: nil))
+                NSManagedObjectContext.saveData {
+                    complete(NHTTPResponse(resultStatus: true, data: authReturn, error: nil))
+                }
             }
         })
     }
@@ -65,7 +69,7 @@ extension NHTTPHelper {
     static func httpUpdateProfile(fullname: String, username: String?, gender: String?, birthDate: Date?,
                                   countryCodeId: String?, phoneNumber: String?,
                                   certificateDate: Date?, certificateNumber: String?, birthPlace: String?,
-                                  countryId: String?, nationalityId: String?, languageId: String?, complete: @escaping (NHTTPResponse<NAuthReturn>)->()) {
+                                  countryId: String?, nationalityId: String?, languageId: String?, organizationId: String?, licenseTypeId: String?, complete: @escaping (NHTTPResponse<NAuthReturn>)->()) {
         var param: [String: Any] = [:]
         param["fullname"] = fullname
         if let username = username, !username.isEmpty {
@@ -100,6 +104,12 @@ extension NHTTPHelper {
         }
         if let languageId = languageId, !languageId.isEmpty {
             param["language_id"] = languageId
+        }
+        if let organizationId = organizationId, !organizationId.isEmpty {
+            param["certificate_organization"] = organizationId
+        }
+        if let licenseTypeId = licenseTypeId, !licenseTypeId.isEmpty {
+            param["certificate_diver"] = licenseTypeId
         }
         self.basicAuthRequest(URLString: HOST_URL+API_PATH_UPDATE_PROFILE,
                               parameters: param,

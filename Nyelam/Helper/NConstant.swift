@@ -12,7 +12,7 @@ import MidtransCoreKit
 
 class NConstant {
     static var appVersion: String {
-        let nsObject: AnyObject? = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as AnyObject?
+        let nsObject: AnyObject? = Bundle.main.infoDictionary!["CFBundleVersion"] as AnyObject?
         return nsObject as! String
     }
     
@@ -38,6 +38,10 @@ class NConstant {
     
     static var GOOGLE_CLIENT_ID: String {
         return "359054383364-qu2ipqnfu6ues5r6bllc5cbk98rlre80.apps.googleusercontent.com"
+    }
+    
+    static var GOOGLE_API_KEY: String {
+        return "AIzaSyC0d3JJzl7gMGl7hO4x5QqZ_tofSn4vaPM"
     }
     
     static var PAYPAL_CLIENT_ID: String {

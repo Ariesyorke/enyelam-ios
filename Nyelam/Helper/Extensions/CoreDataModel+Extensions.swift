@@ -260,6 +260,54 @@ extension NUser {
                 print(error)
             }
         }
+        if let organizationJson = json["certificate_organization"] as? [String: Any] {
+            if let id = organizationJson["id"] as? String {
+                self.organization = NMasterOrganization.getOrganization(using: id)
+            }
+            if self.organization == nil {
+                self.organization = NSEntityDescription.insertNewObject(forEntityName: "NMasterOrganization", into: AppDelegate.sharedManagedContext) as! NMasterOrganization
+            }
+            self.organization!.parse(json: organizationJson)
+        } else if let organizationString = json["certificate_organization"] as? String {
+            do {
+                let data = organizationString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let organizationJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                if let id = organizationJson["id"] as? String {
+                    self.organization = NMasterOrganization.getOrganization(using: id)
+                }
+                if self.organization == nil {
+                    self.organization = NSEntityDescription.insertNewObject(forEntityName: "NMasterOrganization", into: AppDelegate.sharedManagedContext) as! NMasterOrganization
+                }
+                self.organization!.parse(json: organizationJson)
+            } catch {
+                print(error)
+            }
+        }
+        if let licenseTypeJson = json["certificate_diver"] as? [String:Any] {
+            if let id = licenseTypeJson["id"] as? String {
+                self.licenseType = NLicenseType.getLicenseType(using: id)
+            }
+            if self.licenseType == nil {
+                self.licenseType = NSEntityDescription.insertNewObject(forEntityName: "NLicenseType", into: AppDelegate.sharedManagedContext) as! NLicenseType
+
+            }
+            self.licenseType!.parse(json: licenseTypeJson)
+        } else if let licenseTypeString = json["certificate_diver"] as? String {
+            do {
+                let data = licenseTypeString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let licenseTypeJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                if let id = licenseTypeJson["id"] as? String {
+                    self.licenseType = NLicenseType.getLicenseType(using: id)
+                }
+                if self.licenseType == nil {
+                    self.licenseType = NSEntityDescription.insertNewObject(forEntityName: "NLicenseType", into: AppDelegate.sharedManagedContext) as! NLicenseType
+                    
+                }
+                self.licenseType!.parse(json: licenseTypeJson)
+            } catch {
+                print(error)
+            }
+        }
     }
     
     func serialized() -> [String : Any] {
@@ -418,8 +466,10 @@ extension NAuthReturn {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NAuthReturn")
         do {
             let authReturns = try managedContext.fetch(fetchRequest) as? [NAuthReturn]
-            if let authReturns = authReturns, !authReturns.isEmpty, let authReturn = authReturns.first {
-                managedContext.delete(authReturn)
+            if let authReturns = authReturns, !authReturns.isEmpty {
+                for authReturn in authReturns {
+                    managedContext.delete(authReturn)
+                }
                 return true
             }
         } catch {
@@ -733,7 +783,10 @@ extension NDiveService {
     private var KEY_IMAGES: String { return "images" }
     private var KEY_DESCRIPTION: String { return "description" }
     private var KEY_AVAILABILITY_STOCK: String { return "availability_stock" }
-    
+    private var KEY_DAY_ON_SITE: String {return "day_on_site"}
+    private var KEY_ORGANIZATION: String {return "organization"}
+    private var KEY_LICENSE_TYPE: String {return "license_type"}
+    private var KEY_OPEN_WATER: String {return "open_water"}
     func parse(json: [String : Any]) {
         if let id = json[KEY_ID] as? String {
             self.id = id
@@ -770,6 +823,13 @@ extension NDiveService {
             }
         }
         
+        if let dayOnSite = json[KEY_DAY_ON_SITE] as? Int {
+            self.dayOnSite = Int32(dayOnSite)
+        } else if let dayOnSite = json[KEY_DAY_ON_SITE] as? String {
+            if dayOnSite.isNumber {
+                self.dayOnSite = Int32(dayOnSite)!
+            }
+        }
         if let categoriesArray = json[KEY_CATEGORY] as? Array<[String: Any]>, !categoriesArray.isEmpty {
             for categoryJson in categoriesArray {
                 var category: NCategory? = nil
@@ -957,7 +1017,61 @@ extension NDiveService {
                 print(error)
             }
         }
-        
+        if let organizationJson = json[KEY_ORGANIZATION] as? [String: Any] {
+            if let id = organizationJson["id"] as? String {
+                self.organization = NMasterOrganization.getOrganization(using: id)
+            }
+            if self.organization == nil {
+                self.organization =  NSEntityDescription.insertNewObject(forEntityName: "NMasterOrganization", into: AppDelegate.sharedManagedContext) as! NMasterOrganization
+                
+            }
+            self.organization!.parse(json: organizationJson)
+        } else if let organizationString = json[KEY_ORGANIZATION] as? String {
+            do {
+                let data = organizationString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let organizationJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                if let id = organizationJson["id"] as? String {
+                    self.organization = NMasterOrganization.getOrganization(using: id)
+                }
+                if self.organization == nil {
+                    self.organization =  NSEntityDescription.insertNewObject(forEntityName: "NMasterOrganization", into: AppDelegate.sharedManagedContext) as! NMasterOrganization
+                    
+                }
+                self.organization!.parse(json: organizationJson)
+            } catch {
+                print(error)
+            }
+        }
+        if let licenseTypeJson = json["license_type"] as? [String:Any] {
+            if let id = licenseTypeJson["id"] as? String {
+                self.licenseType = NLicenseType.getLicenseType(using: id)
+            }
+            if self.licenseType == nil {
+                self.licenseType = NSEntityDescription.insertNewObject(forEntityName: "NLicenseType", into: AppDelegate.sharedManagedContext) as! NLicenseType
+                
+            }
+            self.licenseType!.parse(json: licenseTypeJson)
+        } else if let licenseTypeString = json["license_type"] as? String {
+            do {
+                let data = licenseTypeString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let licenseTypeJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                if let id = licenseTypeJson["id"] as? String {
+                    self.licenseType = NLicenseType.getLicenseType(using: id)
+                }
+                if self.licenseType == nil {
+                    self.licenseType = NSEntityDescription.insertNewObject(forEntityName: "NLicenseType", into: AppDelegate.sharedManagedContext) as! NLicenseType
+                    
+                }
+                self.licenseType!.parse(json: licenseTypeJson)
+            } catch {
+                print(error)
+            }
+        }
+        if let openWater = json[KEY_OPEN_WATER] as? Bool {
+            self.openWater = openWater
+        } else if let openWater = json[KEY_OPEN_WATER] as? String {
+            self.openWater = openWater.toBool
+        }
     }
     
     func serialized() -> [String : Any] {
@@ -1017,6 +1131,13 @@ extension NDiveService {
         }
         if let desc = self.diveServiceDescription {
             json[KEY_DESCRIPTION] = desc
+        }
+        json[KEY_DAY_ON_SITE] = Int(dayOnSite)
+        if let organization = self.organization {
+            json[KEY_ORGANIZATION] = organization.serialized()
+        }
+        if let licenseType = self.licenseType {
+            json[KEY_LICENSE_TYPE] = licenseType.serialized()
         }
         return json
     }
@@ -1498,6 +1619,23 @@ extension NSummary {
     private var KEY_CONTACT: String { return "contact" }
     private var KEY_PARTICIPANTS: String { return "participants" }
     
+    static func deleteAllOrder() -> Bool {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NSummary")
+        do {
+            let summaries = try managedContext.fetch(fetchRequest) as? [NSummary]
+            if let summaries = summaries, !summaries.isEmpty {
+                for summary in summaries {
+                    managedContext.delete(summary)
+                }
+                return true
+            }
+        } catch {
+            print(error)
+        }
+        return false
+    }
+
     func parse(json: [String : Any]) {
         if let orderJson = json[KEY_ORDER] as? [String: Any] {
             if let orderId = orderJson["order_id"] as? String {
@@ -1529,7 +1667,7 @@ extension NSummary {
                 self.diveService = NDiveService.getDiveService(using: id)
             }
             if self.diveService == nil {
-                self.diveService = NDiveService()
+                self.diveService = NSEntityDescription.insertNewObject(forEntityName: "NDiveService", into: AppDelegate.sharedManagedContext) as! NDiveService
             }
             self.diveService!.parse(json: json)
         } else if let serviceString = json[KEY_SERVICE] as? String {
@@ -1548,12 +1686,12 @@ extension NSummary {
             }
         }
         if let contactJson = json[KEY_CONTACT] as? [String: Any] {
-            self.contact = Contact(json: contactJson)
+            self.contact = BookingContact(json: contactJson)
         } else if let contactString = json[KEY_CONTACT] as? String {
             do {
                 let data = contactString.data(using: String.Encoding.utf8, allowLossyConversion: true)
                 let contactJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
-                self.contact = Contact(json: contactJson)
+                self.contact = BookingContact(json: contactJson)
             } catch {
                 print(error)
             }
@@ -1675,18 +1813,17 @@ extension NSearchResult {
         }
         json[KEY_LICENSE] = license
         json[KEY_RATING] = rating
-        json[KEY_TYPE] = type
-        json[KEY_COUNT] = count
+        json[KEY_TYPE] = Int(type)
+        json[KEY_COUNT] = Int(count)
         return json
     }
 
-    static func getSavedResult(using name: String, and type: String)->NSearchResult? {
+    static func getSavedResult(using id: String, and type: String)->NSearchResult? {
         let managedContext = AppDelegate.sharedManagedContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NSearchResult")
+        fetchRequest.predicate = NSPredicate(format: "type == %@ AND id == %@", type, id)
         do {
             let results = try managedContext.fetch(fetchRequest) as? [NSearchResult]
-            fetchRequest.predicate = NSPredicate(format: "type == %@ AND name == %@", type, name)
-
             if let results = results, !results.isEmpty {
                 return results.first
             }
@@ -1694,16 +1831,132 @@ extension NSearchResult {
             print(error)
         }
         return nil
-
     }
     static func getSavedResults() -> [NSearchResult]? {
         let managedContext = AppDelegate.sharedManagedContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NSearchResult")
-//        fetchRequest.predicate = NSPredicate(format: "id != nil && name != nil && type > 0")
+        fetchRequest.predicate = NSPredicate(format: "id != nil && name != nil && type > 0")
         do {
             let results = try managedContext.fetch(fetchRequest) as? [NSearchResult]
             if let results = results, !results.isEmpty {
                 return results
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+}
+
+extension NMasterOrganization: Parseable {
+    private var KEY_ID: String {
+        return "id"
+    }
+        
+    private var KEY_NAME: String {
+        return "name"
+    }
+    
+    func parse(json: [String : Any]) {
+        self.id = json[KEY_ID] as? String
+        self.name = json[KEY_NAME] as? String
+    }
+    
+    func serialized() -> [String : Any] {
+        var json: [String: Any] = [:]
+        if let id = self.id {
+            json[KEY_ID] = id
+        }
+        
+        if let name = self.name {
+            json[KEY_NAME] = name
+        }
+        
+        return json
+    }
+    
+    static func getPosition(by id: String) -> Int {
+        if let organizations = getOrganizations(), !organizations.isEmpty {
+            var position = 0
+            for organization in organizations {
+                if organization.id! == id {
+                    return position
+                }
+                position += 1
+            }
+        }
+        return 0
+    }
+
+    
+    static func getOrganization(using id: String)->NMasterOrganization? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NMasterOrganization")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        do {
+            let results = try managedContext.fetch(fetchRequest) as? [NMasterOrganization]
+            if let results = results, !results.isEmpty {
+                return results.first
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+
+    static func getOrganizations() -> [NMasterOrganization]? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NMasterOrganization")
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        fetchRequest.predicate = NSPredicate(format: "id != nil && name != nil")
+        do {
+            let organizations = try managedContext.fetch(fetchRequest) as? [NMasterOrganization]
+            if let organizations = organizations, !organizations.isEmpty {
+                return organizations
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+}
+
+extension NLicenseType: Parseable {
+    private var KEY_ID: String  {
+        return "id"
+    }
+    
+    private var KEY_NAME: String {
+        return "name"
+    }
+    
+    func parse(json: [String : Any]) {
+        self.id = json[KEY_ID] as? String
+        self.name = json[KEY_NAME] as? String
+    }
+    
+    func serialized() -> [String : Any] {
+        var json: [String: Any] = [:]
+        if let id = self.id {
+            json[KEY_ID] = id
+        }
+        
+        if let name = self.name {
+            json[KEY_NAME] = name
+        }
+        
+        return json
+    }
+    
+    static func getLicenseType(using id: String)->NLicenseType? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NLicenseType")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        do {
+            let results = try managedContext.fetch(fetchRequest) as? [NLicenseType]
+            if let results = results, !results.isEmpty {
+                return results.first
             }
         } catch {
             print(error)

@@ -18,11 +18,18 @@ class SearchKeywordController: BaseViewController, UISearchControllerDelegate, U
         return vc
     }
     
+    static func push(on controller: UINavigationController, type: Int, with handler: @escaping (SearchKeywordController, SearchResult?) -> Void) -> SearchKeywordController {
+        let vc: SearchKeywordController = SearchKeywordController(nibName: "SearchKeywordController", bundle: nil)
+        vc.handler = handler
+        vc.type = type
+        controller.pushViewController(vc, animated: true)
+        return vc
+    }
     @IBOutlet weak var tableView: UITableView!
     
     var results: [SearchResult]? = nil
     var savedResults: [SearchResult]? = nil
-    
+    var type: Int = 1
     var _searchTextField: UITextField? = nil
     var searchTextField: UITextField! {
         if _searchTextField != nil {
@@ -53,11 +60,11 @@ class SearchKeywordController: BaseViewController, UISearchControllerDelegate, U
             for result in savedResults {
                 var json = result.serialized()
                 if let type = json["type"] as? Int {
-                    var searchResult = SearchResult.generateSearchResultType(type: type, json: json)
+                    let searchResult = SearchResult.generateSearchResultType(type: type, json: json)
                     self.savedResults!.append(searchResult)
                 } else if let type = json["type"] as? String {
                     if type.isNumber {
-                        var searchResult = SearchResult.generateSearchResultType(type: Int(type)!, json: json)
+                        let searchResult = SearchResult.generateSearchResultType(type: Int(type)!, json: json)
                         self.savedResults!.append(searchResult)
                     }
                 }
@@ -117,7 +124,17 @@ extension SearchKeywordController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: SearchKeywordResultCell = tableView.dequeueReusableCell(withIdentifier: "SearchKeywordResultCell", for: indexPath) as! SearchKeywordResultCell
-        cell.searchResult = self.results![indexPath.row]
+        var result: SearchResult? = nil
+        if indexPath.section == 0 {
+            if let savedResults = self.savedResults, !savedResults.isEmpty, (self.results == nil || self.results!.isEmpty)  {
+                result = savedResults[indexPath.row]
+            } else {
+                result = self.results![indexPath.row]
+            }
+        } else {
+            result = self.savedResults![indexPath.row]
+        }
+        cell.searchResult = result!
         return cell
     }
     
@@ -135,7 +152,7 @@ extension SearchKeywordController: UITableViewDelegate, UITableViewDataSource {
             result = savedResults![indexPath.row]
         }
         if pickedFromServer {
-            var searchResult = NSearchResult.getSavedResult(using: String(result!.type), and: (result!.name!))
+            var searchResult = NSearchResult.getSavedResult(using: String(result!.type), and: (result!.id!))
             if searchResult == nil {
                 searchResult = NSEntityDescription.insertNewObject(forEntityName: "NSearchResult", into: AppDelegate.sharedManagedContext) as! NSearchResult
                 searchResult!.parse(json: result!.serialized())
@@ -158,7 +175,7 @@ extension SearchKeywordController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
-            if let savedResults = self.savedResults, !savedResults.isEmpty, (self.results == nil || !self.results!.isEmpty) {
+            if let savedResults = self.savedResults, !savedResults.isEmpty, (self.results == nil || self.results!.isEmpty) {
                 return self.savedResultHeader()
             }
             return nil
@@ -234,7 +251,7 @@ extension SearchKeywordController {
     }
 
     func trySearch(with keyword: String) {
-        NHTTPHelper.httpDoDiveSearchBy(keyword: keyword, ecoTrip: nil, complete: {response in
+        NHTTPHelper.httpDoDiveSearchBy(keyword: keyword, ecoTrip: nil, type: self.type, complete: {response in
             if let error = response.error {
                 UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {error in
                     if error.isKind(of: NotConnectedInternetError.self) {

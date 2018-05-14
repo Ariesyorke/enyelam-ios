@@ -70,6 +70,7 @@ UINavigationControllerDelegate, PECropViewControllerDelegate {
                 controller = self
             }
             if let navigation = controller!.navigationController {
+                navigation.setNavigationBarHidden(false, animated: true)
                 navigation.pushViewController(vc, animated: true)
             } else {
                 self.present(vc, animated: true, completion: nil)
@@ -92,6 +93,7 @@ UINavigationControllerDelegate, PECropViewControllerDelegate {
         case 4:
             if let parent = self.parent as? MainRootController {
                 _ = NAuthReturn.deleteAllAuth()
+                _ = NSummary.deleteAllOrder()
                 parent.checkLoginState()
             } else if let navigation = self.navigationController {
                 navigation.popViewController(animated: true)
@@ -110,18 +112,22 @@ UINavigationControllerDelegate, PECropViewControllerDelegate {
                 UIAlertController.showAlertWithMultipleChoices(title: "Change Cover Photo", message: nil, viewController: self, buttons: [
                     UIAlertAction(title: "Gallery", style: .default, handler: {alert in
                         self.changeCoverProfile = true
+                        self.changePhotoProfile = false
                         self.picker.delegate = self
                         self.picker.sourceType = .photoLibrary
+                        self.picker.allowsEditing = false
                         self.picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
                         self.present(self.picker, animated: true, completion: nil)
                     }),
                     UIAlertAction(title: "Take Photo", style: .default, handler: {alert in
                         if UIImagePickerController.isSourceTypeAvailable(.camera) {
                             self.changeCoverProfile = true
+                            self.changePhotoProfile = false
                             self.picker.delegate = self
                             self.picker.sourceType = UIImagePickerControllerSourceType.camera
                             self.picker.cameraCaptureMode = .photo
                             self.picker.modalPresentationStyle = .fullScreen
+                            self.picker.allowsEditing = false
                             self.present(self.picker,animated: true,completion: nil)
                         } else {
                             UIAlertController.handleErrorMessage(viewController: self, error: "Sorry this device has no camera", completion: {})
@@ -136,17 +142,21 @@ UINavigationControllerDelegate, PECropViewControllerDelegate {
                 UIAlertController.showAlertWithMultipleChoices(title: "Change Profile Photo", message: nil, viewController: self, buttons: [
                     UIAlertAction(title: "Gallery", style: .default, handler: {alert in
                         self.changePhotoProfile = true
+                        self.changeCoverProfile = false
                         self.picker.sourceType = .photoLibrary
                         self.picker.delegate = self
+                        self.picker.allowsEditing = true
                         self.picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
                         self.present(self.picker, animated: true, completion: nil)
                     }),
                     UIAlertAction(title: "Take Photo", style: .default, handler: {alert in
                         if UIImagePickerController.isSourceTypeAvailable(.camera) {
                             self.changePhotoProfile = true
+                            self.changeCoverProfile = false
                             self.picker.sourceType = UIImagePickerControllerSourceType.camera
                             self.picker.cameraCaptureMode = .photo
                             self.picker.delegate = self
+                            self.picker.allowsEditing = true
                             self.picker.modalPresentationStyle = .fullScreen
                             self.present(self.picker,animated: true,completion: nil)
                         } else {
@@ -165,6 +175,10 @@ UINavigationControllerDelegate, PECropViewControllerDelegate {
             } else if self.changePhotoProfile, let data = self.pickedData {
                 self.changePhotoProfile = false
                 cell.photoImageView.image = UIImage(data: data)
+            } else {
+                if let authReturn = NAuthReturn.authUser(), let user = authReturn.user {
+                    cell.initData(imageUrl: user.picture, coverUrl: user.cover)
+                }
             }
             return cell
         } else if contents[0] == "section" {
@@ -191,34 +205,42 @@ UINavigationControllerDelegate, PECropViewControllerDelegate {
  
     //MARK UIIMAGEPICKER
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            
-            self.dismiss(animated: true, completion: {
-                let controller = PECropViewController()
-                controller.delegate = self
-                controller.image = chosenImage
-                
-                let width = chosenImage.size.width
-                let height = chosenImage.size.height
-                controller.isRotationEnabled = false
-                controller.keepingCropAspectRatio = true
-                controller.toolbarHidden = true
-                if self.changePhotoProfile {
-                    let length = width/2
-                    controller.imageCropRect = CGRect(x: width/2,
-                                                      y: height/2,
-                                                      width: length/2,
-                                                      height: length/2)
-                } else {
-                    let length = width/2
-                    controller.imageCropRect = CGRect(x: width / 2,
-                                                      y: height / 2,
-                                                      width: (length/2),
-                                                      height: (length/2)/3)
-                }
+        if self.changeCoverProfile {
+            if let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+                self.dismiss(animated: true, completion: {
+                    let controller = PECropViewController()
+                    controller.delegate = self
+                    controller.image = chosenImage
+                    
+                    let width = chosenImage.size.width
+                    let height = chosenImage.size.height
+                    controller.isRotationEnabled = false
+                    controller.keepingCropAspectRatio = true
+                    controller.toolbarHidden = true
+                    if self.changePhotoProfile {
+                        let length = width/2
+                        controller.imageCropRect = CGRect(x: width/2,
+                                                          y: height/2,
+                                                          width: length/2,
+                                                          height: length/2)
+                    } else {
+                        let length = width/2
+                        controller.imageCropRect = CGRect(x: width / 2,
+                                                          y: height / 2,
+                                                          width: (length/2),
+                                                          height: (length/2)/3)
+                    }
 
-                let navController = BaseNavigationController(rootViewController: controller)
-                self.present(navController, animated: true, completion: nil)
+                    let navController = BaseNavigationController(rootViewController: controller)
+                    self.present(navController, animated: true, completion: nil)
+                })
+            }
+        } else if self.changePhotoProfile {
+            self.dismiss(animated: true, completion: {
+                if let chosenImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+                    self.pickedData = UIImageJPEGRepresentation(chosenImage, 0.75)
+                    self.tryUploadProfile(data: self.pickedData!)
+                }
             })
         } else {
             self.dismiss(animated: true, completion: nil)
@@ -253,8 +275,6 @@ UINavigationControllerDelegate, PECropViewControllerDelegate {
             MBProgressHUD.showAdded(to: self.view, animated: true)
             if self.changeCoverProfile {
                 self.tryUploadCover(data: data)
-            } else {
-                self.tryUploadProfile(data: data)
             }
         }
     }
@@ -267,10 +287,11 @@ UINavigationControllerDelegate, PECropViewControllerDelegate {
                         self.tryUploadCover(data: data)
                     })
                 } else {
-                    let err = error as! StatusFailedError
-                    UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {_ in
+                    if let err = error as? StatusFailedError {
+                        UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {_ in
                         
-                    })
+                        })
+                    }
                 }
                 return
             }
@@ -282,22 +303,26 @@ UINavigationControllerDelegate, PECropViewControllerDelegate {
     }
     
     internal func tryUploadProfile(data: Data) {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         NHTTPHelper.httpUploadPhotoProfile(data: data, complete: {response in
+            MBProgressHUD.hide(for: self.view, animated: true)
             if let error = response.error {
                 if error.isKind(of: NotConnectedInternetError.self) {
                     NHelper.handleConnectionError(completion: {
                         self.tryUploadProfile(data: data)
                     })
                 } else {
-                    let err = error as! StatusFailedError
-                    UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {_ in
-                        
-                    })
+                    if let error = error as? StatusFailedError {
+                        UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {_ in
+                            
+                        })
+                    }
                 }
                 return
             }
             MBProgressHUD.hide(for: self.view, animated: true)
             UIAlertController.handlePopupMessage(viewController: self, title: "Upload Successfull", actionButtonTitle: "OK", completion: {
+
                 self.tableView.reloadData()
             })
         })
@@ -410,6 +435,16 @@ class HeaderViewCell: NTableViewCell {
     @IBAction func changeProfilePictureAction(_ sender: Any) {
         self.onChangePhotoProfile()
     }
+    
+    func initData(imageUrl: String?, coverUrl: String?) {
+        if let url = imageUrl, !url.isEmpty {
+            self.photoImageView.loadImage(from: url)
+        }
+        if let url = coverUrl, !url.isEmpty {
+            self.coverImageView.loadImage(from: url)
+        }
+    }
+
 }
 
 enum AccountMenuItemType {

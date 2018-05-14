@@ -2,7 +2,7 @@
 //  NUser+CoreDataProperties.swift
 //  Nyelam
 //
-//  Created by Bobi on 4/23/18.
+//  Created by Bobi on 5/13/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //
@@ -38,7 +38,9 @@ extension NUser {
     @NSManaged public var country: NCountry?
     @NSManaged public var countryCode: NCountryCode?
     @NSManaged public var language: NLanguage?
+    @NSManaged public var licenseType: NLicenseType?
     @NSManaged public var nationality: NNationality?
+    @NSManaged public var organization: NMasterOrganization?
     @NSManaged public var socialMedias: NSSet?
 
 }

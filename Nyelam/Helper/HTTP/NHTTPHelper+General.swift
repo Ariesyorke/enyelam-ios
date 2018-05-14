@@ -38,10 +38,12 @@ extension NHTTPHelper {
         })
     }
     
-    static func httpGetMinMaxPrice(type: String,  diver: Int, certificate: Int, date: Date?, categories: [String]?, diveSpotId: String?, provinceId: String?, cityId: String?, diveCenterId: String?,ecoTrip: Int?, totalDives: [Int]?, facilites: [String]?, complete: @escaping (NHTTPResponse<Price>) -> ()) {
+    static func httpGetMinMaxPrice(type: String,  diver: Int, certificate: Int?, date: Date?, categories: [String]?, diveSpotId: String?, provinceId: String?, cityId: String?, diveCenterId: String?,ecoTrip: Int?, totalDives: [Int]?, facilites: [String]?, complete: @escaping (NHTTPResponse<Price>) -> ()) {
         var param: [String: Any] = ["type": type,
-                                    "diver": String(diver),
-                                    "certificate": String(certificate)]
+                                    "diver": String(diver)]
+        if let certificate = certificate {
+            param["certificate"] = String(certificate)
+        }
         if let date = date {
             param["date"] = String(date.timeIntervalSince1970)
         }

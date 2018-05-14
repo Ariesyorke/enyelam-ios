@@ -424,6 +424,67 @@ class NHTTPHelper {
         }
     }
     
+    static var API_PATH_MASTER_ORGANIZATION: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "master/organization"
+        default:
+            return "api/master/organization"
+        }
+    }
+    
+    static var API_PATH_MASTER_LICENSE: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "master/lisence"
+        default:
+            return "api/master/lisence"
+        }
+    }
+    
+    static var API_PATH_DO_COURSE_SEARCH_BY_DIVECENTER: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "docourse/search/divecenter"
+        default:
+            return "api/docourse/search/divecenter"
+        }
+    }
+    
+    static var API_PATH_DO_COURSE_SEARCH_BY_PROVINCE: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "docourse/search/province"
+        default:
+            return "api/docourse/search/province"
+        }
+    }
+    
+    static var API_PATH_DO_COURSE_SEARCH_BY_CITY: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "docourse/search/city"
+        default:
+            return "api/docourse/search/city"
+        }
+    }
+    
+    static var API_PATH_DO_COURSE_SUGGESTION: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "docourse/sugestion"
+        default:
+            return "api/docourse/sugestion"
+        }
+    }
+    static var API_PATH_DO_COURSE_DETAIL: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "docourse/detail"
+        default:
+            return "api/docourse/detail"
+        }
+    }
     internal static func basicAuthRequest(URLString: URLConvertible,
                                           parameters: [String: Any]? = nil,
                                           headers: [String: String]? = nil,
@@ -458,7 +519,7 @@ class NHTTPHelper {
             var param: [String: Any] = [:]
             param["user_id"] = userId
             param["nyelam_token"] = token
-            param[POST_API_VER] = API_VER
+            param[POST_API_VER] = String(API_VER)
             param[POST_APP_VER] = NConstant.appVersion
             param[POST_OS_VER] = NConstant.osVersion
             param[POST_DEVICE] = NConstant.deviceModel
@@ -471,11 +532,11 @@ class NHTTPHelper {
             let headers: HTTPHeaders = [
                 "Content-type": "multipart/form-data"
             ]
-            
+        
             Alamofire.upload(multipartFormData: {(multipartFormData) in
                 if let multiparts = multiparts {
-                    for (_, value) in multiparts {
-                        multipartFormData.append(value, withName: "picture", fileName: "picture" + value.extensionTypeForImageData, mimeType: value.contentTypeForImageData)
+                    for (key, value) in multiparts {
+                        multipartFormData.append(value, withName: key, fileName: "picture.jpg", mimeType: "image/jpeg")
                     }
                 }
                 for (key, value) in param {
@@ -486,48 +547,56 @@ class NHTTPHelper {
             }, usingThreshold: UInt64.init(), to: URLString, method: .post, headers: headers, encodingCompletion: { (encodingResult) in
                 switch encodingResult {
                 case .success(request: let upload, streamingFromDisk: _, streamFileURL: _) :
-                    upload.responseJSON(completionHandler: {response in
+                    upload.responseString(completionHandler: { response in
                         if let error = response.error as? URLError {
                             if error.code == URLError.Code.notConnectedToInternet {
                                 complete(false, nil, NotConnectedInternetError(statusCode: error.code.rawValue, title: "Connection Error", message: ""))
                             }
                             return
                         }
-                        if let value = response.value, let jsonResult = value as? [String: Any] {
-                            var status = -1
-                            if let s = jsonResult[KEY_STATUS] as? Int {
-                                status = s
-                            } else if let s = jsonResult[KEY_STATUS] as? String {
-                                if s.isNumber {
-                                    status = Int(s)!
-                                }
-                            }
-                            if status < 0 {
-                                complete(false, nil, InvalidReturnValueError(statusCode: 200, title: "no json with key \"status\"", message: nil))
-                            }
-                            if status == STATUS_SUCCESS {
-                                if let _ = jsonResult[KEY_DATA] {
-                                    if let jsonData = jsonResult[KEY_DATA] as? [String: Any] {
-                                        complete(true, jsonData, nil)
-                                    } else if let jsonString = jsonResult[KEY_DATA] as? String {
-                                        do {
-                                            let data = jsonString.data(using: String.Encoding.utf8, allowLossyConversion: true)
-                                            let jsonData: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
-                                            complete(true, jsonData, nil)
-                                            return
-                                        } catch {
-                                            print(error)
+                        if let value = response.value {
+                            let data = value.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                            do {
+                                let jsonResult: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                                if let jsonResult = jsonResult as? [String: Any] {
+                                    var status = -1
+                                    if let s = jsonResult[KEY_STATUS] as? Int {
+                                        status = s
+                                    } else if let s = jsonResult[KEY_STATUS] as? String {
+                                        if s.isNumber {
+                                            status = Int(s)!
                                         }
                                     }
-                                    complete(false, nil, UnknownError(statusCode: -1, title: "Unknown Error", message: ""))
+                                    if status < 0 {
+                                        complete(false, nil, InvalidReturnValueError(statusCode: 200, title: "no json with key \"status\"", message: nil))
+                                    }
+                                    if status == STATUS_SUCCESS {
+                                        if let _ = jsonResult[KEY_DATA] {
+                                            if let jsonData = jsonResult[KEY_DATA] as? [String: Any] {
+                                                complete(true, jsonData, nil)
+                                            } else if let jsonString = jsonResult[KEY_DATA] as? String {
+                                                do {
+                                                    let data = jsonString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                                                    let jsonData: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                                                    complete(true, jsonData, nil)
+                                                    return
+                                                } catch {
+                                                    print(error)
+                                                }
+                                            }
+                                            complete(false, nil, UnknownError(statusCode: -1, title: "Unknown Error", message: ""))
+                                        } else {
+                                            complete(false, nil, InvalidReturnValueError(statusCode: 200, title: "no json with key \"data\"", message: nil))
+                                        }
+                                    } else if status == STATUS_INVALID_TOKEN {
+                                        complete(false, nil, InvalidTokenError(statusCode: 200, title: "request status invalid token", message: nil))
+                                    }
                                 } else {
-                                    complete(false, nil, InvalidReturnValueError(statusCode: 200, title: "no json with key \"data\"", message: nil))
+                                    complete(false, nil, UnknownError(statusCode: -1, title: "Unknown Error", message: ""))
                                 }
-                            } else if status == STATUS_INVALID_TOKEN {
-                                complete(false, nil, InvalidTokenError(statusCode: 200, title: "request status invalid token", message: nil))
+                            } catch {
+                                print(error)
                             }
-                        } else {
-                            complete(false, nil, UnknownError(statusCode: -1, title: "Unknown Error", message: ""))
                         }
                     })
                 case .failure(let error):

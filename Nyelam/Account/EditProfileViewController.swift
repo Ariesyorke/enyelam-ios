@@ -27,6 +27,8 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
     @IBOutlet weak var certificateDateTextFIeld: SkyFloatingLabelTextField!
     @IBOutlet weak var certificateNumberTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var bottomScrollView: NSLayoutConstraint!
+    @IBOutlet weak var organizatinLabel: SkyFloatingLabelTextField!
+    @IBOutlet weak var licenseTypeLabel: SkyFloatingLabelTextField!
     
     var phoneRegionCode: String = "ID"
     var userRegionCode: String = "ID"
@@ -35,13 +37,14 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
     var languages: [NLanguage]? = NLanguage.getLanguages()
     var numberKeyboard: MMNumberKeyboard?
     var pickedCountryCode: NCountryCode?
-    
-    var pickedCountry: NCountryCode?
+    var pickedCountry: NCountry?
     var pickedLanguage: NLanguage?
     var pickedNationality: NNationality?
     var pickedBirthdate: Date?
     var pickedCertificateDate: Date?
     var pickedGender: String?
+    var pickedOrganization: NMasterOrganization?
+    var pickedLicenseType: NLicenseType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +72,8 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
         let languageId = self.pickedLanguage?.id
         let countryCodeId = self.pickedCountryCode?.id
         let nationalityId = self.pickedNationality?.id
+        let organizationId = self.pickedOrganization?.id
+        let licenseTypeId = self.pickedLicenseType?.id
         let certificateNumber = self.certificateNumberTextField.text
         if let error = validateError(firstName: firstName, phoneNumber: phoneNumber) {
             UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {
@@ -81,7 +86,7 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
             fullName = ("\(firstName) \(lastName)")
         }
 
-        self.tryEditProfile(fullname: fullName, countryCode: countryCodeId!, emailAddress: emailAddress, phoneNumber: phoneNumber, gender: pickedGender, birthPlace: birthPlace, birthDate: pickedBirthdate, countryId: countryId, nationalityId: nationalityId, languageId: languageId, certificateDate: certificateDate, certificateNumber: certificateNumber)
+        self.tryEditProfile(fullname: fullName, countryCode: countryCodeId!, emailAddress: emailAddress, phoneNumber: phoneNumber, gender: pickedGender, birthPlace: birthPlace, birthDate: pickedBirthdate, countryId: countryId, nationalityId: nationalityId, languageId: languageId, certificateDate: certificateDate, certificateNumber: certificateNumber, organizationId: organizationId, licenseTypeId: licenseTypeId)
     }
     
     @IBAction func certificateDateButtonAction(_ sender: Any) {
@@ -118,27 +123,29 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
     }
     @IBAction func nationalityButtonAction(_ sender: Any) {
         if let pickedCountry = pickedCountry {
+            self.nationalityTextField.text = ""
+            self.pickedNationality = nil
             self.tryGetNationality(countryId: pickedCountry.id!, sender: sender)
         }
     }
     @IBAction func countryButtonAction(_ sender: Any) {
-        if let countryCodes = self.countryCodes, !countryCodes.isEmpty {
-            var c: [String] = []
-            for countryCode in countryCodes {
-                if let countryName = countryCode.countryName {
-                    c.append("\(countryName)")
-                }
-            }
-            let actionSheet = ActionSheetStringPicker.init(title: "Country", rows: c, initialSelection: NCountryCode.getPosition(by: userRegionCode), doneBlock: {picker, index, value in
-                self.pickedCountry = countryCodes[index]
-                self.userRegionCode = countryCodes[index].countryCode!
-                self.countryTextField.text = ("\(countryCodes[index].countryName!)")
-            }, cancel: {_ in return
-                
-            }, origin: sender)
-            
-            actionSheet!.show()
-        }
+//        if let countryCodes = self.countryCodes, !countryCodes.isEmpty {
+//            var c: [String] = []
+//            for countryCode in countryCodes {
+//                if let countryName = countryCode.countryName {
+//                    c.append("\(countryName)")
+//                }
+//            }
+//            let actionSheet = ActionSheetStringPicker.init(title: "Country", rows: c, initialSelection: NCountryCode.getPosition(by: userRegionCode), doneBlock: {picker, index, value in
+//                self.pickedCountry = countryCodes[index]
+//                self.userRegionCode = countryCodes[index].countryCode!
+//                self.countryTextField.text = ("\(countryCodes[index].countryName!)")
+//            }, cancel: {_ in return
+//
+//            }, origin: sender)
+//
+//            actionSheet!.show()
+//        }
     }
     @IBAction func birthdateButtonAction(_ sender: Any) {
         let datePickerController = DTMDatePickerController(nibName: "DTMDatePickerController", bundle: nil)
@@ -156,6 +163,18 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
         popoverPresentationController!.sourceView = sender as? UIView
         popoverPresentationController!.sourceRect = CGRect(x: 0, y: 0, width: (sender as AnyObject).frame.size.width, height: (sender as AnyObject).frame.size.height)
     }
+    @IBAction func organizationButtonAction(_ sender: Any) {
+        self.onShowMasterOrganization()
+    }
+    
+    @IBAction func licenseButtonAction(_ sender: Any) {
+        if self.pickedOrganization == nil {
+            UIAlertController.handleErrorMessage(viewController: self, error: "Please choose organization first!", completion: {})
+            return
+        }
+        self.onShowLicenseType(organizaitonId: self.pickedOrganization!.id!)
+    }
+    
     
     @IBAction func genderButtonAction(_ sender: Any) {
         var genders: [String] = ["Male", "Female"]
@@ -238,13 +257,23 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
             }
             self.certificateNumberTextField.text = user.certificateNumber
             if let country = user.country {
+                self.pickedCountry = country
                 self.countryTextField.text = country.name
             }
             if let nationality = user.nationality {
+                self.pickedNationality = nationality
                 self.nationalityTextField.text = nationality.name
             }
             if let language = user.language {
                 self.languageTextField.text = language.name
+            }
+            if let organization = user.organization {
+                self.pickedOrganization = organization
+                self.organizatinLabel.text = organization.name
+            }
+            if let licenseType = user.licenseType {
+                self.pickedLicenseType = licenseType
+                self.licenseTypeLabel.text = licenseType.name
             }
         }
     }
@@ -315,15 +344,15 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
         return nil
     }
     
-    internal func tryEditProfile(fullname: String, countryCode: String, emailAddress: String, phoneNumber: String, gender: String?, birthPlace: String?, birthDate: Date?, countryId: String?, nationalityId: String?, languageId: String?, certificateDate: Date?, certificateNumber: String?) {
+    internal func tryEditProfile(fullname: String, countryCode: String, emailAddress: String, phoneNumber: String, gender: String?, birthPlace: String?, birthDate: Date?, countryId: String?, nationalityId: String?, languageId: String?, certificateDate: Date?, certificateNumber: String?, organizationId: String?, licenseTypeId: String?) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        NHTTPHelper.httpUpdateProfile(fullname: fullname, username: nil, gender: gender, birthDate: birthDate, countryCodeId: countryCode, phoneNumber: phoneNumber, certificateDate: certificateDate, certificateNumber: certificateNumber, birthPlace: birthPlace, countryId: countryId, nationalityId: nationalityId, languageId: languageId, complete: {response in
+        NHTTPHelper.httpUpdateProfile(fullname: fullname, username: nil, gender: gender, birthDate: birthDate, countryCodeId: countryCode, phoneNumber: phoneNumber, certificateDate: certificateDate, certificateNumber: certificateNumber, birthPlace: birthPlace, countryId: countryId, nationalityId: nationalityId, languageId: languageId, organizationId: organizationId, licenseTypeId: licenseTypeId, complete: {response in
             MBProgressHUD.hide(for: self.view, animated: true)
 
             if let error = response.error {
                 if error.isKind(of: NotConnectedInternetError.self) {
                     NHelper.handleConnectionError(completion: {
-                        self.tryEditProfile(fullname: fullname, countryCode: countryCode, emailAddress: emailAddress, phoneNumber: phoneNumber, gender: gender, birthPlace: birthPlace, birthDate: birthDate, countryId: countryId, nationalityId: nationalityId, languageId: languageId, certificateDate: certificateDate, certificateNumber: certificateNumber)
+                        self.tryEditProfile(fullname: fullname, countryCode: countryCode, emailAddress: emailAddress, phoneNumber: phoneNumber, gender: gender, birthPlace: birthPlace, birthDate: birthDate, countryId: countryId, nationalityId: nationalityId, languageId: languageId, certificateDate: certificateDate, certificateNumber: certificateNumber, organizationId: organizationId, licenseTypeId: licenseTypeId)
                     })
                 }
                 return
@@ -335,6 +364,52 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
                     self.dismiss(animated: true, completion: nil)
                 }
             })
+        })
+    }
+    
+    internal func onShowMasterOrganization() {
+        if let organizations = NMasterOrganization.getOrganizations(), !organizations.isEmpty {
+            var c: [String] = []
+            for organization in organizations {
+                c.append(organization.name!)
+            }
+            let actionSheet = ActionSheetStringPicker.init(title: "Association", rows: c, initialSelection: self.pickedOrganization != nil ? NMasterOrganization.getPosition(by: self.pickedOrganization!.id!) : 0, doneBlock: {picker, index, value in
+                self.pickedOrganization = organizations[index]
+                self.pickedLicenseType = nil
+                self.licenseTypeLabel.text = ""
+                self.organizatinLabel.text = self.pickedOrganization!.name
+            }, cancel: {_ in return
+            }, origin: self.view)
+            actionSheet!.show()
+        }
+    }
+    
+    internal func onShowLicenseType(organizaitonId: String) {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        NHTTPHelper.httpGetLicenseType(organizationId: organizaitonId, complete: {response in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            if let error = response.error {
+                if error.isKind(of: NotConnectedInternetError.self) {
+                    NHelper.handleConnectionError(completion: {
+                        self.onShowLicenseType(organizaitonId: organizaitonId)
+                    })
+                }
+                return
+            }
+            if let licenseTypes = response.data, !licenseTypes.isEmpty {
+                var c: [String] = []
+                for licenseType in licenseTypes {
+                    c.append(licenseType.name!)
+                }
+                let actionSheet = ActionSheetStringPicker.init(title: "License Type", rows: c, initialSelection: 0, doneBlock: {picker, index, value in
+                    self.pickedLicenseType = licenseTypes[index]
+                    self.licenseTypeLabel.text = self.pickedLicenseType!.name
+                }, cancel: {_ in return
+                }, origin: self.view)
+                actionSheet!.show()
+            } else {
+                UIAlertController.handleErrorMessage(viewController: self, error: "License not found!", completion: {})
+            }
         })
     }
     

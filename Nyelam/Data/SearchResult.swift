@@ -75,11 +75,11 @@ public class SearchResult: Parseable {
     static func generateSearchResultType(type: Int, json: [String: Any])->SearchResult {
         switch type {
         case 1:
-            return SearchResultDiveCenter(json: json)
+            return SearchResultSpot(json: json)
         case 2:
             return SearchResultCategory(json: json)
         case 3:
-            return SearchResultSpot(json: json)
+            return SearchResultDiveCenter(json: json)
         case 4:
             return SearchResultService(json: json)
         case 5:

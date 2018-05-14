@@ -83,11 +83,17 @@ class BookingDetailController: BaseViewController {
 }
 
 extension BookingDetailController: UITableViewDataSource, UITableViewDelegate {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         if orderReturn == nil {
             return 0
         }
-        return (self.type == "1" && (self.orderReturn!.veritransToken != nil || self.orderReturn!.paypalCurrency != nil)) ? 3 : 4
+        
+        if self.type == "1" {
+            return self.orderReturn!.veritransToken != nil || self.orderReturn!.paypalCurrency != nil || self.orderReturn!.summary!.order!.status != "unpaid" ? 3 : 4
+        } else {
+            return 3
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -102,7 +108,7 @@ extension BookingDetailController: UITableViewDataSource, UITableViewDelegate {
         case 3:
             return 1
         default:
-            return 0
+            return 1
         }
     }
     
@@ -118,7 +124,7 @@ extension BookingDetailController: UITableViewDataSource, UITableViewDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath) as! ContactCell
             cell.changeButton.isHidden = true
             if let orderReturn = self.orderReturn, let summary = orderReturn.summary, let contact = summary.contact {
-              //  cell.initData(contact: contact)
+                cell.initData(contact: contact)
             }
             return cell
         } else if indexPath.section == 2 {
@@ -156,6 +162,7 @@ extension BookingDetailController: UITableViewDataSource, UITableViewDelegate {
                     })
                 ])
             }
+            return cell
         }
         return UITableViewCell()
     }
@@ -169,7 +176,7 @@ extension BookingDetailController: UITableViewDataSource, UITableViewDelegate {
         }
         sectionTitle.titleLabel.text = self.sections[section]
         if section == 0 {
-            sectionTitle.titleLabel.text = "\(sectionTitle.titleLabel.text!) \(orderReturn!.summary!.order!.orderId!)"
+            sectionTitle.titleLabel.text = "\(sectionTitle.titleLabel.text!) #\(orderReturn!.summary!.order!.orderId!)"
             sectionTitle.subtitleLabel.text = "\(orderReturn!.summary!.order!.status!)"
         }
         return sectionTitle
@@ -177,7 +184,7 @@ extension BookingDetailController: UITableViewDataSource, UITableViewDelegate {
     
     fileprivate func uploadProof(data: Data, bookingId: String) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        NHTTPHelper.httpUploadPaymentProof(data: data, bookingDetailId: bookingId, complete: {response in
+        NHTTPHelper.httpUploadPaymentProof(data: data, bookingDetailId: bookingId, complete: {response in    
             MBProgressHUD.hide(for: self.view, animated: true)
             if let error = response.error {
                 if error.isKind(of: NotConnectedInternetError.self) {
@@ -196,11 +203,12 @@ extension BookingDetailController: UITableViewDataSource, UITableViewDelegate {
 
 extension BookingDetailController: UIImagePickerControllerDelegate,
 UINavigationControllerDelegate {
-    //MARK UIIMAGEPICKER
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             let data = UIImageJPEGRepresentation(chosenImage, 0.75)
-            self.uploadProof(data: data!, bookingId: self.bookingId!)
+            self.dismiss(animated: true, completion: {
+                self.uploadProof(data: data!, bookingId: self.bookingId!)
+            })
         } else {
             self.dismiss(animated: true, completion: nil)
         }

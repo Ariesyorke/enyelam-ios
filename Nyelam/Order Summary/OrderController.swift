@@ -164,6 +164,7 @@ class OrderController: BaseViewController {
         } else {
             UIAlertController.handlePopupMessage(viewController: self, title: "Order Success!", actionButtonTitle: "OK", completion: {
                 if let navigation = self.navigationController {
+                    navigation.setNavigationBarHidden(true, animated: true)
                     navigation.popToRootViewController(animated: true)
                 }
             })
@@ -329,7 +330,7 @@ extension OrderController: UITableViewDelegate, UITableViewDataSource {
                 }
                 return
             }
-            self.payNowButton.backgroundColor = UIColor.primary
+            self.payNowButton.backgroundColor = UIColor.blueActive
             self.payNowButton.isEnabled = true
             if let data = response.data {
                 self.cartReturn = data
@@ -346,6 +347,7 @@ extension OrderController: UITableViewDelegate, UITableViewDataSource {
         customerDetails.firstName = contact.name!
         customerDetails.email = contact.email!
         if let countryCode = contact.countryCode {
+            print("ADD CONTACT")
             customerDetails.phone = "+\(countryCode.countryCode!)\(contact.phoneNumber!)"
         }
         var itemDetails: [MidtransItemDetail] = []
@@ -353,12 +355,15 @@ extension OrderController: UITableViewDelegate, UITableViewDataSource {
         itemDetails.append(itemDetail!)
         if let additionals = additionals, !additionals.isEmpty {
             var itemID = -1
+            print("ADDITIONALS")
             for additional in additionals {
+                print("ADDITIONALS ITEMS")
                 itemDetails.append(MidtransItemDetail(itemID: String(itemID), name: additional.title!, price: additional.value as! NSNumber, quantity: 1))
                 itemID -= 1
             }
         }
         let paymentFeature = (paymentType==2 ? MidtransPaymentFeature.MidtransPaymentFeatureCreditCard : MidtransPaymentFeature.MidtransPaymentFeatureBankTransfer)
+        print("VERITRANS TOKEN \(veritransToken)")
         let response = MidtransTransactionTokenResponse()
         response.customerDetails = customerDetails
         response.tokenId = veritransToken
@@ -508,12 +513,15 @@ extension OrderController: MidtransUIPaymentViewControllerDelegate, PayPalPaymen
         paymentViewController.dismiss(animated: true, completion: {
             UIAlertController.handlePopupMessage(viewController: self, title: "Order Success!", actionButtonTitle: "OK", completion: {
                 MBProgressHUD.showAdded(to: self.view, animated: true)
-                NHTTPHelper.httpPaypalNotification(paypalId: completedPayment.confirmation["id"] as! String, complete: {response in
-                    MBProgressHUD.hide(for: self.view, animated: true)
-                    if let navigation = self.navigationController {
-                        navigation.popToRootViewController(animated: true)
-                    }
-                })
+                if let data = completedPayment.confirmation["response"] as? [String: Any] {
+                    NHTTPHelper.httpPaypalNotification(paypalId: data["id"]as! String, complete: {response in
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        if let navigation = self.navigationController {
+                            navigation.setNavigationBarHidden(true, animated: true)
+                            navigation.popToRootViewController(animated: true)
+                        }
+                    })
+                }
             })
         })
     }
@@ -539,7 +547,11 @@ extension OrderController: MidtransUIPaymentViewControllerDelegate, PayPalPaymen
     }
     
     func paymentViewController(_ viewController: MidtransUIPaymentViewController!, paymentFailed error: Error!) {
-        
+        viewController.dismiss(animated: true, completion: {
+            UIAlertController.handlePopupMessage(viewController: self, title: "Order Failed", actionButtonTitle: "OK", completion: {
+                
+            })
+        })
     }
     func paymentViewController(_ viewController: MidtransUIPaymentViewController!, saveCardFailed error: Error!) {
         
@@ -553,6 +565,7 @@ extension OrderController: MidtransUIPaymentViewControllerDelegate, PayPalPaymen
                 NHTTPHelper.httpVeritransNotification(parameters: transactionResult.serialized(), complete: {response in
                     MBProgressHUD.hide(for: self.view, animated: true)
                     if let navigation = self.navigationController {
+                        navigation.setNavigationBarHidden(true, animated: true)
                         navigation.popToRootViewController(animated: true)
                     }
                 })
@@ -568,6 +581,7 @@ extension OrderController: MidtransUIPaymentViewControllerDelegate, PayPalPaymen
                 NHTTPHelper.httpVeritransNotification(parameters: transactionResult.serialized(), complete: {response in
                     MBProgressHUD.hide(for: self.view, animated: true)
                     if let navigation = self.navigationController {
+                        navigation.setNavigationBarHidden(true, animated: true)
                         navigation.popToRootViewController(animated: true)
                     }
                 })

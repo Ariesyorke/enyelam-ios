@@ -29,8 +29,33 @@ extension NHTTPHelper {
                                         }
                                         complete(NHTTPResponse(resultStatus: true, data: success, error: nil))
                                     }
+
         })
     }
+    static func httpBookService(diveCenterId: String, diveServiceId: String, diver: Int, schedule: Date, type: Int, licenseTypeId: String, organizationId: String, complete: @escaping(NHTTPResponse<CartReturn>)->()) {
+        self.basicAuthRequest(URLString: HOST_URL + API_PATH_BOOK_SERVICE_CART,
+                              parameters: ["dive_service_id": diveServiceId,
+                                           "dive_center_id": diveCenterId,
+                                           "diver": String(diver),
+                                           "type": String(type),
+                                           "organization_id": organizationId,
+                                           "license_type": licenseTypeId,
+                                           "schedule": String(schedule.timeIntervalSince1970)],
+                              headers: nil,
+                              complete: {status, data, error in
+                                if let error = error {
+                                    complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
+                                    return
+                                }
+                                if let data = data, let json = data as? [String: Any] {
+                                    let cartReturn = CartReturn(json: json)
+                                    complete(NHTTPResponse(resultStatus: true, data: cartReturn, error: nil))
+                                }
+                                
+                                
+        })
+    }
+    
     static func httpBookService(diveCenterId: String, diveServiceId: String, diver: Int, schedule: Date, type: Int, complete: @escaping(NHTTPResponse<CartReturn>)->()) {
         self.basicAuthRequest(URLString: HOST_URL + API_PATH_BOOK_SERVICE_CART,
                               parameters: ["dive_service_id": diveServiceId,
@@ -124,7 +149,7 @@ extension NHTTPHelper {
     }
     
     static func httpResubmitOrder(orderId: String, paymentType: Int, complete: @escaping (NHTTPResponse<OrderReturn>)->()) {
-        self.basicAuthRequest(URLString: HOST_URL + API_PATH_SUBMIT_ORDER,
+        self.basicAuthRequest(URLString: HOST_URL + API_PATH_RESUBMIT_ORDER,
                               parameters: [
                                 "order_id": orderId,
                                 "payment_type": String(paymentType)

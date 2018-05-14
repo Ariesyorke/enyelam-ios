@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class MainRootController: BaseViewController {
     
@@ -110,13 +111,14 @@ class MainRootController: BaseViewController {
     
     override func goToAuth() {
         let _ = AuthNavigationController.present(on: self, dismissCompletion: {
-            self.navigationController!.setNavigationBarHidden(false, animated: true)
+            self.navigationController!.setNavigationBarHidden(true, animated: true)
             self.checkLoginState()
         })
     }
 
     func checkLoginState() {
         var index = 0
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         if let _ = NAuthReturn.authUser() {
             for tab: MainRootTabItemView in self.tabMenus {
                 if tab.tabSelected {
@@ -128,12 +130,14 @@ class MainRootController: BaseViewController {
             for tab: MainRootTabItemView in self.tabMenus {
                 if index == 0 {
                     tab.tabSelected = true
+                    self.onSelectTab(type: self.tabMenuTypes[index])
                 } else {
                     tab.tabSelected = false
                 }
                 index += 1
             }
         }
+        MBProgressHUD.hide(for: self.view, animated: true)
     }
 
 }

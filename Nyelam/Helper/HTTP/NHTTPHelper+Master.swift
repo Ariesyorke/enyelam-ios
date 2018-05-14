@@ -10,6 +10,100 @@ import Foundation
 import CoreData
 
 extension NHTTPHelper {
+    static func httpGetMasterOrganization(complete: @escaping (NHTTPResponse<[NMasterOrganization]>)->()) {
+        self.basicPostRequest(URLString: HOST_URL+API_PATH_MASTER_ORGANIZATION) { status, data, error in
+            if let error = error {
+                complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
+                return
+            }
+            if let data = data, let json = data as? [String: Any] {
+                var organizations: [NMasterOrganization]? = nil
+                if let organizationArray = json["organizations"] as? Array<[String: Any]>, !organizationArray.isEmpty {
+                    organizations = []
+                    for organizationJson in organizationArray {
+                        var organization: NMasterOrganization? = nil
+                        if let id = organizationJson["id"] as? String {
+                            organization = NMasterOrganization.getOrganization(using: id)
+                        }
+                        if organization == nil {
+                            organization = NMasterOrganization.init(entity: NSEntityDescription.entity(forEntityName: "NMasterOrganization", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
+                        }
+                        organization!.parse(json: organizationJson)
+                        organizations!.append(organization!)
+                    }
+                } else if let organizationString = json["organizations"] as? String {
+                    do {
+                        organizations = []
+                        let data = organizationString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                        let organizationArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+                        for organizationJson in organizationArray {
+                            var organization: NMasterOrganization? = nil
+                            if let id = organizationJson["id"] as? String {
+                                organization = NMasterOrganization.getOrganization(using: id)
+                            }
+                            if organization == nil {
+                                organization = NMasterOrganization.init(entity: NSEntityDescription.entity(forEntityName: "NMasterOrganization", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
+                            }
+                            organization!.parse(json: organizationJson)
+                            organizations!.append(organization!)
+                        }
+                    } catch {
+                        print(error)
+                    }
+                }
+                complete(NHTTPResponse(resultStatus: true, data: organizations, error: nil))
+            }
+        }
+    }
+    static func httpGetLicenseType(organizationId: String, complete: @escaping (NHTTPResponse<[NLicenseType]>)->()) {
+        self.basicPostRequest(URLString: HOST_URL+API_PATH_MASTER_LICENSE,
+                              parameters: ["organization_id":organizationId],
+                              headers: nil, complete: {status, data, error in
+                                if let error = error {
+                                    complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
+                                    return
+                                }
+                                if let data = data, let json = data as? [String: Any] {
+                                    var licenseTypes: [NLicenseType]? = nil
+                                    if let licenseTypesArray = json["lisence_types"] as? Array<[String: Any]>, !licenseTypesArray.isEmpty {
+                                        licenseTypes = []
+                                        for licenseTypeJson in licenseTypesArray {
+                                            var licenseType: NLicenseType? = nil
+                                            if let id = licenseTypeJson["id"] as? String {
+                                                licenseType = NLicenseType.getLicenseType(using: id)
+                                            }
+                                            if licenseType == nil {
+                                                licenseType = NLicenseType.init(entity: NSEntityDescription.entity(forEntityName: "NLicenseType", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
+                                            }
+                                            licenseType!.parse(json: licenseTypeJson)
+                                            NSManagedObjectContext.saveData()
+                                            licenseTypes!.append(licenseType!)
+                                        }
+                                    } else if let licenseTypesString = json["lisence_types"] as? String {
+                                        do {
+                                            let data = licenseTypesString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                                            let licenseTypesArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+                                            licenseTypes = []
+                                            for licenseTypeJson in licenseTypesArray {
+                                                var licenseType: NLicenseType? = nil
+                                                if let id = licenseTypeJson["id"] as? String {
+                                                    licenseType = NLicenseType.getLicenseType(using: id)
+                                                }
+                                                if licenseType == nil {
+                                                    licenseType = NLicenseType.init(entity: NSEntityDescription.entity(forEntityName: "NLicenseType", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
+                                                }
+                                                licenseType!.parse(json: licenseTypeJson)
+                                                NSManagedObjectContext.saveData()
+                                                licenseTypes!.append(licenseType!)
+                                            }
+                                        } catch {
+                                            print(error)
+                                        }
+                                    }
+                                    complete(NHTTPResponse(resultStatus: true, data: licenseTypes, error: nil))
+                                }
+        })
+    }
     static func httpGetMasterCategories(page: String, complete: @escaping (NHTTPResponse<[NCategory]>)->()) {
         self.basicPostRequest(URLString: HOST_URL+API_PATH_MASTER_CATEGORY,
                               parameters: ["page": page],
@@ -29,7 +123,7 @@ extension NHTTPHelper {
                             category = NCategory.getCategory(using: id)
                         }
                         if category == nil {
-                            category = NSEntityDescription.insertNewObject(forEntityName: "NCategory", into: AppDelegate.sharedManagedContext) as! NCategory
+                            category = NCategory.init(entity: NSEntityDescription.entity(forEntityName: "NCategory", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                         }
                         category!.parse(json: categoryJson)
                         categories!.append(category!)
@@ -83,6 +177,7 @@ extension NHTTPHelper {
                             }
                             countryCode!.parse(json: countryCodeJson)
                             countryCodes!.append(countryCode!)
+
                         }
                     }
                 } else if let countryCodeString = json["area_code"] as? String {

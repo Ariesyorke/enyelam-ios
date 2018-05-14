@@ -141,7 +141,7 @@ class HomeController: BaseViewController, UIScrollViewDelegate, MFMailComposeVie
                         }
                     }
                 }
-                self.doTripScrollerHeight.constant = 384
+                self.doTripScrollerHeight.constant = 330
                 self.doTrips = diveServices
             }
         })
@@ -172,7 +172,9 @@ extension HomeController {
             SearchFormController.push(on: self.navigationController!, forDoTrip: false)
         } else if sender == self.btEcoTrip {
             EcoTripIntroductionController.push(on: self.navigationController!)
-        } else if sender == self.btDoShop || sender == self.btDoCourse {
+        } else if sender == self.btDoCourse {
+            SearchFormController.push(on: self.navigationController!, forDoCourse: true)
+        } else if sender == self.btDoShop {
             UIAlertController.handlePopupMessage(viewController: self, title: "Coming Soon!", actionButtonTitle: "OK", completion: {})
         }
     }

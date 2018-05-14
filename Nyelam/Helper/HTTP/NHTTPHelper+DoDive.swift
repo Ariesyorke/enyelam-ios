@@ -10,9 +10,10 @@ import Foundation
 import CoreData
 
 extension NHTTPHelper {
-    static func httpDoDiveSearchBy(keyword: String, ecoTrip: Int?, complete: @escaping (NHTTPResponse<[SearchResult]>)->()) {
+    static func httpDoDiveSearchBy(keyword: String, ecoTrip: Int?, type: Int, complete: @escaping (NHTTPResponse<[SearchResult]>)->()) {
         var param: [String: Any] = [:]
         param["keyword"] = keyword
+        param["type"] = type
         if let ecoTrip = ecoTrip {
             param["eco_trip"] = ecoTrip
         }

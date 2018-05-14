@@ -101,8 +101,9 @@ extension NHTTPHelper {
                                     _ = NAuthReturn.deleteAllAuth()
                                     let authReturn = NSEntityDescription.insertNewObject(forEntityName: "NAuthReturn", into: AppDelegate.sharedManagedContext) as! NAuthReturn
                                     authReturn.parse(json: json)
-                                    NSManagedObjectContext.saveData()
-                                    complete(NHTTPResponse(resultStatus: true, data: authReturn, error: nil))
+                                    NSManagedObjectContext.saveData {
+                                        complete(NHTTPResponse(resultStatus: true, data: authReturn, error: nil))
+                                    }
                                 }
         })
     }

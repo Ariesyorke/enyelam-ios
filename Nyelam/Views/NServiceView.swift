@@ -30,6 +30,7 @@ class NServiceView: UIView {
     @IBOutlet weak var rateView: CosmosView!
     
     var isDoTrip: Bool = false
+    var isDoCourse: Bool = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -80,8 +81,16 @@ class NServiceView: UIView {
     
     func initData(diveService: NDiveService) {
         self.serviceNameLabel.text = diveService.name
-        self.totalDivesLabel.text = String(diveService.totalDives) + " Dive" + (diveService.totalDives>1 ? "s" : "")
-        self.totalDaysLabel.text = String(diveService.totalDays) + " Day" + (diveService.totalDays>1 ? "s" : "")
+        if self.isDoCourse {
+//            self.totalDivesLabel.text = String(diveService.totalDives) + " Dive" + (diveService.totalDives>1 ? "s" : "")
+            
+            self.totalDivesLabel.text = String(diveService.totalDays) + " Day" + (diveService.totalDays>1 ? "s" : "") + " class"
+            self.totalDaysLabel.text = String(diveService.dayOnSite) + " Day" +
+                (diveService.dayOnSite>1 ? "s" : "") + " on-site"
+        } else {
+            self.totalDivesLabel.text = String(diveService.totalDives) + " Dive" + (diveService.totalDives>1 ? "s" : "")
+            self.totalDaysLabel.text = String(diveService.totalDays) + " Day" + (diveService.totalDays>1 ? "s" : "")
+        }
         if let url = diveService.featuredImage {
            self.serviceImageView.loadImage(from: url, contentMode: .scaleAspectFill, with: "bg_placeholder.png")
         }
@@ -91,7 +100,7 @@ class NServiceView: UIView {
             self.serviceStartDateEndDateLabel.text = "\(startDate) - \(endDate)"
         }
         
-        if isDoTrip {
+        if self.isDoTrip || self.isDoCourse {
             self.diveDaysVerticalSpacingConstraint.constant = 8
             self.scheduleHeightConstant.constant = 18
             self.serviceStartDateEndDateLabel.isHidden = false
@@ -100,6 +109,7 @@ class NServiceView: UIView {
             self.scheduleHeightConstant.constant = 0
             self.serviceStartDateEndDateLabel.isHidden = true
         }
+    
         
         self.normalPriceLabel.text = diveService.normalPrice.toCurrencyFormatString(currency: "Rp.")
         self.specialPriceLabel.text = diveService.specialPrice.toCurrencyFormatString(currency:"Rp.")
