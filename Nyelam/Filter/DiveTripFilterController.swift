@@ -478,7 +478,7 @@ class TripCategoryCell: NTableViewCell {
                 self.flowLayout.addSubview(button)
                 i+=1
             }
-            self.flowLayoutHeight.constant = 250 + additional
+            self.flowLayoutHeight.constant = 120 + additional
         }
     }
 }
@@ -581,7 +581,7 @@ class FacilityCell: NTableViewCell {
             button.addTarget(self, action: #selector(facilityButtonAction(_:)), for: .touchUpInside)
             self.flowLayout.addSubview(button)
         }
-        self.flowLayoutHeight.constant = 180 + additional
+        self.flowLayoutHeight.constant = 170 + additional
     }
 }
 

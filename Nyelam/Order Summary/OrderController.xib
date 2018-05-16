@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -39,7 +40,7 @@
                     <rect key="frame" x="0.0" y="583" width="375" height="84"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rp. 97.000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z3F-bx-9d0" userLabel="Price Label">
-                            <rect key="frame" x="16" y="44" width="163.5" height="24"/>
+                            <rect key="frame" x="16" y="44" width="218" height="24"/>
                             <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="20"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -51,10 +52,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fM-HD-Hu4">
-                            <rect key="frame" x="195.5" y="38" width="163.5" height="30"/>
+                            <rect key="frame" x="250" y="38" width="109" height="30"/>
                             <color key="backgroundColor" red="0.0" green="0.66666666669999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="15"/>
-                            <state key="normal" title="Pay Now">
+                            <state key="normal" title="Pay">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <userDefinedRuntimeAttributes>
@@ -72,7 +73,7 @@
                         <constraint firstItem="0fM-HD-Hu4" firstAttribute="leading" secondItem="Z3F-bx-9d0" secondAttribute="trailing" constant="16" id="8gn-eE-jns"/>
                         <constraint firstAttribute="bottom" secondItem="Z3F-bx-9d0" secondAttribute="bottom" constant="16" id="CRX-Ih-9Ra"/>
                         <constraint firstItem="aGa-9s-nRa" firstAttribute="bottom" secondItem="Z3F-bx-9d0" secondAttribute="top" constant="-8" id="DA7-Wz-A0E"/>
-                        <constraint firstItem="0fM-HD-Hu4" firstAttribute="width" secondItem="Z3F-bx-9d0" secondAttribute="width" id="FiK-lH-L7l"/>
+                        <constraint firstItem="0fM-HD-Hu4" firstAttribute="width" secondItem="Z3F-bx-9d0" secondAttribute="width" multiplier="1:2" id="FiK-lH-L7l"/>
                         <constraint firstItem="aGa-9s-nRa" firstAttribute="leading" secondItem="Z3F-bx-9d0" secondAttribute="leading" id="OXi-wb-NPy"/>
                         <constraint firstAttribute="trailing" secondItem="0fM-HD-Hu4" secondAttribute="trailing" constant="16" id="RPx-yh-6gY"/>
                         <constraint firstAttribute="bottom" secondItem="0fM-HD-Hu4" secondAttribute="bottom" constant="16" id="WFI-PP-68o"/>

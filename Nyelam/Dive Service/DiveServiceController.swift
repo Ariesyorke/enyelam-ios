@@ -424,7 +424,7 @@ class DiveServiceDetailCell: NTableViewCell {
     @IBOutlet weak var diveCenterImage: UIImageView!
     @IBOutlet weak var diveCenterNameLabel: UILabel!
     @IBOutlet weak var divespotLabel: UILabel!
-    @IBOutlet weak var ratingView: CosmosView!
+//    @IBOutlet weak var ratingView: CosmosView!
     @IBOutlet weak var visitorCounterLabel: UILabel!
     @IBOutlet weak var normalPriceContainer: UIView!
     @IBOutlet weak var specialPriceLabel: UILabel!
@@ -451,6 +451,8 @@ class DiveServiceDetailCell: NTableViewCell {
     @IBOutlet weak var additionalLabel3: UILabel!
     @IBOutlet weak var categoryHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var licenseTopSpacing: NSLayoutConstraint!
+    @IBOutlet weak var specialPriceTopSpacing: NSLayoutConstraint!
+    @IBOutlet weak var stockLabel: UILabel!
     
     fileprivate var forDoCourse: Bool = false
     fileprivate var diveService: NDiveService?
@@ -478,6 +480,7 @@ class DiveServiceDetailCell: NTableViewCell {
         if let name = diveService.name {
             self.titleLabel.text = name
         }
+        self.stockLabel.text = String(diveService.availability)
         if let diveCenter = diveService.divecenter {
             if let imageLogo = diveCenter.imageLogo {
                 self.diveCenterImage.loadImage(from: imageLogo, contentMode: .scaleAspectFit, with: "image_default.png")
@@ -500,13 +503,15 @@ class DiveServiceDetailCell: NTableViewCell {
         } else {
             self.divespotLabel.text = "-"
         }
-        self.ratingView.rating = diveService.rating
-        self.visitorCounterLabel.text = "\(diveService.ratingCount) / \(diveService.visited) visited"
+//        self.ratingView.rating = diveService.rating
+//        self.visitorCounterLabel.text = "\(diveService.ratingCount) / \(diveService.visited) visited"
         self.normalPriceLabel.text = diveService.normalPrice.toCurrencyFormatString(currency: "Rp.")
         self.specialPriceLabel.text = diveService.specialPrice.toCurrencyFormatString(currency:"Rp.")
         if diveService.normalPrice == diveService.specialPrice {
             self.normalPriceContainer.isHidden = true
+            self.specialPriceTopSpacing.constant = 0
         } else {
+            self.specialPriceTopSpacing.constant = 8
             self.normalPriceContainer.isHidden = false
         }
         if self.forDoCourse {

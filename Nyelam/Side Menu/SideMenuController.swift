@@ -77,7 +77,7 @@ class SideMenuController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContentViewCell", for: indexPath) as! ContentViewCell
         cell.nameLabel.text = contents[indexPath.row]
         cell.arrowView.isHidden = true
-        cell.circleView.circledView()
+//        cell.circleView.circledView()
         return cell
     }
     

@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cy3-aH-1O7" customClass="NServiceView" customModule="Nyelam" customModuleProvider="target">
-                        <rect key="frame" x="16" y="16" width="300" height="354.5"/>
+                        <rect key="frame" x="0.0" y="16" width="0.0" height="0.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">

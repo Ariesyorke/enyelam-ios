@@ -70,7 +70,7 @@ extension NHTTPHelper {
         param["page"] = page
         param["category_id"] = categories
         param["diver"] = String(diver)
-        param["license"] = String(certificate)
+        param["certificate"] = String(certificate)
         param["date"] = String(date)
         param["sort_by"] = String(sortBy)
         if let totalDives = totalDives, !totalDives.isEmpty {
@@ -136,7 +136,7 @@ extension NHTTPHelper {
         var param: [String: Any] = [:]
         param["page"] = page
         param["diver"] = String(diver)
-        param["license"] = String(certificate)
+        param["certificate"] = String(certificate)
         param["date"] = String(date)
         param["sort_by"] = String(sortBy)
         param["dive_spot_id"] = diveSpotId
@@ -209,7 +209,7 @@ extension NHTTPHelper {
         var param: [String: Any] = [:]
         param["page"] = page
         param["diver"] = String(diver)
-        param["license"] = String(certificate)
+        param["certificate"] = String(certificate)
         param["date"] = String(date)
         param["sort_by"] = String(sortBy)
         param["province_id"] = provinceId
@@ -283,7 +283,7 @@ extension NHTTPHelper {
         var param: [String: Any] = [:]
         param["page"] = page
         param["diver"] = String(diver)
-        param["license"] = String(certificate)
+        param["certificate"] = String(certificate)
         param["date"] = String(date)
         param["sort_by"] = String(sortBy)
         param["city_id"] = cityId
@@ -363,7 +363,7 @@ extension NHTTPHelper {
         param["sort_by"] = String(sortBy)
         param["dive_center_id"] = diveCenterId
         if let certificate = certificate {
-            param["license"] = String(certificate)
+            param["certificate"] = String(certificate)
         }
         if let categories = categories, !categories.isEmpty {
             param["category_id"] = categories

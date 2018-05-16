@@ -27,8 +27,9 @@ class NServiceView: UIView {
     @IBOutlet weak var diveDaysVerticalSpacingConstraint: NSLayoutConstraint!
     @IBOutlet weak var specialPriceVerticalConstraint: NSLayoutConstraint!
     @IBOutlet weak var normalPriceContainerView: UIView!
-    @IBOutlet weak var rateView: CosmosView!
+    @IBOutlet weak var diveCenterName: UILabel!
     
+//    @IBOutlet weak var rateView: CosmosView!
     var isDoTrip: Bool = false
     var isDoCourse: Bool = false
     
@@ -80,6 +81,7 @@ class NServiceView: UIView {
     }
     
     func initData(diveService: NDiveService) {
+        self.translatesAutoresizingMaskIntoConstraints = false
         self.serviceNameLabel.text = diveService.name
         if self.isDoCourse {
 //            self.totalDivesLabel.text = String(diveService.totalDives) + " Dive" + (diveService.totalDives>1 ? "s" : "")
@@ -95,8 +97,8 @@ class NServiceView: UIView {
            self.serviceImageView.loadImage(from: url, contentMode: .scaleAspectFill, with: "bg_placeholder.png")
         }
         if let schedule = diveService.schedule {
-            let startDate = Date(timeIntervalSince1970: schedule.startDate).formatDate(dateFormat: "MMM yyyy")
-            let endDate = Date(timeIntervalSince1970: schedule.endDate).formatDate(dateFormat: "MMM yyyy")
+            let startDate = Date(timeIntervalSince1970: schedule.startDate).formatDate(dateFormat: "dd MMM yyyy")
+            let endDate = Date(timeIntervalSince1970: schedule.endDate).formatDate(dateFormat: "dd MMM yyyy")
             self.serviceStartDateEndDateLabel.text = "\(startDate) - \(endDate)"
         }
         
@@ -104,11 +106,14 @@ class NServiceView: UIView {
             self.diveDaysVerticalSpacingConstraint.constant = 8
             self.scheduleHeightConstant.constant = 18
             self.serviceStartDateEndDateLabel.isHidden = false
+            self.specialPriceVerticalConstraint.constant = 8
         } else {
             self.diveDaysVerticalSpacingConstraint.constant = 0
             self.scheduleHeightConstant.constant = 0
             self.serviceStartDateEndDateLabel.isHidden = true
+            self.specialPriceVerticalConstraint.constant = 0            
         }
+        
     
         
         self.normalPriceLabel.text = diveService.normalPrice.toCurrencyFormatString(currency: "Rp.")
@@ -119,12 +124,15 @@ class NServiceView: UIView {
         } else {
             self.normalPriceContainerView.isHidden = false
         }
-        
+        if let diveCenter = diveService.divecenter {
+            self.diveCenterName.text = diveCenter.name
+        }
         if diveService.license {
             self.linceseNeededImageView.image = UIImage(named: "icon_license_on")
         } else {
             self.linceseNeededImageView.image = UIImage(named: "icon_license_off")
         }
-        self.rateView.rating = Double(Int(diveService.rating))
+        self.layoutIfNeeded()
+//        self.rateView.rating = Double(Int(diveService.rating))
     }
 }

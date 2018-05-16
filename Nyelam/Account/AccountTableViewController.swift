@@ -8,6 +8,7 @@
 
 import UIKit
 import MBProgressHUD
+import MessageUI
 
 class AccountTableViewController: BaseTableViewController, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate, PECropViewControllerDelegate {
@@ -16,13 +17,9 @@ UINavigationControllerDelegate, PECropViewControllerDelegate {
         1: ["section", "e-Nyelam Profile", "active"],
         2: ["content", "Edit Profile", "active"],
         3: ["content", "Change Password", "active"],
-        4: ["content", "Logout", "active"],
-        5: ["section", "e-Nyelam Features"],
-        6: ["content", "Help Center", "inactive"],
-        7: ["content", "My Refund", "inactive"],
-        8: ["content", "Price Alerts", "inactive"],
-        9: ["content", "Newsletter & Promo Info", "inactive"],
-        10:["content", "Push Notification", "inactive"]
+        4: ["content", "Terms And Conditions", "active"],
+        5: ["content", "Contact Us", "active"],
+        6: ["content", "Logout", "active"]
     ]
     
     let picker = UIImagePickerController()
@@ -85,12 +82,34 @@ UINavigationControllerDelegate, PECropViewControllerDelegate {
                 controller = self
             }
             if let navigation = controller!.navigationController {
+                navigation.setNavigationBarHidden(false, animated: true)
                 navigation.pushViewController(vc, animated: true)
             } else {
                 self.present(vc, animated: true, completion: nil)
             }
             break
         case 4:
+            let vc = TermsViewController(nibName: "TermsViewController", bundle: nil)
+            if let parent = self.parent {
+                if let navigation = parent.navigationController {
+                    navigation.setNavigationBarHidden(false, animated: true)
+                    navigation.pushViewController(vc, animated: true)
+                }
+            } else {
+                self.present(vc, animated: true, completion: nil)
+            }
+            break
+        case 5:
+            let composeVC = MFMailComposeViewController()
+            composeVC.setToRecipients(["info@e-nyelam.com"])
+            composeVC.mailComposeDelegate = self
+            if let parent = self.parent {
+                parent.present(composeVC, animated: true, completion: nil)
+            } else {
+                self.present(composeVC, animated: true, completion: nil)
+            }
+            break
+        case 6:
             if let parent = self.parent as? MainRootController {
                 _ = NAuthReturn.deleteAllAuth()
                 _ = NSummary.deleteAllOrder()
@@ -188,13 +207,13 @@ UINavigationControllerDelegate, PECropViewControllerDelegate {
         } else if contents[0] == "content" {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ContentViewCell", for: indexPath) as! ContentViewCell
             cell.nameLabel.text = contents[1]
-            cell.circleView.circledView()
+//            cell.circleView.circledView()
             if contents[2] == "active" {
                 cell.nameLabel.textColor = UIColor.black
-                cell.circleView.backgroundColor = UIColor.blueActive
+//                cell.circleView.backgroundColor = UIColor.blueActive
             } else {
                 cell.nameLabel.textColor = UIColor.gray
-                cell.circleView.backgroundColor = UIColor.gray
+//                cell.circleView.backgroundColor = UIColor.gray
             }
             return cell
         }
@@ -380,7 +399,7 @@ UINavigationControllerDelegate, PECropViewControllerDelegate {
 
 class ContentViewCell: NTableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var circleView: UIView!
+ //   @IBOutlet weak var circleView: UIView!
     @IBOutlet weak var arrowView: UIImageView!
     
     override func awakeFromNib() {
@@ -444,7 +463,14 @@ class HeaderViewCell: NTableViewCell {
             self.coverImageView.loadImage(from: url)
         }
     }
+}
 
+extension AccountTableViewController: MFMailComposeViewControllerDelegate {
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 enum AccountMenuItemType {

@@ -74,7 +74,11 @@ class DiveServiceSearchResultController: BaseViewController, UITableViewDataSour
         self.tableView.delegate = self
         self.tableView.addInfiniteScroll(handler: self.infiniteScroll)
         self.tableView.register(UINib(nibName: "DiveServiceCell", bundle: nil), forCellReuseIdentifier: "DiveServiceCell")
-        self.loadPrice(keyword: self.selectedKeyword, forDoTrip: self.forDoTrip, selectedDiver: self.selectedDiver!, certificate: self.forDoCourse ? nil : self.selectedLicense, selectedDate: self.selectedDate, ecoTrip: self.ecotrip)
+        if self.forDoCourse {
+            self.loadDiveServices()
+        } else {
+            self.loadPrice(keyword: self.selectedKeyword, forDoTrip: self.forDoTrip, selectedDiver: self.selectedDiver!, certificate: self.forDoCourse ? nil : self.selectedLicense, selectedDate: self.selectedDate, ecoTrip: self.ecotrip)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -129,14 +133,12 @@ class DiveServiceSearchResultController: BaseViewController, UITableViewDataSour
                         self.loadPrice(keyword: keyword, forDoTrip: forDoTrip, selectedDiver: selectedDiver, certificate: certificate, selectedDate: selectedDate, ecoTrip: ecoTrip)
                     })
                     return
-                } else {
-                    
                 }
             }
             if let data = response.data {
                 self.price = data
-                self.loadDiveServices()
             }
+            self.loadDiveServices()
         })
     }
     
@@ -149,6 +151,7 @@ class DiveServiceSearchResultController: BaseViewController, UITableViewDataSour
             self.title = title
             self.searchDoCourse(selectedKeyword: self.selectedKeyword!, selectedDate: self.selectedDate!, selectedDiver: self.selectedDiver!, selectedOrganization: self.selectedOrganization!, selectedLicenseType: self.selectedLicenseType!, selectedfilter: self.filter)
         } else {
+        
             let title = self.selectedDate!.formatDate(dateFormat: "dd MMM yyyy") + " " + String(self.selectedDiver!) + " pax(s)"
             self.title = title
             self.searchDiveService(selectedKeyword: self.selectedKeyword!, selectedDate: self.selectedDate!, selectedDiver: self.selectedDiver!, selectedLicense: self.selectedLicense, forDoTrip: self.forDoTrip, filter: self.filter, ecotrip: self.ecotrip)

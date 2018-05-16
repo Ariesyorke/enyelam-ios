@@ -20,7 +20,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="282"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="H87-9u-AQQ" id="17h-rI-hqF">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="281.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="282"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TSq-Li-vmU">
@@ -165,7 +165,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Diving License?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CGh-8U-T7m">
-                                        <rect key="frame" x="0.0" y="0.0" width="254" height="22.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="216" height="22.5"/>
                                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="17"/>
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -176,17 +176,28 @@
                                             <action selector="onSwitch:" destination="H87-9u-AQQ" eventType="valueChanged" id="aBM-dr-KMN"/>
                                         </connections>
                                     </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bq5-BN-7H7">
+                                        <rect key="frame" x="224" y="0.0" width="30" height="20.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="ivP-3O-dQj"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="17"/>
+                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="bq5-BN-7H7" firstAttribute="leading" secondItem="CGh-8U-T7m" secondAttribute="trailing" constant="8" id="1te-FZ-Laz"/>
+                                    <constraint firstItem="bq5-BN-7H7" firstAttribute="top" secondItem="CGh-8U-T7m" secondAttribute="top" id="3Ah-Rb-ttx"/>
                                     <constraint firstAttribute="bottom" secondItem="cyn-yf-Jnh" secondAttribute="bottom" id="3vo-AV-kTU"/>
                                     <constraint firstAttribute="trailing" secondItem="cyn-yf-Jnh" secondAttribute="trailing" id="6v0-7o-V0p"/>
                                     <constraint firstItem="CGh-8U-T7m" firstAttribute="leading" secondItem="hbu-vO-qG3" secondAttribute="leading" id="COc-CP-GK6"/>
-                                    <constraint firstItem="s9W-4W-j8h" firstAttribute="leading" secondItem="CGh-8U-T7m" secondAttribute="trailing" constant="8" id="Fil-eq-Kgm"/>
                                     <constraint firstItem="cyn-yf-Jnh" firstAttribute="top" secondItem="CGh-8U-T7m" secondAttribute="bottom" constant="8" id="Hjp-sz-ums"/>
                                     <constraint firstAttribute="trailing" secondItem="s9W-4W-j8h" secondAttribute="trailing" id="PCr-F2-oqL"/>
                                     <constraint firstAttribute="bottom" secondItem="s9W-4W-j8h" secondAttribute="bottom" constant="8" id="Von-Eo-5JN"/>
                                     <constraint firstItem="cyn-yf-Jnh" firstAttribute="leading" secondItem="hbu-vO-qG3" secondAttribute="leading" id="dIz-EK-h4W"/>
+                                    <constraint firstItem="s9W-4W-j8h" firstAttribute="leading" secondItem="bq5-BN-7H7" secondAttribute="trailing" constant="8" id="eZo-Ve-8Ps"/>
                                     <constraint firstItem="CGh-8U-T7m" firstAttribute="top" secondItem="hbu-vO-qG3" secondAttribute="top" id="uqy-uz-ehw"/>
                                     <constraint firstItem="s9W-4W-j8h" firstAttribute="top" secondItem="hbu-vO-qG3" secondAttribute="top" id="y2y-C8-lE9"/>
                                 </constraints>
@@ -252,6 +263,7 @@
                 <outlet property="keywordBt" destination="GKu-jj-AYW" id="amA-6A-5aw"/>
                 <outlet property="keywordLabel" destination="Rbt-g8-8vW" id="yxc-mM-tbO"/>
                 <outlet property="needLicense" destination="s9W-4W-j8h" id="Fyd-ms-CfB"/>
+                <outlet property="needLicenseLabel" destination="bq5-BN-7H7" id="m5I-lD-WXq"/>
                 <outlet property="selectedDateLabel" destination="OFB-62-7RG" id="H7Y-wl-Kyy"/>
             </connections>
             <point key="canvasLocation" x="110.5" y="-18"/>

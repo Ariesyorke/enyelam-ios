@@ -231,7 +231,7 @@ extension DiveCenterController: NStickyHeaderViewDelegate {
 
 class DiveCenterDetailCell: NTableViewCell {
     @IBOutlet weak var diveCenterNameLabel: UILabel!
-    @IBOutlet weak var rateView: CosmosView!
+//    @IBOutlet weak var rateView: CosmosView!
     @IBOutlet weak var counterLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var phoneNumberLabel: UILabel!
@@ -254,8 +254,8 @@ class DiveCenterDetailCell: NTableViewCell {
     
     fileprivate func initData(diveCenter: NDiveCenter) {
         self.diveCenterNameLabel.text = diveCenter.name
-        self.rateView.rating = diveCenter.rating
-        self.counterLabel.text = "0 / 0 visited"
+//        self.rateView.rating = diveCenter.rating
+//        self.counterLabel.text = "0 / 0 visited"
         
         if let contact = diveCenter.contact {
             self.phoneNumberLabel.text = contact.phoneNumber

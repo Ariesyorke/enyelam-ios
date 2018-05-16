@@ -17,6 +17,7 @@ class SearchFormController: BaseViewController {
     static func push(on controller: UINavigationController, forDoTrip: Bool) -> SearchFormController {
         let vc: SearchFormController = SearchFormController(nibName: "SearchFormController", bundle: nil)
         vc.forDoTrip = forDoTrip
+        vc.selectedDate = Date()
         controller.setNavigationBarHidden(false, animated: true)
         controller.pushViewController(vc, animated: true)
         return vc
@@ -26,8 +27,9 @@ class SearchFormController: BaseViewController {
         let vc: SearchFormController = SearchFormController(nibName: "SearchFormController", bundle: nil)
         vc.isEcoTrip = isEcotrip
         vc.forDoTrip = forDoTrip
-        vc.selectedKeyword = SearchResult(json:NConstant.ecotripStatic)
+        vc.selectedKeyword = SearchResultDiveCenter(json:NConstant.ecotripStatic)
         vc.selectedLicense = true
+        vc.selectedDate = NHelper.generateEcoTripDates()[0]
         controller.setNavigationBarHidden(false, animated: true)
         controller.navigationBar.barTintColor = UIColor.nyGreen
         controller.pushViewController(vc, animated: true)
@@ -37,6 +39,7 @@ class SearchFormController: BaseViewController {
     static func push(on controller: UINavigationController, forDoCourse: Bool) -> SearchFormController {
         let vc: SearchFormController = SearchFormController(nibName: "SearchFormController", bundle: nil)
         vc.forDoCourse = forDoCourse
+        vc.selectedDate = Date()
         controller.setNavigationBarHidden(false, animated: true)
         controller.pushViewController(vc, animated: true)
         return vc
@@ -293,8 +296,14 @@ extension SearchFormController: UITableViewDelegate, UITableViewDataSource {
                     editRadiusAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                     self.present(editRadiusAlert, animated: true)
                 }
-                cell.onNeedLicenseHandler = { isOn in
+                cell.onNeedLicenseHandler = { isOn, c in
                     self.selectedLicense = isOn
+                    if isOn {
+                        cell.needLicenseLabel.text = "Yes"
+                    } else {
+                        c.needLicenseLabel.text = "No"
+                    }
+//                    self.tableView.reloadRows(at: [IndexPath(item: 0, section: 0)], with: .automatic)
                 }
                 cell.onDiveNowHandler = { cell in
                     if let error = self.validateError() {
@@ -313,12 +322,16 @@ extension SearchFormController: UITableViewDelegate, UITableViewDataSource {
                 }
                 cell.keywordLabel.text = self.selectedKeyword != nil ? self.selectedKeyword!.name : "Province, Area, Spot, Dive Center"
                 cell.selectedDateLabel.text = self.selectedDate != nil ? SearchFormCell.string(from: self.selectedDate!, forDoTrip: self.forDoTrip) : "Day, Month, Year"
-                //            cell.selectedDiverLabel.text = self.selectedDiver != nil ? String(format: "%d Diver(s)", arguments: [self.selectedDiver]) : "0 Diver(s)"
                 cell.needLicense.isOn = self.selectedLicense
                 if let _ = self.selectedKeyword as? SearchResultService {
                     cell.needLicense.isUserInteractionEnabled = false
                 } else {
                     cell.needLicense.isUserInteractionEnabled = true
+                }
+                if cell.needLicense.isOn {
+                    cell.needLicenseLabel.text = "Yes"
+                } else {
+                    cell.needLicenseLabel.text = "No"
                 }
                 return cell
             }
@@ -521,6 +534,12 @@ extension SearchFormController: UIPickerViewDataSource, UIPickerViewDelegate {
             self.selectedDate = Date(timeIntervalSince1970: diveservice.schedule!.startDate)
             self.selectedLicenseType = diveservice.licenseType
             self.selectedOrganization = diveservice.organization
+            var ecoTrip: Int? = nil
+            if self.isEcoTrip {
+                ecoTrip = 1
+            }
+            _ = DiveServiceController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: keyword, selectedLicense: self.selectedLicense!, selectedDiver: self.selectedDiver, selectedDate: self.selectedDate!, ecoTrip: ecoTrip)
+            return
         } else {
             self.selectedLicense = diveservice.license
         }
@@ -559,6 +578,7 @@ class SearchFormCell: NTableViewCell {
     @IBOutlet weak var needLicense: UISwitch!
     @IBOutlet weak var diveNowButton: UIButton!
     
+    @IBOutlet weak var needLicenseLabel: UILabel!
     static func string(from date: Date, forDoTrip: Bool) -> String {
         let format: DateFormatter = DateFormatter()
         format.timeZone = TimeZoneName.asiaJakarta.timeZone
@@ -602,7 +622,7 @@ class SearchFormCell: NTableViewCell {
     }
     
     @IBAction func onSwitch(_ sender: UISwitch) {
-        self.onNeedLicenseHandler(self.needLicense.isOn)
+        self.onNeedLicenseHandler(self.needLicense.isOn, self)
     }
     
     func setEcoTripData() {
@@ -614,7 +634,7 @@ class SearchFormCell: NTableViewCell {
     var onKeywordHandler: (String?) -> Void = { keyword in }
     var onDateHandler: (String?) -> Void = { date in }
     var onDiverHandler: () -> Void = { }
-    var onNeedLicenseHandler: (Bool) -> Void = { isOn in }
+    var onNeedLicenseHandler: (Bool, SearchFormCell) -> Void = { isOn, cell in }
     var onDiveNowHandler: (SearchFormCell) -> Void = { cell in }
 }
 

@@ -74,7 +74,7 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
         if let navigation = self.navigationController as? BaseNavigationController {
             if (self.isKind(of: SearchFormController.self) || self.isKind(of: EcoTripIntroductionController.self) || self.isKind(of: DiveServiceSearchResultController.self) || self.isKind(of: DiveServiceController.self)
-                 || self.isKind(of: BookingDetailController.self) || self.isKind(of: EditProfileViewController.self)) && navigation.viewControllers.count == 2 {
+                 || self.isKind(of: BookingDetailController.self) || self.isKind(of: EditProfileViewController.self) || self.isKind(of: ChangePasswordViewController.self) || self.isKind(of: TermsViewController.self)) && navigation.viewControllers.count == 2 {
                 navigation.setNavigationBarHidden(true, animated: true)
                 navigation.navigationBar.barTintColor = UIColor.primary
             }

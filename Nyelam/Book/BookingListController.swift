@@ -57,7 +57,8 @@ class BookingListController: BaseViewController, IndicatorInfoProvider {
     
     @objc private func refreshData(_ sender: Any) {
         self.page = 1
-        self.summaries = nil
+        self.summaries = []
+        self.tableView.reloadData()
         self.tryGetBookingList(bookingType: self.bookingType)
     }
     fileprivate func tryGetBookingList(bookingType: Int) {

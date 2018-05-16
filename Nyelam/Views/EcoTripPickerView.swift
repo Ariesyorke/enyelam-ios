@@ -15,12 +15,12 @@ class EcoTripPickerView: UIPickerView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.generatePickerDate()
+        self.dates = NHelper.generateEcoTripDates()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.generatePickerDate()
+        self.dates = NHelper.generateEcoTripDates()
     }
     
     func convertToString(in row: Int) -> String {
@@ -74,6 +74,5 @@ class EcoTripPickerView: UIPickerView {
                 }
             }
         }
-        
     }
 }
