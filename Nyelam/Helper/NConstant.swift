@@ -33,7 +33,7 @@ class NConstant {
     }
     
     static var URL_TYPE: NURLType {
-        return .development
+        return .staging
     }
     
     static var GOOGLE_CLIENT_ID: String {

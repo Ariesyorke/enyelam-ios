@@ -119,7 +119,6 @@ extension NHTTPHelper {
                                     complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
                                     return
                                 }
-                                print("DATA \(data)")
                                 if let data = data, let json = data as? [String: Any] {
                                     _ = NAuthReturn.deleteAllAuth()
                                     let authReturn = NSEntityDescription.insertNewObject(forEntityName: "NAuthReturn", into: AppDelegate.sharedManagedContext) as! NAuthReturn

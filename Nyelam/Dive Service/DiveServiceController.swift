@@ -449,6 +449,9 @@ class DiveServiceDetailCell: NTableViewCell {
     @IBOutlet weak var additionalLabel1: UILabel!
     @IBOutlet weak var additionalLabel2: UILabel!
     @IBOutlet weak var additionalLabel3: UILabel!
+    @IBOutlet weak var additionalLabel4: UILabel!
+    @IBOutlet weak var additionalLabel4Height: NSLayoutConstraint!
+    @IBOutlet weak var additionalLabel4Colon: UILabel!
     @IBOutlet weak var categoryHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var licenseTopSpacing: NSLayoutConstraint!
     @IBOutlet weak var specialPriceTopSpacing: NSLayoutConstraint!
@@ -480,7 +483,6 @@ class DiveServiceDetailCell: NTableViewCell {
         if let name = diveService.name {
             self.titleLabel.text = name
         }
-        self.stockLabel.text = String(diveService.availability)
         if let diveCenter = diveService.divecenter {
             if let imageLogo = diveCenter.imageLogo {
                 self.diveCenterImage.loadImage(from: imageLogo, contentMode: .scaleAspectFit, with: "image_default.png")
@@ -518,6 +520,10 @@ class DiveServiceDetailCell: NTableViewCell {
             self.additionalLabel1.text = "Day Class"
             self.additionalLabel2.text = "Day On Site"
             self.additionalLabel3.text = "Open Water"
+            self.additionalLabel4.text = ""
+            self.additionalLabel4Colon.text = ""
+            self.stockLabel.text = ""
+            self.additionalLabel4Height.constant = 0
             self.totalDivesCounterLabel.text = "\(diveService.totalDives) Day" + (diveService.totalDays>1 ? "s" : "")
             self.divespotCounterLabel.text = "\(diveService.dayOnSite) Day" + (diveService.dayOnSite>1 ? "s" : "")
             self.tripDurationLabel.text = diveService.openWater ? "Yes" : "No"
@@ -531,6 +537,11 @@ class DiveServiceDetailCell: NTableViewCell {
             self.additionalLabel1.text = "Total Dives"
             self.additionalLabel2.text = "Divespot Options"
             self.additionalLabel3.text = "Trip Durations"
+            self.additionalLabel4.text = "Stock"
+            self.additionalLabel4Height.constant = 0
+            self.additionalLabel4Colon.text = ":"
+            self.additionalLabel4Height.constant = 0
+            self.stockLabel.text = String(diveService.availability)
             self.totalDivesCounterLabel.text = "\(diveService.totalDives)"
             self.divespotCounterLabel.text = "\(diveService.diveSpots!.count)"
             self.tripDurationLabel.text = "\(diveService.totalDives) Day" + (diveService.totalDays>1 ? "s" : "")

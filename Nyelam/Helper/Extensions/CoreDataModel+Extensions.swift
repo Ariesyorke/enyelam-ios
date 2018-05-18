@@ -107,7 +107,7 @@ extension NUser {
         } else if let certificateTimestamp = json["certificate_date"] as? String {
             if certificateTimestamp.isNumber {
                 let timestamp = Double(certificateTimestamp)!
-                self.birthDate = NSDate(timeIntervalSince1970: timestamp)
+                self.certificateDate = NSDate(timeIntervalSince1970: timestamp)
             }
         }
         self.username = json["username"] as? String
@@ -120,7 +120,7 @@ extension NUser {
                 self.countryCode = NSEntityDescription.insertNewObject(forEntityName: "NCountryCode", into: AppDelegate.sharedManagedContext) as! NCountryCode
 
             }
-            self.countryCode!.parse(json: json)
+            self.countryCode!.parse(json: countryCodeJson)
         } else if let countryCodeString = json["country_code"] as? String {
             do {
                 let data = countryCodeString.data(using: String.Encoding.utf8, allowLossyConversion: true)
@@ -130,7 +130,7 @@ extension NUser {
                 }
                 if self.countryCode == nil {
                     self.countryCode = NSEntityDescription.insertNewObject(forEntityName: "NCountryCode", into: AppDelegate.sharedManagedContext) as! NCountryCode                }
-                self.countryCode!.parse(json: json)
+                self.countryCode!.parse(json: countryCodeJson)
             } catch {
                 print(error)
             }
@@ -142,7 +142,7 @@ extension NUser {
             if self.country == nil {
                 self.country = NSEntityDescription.insertNewObject(forEntityName: "NCountry", into: AppDelegate.sharedManagedContext) as! NCountry
             }
-            self.country!.parse(json: json)
+            self.country!.parse(json: countryJson)
         } else if let countryString = json["country"] as? String {
             do {
                 let data = countryString.data(using: String.Encoding.utf8, allowLossyConversion: true)
@@ -153,7 +153,7 @@ extension NUser {
                 if self.country == nil {
                     self.country = NSEntityDescription.insertNewObject(forEntityName: "NCountry", into: AppDelegate.sharedManagedContext) as! NCountry
                 }
-                self.country!.parse(json: json)
+                self.country!.parse(json: countryJson)
             } catch {
                 print(error)
             }
@@ -168,7 +168,7 @@ extension NUser {
                     socialMedia = NSEntityDescription.insertNewObject(forEntityName: "NSocialMedia", into: AppDelegate.sharedManagedContext) as! NSocialMedia
 
                 }
-                socialMedia!.parse(json: json)
+                socialMedia!.parse(json: socialMediaJson)
                 self.addToSocialMedias(socialMedia!)
             }
         } else if let socialMediaSring = json["social_media"] as? String {
@@ -183,7 +183,7 @@ extension NUser {
                     if socialMedia == nil {
                         socialMedia = NSEntityDescription.insertNewObject(forEntityName: "NSocialMedia", into: AppDelegate.sharedManagedContext) as! NSocialMedia
                     }
-                    socialMedia!.parse(json: json)
+                    socialMedia!.parse(json: socialMediaJson)
                     self.addToSocialMedias(socialMedia!)
                 }
             } catch {
@@ -198,7 +198,7 @@ extension NUser {
                 self.language = NSEntityDescription.insertNewObject(forEntityName: "NLanguage", into: AppDelegate.sharedManagedContext) as! NLanguage
 
             }
-            self.language!.parse(json: json)
+            self.language!.parse(json: languageJson)
         } else if let languageString = json["language"] as? String {
             do {
                 let data = languageString.data(using: String.Encoding.utf8, allowLossyConversion: true)
@@ -209,7 +209,7 @@ extension NUser {
                 if self.language == nil {
                     self.language = NSEntityDescription.insertNewObject(forEntityName: "NLanguage", into: AppDelegate.sharedManagedContext) as! NLanguage
                 }
-                self.language!.parse(json: json)
+                self.language!.parse(json: languageJson)
             } catch {
                 print(error)
             }
@@ -221,7 +221,7 @@ extension NUser {
             if self.nationality == nil {
                 self.nationality = NSEntityDescription.insertNewObject(forEntityName: "NNationality", into: AppDelegate.sharedManagedContext) as! NNationality
             }
-            self.nationality!.parse(json: json)
+            self.nationality!.parse(json: nationalityJson)
         } else if let nationalityString = json["nationality"] as? String {
             do {
                 let data = nationalityString.data(using: String.Encoding.utf8, allowLossyConversion: true)
@@ -232,7 +232,7 @@ extension NUser {
                 if self.nationality == nil {
                     self.nationality = NSEntityDescription.insertNewObject(forEntityName: "NNationality", into: AppDelegate.sharedManagedContext) as! NNationality
                 }
-                self.nationality!.parse(json: json)
+                self.nationality!.parse(json: nationalityJson)
             } catch {
                 print(error)
             }
@@ -664,7 +664,7 @@ extension NCountryCode {
     static func getCountryCode(by regionCode: String) -> NCountryCode? {
         let managedContext = AppDelegate.sharedManagedContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NCountryCode")
-        fetchRequest.predicate = NSPredicate(format: "countryId == %@", regionCode)
+        fetchRequest.predicate = NSPredicate(format: "countryCode == %@", regionCode)
         do {
             let countryCodes = try managedContext.fetch(fetchRequest) as? [NCountryCode]
             if let countryCodes = countryCodes, !countryCodes.isEmpty {

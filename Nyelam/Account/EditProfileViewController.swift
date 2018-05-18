@@ -76,7 +76,7 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
         let organizationId = self.pickedOrganization?.id
         let licenseTypeId = self.pickedLicenseType?.id
         let certificateNumber = self.certificateNumberTextField.text
-        if let error = validateError(firstName: firstName, phoneNumber: phoneNumber) {
+        if let error = validateError(firstName: firstName, phoneNumber: phoneNumber, selectedCountry: self.pickedCountry, selectedNationality: self.pickedNationality) {
             UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {
                 
             })
@@ -147,6 +147,8 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
                 self.pickedCountry!.name = countryCode.countryName
                 self.pickedCountry!.id = countryCode.id
                 NSManagedObjectContext.saveData()
+                self.pickedNationality = nil
+                self.nationalityTextField.text = ""
             }, cancel: {_ in return
 
             }, origin: sender)
@@ -163,7 +165,7 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
         datePickerController.preferredContentSize = CGSize(width: self.view.frame.width/2, height: self.view.frame.height/2)
         datePickerController.onDatePickedHandler = {controller, date in
             self.pickedBirthdate = date
-            self.birthdateTextField.text = date.formatDate(dateFormat: "dd/MM/yyyy")
+            self.birthdateTextField.text = date.formatDate(dateFormat: "dd MMM yyyy")
         }
         self.present(datePickerController, animated: true, completion: nil)
         let popoverPresentationController = datePickerController.popoverPresentationController
@@ -259,19 +261,24 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
                 self.pickedCountryCode =  NCountryCode.getCountryCode(by: self.phoneRegionCode)
                 self.countryCodeLabel.text = ("+\(self.pickedCountryCode!.countryNumber!)")
             }
+            if let birthplace = user.birthPlace {
+                self.birthPlaceTextField.text = birthplace
+            }
             if let country = user.country {
-                self.pickedCountry = country
-                self.countryTextField.text = country.name
-                let countryCode = NCountryCode.getCountryCode(with: country.id!)!
-                self.userRegionCode = countryCode.countryCode!
+                let countryCode = NCountryCode.getCountryCode(with: country.id!)
+                if let countryCode = countryCode, let code = countryCode.countryCode, !code.isEmpty {
+                    self.pickedCountry = country
+                    self.countryTextField.text = country.name
+                    self.userRegionCode = code
+                }
             }
             
             self.genderTextField.text = user.gender
             if let birthDate = user.birthDate {
-                self.birthdateTextField.text = birthDate.formatDate(dateFormat: "dd/MM/yyyy")
+                self.birthdateTextField.text = birthDate.formatDate(dateFormat: "dd MMM yyyy")
             }
             if let certificateDate = user.certificateDate {
-                self.certificateDateTextFIeld.text = certificateDate.formatDate(dateFormat: "dd/MM/yyyy")
+                self.certificateDateTextFIeld.text = certificateDate.formatDate(dateFormat: "dd MMM yyyy")
             }
             self.certificateNumberTextField.text = user.certificateNumber
             if let country = user.country {
@@ -353,11 +360,16 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
         })
     }
     
-    internal func validateError(firstName: String, phoneNumber: String) -> String? {
+    internal func validateError(firstName: String, phoneNumber: String, selectedCountry: NCountry?, selectedNationality: NNationality?) -> String? {
         if firstName.isEmpty {
             return "First name cannot be empty"
         } else if phoneNumber.isEmpty {
             return "Phone number cannot be empty"
+        }
+        if let _ = selectedCountry {
+            if selectedNationality == nil {
+                return "Please pick your nationality"
+            }
         }
         return nil
     }

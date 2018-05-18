@@ -411,23 +411,25 @@ extension SearchFormController: UITableViewDelegate, UITableViewDataSource {
                 NSManagedObjectContext.saveData()
             })
         } else {
-            NHTTPHelper.httpDoDiveSuggestion(complete: {response in
-                if let error = response.error {
-                    UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {error in
-                        if error.isKind(of: NotConnectedInternetError.self) {
-                            NHelper.handleConnectionError(completion: {
-                                self.getRecommendation()
-                            })
-                        }
-                    })
-                    return
-                }
-                if let data = response.data, !data.isEmpty {
-                    self.diveServices = data
-                    self.tableView.reloadData()
-                }
-                NSManagedObjectContext.saveData()
-            })
+            if !self.isEcoTrip {
+                NHTTPHelper.httpDoDiveSuggestion(complete: {response in
+                    if let error = response.error {
+                        UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {error in
+                            if error.isKind(of: NotConnectedInternetError.self) {
+                                NHelper.handleConnectionError(completion: {
+                                    self.getRecommendation()
+                                })
+                            }
+                        })
+                        return
+                    }
+                    if let data = response.data, !data.isEmpty {
+                        self.diveServices = data
+                        self.tableView.reloadData()
+                    }
+                    NSManagedObjectContext.saveData()
+                })
+            }
         }
     }
     internal func onShowMasterOrganization() {

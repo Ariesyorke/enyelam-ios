@@ -625,6 +625,9 @@
                 <outlet property="additionalLabel1" destination="TaH-0l-bwi" id="PB5-UC-RKm"/>
                 <outlet property="additionalLabel2" destination="709-0I-96Q" id="awg-3V-ynI"/>
                 <outlet property="additionalLabel3" destination="iBT-QO-fzC" id="Dbm-2e-q12"/>
+                <outlet property="additionalLabel4" destination="Edi-QZ-uML" id="ppK-w1-Mrb"/>
+                <outlet property="additionalLabel4Colon" destination="x7d-Qv-MvR" id="QU7-ye-QhT"/>
+                <outlet property="additionalLabel4Height" destination="CLe-ql-IaG" id="XsA-OT-2BC"/>
                 <outlet property="categoryContainer" destination="UKS-O0-dQh" id="M5T-pH-EmI"/>
                 <outlet property="categoryHeightConstraint" destination="5CK-p2-lXm" id="7Nn-Vl-1hP"/>
                 <outlet property="categoryImageView" destination="WhI-bB-2sc" id="F75-HF-Jyh"/>
