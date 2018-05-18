@@ -29,23 +29,23 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="146.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28 Juli 2017" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="flV-lv-SWU">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="28 Juli 2017" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="flV-lv-SWU">
                         <rect key="frame" x="16" y="16" width="288" height="18"/>
                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="15"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGl-iq-72I">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Event Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGl-iq-72I">
                         <rect key="frame" x="16" y="42" width="288" height="20"/>
                         <fontDescription key="fontDescription" name="FiraSans-Bold" family="Fira Sans" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yqz-El-6IR" customClass="CosmosView" customModule="Cosmos">
+                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yqz-El-6IR">
                         <rect key="frame" x="16" y="70" width="100" height="20"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="Eb3-Ue-T0c"/>
+                            <constraint firstAttribute="height" id="Eb3-Ue-T0c"/>
                             <constraint firstAttribute="width" constant="100" id="JsM-kI-CDg"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -64,32 +64,32 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 / 0 visited" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ivw-Tl-Gol">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ivw-Tl-Gol">
                         <rect key="frame" x="130" y="71" width="174" height="18"/>
                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="15"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i1a-U2-A8h" userLabel="Dive Center Container">
+                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i1a-U2-A8h" userLabel="Dive Center Container">
                         <rect key="frame" x="16" y="98" width="288" height="32.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_pin_map" translatesAutoresizingMaskIntoConstraints="NO" id="X0e-Kg-846">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="ic_pin_map" translatesAutoresizingMaskIntoConstraints="NO" id="X0e-Kg-846">
                                 <rect key="frame" x="0.0" y="4.5" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="7nT-18-bU0"/>
                                     <constraint firstAttribute="width" constant="24" id="X1L-IH-IuA"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eem-1t-ziG">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eem-1t-ziG">
                                 <rect key="frame" x="32" y="0.0" width="232" height="32.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UCU-EO-aRF">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UCU-EO-aRF">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="18"/>
                                         <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2uJ-VR-Wgp">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2uJ-VR-Wgp">
                                         <rect key="frame" x="0.0" y="18" width="240" height="14.5"/>
                                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="12"/>
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -119,7 +119,7 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Yqz-El-6IR" firstAttribute="top" secondItem="lGl-iq-72I" secondAttribute="bottom" constant="8" id="8QI-0B-637"/>
+                    <constraint firstItem="Yqz-El-6IR" firstAttribute="top" secondItem="lGl-iq-72I" secondAttribute="bottom" id="8QI-0B-637"/>
                     <constraint firstItem="lGl-iq-72I" firstAttribute="top" secondItem="flV-lv-SWU" secondAttribute="bottom" constant="8" id="9tk-sk-lix"/>
                     <constraint firstItem="ivw-Tl-Gol" firstAttribute="leading" secondItem="Yqz-El-6IR" secondAttribute="trailing" constant="14" id="AIH-VS-ECh"/>
                     <constraint firstItem="i1a-U2-A8h" firstAttribute="trailing" secondItem="flV-lv-SWU" secondAttribute="trailing" id="BO1-H0-QnF"/>
@@ -142,7 +142,6 @@
                 <outlet property="diveCenterLocationName" destination="2uJ-VR-Wgp" id="zTl-dp-MUY"/>
                 <outlet property="diveCenterNameLabel" destination="UCU-EO-aRF" id="apP-BN-y7P"/>
                 <outlet property="eventLabel" destination="lGl-iq-72I" id="2H2-UZ-oGV"/>
-                <outlet property="rateView" destination="Yqz-El-6IR" id="UKK-nP-BXq"/>
                 <outlet property="visitedLabel" destination="ivw-Tl-Gol" id="OJB-fa-6FQ"/>
             </connections>
             <point key="canvasLocation" x="73" y="199.5"/>

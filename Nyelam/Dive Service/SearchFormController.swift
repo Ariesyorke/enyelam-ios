@@ -303,7 +303,6 @@ extension SearchFormController: UITableViewDelegate, UITableViewDataSource {
                     } else {
                         c.needLicenseLabel.text = "No"
                     }
-//                    self.tableView.reloadRows(at: [IndexPath(item: 0, section: 0)], with: .automatic)
                 }
                 cell.onDiveNowHandler = { cell in
                     if let error = self.validateError() {
@@ -538,7 +537,7 @@ extension SearchFormController: UIPickerViewDataSource, UIPickerViewDelegate {
             if self.isEcoTrip {
                 ecoTrip = 1
             }
-            _ = DiveServiceController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: keyword, selectedLicense: self.selectedLicense!, selectedDiver: self.selectedDiver, selectedDate: self.selectedDate!, ecoTrip: ecoTrip)
+            _ = DiveServiceController.push(on: self.navigationController!, forDoCourse: self.forDoCourse, selectedKeyword: keyword, selectedDiver: self.selectedDiver, selectedDate: self.selectedDate!, diveService: nil, selectedOrganization: self.selectedOrganization!, selectedLicenseType: self.selectedLicenseType!)
             return
         } else {
             self.selectedLicense = diveservice.license
@@ -682,6 +681,8 @@ class CourseFormCell: NTableViewCell {
         }
         if let licenseType = licenseType {
             self.licenseTypeLabel.text = licenseType.name
+        } else {
+            self.licenseTypeLabel.text = "OW, AOW, Rescue, etc"
         }
         if let selectedDate = selectedDate {
             self.scheduleLabel.text = selectedDate.formatDate(dateFormat: "MMM yyyy")

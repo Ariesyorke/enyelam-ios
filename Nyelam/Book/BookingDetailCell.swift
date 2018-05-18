@@ -12,7 +12,7 @@ import Cosmos
 class BookingDetailCell: NTableViewCell {
     @IBOutlet weak var bookingDateLabel: UILabel!
     @IBOutlet weak var eventLabel: UILabel!
-    @IBOutlet weak var rateView: CosmosView!
+//    @IBOutlet weak var rateView: CosmosView!
     @IBOutlet weak var visitedLabel: UILabel!
     @IBOutlet weak var diveCenterNameLabel: UILabel!
     @IBOutlet weak var diveCenterLocationName: UILabel!
@@ -30,9 +30,9 @@ class BookingDetailCell: NTableViewCell {
     
     func initData(diveService: NDiveService, selectedDate: Date) {
         self.eventLabel.text = diveService.name
-        self.rateView.rating = diveService.rating
+//        self.rateView.rating = diveService.rating
         self.bookingDateLabel.text = selectedDate.formatDate(dateFormat: "dd MMMM yyyy")
-        self.visitedLabel.text = "\(diveService.ratingCount) / \(diveService.visited) visited"
+//        self.visitedLabel.text = "\(diveService.ratingCount) / \(diveService.visited) visited"
         if let diveCenter = diveService.divecenter {
             self.diveCenterNameLabel.text = diveCenter.name
             if let contact = diveCenter.contact, let location = contact.location {

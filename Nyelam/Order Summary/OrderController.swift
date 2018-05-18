@@ -163,10 +163,7 @@ class OrderController: BaseViewController {
             self.payUsingPaypal(orderReturn: orderReturn)
         } else {
             UIAlertController.handlePopupMessage(viewController: self, title: "Order Success!", actionButtonTitle: "OK", completion: {
-                if let navigation = self.navigationController {
-                    navigation.setNavigationBarHidden(true, animated: true)
-                    navigation.popToRootViewController(animated: true)
-                }
+                _ = BookingDetailController.push(on: self.navigationController!, bookingId: orderReturn.summary!.id!, type: "1", isComeFromOrder: true)
             })
         }
     }
@@ -342,32 +339,23 @@ extension OrderController: UITableViewDelegate, UITableViewDataSource {
     }
     
     fileprivate func payUsingMidtrans(order: NOrder, contact: BookingContact, amount: Int, veritransToken: String, diveService: NDiveService, divers: Int, paymentType: Int, additionals: [Additional]?) {
-        let transactionDetails = MidtransTransactionDetails.init(orderID: order.orderId!, andGrossAmount: amount as NSNumber)
-        let customerDetails = MidtransCustomerDetails()
-        customerDetails.firstName = contact.name!
-        customerDetails.email = contact.email!
-        if let countryCode = contact.countryCode {
-            print("ADD CONTACT")
-            customerDetails.phone = "+\(countryCode.countryCode!)\(contact.phoneNumber!)"
-        }
+        let transactionDetails = MidtransTransactionDetails.init(orderID: order.orderId!, andGrossAmount: NSNumber(value: amount))
+        let customerDetails = MidtransCustomerDetails.init(firstName: contact.name!, lastName: "", email: contact.email, phone: "+\(contact.countryCode!.countryNumber)\(contact.phoneNumber!)", shippingAddress: nil, billingAddress: nil)
         var itemDetails: [MidtransItemDetail] = []
-        let itemDetail = MidtransItemDetail(itemID: diveService.id!, name: diveService.name!, price: diveService.specialPrice as NSNumber, quantity: divers as NSNumber)
+        let itemDetail = MidtransItemDetail(itemID: diveService.id!, name: diveService.name!, price: NSNumber(value: diveService.specialPrice), quantity: NSNumber(value: divers))
         itemDetails.append(itemDetail!)
         if let additionals = additionals, !additionals.isEmpty {
             var itemID = -1
-            print("ADDITIONALS")
             for additional in additionals {
-                print("ADDITIONALS ITEMS")
-                itemDetails.append(MidtransItemDetail(itemID: String(itemID), name: additional.title!, price: additional.value as! NSNumber, quantity: 1))
+                itemDetails.append(MidtransItemDetail(itemID: String(itemID), name: additional.title!, price: NSNumber(value: additional.value!), quantity: 1))
                 itemID -= 1
             }
         }
         let paymentFeature = (paymentType==2 ? MidtransPaymentFeature.MidtransPaymentFeatureCreditCard : MidtransPaymentFeature.MidtransPaymentFeatureBankTransfer)
-        print("VERITRANS TOKEN \(veritransToken)")
         let response = MidtransTransactionTokenResponse()
         response.customerDetails = customerDetails
-        response.tokenId = veritransToken
         response.itemDetails = itemDetails
+        response.tokenId = veritransToken
         response.transactionDetails = transactionDetails
         
         let vc = MidtransUIPaymentViewController(token: response, andPaymentFeature: paymentFeature)
@@ -516,10 +504,7 @@ extension OrderController: MidtransUIPaymentViewControllerDelegate, PayPalPaymen
                 if let data = completedPayment.confirmation["response"] as? [String: Any] {
                     NHTTPHelper.httpPaypalNotification(paypalId: data["id"]as! String, complete: {response in
                         MBProgressHUD.hide(for: self.view, animated: true)
-                        if let navigation = self.navigationController {
-                            navigation.setNavigationBarHidden(true, animated: true)
-                            navigation.popToRootViewController(animated: true)
-                        }
+                        _ = BookingDetailController.push(on: self.navigationController!, bookingId: self.orderReturn!.summary!.id!, type: "1", isComeFromOrder: true)
                     })
                 }
             })
@@ -543,7 +528,7 @@ extension OrderController: MidtransUIPaymentViewControllerDelegate, PayPalPaymen
     }
     
     func paymentViewController_paymentCanceled(_ viewController: MidtransUIPaymentViewController!) {
-        
+        viewController.dismiss(animated: true, completion: nil)
     }
     
     func paymentViewController(_ viewController: MidtransUIPaymentViewController!, paymentFailed error: Error!) {
@@ -564,10 +549,7 @@ extension OrderController: MidtransUIPaymentViewControllerDelegate, PayPalPaymen
                 MBProgressHUD.showAdded(to: self.view, animated: true)
                 NHTTPHelper.httpVeritransNotification(parameters: transactionResult.serialized(), complete: {response in
                     MBProgressHUD.hide(for: self.view, animated: true)
-                    if let navigation = self.navigationController {
-                        navigation.setNavigationBarHidden(true, animated: true)
-                        navigation.popToRootViewController(animated: true)
-                    }
+                    _ = BookingDetailController.push(on: self.navigationController!, bookingId: self.orderReturn!.summary!.id!, type: "1", isComeFromOrder: true)
                 })
             })
         })
@@ -580,10 +562,7 @@ extension OrderController: MidtransUIPaymentViewControllerDelegate, PayPalPaymen
                 MBProgressHUD.showAdded(to: self.view, animated: true)
                 NHTTPHelper.httpVeritransNotification(parameters: transactionResult.serialized(), complete: {response in
                     MBProgressHUD.hide(for: self.view, animated: true)
-                    if let navigation = self.navigationController {
-                        navigation.setNavigationBarHidden(true, animated: true)
-                        navigation.popToRootViewController(animated: true)
-                    }
+                    _ = BookingDetailController.push(on: self.navigationController!, bookingId: self.orderReturn!.summary!.id!, type: "1", isComeFromOrder: true)
                 })
             })
         })

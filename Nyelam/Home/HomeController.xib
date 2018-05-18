@@ -35,7 +35,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="djm-1r-7cD">
-                            <rect key="frame" x="0.0" y="-20" width="375" height="986.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="986.5"/>
                             <subviews>
                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chU-Ng-B29">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
@@ -439,7 +439,7 @@
                         <constraint firstItem="djm-1r-7cD" firstAttribute="leading" secondItem="ouC-yV-OHs" secondAttribute="leading" id="0yR-Wx-dDX"/>
                         <constraint firstAttribute="bottom" secondItem="djm-1r-7cD" secondAttribute="bottom" id="DM9-xC-v0k"/>
                         <constraint firstAttribute="trailing" secondItem="djm-1r-7cD" secondAttribute="trailing" id="Exe-bj-K0H"/>
-                        <constraint firstItem="djm-1r-7cD" firstAttribute="top" secondItem="ouC-yV-OHs" secondAttribute="top" constant="-20" id="F3r-ik-9bA"/>
+                        <constraint firstItem="djm-1r-7cD" firstAttribute="top" secondItem="ouC-yV-OHs" secondAttribute="top" id="F3r-ik-9bA"/>
                         <constraint firstItem="djm-1r-7cD" firstAttribute="width" secondItem="ouC-yV-OHs" secondAttribute="width" id="Gp3-Lx-wJ3"/>
                     </constraints>
                 </scrollView>

@@ -15,9 +15,10 @@ class BookingDetailController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loadingView: UIActivityIndicatorView!
     
-    var orderReturn: OrderReturn?
-    var type: String = "1"
-    var bookingId: String?
+    fileprivate var orderReturn: OrderReturn?
+    fileprivate var type: String = "1"
+    fileprivate var bookingId: String?
+    fileprivate var isComeFromOrder: Bool = false
     let picker = UIImagePickerController()
     
     static func push(on controller: UINavigationController, bookingId: String, type: String) -> BookingDetailController {
@@ -29,6 +30,18 @@ class BookingDetailController: BaseViewController {
         controller.pushViewController(vc, animated: true)
         return vc
     }
+    
+    static func push(on controller: UINavigationController, bookingId: String, type: String, isComeFromOrder: Bool) -> BookingDetailController {
+        let vc: BookingDetailController = BookingDetailController(nibName: "BookingDetailController", bundle: nil)
+        vc.bookingId = bookingId
+        vc.type = type
+        vc.isComeFromOrder = isComeFromOrder
+        controller.setNavigationBarHidden(false, animated: true)
+        controller.navigationBar.barTintColor = UIColor.primary
+        controller.pushViewController(vc, animated: true)
+        return vc
+    }
+
 
     
     override func viewDidLoad() {
@@ -70,6 +83,18 @@ class BookingDetailController: BaseViewController {
             }
         })
     }
+    
+    override func backButtonAction(_ sender: UIBarButtonItem) {
+        if isComeFromOrder {
+            if let navigation = self.navigationController {
+                navigation.setNavigationBarHidden(true, animated: true)
+                navigation.popToRootViewController(animated: true)
+            }
+        } else {
+            super.backButtonAction(sender)
+        }
+    }
+
     /*
     // MARK: - Navigation
 
@@ -199,6 +224,7 @@ extension BookingDetailController: UITableViewDataSource, UITableViewDelegate {
             })
         })
     }
+    
 }
 
 extension BookingDetailController: UIImagePickerControllerDelegate,
@@ -217,6 +243,8 @@ UINavigationControllerDelegate {
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    
 }
 class PaymentProofCell: NTableViewCell {
     var onChangePhoto: ()->() = {}

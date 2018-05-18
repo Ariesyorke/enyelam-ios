@@ -659,10 +659,12 @@ extension NCountryCode {
         }
         return 0
     }
+    
+    
     static func getCountryCode(by regionCode: String) -> NCountryCode? {
         let managedContext = AppDelegate.sharedManagedContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NCountryCode")
-        fetchRequest.predicate = NSPredicate(format: "countryCode == %@", regionCode)
+        fetchRequest.predicate = NSPredicate(format: "countryId == %@", regionCode)
         do {
             let countryCodes = try managedContext.fetch(fetchRequest) as? [NCountryCode]
             if let countryCodes = countryCodes, !countryCodes.isEmpty {
@@ -672,7 +674,21 @@ extension NCountryCode {
             print(error)
         }
         return nil
-        
+    }
+    
+    static func getCountryCode(with id: String) -> NCountryCode? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NCountryCode")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        do {
+            let countryCodes = try managedContext.fetch(fetchRequest) as? [NCountryCode]
+            if let countryCodes = countryCodes, !countryCodes.isEmpty {
+                return countryCodes.first
+            }
+        } catch {
+            print(error)
+        }
+        return nil
     }
     static func deleteCountryCode(by id: String) -> Bool {
         let managedContext = AppDelegate.sharedManagedContext

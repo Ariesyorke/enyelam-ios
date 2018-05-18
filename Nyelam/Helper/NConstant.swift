@@ -83,9 +83,9 @@ class NConstant {
     static var MIDTRANS_ENVIRONTMENT: MidtransServerEnvironment {
         switch NConstant.URL_TYPE {
         case .production:
-            return MidtransServerEnvironment.production
+            return .production
         default:
-            return MidtransServerEnvironment.sandbox
+            return .sandbox
         }
     }
 }

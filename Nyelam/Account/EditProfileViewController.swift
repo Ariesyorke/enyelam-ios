@@ -11,6 +11,7 @@ import SkyFloatingLabelTextField
 import MMNumberKeyboard
 import ActionSheetPicker_3_0
 import MBProgressHUD
+import CoreData
 
 class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
     @IBOutlet weak var firstNameTextField: SkyFloatingLabelTextField!
@@ -129,23 +130,29 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
         }
     }
     @IBAction func countryButtonAction(_ sender: Any) {
-//        if let countryCodes = self.countryCodes, !countryCodes.isEmpty {
-//            var c: [String] = []
-//            for countryCode in countryCodes {
-//                if let countryName = countryCode.countryName {
-//                    c.append("\(countryName)")
-//                }
-//            }
-//            let actionSheet = ActionSheetStringPicker.init(title: "Country", rows: c, initialSelection: NCountryCode.getPosition(by: userRegionCode), doneBlock: {picker, index, value in
-//                self.pickedCountry = countryCodes[index]
-//                self.userRegionCode = countryCodes[index].countryCode!
-//                self.countryTextField.text = ("\(countryCodes[index].countryName!)")
-//            }, cancel: {_ in return
-//
-//            }, origin: sender)
-//
-//            actionSheet!.show()
-//        }
+        if let countryCodes = self.countryCodes, !countryCodes.isEmpty {
+            var c: [String] = []
+            for countryCode in countryCodes {
+                if let countryName = countryCode.countryName {
+                    c.append("\(countryName)")
+                }
+            }
+            let actionSheet = ActionSheetStringPicker.init(title: "Country", rows: c, initialSelection: NCountryCode.getPosition(by: self.userRegionCode), doneBlock: {picker, index, value in
+                let countryCode = countryCodes[index]
+                self.countryTextField.text = countryCode.countryName
+                self.pickedCountry = NCountry.getCountry(using: countryCode.id!)
+                if self.pickedCountry == nil {
+                    self.pickedCountry = NCountry.init(entity: NSEntityDescription.entity(forEntityName: "NCountry", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
+                }
+                self.pickedCountry!.name = countryCode.countryName
+                self.pickedCountry!.id = countryCode.id
+                NSManagedObjectContext.saveData()
+            }, cancel: {_ in return
+
+            }, origin: sender)
+
+            actionSheet!.show()
+        }
     }
     @IBAction func birthdateButtonAction(_ sender: Any) {
         let datePickerController = DTMDatePickerController(nibName: "DTMDatePickerController", bundle: nil)
@@ -202,6 +209,7 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
                     c.append("+\(number) \(countryName)")
                 }
             }
+            
             let actionSheet = ActionSheetStringPicker.init(title: "Country Code", rows: c, initialSelection: NCountryCode.getPosition(by: self.phoneRegionCode), doneBlock: {picker, index, value in
                 self.pickedCountryCode = countryCodes[index]
                 self.phoneRegionCode = countryCodes[index].countryCode!
@@ -236,18 +244,28 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
     
     internal func initData() {
         if let authReturn = NAuthReturn.authUser(), let user = authReturn.user {
-            var names: [String] = user.fullname!.components(separatedBy: " ")
-            self.firstNameTextField.text = names[0]
-            self.lastNameTextField.text = names[1]
+            if let fullname = user.fullname, !fullname.isEmpty {
+                var names: [String] = user.fullname!.components(separatedBy: " ")
+                self.firstNameTextField.text = names[0]
+                self.lastNameTextField.text = names[1]
+            }
             self.emailTextField.text = user.email
             self.phoneNumberTextField.text = user.phone
             if let countryCode = user.countryCode, let countryNumber = countryCode.countryNumber {
                 self.pickedCountryCode = user.countryCode
                 self.countryCodeLabel.text = ("+\(countryNumber)")
+                self.phoneRegionCode = countryCode.countryCode!
             } else {
-                self.pickedCountryCode =  NCountryCode.getCountryCode(by: self.userRegionCode)
+                self.pickedCountryCode =  NCountryCode.getCountryCode(by: self.phoneRegionCode)
                 self.countryCodeLabel.text = ("+\(self.pickedCountryCode!.countryNumber!)")
             }
+            if let country = user.country {
+                self.pickedCountry = country
+                self.countryTextField.text = country.name
+                let countryCode = NCountryCode.getCountryCode(with: country.id!)!
+                self.userRegionCode = countryCode.countryCode!
+            }
+            
             self.genderTextField.text = user.gender
             if let birthDate = user.birthDate {
                 self.birthdateTextField.text = birthDate.formatDate(dateFormat: "dd/MM/yyyy")

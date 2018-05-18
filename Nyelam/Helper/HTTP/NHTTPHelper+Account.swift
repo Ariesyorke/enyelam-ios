@@ -56,7 +56,7 @@ extension NHTTPHelper {
                 return
             }
             if let data = data, let json = data as? [String: Any] {
-                NAuthReturn.deleteAllAuth()
+                _ = NAuthReturn.deleteAllAuth()
                 let authReturn = NAuthReturn.init(entity: NSEntityDescription.entity(forEntityName: "NAuthReturn", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                 authReturn.parse(json: json)
                 NSManagedObjectContext.saveData {
@@ -116,12 +116,12 @@ extension NHTTPHelper {
                               headers: nil,
                               complete: {status, data, error in
                                 if let error = error {
-                                    print("ERROR \(error)")
                                     complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
                                     return
                                 }
+                                print("DATA \(data)")
                                 if let data = data, let json = data as? [String: Any] {
-                                    NAuthReturn.deleteAllAuth()
+                                    _ = NAuthReturn.deleteAllAuth()
                                     let authReturn = NSEntityDescription.insertNewObject(forEntityName: "NAuthReturn", into: AppDelegate.sharedManagedContext) as! NAuthReturn
                                     authReturn.parse(json: json)
                                     NSManagedObjectContext.saveData {

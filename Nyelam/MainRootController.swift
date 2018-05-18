@@ -34,6 +34,7 @@ class MainRootController: BaseViewController {
         self.onClick(tabItem: self.tabMenus.first!)
         self.disableLeftBarButton()
         self.navigationController!.setNavigationBarHidden(true, animated: true)
+        self.automaticallyAdjustsScrollViewInsets = false
     }
     
     func onSelectTab(type: TabItemType) {
@@ -131,6 +132,8 @@ class MainRootController: BaseViewController {
                 if index == 0 {
                     tab.tabSelected = true
                     self.onSelectTab(type: self.tabMenuTypes[index])
+                    self.bookingController = nil
+                    self.accountController = nil
                 } else {
                     tab.tabSelected = false
                 }
