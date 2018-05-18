@@ -111,13 +111,16 @@ UINavigationControllerDelegate, PECropViewControllerDelegate {
             }
             break
         case 6:
-            if let parent = self.parent as? MainRootController {
-                _ = NAuthReturn.deleteAllAuth()
-                _ = NSummary.deleteAllOrder()
-                parent.checkLoginState()
-            } else if let navigation = self.navigationController {
-                navigation.popViewController(animated: true)
-            }
+            UIAlertController.showAlertWithMultipleChoices(title: "Are you sure want to logout?", message: "", viewController: self, buttons: [
+                UIAlertAction(title: "Yes", style: .default, handler: {alert in
+                if let parent = self.parent as? MainRootController {
+                    _ = NAuthReturn.deleteAllAuth()
+                    _ = NSummary.deleteAllOrder()
+                    parent.checkLoginState()
+                } else if let navigation = self.navigationController {
+                    navigation.popViewController(animated: true)
+                }
+                }),UIAlertAction(title: "No", style: .default, handler: {alert in})])
             break
         default:
             break
