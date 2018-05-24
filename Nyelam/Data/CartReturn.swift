@@ -13,12 +13,14 @@ public class CartReturn: NSObject, NSCoding, Parseable {
     private let KEY_EXPIRY = "expiry"
     private let KEY_CART = "cart"
     private let KEY_ADDITIONAL = "additional"
+    private let KEY_EQUIPMENT_RENTS = "equipment_rents"
     
     var cartToken: String?
     var expiry: Double = 0
     var cart: Cart?
     var additionals: [Additional]?
-
+    var equipments: [Equipment]?
+    
     init(json: [String: Any]) {
         super.init()
         self.parse(json: json)
@@ -75,6 +77,29 @@ public class CartReturn: NSObject, NSCoding, Parseable {
                 print(error)
             }
         }
+        
+        if let equipmentArray = json[KEY_EQUIPMENT_RENTS] as? Array<[String: Any]> {
+            print("PANGGIL 1 \(equipmentArray)")
+            self.equipments = []
+            for equipmentJson in equipmentArray {
+                let equipment = Equipment(json: equipmentJson)
+                self.equipments!.append(equipment)
+            }
+        } else if let equipmentString = json[KEY_EQUIPMENT_RENTS] as? String {
+            print("PANGGIL 2")
+            do {
+                let data = equipmentString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let equipmentArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+                self.equipments = []
+                for equipmentJson in equipmentArray {
+                    let equipment = Equipment(json: equipmentJson)
+                    self.equipments!.append(equipment)
+                }
+            } catch {
+                print(error)
+            }
+        }
+
     }
     
     func serialized() -> [String : Any] {
@@ -98,6 +123,13 @@ public class CartReturn: NSObject, NSCoding, Parseable {
             json[KEY_ADDITIONAL] = additionalArray
         }
         
+        if let equipments = self.equipments, !equipments.isEmpty {
+            var equipmentArray: Array<[String: Any]> = []
+            for equipment in equipments {
+                equipmentArray.append(equipment.serialized())
+            }
+            json[KEY_EQUIPMENT_RENTS] = equipmentArray
+        }
         return json
     }
 }

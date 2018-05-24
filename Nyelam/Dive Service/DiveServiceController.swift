@@ -71,6 +71,7 @@ class DiveServiceController: BaseViewController {
     fileprivate var selectedOrganization: NMasterOrganization?
     fileprivate var selectedLicenseType: NLicenseType?
     fileprivate var state: TableState = .detail
+    fileprivate var equipments: [Equipment]?
     
     @IBOutlet weak var loadingView: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
@@ -105,6 +106,8 @@ class DiveServiceController: BaseViewController {
         
         self.tableView.register(UINib(nibName: "DiveServiceDetailCell", bundle: nil), forCellReuseIdentifier: "DiveServiceDetailCell")
         self.tableView.register(UINib(nibName: "DiveServiceRelatedCell", bundle: nil), forCellReuseIdentifier: "DiveServiceRelatedCell")
+        self.tableView.register(UINib(nibName: "AddOnCell", bundle: nil), forCellReuseIdentifier: "AddOnCell")
+        
     }
     
     fileprivate func tryLoadServiceDetail(serviceId: String, selectedLicense: Int, selectedDate: Date, selectedDiver: Int, forDoTrip: Bool, forDoCourse: Bool) {
@@ -285,7 +288,7 @@ class DiveServiceController: BaseViewController {
         let diveCenter = self.diveService!.divecenter!
         MBProgressHUD.showAdded(to: self.view, animated: true)
         if self.forDoCourse {
-            NHTTPHelper.httpBookService(diveCenterId: diveCenter.id!, diveServiceId: self.diveService!.id!, diver: self.selectedDiver, schedule: self.selectedDate!, type: 1, licenseTypeId: self.selectedLicenseType!.id!, organizationId: self.selectedOrganization!.id!, complete: {response in
+            NHTTPHelper.httpBookService(diveCenterId: diveCenter.id!, diveServiceId: self.diveService!.id!, diver: self.selectedDiver, schedule: self.selectedDate!, type: 1, licenseTypeId: self.selectedLicenseType!.id!, organizationId: self.selectedOrganization!.id!, equipments: self.equipments, complete: {response in
                 MBProgressHUD.hide(for: self.view, animated: true)
                 if let error = response.error {
                     if error.isKind(of: NotConnectedInternetError.self) {
@@ -304,7 +307,7 @@ class DiveServiceController: BaseViewController {
                 }
             })
         } else {
-            NHTTPHelper.httpBookService(diveCenterId: diveCenter.id!, diveServiceId: self.diveService!.id!, diver: self.selectedDiver, schedule: self.selectedDate!, type: 1, complete: {response in
+            NHTTPHelper.httpBookService(diveCenterId: diveCenter.id!, diveServiceId: self.diveService!.id!, diver: self.selectedDiver, schedule: self.selectedDate!, type: 1, equipments: self.equipments, complete: {response in
             MBProgressHUD.hide(for: self.view, animated: true)
                 if let error = response.error {
                     if error.isKind(of: NotConnectedInternetError.self) {
@@ -367,6 +370,26 @@ extension DiveServiceController: NStickyHeaderViewDelegate {
     }
 }
 extension DiveServiceController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 1 {
+            _ = EquipmentRentController.push(on: self.navigationController!, diveCenterId: self.diveService!.divecenter!.id!, selectedDate: self.selectedDate!, equipments: self.equipments, onUpdateEquipment: {equipments in
+                let indexSet = IndexSet(integer: 1)
+                self.equipments = equipments
+                self.tableView.reloadSections(indexSet, with: .automatic)
+            })
+        }
+    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.00001
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 1 {
+            return 40
+        } else {
+            return 0.00001
+        }
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DiveServiceDetailCell", for: indexPath) as! DiveServiceDetailCell
@@ -396,8 +419,71 @@ extension DiveServiceController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         return UITableViewCell()
+//        if indexPath.section == 0 {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "DiveServiceDetailCell", for: indexPath) as! DiveServiceDetailCell
+//            cell.forDoCourse = self.forDoCourse
+//            cell.initData(diveService: self.diveService!)
+//            cell.onDiveCenterClicked = {diveCenter in
+//                if self.forDoCourse {
+//                    _ = DiveCenterController.push(on: self.navigationController!, forDoCourse: self.forDoCourse, selectedKeyword: self.selectedKeyword, selectedDiver: 1, selectedDate: self.selectedDate!, selectedOrganization: self.selectedOrganization!, selectedLicenseType: self.selectedLicenseType!, diveCenter: diveCenter)
+//                } else {
+//                    _ = DiveCenterController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: self.selectedKeyword, selectedLicense: self.selectedLicense, selectedDiver: 1, selectedDate: self.selectedDate!, ecoTrip: self.ecotrip, diveCenter: diveCenter)
+//                }
+//            }
+//            return cell
+//        } else if indexPath.section == 1 {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "AddOnCell", for: indexPath) as! AddOnCell
+//            if let equipments = self.equipments, !equipments.isEmpty, indexPath.row < equipments.count {
+//                cell.equipmentItemLabel.text = "\(equipments[indexPath.row].name!) x\(equipments[indexPath.row].quantity)"
+//                cell.equipmentItemLabel.textColor = UIColor.black
+//            } else {
+//                cell.equipmentItemLabel.text = "Add Item"
+//                cell.equipmentItemLabel.textColor = UIColor.darkGray
+//            }
+//            return cell
+//        } else if indexPath.section == 2 {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "DiveServiceRelatedCell", for: indexPath) as! DiveServiceRelatedCell
+//            cell.isDoTrip = self.forDoTrip
+//            cell.controller = self
+//            cell.relatedDiveServices = self.relatedDiveServices
+//            cell.onRelatedServiceClicked = {diveService in
+//                if self.forDoTrip {
+//                    let date = Date(timeIntervalSince1970: diveService.schedule!.startDate)
+//                    _ = DiveServiceController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: self.selectedKeyword, selectedLicense: diveService.license, selectedDiver: 1, selectedDate: date, ecoTrip: self.ecotrip, diveService: diveService)
+//                } else {
+//                    _ = DiveServiceController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: self.selectedKeyword, selectedLicense: diveService.license, selectedDiver: 1, selectedDate: self.selectedDate!, ecoTrip: self.ecotrip, diveService: diveService)
+//                }
+//            }
+//            return cell
+//        }
+//        return UITableViewCell()
+
     }
     
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        var count = 0
+//        if state == .detail {
+//            if let _ = self.diveService {
+//                count += 2
+//            }
+//            if let diveServices = self.relatedDiveServices, !diveServices.isEmpty {
+//                count += 1
+//            }
+//        }
+//        return count
+//    }
+    
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        if section == 1 {
+//            var sectionTitle = NBookingTitleSection(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
+//            sectionTitle.subtitleLabel.isHidden = true
+//            sectionTitle.titleLabel.text = "Add On(s)"
+//            sectionTitle.baseView.backgroundColor = UIColor.nyOrange
+//            return sectionTitle
+//        } else {
+//            return nil
+//        }
+//    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count = 0
         if state == .detail {
@@ -409,7 +495,23 @@ extension DiveServiceController: UITableViewDelegate, UITableViewDataSource {
             }
         }
         return count
+//        var count = 0
+//        if state == .detail {
+//            if section == 0 {
+//                return 1
+//            } else if section == 1 {
+//                var count = 1
+//                if let equipments = self.equipments, !equipments.isEmpty {
+//                    count += equipments.count
+//                }
+//                return count
+//            } else if section == 2 {
+//                return 1
+//            }
+//        }
+//        return count
     }
+    
 }
 class DiveServiceDetailCell: NTableViewCell {
     let faciltyMapping: [String: [String]] = [
@@ -538,9 +640,8 @@ class DiveServiceDetailCell: NTableViewCell {
             self.additionalLabel2.text = "Divespot Options"
             self.additionalLabel3.text = "Trip Durations"
             self.additionalLabel4.text = "Stock"
-            self.additionalLabel4Height.constant = 0
+            self.additionalLabel4Height.constant = 17
             self.additionalLabel4Colon.text = ":"
-            self.additionalLabel4Height.constant = 0
             self.stockLabel.text = String(diveService.availability)
             self.totalDivesCounterLabel.text = "\(diveService.totalDives)"
             self.divespotCounterLabel.text = "\(diveService.diveSpots!.count)"
@@ -613,6 +714,7 @@ class DiveServiceRelatedCell: NTableViewCell {
     var onRelatedServiceClicked: (NDiveService) -> () = {service in }
     var controller: UIViewController?
     
+    @IBOutlet weak var scrollerHeightConstraint: NSLayoutConstraint!
     var relatedDiveServices: [NDiveService]? {
         didSet {
             for subview: UIView in self.scroller.subviews {
@@ -620,6 +722,11 @@ class DiveServiceRelatedCell: NTableViewCell {
             }
             
             if self.relatedDiveServices != nil {
+                if self.isDoTrip {
+                    self.scrollerHeightConstraint.constant = 330
+                } else {
+                    self.scrollerHeightConstraint.constant = 320
+                }
                 var i: Int = 0
                 var leftView: UIView? = nil
                 for service: NDiveService in self.relatedDiveServices! {
@@ -627,7 +734,7 @@ class DiveServiceRelatedCell: NTableViewCell {
                     view.isDoTrip = self.isDoTrip
                     view.initData(diveService: service)
                     view.addTarget(self, action: #selector(DiveServiceRelatedCell.onServiceClicked(at:)))
-                    DTMHelper.addShadow(view)
+//                    DTMHelper.addShadow(view)
                     
                     self.scroller.addSubview(view)
                     self.scroller.addConstraints([
@@ -657,10 +764,13 @@ class DiveServiceRelatedCell: NTableViewCell {
         let diveService = relatedDiveServices![index]
         self.onRelatedServiceClicked(diveService)
     }
+    
     fileprivate func createView(for service: NDiveService) -> NServiceView {
         let view: NServiceView = NServiceView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.controller!.view.frame.width * 75/100))
+        view.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.isDoTrip ? 330 : 320))
+
         return view
     }
 
@@ -674,6 +784,23 @@ class DiveServiceRelatedCell: NTableViewCell {
         
         // Configure the view for the selected state
     }
+}
+
+class AddOnCell: NTableViewCell {
+    
+    @IBOutlet weak var equipmentItemLabel: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        // Configure the view for the selected state
+    }
+    
 }
 
 enum TableState {

@@ -12,7 +12,6 @@ public class Cart: NSObject, NSCoding, Parseable {
     private let KEY_SUBTOTAL = "sub_total"
     private let KEY_TOTAL = "total"
     private let KEY_CURRENCY = "currency"
-    
     var subtotal: Double = 0
     var total: Double = 0
     var currency: String?

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="FiraSans-Regular.ttf">
+            <string>FiraSans-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="52" id="KGk-i7-Jjw" customClass="AddOnCell" customModule="Nyelam" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="316" height="52"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="316" height="51.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yot-WD-HsC" customClass="UIControl">
+                        <rect key="frame" x="217.5" y="16" width="82.5" height="20"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_arrow_right_grey" translatesAutoresizingMaskIntoConstraints="NO" id="VVN-MX-6W7">
+                                <rect key="frame" x="62.5" y="0.0" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="MXa-4S-nj2"/>
+                                    <constraint firstAttribute="width" constant="20" id="vaE-mX-d8Y"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8DL-Uy-7AO">
+                                <rect key="frame" x="16" y="1.5" width="46.5" height="17"/>
+                                <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8DL-Uy-7AO" firstAttribute="leading" secondItem="yot-WD-HsC" secondAttribute="leading" constant="16" id="2dJ-PC-1ry"/>
+                            <constraint firstItem="8DL-Uy-7AO" firstAttribute="trailing" secondItem="VVN-MX-6W7" secondAttribute="leading" id="82Q-zt-Dkf"/>
+                            <constraint firstAttribute="bottom" secondItem="VVN-MX-6W7" secondAttribute="bottom" id="Ua6-33-4qc"/>
+                            <constraint firstItem="8DL-Uy-7AO" firstAttribute="centerY" secondItem="VVN-MX-6W7" secondAttribute="centerY" id="fdM-8y-dWc"/>
+                            <constraint firstAttribute="trailing" secondItem="VVN-MX-6W7" secondAttribute="trailing" id="o4x-pl-d5h"/>
+                            <constraint firstItem="VVN-MX-6W7" firstAttribute="top" secondItem="yot-WD-HsC" secondAttribute="top" id="q4z-aO-Ldr"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Add Item" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8pI-gd-7hz">
+                        <rect key="frame" x="16" y="17" width="193.5" height="17"/>
+                        <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="yot-WD-HsC" secondAttribute="trailing" constant="16" id="YD8-iG-de9"/>
+                    <constraint firstItem="yot-WD-HsC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="hzX-bU-DIY"/>
+                    <constraint firstItem="yot-WD-HsC" firstAttribute="leading" secondItem="8pI-gd-7hz" secondAttribute="trailing" constant="8" id="j68-14-Lpg"/>
+                    <constraint firstItem="8pI-gd-7hz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="tIL-Iy-hcq"/>
+                    <constraint firstItem="8pI-gd-7hz" firstAttribute="centerY" secondItem="yot-WD-HsC" secondAttribute="centerY" id="vOf-MR-2YM"/>
+                    <constraint firstAttribute="bottom" secondItem="yot-WD-HsC" secondAttribute="bottom" constant="16" id="wXS-5y-XiC"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="equipmentItemLabel" destination="8pI-gd-7hz" id="cZ2-6Q-djW"/>
+            </connections>
+            <point key="canvasLocation" x="36" y="84"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic_arrow_right_grey" width="32" height="32"/>
+    </resources>
+</document>

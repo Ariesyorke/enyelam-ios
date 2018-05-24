@@ -13,7 +13,7 @@ import GoogleMaps
 import GooglePlaces
 import GoogleSignIn
 import MidtransCoreKit
-
+import Google
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -25,6 +25,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey(NConstant.GOOGLE_API_KEY)
         MidtransConfig.shared().setClientKey(NConstant.MIDTRANS_CLIENT_ID, environment: NConstant.MIDTRANS_ENVIRONTMENT, merchantServerURL: NConstant.MIDTRANS_URL)
         PayPalMobile.initializeWithClientIds(forEnvironments: [NConstant.PAYPAL_ENVIRONTMENT:NConstant.PAYPAL_CLIENT_ID])
+        
+        guard let gai = GAI.sharedInstance() else {
+            assert(false, "Google Analytics not configured correctly")
+        }
+        gai.tracker(withTrackingId: "UA-119749974-1")
+        // Optional: automatically report uncaught exceptions.
+        gai.trackUncaughtExceptions = true
+        
+//         Optional: set Logger to VERBOSE for debug information.
+//         Remove before app release.
+        gai.logger.logLevel = .verbose
         UITableViewCell.appearance().preservesSuperviewLayoutMargins = false
         UITableViewCell.appearance().contentView.preservesSuperviewLayoutMargins = false
 

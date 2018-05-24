@@ -485,6 +485,26 @@ class NHTTPHelper {
             return "api/docourse/detail"
         }
     }
+    internal static func basicAuthStringRequest(URLString: URLConvertible,
+                                                parameters: [String: Any]? = nil,
+                                                headers: [String: String]? = nil,
+                                                complete: @escaping (Bool, Any?, BaseError?)->()) {
+        let authReturn = NAuthReturn.authUser()
+        if let authReturn = NAuthReturn.authUser(), let token = authReturn.token, let user = authReturn.user, let userId = user.id {
+            var param: [String: Any] = [:]
+            param["user_id"] = userId
+            param["nyelam_token"] = token
+            if let parameters = parameters {
+                for (key, value) in parameters {
+                    param[key] = value
+                }
+            }
+            self.basicPostStringRequest(URLString: URLString, parameters: param, headers: nil, complete: complete)
+        } else {
+            complete(false, nil, UserNotFoundError(statusCode: -1, title: "User is either not login or token is expired", message: nil))
+        }
+    }
+    
     internal static func basicAuthRequest(URLString: URLConvertible,
                                           parameters: [String: Any]? = nil,
                                           headers: [String: String]? = nil,
@@ -612,6 +632,82 @@ class NHTTPHelper {
         } else {
             complete(false, nil, UserNotFoundError(statusCode: -1, title: "User is either not login or token is expired", message: nil))
         }
+    }
+    internal static func basicPostStringRequest(URLString: URLConvertible,
+        parameters: [String: Any]? = nil,
+        headers: [String: String]? = nil,
+        complete: @escaping (Bool, Any?, BaseError?)->()) {
+        print("http post result ----")
+        print("--- url = \(URLString)")
+        print("--- parameters = \(parameters)")
+        print("--- headers = \(headers)")
+        
+        var param: [String: Any] = [:]
+        param[POST_API_VER] = API_VER
+        param[POST_APP_VER] = NConstant.appVersion
+        param[POST_OS_VER] = NConstant.osVersion
+        param[POST_DEVICE] = NConstant.deviceModel
+        param[POST_TIMESTAMP] = String(NConstant.currentTimeStamp)
+        
+        if let parameters = parameters {
+            for (key, value) in parameters {
+                param[key] = value
+            }
+        }
+        Alamofire.request(URLString, method: .post, parameters: param, encoding: URLEncoding.httpBody, headers: headers).responseString(completionHandler: {response in
+            
+            if let error = response.error as? URLError {
+                if error.code == URLError.Code.notConnectedToInternet {
+                    complete(false, nil, NotConnectedInternetError(statusCode: error.code.rawValue, title: "Connection Error", message: ""))
+                }
+                return
+            }
+            if let value = response.value {
+                let data = value.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                do {
+                    let jsonResult: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                    if let jsonResult = jsonResult as? [String: Any] {
+                        var status = -1
+                        if let s = jsonResult[KEY_STATUS] as? Int {
+                            status = s
+                        } else if let s = jsonResult[KEY_STATUS] as? String {
+                            if s.isNumber {
+                                status = Int(s)!
+                            }
+                        }
+                        if status < 0 {
+                            complete(false, nil, InvalidReturnValueError(statusCode: 200, title: "no json with key \"status\"", message: nil))
+                        }
+                        if status == STATUS_SUCCESS {
+                            if let _ = jsonResult[KEY_DATA] {
+                                if let jsonData = jsonResult[KEY_DATA] as? [String: Any] {
+                                    complete(true, jsonData, nil)
+                                } else if let jsonString = jsonResult[KEY_DATA] as? String {
+                                    do {
+                                        let data = jsonString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                                        let jsonData: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                                        complete(true, jsonData, nil)
+                                        return
+                                    } catch {
+                                        print(error)
+                                    }
+                                }
+                                complete(false, nil, UnknownError(statusCode: -1, title: "Unknown Error", message: ""))
+                            } else {
+                                complete(false, nil, InvalidReturnValueError(statusCode: 200, title: "no json with key \"data\"", message: nil))
+                            }
+                        } else if status == STATUS_INVALID_TOKEN {
+                            complete(false, nil, InvalidTokenError(statusCode: 200, title: "request status invalid token", message: nil))
+                        }
+                    } else {
+                        complete(false, nil, UnknownError(statusCode: -1, title: "Unknown Error", message: ""))
+                    }
+                } catch {
+                    print(error)
+                    complete(false, nil, UnknownError(statusCode: -1, title: error.localizedDescription, message: ""))
+                }
+            }
+        })
     }
     internal static func basicPostRequest(URLString: URLConvertible,
                                           parameters: [String: Any]? = nil,

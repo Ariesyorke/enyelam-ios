@@ -35,6 +35,18 @@ extension UIView {
         }
     }
     
+    func dropShadow(scale: Bool = true, widthOffset: CGFloat, heightOffset: CGFloat) {
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.5
+        layer.shadowOffset = CGSize(width: widthOffset, height: heightOffset)
+        layer.shadowRadius = 1
+        
+        layer.shadowPath = UIBezierPath(rect: bounds).cgPath
+        layer.shouldRasterize = true
+        layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+    }
+
     func circledView() {
         self.layer.cornerRadius = self.frame.size.width/2
         self.clipsToBounds = true

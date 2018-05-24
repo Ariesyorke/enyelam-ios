@@ -13,6 +13,7 @@ target 'Nyelam' do
   pod 'FacebookShare', '0.3.0'
   pod 'GoogleMaps'
   pod 'GooglePlaces'
+  pod 'Google/Analytics', '~> 2.0.4'
   pod 'SideMenu', '~> 2.3.4'
   pod 'UINavigationControllerWithCompletionBlock'
   pod 'ActionSheetPicker-3.0', '~> 2.3.0'

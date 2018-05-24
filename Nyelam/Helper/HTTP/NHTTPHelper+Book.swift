@@ -32,15 +32,24 @@ extension NHTTPHelper {
 
         })
     }
-    static func httpBookService(diveCenterId: String, diveServiceId: String, diver: Int, schedule: Date, type: Int, licenseTypeId: String, organizationId: String, complete: @escaping(NHTTPResponse<CartReturn>)->()) {
+    static func httpBookService(diveCenterId: String, diveServiceId: String, diver: Int, schedule: Date, type: Int, licenseTypeId: String, organizationId: String,  equipments: [Equipment]? = nil, complete: @escaping(NHTTPResponse<CartReturn>)->()) {
+        var param: [String: Any] =  ["dive_service_id": diveServiceId,
+                                     "dive_center_id": diveCenterId,
+                                     "diver": String(diver),
+                                     "type": String(type),
+                                     "organization_id": organizationId,
+                                     "license_type": licenseTypeId,
+                                     "schedule": String(schedule.timeIntervalSince1970)]
+        if let equipments = equipments, !equipments.isEmpty {
+            var equipmentArray: Array<[String: Any]> = []
+            for equipment in equipments {
+                equipmentArray.append(equipment.toJSONPost())
+            }
+            param["equipment_rent"] = String.JSONStringify(value: equipmentArray)
+        }
+
         self.basicAuthRequest(URLString: HOST_URL + API_PATH_BOOK_SERVICE_CART,
-                              parameters: ["dive_service_id": diveServiceId,
-                                           "dive_center_id": diveCenterId,
-                                           "diver": String(diver),
-                                           "type": String(type),
-                                           "organization_id": organizationId,
-                                           "license_type": licenseTypeId,
-                                           "schedule": String(schedule.timeIntervalSince1970)],
+                              parameters: param,
                               headers: nil,
                               complete: {status, data, error in
                                 if let error = error {
@@ -56,13 +65,22 @@ extension NHTTPHelper {
         })
     }
     
-    static func httpBookService(diveCenterId: String, diveServiceId: String, diver: Int, schedule: Date, type: Int, complete: @escaping(NHTTPResponse<CartReturn>)->()) {
+    static func httpBookService(diveCenterId: String, diveServiceId: String, diver: Int, schedule: Date, type: Int, equipments: [Equipment]? = nil, complete: @escaping(NHTTPResponse<CartReturn>)->()) {
+        var param: [String: Any] =
+                    ["dive_service_id": diveServiceId,
+                     "dive_center_id": diveCenterId,
+                     "diver": String(diver),
+                     "type": String(type),
+                     "schedule": String(schedule.timeIntervalSince1970)]
+        if let equipments = equipments, !equipments.isEmpty {
+            var equipmentArray: Array<[String: Any]> = []
+            for equipment in equipments {
+                equipmentArray.append(equipment.toJSONPost())
+            }
+            param["equipment_rent"] = String.JSONStringify(value: equipmentArray)
+        }
         self.basicAuthRequest(URLString: HOST_URL + API_PATH_BOOK_SERVICE_CART,
-                              parameters: ["dive_service_id": diveServiceId,
-                                           "dive_center_id": diveCenterId,
-                                           "diver": String(diver),
-                                           "type": String(type),
-                                           "schedule": String(schedule.timeIntervalSince1970)],
+                              parameters: param,
                               headers: nil,
                               complete: {status, data, error in
                                 if let error = error {

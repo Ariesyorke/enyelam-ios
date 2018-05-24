@@ -16,6 +16,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NBookingTitleSection" customModule="Nyelam" customModuleProvider="target">
             <connections>
+                <outlet property="baseView" destination="tsn-RJ-tYG" id="e2f-JZ-WiS"/>
                 <outlet property="subtitleLabel" destination="1nW-X9-Bs2" id="SDt-nk-sAc"/>
                 <outlet property="titleLabel" destination="Tla-yO-rUe" id="2L2-nB-gTz"/>
             </connections>

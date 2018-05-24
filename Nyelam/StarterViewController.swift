@@ -93,8 +93,10 @@ class StarterViewController: BaseViewController {
                 })
                 return
             }
-            NSManagedObjectContext.saveData()
+            NSManagedObjectContext.saveData {
             self.loadMasterOrganization()
+//                self.goToHomepage()
+            }
         })
     }
     

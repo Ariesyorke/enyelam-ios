@@ -277,7 +277,7 @@ extension OrderController: UITableViewDelegate, UITableViewDataSource {
             if self.isLoadAdditionalFee {
                 cell.loadAdditionalFee()
             } else {
-                cell.initData(note: self.note, cart: cartReturn!.cart!, selectedDiver: diver, servicePrice: self.diveService!.specialPrice, additionals: self.cartReturn!.additionals)
+                cell.initData(note: self.note, cart: cartReturn!.cart!, selectedDiver: diver, servicePrice: self.diveService!.specialPrice, additionals: self.cartReturn!.additionals, equipments: self.cartReturn!.equipments)
             }
             return cell
         }

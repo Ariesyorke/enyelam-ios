@@ -29,6 +29,9 @@ UINavigationControllerDelegate, PECropViewControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 11.0, *) {
+            self.tableView.contentInsetAdjustmentBehavior = .never
+        }
         self.title = "Account Profile"
         self.tableView.register(UINib(nibName: "HeaderViewCell", bundle: nil), forCellReuseIdentifier: "HeaderViewCell")
         self.tableView.register(UINib(nibName: "SectionViewCell", bundle: nil), forCellReuseIdentifier: "SectionViewCell")

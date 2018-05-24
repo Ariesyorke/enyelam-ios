@@ -77,17 +77,17 @@ class HomeController: BaseViewController, UIScrollViewDelegate, MFMailComposeVie
             for subview: UIView in self.doTripScroller.subviews {
                 subview.removeFromSuperview()
             }
-            
+            self.doTripScroller.translatesAutoresizingMaskIntoConstraints = false
             if self.doTrips != nil {
                 var i: Int = 0
                 var leftView: UIView? = nil
+
                 for doTrip: NDiveService in self.doTrips! {
                     let view: NServiceView = self.createView(forDoTrip: doTrip)
                     view.isDoTrip = true
                     view.initData(diveService: doTrip)
                     view.addTarget(self, action: #selector(HomeController.onDoTripClicked(at:)))
-                    DTMHelper.addShadow(view)
-                    
+//                    DTMHelper.addShadow(view)
                     self.doTripScroller.addSubview(view)
                     self.doTripScroller.addConstraints([
                         NSLayoutConstraint(item: self.doTripScroller, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0),
@@ -103,16 +103,20 @@ class HomeController: BaseViewController, UIScrollViewDelegate, MFMailComposeVie
                     if i == self.doTrips!.count - 1 {
                         self.doTripScroller.addConstraint(NSLayoutConstraint(item: self.doTripScroller, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 16))
                     }
-                    
                     i += 1
                     leftView = view
                 }
             }
+
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if #available(iOS 11.0, *) {
+            self.doTripScroller.contentInsetAdjustmentBehavior = .never
+            self.bannerScroller.contentInsetAdjustmentBehavior = .never
+        }
         self.setupSideMenu()
         self.banners = [Banner(), Banner(), Banner()]
         self.getDoTrips()
@@ -141,8 +145,9 @@ class HomeController: BaseViewController, UIScrollViewDelegate, MFMailComposeVie
                         }
                     }
                 }
-                self.doTripScrollerHeight.constant = 330
                 self.doTrips = diveServices
+                self.doTripScrollerHeight.constant = 320
+                self.view.layoutIfNeeded()
             }
         })
     }
@@ -169,10 +174,11 @@ extension HomeController {
 
     @IBAction func onMenuClicked(_ sender: UIControl) {
         if sender == self.btDoDive {
-            SearchFormController.push(on: self.navigationController!, forDoTrip: false)
+            _ = SearchFormController.push(on: self.navigationController!, forDoTrip: false)
         } else if sender == self.btEcoTrip {
-            EcoTripIntroductionController.push(on: self.navigationController!)
+            _ = EcoTripIntroductionController.push(on: self.navigationController!)
         } else if sender == self.btDoCourse {
+//            UIAlertController.handlePopupMessage(viewController: self, title: "Coming Soon!", actionButtonTitle: "OK", completion: {})
             SearchFormController.push(on: self.navigationController!, forDoCourse: true)
         } else if sender == self.btDoShop {
             UIAlertController.handlePopupMessage(viewController: self, title: "Coming Soon!", actionButtonTitle: "OK", completion: {})
@@ -277,7 +283,10 @@ extension HomeController {
     fileprivate func createView(forDoTrip service: NDiveService) -> NServiceView {
         let view: NServiceView = NServiceView()
         view.translatesAutoresizingMaskIntoConstraints = false
+
         view.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.view.frame.width * 75/100))
+        view.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 320))
+
         return view
     }
     
@@ -308,6 +317,7 @@ extension HomeController {
             progress.isHidden = true
         }
         control.addSubview(imgView)
+        
         control.addConstraints([
             NSLayoutConstraint(item: control, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: imgView, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: control, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: imgView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0),

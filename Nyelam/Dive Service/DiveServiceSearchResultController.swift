@@ -74,11 +74,11 @@ class DiveServiceSearchResultController: BaseViewController, UITableViewDataSour
         self.tableView.delegate = self
         self.tableView.addInfiniteScroll(handler: self.infiniteScroll)
         self.tableView.register(UINib(nibName: "DiveServiceCell", bundle: nil), forCellReuseIdentifier: "DiveServiceCell")
-        if self.forDoCourse {
-            self.loadDiveServices()
-        } else {
+//        if self.forDoCourse {
+//            self.loadDiveServices()
+//        } else {
             self.loadPrice(keyword: self.selectedKeyword, forDoTrip: self.forDoTrip, selectedDiver: self.selectedDiver!, certificate: self.forDoCourse ? nil : self.selectedLicense, selectedDate: self.selectedDate, ecoTrip: self.ecotrip)
-        }
+//        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -89,7 +89,7 @@ class DiveServiceSearchResultController: BaseViewController, UITableViewDataSour
 
     @IBAction func filterButtonAction(_ sender: Any) {
         if self.forDoCourse {
-            _ = DiveTripFilterController.push(on: self.navigationController!, price: self.price, forDoCourse: self.forDoCourse, filter: self.filter, onUpdateFilter: {filter in
+            _ = DiveTripFilterController.present(on: self.navigationController!, price: self.price, forDoCourse: self.forDoCourse, filter: self.filter, onUpdateFilter: {filter in
                 self.page = 1
                 self.diveServices = nil
                 self.tableView.reloadData()
@@ -97,7 +97,7 @@ class DiveServiceSearchResultController: BaseViewController, UITableViewDataSour
                 self.loadDiveServices()
             })
         } else {
-            _ = DiveTripFilterController.push(on: self.navigationController!, price: self.price,    filter: self.filter, onUpdateFilter: {filter in
+            _ = DiveTripFilterController.present(on: self.navigationController!, price: self.price,    filter: self.filter, onUpdateFilter: {filter in
                     self.page = 1
                     self.diveServices = nil
                     self.tableView.reloadData()
@@ -458,7 +458,7 @@ extension DiveServiceSearchResultController {
         let cell: DiveServiceCell = tableView.dequeueReusableCell(withIdentifier: "DiveServiceCell", for: indexPath) as! DiveServiceCell
         cell.serviceView.isDoCourse = self.forDoCourse
         cell.serviceView.isDoTrip = self.forDoTrip
-        cell.serviceView.tag = row
+        cell.serviceView.control.tag = row
         cell.serviceView.addTarget(self, action: #selector(DiveServiceSearchResultController.onDoTripClicked(at:)))
         cell.serviceView.initData(diveService: self.diveServices![row])
         return cell
@@ -470,7 +470,11 @@ extension DiveServiceSearchResultController {
         if self.forDoTrip {
             self.selectedDate = Date(timeIntervalSince1970: diveService.schedule!.startDate)
         }
-        _ = DiveServiceController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: self.selectedKeyword, selectedLicense: diveService.license, selectedDiver: self.selectedDiver!, selectedDate: self.selectedDate!, ecoTrip: self.ecotrip, diveService: diveService)
+        if self.forDoCourse {
+            _ = DiveServiceController.push(on: self.navigationController!, forDoCourse: self.forDoCourse, selectedKeyword: self.selectedKeyword, selectedDiver: self.selectedDiver!, selectedDate: self.selectedDate!, diveService: diveService, selectedOrganization: self.selectedOrganization!, selectedLicenseType: self.selectedLicenseType!)
+        } else {
+            _ = DiveServiceController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: self.selectedKeyword, selectedLicense: diveService.license, selectedDiver: self.selectedDiver!, selectedDate: self.selectedDate!, ecoTrip: self.ecotrip, diveService: diveService)
+        }
 
     }
     

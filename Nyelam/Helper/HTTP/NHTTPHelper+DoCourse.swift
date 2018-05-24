@@ -100,7 +100,7 @@ extension NHTTPHelper {
         if let facilities = facilities, !facilities.isEmpty {
             param["facilities"] = facilities
         }
-        self.basicPostRequest(URLString: HOST_URL + API_PATH_DO_COURSE_SEARCH_BY_DIVECENTER, parameters: param, headers: nil, complete: {status, data, error in
+        self.basicPostRequest(URLString: HOST_URL + API_PATH_DO_COURSE_SEARCH_BY_PROVINCE, parameters: param, headers: nil, complete: {status, data, error in
             if let error = error {
                 complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
                 return
@@ -166,7 +166,7 @@ extension NHTTPHelper {
         if let facilities = facilities, !facilities.isEmpty {
             param["facilities"] = facilities
         }
-        self.basicPostRequest(URLString: HOST_URL + API_PATH_DO_COURSE_SEARCH_BY_DIVECENTER, parameters: param, headers: nil, complete: {status, data, error in
+        self.basicPostRequest(URLString: HOST_URL + API_PATH_DO_COURSE_SEARCH_BY_CITY, parameters: param, headers: nil, complete: {status, data, error in
             if let error = error {
                 complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
                 return

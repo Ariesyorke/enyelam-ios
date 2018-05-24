@@ -18,7 +18,7 @@ class BaseNavigationController: UINavigationController, UITextFieldDelegate {
         self.navigationBar.barTintColor = UIColor.primary
         self.navigationBar.isTranslucent = false
         self.navigationBar.tintColor = UIColor.white
-        self.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 20.0)]
+        self.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font:UIFont(name: "FiraSans-Bold", size: 18.0)!]
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

@@ -39,7 +39,7 @@ class BookingSummaryCell: NTableViewCell {
         self.summaryContainer.isHidden = true
     }
     
-    func initData(note: String, cart: Cart, selectedDiver: Int, servicePrice: Double, additionals: [Additional]?) {
+    func initData(note: String, cart: Cart, selectedDiver: Int, servicePrice: Double, additionals: [Additional]?, equipments: [Equipment]? = nil) {
         self.loadingView.isHidden = true
         self.summaryContainer.isHidden = false
         self.noteTextField.text = note
@@ -62,10 +62,32 @@ class BookingSummaryCell: NTableViewCell {
             NSLayoutConstraint(item: self.detailContainer, attribute: .top, relatedBy: .equal, toItem: serviceAddtionalView, attribute: .top, multiplier: 1, constant: 0)
             ])
 //        serviceAddtionalView.addConstraint(NSLayoutConstraint(item: serviceAddtionalView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 54))
+        var i: Int = 0
+        if let equipments = equipments, !equipments.isEmpty {
+            for equipment in equipments {
+                let additionalView = NAdditionalView(frame: CGRect.zero)
+                additionalView.translatesAutoresizingMaskIntoConstraints = false
+                additionalView.initData(title: "\(equipment.name!) x\(equipment.quantity)", price: equipment.specialPrice)
+                self.detailContainer.addSubview(additionalView)
+                self.detailContainer.addConstraints([
+                    NSLayoutConstraint(item: self.detailContainer, attribute: .leading, relatedBy: .equal, toItem: additionalView, attribute: .leading, multiplier: 1, constant: 0),
+                    NSLayoutConstraint(item: self.detailContainer, attribute: .trailing, relatedBy: .equal, toItem: additionalView, attribute: .trailing, multiplier: 1, constant: 0),
+                    NSLayoutConstraint(item: self.additionalViews![i], attribute: .bottom,
+                                       relatedBy: .equal, toItem: additionalView, attribute: .top,
+                                       multiplier: 1, constant: -4)
+                    ])
+                self.additionalViews!.append(additionalView)
+                if additionals == nil || additionals!.isEmpty {
+                    self.detailContainer.addConstraint(NSLayoutConstraint(item: self.detailContainer, attribute: .bottom, relatedBy: .equal, toItem: additionalView, attribute: .bottom, multiplier: 1, constant: 0))
+                }
+                self.additionalViews!.append(additionalView)
+                i += 1
+            }
+        }
         if let additionals = additionals, !additionals.isEmpty {
-            var i: Int = 0
+            var j: Int = 0
             for additional in additionals {
-                var additionalView = NAdditionalView(frame: CGRect.zero)
+                let additionalView = NAdditionalView(frame: CGRect.zero)
                 additionalView.translatesAutoresizingMaskIntoConstraints = false
                 additionalView.initData(title: additional.title!, price: additional.value!)
 //                additionalView.addConstraint(NSLayoutConstraint(item: additionalView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 54))
@@ -77,10 +99,11 @@ class BookingSummaryCell: NTableViewCell {
                                        relatedBy: .equal, toItem: additionalView, attribute: .top,
                                        multiplier: 1, constant: -4)
                     ])
-                if i >= additionals.count - 1 {
+                if j >= additionals.count - 1 {
                     self.detailContainer.addConstraint(NSLayoutConstraint(item: self.detailContainer, attribute: .bottom, relatedBy: .equal, toItem: additionalView, attribute: .bottom, multiplier: 1, constant: 0))
                 }
                 self.additionalViews!.append(additionalView)
+                j += 1
                 i += 1
             }
         } else {

@@ -29,6 +29,18 @@ class DiveTripFilterController: BaseViewController {
         return vc
     }
     
+    
+    static func present(on controller: UINavigationController, price: Price, filter: NFilter, onUpdateFilter: @escaping (NFilter)->()) -> DiveTripFilterController {
+        let vc: DiveTripFilterController = DiveTripFilterController(nibName: "DiveTripFilterController", bundle: nil)
+        vc.filter = filter
+        vc.price = price
+        vc.onUpdateFilter = onUpdateFilter
+        controller.present(vc, animated: true, completion: {})
+        return vc
+    }
+
+    
+    
     static func push(on controller: UINavigationController, price: Price, forDoCourse: Bool, filter: NFilter, onUpdateFilter: @escaping (NFilter)->()) -> DiveTripFilterController {
         let vc: DiveTripFilterController = DiveTripFilterController(nibName: "DiveTripFilterController", bundle: nil)
         vc.filter = filter
@@ -39,6 +51,16 @@ class DiveTripFilterController: BaseViewController {
         return vc
     }
 
+    static func present(on controller: UINavigationController, price: Price, forDoCourse: Bool, filter: NFilter, onUpdateFilter: @escaping (NFilter)->()) -> DiveTripFilterController {
+        let vc: DiveTripFilterController = DiveTripFilterController(nibName: "DiveTripFilterController", bundle: nil)
+        vc.filter = filter
+        vc.price = price
+        vc.onUpdateFilter = onUpdateFilter
+        vc.forDoCourse = forDoCourse
+        controller.present(vc, animated: true, completion: {})
+        return vc
+    }
+
     fileprivate var filter: NFilter?
     fileprivate var price: Price?
     fileprivate var forDoCourse: Bool = false
@@ -46,9 +68,8 @@ class DiveTripFilterController: BaseViewController {
         super.viewDidLoad()
         self.clearButton.layer.borderColor = UIColor.blueActive.cgColor
         self.clearButton.layer.borderWidth = 1
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_circle_close_white"), style: .plain, target: self, action: #selector(backButtonAction(_:)))
-
-        self.title = "Filter"
+        self.navigationItem.leftBarButtonItem = nil
+        
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.register(UINib(nibName: "SortByCell", bundle: nil), forCellReuseIdentifier: "SortByCell")
@@ -71,11 +92,17 @@ class DiveTripFilterController: BaseViewController {
     }
     
     @IBAction func applyButtonAction(_ sender: Any) {
-        if let navigation = self.navigationController {
-            navigation.popViewController(animated: true, withCompletionBlock: {
-                self.onUpdateFilter(self.filter!)
-            })
-        }
+//        if let navigation = self.navigationController {
+//            navigation.popViewController(animated: true, withCompletionBlock: {
+//                self.onUpdateFilter(self.filter!)
+//            })
+//        }
+        self.dismiss(animated: true, completion: {
+            self.onUpdateFilter(self.filter!)
+        })
+    }
+    @IBAction func closeButtonAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     /*
@@ -262,13 +289,16 @@ class PriceRangeCell: NTableViewCell, RangeSeekSliderDelegate {
                 self.priceRangeSlider.selectedMinValue = CGFloat(price.lowestPrice)
             }
         }
+        
         if let priceMin = self.priceMin {
             self.priceRangeSlider.selectedMinValue =  CGFloat(priceMin)
         }
+        
         if let priceMax = self.priceMax {
             self.priceRangeSlider.selectedMaxValue = CGFloat(priceMax)
         }
     }
+    
     func rangeSeekSlider(_ slider: RangeSeekSlider, didChange minValue: CGFloat, maxValue: CGFloat) {
         self.priceMin = Int(minValue)
         self.priceMax = Int(maxValue)
@@ -295,6 +325,7 @@ class TotalDivesCell: NTableViewCell {
         // Initialization code
     }
     fileprivate func initTotal() {
+        self.reset()
         if let total = self.total, !total.isEmpty {
             var i: Int = 0
             for totalDive in self.totalDives {
@@ -308,6 +339,18 @@ class TotalDivesCell: NTableViewCell {
         }
     }
     
+    fileprivate func reset() {
+        if self.totalDiveSort.isSelected {
+            self.totalDiveSort.isSelected = false
+        }
+        for button in self.totalDiveSort.otherButtons {
+            if button.isSelected {
+                button.isSelected = false
+            }
+        }
+        
+    }
+    
     func activateButtonBy(index: Int) {
         if index == 0 {
             self.totalDiveSort.isSelected = true
@@ -319,7 +362,6 @@ class TotalDivesCell: NTableViewCell {
             }
         }
     }
-    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
@@ -327,7 +369,6 @@ class TotalDivesCell: NTableViewCell {
     }
     
     @IBAction func totalDivesButtonAction(_ sender: DLRadioButton) {
-        
         self.total = nil
         for radioButton in self.totalDiveSort.selectedButtons() {
             if total == nil {
@@ -361,6 +402,7 @@ class TripCategoryCell: NTableViewCell {
     }
 
 
+    
     @objc func tagButtonAction(_ sender: UIButton!) {
         let tag = sender.tag
         if tag == -1 {

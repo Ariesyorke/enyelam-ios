@@ -14,6 +14,7 @@ class NBookingTitleSection: UIView {
     var contentView: UIView?
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet weak var baseView: UIView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -1,0 +1,30 @@
+{
+    "equipment_rents": [{"id": "1",
+        "name": "Scuba Gear",
+                        "normal_price": 100000,
+                        "special_price": 50000,
+                        "availability_stock": 10,
+                        "quantity":0
+                        }, {
+                        "id": "2",
+                        "name": "Oxygen",
+                        "normal_price": 100000,
+                        "special_price": 50000,
+                        "availability_stock": 10,
+                        "quantity":0
+                        }, {
+                        "id": "3",
+                        "name": "Sepatu Katak",
+                        "normal_price": 100000,
+                        "special_price": 50000,
+                        "availability_stock": 10,
+                        "quantity":0
+                        }, {
+                        "id": "4",
+                        "name": "Snorkel",
+                        "normal_price": 100000,
+                        "special_price": 50000,
+                        "availability_stock": 10,
+                        "quantity":0
+                        }]
+}
