@@ -41,7 +41,7 @@ class NConstant {
     }
     
     static var GOOGLE_API_KEY: String {
-        return "AIzaSyC0d3JJzl7gMGl7hO4x5QqZ_tofSn4vaPM"
+        return "AIzaSyBjzn1Acfbp8tWG6XpoGviDE-xOlU5doXM"
     }
     
     static var PAYPAL_CLIENT_ID: String {

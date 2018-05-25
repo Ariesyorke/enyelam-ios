@@ -89,6 +89,7 @@ class BookingDetailController: BaseViewController {
             if let navigation = self.navigationController {
                 navigation.setNavigationBarHidden(true, animated: true)
                 navigation.popToRootViewController(animated: true)
+                self.moveSafeAreaInsets()
             }
         } else {
             super.backButtonAction(sender)

@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import MBProgressHUD
+import Google
 
 class BaseViewController: UIViewController, UITextFieldDelegate {
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -17,6 +18,11 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if self.isKind(of: MainRootController.self) {
+            self.moveSafeAreaInsets()
+        } else {
+            self.resetInsets()
+        }
         dtmViewDidLoad()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_back_button_white"), style: .plain, target: self, action: #selector(backButtonAction(_:)))
     }
@@ -24,7 +30,7 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
     func disableLeftBarButton() {
         self.navigationItem.leftBarButtonItem = nil
     }
-    
+        
     func handleAuthResponse(response: NHTTPResponse<NAuthReturn>, errorCompletion: @escaping (BaseError)->(), successCompletion: @escaping(NAuthReturn)->()) {
         MBProgressHUD.hide(for: self.view, animated: true)
         if let error = response.error {
@@ -69,13 +75,16 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
     @objc func backButtonAction(_ sender: UIBarButtonItem) {
         self.view.endEditing(true)
         if let navigation = self.navigationController as? BaseNavigationController {
             if (self.isKind(of: SearchFormController.self) || self.isKind(of: EcoTripIntroductionController.self) || self.isKind(of: DiveServiceSearchResultController.self) || self.isKind(of: DiveServiceController.self)
                  || self.isKind(of: BookingDetailController.self) || self.isKind(of: EditProfileViewController.self) || self.isKind(of: ChangePasswordViewController.self) || self.isKind(of: TermsViewController.self)) && navigation.viewControllers.count == 2 {
                 navigation.setNavigationBarHidden(true, animated: true)
+                self.moveSafeAreaInsets()
                 navigation.navigationBar.barTintColor = UIColor.primary
             }
 
@@ -89,6 +98,22 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
             }
         } else {
             self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    func moveSafeAreaInsets() {
+        if #available(iOS 11.0, *) {
+            if let navigation = self.navigationController {
+                navigation.additionalSafeAreaInsets = UIEdgeInsets(top: -20, left: 0, bottom: 0, right: 0)
+            }
+        }
+    }
+    
+    func resetInsets() {
+        if #available(iOS 11.0, *) {
+            if let navigation = self.navigationController {
+                navigation.additionalSafeAreaInsets = UIEdgeInsets.zero
+            }
         }
     }
 

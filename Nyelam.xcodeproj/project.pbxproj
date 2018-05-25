@@ -45,6 +45,7 @@
 		C00D0B00207627DB000D8ED6 /* NHTTPHelper+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00D0AFF207627DB000D8ED6 /* NHTTPHelper+Auth.swift */; };
 		C00D0B0420763250000D8ED6 /* Bridging-Header.m in Sources */ = {isa = PBXBuildFile; fileRef = C00D0B0320763250000D8ED6 /* Bridging-Header.m */; };
 		C00D0B0620763591000D8ED6 /* NHTTPHelper+Master.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00D0B0520763591000D8ED6 /* NHTTPHelper+Master.swift */; };
+		C00E51A220B7C44D00CD0FEC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C00E51A120B7C44D00CD0FEC /* GoogleService-Info.plist */; };
 		C010FB01207CAF47000059AA /* FiraSans-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C010FAEF207CAF43000059AA /* FiraSans-BlackItalic.ttf */; };
 		C010FB02207CAF47000059AA /* FiraSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C010FAF0207CAF43000059AA /* FiraSans-BoldItalic.ttf */; };
 		C010FB03207CAF47000059AA /* FiraSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C010FAF1207CAF43000059AA /* FiraSans-SemiBoldItalic.ttf */; };
@@ -105,6 +106,7 @@
 		C037E8B42085C434000EB5CF /* TermsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C037E8B22085C434000EB5CF /* TermsViewController.xib */; };
 		C037E8B72085FF53000EB5CF /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C037E8B52085FF53000EB5CF /* ChangePasswordViewController.swift */; };
 		C037E8B82085FF53000EB5CF /* ChangePasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C037E8B62085FF53000EB5CF /* ChangePasswordViewController.xib */; };
+		C03A03C120B7F97F00056E35 /* NDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03A03C020B7F97F00056E35 /* NDisplay.swift */; };
 		C040B98220B6B1CC00A19D7E /* background_blur.png in Resources */ = {isa = PBXBuildFile; fileRef = C040B97720B6B1CA00A19D7E /* background_blur.png */; };
 		C040B98320B6B1CC00A19D7E /* banner_3.png in Resources */ = {isa = PBXBuildFile; fileRef = C040B97820B6B1CA00A19D7E /* banner_3.png */; };
 		C040B98420B6B1CC00A19D7E /* bg_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = C040B97920B6B1CB00A19D7E /* bg_placeholder.png */; };
@@ -181,7 +183,6 @@
 		C0B2A272207B763F00D46336 /* NHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2A271207B763F00D46336 /* NHelper.swift */; };
 		C0B2A277207B84DC00D46336 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2A275207B84DC00D46336 /* LoginViewController.swift */; };
 		C0B2A278207B84DC00D46336 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0B2A276207B84DC00D46336 /* LoginViewController.xib */; };
-		C0BE915F2070ACFE004E1B92 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0BE915E2070ACFE004E1B92 /* GoogleService-Info.plist */; };
 		C0BE91622070AD27004E1B92 /* NConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BE91612070AD27004E1B92 /* NConstant.swift */; };
 		C0BE91632070ADD5004E1B92 /* ActionSheetPicker_3_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0BE91742070ADD5004E1B92 /* ActionSheetPicker_3_0.framework */; };
 		C0BE91642070ADD5004E1B92 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0BE91752070ADD5004E1B92 /* Alamofire.framework */; };
@@ -388,6 +389,7 @@
 		C00D0B022076324F000D8ED6 /* Nyelam-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nyelam-Bridging-Header.h"; sourceTree = "<group>"; };
 		C00D0B0320763250000D8ED6 /* Bridging-Header.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "Bridging-Header.m"; path = "Nyelam/Helper/Bridging-Header.m"; sourceTree = SOURCE_ROOT; };
 		C00D0B0520763591000D8ED6 /* NHTTPHelper+Master.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NHTTPHelper+Master.swift"; sourceTree = "<group>"; };
+		C00E51A120B7C44D00CD0FEC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C010FAEF207CAF43000059AA /* FiraSans-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-BlackItalic.ttf"; sourceTree = "<group>"; };
 		C010FAF0207CAF43000059AA /* FiraSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		C010FAF1207CAF43000059AA /* FiraSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
@@ -456,6 +458,7 @@
 		C037E8B22085C434000EB5CF /* TermsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermsViewController.xib; sourceTree = "<group>"; };
 		C037E8B52085FF53000EB5CF /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		C037E8B62085FF53000EB5CF /* ChangePasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangePasswordViewController.xib; sourceTree = "<group>"; };
+		C03A03C020B7F97F00056E35 /* NDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NDisplay.swift; sourceTree = "<group>"; };
 		C040B97720B6B1CA00A19D7E /* background_blur.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_blur.png; sourceTree = "<group>"; };
 		C040B97820B6B1CA00A19D7E /* banner_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = banner_3.png; sourceTree = "<group>"; };
 		C040B97920B6B1CB00A19D7E /* bg_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_placeholder.png; sourceTree = "<group>"; };
@@ -535,7 +538,6 @@
 		C0B2A273207B819700D46336 /* Nyelam 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Nyelam 2.xcdatamodel"; sourceTree = "<group>"; };
 		C0B2A275207B84DC00D46336 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C0B2A276207B84DC00D46336 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
-		C0BE915E2070ACFE004E1B92 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C0BE91612070AD27004E1B92 /* NConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NConstant.swift; sourceTree = "<group>"; };
 		C0BE91742070ADD5004E1B92 /* ActionSheetPicker_3_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ActionSheetPicker_3_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0BE91752070ADD5004E1B92 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1013,12 +1015,12 @@
 		C037AD5A2070A38800DD5CBC /* Nyelam */ = {
 			isa = PBXGroup;
 			children = (
+				C00E51A120B7C44D00CD0FEC /* GoogleService-Info.plist */,
 				C069839320B2B4E0009444EE /* Resources */,
 				C069838A20B2913E009444EE /* Equipment */,
 				C0EE27FD209995EC006ACA5D /* Book */,
 				C0EE27F8209991BD006ACA5D /* Order Summary */,
 				A6C2708F207BFD02007E4D2A /* Nyelam-Bridging-Header.h */,
-				C0BE915E2070ACFE004E1B92 /* GoogleService-Info.plist */,
 				C037AD6A2070A38800DD5CBC /* Info.plist */,
 				A6C27085207BEBDE007E4D2A /* MainNavigationController.swift */,
 				C037AD5B2070A38800DD5CBC /* AppDelegate.swift */,
@@ -1136,6 +1138,7 @@
 				C0BE919A2070B7F3004E1B92 /* Extensions */,
 				C0BE91612070AD27004E1B92 /* NConstant.swift */,
 				C0B2A271207B763F00D46336 /* NHelper.swift */,
+				C03A03C020B7F97F00056E35 /* NDisplay.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1398,6 +1401,7 @@
 				C037AD562070A38800DD5CBC /* Resources */,
 				46A60A6E30A300A2B676E910 /* [CP] Embed Pods Frameworks */,
 				23B792E0C9F91DE21168CCD4 /* [CP] Copy Pods Resources */,
+				C00E51A320B7C66600CD0FEC /* Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -1515,6 +1519,7 @@
 				C0FD8C3B2095CAEC00B6BE7B /* DiveServiceDetailCell.xib in Resources */,
 				C0EB1EF6209F1969001E40D7 /* BookingCell.xib in Resources */,
 				C0CB3F182092CAEB00BE5644 /* DiveCenterDetailController.xib in Resources */,
+				C00E51A220B7C44D00CD0FEC /* GoogleService-Info.plist in Resources */,
 				C010FB02207CAF47000059AA /* FiraSans-BoldItalic.ttf in Resources */,
 				C08E967F20909A9C00270CF9 /* TotalDivesCell.xib in Resources */,
 				C010FB0A207CAF47000059AA /* FiraSans-Light.ttf in Resources */,
@@ -1543,7 +1548,6 @@
 				C040B98620B6B1CC00A19D7E /* logo_dca.png in Resources */,
 				C0EFE348209B2BB1009E084F /* NAdditionalView.xib in Resources */,
 				C0EB1EFA209F1980001E40D7 /* BookingDetailController.xib in Resources */,
-				C0BE915F2070ACFE004E1B92 /* GoogleService-Info.plist in Resources */,
 				C010FB10207CAF47000059AA /* FiraSans-ExtraLightItalic.ttf in Resources */,
 				C032DF5D207DDDFF00FE0999 /* RegisterViewController.xib in Resources */,
 				C037E8B82085FF53000EB5CF /* ChangePasswordViewController.xib in Resources */,
@@ -1797,6 +1801,20 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NyelamTests/Pods-NyelamTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C00E51A320B7C66600CD0FEC /* Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Crashlytics;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"";
+		};
 		CEF68D1E018E1EFA43FD38D4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1838,6 +1856,7 @@
 				C05A8AB120B4107C00B66416 /* NProvince+CoreDataProperties.swift in Sources */,
 				C0D3C9242084AD8600FF587B /* UIImage+PECrop.m in Sources */,
 				C08E967B2090929800270CF9 /* PriceRangeManager.swift in Sources */,
+				C03A03C120B7F97F00056E35 /* NDisplay.swift in Sources */,
 				C0DE14202088A1E500A67494 /* EcoTripIntroductionController.swift in Sources */,
 				C05A8AA620B4107C00B66416 /* NLanguage+CoreDataClass.swift in Sources */,
 				C0E17FD720772FF4003942D1 /* SearchResultCategory.swift in Sources */,

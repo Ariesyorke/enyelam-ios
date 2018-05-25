@@ -10,7 +10,12 @@ import UIKit
 import MBProgressHUD
 
 class MainRootController: BaseViewController {
-    
+    static func present(on controller: UIViewController) -> MainRootController {
+        let root: MainRootController = MainRootController(nibName: "MainRootController", bundle: nil)
+        controller.present(root, animated: true, completion: nil)
+        return root
+    }
+
     @IBOutlet weak var contentContainer: UIView!
     @IBOutlet weak var tabContainer: UIView!
     @IBOutlet weak var tabMenuHome: MainRootTabItemView!
@@ -37,6 +42,9 @@ class MainRootController: BaseViewController {
         self.automaticallyAdjustsScrollViewInsets = false
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
     func onSelectTab(type: TabItemType) {
         if type == TabItemType.Home {
             if self.currentController != nil && self.currentController == self.homeController {

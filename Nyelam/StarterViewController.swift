@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Crashlytics
 
 class StarterViewController: BaseViewController {
     
@@ -119,6 +120,7 @@ class StarterViewController: BaseViewController {
     }
     
     internal func goToHomepage() {
+//        let _ = MainRootController.present(on: self)
         let _ = MainNavigationController.present(on: self)
     }
 }

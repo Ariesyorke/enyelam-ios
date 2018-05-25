@@ -36,6 +36,9 @@ target 'Nyelam' do
   pod 'TangramKit'
   pod 'GSKStretchyHeaderView'
   pod 'XLPagerTabStrip', '~> 8.0'
+  pod 'Firebase/Core'
+  pod 'Fabric'
+  pod 'Crashlytics'
 
   target 'NyelamTests' do
     inherit! :search_paths

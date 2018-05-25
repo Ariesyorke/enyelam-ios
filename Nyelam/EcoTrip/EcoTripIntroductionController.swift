@@ -17,6 +17,15 @@ class EcoTripIntroductionController: BaseViewController {
         controller.pushViewController(vc, animated: true)
         return vc
     }
+    
+    static func present(on controller: UINavigationController, onOpenEcoTrip: @escaping ()->()) -> EcoTripIntroductionController {
+        let vc: EcoTripIntroductionController = EcoTripIntroductionController(nibName: "EcoTripIntroductionController", bundle: nil)
+        vc.onOpenEcoTrip = onOpenEcoTrip
+        controller.present(vc, animated: true, completion: nil)
+        return vc
+    }
+
+    var onOpenEcoTrip: ()->() = {}
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +36,11 @@ class EcoTripIntroductionController: BaseViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+  
+    
+    @IBAction func dismissButtonAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func openUrlAction(_ sender: Any) {
@@ -42,11 +56,14 @@ class EcoTripIntroductionController: BaseViewController {
     }
     
     @IBAction func bookButtonAction(_ sender: Any) {
-        if let navigation = self.navigationController {
-            navigation.popViewController(animated: true, withCompletionBlock: {
-                SearchFormController.push(on: navigation, forDoTrip: false, isEcotrip: true)
-            })
-        }
+        self.dismiss(animated: true, completion: {
+            self.onOpenEcoTrip()
+        })
+//        if let navigation = self.navigationController {
+//            navigation.popViewController(animated: true, withCompletionBlock: {
+//                SearchFormController.push(on: navigation, forDoTrip: false, isEcotrip: true)
+//            })
+//        }
     }
     /*
     // MARK: - Navigation

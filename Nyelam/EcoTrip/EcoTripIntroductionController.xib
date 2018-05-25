@@ -31,6 +31,17 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eco_trip_6.png" translatesAutoresizingMaskIntoConstraints="NO" id="0Ha-sd-NjE">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxB-Fu-HCd">
+                    <rect key="frame" x="16" y="32" width="32" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="32" id="HIb-1r-QjQ"/>
+                        <constraint firstAttribute="height" constant="32" id="xca-8g-P30"/>
+                    </constraints>
+                    <state key="normal" image="ic_back_button"/>
+                    <connections>
+                        <action selector="dismissButtonAction:" destination="-1" eventType="touchUpInside" id="qud-Sg-VTJ"/>
+                    </connections>
+                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zd5-RT-b6f">
                     <rect key="frame" x="63" y="602" width="250" height="33"/>
                     <color key="backgroundColor" red="0.5450980392" green="0.74901960779999999" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -57,8 +68,10 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="JFA-9E-31D" secondAttribute="trailing" id="9CH-Ef-1B8"/>
+                <constraint firstItem="sxB-Fu-HCd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="9LL-1I-n6c"/>
                 <constraint firstItem="Zd5-RT-b6f" firstAttribute="top" secondItem="QVE-Qh-ddE" secondAttribute="bottom" constant="50" id="B1H-Ux-deB"/>
                 <constraint firstItem="Zd5-RT-b6f" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="1:1.5" id="DwR-ms-uLU"/>
+                <constraint firstItem="sxB-Fu-HCd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="32" id="KeT-KU-iuN"/>
                 <constraint firstItem="0Ha-sd-NjE" firstAttribute="trailing" secondItem="JFA-9E-31D" secondAttribute="trailing" id="LUT-8z-sQL"/>
                 <constraint firstItem="Zd5-RT-b6f" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Vce-Bc-bOG"/>
                 <constraint firstItem="JFA-9E-31D" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XI2-Ex-rO2"/>
@@ -76,5 +89,6 @@
     <resources>
         <image name="eco_trip_6.png" width="582" height="1033"/>
         <image name="eco_trip_6_bg.png" width="582" height="1033"/>
+        <image name="ic_back_button" width="24" height="24"/>
     </resources>
 </document>

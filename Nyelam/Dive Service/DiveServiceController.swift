@@ -484,6 +484,7 @@ extension DiveServiceController: UITableViewDelegate, UITableViewDataSource {
 //            return nil
 //        }
 //    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count = 0
         if state == .detail {
@@ -639,7 +640,7 @@ class DiveServiceDetailCell: NTableViewCell {
             self.additionalLabel1.text = "Total Dives"
             self.additionalLabel2.text = "Divespot Options"
             self.additionalLabel3.text = "Trip Durations"
-            self.additionalLabel4.text = "Stock"
+            self.additionalLabel4.text = "Available Slot"
             self.additionalLabel4Height.constant = 17
             self.additionalLabel4Colon.text = ":"
             self.stockLabel.text = String(diveService.availability)
@@ -722,11 +723,19 @@ class DiveServiceRelatedCell: NTableViewCell {
             }
             
             if self.relatedDiveServices != nil {
+                var height: CGFloat = 340
                 if self.isDoTrip {
-                    self.scrollerHeightConstraint.constant = 330
-                } else {
-                    self.scrollerHeightConstraint.constant = 320
+                    height = 350
                 }
+                if NDisplay.typeIsLike == .iphone5 || NDisplay.typeIsLike == .iphone4 {
+                    if self.isDoTrip {
+                        height = 300
+                    } else {
+                        height = 290
+                    }
+                }
+                self.scrollerHeightConstraint.constant = height
+                
                 var i: Int = 0
                 var leftView: UIView? = nil
                 for service: NDiveService in self.relatedDiveServices! {
@@ -769,7 +778,19 @@ class DiveServiceRelatedCell: NTableViewCell {
         let view: NServiceView = NServiceView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.controller!.view.frame.width * 75/100))
-        view.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.isDoTrip ? 330 : 320))
+        var height: CGFloat = 340
+        if self.isDoTrip {
+            height = 350
+        }
+        if NDisplay.typeIsLike == .iphone5 || NDisplay.typeIsLike == .iphone4 {
+            if self.isDoTrip {
+                height = 300
+            } else {
+                height = 290
+            }
+        }
+
+        view.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: height))
 
         return view
     }

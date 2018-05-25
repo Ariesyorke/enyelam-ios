@@ -107,20 +107,17 @@ class HomeController: BaseViewController, UIScrollViewDelegate, MFMailComposeVie
                     leftView = view
                 }
             }
-
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if #available(iOS 11.0, *) {
-            self.doTripScroller.contentInsetAdjustmentBehavior = .never
-            self.bannerScroller.contentInsetAdjustmentBehavior = .never
-        }
         self.setupSideMenu()
         self.banners = [Banner(), Banner(), Banner()]
         self.getDoTrips()
     }
+    
+
     
     internal func getDoTrips() {
         self.doTripScrollerHeight.constant = 0
@@ -146,7 +143,11 @@ class HomeController: BaseViewController, UIScrollViewDelegate, MFMailComposeVie
                     }
                 }
                 self.doTrips = diveServices
-                self.doTripScrollerHeight.constant = 320
+                var height: CGFloat = 350
+                if NDisplay.typeIsLike == .iphone5 || NDisplay.typeIsLike == .iphone4 {
+                    height = 300
+                }
+                self.doTripScrollerHeight.constant = height
                 self.view.layoutIfNeeded()
             }
         })
@@ -176,7 +177,9 @@ extension HomeController {
         if sender == self.btDoDive {
             _ = SearchFormController.push(on: self.navigationController!, forDoTrip: false)
         } else if sender == self.btEcoTrip {
-            _ = EcoTripIntroductionController.push(on: self.navigationController!)
+            _ = EcoTripIntroductionController.present(on: self.navigationController!, onOpenEcoTrip: {
+                    SearchFormController.push(on: self.navigationController!, forDoTrip: false, isEcotrip: true)
+            })
         } else if sender == self.btDoCourse {
 //            UIAlertController.handlePopupMessage(viewController: self, title: "Coming Soon!", actionButtonTitle: "OK", completion: {})
             SearchFormController.push(on: self.navigationController!, forDoCourse: true)
@@ -274,6 +277,12 @@ extension HomeController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+//        if #available(iOS 11.0, *) {
+//            self.additionalSafeAreaInsets = UIEdgeInsets(top: -20, left: 0, bottom: 0, right: 0)
+//        } else {
+//            self.automaticallyAdjustsScrollViewInsets = false
+//        }
+
     }
 }
 
@@ -283,9 +292,13 @@ extension HomeController {
     fileprivate func createView(forDoTrip service: NDiveService) -> NServiceView {
         let view: NServiceView = NServiceView()
         view.translatesAutoresizingMaskIntoConstraints = false
-
+        
         view.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.view.frame.width * 75/100))
-        view.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 320))
+        var height: CGFloat = 350
+        if NDisplay.typeIsLike == .iphone5 || NDisplay.typeIsLike == .iphone4 {
+            height = 300
+        }
+        view.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: height))
 
         return view
     }
