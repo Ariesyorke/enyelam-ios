@@ -11,7 +11,7 @@ import SkyFloatingLabelTextField
 import UINavigationControllerWithCompletionBlock
 
 class ParticipantController: BaseViewController {
-    static func push(on controller: UINavigationController, participant: Participant, completion: @escaping (Participant)-> ()) -> ParticipantController {
+    static func push(on controller: UINavigationController, participant: Participant, completion: @escaping (UINavigationController, Participant)-> ()) -> ParticipantController {
         let vc: ParticipantController = ParticipantController(nibName: "ParticipantController", bundle: nil)
         vc.participant = participant
         vc.completion = completion
@@ -24,7 +24,7 @@ class ParticipantController: BaseViewController {
     
     var participant: Participant?
     
-    var completion: (Participant)->() = {participant in}
+    var completion: (UINavigationController, Participant)->() = {navigation, participant in}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,9 +48,7 @@ class ParticipantController: BaseViewController {
         self.participant!.name = fullname
         self.participant!.email = emailAddress
         if let navigation = self.navigationController {
-            navigation.popViewController(animated: true, withCompletionBlock: {
-                self.completion(self.participant!)
-            })
+            self.completion(navigation, self.participant!)
         }
     }
     

@@ -81,9 +81,16 @@ class DiveServiceController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initView()
-        let id = self.diveService != nil ? self.diveService!.id!:self.selectedKeyword!.id!
-        self.tryLoadServiceDetail(serviceId: id, selectedLicense: selectedLicense.number, selectedDate: selectedDate!, selectedDiver: selectedDiver, forDoTrip: self.forDoTrip, forDoCourse: self.forDoCourse)
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if self.firstTime {
+            self.firstTime = false
+            let id = self.diveService != nil ? self.diveService!.id!:self.selectedKeyword!.id!
+            self.tryLoadServiceDetail(serviceId: id, selectedLicense: selectedLicense.number, selectedDate: selectedDate!, selectedDiver: selectedDiver, forDoTrip: self.forDoTrip, forDoCourse: self.forDoCourse)
+        }
     }
     
     fileprivate func initView() {

@@ -18,6 +18,6 @@ class DiveServiceCell: UITableViewCell {
         self.backgroundColor = UIColor.clear
         self.backgroundView = nil
         
-        DTMHelper.addShadow(self.serviceView)
+//        DTMHelper.addShadow(self.serviceView)
     }
 }

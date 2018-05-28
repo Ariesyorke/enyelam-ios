@@ -87,9 +87,9 @@ class BookingDetailController: BaseViewController {
     override func backButtonAction(_ sender: UIBarButtonItem) {
         if isComeFromOrder {
             if let navigation = self.navigationController {
+                self.moveSafeAreaInsets()
                 navigation.setNavigationBarHidden(true, animated: true)
                 navigation.popToRootViewController(animated: true)
-                self.moveSafeAreaInsets()
             }
         } else {
             super.backButtonAction(sender)

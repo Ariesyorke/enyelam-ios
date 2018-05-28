@@ -117,7 +117,7 @@
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="NSummary" representedClassName="NSummary" syncable="YES">
-        <attribute name="contact" optional="YES" attributeType="Transformable" customClassName="BookingContact" syncable="YES"/>
+        <attribute name="contact" optional="YES" attributeType="Transformable" customClassName="Contact" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="participant" optional="YES" attributeType="Transformable" customClassName="[Participant]" syncable="YES"/>
         <relationship name="diveService" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NDiveService" syncable="YES"/>

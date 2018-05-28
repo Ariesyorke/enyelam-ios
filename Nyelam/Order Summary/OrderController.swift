@@ -11,6 +11,7 @@ import DLRadioButton
 import MidtransKit
 import MBProgressHUD
 import PopupController
+import UINavigationControllerWithCompletionBlock
 
 class OrderController: BaseViewController {
     private let sections = ["Your Booking", "Contact Details", "Participant Details","Payment Options", "Booking Summary"]
@@ -241,9 +242,13 @@ extension OrderController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath) as! ContactCell
             cell.initData(contact: self.contact!)
             cell.onChangeContact = {
-                _ = ContactController.push(on: self.navigationController!, contact: self.contact!, completion: {contact in
-                    self.contact! = contact
-                    self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                _ = ContactController.push(on: self.navigationController!, contact: self.contact!, completion: {navigation, contact in
+                    navigation.popViewController(animated: true, withCompletionBlock: {
+                        DispatchQueue.main.async {
+                            self.contact! = contact
+                            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                        }
+                    })
                 })
             }
             return cell
@@ -253,9 +258,13 @@ extension OrderController: UITableViewDelegate, UITableViewDataSource {
             let participant = participants![row]
             cell.initData(participant: participant)
             cell.onChangeParticipant = {
-                _ = ParticipantController.push(on: self.navigationController!, participant: participant,  completion: {participant in
-                    self.participants![row] = participant
-                    self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                _ = ParticipantController.push(on: self.navigationController!, participant: participant,  completion: {navigation, participant in
+                    navigation.popViewController(animated: true, withCompletionBlock: {
+                        DispatchQueue.main.async {
+                            self.participants![row] = participant
+                            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                        }
+                    })
                 })
             }
             return cell
@@ -401,14 +410,27 @@ class ContactCell: NTableViewCell {
         } else {
             self.fullNameLabel.text = "Fullname"
         }
-        if let countryCode = contact.countryCode {
-            self.phoneNumberLabel.text = "+\(countryCode.countryNumber!)\(contact.phoneNumber!)"
+        if let countryCode = contact.countryCode, let countryNumber = countryCode.countryNumber, let phoneNumber = contact.phoneNumber {
+            self.phoneNumberLabel.text = "+\(countryNumber)\(phoneNumber)"
+        } else {
+            self.phoneNumberLabel.text = "Phone Number"
         }
         self.emailAddressLabel.text = contact.email
     }
-    
+    func initData(contact: Contact) {
+        if let name = contact.name {
+            self.fullNameLabel.text = name
+        } else {
+            self.fullNameLabel.text = "Fullname"
+        }
+        if let phoneNumber = contact.phoneNumber {
+            self.phoneNumberLabel.text = phoneNumber
+        } else {
+            self.phoneNumberLabel.text = "Phone Number"
+        }
+        self.emailAddressLabel.text = contact.emailAddress
+    }
 }
-
 
 class ParticipantCell: NTableViewCell {
     @IBOutlet weak var fullnameLabel: UILabel!

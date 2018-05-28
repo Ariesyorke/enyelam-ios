@@ -12,13 +12,14 @@ import MBProgressHUD
 import Google
 
 class BaseViewController: UIViewController, UITextFieldDelegate {
+    var firstTime: Bool = true
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if self.isKind(of: MainRootController.self) {
+        if self.isKind(of: MainRootController.self) || self.isKind(of: EcoTripIntroductionController.self) {
             self.moveSafeAreaInsets()
         } else {
             self.resetInsets()

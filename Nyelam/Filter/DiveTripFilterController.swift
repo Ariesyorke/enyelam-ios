@@ -623,7 +623,7 @@ class FacilityCell: NTableViewCell {
             button.addTarget(self, action: #selector(facilityButtonAction(_:)), for: .touchUpInside)
             self.flowLayout.addSubview(button)
         }
-        self.flowLayoutHeight.constant = 170 + additional
+        self.flowLayoutHeight.constant = 185 + additional
     }
 }
 

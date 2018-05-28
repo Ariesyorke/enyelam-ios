@@ -2,7 +2,7 @@
 //  NSummary+CoreDataProperties.swift
 //  Nyelam
 //
-//  Created by Bobi on 5/22/18.
+//  Created by Bobi on 5/28/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //
@@ -17,7 +17,7 @@ extension NSummary {
         return NSFetchRequest<NSummary>(entityName: "NSummary")
     }
 
-    @NSManaged public var contact: BookingContact?
+    @NSManaged public var contact: Contact?
     @NSManaged public var id: String?
     @NSManaged public var participant: [Participant]?
     @NSManaged public var diveService: NDiveService?

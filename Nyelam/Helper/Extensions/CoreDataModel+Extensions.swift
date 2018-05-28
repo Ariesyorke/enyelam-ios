@@ -1702,12 +1702,12 @@ extension NSummary {
             }
         }
         if let contactJson = json[KEY_CONTACT] as? [String: Any] {
-            self.contact = BookingContact(json: contactJson)
+            self.contact = Contact(json: contactJson)
         } else if let contactString = json[KEY_CONTACT] as? String {
             do {
                 let data = contactString.data(using: String.Encoding.utf8, allowLossyConversion: true)
                 let contactJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
-                self.contact = BookingContact(json: contactJson)
+                self.contact = Contact(json: contactJson)
             } catch {
                 print(error)
             }

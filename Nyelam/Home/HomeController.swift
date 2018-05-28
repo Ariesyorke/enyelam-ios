@@ -177,19 +177,26 @@ extension HomeController {
         if sender == self.btDoDive {
             _ = SearchFormController.push(on: self.navigationController!, forDoTrip: false)
         } else if sender == self.btEcoTrip {
-            _ = EcoTripIntroductionController.present(on: self.navigationController!, onOpenEcoTrip: {
-                    SearchFormController.push(on: self.navigationController!, forDoTrip: false, isEcotrip: true)
+            _ = EcoTripIntroductionController.push(on: self.navigationController!, onOpenEcoTrip: {controller in
+                if let navigation = controller.navigationController {
+                    navigation.popViewController(animated: true, withCompletionBlock: {
+                        DispatchQueue.main.async {
+                            _ = SearchFormController.push(on: self.navigationController!, forDoTrip: false, isEcotrip: true)
+                        }
+
+                    })
+                }
             })
         } else if sender == self.btDoCourse {
 //            UIAlertController.handlePopupMessage(viewController: self, title: "Coming Soon!", actionButtonTitle: "OK", completion: {})
-            SearchFormController.push(on: self.navigationController!, forDoCourse: true)
+            _ = SearchFormController.push(on: self.navigationController!, forDoCourse: true)
         } else if sender == self.btDoShop {
             UIAlertController.handlePopupMessage(viewController: self, title: "Coming Soon!", actionButtonTitle: "OK", completion: {})
         }
     }
     
     @IBAction func onSeeAllDoTripClicked(_ sender: UIControl) {
-        DiveServiceSearchResultController.push(on: self.navigationController!, forDoTrip: true, selectedDiver: 1, selectedDate: Date())
+        _ = DiveServiceSearchResultController.push(on: self.navigationController!, forDoTrip: true, selectedDiver: 1, selectedDate: Date())
     }
     
     @objc func onBannerClicked(at sender: UIControl) {

@@ -10,22 +10,23 @@ import UIKit
 import UINavigationControllerWithCompletionBlock
 
 class EcoTripIntroductionController: BaseViewController {
-    static func push(on controller: UINavigationController) -> EcoTripIntroductionController {
+    static func push(on controller: UINavigationController, onOpenEcoTrip: @escaping (UIViewController)->()) -> EcoTripIntroductionController {
         let vc: EcoTripIntroductionController = EcoTripIntroductionController(nibName: "EcoTripIntroductionController", bundle: nil)
-        controller.setNavigationBarHidden(false, animated: true)
-        controller.navigationBar.barTintColor = UIColor.nyGreen
+        vc.onOpenEcoTrip = onOpenEcoTrip
+//        controller.setNavigationBarHidden(false, animated: true)
+//        controller.navigationBar.barTintColor = UIColor.nyGreen
         controller.pushViewController(vc, animated: true)
         return vc
     }
     
-    static func present(on controller: UINavigationController, onOpenEcoTrip: @escaping ()->()) -> EcoTripIntroductionController {
+    static func present(on controller: UINavigationController, onOpenEcoTrip: @escaping (UIViewController)->()) -> EcoTripIntroductionController {
         let vc: EcoTripIntroductionController = EcoTripIntroductionController(nibName: "EcoTripIntroductionController", bundle: nil)
         vc.onOpenEcoTrip = onOpenEcoTrip
         controller.present(vc, animated: true, completion: nil)
         return vc
     }
 
-    var onOpenEcoTrip: ()->() = {}
+    var onOpenEcoTrip: (UIViewController)->() = {controller in }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +41,10 @@ class EcoTripIntroductionController: BaseViewController {
   
     
     @IBAction func dismissButtonAction(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        if let navigation = self.navigationController {
+            navigation.popViewController(animated: true)
+        }
+//        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func openUrlAction(_ sender: Any) {
@@ -56,9 +60,7 @@ class EcoTripIntroductionController: BaseViewController {
     }
     
     @IBAction func bookButtonAction(_ sender: Any) {
-        self.dismiss(animated: true, completion: {
-            self.onOpenEcoTrip()
-        })
+        self.onOpenEcoTrip(self)
 //        if let navigation = self.navigationController {
 //            navigation.popViewController(animated: true, withCompletionBlock: {
 //                SearchFormController.push(on: navigation, forDoTrip: false, isEcotrip: true)

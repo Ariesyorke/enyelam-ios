@@ -24,9 +24,9 @@ class ContactController: BaseViewController, MMNumberKeyboardDelegate {
     var bookingContact: BookingContact?
     var pickedCountryCode: NCountryCode?
     var countryCodes: [NCountryCode]? = NCountryCode.getCountryCodes()
-    var completion: (BookingContact)->() = {contact in }
+    var completion: (UINavigationController, BookingContact)->() = {navigation, contact in }
     
-    static func push(on controller: UINavigationController, contact: BookingContact, completion: @escaping (BookingContact)-> ()) -> ContactController {
+    static func push(on controller: UINavigationController, contact: BookingContact, completion: @escaping (UINavigationController, BookingContact)-> ()) -> ContactController {
         let vc: ContactController = ContactController(nibName: "ContactController", bundle: nil)
         vc.bookingContact = contact
         vc.completion = completion
@@ -61,9 +61,9 @@ class ContactController: BaseViewController, MMNumberKeyboardDelegate {
         if let contact = self.bookingContact {
             self.fullnameTextField.text = contact.name
             self.emailAddressTextField.text = contact.email
-            if let countryCode = contact.countryCode {
+            if let countryCode = contact.countryCode, let number = countryCode.countryNumber {
                 self.pickedCountryCode = countryCode
-                self.countryCodeLabel.text = ("+\(countryCode.countryNumber!)")
+                self.countryCodeLabel.text = ("+\(number)")
                 self.phoneNumberTextField.text = contact.phoneNumber
             } else {
                 self.pickedCountryCode =  NCountryCode.getCountryCode(by: self.phoneRegionCode)
@@ -119,9 +119,7 @@ class ContactController: BaseViewController, MMNumberKeyboardDelegate {
         self.bookingContact!.phoneNumber = self.phoneNumberTextField.text
 
         if let navigation = self.navigationController {
-            navigation.popViewController(animated: true, withCompletionBlock: {
-                self.completion(self.bookingContact!)
-            })
+            self.completion(navigation, self.bookingContact!)
         }
         
     }

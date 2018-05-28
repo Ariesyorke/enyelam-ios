@@ -35,7 +35,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="djm-1r-7cD">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="979"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="963"/>
                             <subviews>
                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chU-Ng-B29">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
@@ -70,10 +70,10 @@
                                     <color key="currentPageIndicatorTintColor" red="0.18823529410000001" green="0.52941176469999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>
                                 </pageControl>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yvi-WR-F08" userLabel="Menu Container">
-                                    <rect key="frame" x="0.0" y="287" width="375" height="310"/>
+                                    <rect key="frame" x="0.0" y="287" width="375" height="294"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uey-rv-ONB">
-                                            <rect key="frame" x="16" y="16" width="163.5" height="131"/>
+                                            <rect key="frame" x="16" y="0.0" width="163.5" height="131"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eoz-fB-OFe" customClass="UIControl">
                                                     <rect key="frame" x="0.0" y="4" width="163.5" height="127"/>
@@ -136,7 +136,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xiQ-HY-IAf">
-                                            <rect key="frame" x="195.5" y="16" width="163.5" height="131"/>
+                                            <rect key="frame" x="195.5" y="0.0" width="163.5" height="131"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BBx-Wi-ysF" customClass="UIControl">
                                                     <rect key="frame" x="0.0" y="4" width="163.5" height="127"/>
@@ -198,7 +198,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ADG-Le-TVU">
-                                            <rect key="frame" x="16" y="163" width="163.5" height="131"/>
+                                            <rect key="frame" x="16" y="147" width="163.5" height="131"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FU7-4m-WtW" customClass="UIControl">
                                                     <rect key="frame" x="0.0" y="4.5" width="163.5" height="127"/>
@@ -274,7 +274,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uRl-ub-i7V">
-                                            <rect key="frame" x="195.5" y="163" width="163.5" height="131"/>
+                                            <rect key="frame" x="195.5" y="147" width="163.5" height="131"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ta2-ZV-IAx" customClass="UIControl">
                                                     <rect key="frame" x="0.0" y="4.5" width="163.5" height="127"/>
@@ -364,14 +364,14 @@
                                         <constraint firstItem="uRl-ub-i7V" firstAttribute="width" secondItem="ADG-Le-TVU" secondAttribute="width" id="arI-7F-ouh"/>
                                         <constraint firstItem="uRl-ub-i7V" firstAttribute="leading" secondItem="ADG-Le-TVU" secondAttribute="trailing" constant="16" id="dZG-Tp-7G9"/>
                                         <constraint firstItem="ADG-Le-TVU" firstAttribute="leading" secondItem="yvi-WR-F08" secondAttribute="leading" constant="16" id="eO6-bR-Afl"/>
-                                        <constraint firstItem="Uey-rv-ONB" firstAttribute="top" secondItem="yvi-WR-F08" secondAttribute="top" constant="16" id="les-kT-RBz"/>
+                                        <constraint firstItem="Uey-rv-ONB" firstAttribute="top" secondItem="yvi-WR-F08" secondAttribute="top" id="les-kT-RBz"/>
                                         <constraint firstItem="xiQ-HY-IAf" firstAttribute="top" secondItem="Uey-rv-ONB" secondAttribute="top" id="olf-tJ-wEE"/>
-                                        <constraint firstItem="xiQ-HY-IAf" firstAttribute="top" secondItem="yvi-WR-F08" secondAttribute="top" constant="16" id="qxY-gi-z5n"/>
+                                        <constraint firstItem="xiQ-HY-IAf" firstAttribute="top" secondItem="yvi-WR-F08" secondAttribute="top" id="qxY-gi-z5n"/>
                                         <constraint firstItem="xiQ-HY-IAf" firstAttribute="width" secondItem="Uey-rv-ONB" secondAttribute="width" id="toV-2d-45u"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fC0-ux-WbJ" userLabel="Do Trip Container">
-                                    <rect key="frame" x="0.0" y="597" width="375" height="382"/>
+                                    <rect key="frame" x="0.0" y="581" width="375" height="382"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Omg-II-NY4">
                                             <rect key="frame" x="94" y="19" width="203" height="1"/>

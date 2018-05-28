@@ -100,6 +100,7 @@ extension NHTTPHelper {
                 complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
                 return
             }
+            print("data \(data)")
             if let data = data, let json = data as? [String: Any] {
                 let order = OrderReturn(json: json)
                 complete(NHTTPResponse(resultStatus: true, data: order, error: nil))
