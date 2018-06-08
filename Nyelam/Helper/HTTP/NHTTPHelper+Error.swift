@@ -485,6 +485,23 @@ class NHTTPHelper {
             return "api/docourse/detail"
         }
     }
+    static var API_PATH_EQUIPMENT_LIST: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "service/EquipmentRentList"
+        default:
+            return "api/service/EquipmentRentList"
+        }
+    }
+    static var API_PATH_ECO_TRIP_CALENDAR: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "service/ecotripCalender"
+        default:
+            return "api/service/ecotripCalender"
+        }
+    }
+    
     internal static func basicAuthStringRequest(URLString: URLConvertible,
                                                 parameters: [String: Any]? = nil,
                                                 headers: [String: String]? = nil,

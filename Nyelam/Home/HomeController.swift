@@ -179,12 +179,7 @@ extension HomeController {
         } else if sender == self.btEcoTrip {
             _ = EcoTripIntroductionController.push(on: self.navigationController!, onOpenEcoTrip: {controller in
                 if let navigation = controller.navigationController {
-                    navigation.popViewController(animated: true, withCompletionBlock: {
-                        DispatchQueue.main.async {
-                            _ = SearchFormController.push(on: self.navigationController!, forDoTrip: false, isEcotrip: true)
-                        }
-
-                    })
+                    _ = SearchFormController.push(on: self.navigationController!, forDoTrip: false, isEcotrip: true)
                 }
             })
         } else if sender == self.btDoCourse {

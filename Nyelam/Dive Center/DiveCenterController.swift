@@ -65,10 +65,16 @@ class DiveCenterController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initView()
-        self.tryLoadDiveCenterDetail(diveCenterId: self.diveCenter!.id!)
         // Do any additional setup after loading the view.
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if self.firstTime {
+            self.firstTime = false
+            self.tryLoadDiveCenterDetail(diveCenterId: self.diveCenter!.id!)
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -81,7 +87,7 @@ class DiveCenterController: BaseViewController {
         let nibViews = Bundle.main.loadNibNamed("NStickyHeaderView", owner: self, options: nil)
         self.strechyHeaderView = nibViews!.first as! NStickyHeaderView
         self.strechyHeaderView!.delegate = self
-        self.strechyHeaderView!.expansionMode = .immediate
+        self.strechyHeaderView!.expansionMode = .topOnly
         self.strechyHeaderView!.tabDetailLineView.isHidden = false
         self.tableView.addSubview(self.strechyHeaderView!)
         
@@ -144,7 +150,6 @@ class DiveCenterController: BaseViewController {
                 self.tableView.isHidden = false
                 self.tableView.reloadData()
             })
-            
         }
     }
     
@@ -184,7 +189,10 @@ extension DiveCenterController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DiveServiceRelatedCell", for: indexPath) as! DiveServiceRelatedCell
             cell.isDoTrip = self.forDoTrip
             cell.controller = self
-            cell.relatedDiveServices = self.relatedDiveServices
+            if cell.relatedDiveServices == nil || cell.relatedDiveServices!.isEmpty {
+                cell.relatedDiveServices = self.relatedDiveServices
+            }
+            cell.relatedServiceLabel.text = "Our service trips"
             cell.onRelatedServiceClicked = {diveService in
                 if self.forDoTrip {
                     let date = Date(timeIntervalSince1970: diveService.schedule!.startDate)
@@ -230,20 +238,21 @@ extension DiveCenterController: NStickyHeaderViewDelegate {
 }
 
 class DiveCenterDetailCell: NTableViewCell {
+    private let METER_PER_MILE = 1609.344
+
     @IBOutlet weak var diveCenterNameLabel: UILabel!
 //    @IBOutlet weak var rateView: CosmosView!
     @IBOutlet weak var counterLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var phoneNumberLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var mapView: GMSMapView!
+    @IBOutlet weak var mapView: MKMapView!
+    
     fileprivate var coordinate: Coordinate?
     
     var onOpenMap: (Coordinate)->() = {coordinate in }
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.mapView.isMyLocationEnabled = false
-        
         // Initialization code
     }
     @IBAction func mapButtonAction(_ sender: Any) {
@@ -256,18 +265,24 @@ class DiveCenterDetailCell: NTableViewCell {
         self.diveCenterNameLabel.text = diveCenter.name
 //        self.rateView.rating = diveCenter.rating
 //        self.counterLabel.text = "0 / 0 visited"
-        
+        self.mapView.showsUserLocation = false
+        self.mapView.delegate = self
+        self.mapView.mapType = MKMapType.standard
+        self.mapView.isScrollEnabled = false
         if let contact = diveCenter.contact {
             self.phoneNumberLabel.text = contact.phoneNumber
             if let location = contact.location {
                 if let coordinate = location.coordinate {
                     self.coordinate = coordinate
-                    let marker = GMSMarker()
-                    marker.position = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
-                    marker.title = diveCenter.name
-                    marker.snippet = diveCenter.name
-                    marker.map = self.mapView
-                    self.mapView.animate(to: GMSCameraPosition(target: CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude), zoom: 100, bearing: 10, viewingAngle: 0))
+                    let centerCoord = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude)
+                    self.mapView.setCenter(centerCoord, animated: true)
+                    let span = MKCoordinateSpanMake(0.075, 0.075)
+                    let region = MKCoordinateRegion(center: centerCoord, span: span)
+                    self.mapView.setRegion(region, animated: true)
+                    let annotation = MKPointAnnotation()
+                    annotation.coordinate = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude)
+                    annotation.title = diveCenter.name
+                    self.mapView.addAnnotation(annotation)
                 }
           
                 var locationText = ""
@@ -292,4 +307,26 @@ class DiveCenterDetailCell: NTableViewCell {
         }
     }
     
+}
+
+extension DiveCenterDetailCell: MKMapViewDelegate {
+    func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
+        
+    }
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+    }
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        var pinView: MKPinAnnotationView? = nil
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: "PinAnnotation") as? MKPinAnnotationView {
+            dequeuedView.annotation = annotation;
+            pinView = dequeuedView;
+        } else{
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "PinAnnotation");
+        }
+        pinView!.canShowCallout = true
+        pinView!.rightCalloutAccessoryView = nil
+        
+        return pinView
+    }
 }

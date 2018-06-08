@@ -29,6 +29,7 @@ class DiveEthicAgreementController: UIViewController, PopupContentViewController
     @IBOutlet weak var termLabel: UILabel!
     @IBOutlet weak var checkButton: DLRadioButton!
     var dismissCompletion: (Bool) -> () = {completion in}
+   
     func sizeForPopup(_ popupController: PopupController, size: CGSize, showingKeyboard: Bool) -> CGSize {
         return self.popupSize!
     }

@@ -14,6 +14,7 @@ class BookingDetailController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loadingView: UIActivityIndicatorView!
+    @IBOutlet weak var writeReviewButton: UIButton!
     
     fileprivate var orderReturn: OrderReturn?
     fileprivate var type: String = "1"
@@ -41,16 +42,20 @@ class BookingDetailController: BaseViewController {
         controller.pushViewController(vc, animated: true)
         return vc
     }
-
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initView()
-        self.loadBookingDetail(bookingId: self.bookingId!)
         // Do any additional setup after loading the view.
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if self.firstTime {
+            self.firstTime = false
+            self.loadBookingDetail(bookingId: self.bookingId!)
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -64,11 +69,17 @@ class BookingDetailController: BaseViewController {
         self.tableView.register(UINib(nibName: "ContactCell", bundle: nil), forCellReuseIdentifier: "ContactCell")
         self.tableView.register(UINib(nibName: "ParticipantCell", bundle: nil), forCellReuseIdentifier: "ParticipantCell")
         self.tableView.register(UINib(nibName: "PaymentProofCell", bundle: nil), forCellReuseIdentifier: "PaymentProofCell")
+//        if self.type == "1" {
+            self.writeReviewButton.isHidden = true
+//        } else {
+//            self.writeReviewButton.isHidden = false
+//        }
     }
     
     fileprivate func loadBookingDetail(bookingId: String) {
         NHTTPHelper.httpDetail(bookingId: bookingId, complete: {response in
             self.loadingView.isHidden = true
+            self.tableView.isHidden = false
             if let error = response.error {
                 if error.isKind(of: NotConnectedInternetError.self) {
                     NHelper.handleConnectionError(completion: {
@@ -96,6 +107,9 @@ class BookingDetailController: BaseViewController {
         }
     }
 
+    @IBAction func reviewButtonAction(_ sender: Any) {
+        ReviewController.present(on: self.navigationController!, bookingId: self.bookingId!)
+    }
     /*
     // MARK: - Navigation
 
@@ -141,8 +155,9 @@ extension BookingDetailController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "BookingDetailCell", for: indexPath) as! BookingDetailCell
+            
             if let orderReturn = self.orderReturn, let summary = orderReturn.summary, let order = summary.order, let diveService = summary.diveService {
-                cell.initData(diveService: diveService, selectedDate: Date(timeIntervalSince1970: order.schedule))
+                cell.initData(diveService: diveService, subTotal: order.cart!.subtotal, total: order.cart!.total, selectedDate: Date(timeIntervalSince1970: order.schedule), selectedDiver: summary.participant!.count, additionals: order.additionals, equipments: order.equipments)
             }
             return cell
         } else if indexPath.section == 1 {

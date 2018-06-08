@@ -879,23 +879,25 @@ extension NDiveService {
             }
         }
         self.featuredImage = json[KEY_FEATURED_IMAGE] as? String
-        if let diveSpotsArray = json[KEY_DIVE_SPOTS] as? Array<[String: Any]>, !diveSpotsArray.isEmpty {
-            self.diveSpots = []
-            for diveSpotJson in diveSpotsArray {
-                let diveSpot = DiveSpot(json: diveSpotJson)
-                self.diveSpots!.append(diveSpot)
-            }
-        } else if let diveSpotString = json[KEY_DIVE_SPOTS] as? String {
-            self.diveSpots = []
-            do {
-                let data = diveSpotString.data(using: String.Encoding.utf8,     allowLossyConversion: true)
-                let diveSpotsArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+        if self.diveSpots == nil || self.diveSpots!.isEmpty {
+            if let diveSpotsArray = json[KEY_DIVE_SPOTS] as? Array<[String: Any]>, !diveSpotsArray.isEmpty {
+                self.diveSpots = []
                 for diveSpotJson in diveSpotsArray {
                     let diveSpot = DiveSpot(json: diveSpotJson)
                     self.diveSpots!.append(diveSpot)
                 }
-            } catch {
-                print(error)
+            } else if let diveSpotString = json[KEY_DIVE_SPOTS] as? String {
+                self.diveSpots = []
+                do {
+                    let data = diveSpotString.data(using: String.Encoding.utf8,     allowLossyConversion: true)
+                    let diveSpotsArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+                    for diveSpotJson in diveSpotsArray {
+                        let diveSpot = DiveSpot(json: diveSpotJson)
+                        self.diveSpots!.append(diveSpot)
+                    }
+                } catch {
+                    print(error)
+                }
             }
         }
         
@@ -1181,7 +1183,9 @@ extension NOrder {
     private var KEY_STATUS: String  { return "status" }
     private var KEY_SCHEDULE: String { return "schedule" }
     private var KEY_CART: String { return "cart" }
-    
+    private var KEY_ADDITIONAL: String { return "additional" }
+    private var KEY_EQUIPMENT_RENTS: String { return "equipment_rents" }
+
     func parse(json: [String : Any]) {
         if let orderId = json[KEY_ORDER_ID] as? String {
             self.orderId = orderId
@@ -1207,6 +1211,46 @@ extension NOrder {
                 print(error)
             }
         }
+        if let additionalArray = json[KEY_ADDITIONAL] as? Array<[String: Any]> {
+            self.additionals = []
+            for additionalJson in additionalArray {
+                let additional = Additional(json: additionalJson)
+                self.additionals!.append(additional)
+            }
+        } else if let additionalString = json[KEY_ADDITIONAL] as? String {
+            do {
+                let data = additionalString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let additionalArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+                self.additionals = []
+                for additionalJson in additionalArray {
+                    let additional = Additional(json: additionalJson)
+                    self.additionals!.append(additional)
+                }
+            } catch {
+                print(error)
+            }
+        }
+        
+        if let equipmentArray = json[KEY_EQUIPMENT_RENTS] as? Array<[String: Any]> {
+            self.equipments = []
+            for equipmentJson in equipmentArray {
+                let equipment = Equipment(json: equipmentJson)
+                self.equipments!.append(equipment)
+            }
+        } else if let equipmentString = json[KEY_EQUIPMENT_RENTS] as? String {
+            do {
+                let data = equipmentString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let equipmentArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+                self.equipments = []
+                for equipmentJson in equipmentArray {
+                    let equipment = Equipment(json: equipmentJson)
+                    self.equipments!.append(equipment)
+                }
+            } catch {
+                print(error)
+            }
+        }
+
     }
     
     func serialized() -> [String : Any] {
@@ -1220,6 +1264,21 @@ extension NOrder {
         json[KEY_SCHEDULE] = self.schedule
         if let cart = self.cart {
             json[KEY_CART] = cart.serialized()
+        }
+        if let additionals = self.additionals, !additionals.isEmpty {
+            var additionalArray: Array<[String: Any]> = []
+            for additional in additionals {
+                additionalArray.append(additional.serialized())
+            }
+            json[KEY_ADDITIONAL] = additionalArray
+        }
+        
+        if let equipments = self.equipments, !equipments.isEmpty {
+            var equipmentArray: Array<[String: Any]> = []
+            for equipment in equipments {
+                equipmentArray.append(equipment.serialized())
+            }
+            json[KEY_EQUIPMENT_RENTS] = equipmentArray
         }
         return json
     }
@@ -1292,10 +1351,18 @@ extension NDiveCenter {
     
     
     func parse(json: [String : Any]) {
-        self.id = json[KEY_ID] as? String
-        self.name = json[KEY_NAME] as? String
-        self.subtitle = json[KEY_SUBTITLE] as? String
-        self.imageLogo = json[KEY_IMAGE_LOGO] as? String
+        if let id = json[KEY_ID] as? String {
+            self.id = json[KEY_ID] as? String
+        }
+        if let name = json[KEY_NAME] as? String {
+            self.name = name
+        }
+        if let subtitle = json[KEY_SUBTITLE] as? String {
+            self.subtitle = subtitle
+        }
+        if let imageLogo = json[KEY_IMAGE_LOGO] as? String {
+            self.imageLogo = imageLogo
+        }
         if let rating = json[KEY_RATING] as? Double {
             self.rating = rating
         } else if let rating = json[KEY_RATING] as? String {
@@ -1343,7 +1410,9 @@ extension NDiveCenter {
                 self.status = Int32(status)!
             }
         }
-        self.diveDescription = json[KEY_DESCRIPTION] as? String
+        if let desc = json[KEY_DESCRIPTION] as? String {
+            self.diveDescription = json[KEY_DESCRIPTION] as? String
+        }
         if let locationJson = json[KEY_LOCATION] as? [String: Any] {
             self.location = Location(json: locationJson)
         } else if let locationJson = json[KEY_LOCATIONS] as? [String: Any] {

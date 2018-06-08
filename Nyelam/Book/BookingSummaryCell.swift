@@ -16,9 +16,9 @@ class BookingSummaryCell: NTableViewCell {
     @IBOutlet weak var loadingView: UIActivityIndicatorView!
     @IBOutlet weak var summaryContainer: UIView!
     
-    var note: String = ""
+    fileprivate var note: String = ""
     
-    var additionalViews: [UIView]?
+    fileprivate var additionalViews: [UIView]?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -107,7 +107,7 @@ class BookingSummaryCell: NTableViewCell {
                 i += 1
             }
         } else {
-            self.detailContainer.addConstraint(NSLayoutConstraint(item: self.detailContainer, attribute: .bottom, relatedBy: .equal, toItem: serviceAddtionalView, attribute: .bottom, multiplier: 1, constant: 0))
+            self.summaryContainer.addConstraint(NSLayoutConstraint(item: self.summaryContainer, attribute: .bottom, relatedBy: .equal, toItem: self.additionalViews![i], attribute: .bottom, multiplier: 1, constant: 0))
         }
     }
     

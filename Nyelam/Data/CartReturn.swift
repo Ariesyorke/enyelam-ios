@@ -79,14 +79,12 @@ public class CartReturn: NSObject, NSCoding, Parseable {
         }
         
         if let equipmentArray = json[KEY_EQUIPMENT_RENTS] as? Array<[String: Any]> {
-            print("PANGGIL 1 \(equipmentArray)")
             self.equipments = []
             for equipmentJson in equipmentArray {
                 let equipment = Equipment(json: equipmentJson)
                 self.equipments!.append(equipment)
             }
         } else if let equipmentString = json[KEY_EQUIPMENT_RENTS] as? String {
-            print("PANGGIL 2")
             do {
                 let data = equipmentString.data(using: String.Encoding.utf8, allowLossyConversion: true)
                 let equipmentArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>

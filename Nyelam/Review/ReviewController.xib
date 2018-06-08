@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="FiraSans-Bold.ttf">
+            <string>FiraSans-Bold</string>
+        </array>
+        <array key="FiraSans-Regular.ttf">
+            <string>FiraSans-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReviewController" customModule="Nyelam" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iAC-Ft-mYb" userLabel="toolbar">
+                    <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5c-Mg-adp">
+                            <rect key="frame" x="16" y="0.0" width="24" height="44"/>
+                            <state key="normal" image="ic_circle_close_white"/>
+                            <connections>
+                                <action selector="dismissButtonAction:" destination="-1" eventType="touchUpInside" id="l07-z8-eBp"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Review" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNV-Ra-t9B">
+                            <rect key="frame" x="16" y="11" width="343" height="22"/>
+                            <fontDescription key="fontDescription" name="FiraSans-Bold" family="Fira Sans" pointSize="18"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.086274509799999996" green="0.45882352939999999" blue="0.81176470590000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="N5c-Mg-adp" firstAttribute="top" secondItem="iAC-Ft-mYb" secondAttribute="top" id="56Y-Aw-d3x"/>
+                        <constraint firstAttribute="bottom" secondItem="N5c-Mg-adp" secondAttribute="bottom" id="O5l-bR-66u"/>
+                        <constraint firstItem="VNV-Ra-t9B" firstAttribute="centerY" secondItem="iAC-Ft-mYb" secondAttribute="centerY" id="SIs-kO-yU7"/>
+                        <constraint firstAttribute="height" constant="44" id="Uko-bg-NrN"/>
+                        <constraint firstItem="N5c-Mg-adp" firstAttribute="leading" secondItem="iAC-Ft-mYb" secondAttribute="leading" constant="16" id="WEk-47-top"/>
+                        <constraint firstItem="VNV-Ra-t9B" firstAttribute="leading" secondItem="iAC-Ft-mYb" secondAttribute="leading" constant="16" id="dPb-fP-mxe"/>
+                        <constraint firstAttribute="trailing" secondItem="VNV-Ra-t9B" secondAttribute="trailing" constant="16" id="e12-hn-r7F"/>
+                        <constraint firstItem="VNV-Ra-t9B" firstAttribute="centerX" secondItem="iAC-Ft-mYb" secondAttribute="centerX" id="kO3-8U-aNc"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rav-ey-yTs" userLabel="separator">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
+                    <color key="backgroundColor" red="0.086274509799999996" green="0.45882352939999999" blue="0.81176470590000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="lH4-fi-55s"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WWR-uQ-lKJ" customClass="CosmosView" customModule="Cosmos">
+                    <rect key="frame" x="32" y="80" width="311" height="64"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="qok-PO-4iP"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="starSize">
+                            <real key="value" value="40"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="updateOnTouch" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="minTouchRating">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="starMargin">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ec5-XG-wHM" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
+                    <rect key="frame" x="32" y="160" width="311" height="128"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="128" id="jTW-fc-ZYc"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Write Review Here"/>
+                    </userDefinedRuntimeAttributes>
+                </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mro-tF-Eoc">
+                    <rect key="frame" x="32" y="304" width="311" height="40"/>
+                    <color key="backgroundColor" red="0.086274509799999996" green="0.45882352939999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="3Aq-ds-QNN"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="17"/>
+                    <state key="normal" title="Submit">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="ec5-XG-wHM" firstAttribute="trailing" secondItem="WWR-uQ-lKJ" secondAttribute="trailing" id="0eT-N9-S7V"/>
+                <constraint firstAttribute="trailing" secondItem="WWR-uQ-lKJ" secondAttribute="trailing" constant="32" id="2gt-eg-dbM"/>
+                <constraint firstItem="iAC-Ft-mYb" firstAttribute="trailing" secondItem="rav-ey-yTs" secondAttribute="trailing" id="9js-xH-nKh"/>
+                <constraint firstItem="rav-ey-yTs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="C6L-pZ-sAg"/>
+                <constraint firstItem="WWR-uQ-lKJ" firstAttribute="top" secondItem="iAC-Ft-mYb" secondAttribute="bottom" constant="16" id="GiT-mv-8d1"/>
+                <constraint firstItem="iAC-Ft-mYb" firstAttribute="top" secondItem="rav-ey-yTs" secondAttribute="bottom" id="KTy-Gt-Eay"/>
+                <constraint firstItem="mro-tF-Eoc" firstAttribute="leading" secondItem="ec5-XG-wHM" secondAttribute="leading" id="LFl-lu-VRN"/>
+                <constraint firstAttribute="trailing" secondItem="rav-ey-yTs" secondAttribute="trailing" id="VQR-tH-YfW"/>
+                <constraint firstItem="mro-tF-Eoc" firstAttribute="trailing" secondItem="ec5-XG-wHM" secondAttribute="trailing" id="Wof-L6-cEP"/>
+                <constraint firstItem="iAC-Ft-mYb" firstAttribute="leading" secondItem="rav-ey-yTs" secondAttribute="leading" id="XZ5-hV-nsw"/>
+                <constraint firstItem="rav-ey-yTs" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="cVN-Sj-j0w"/>
+                <constraint firstItem="mro-tF-Eoc" firstAttribute="top" secondItem="ec5-XG-wHM" secondAttribute="bottom" constant="16" id="eNF-cF-pOT"/>
+                <constraint firstItem="WWR-uQ-lKJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="32" id="ivP-Z4-7KG"/>
+                <constraint firstItem="ec5-XG-wHM" firstAttribute="top" secondItem="WWR-uQ-lKJ" secondAttribute="bottom" constant="16" id="qzB-kQ-4xH"/>
+                <constraint firstItem="ec5-XG-wHM" firstAttribute="leading" secondItem="WWR-uQ-lKJ" secondAttribute="leading" id="rD5-1o-fnv"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_circle_close_white" width="24" height="24"/>
+    </resources>
+</document>

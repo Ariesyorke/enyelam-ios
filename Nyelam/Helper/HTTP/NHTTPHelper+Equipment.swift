@@ -14,10 +14,10 @@ import CoreData
 
 extension NHTTPHelper {
     static func httpGetEquipmentList(date: Date, diveCenterId: String, complete: @escaping (NHTTPResponse<[Equipment]>)->()) {
-        self.basicPostRequest(URLString: HOST_URL,
+        self.basicPostRequest(URLString: HOST_URL + API_PATH_EQUIPMENT_LIST,
                               parameters: [
                                 "date": String(date.timeIntervalSince1970),
-                                "dive_center_id": diveCenterId],
+                                "divecenter_id": diveCenterId],
                               headers: nil,
                               complete: {status, data, error  in
             if let error = error {

@@ -9,6 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="FiraSans-Bold.ttf">
+            <string>FiraSans-Bold</string>
+        </array>
         <array key="FiraSans-Regular.ttf">
             <string>FiraSans-Regular</string>
         </array>
@@ -16,6 +19,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EquipmentRentController" customModule="Nyelam" customModuleProvider="target">
             <connections>
+                <outlet property="clearButton" destination="n5f-nJ-uYW" id="0wA-mT-Xdd"/>
                 <outlet property="loadingView" destination="q3V-ue-9g5" id="rZx-ne-rIE"/>
                 <outlet property="notFoundLabel" destination="pzr-uv-CVd" id="Yye-Pc-Ejs"/>
                 <outlet property="tableView" destination="Kub-dw-K13" id="ZMZ-mG-Tqi"/>
@@ -27,16 +31,52 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g9R-pJ-2Po" userLabel="separator">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
+                    <color key="backgroundColor" red="0.086274509799999996" green="0.45882352939999999" blue="0.81176470590000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="BTL-qc-JNK"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UEt-9b-vxT" userLabel="toolbar">
+                    <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UFk-ay-EzO">
+                            <rect key="frame" x="16" y="0.0" width="24" height="44"/>
+                            <state key="normal" image="ic_circle_close_white"/>
+                            <connections>
+                                <action selector="dismissButtonAction:" destination="-1" eventType="touchUpInside" id="hcv-GT-ioS"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Equipment" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="96m-UD-hqj">
+                            <rect key="frame" x="16" y="11" width="343" height="22"/>
+                            <fontDescription key="fontDescription" name="FiraSans-Bold" family="Fira Sans" pointSize="18"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.086274509799999996" green="0.45882352939999999" blue="0.81176470590000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="UFk-ay-EzO" firstAttribute="leading" secondItem="UEt-9b-vxT" secondAttribute="leading" constant="16" id="4pd-4R-1di"/>
+                        <constraint firstItem="UFk-ay-EzO" firstAttribute="top" secondItem="UEt-9b-vxT" secondAttribute="top" id="5N1-g8-0oF"/>
+                        <constraint firstItem="96m-UD-hqj" firstAttribute="leading" secondItem="UEt-9b-vxT" secondAttribute="leading" constant="16" id="5mm-ko-TSi"/>
+                        <constraint firstAttribute="bottom" secondItem="UFk-ay-EzO" secondAttribute="bottom" id="a3R-7T-Qe1"/>
+                        <constraint firstAttribute="trailing" secondItem="96m-UD-hqj" secondAttribute="trailing" constant="16" id="bb7-eI-MQA"/>
+                        <constraint firstAttribute="height" constant="44" id="hrN-st-hGH"/>
+                        <constraint firstItem="96m-UD-hqj" firstAttribute="centerY" secondItem="UEt-9b-vxT" secondAttribute="centerY" id="rMV-39-ody"/>
+                        <constraint firstItem="96m-UD-hqj" firstAttribute="centerX" secondItem="UEt-9b-vxT" secondAttribute="centerX" id="rYf-KT-pfU"/>
+                    </constraints>
+                </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Kub-dw-K13">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="595"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="531"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="q3V-ue-9g5">
-                    <rect key="frame" x="169" y="279" width="37" height="37"/>
+                    <rect key="frame" x="169" y="311" width="37" height="37"/>
                     <color key="color" red="0.086274509799999996" green="0.45882352939999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                 </activityIndicatorView>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Equipment Rent Not Found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pzr-uv-CVd">
-                    <rect key="frame" x="16" y="285.5" width="343" height="24"/>
+                    <rect key="frame" x="16" y="317.5" width="343" height="24"/>
                     <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="20"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -104,19 +144,29 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="A7e-f4-yXI" secondAttribute="trailing" id="2Pr-Ds-ZCf"/>
+                <constraint firstItem="UEt-9b-vxT" firstAttribute="top" secondItem="g9R-pJ-2Po" secondAttribute="bottom" id="6cd-E7-hhr"/>
+                <constraint firstItem="g9R-pJ-2Po" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="C4V-Ka-ubm"/>
                 <constraint firstItem="A7e-f4-yXI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="CJ5-r7-6Jm"/>
                 <constraint firstItem="pzr-uv-CVd" firstAttribute="centerY" secondItem="Kub-dw-K13" secondAttribute="centerY" id="ED0-1M-5AT"/>
-                <constraint firstItem="Kub-dw-K13" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="EuK-Cx-JTQ"/>
+                <constraint firstItem="g9R-pJ-2Po" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Qo8-Vm-sI9"/>
                 <constraint firstAttribute="trailing" secondItem="pzr-uv-CVd" secondAttribute="trailing" constant="16" id="Qpa-Fh-O8K"/>
                 <constraint firstItem="A7e-f4-yXI" firstAttribute="top" secondItem="Kub-dw-K13" secondAttribute="bottom" id="SVH-IK-yPa"/>
                 <constraint firstAttribute="bottom" secondItem="A7e-f4-yXI" secondAttribute="bottom" id="TFN-yQ-9iM"/>
+                <constraint firstItem="Kub-dw-K13" firstAttribute="top" secondItem="UEt-9b-vxT" secondAttribute="bottom" id="Tmi-Hy-xXc"/>
                 <constraint firstItem="q3V-ue-9g5" firstAttribute="centerY" secondItem="Kub-dw-K13" secondAttribute="centerY" id="a0n-wC-0kf"/>
                 <constraint firstItem="q3V-ue-9g5" firstAttribute="centerX" secondItem="Kub-dw-K13" secondAttribute="centerX" id="a5b-8J-cdJ"/>
                 <constraint firstItem="pzr-uv-CVd" firstAttribute="centerX" secondItem="Kub-dw-K13" secondAttribute="centerX" id="auK-gW-Bjy"/>
+                <constraint firstItem="UEt-9b-vxT" firstAttribute="trailing" secondItem="g9R-pJ-2Po" secondAttribute="trailing" id="ayt-tz-XXS"/>
                 <constraint firstAttribute="trailing" secondItem="Kub-dw-K13" secondAttribute="trailing" id="cYU-u1-bK0"/>
                 <constraint firstItem="Kub-dw-K13" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="f8V-B4-28T"/>
                 <constraint firstItem="pzr-uv-CVd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="kr6-Hs-f5T"/>
+                <constraint firstAttribute="trailing" secondItem="g9R-pJ-2Po" secondAttribute="trailing" id="o8m-zH-Bya"/>
+                <constraint firstItem="UEt-9b-vxT" firstAttribute="leading" secondItem="g9R-pJ-2Po" secondAttribute="leading" id="s68-cn-dzG"/>
             </constraints>
+            <point key="canvasLocation" x="45.5" y="107.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="ic_circle_close_white" width="24" height="24"/>
+    </resources>
 </document>

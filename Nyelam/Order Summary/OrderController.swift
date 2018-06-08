@@ -21,14 +21,7 @@ class OrderController: BaseViewController {
     @IBOutlet weak var tableBottomConstraint: NSLayoutConstraint!
     
     
-    var environment:String = PayPalEnvironmentSandbox {
-        willSet(newEnvironment) {
-            if (newEnvironment != environment) {
-                PayPalMobile.preconnect(withEnvironment: newEnvironment)
-            }
-        }
-    }
-    
+        
     var payPalConfig = PayPalConfiguration()
     
     static func push(on controller: UINavigationController, diveService: NDiveService, cartReturn: CartReturn, contact: BookingContact, participants: [Participant], selectedDate: Date) -> OrderController {
@@ -60,7 +53,7 @@ class OrderController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        PayPalMobile.preconnect(withEnvironment: self.environment)
+        PayPalMobile.preconnect(withEnvironment: NConstant.paypalEnvironment)
     }
 
     override func didReceiveMemoryWarning() {
@@ -348,8 +341,12 @@ extension OrderController: UITableViewDelegate, UITableViewDataSource {
     }
     
     fileprivate func payUsingMidtrans(order: NOrder, contact: BookingContact, amount: Int, veritransToken: String, diveService: NDiveService, divers: Int, paymentType: Int, additionals: [Additional]?) {
+        MidtransNetworkLogger.shared().startLogging()
         let transactionDetails = MidtransTransactionDetails.init(orderID: order.orderId!, andGrossAmount: NSNumber(value: amount))
-        let customerDetails = MidtransCustomerDetails.init(firstName: contact.name!, lastName: "", email: contact.email, phone: "+\(contact.countryCode!.countryNumber)\(contact.phoneNumber!)", shippingAddress: nil, billingAddress: nil)
+        let customerDetails = MidtransCustomerDetails.init(firstName: contact.name!, lastName: "", email: contact.email!, phone: "+\(contact.countryCode!.countryNumber)\(contact.phoneNumber!)", shippingAddress: nil, billingAddress: nil)
+        let preferences = UserDefaults.standard
+        preferences.set(contact.email!, forKey: "email_address")
+        preferences.set("+\(contact.countryCode!.countryNumber!)\(contact.phoneNumber!)", forKey: "phone_number")
         var itemDetails: [MidtransItemDetail] = []
         let itemDetail = MidtransItemDetail(itemID: diveService.id!, name: diveService.name!, price: NSNumber(value: diveService.specialPrice), quantity: NSNumber(value: divers))
         itemDetails.append(itemDetail!)
@@ -362,7 +359,8 @@ extension OrderController: UITableViewDelegate, UITableViewDataSource {
         }
         let paymentFeature = (paymentType==2 ? MidtransPaymentFeature.MidtransPaymentFeatureCreditCard : MidtransPaymentFeature.MidtransPaymentFeatureBankTransfer)
         let response = MidtransTransactionTokenResponse()
-        response.customerDetails = customerDetails
+        
+        response.customerDetails = customerDetails!
         response.itemDetails = itemDetails
         response.tokenId = veritransToken
         response.transactionDetails = transactionDetails

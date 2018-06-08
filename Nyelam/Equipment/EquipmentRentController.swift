@@ -10,19 +10,20 @@ import UIKit
 import UINavigationControllerWithCompletionBlock
 
 class EquipmentRentController: BaseViewController {
-    static func push(on controller: UINavigationController, diveCenterId: String, selectedDate: Date, equipments: [Equipment]?, onUpdateEquipment: @escaping ([Equipment]?)->()) -> EquipmentRentController {
+    static func present(on controller: UINavigationController, diveCenterId: String, selectedDate: Date, equipments: [Equipment]?, onUpdateEquipment: @escaping (UIViewController, [Equipment]?)->()) -> EquipmentRentController {
         let vc: EquipmentRentController = EquipmentRentController(nibName: "EquipmentRentController", bundle: nil)
         vc.chosenEquipments = equipments
         vc.selectedDate = selectedDate
         vc.diveCenterId = diveCenterId
         vc.onUpdateEquipment = onUpdateEquipment
-        controller.pushViewController(vc, animated: true)
+        controller.present(vc, animated: true)
         return vc
     }
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loadingView: UIActivityIndicatorView!
     @IBOutlet weak var notFoundLabel: UILabel!
+    @IBOutlet weak var clearButton: UIButton!
     
     fileprivate var diveCenterId: String?
     fileprivate var selectedDate: Date?
@@ -32,24 +33,30 @@ class EquipmentRentController: BaseViewController {
             self.tableView.reloadData()
         }
     }
-    fileprivate var onUpdateEquipment: ([Equipment]?) -> () = {equipment in}
+    fileprivate var onUpdateEquipment: (UIViewController, [Equipment]?) -> () = {controller, equipment in}
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initView()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.tryLoadEquipmentList(diveCenterId: self.diveCenterId!, selectedDate: self.selectedDate!)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     fileprivate func initView() {
+        self.clearButton.layer.borderColor = UIColor.blueActive.cgColor
+        self.clearButton.layer.borderWidth = 1
         self.title = "Add-on"
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.register(UINib(nibName: "EquipmentCell", bundle: nil), forCellReuseIdentifier: "EquipmentCell")
-        self.tryLoadEquipmentList(diveCenterId: self.diveCenterId!, selectedDate: self.selectedDate!)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_circle_close_white"), style: .plain, target: self, action: #selector(backButtonAction(_:)))
     }
     
@@ -58,6 +65,10 @@ class EquipmentRentController: BaseViewController {
         NHTTPHelper.httpGetEquipmentList(date: selectedDate, diveCenterId: diveCenterId, complete: {response in
             self.loadingView.isHidden = true
             if let error = response.error {
+                if error.isKind(of: UnknownError.self) {
+                    self.notFoundLabel.isHidden = false
+                    return
+                }
                 UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {error in
                     if error.isKind(of: NotConnectedInternetError.self) {
                         NHelper.handleConnectionError(completion: {
@@ -76,14 +87,17 @@ class EquipmentRentController: BaseViewController {
     }
 
     @IBAction func applyButtonAction(_ sender: Any) {
-        self.navigationController!.popViewController(animated: true, withCompletionBlock: {
-            self.onUpdateEquipment(self.chosenEquipments)
-        })
+        self.onUpdateEquipment(self, self.chosenEquipments)
     }
     
     @IBAction func clearButtonAction(_ sender: Any) {
         self.chosenEquipments = nil
         self.tableView.reloadData()
+    }
+    
+    
+    @IBAction func dismissButtonAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     /*
     // MARK: - Navigation

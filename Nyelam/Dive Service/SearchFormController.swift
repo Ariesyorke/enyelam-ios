@@ -29,7 +29,6 @@ class SearchFormController: BaseViewController {
         vc.forDoTrip = forDoTrip
         vc.selectedKeyword = SearchResultDiveCenter(json:NConstant.ecotripStatic)
         vc.selectedLicense = true
-        vc.selectedDate = NHelper.generateEcoTripDates()[0]
         controller.setNavigationBarHidden(false, animated: true)
         controller.navigationBar.barTintColor = UIColor.nyGreen
         controller.pushViewController(vc, animated: true)
@@ -45,7 +44,9 @@ class SearchFormController: BaseViewController {
         return vc
     }
 
+    @IBOutlet weak var loadingView: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
+    
     var isEcoTrip: Bool = false
     var forDoTrip: Bool = false
     var forDoCourse: Bool = false
@@ -59,6 +60,18 @@ class SearchFormController: BaseViewController {
     fileprivate var selectedOrganization: NMasterOrganization?
     fileprivate var selectedLicenseType: NLicenseType?
     
+    
+    override func backButtonAction(_ sender: UIBarButtonItem) {
+        if self.isEcoTrip {
+            if let navigation = self.navigationController as? BaseNavigationController {
+                self.moveSafeAreaInsets()
+                navigation.setNavigationBarHidden(true, animated: true)
+                navigation.navigationBar.barTintColor = UIColor.primary
+            }
+        }
+        super.backButtonAction(sender)
+        
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if self.isEcoTrip {
@@ -76,9 +89,20 @@ class SearchFormController: BaseViewController {
         self.tableView.register(UINib(nibName: "CourseFormCell", bundle: nil), forCellReuseIdentifier: "CourseFormCell")
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.getRecommendation()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if self.firstTime {
+            self.firstTime = false
+            if self.isEcoTrip {
+                self.loadingView.isHidden = false
+                self.getEcoTripCalendar()
+            } else {
+                self.getRecommendation()
+            }
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -201,6 +225,36 @@ class SearchFormController: BaseViewController {
         editRadiusAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(editRadiusAlert, animated: true)
     }
+    
+    func getEcoTripCalendar() {
+        NHTTPHelper.httpGetEcoTripCalendar(complete: {response in
+            self.loadingView.isHidden = true
+            if let error = response.error {
+                if error.isKind(of: NotConnectedInternetError.self) {
+                    NHelper.handleConnectionError(completion: {
+                        self.getEcoTripCalendar()
+                    })
+                } else if error.isKind(of: StatusFailedError.self) {
+                    //TODO
+                }
+            }
+            if let data = response.data, !data.isEmpty {
+                var dates: [Date] = []
+                var i = 0
+                for timestamp in data {
+                    let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
+                    if i == 0 {
+                        self.selectedDate = date
+                    }
+                    dates.append(date)
+                    i+=1
+                }
+                NHelper.ecoTripDates = dates
+                self.tableView.reloadData()
+                self.getRecommendation()
+            }
+        })
+    }
 }
 
 extension SearchFormController: UITableViewDelegate, UITableViewDataSource {
@@ -213,6 +267,11 @@ extension SearchFormController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.isEcoTrip {
+            if NHelper.ecoTripDates == nil || NHelper.ecoTripDates!.isEmpty {
+                return 0
+            }
+        }
         if section == 0 {
             return 1
         } else {

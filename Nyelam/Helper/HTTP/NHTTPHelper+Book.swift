@@ -57,6 +57,7 @@ extension NHTTPHelper {
                                     return
                                 }
                                 if let data = data, let json = data as? [String: Any] {
+                                    print("JSON \(json)")
                                     let cartReturn = CartReturn(json: json)
                                     complete(NHTTPResponse(resultStatus: true, data: cartReturn, error: nil))
                                 }

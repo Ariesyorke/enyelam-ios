@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-class Equipment: NSObject, Parseable {
+public class Equipment: NSObject, Parseable, NSCoding {
     private let KEY_ID = "id"
     private let KEY_NAME = "name"
     private let KEY_NORMAL_PRICE = "normal_price"
@@ -28,6 +28,17 @@ class Equipment: NSObject, Parseable {
     init(json: [String: Any]) {
         super.init()
         self.parse(json: json)
+    }
+    
+    public convenience required init?(coder aDecoder: NSCoder) {
+        guard let json = aDecoder.decodeObject(forKey: "json") as? [String: Any] else {
+            return nil
+        }
+        self.init(json: json)
+    }
+    
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.serialized(), forKey: "json")
     }
     
     func parse(json: [String : Any]) {

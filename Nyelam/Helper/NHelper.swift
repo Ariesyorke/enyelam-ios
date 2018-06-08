@@ -12,6 +12,8 @@ import CoreData
 import SwiftDate
 
 class NHelper {
+    static var ecoTripDates: [Date]? = nil
+    
     static func generateEcoTripDates()->[Date] {
         var dates: [Date] = []
         var cal = CalendarName.gregorian.calendar
@@ -26,9 +28,13 @@ class NHelper {
             cmp.day = 1
             cmp.hour = 0
             cmp.minute = 0
+            
             date = DateInRegion(components: cmp)!.absoluteDate
+            
             date = currentCal.date(byAdding: .month, value: i, to: date)!
             date = currentCal.date(byAdding: .weekOfMonth, value: 1, to: date)!
+            let region = Region(tz: TimeZoneName.asiaJakarta, cal: CalendarName.gregorian, loc: LocaleName.englishUnitedStates)
+//            date = DateInRegion(absoluteDate: date, in: region).startWeek.absoluteDate
             date = DateInRegion(absoluteDate: date).startWeek.absoluteDate
             var week = currentCal.component(.weekOfMonth, from: date)
             
@@ -54,6 +60,7 @@ class NHelper {
         }
         return dates
     }
+    
     static func handleConnectionError(completion: @escaping ()->()) {
         if #available(iOS 10.0, *) {
             guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString)     else {

@@ -88,5 +88,30 @@ class NConstant {
             return .sandbox
         }
     }
+    
+    static var paypalEnvironment: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return self.paypalProductionEnvironment
+        default:
+            return self.paypalDevelopmentEnvironment
+        }
+    }
+    
+    static var paypalDevelopmentEnvironment: String = PayPalEnvironmentSandbox {
+        willSet(newEnvironment) {
+            if (newEnvironment != paypalDevelopmentEnvironment) {
+                PayPalMobile.preconnect(withEnvironment: newEnvironment)
+            }
+        }
+    }
+    static var paypalProductionEnvironment:String = PayPalEnvironmentProduction {
+        willSet(newEnvironment) {
+            if (newEnvironment != paypalProductionEnvironment) {
+                PayPalMobile.preconnect(withEnvironment: newEnvironment)
+            }
+        }
+    }
+
 }
 

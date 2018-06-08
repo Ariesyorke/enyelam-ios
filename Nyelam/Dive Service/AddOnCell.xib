@@ -23,7 +23,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="316" height="51.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yot-WD-HsC" customClass="UIControl">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yot-WD-HsC">
                         <rect key="frame" x="217.5" y="16" width="82.5" height="20"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_arrow_right_grey" translatesAutoresizingMaskIntoConstraints="NO" id="VVN-MX-6W7">
