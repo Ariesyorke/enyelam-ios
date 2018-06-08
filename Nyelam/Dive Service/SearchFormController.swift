@@ -408,9 +408,9 @@ extension SearchFormController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 1 {
             let header: UIView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
-            header.backgroundColor = UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1)
-            
-            let label: UILabel = UILabel(frame: CGRect(x: 16, y: 8, width: tableView.frame.width - 32, height: 40 - 16))
+//            header.backgroundColor = UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 1)
+            header.backgroundColor = UIColor.clear
+            let label: UILabel = UILabel(frame: CGRect(x: 16, y: 16, width: tableView.frame.width - 32, height: 40 - 16))
             if self.forDoCourse {
                 label.text = "Our Recommended Course(s)"
             } else {

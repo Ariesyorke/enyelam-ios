@@ -621,6 +621,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="aboutTitleLabel" destination="LME-bP-kmr" id="Ohx-0E-ltL"/>
                 <outlet property="accomodationImageView" destination="brw-y1-kfx" id="LlW-FP-ItA"/>
                 <outlet property="additionalLabel1" destination="TaH-0l-bwi" id="PB5-UC-RKm"/>
                 <outlet property="additionalLabel2" destination="709-0I-96Q" id="awg-3V-ynI"/>

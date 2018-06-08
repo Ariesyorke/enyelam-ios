@@ -399,45 +399,14 @@ extension DiveServiceController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 1 {
-            return 40
-        } else {
+//        if section == 1 {
+//            return 40
+//        } else {
             return 0.00001
-        }
+//        }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        if indexPath.row == 0 {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "DiveServiceDetailCell", for: indexPath) as! DiveServiceDetailCell
-//            cell.forDoCourse = self.forDoCourse
-//            cell.initData(diveService: self.diveService!)
-//            cell.onDiveCenterClicked = {diveCenter in
-//                if self.forDoCourse {
-//                    _ = DiveCenterController.push(on: self.navigationController!, forDoCourse: self.forDoCourse, selectedKeyword: self.selectedKeyword, selectedDiver: 1, selectedDate: self.selectedDate!, selectedOrganization: self.selectedOrganization!, selectedLicenseType: self.selectedLicenseType!, diveCenter: diveCenter)
-//                } else {
-//                    _ = DiveCenterController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: self.selectedKeyword, selectedLicense: self.selectedLicense, selectedDiver: 1, selectedDate: self.selectedDate!, ecoTrip: self.ecotrip, diveCenter: diveCenter)
-//                }
-//            }
-//            return cell
-//        } else if indexPath.row == 1 {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "DiveServiceRelatedCell", for: indexPath) as! DiveServiceRelatedCell
-//            cell.isDoTrip = self.forDoTrip
-//            cell.controller = self
-//            if cell.relatedDiveServices == nil || cell.relatedDiveServices!.isEmpty {
-//                cell.relatedDiveServices = self.relatedDiveServices
-//            }
-//            cell.relatedServiceLabel.text = "You may like these"
-//            cell.onRelatedServiceClicked = {diveService in
-//                if self.forDoTrip {
-//                    let date = Date(timeIntervalSince1970: diveService.schedule!.startDate)
-//                    _ = DiveServiceController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: self.selectedKeyword, selectedLicense: diveService.license, selectedDiver: 1, selectedDate: date, ecoTrip: self.ecotrip, diveService: diveService)
-//                } else {
-//                    _ = DiveServiceController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: self.selectedKeyword, selectedLicense: diveService.license, selectedDiver: 1, selectedDate: self.selectedDate!, ecoTrip: self.ecotrip, diveService: diveService)
-//                }
-//            }
-//            return cell
-//        }
-//        return UITableViewCell()
-        if indexPath.section == 0 {
+        if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DiveServiceDetailCell", for: indexPath) as! DiveServiceDetailCell
             cell.forDoCourse = self.forDoCourse
             cell.initData(diveService: self.diveService!)
@@ -449,27 +418,21 @@ extension DiveServiceController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
             return cell
-        } else if indexPath.section == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "AddOnCell", for: indexPath) as! AddOnCell
-            if let equipments = self.equipments, !equipments.isEmpty, indexPath.row < equipments.count {
-                cell.equipmentItemLabel.text = "\(equipments[indexPath.row].name!) x\(equipments[indexPath.row].quantity)"
-                cell.equipmentItemLabel.textColor = UIColor.black
-            } else {
-                cell.equipmentItemLabel.text = "Add Item"
-                cell.equipmentItemLabel.textColor = UIColor.darkGray
-            }
-            return cell
-        } else if indexPath.section == 2 {
+        } else if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DiveServiceRelatedCell", for: indexPath) as! DiveServiceRelatedCell
             cell.isDoTrip = self.forDoTrip
             cell.controller = self
             if cell.relatedDiveServices == nil || cell.relatedDiveServices!.isEmpty {
                 cell.relatedDiveServices = self.relatedDiveServices
             }
+            cell.relatedServiceLabel.text = "You may like these"
             cell.onRelatedServiceClicked = {diveService in
                 if self.forDoTrip {
                     let date = Date(timeIntervalSince1970: diveService.schedule!.startDate)
                     _ = DiveServiceController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: self.selectedKeyword, selectedLicense: diveService.license, selectedDiver: 1, selectedDate: date, ecoTrip: self.ecotrip, diveService: diveService)
+                } else if  self.forDoCourse {
+                    let date = Date(timeIntervalSince1970: diveService.schedule!.startDate)
+                    _ = DiveServiceController.push(on: self.navigationController!, forDoCourse: self.forDoCourse, selectedKeyword: self.selectedKeyword, selectedDiver: 1, selectedDate: date, diveService: diveService, selectedOrganization: self.selectedOrganization!, selectedLicenseType: self.selectedLicenseType!)
                 } else {
                     _ = DiveServiceController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: self.selectedKeyword, selectedLicense: diveService.license, selectedDiver: 1, selectedDate: self.selectedDate!, ecoTrip: self.ecotrip, diveService: diveService)
                 }
@@ -477,59 +440,99 @@ extension DiveServiceController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         return UITableViewCell()
+//        if indexPath.section == 0 {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "DiveServiceDetailCell", for: indexPath) as! DiveServiceDetailCell
+//            cell.forDoCourse = self.forDoCourse
+//            cell.initData(diveService: self.diveService!)
+//            cell.onDiveCenterClicked = {diveCenter in
+//                if self.forDoCourse {
+//                    _ = DiveCenterController.push(on: self.navigationController!, forDoCourse: self.forDoCourse, selectedKeyword: self.selectedKeyword, selectedDiver: 1, selectedDate: self.selectedDate!, selectedOrganization: self.selectedOrganization!, selectedLicenseType: self.selectedLicenseType!, diveCenter: diveCenter)
+//                } else {
+//                    _ = DiveCenterController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: self.selectedKeyword, selectedLicense: self.selectedLicense, selectedDiver: 1, selectedDate: self.selectedDate!, ecoTrip: self.ecotrip, diveCenter: diveCenter)
+//                }
+//            }
+//            return cell
+//        } else if indexPath.section == 1 {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "AddOnCell", for: indexPath) as! AddOnCell
+//            if let equipments = self.equipments, !equipments.isEmpty, indexPath.row < equipments.count {
+//                cell.equipmentItemLabel.text = "\(equipments[indexPath.row].name!) x\(equipments[indexPath.row].quantity)"
+//                cell.equipmentItemLabel.textColor = UIColor.black
+//            } else {
+//                cell.equipmentItemLabel.text = "Add Item"
+//                cell.equipmentItemLabel.textColor = UIColor.darkGray
+//            }
+//            return cell
+//        } else if indexPath.section == 2 {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "DiveServiceRelatedCell", for: indexPath) as! DiveServiceRelatedCell
+//            cell.isDoTrip = self.forDoTrip
+//            cell.controller = self
+//            if cell.relatedDiveServices == nil || cell.relatedDiveServices!.isEmpty {
+//                cell.relatedDiveServices = self.relatedDiveServices
+//            }
+//            cell.onRelatedServiceClicked = {diveService in
+//                if self.forDoTrip {
+//                    let date = Date(timeIntervalSince1970: diveService.schedule!.startDate)
+//                    _ = DiveServiceController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: self.selectedKeyword, selectedLicense: diveService.license, selectedDiver: 1, selectedDate: date, ecoTrip: self.ecotrip, diveService: diveService)
+//                } else {
+//                    _ = DiveServiceController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: self.selectedKeyword, selectedLicense: diveService.license, selectedDiver: 1, selectedDate: self.selectedDate!, ecoTrip: self.ecotrip, diveService: diveService)
+//                }
+//            }
+//            return cell
+//        }
+//        return UITableViewCell()
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        var count = 0
-        if state == .detail {
-            if let _ = self.diveService {
-                count += 2
-            }
-            if let diveServices = self.relatedDiveServices, !diveServices.isEmpty {
-                count += 1
-            }
-        }
-        return count
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 1 {
-            var sectionTitle = NBookingTitleSection(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
-            sectionTitle.subtitleLabel.isHidden = true
-            sectionTitle.titleLabel.text = "Add On(s)"
-            sectionTitle.baseView.backgroundColor = UIColor.nyOrange
-            return sectionTitle
-        } else {
-            return nil
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//    func numberOfSections(in tableView: UITableView) -> Int {
 //        var count = 0
 //        if state == .detail {
 //            if let _ = self.diveService {
-//                count += 1
+//                count += 2
 //            }
 //            if let diveServices = self.relatedDiveServices, !diveServices.isEmpty {
 //                count += 1
 //            }
 //        }
 //        return count
+//    }
+    
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        if section == 1 {
+//            var sectionTitle = NBookingTitleSection(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
+//            sectionTitle.subtitleLabel.isHidden = true
+//            sectionTitle.titleLabel.text = "Add On(s)"
+//            sectionTitle.baseView.backgroundColor = UIColor.nyOrange
+//            return sectionTitle
+//        } else {
+//            return nil
+//        }
+//    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count = 0
         if state == .detail {
-            if section == 0 {
-                return 1
-            } else if section == 1 {
-                var count = 1
-                if let equipments = self.equipments, !equipments.isEmpty {
-                    count += equipments.count
-                }
-                return count
-            } else if section == 2 {
-                return 1
+            if let _ = self.diveService {
+                count += 1
+            }
+            if let diveServices = self.relatedDiveServices, !diveServices.isEmpty {
+                count += 1
             }
         }
         return count
+//        var count = 0
+//        if state == .detail {
+//            if section == 0 {
+//                return 1
+//            } else if section == 1 {
+//                var count = 1
+//                if let equipments = self.equipments, !equipments.isEmpty {
+//                    count += equipments.count
+//                }
+//                return count
+//            } else if section == 2 {
+//                return 1
+//            }
+//        }
+//        return count
     }
 }
 class DiveServiceDetailCell: NTableViewCell {
@@ -577,7 +580,7 @@ class DiveServiceDetailCell: NTableViewCell {
     @IBOutlet weak var licenseTopSpacing: NSLayoutConstraint!
     @IBOutlet weak var specialPriceTopSpacing: NSLayoutConstraint!
     @IBOutlet weak var stockLabel: UILabel!
-    
+    @IBOutlet weak var aboutTitleLabel: UILabel!
     fileprivate var forDoCourse: Bool = false
     fileprivate var diveService: NDiveService?
     var onDiveCenterClicked: (NDiveCenter) -> () = {divecenter in }
@@ -639,6 +642,7 @@ class DiveServiceDetailCell: NTableViewCell {
             self.normalPriceContainer.isHidden = false
         }
         if self.forDoCourse {
+            self.aboutTitleLabel.text = "About Course"
             self.additionalLabel1.text = "Day Class"
             self.additionalLabel2.text = "Day On Site"
             self.additionalLabel3.text = "Open Water"
@@ -646,7 +650,7 @@ class DiveServiceDetailCell: NTableViewCell {
             self.additionalLabel4Colon.text = ""
             self.stockLabel.text = ""
             self.additionalLabel4Height.constant = 0
-            self.totalDivesCounterLabel.text = "\(diveService.totalDives) Day" + (diveService.totalDays>1 ? "s" : "")
+            self.totalDivesCounterLabel.text = "\(diveService.totalDays) Day" + (diveService.totalDays>1 ? "s" : "")
             self.divespotCounterLabel.text = "\(diveService.dayOnSite) Day" + (diveService.dayOnSite>1 ? "s" : "")
             self.tripDurationLabel.text = diveService.openWater ? "Yes" : "No"
             self.divespotLabel.text = ""
@@ -656,6 +660,7 @@ class DiveServiceDetailCell: NTableViewCell {
             self.categoryHeightConstraint.constant = 0
             self.licenseTopSpacing.constant = 0
         } else {
+            self.aboutTitleLabel.text = "About Trips"
             self.additionalLabel1.text = "Total Dives"
             self.additionalLabel2.text = "Divespot Options"
             self.additionalLabel3.text = "Trip Durations"

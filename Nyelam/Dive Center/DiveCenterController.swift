@@ -192,11 +192,18 @@ extension DiveCenterController: UITableViewDelegate, UITableViewDataSource {
             if cell.relatedDiveServices == nil || cell.relatedDiveServices!.isEmpty {
                 cell.relatedDiveServices = self.relatedDiveServices
             }
-            cell.relatedServiceLabel.text = "Our service trips"
+            if self.forDoCourse {
+                cell.relatedServiceLabel.text = "Our service courses"
+            } else {
+                cell.relatedServiceLabel.text = "Our service trips"
+            }
             cell.onRelatedServiceClicked = {diveService in
                 if self.forDoTrip {
                     let date = Date(timeIntervalSince1970: diveService.schedule!.startDate)
                     _ = DiveServiceController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: self.selectedKeyword, selectedLicense: diveService.license, selectedDiver: 1, selectedDate: date, ecoTrip: self.ecotrip, diveService: diveService)
+                } else if self.forDoCourse {
+                    let date = Date(timeIntervalSince1970: diveService.schedule!.startDate)
+                    _ = DiveServiceController.push(on: self.navigationController!, forDoCourse: self.forDoCourse, selectedKeyword: self.selectedKeyword, selectedDiver: 1, selectedDate: date, diveService: diveService, selectedOrganization: self.selectedOrganization!, selectedLicenseType: self.selectedLicenseType!)
                 } else {
                     _ = DiveServiceController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: self.selectedKeyword, selectedLicense: diveService.license, selectedDiver: 1, selectedDate: self.selectedDate!, ecoTrip: self.ecotrip, diveService: diveService)
                 }
@@ -218,6 +225,15 @@ extension DiveCenterController: UITableViewDelegate, UITableViewDataSource {
         }
         return count
     }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.00001
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.00001
+    }
+
 }
 
 extension DiveCenterController: NStickyHeaderViewDelegate {
