@@ -407,6 +407,7 @@ extension NHTTPHelper {
                                             if diveService == nil {
                                                 diveService = NDiveService.init(entity: NSEntityDescription.entity(forEntityName: "NDiveService", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                                             }
+                                            diveService!.shouldParseDivespot = false
                                             diveService!.parse(json: diveServiceJson)
                                             diveservices!.append(diveService!)
                                         }
@@ -423,6 +424,7 @@ extension NHTTPHelper {
                                                 if diveService == nil {
                                                     diveService = NDiveService.init(entity: NSEntityDescription.entity(forEntityName: "NDiveService", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                                                 }
+                                                diveService!.shouldParseDivespot = false
                                                 diveService!.parse(json: diveServiceJson)
                                                 diveservices!.append(diveService!)
                                             }

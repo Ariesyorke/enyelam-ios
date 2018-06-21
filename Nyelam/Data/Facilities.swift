@@ -75,7 +75,7 @@ public class Facilities: NSObject, NSCoding, Parseable {
         }
         if let accomodation = json[KEY_ACCOMODATION] as? Bool {
             self.accomodation = accomodation
-        } else if let accomodation = json[KEY_TRANSPORTATION] as? String {
+        } else if let accomodation = json[KEY_ACCOMODATION] as? String {
             self.accomodation = accomodation.toBool
         }
     }

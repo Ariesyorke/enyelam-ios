@@ -502,6 +502,15 @@ class NHTTPHelper {
         }
     }
     
+    static var API_PATH_BANNER: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return ""
+        default:
+            return ""
+        }
+    }
+    
     internal static func basicAuthStringRequest(URLString: URLConvertible,
                                                 parameters: [String: Any]? = nil,
                                                 headers: [String: String]? = nil,

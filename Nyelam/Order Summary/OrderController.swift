@@ -132,6 +132,8 @@ class OrderController: BaseViewController {
     }
     
     fileprivate func trySubmitOrder(cartToken: String, contactJson: String, diverJson: String, paymentMethodType: String, note: String) {
+        print("Contact JSON \(contactJson)")
+        print("Diver JSON \(diverJson)")
         MBProgressHUD.showAdded(to: self.view, animated: true)
         NHTTPHelper.httpOrderSubmit(cartToken: cartToken, contactJson: contactJson, diverJson: diverJson, paymentMethodType: paymentMethodType, note: note, complete: {response in
             MBProgressHUD.hide(for: self.view, animated: true)

@@ -33,7 +33,7 @@ extension NHTTPHelper {
                     }
                 } else if let scheduleString = json["schedule"] as? String {
                     do {
-                        var data = scheduleString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                        let data = scheduleString.data(using: String.Encoding.utf8, allowLossyConversion: true)
                         let array: Array<Int> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<Int>
                         timestamps = []
                         for timestamp in array {

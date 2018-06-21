@@ -100,7 +100,7 @@
                     <constraint firstItem="9HA-T6-WdV" firstAttribute="centerY" secondItem="4vs-3G-Die" secondAttribute="centerY" id="UxT-pF-Mz5"/>
                     <constraint firstItem="Cqs-O4-ulv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Yue-Ir-0hv"/>
                     <constraint firstItem="mhG-fs-VU7" firstAttribute="top" secondItem="Cqs-O4-ulv" secondAttribute="top" id="fdA-bq-EkR"/>
-                    <constraint firstItem="sRw-la-h3i" firstAttribute="top" secondItem="Cqs-O4-ulv" secondAttribute="bottom" constant="8" id="fjH-Po-amy"/>
+                    <constraint firstItem="sRw-la-h3i" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Cqs-O4-ulv" secondAttribute="bottom" constant="8" id="fjH-Po-amy"/>
                     <constraint firstItem="gTa-wY-f5o" firstAttribute="top" secondItem="mhG-fs-VU7" secondAttribute="bottom" id="fkh-1a-juU"/>
                     <constraint firstAttribute="bottom" secondItem="4vs-3G-Die" secondAttribute="bottom" constant="16" id="kBD-U7-xYf"/>
                     <constraint firstItem="Lba-Kg-Fzd" firstAttribute="trailing" secondItem="zmg-ax-dnU" secondAttribute="trailing" id="mvi-P0-Cik"/>
@@ -108,6 +108,7 @@
                     <constraint firstItem="4vs-3G-Die" firstAttribute="leading" secondItem="Cqs-O4-ulv" secondAttribute="leading" id="pKP-TN-mGV"/>
                     <constraint firstItem="zmg-ax-dnU" firstAttribute="leading" secondItem="mhG-fs-VU7" secondAttribute="trailing" constant="8" id="q8T-ID-7ub"/>
                     <constraint firstItem="5w0-fO-NLc" firstAttribute="leading" secondItem="9HA-T6-WdV" secondAttribute="trailing" constant="8" id="qEG-iJ-ChJ"/>
+                    <constraint firstItem="sRw-la-h3i" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gTa-wY-f5o" secondAttribute="bottom" constant="8" id="vf6-R8-O5g"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -121,7 +122,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="ic_app" width="32" height="32"/>
+        <image name="ic_app" width="50" height="50"/>
         <image name="ic_arrow_right_grey" width="32" height="32"/>
         <image name="ic_calendar" width="14" height="14"/>
         <image name="ic_money" width="14" height="14"/>

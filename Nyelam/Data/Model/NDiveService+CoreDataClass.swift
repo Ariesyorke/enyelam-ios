@@ -12,5 +12,5 @@ import CoreData
 
 @objc(NDiveService)
 public class NDiveService: NSManagedObject {
-
+    var shouldParseDivespot: Bool = false
 }

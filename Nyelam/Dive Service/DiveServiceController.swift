@@ -80,14 +80,14 @@ class DiveServiceController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.initView()
-        // Do any additional setup after loading the view.
+                // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if self.firstTime {
             self.firstTime = false
+            self.initView()
             let id = self.diveService != nil ? self.diveService!.id!:self.selectedKeyword!.id!
             self.tryLoadServiceDetail(serviceId: id, selectedLicense: selectedLicense.number, selectedDate: selectedDate!, selectedDiver: selectedDiver, forDoTrip: self.forDoTrip, forDoCourse: self.forDoCourse)
         }
@@ -111,7 +111,7 @@ class DiveServiceController: BaseViewController {
         self.strechyHeaderView!.delegate = self
         self.strechyHeaderView!.expansionMode = .topOnly
         self.strechyHeaderView!.tabDetailLineView.isHidden = false
-        self.tableView.insertSubview(self.strechyHeaderView!, at: 100)
+        self.tableView.addSubview(self.strechyHeaderView!)
         self.stockTextField.text = String(describing: self.selectedDiver)
         
         self.tableView.register(UINib(nibName: "DiveServiceDetailCell", bundle: nil), forCellReuseIdentifier: "DiveServiceDetailCell")
@@ -482,7 +482,8 @@ extension DiveServiceController: UITableViewDelegate, UITableViewDataSource {
 //        return UITableViewCell()
     }
     
-//    func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
 //        var count = 0
 //        if state == .detail {
 //            if let _ = self.diveService {
@@ -493,9 +494,10 @@ extension DiveServiceController: UITableViewDelegate, UITableViewDataSource {
 //            }
 //        }
 //        return count
-//    }
+    }
     
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return nil
 //        if section == 1 {
 //            var sectionTitle = NBookingTitleSection(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
 //            sectionTitle.subtitleLabel.isHidden = true
@@ -505,7 +507,7 @@ extension DiveServiceController: UITableViewDelegate, UITableViewDataSource {
 //        } else {
 //            return nil
 //        }
-//    }
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count = 0
@@ -669,8 +671,8 @@ class DiveServiceDetailCell: NTableViewCell {
             self.additionalLabel4Colon.text = ":"
             self.stockLabel.text = String(diveService.availability)
             self.totalDivesCounterLabel.text = "\(diveService.totalDives)"
-            self.divespotCounterLabel.text = "\(diveService.diveSpots!.count)"
-            self.tripDurationLabel.text = "\(diveService.totalDives) Day" + (diveService.totalDays>1 ? "s" : "")
+            self.divespotCounterLabel.text = diveService.diveSpots != nil ? "\(diveService.diveSpots!.count)" : "0"
+            self.tripDurationLabel.text = "\(diveService.totalDays) Day" + (diveService.totalDays>1 ? "s" : "")
             self.divespotTopSpacing.constant = 16
             self.categoryContainer.isHidden = false
             self.licenseContainer.isHidden = false
@@ -766,6 +768,7 @@ class DiveServiceRelatedCell: NTableViewCell {
                 var leftView: UIView? = nil
                 for service: NDiveService in self.relatedDiveServices! {
                     let view: NServiceView = self.createView(for: service)
+                    view.control.tag = i
                     view.isDoTrip = self.isDoTrip
                     view.initData(diveService: service)
                     view.addTarget(self, action: #selector(DiveServiceRelatedCell.onServiceClicked(at:)))

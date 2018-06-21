@@ -803,6 +803,7 @@ extension NDiveService {
     private var KEY_ORGANIZATION: String {return "organization"}
     private var KEY_LICENSE_TYPE: String {return "license_type"}
     private var KEY_OPEN_WATER: String {return "open_water"}
+
     func parse(json: [String : Any]) {
         if let id = json[KEY_ID] as? String {
             self.id = id
@@ -879,7 +880,7 @@ extension NDiveService {
             }
         }
         self.featuredImage = json[KEY_FEATURED_IMAGE] as? String
-        if self.diveSpots == nil || self.diveSpots!.isEmpty {
+        if self.shouldParseDivespot {
             if let diveSpotsArray = json[KEY_DIVE_SPOTS] as? Array<[String: Any]>, !diveSpotsArray.isEmpty {
                 self.diveSpots = []
                 for diveSpotJson in diveSpotsArray {
@@ -975,15 +976,17 @@ extension NDiveService {
                 print(error)
             }
         }
-        if let facilitiesJson = json[KEY_FACILITIES] as? [String: Any] {
-            self.facilities = Facilities(json: facilitiesJson)
-        } else if let facilitesString = json[KEY_FACILITIES] as? String {
-            do {
-                let data = facilitesString.data(using: String.Encoding.utf8, allowLossyConversion: true)
-                let facilitiesJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+        if self.shouldParseDivespot {
+            if let facilitiesJson = json[KEY_FACILITIES] as? [String: Any] {
                 self.facilities = Facilities(json: facilitiesJson)
-            } catch {
-                print(error)
+            } else if let facilitesString = json[KEY_FACILITIES] as? String {
+                do {
+                    let data = facilitesString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                    let facilitiesJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                    self.facilities = Facilities(json: facilitiesJson)
+                } catch {
+                    print(error)
+                }
             }
         }
         if let normalPrice = json[KEY_NORMAL_PRICE] as? Double {

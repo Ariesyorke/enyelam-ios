@@ -121,6 +121,9 @@
 		C055B9C4209F1D1B0033A0D4 /* XLPagerTabStrip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C055B9C5209F1D1B0033A0D4 /* XLPagerTabStrip.framework */; };
 		C055B9D2209F216F0033A0D4 /* BookingListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C055B9D0209F216F0033A0D4 /* BookingListController.swift */; };
 		C055B9D3209F21700033A0D4 /* BookingListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C055B9D1209F216F0033A0D4 /* BookingListController.xib */; };
+		C05871C420DB686300A01AEE /* ServiceBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05871C320DB686300A01AEE /* ServiceBanner.swift */; };
+		C05871C620DB6EB100A01AEE /* URLBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05871C520DB6EB100A01AEE /* URLBanner.swift */; };
+		C05871C820DB71E500A01AEE /* NHTTPHelper+Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05871C720DB71E500A01AEE /* NHTTPHelper+Banner.swift */; };
 		C060AB11208997DE008FA607 /* NHTTPHelper+DoTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C060AB10208997DE008FA607 /* NHTTPHelper+DoTrip.swift */; };
 		C060AB132089A2C0008FA607 /* Price.swift in Sources */ = {isa = PBXBuildFile; fileRef = C060AB122089A2C0008FA607 /* Price.swift */; };
 		C060AB142089C9DE008FA607 /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C060AB152089C9DE008FA607 /* SwiftDate.framework */; };
@@ -477,6 +480,9 @@
 		C055B9C5209F1D1B0033A0D4 /* XLPagerTabStrip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = XLPagerTabStrip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C055B9D0209F216F0033A0D4 /* BookingListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingListController.swift; sourceTree = "<group>"; };
 		C055B9D1209F216F0033A0D4 /* BookingListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookingListController.xib; sourceTree = "<group>"; };
+		C05871C320DB686300A01AEE /* ServiceBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceBanner.swift; sourceTree = "<group>"; };
+		C05871C520DB6EB100A01AEE /* URLBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLBanner.swift; sourceTree = "<group>"; };
+		C05871C720DB71E500A01AEE /* NHTTPHelper+Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NHTTPHelper+Banner.swift"; sourceTree = "<group>"; };
 		C060AB10208997DE008FA607 /* NHTTPHelper+DoTrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NHTTPHelper+DoTrip.swift"; sourceTree = "<group>"; };
 		C060AB122089A2C0008FA607 /* Price.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Price.swift; sourceTree = "<group>"; };
 		C060AB152089C9DE008FA607 /* SwiftDate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftDate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -960,6 +966,7 @@
 				C021C60C20A591D400A915FE /* NHTTPHelper+DoCourse.swift */,
 				C069838420B279CD009444EE /* NHTTPHelper+Equipment.swift */,
 				C0D2E6FF20C8E70C00956819 /* NHTTPHelper+EcoTrip.swift */,
+				C05871C720DB71E500A01AEE /* NHTTPHelper+Banner.swift */,
 			);
 			path = HTTP;
 			sourceTree = "<group>";
@@ -1247,6 +1254,8 @@
 				C0FDF6E0209EEC0A009E1F04 /* PaypalCurrency.swift */,
 				C003A28220A0624D003B217B /* NTransactionResult.swift */,
 				C069838220B274A2009444EE /* Equipment.swift */,
+				C05871C320DB686300A01AEE /* ServiceBanner.swift */,
+				C05871C520DB6EB100A01AEE /* URLBanner.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1822,6 +1831,7 @@
 				C09F22FB2071E0A700B48D32 /* String+Extensions.swift in Sources */,
 				C0B2A272207B763F00D46336 /* NHelper.swift in Sources */,
 				C0BE924A2070D403004E1B92 /* Facilities.swift in Sources */,
+				C05871C420DB686300A01AEE /* ServiceBanner.swift in Sources */,
 				C0EE280020999602006ACA5D /* BookingDetailCell.swift in Sources */,
 				C0E17FD920775BC4003942D1 /* NHTTPHelper+Detail.swift in Sources */,
 				C0EB1EF1209F1726001E40D7 /* BookingViewController.swift in Sources */,
@@ -1850,6 +1860,7 @@
 				C037AD5E2070A38800DD5CBC /* StarterViewController.swift in Sources */,
 				C0BE92562070D59A004E1B92 /* Participant.swift in Sources */,
 				C094D94820C6483F0095A53E /* NMasterOrganization+CoreDataProperties.swift in Sources */,
+				C05871C820DB71E500A01AEE /* NHTTPHelper+Banner.swift in Sources */,
 				C094D94D20C6483F0095A53E /* NCity+CoreDataClass.swift in Sources */,
 				C0CB3F232092CBC100BE5644 /* DiveCenterController.swift in Sources */,
 				A60A286520809DF8004A8FC2 /* SearchKeywordResultCell.swift in Sources */,
@@ -1965,6 +1976,7 @@
 				C060AB11208997DE008FA607 /* NHTTPHelper+DoTrip.swift in Sources */,
 				C094D93E20C6483F0095A53E /* NSearchResult+CoreDataProperties.swift in Sources */,
 				C037AD5C2070A38800DD5CBC /* AppDelegate.swift in Sources */,
+				C05871C620DB6EB100A01AEE /* URLBanner.swift in Sources */,
 				C01AACDB208DCA3600EDDB37 /* DiveServiceSearchResultController.swift in Sources */,
 				C0EB1EF9209F1980001E40D7 /* BookingDetailController.swift in Sources */,
 				C0BE923E2070D168004E1B92 /* BookingContact.swift in Sources */,

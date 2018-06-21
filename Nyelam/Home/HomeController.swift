@@ -86,6 +86,7 @@ class HomeController: BaseViewController, UIScrollViewDelegate, MFMailComposeVie
                     let view: NServiceView = self.createView(forDoTrip: doTrip)
                     view.isDoTrip = true
                     view.initData(diveService: doTrip)
+                    view.control.tag = i
                     view.addTarget(self, action: #selector(HomeController.onDoTripClicked(at:)))
 //                    DTMHelper.addShadow(view)
                     self.doTripScroller.addSubview(view)

@@ -31,6 +31,7 @@ extension NHTTPHelper {
                                             if service == nil {
                                                 service = NDiveService.init(entity: NSEntityDescription.entity(forEntityName: "NDiveService", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                                             }
+                                            service!.shouldParseDivespot = true
                                             service!.parse(json: serviceJson)
                                         } else if let serviceString = json["service"] as? String {
                                             do {
@@ -42,6 +43,7 @@ extension NHTTPHelper {
                                                 if service == nil {
                                                     service = NDiveService.init(entity: NSEntityDescription.entity(forEntityName: "NDiveService", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                                                 }
+                                                service!.shouldParseDivespot = true
                                                 service!.parse(json: serviceJson)
                                             } catch {
                                                 print(error)
@@ -172,6 +174,7 @@ extension NHTTPHelper {
                                             if service == nil {
                                                 service = NDiveService.init(entity: NSEntityDescription.entity(forEntityName: "NDiveService", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                                             }
+                                            service!.shouldParseDivespot = true
                                             service!.parse(json: serviceJson)
                                         } else if let serviceString = json["service"] as? String {
                                             do {
@@ -183,6 +186,7 @@ extension NHTTPHelper {
                                                 if service == nil {
                                                     service = NDiveService.init(entity: NSEntityDescription.entity(forEntityName: "NDiveService", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
                                                 }
+                                                service!.shouldParseDivespot = true
                                                 service!.parse(json: serviceJson)
                                             } catch {
                                                 print(error)
