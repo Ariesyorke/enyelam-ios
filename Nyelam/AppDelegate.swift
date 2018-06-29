@@ -27,12 +27,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         GIDSignIn.sharedInstance().clientID =  NConstant.GOOGLE_CLIENT_ID
         GMSServices.provideAPIKey(NConstant.GOOGLE_API_KEY)
-        MidtransConfig.shared().setClientKey(NConstant.MIDTRANS_CLIENT_ID, environment: NConstant.MIDTRANS_ENVIRONTMENT, merchantServerURL: NConstant.MIDTRANS_URL)
-        PayPalMobile.initializeWithClientIds(forEnvironments: [NConstant.PAYPAL_ENVIRONTMENT:NConstant.PAYPAL_CLIENT_ID])
-        
+         PayPalMobile.initializeWithClientIds(forEnvironments: [NConstant.PAYPAL_ENVIRONTMENT:NConstant.PAYPAL_CLIENT_ID])
         FirebaseApp.configure()
-        Fabric.sharedSDK().debug = true
-
+        if NConstant.URL_TYPE == .production {
+            Crash.sharedInstance().isCrashCollectionEnabled = true
+        } else {
+            Fabric.sharedSDK().debug = true
+            Crash.sharedInstance().isCrashCollectionEnabled = false
+        }
+        
         UITableViewCell.appearance().preservesSuperviewLayoutMargins = false
         UITableViewCell.appearance().contentView.preservesSuperviewLayoutMargins = false
 

@@ -17,10 +17,6 @@ import CoreData
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 
-import Foundation
-import CoreData
-
-
 extension NCategory {
     func parse(json: [String : Any]) {
         self.id = json["id"] as? String
@@ -289,7 +285,6 @@ extension NUser {
             }
             if self.licenseType == nil {
                 self.licenseType = NSEntityDescription.insertNewObject(forEntityName: "NLicenseType", into: AppDelegate.sharedManagedContext) as! NLicenseType
-
             }
             self.licenseType!.parse(json: licenseTypeJson)
         } else if let licenseTypeString = json["certificate_diver"] as? String {
@@ -301,7 +296,6 @@ extension NUser {
                 }
                 if self.licenseType == nil {
                     self.licenseType = NSEntityDescription.insertNewObject(forEntityName: "NLicenseType", into: AppDelegate.sharedManagedContext) as! NLicenseType
-                    
                 }
                 self.licenseType!.parse(json: licenseTypeJson)
             } catch {

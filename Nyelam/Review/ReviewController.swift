@@ -7,9 +7,7 @@
 //
 
 import UIKit
-
 class ReviewController: BaseViewController {
-
     static func present(on controller: UINavigationController, bookingId: String) -> ReviewController {
         let vc: ReviewController = ReviewController(nibName: "ReviewController", bundle: nil)
         vc.bookingId = bookingId

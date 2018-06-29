@@ -37,6 +37,7 @@ target 'Nyelam' do
   pod 'GSKStretchyHeaderView'
   pod 'XLPagerTabStrip', '~> 8.0'
   pod 'Firebase/Core'
+  pod 'Firebase/Crash'
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'KMPlaceholderTextView', '~> 1.3.0'

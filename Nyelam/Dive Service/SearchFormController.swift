@@ -23,6 +23,21 @@ class SearchFormController: BaseViewController {
         return vc
     }
     
+    static func push(on controller: UINavigationController, forDoTrip: Bool, serviceId: String, serviceName: String, license: Bool) -> SearchFormController {
+        let vc: SearchFormController = SearchFormController(nibName: "SearchFormController", bundle: nil)
+        let result = SearchResultService()
+        result.id = serviceId
+        result.name = serviceName
+        result.license = license
+        vc.forDoTrip = forDoTrip
+        vc.selectedKeyword = result
+        vc.selectedDate = Date()
+        vc.selectedLicense = license
+        controller.setNavigationBarHidden(false, animated: true)
+        controller.pushViewController(vc, animated: true)
+        return vc
+    }
+    
     static func push(on controller: UINavigationController, forDoTrip: Bool, isEcotrip: Bool) -> SearchFormController {
         let vc: SearchFormController = SearchFormController(nibName: "SearchFormController", bundle: nil)
         vc.isEcoTrip = isEcotrip

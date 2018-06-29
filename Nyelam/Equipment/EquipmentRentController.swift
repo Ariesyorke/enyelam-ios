@@ -33,16 +33,25 @@ class EquipmentRentController: BaseViewController {
             self.tableView.reloadData()
         }
     }
-    fileprivate var onUpdateEquipment: (UIViewController, [Equipment]?) -> () = {controller, equipment in}
+    fileprivate var onUpdateEquipment: (UIViewController, [Equipment]?) -> () = {controller, equipment in
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.initView()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if self.firstTime {
+            self.firstTime = false
+            self.initView()
+            self.tryLoadEquipmentList(diveCenterId: self.diveCenterId!, selectedDate: self.selectedDate!)
+        }
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.tryLoadEquipmentList(diveCenterId: self.diveCenterId!, selectedDate: self.selectedDate!)
+        
     }
     
     override func didReceiveMemoryWarning() {

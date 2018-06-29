@@ -14,6 +14,7 @@ import MessageUI
 import SwiftDate
 
 class HomeController: BaseViewController, UIScrollViewDelegate, MFMailComposeViewControllerDelegate {
+    let file = "banner.json"
     private var bannerImages: [String] = ["banner_1", "banner_2", "banner_3"]
     @IBOutlet weak var bannerScroller: UIScrollView!
     @IBOutlet weak var bannerPageControl: UIPageControl!
@@ -38,7 +39,7 @@ class HomeController: BaseViewController, UIScrollViewDelegate, MFMailComposeVie
             if self.banners != nil {
                 var i: Int = 0
                 var leftView: UIView? = nil
-    
+                self.bannerPageControl.numberOfPages = self.banners!.count
                 for banner: Banner in self.banners! {
 
                     let view: UIControl = self.createView(for: banner, atindex: i)
@@ -51,7 +52,7 @@ class HomeController: BaseViewController, UIScrollViewDelegate, MFMailComposeVie
                         NSLayoutConstraint(item: self.bannerScroller, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0),
                         NSLayoutConstraint(item: self.bannerScroller, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0),
                         NSLayoutConstraint(item: self.bannerScroller, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.width, multiplier: 1, constant: 0)
-                        ])
+                    ])
                     
                     if leftView == nil {
                         self.bannerScroller.addConstraint(NSLayoutConstraint(item: self.bannerScroller, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.left, multiplier: 1, constant: 0))
@@ -63,7 +64,6 @@ class HomeController: BaseViewController, UIScrollViewDelegate, MFMailComposeVie
                         self.bannerScroller.addConstraint(NSLayoutConstraint(item: self.bannerScroller, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 0))
                     }
                     
-
                     i += 1
                     leftView = view
                 }
@@ -118,8 +118,57 @@ class HomeController: BaseViewController, UIScrollViewDelegate, MFMailComposeVie
         self.getDoTrips()
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if self.firstTime {
+            self.firstTime = false
+//            self.getBanner()
+        }
+    }
     
+    fileprivate func getBanner() {
+        if let path = Bundle.main.path(forResource: self.file, ofType: nil) {
+            // use path
+            let fileURL = URL(fileURLWithPath: path)
+            do {
+                let jsonString = try String(contentsOf: fileURL, encoding: .utf8)
+                let data = jsonString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let json: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                if let bannerArray = json["banners"] as? Array<[String: Any]>, !bannerArray.isEmpty {
+                    var bs: [Banner] = []
+                    for bannerJson in bannerArray {
+                        var type = -1
+                        if let t = bannerJson["type"] as? Int {
+                            type = t
+                        } else if let t = bannerJson["type"] as? String {
+                            if t.isNumber {
+                                type = Int(t)!
+                            }
+                        }
+                        if type == 1 || type == 3  || type == 4 {
+                            let banner = ServiceBanner(json: bannerJson)
+                            bs.append(banner)
+                        } else if type == 2 {
+                            let banner = URLBanner(json: bannerJson)
+                            bs.append(banner)
+                        } else {
+                            let banner = Banner(json: bannerJson)
+                            bs.append(banner)
+                        }
+                    }
+                    self.banners = bs
+                }
+            }
+            catch {
+                print(error)
+            }
+        }
+//        NHTTPHelper.httpGetBanner(complete: { response in
+//            if let datas = response.data, !datas.isEmpty {
+//                self.banners = datas
+//            }
+//        })
+    }
     internal func getDoTrips() {
         self.doTripScrollerHeight.constant = 0
         self.doTripLoadingView.isHidden = false
@@ -197,6 +246,35 @@ extension HomeController {
     
     @objc func onBannerClicked(at sender: UIControl) {
         let index: Int = sender.tag
+        if self.banners![index].isKind(of: ServiceBanner.self) {
+            let serviceBanner = self.banners![index] as! ServiceBanner
+            if serviceBanner.type == 1 {
+                let result = SearchResultService()
+                result.id = serviceBanner.id
+                result.license = serviceBanner.license
+                result.name = serviceBanner.serviceName
+                _ = DiveServiceController.push(on: self.navigationController!, forDoTrip: serviceBanner.doTrip, selectedKeyword: result, selectedLicense: serviceBanner.license, selectedDiver: 1, selectedDate: serviceBanner.date!, ecoTrip: serviceBanner.ecotrip)
+            } else if serviceBanner.type == 4 {
+                let result = SearchResultService()
+                result.id = serviceBanner.id
+                result.license = serviceBanner.license
+                result.name = serviceBanner.serviceName
+                _ = DiveServiceController.push(on: self.navigationController!, forDoCourse: false, selectedKeyword: result, selectedDiver: 1, selectedDate: serviceBanner.date!, diveService: nil, selectedOrganization: serviceBanner.masterOrganization!, selectedLicenseType: serviceBanner.licenseType!)
+            } else {
+                _ = SearchFormController.push(on: self.navigationController!, forDoTrip: false, serviceId: serviceBanner.id!, serviceName: serviceBanner.serviceName!, license: serviceBanner.license)
+            }
+        } else if self.banners![index].isKind(of: URLBanner.self) {
+            let urlBanner = self.banners![index] as! URLBanner
+            guard let url = URL(string: urlBanner.url!) else {
+                return //be safe
+            }
+            
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }
         // TODO:
     }
     
@@ -314,12 +392,11 @@ extension HomeController {
         progress.translatesAutoresizingMaskIntoConstraints = false
         progress.tintColor = UIColor.primary
         progress.startAnimating()
-        
         control.addSubview(progress)
         control.addConstraints([
             NSLayoutConstraint(item: control, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: progress, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: control, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: progress, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
-            ])
+        ])
         
         let imgView: UIImageView = UIImageView()
         imgView.translatesAutoresizingMaskIntoConstraints = false
@@ -327,11 +404,12 @@ extension HomeController {
         imgView.clipsToBounds = true
         imgView.backgroundColor = UIColor.clear
         imgView.image = UIImage(named: bannerImages[atindex])!
-        if banner.imageUrl != nil, let url: URL = URL(string: banner.imageUrl!) {
-            imgView.af_setImage(withURL: url)
-        } else {
-            progress.isHidden = true
-        }
+//        imgView.af_setImage(withURL: banner.imageUrl)
+//        if banner.imageUrl != nil, let url: URL = URL(string: banner.imageUrl!) {
+//            imgView.af_setImage(withURL: url)
+//        } else {
+//            progress.isHidden = true
+//        }
         control.addSubview(imgView)
         
         control.addConstraints([
@@ -343,7 +421,5 @@ extension HomeController {
             ])
         return control
     }
-
-
     
 }

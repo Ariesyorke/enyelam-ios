@@ -39,6 +39,7 @@
 		C003A27D20A0337F003B217B /* DiveEthicAgreementController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C003A27B20A0337F003B217B /* DiveEthicAgreementController.xib */; };
 		C003A28120A051F1003B217B /* NHTTPHelper+Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = C003A28020A051F1003B217B /* NHTTPHelper+Notification.swift */; };
 		C003A28320A0624D003B217B /* NTransactionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C003A28220A0624D003B217B /* NTransactionResult.swift */; };
+		C006714B20DCA5BC006CF4E9 /* banner.json in Resources */ = {isa = PBXBuildFile; fileRef = C006714A20DCA5BC006CF4E9 /* banner.json */; };
 		C00D0AFA2075F779000D8ED6 /* NHTTPHelper+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00D0AF92075F779000D8ED6 /* NHTTPHelper+Error.swift */; };
 		C00D0AFC2075FA10000D8ED6 /* NHTTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00D0AFB2075FA10000D8ED6 /* NHTTPResponse.swift */; };
 		C00D0AFE207620C2000D8ED6 /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00D0AFD207620C2000D8ED6 /* Data+Extensions.swift */; };
@@ -139,7 +140,7 @@
 		C06C213520907F550043A45F /* PriceRangeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C06C213320907F550043A45F /* PriceRangeCell.xib */; };
 		C07FA9992086FDD100000E43 /* NSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA9982086FDD100000E43 /* NSDate+Extensions.swift */; };
 		C087959220C511850037F390 /* NLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C087959120C511850037F390 /* NLocation.swift */; };
-		C087B03A20BE57F700BDBF7E /* ReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C087B03820BE57F700BDBF7E /* ReviewController.swift */; };
+		C087B03A20BE57F700BDBF7E /* ReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C087B03820BE57F700BDBF7E /* ReviewController.swift */; };
 		C087B03B20BE57F700BDBF7E /* ReviewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C087B03920BE57F700BDBF7E /* ReviewController.xib */; };
 		C08E967620908D0700270CF9 /* DLRadioButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C08E967820908D0700270CF9 /* DLRadioButton.framework */; };
 		C08E967720908D0700270CF9 /* RangeSeekSlider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C08E967920908D0700270CF9 /* RangeSeekSlider.framework */; };
@@ -250,6 +251,10 @@
 		C0D3C9262084AD8600FF587B /* PECropView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D3C91E2084AD8500FF587B /* PECropView.m */; };
 		C0D3C9272084AD8600FF587B /* PECropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D3C9212084AD8500FF587B /* PECropViewController.m */; };
 		C0D3C9292084AD8D00FF587B /* PEPhotoCropEditor.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C0D3C9282084AD8D00FF587B /* PEPhotoCropEditor.bundle */; };
+		C0DBEAFF20E0D51A0011A190 /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DBEAFD20E0D51A0011A190 /* ReviewCell.swift */; };
+		C0DBEB0020E0D51A0011A190 /* ReviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0DBEAFE20E0D51A0011A190 /* ReviewCell.xib */; };
+		C0DBEB0220E0DA390011A190 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DBEB0120E0DA390011A190 /* Review.swift */; };
+		C0DBEB0620E0EAF10011A190 /* NHTTPHelper+Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DBEB0520E0EAF10011A190 /* NHTTPHelper+Review.swift */; };
 		C0DE14142088543400A67494 /* CoreData+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE14132088543400A67494 /* CoreData+Extensions.swift */; };
 		C0DE14162088730A00A67494 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE14152088730A00A67494 /* UIImageView+Extensions.swift */; };
 		C0DE141820887F5000A67494 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DE141720887F5000A67494 /* Double+Extensions.swift */; };
@@ -383,6 +388,7 @@
 		C003A27B20A0337F003B217B /* DiveEthicAgreementController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiveEthicAgreementController.xib; sourceTree = "<group>"; };
 		C003A28020A051F1003B217B /* NHTTPHelper+Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NHTTPHelper+Notification.swift"; sourceTree = "<group>"; };
 		C003A28220A0624D003B217B /* NTransactionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTransactionResult.swift; sourceTree = "<group>"; };
+		C006714A20DCA5BC006CF4E9 /* banner.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = banner.json; path = Nyelam/Resources/banner.json; sourceTree = SOURCE_ROOT; };
 		C00D0AB92075F375000D8ED6 /* NNationality+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NNationality+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C00D0ABB2075F375000D8ED6 /* NSocialMedia+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSocialMedia+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C00D0ABC2075F375000D8ED6 /* NCountry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NCountry+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -498,7 +504,7 @@
 		C06C213320907F550043A45F /* PriceRangeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PriceRangeCell.xib; sourceTree = "<group>"; };
 		C07FA9982086FDD100000E43 /* NSDate+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDate+Extensions.swift"; sourceTree = "<group>"; };
 		C087959120C511850037F390 /* NLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLocation.swift; sourceTree = "<group>"; };
-		C087B03820BE57F700BDBF7E /* ReviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewController.swift; sourceTree = "<group>"; };
+		C087B03820BE57F700BDBF7E /* ReviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "\U0010ReviewController.swift"; sourceTree = "<group>"; };
 		C087B03920BE57F700BDBF7E /* ReviewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewController.xib; sourceTree = "<group>"; };
 		C08E967820908D0700270CF9 /* DLRadioButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DLRadioButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C08E967920908D0700270CF9 /* RangeSeekSlider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RangeSeekSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -621,6 +627,10 @@
 		C0D3C9212084AD8500FF587B /* PECropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECropViewController.m; sourceTree = "<group>"; };
 		C0D3C9222084AD8600FF587B /* UIImage+PECrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+PECrop.h"; sourceTree = "<group>"; };
 		C0D3C9282084AD8D00FF587B /* PEPhotoCropEditor.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PEPhotoCropEditor.bundle; sourceTree = "<group>"; };
+		C0DBEAFD20E0D51A0011A190 /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
+		C0DBEAFE20E0D51A0011A190 /* ReviewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewCell.xib; sourceTree = "<group>"; };
+		C0DBEB0120E0DA390011A190 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		C0DBEB0520E0EAF10011A190 /* NHTTPHelper+Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NHTTPHelper+Review.swift"; sourceTree = "<group>"; };
 		C0DE14132088543400A67494 /* CoreData+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData+Extensions.swift"; sourceTree = "<group>"; };
 		C0DE14152088730A00A67494 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		C0DE141720887F5000A67494 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
@@ -887,6 +897,8 @@
 				C0FD8C3D2095CB0D00B6BE7B /* DiveServiceRelatedCell.xib */,
 				C0F42B9520A2A8AB0095C649 /* CourseFormCell.xib */,
 				C069838720B27FDF009444EE /* AddOnCell.xib */,
+				C0DBEAFD20E0D51A0011A190 /* ReviewCell.swift */,
+				C0DBEAFE20E0D51A0011A190 /* ReviewCell.xib */,
 			);
 			path = "Dive Service";
 			sourceTree = "<group>";
@@ -967,6 +979,7 @@
 				C069838420B279CD009444EE /* NHTTPHelper+Equipment.swift */,
 				C0D2E6FF20C8E70C00956819 /* NHTTPHelper+EcoTrip.swift */,
 				C05871C720DB71E500A01AEE /* NHTTPHelper+Banner.swift */,
+				C0DBEB0520E0EAF10011A190 /* NHTTPHelper+Review.swift */,
 			);
 			path = HTTP;
 			sourceTree = "<group>";
@@ -1109,6 +1122,7 @@
 		C069839320B2B4E0009444EE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C006714A20DCA5BC006CF4E9 /* banner.json */,
 				C069839420B2B538009444EE /* equipment.json */,
 			);
 			name = Resources;
@@ -1118,7 +1132,7 @@
 		C087B03320BE579C00BDBF7E /* Review */ = {
 			isa = PBXGroup;
 			children = (
-				C087B03820BE57F700BDBF7E /* ReviewController.swift */,
+				C087B03820BE57F700BDBF7E /* ReviewController.swift */,
 				C087B03920BE57F700BDBF7E /* ReviewController.xib */,
 			);
 			path = Review;
@@ -1256,6 +1270,7 @@
 				C069838220B274A2009444EE /* Equipment.swift */,
 				C05871C320DB686300A01AEE /* ServiceBanner.swift */,
 				C05871C520DB6EB100A01AEE /* URLBanner.swift */,
+				C0DBEB0120E0DA390011A190 /* Review.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1568,6 +1583,7 @@
 				C026FF832084C87300357EE5 /* EditProfileViewController.xib in Resources */,
 				C087B03B20BE57F700BDBF7E /* ReviewController.xib in Resources */,
 				C040B98820B6B1CC00A19D7E /* eco_trip_6_bg.png in Resources */,
+				C006714B20DCA5BC006CF4E9 /* banner.json in Resources */,
 				C0EE2823209ACBA7006ACA5D /* BookingSummaryCell.xib in Resources */,
 				C0EE2817209AB766006ACA5D /* ContactCell.xib in Resources */,
 				C040B98920B6B1CC00A19D7E /* image_default.png in Resources */,
@@ -1619,6 +1635,7 @@
 				C040B98220B6B1CC00A19D7E /* background_blur.png in Resources */,
 				C0FD7C7D20845B8B00FC4508 /* SectionViewCell.xib in Resources */,
 				A6691A50207E78BF004B1C2E /* SearchFormController.xib in Resources */,
+				C0DBEB0020E0D51A0011A190 /* ReviewCell.xib in Resources */,
 				C037AD612070A38800DD5CBC /* Main.storyboard in Resources */,
 				C069838920B27FDF009444EE /* AddOnCell.xib in Resources */,
 				C010FB0E207CAF47000059AA /* FiraSans-ExtraBoldItalic.ttf in Resources */,
@@ -1717,6 +1734,7 @@
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MMNumberKeyboard/MMNumberKeyboard.framework",
 				"${BUILT_PRODUCTS_DIR}/PopupController/PopupController.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/RangeSeekSlider/RangeSeekSlider.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
@@ -1754,6 +1772,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MMNumberKeyboard.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RangeSeekSlider.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
@@ -1876,6 +1895,7 @@
 				A6C2708A207BEF63007E4D2A /* BaseNavigationController.swift in Sources */,
 				C0E17FD120772E69003942D1 /* SearchResultProvince.swift in Sources */,
 				C037E8B32085C434000EB5CF /* TermsViewController.swift in Sources */,
+				C0DBEB0220E0DA390011A190 /* Review.swift in Sources */,
 				C0DE141820887F5000A67494 /* Double+Extensions.swift in Sources */,
 				C0BE92582070D5BC004E1B92 /* Schedule.swift in Sources */,
 				C060AB172089EC19008FA607 /* EcoTripPickerView.swift in Sources */,
@@ -1939,6 +1959,7 @@
 				C094D95120C6483F0095A53E /* NSummary+CoreDataClass.swift in Sources */,
 				C0D3C9272084AD8600FF587B /* PECropViewController.m in Sources */,
 				C00D0AFC2075FA10000D8ED6 /* NHTTPResponse.swift in Sources */,
+				C0DBEB0620E0EAF10011A190 /* NHTTPHelper+Review.swift in Sources */,
 				C0E5A4D2207C6C28001BDA9B /* AuthNavigationController.swift in Sources */,
 				C00D0B0620763591000D8ED6 /* NHTTPHelper+Master.swift in Sources */,
 				C026FF822084C87300357EE5 /* EditProfileViewController.swift in Sources */,
@@ -1963,6 +1984,7 @@
 				C094D94720C6483F0095A53E /* NMasterOrganization+CoreDataClass.swift in Sources */,
 				C0DE14162088730A00A67494 /* UIImageView+Extensions.swift in Sources */,
 				C094D95A20C6483F0095A53E /* NOrder+CoreDataProperties.swift in Sources */,
+				C0DBEAFF20E0D51A0011A190 /* ReviewCell.swift in Sources */,
 				C094D94220C6483F0095A53E /* NDiveCenter+CoreDataProperties.swift in Sources */,
 				C094D95620C6483F0095A53E /* NDiveService+CoreDataProperties.swift in Sources */,
 				C0B05BF82096C96D003FE74B /* NSAttributedString.swift in Sources */,
@@ -1982,7 +2004,7 @@
 				C0BE923E2070D168004E1B92 /* BookingContact.swift in Sources */,
 				C032DF58207DDDCB00FE0999 /* ForgotPasswordViewController.swift in Sources */,
 				C0BE91892070B6CA004E1B92 /* BaseViewController.swift in Sources */,
-				C087B03A20BE57F700BDBF7E /* ReviewController.swift in Sources */,
+				C087B03A20BE57F700BDBF7E /* ReviewController.swift in Sources */,
 				C094D93920C6483F0095A53E /* NExperience+CoreDataClass.swift in Sources */,
 				C094D93A20C6483F0095A53E /* NExperience+CoreDataProperties.swift in Sources */,
 				C0DE14142088543400A67494 /* CoreData+Extensions.swift in Sources */,

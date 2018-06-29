@@ -603,7 +603,7 @@
                     <constraint firstItem="sSO-91-mwT" firstAttribute="top" secondItem="5N3-Yp-KL4" secondAttribute="bottom" constant="16" id="Plb-s4-fMV"/>
                     <constraint firstItem="n85-DW-gBq" firstAttribute="leading" secondItem="qSj-IF-wZM" secondAttribute="leading" id="SkM-Oi-1XY"/>
                     <constraint firstAttribute="bottom" secondItem="sSO-91-mwT" secondAttribute="bottom" constant="16" id="TgJ-Px-Mew"/>
-                    <constraint firstItem="qSj-IF-wZM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="cfq-6Y-mNm"/>
+                    <constraint firstItem="qSj-IF-wZM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="cfq-6Y-mNm"/>
                     <constraint firstItem="5N3-Yp-KL4" firstAttribute="leading" secondItem="qSj-IF-wZM" secondAttribute="leading" id="cgp-UJ-SAX"/>
                     <constraint firstItem="UKS-O0-dQh" firstAttribute="leading" secondItem="F0q-d0-aue" secondAttribute="trailing" constant="8" id="dD8-83-xED"/>
                     <constraint firstItem="fQP-v0-GHg" firstAttribute="trailing" secondItem="qSj-IF-wZM" secondAttribute="trailing" id="h3R-kU-tis"/>

@@ -511,6 +511,15 @@ class NHTTPHelper {
         }
     }
     
+    static var API_PATH_REVIEW_LIST: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return ""
+        default:
+            return ""
+        }
+    }
+    
     internal static func basicAuthStringRequest(URLString: URLConvertible,
                                                 parameters: [String: Any]? = nil,
                                                 headers: [String: String]? = nil,
@@ -535,7 +544,6 @@ class NHTTPHelper {
                                           parameters: [String: Any]? = nil,
                                           headers: [String: String]? = nil,
                                           complete: @escaping (Bool, Any?, BaseError?)->()) {
-        let authReturn = NAuthReturn.authUser()
         if let authReturn = NAuthReturn.authUser(), let token = authReturn.token, let user = authReturn.user, let userId = user.id {
             var param: [String: Any] = [:]
             param["user_id"] = userId
