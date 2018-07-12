@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="FiraSans-Regular.ttf">
+            <string>FiraSans-Regular</string>
+        </array>
+        <array key="FiraSans-SemiBold.ttf">
+            <string>FiraSans-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="NStickyDiveGuideHeader" customModule="Nyelam" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kb9-TS-36r">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zK7-k6-4kk">
+                            <rect key="frame" x="137.5" y="258.5" width="100" height="100"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="100" id="Quf-2l-ODo"/>
+                                <constraint firstAttribute="width" constant="100" id="qkB-ad-rKh"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="circled" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dive Guide Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mxd-3t-6IJ">
+                            <rect key="frame" x="16" y="366" width="343" height="17"/>
+                            <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dive Guide License Type" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NV4-Mh-e2g">
+                            <rect key="frame" x="16" y="383" width="343" height="14.5"/>
+                            <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="12"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.66666666669999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="mxd-3t-6IJ" firstAttribute="leading" secondItem="kb9-TS-36r" secondAttribute="leading" constant="16" id="UGo-6i-zde"/>
+                        <constraint firstAttribute="trailing" secondItem="mxd-3t-6IJ" secondAttribute="trailing" constant="16" id="YKt-tl-QX1"/>
+                        <constraint firstItem="zK7-k6-4kk" firstAttribute="centerX" secondItem="kb9-TS-36r" secondAttribute="centerX" id="bKe-pf-pIx"/>
+                        <constraint firstItem="zK7-k6-4kk" firstAttribute="centerY" secondItem="kb9-TS-36r" secondAttribute="centerY" id="dbQ-RB-KNC"/>
+                        <constraint firstItem="NV4-Mh-e2g" firstAttribute="trailing" secondItem="mxd-3t-6IJ" secondAttribute="trailing" id="fWd-if-zO0"/>
+                        <constraint firstItem="mxd-3t-6IJ" firstAttribute="top" secondItem="zK7-k6-4kk" secondAttribute="bottom" constant="7.5" id="hAc-SF-RFy"/>
+                        <constraint firstItem="NV4-Mh-e2g" firstAttribute="leading" secondItem="mxd-3t-6IJ" secondAttribute="leading" id="pGt-3j-1vm"/>
+                        <constraint firstItem="NV4-Mh-e2g" firstAttribute="top" secondItem="mxd-3t-6IJ" secondAttribute="bottom" id="yZ9-Tc-OqV"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="icz-T8-sDl">
+                    <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C2T-n3-Lpr" userLabel="Tab Menu Bio" customClass="UIControl">
+                            <rect key="frame" x="0.0" y="0.0" width="187.5" height="50"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtb-1S-eQn">
+                                    <rect key="frame" x="16" y="16" width="155.5" height="18"/>
+                                    <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="15"/>
+                                    <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u4U-yx-DuC">
+                                    <rect key="frame" x="0.0" y="43" width="187.5" height="7"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="7" id="jmJ-oM-BpP"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="vtb-1S-eQn" secondAttribute="trailing" constant="16" id="I9s-zN-Etb"/>
+                                <constraint firstItem="u4U-yx-DuC" firstAttribute="leading" secondItem="C2T-n3-Lpr" secondAttribute="leading" id="WN1-tP-KCf"/>
+                                <constraint firstItem="vtb-1S-eQn" firstAttribute="top" secondItem="C2T-n3-Lpr" secondAttribute="top" constant="16" id="YBf-ni-mEh"/>
+                                <constraint firstAttribute="bottom" secondItem="u4U-yx-DuC" secondAttribute="bottom" id="YLo-eV-eWn"/>
+                                <constraint firstAttribute="trailing" secondItem="u4U-yx-DuC" secondAttribute="trailing" id="ZmM-hw-InP"/>
+                                <constraint firstAttribute="bottom" secondItem="vtb-1S-eQn" secondAttribute="bottom" constant="16" id="bqH-Pe-qtd"/>
+                                <constraint firstItem="vtb-1S-eQn" firstAttribute="leading" secondItem="C2T-n3-Lpr" secondAttribute="leading" constant="16" id="g2y-Yf-OhJ"/>
+                            </constraints>
+                            <connections>
+                                <action selector="tabButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="D7a-AE-XPm"/>
+                            </connections>
+                        </view>
+                        <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IKs-a0-gMm" userLabel="Tab Menu About" customClass="UIControl">
+                            <rect key="frame" x="187.5" y="0.0" width="187.5" height="50"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FR0-Td-M0v">
+                                    <rect key="frame" x="15.5" y="16" width="156" height="18"/>
+                                    <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="15"/>
+                                    <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8R0-wc-1D1">
+                                    <rect key="frame" x="-0.5" y="43" width="187.5" height="7"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="7" id="Uhg-eZ-Xy1"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="FR0-Td-M0v" secondAttribute="trailing" constant="16" id="Jwq-8H-VfZ"/>
+                                <constraint firstItem="FR0-Td-M0v" firstAttribute="leading" secondItem="IKs-a0-gMm" secondAttribute="leading" constant="15.5" id="OJe-yu-gQZ"/>
+                                <constraint firstItem="FR0-Td-M0v" firstAttribute="top" secondItem="IKs-a0-gMm" secondAttribute="top" constant="16" id="Oah-9V-KMt"/>
+                                <constraint firstItem="8R0-wc-1D1" firstAttribute="leading" secondItem="IKs-a0-gMm" secondAttribute="leading" id="ms8-tV-IYb"/>
+                                <constraint firstAttribute="trailing" secondItem="8R0-wc-1D1" secondAttribute="trailing" id="pJV-T7-MDP"/>
+                                <constraint firstAttribute="bottom" secondItem="FR0-Td-M0v" secondAttribute="bottom" constant="16" id="paD-ZP-rtW"/>
+                                <constraint firstAttribute="bottom" secondItem="8R0-wc-1D1" secondAttribute="bottom" id="sym-q8-u68"/>
+                            </constraints>
+                            <connections>
+                                <action selector="tabButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="l6q-3h-Qzu"/>
+                            </connections>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.22352941176470587" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="C2T-n3-Lpr" firstAttribute="leading" secondItem="icz-T8-sDl" secondAttribute="leading" id="Bpf-8S-wAf"/>
+                        <constraint firstItem="IKs-a0-gMm" firstAttribute="top" secondItem="icz-T8-sDl" secondAttribute="top" id="CsG-JR-HOs"/>
+                        <constraint firstAttribute="bottom" secondItem="C2T-n3-Lpr" secondAttribute="bottom" id="Ltu-cW-Vxm"/>
+                        <constraint firstAttribute="trailing" secondItem="IKs-a0-gMm" secondAttribute="trailing" id="PYi-M8-N5I"/>
+                        <constraint firstItem="C2T-n3-Lpr" firstAttribute="width" secondItem="IKs-a0-gMm" secondAttribute="width" id="gbt-xs-QY4"/>
+                        <constraint firstAttribute="bottom" secondItem="IKs-a0-gMm" secondAttribute="bottom" id="m8w-P6-r1k"/>
+                        <constraint firstItem="IKs-a0-gMm" firstAttribute="leading" secondItem="C2T-n3-Lpr" secondAttribute="trailing" id="n4S-sh-aBl"/>
+                        <constraint firstItem="C2T-n3-Lpr" firstAttribute="top" secondItem="icz-T8-sDl" secondAttribute="top" id="xoU-fl-axQ"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="icz-T8-sDl" secondAttribute="trailing" id="19K-vf-XJ7"/>
+                <constraint firstAttribute="bottom" secondItem="icz-T8-sDl" secondAttribute="bottom" id="P4z-j4-DfG"/>
+                <constraint firstAttribute="trailing" secondItem="kb9-TS-36r" secondAttribute="trailing" id="QH6-Yg-dMh"/>
+                <constraint firstItem="icz-T8-sDl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="QQH-z8-Z54"/>
+                <constraint firstItem="kb9-TS-36r" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="VPu-Zs-a8z"/>
+                <constraint firstItem="icz-T8-sDl" firstAttribute="top" secondItem="kb9-TS-36r" secondAttribute="bottom" id="jdj-sg-0mN"/>
+                <constraint firstItem="kb9-TS-36r" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="kJB-Vu-tOb"/>
+            </constraints>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="maximumContentHeight">
+                    <real key="value" value="240"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="minimumContentHeight">
+                    <real key="value" value="-20"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="contentShrinks" value="NO"/>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="contentExpands" value="NO"/>
+                <userDefinedRuntimeAttribute type="number" keyPath="contentAnchor">
+                    <integer key="value" value="1"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="diveGuideLabel" destination="mxd-3t-6IJ" id="k1D-5q-6cm"/>
+                <outlet property="diveGuideLicenseTypeLabel" destination="NV4-Mh-e2g" id="qwn-lH-vav"/>
+                <outlet property="imageProfileView" destination="zK7-k6-4kk" id="nF6-5Y-huK"/>
+                <outlet property="tabLineAboutView" destination="8R0-wc-1D1" id="jCc-k3-3dg"/>
+                <outlet property="tabLineBioView" destination="u4U-yx-DuC" id="Jdi-oY-8M0"/>
+            </connections>
+        </view>
+    </objects>
+</document>

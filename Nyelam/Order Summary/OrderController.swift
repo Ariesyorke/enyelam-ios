@@ -20,8 +20,6 @@ class OrderController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableBottomConstraint: NSLayoutConstraint!
     
-    
-        
     var payPalConfig = PayPalConfiguration()
     
     static func push(on controller: UINavigationController, diveService: NDiveService, cartReturn: CartReturn, contact: BookingContact, participants: [Participant], selectedDate: Date) -> OrderController {
@@ -132,8 +130,6 @@ class OrderController: BaseViewController {
     }
     
     fileprivate func trySubmitOrder(cartToken: String, contactJson: String, diverJson: String, paymentMethodType: String, note: String) {
-        print("Contact JSON \(contactJson)")
-        print("Diver JSON \(diverJson)")
         MBProgressHUD.showAdded(to: self.view, animated: true)
         NHTTPHelper.httpOrderSubmit(cartToken: cartToken, contactJson: contactJson, diverJson: diverJson, paymentMethodType: paymentMethodType, note: note, complete: {response in
             MBProgressHUD.hide(for: self.view, animated: true)
@@ -217,7 +213,7 @@ extension OrderController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        var sectionTitle = NBookingTitleSection(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
+        let sectionTitle = NBookingTitleSection(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
         sectionTitle.subtitleLabel.isHidden = true
         sectionTitle.titleLabel.text = self.sections[section]
         return sectionTitle
@@ -406,7 +402,7 @@ class ContactCell: NTableViewCell {
     
     func initData(contact: BookingContact) {
         if let name = contact.name {
-            self.fullNameLabel.text = name
+            self.fullNameLabel.text =  "\(contact.titleName.rawValue) \(name)"
         } else {
             self.fullNameLabel.text = "Fullname"
         }
@@ -454,7 +450,7 @@ class ParticipantCell: NTableViewCell {
     func initData(participant: Participant) {
         self.changeLabel.text = "Change"
         if let name = participant.name {
-            self.fullnameLabel.text = name
+            self.fullnameLabel.text = "\(participant.titleName.rawValue) \(name)"
         } else {
             self.changeLabel.text = "Fill In"
         }

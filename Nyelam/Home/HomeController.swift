@@ -120,10 +120,10 @@ class HomeController: BaseViewController, UIScrollViewDelegate, MFMailComposeVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if self.firstTime {
-            self.firstTime = false
+//        if self.firstTime {
+//            self.firstTime = false
 //            self.getBanner()
-        }
+//        }
     }
     
     fileprivate func getBanner() {
@@ -403,7 +403,7 @@ extension HomeController {
         imgView.contentMode = UIViewContentMode.scaleAspectFill
         imgView.clipsToBounds = true
         imgView.backgroundColor = UIColor.clear
-        imgView.image = UIImage(named: bannerImages[atindex])!
+        imgView.image = UIImage(named: self.bannerImages[atindex])!
 //        imgView.af_setImage(withURL: banner.imageUrl)
 //        if banner.imageUrl != nil, let url: URL = URL(string: banner.imageUrl!) {
 //            imgView.af_setImage(withURL: url)

@@ -81,6 +81,8 @@ extension NUser {
         self.email = json["email"] as? String
         self.gender = json["gender"] as? String
         self.picture = json["picture"] as? String
+        self.about = json["about"] as? String
+        
         if let isVerified = json["is_verified"] as? Bool {
             self.isVerified = isVerified
         } else if let isVerified = json["is_verified"] as? String {
@@ -302,6 +304,49 @@ extension NUser {
                 print(error)
             }
         }
+        if let languageArray = json["languages"] as? Array<[String: Any]>, !languageArray.isEmpty {
+            for languageJson in languageArray {
+                var l: NLanguage? = nil
+                if let id = languageJson["id"] as? String {
+                    l = NLanguage.getLanguage(using: id)
+                }
+                if l == nil {
+                    l = NSEntityDescription.insertNewObject(forEntityName: "NLanguage", into: AppDelegate.sharedManagedContext) as! NLanguage
+                }
+                l!.parse(json: languageJson)
+                self.addToLanguages(l!)
+            }
+        } else if let languagesString = json["languages"] as? String {
+            do {
+                let data = languagesString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let languageArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+                for languageJson in languageArray {
+                    var l: NLanguage? = nil
+                    if let id = languageJson["id"] as? String {
+                        l = NLanguage.getLanguage(using: id)
+                    }
+                    if l == nil {
+                        l = NSEntityDescription.insertNewObject(forEntityName: "NLanguage", into: AppDelegate.sharedManagedContext) as! NLanguage
+                    }
+                    l!.parse(json: languageJson)
+                    self.addToLanguages(l!)
+                }
+            } catch {
+                print(error)
+            }
+        }
+        if let specialAbilities = json["special_abilities"] as? [String], !specialAbilities.isEmpty {
+            self.specialAbilities = specialAbilities
+        } else if let specialAbilitiesString = json["special_abilities"] as? String {
+            do {
+                let data = specialAbilitiesString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let specialAbilities: Array<String> = try JSONSerialization.jsonObject(with: data!, options: []) as! [String]
+                self.specialAbilities = specialAbilities
+            } catch {
+                print(error)
+            }
+        }
+
     }
     
     func serialized() -> [String : Any] {
@@ -374,6 +419,20 @@ extension NUser {
         if let countryCode = self.countryCode {
             json["country_code"] = countryCode.serialized()
         }
+        if let nsset = self.languages,
+            let languages = nsset.allObjects as? [NLanguage] {
+            var array: Array<[String: Any]> = []
+            for language in languages {
+                array.append(language.serialized())
+            }
+            json["languages"] = array
+        }
+        if let specialAbilities = self.specialAbilities, !specialAbilities.isEmpty {
+            json["special_abilities"] = specialAbilities
+        }
+        if let about = self.about {
+            json["about"] = about
+        }
         return json
     }
     
@@ -426,7 +485,6 @@ extension NAuthReturn {
             } catch {
                 print(error)
             }
-            
         }
     }
     
@@ -797,7 +855,7 @@ extension NDiveService {
     private var KEY_ORGANIZATION: String {return "organization"}
     private var KEY_LICENSE_TYPE: String {return "license_type"}
     private var KEY_OPEN_WATER: String {return "open_water"}
-
+    
     func parse(json: [String : Any]) {
         if let id = json[KEY_ID] as? String {
             self.id = id

@@ -15,6 +15,8 @@ public class Participant: NSObject, NSCoding, Parseable {
     
     var name: String?
     var email: String?
+    var titleName: NameTitle = .mr
+
     override init() {
         super.init()
     }
@@ -46,7 +48,7 @@ public class Participant: NSObject, NSCoding, Parseable {
     func serialized() -> [String : Any] {
         var json: [String: Any] = [:]
         if let name = self.name {
-            json[KEY_NAME] = name
+            json[KEY_NAME] = "\(self.titleName.rawValue) \(name)"
         }
         if let email = self.email {
             json[KEY_EMAIL_ADDRESS] = email

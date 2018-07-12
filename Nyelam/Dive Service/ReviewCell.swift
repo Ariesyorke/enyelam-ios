@@ -7,10 +7,20 @@
 //
 
 import UIKit
+import Cosmos
 
 class ReviewCell: NTableViewCell {
+    
+    @IBOutlet weak var userProfileImageView: UIImageView!
+    @IBOutlet weak var ratingView: CosmosView!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var userCommentLabel: UILabel!
+    @IBOutlet weak var dottedImageView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.dottedImageView.backgroundColor = UIColor(patternImage: UIImage(named: "ic_dotted_bar")!)
         // Initialization code
     }
 

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="FiraSans-Bold.ttf">
+            <string>FiraSans-Bold</string>
+        </array>
+        <array key="FiraSans-Regular.ttf">
+            <string>FiraSans-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DiveGuideDetailController" customModule="Nyelam" customModuleProvider="target">
+            <connections>
+                <outlet property="aboutLabel" destination="eOF-lp-UrV" id="lh6-40-psR"/>
+                <outlet property="loadingView" destination="B6a-Sm-DLf" id="xET-AQ-b8U"/>
+                <outlet property="tableView" destination="hk9-jH-glB" id="GJk-dM-zoT"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Frd-jd-8OZ" userLabel="separator">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
+                    <color key="backgroundColor" red="0.086274509799999996" green="0.45882352939999999" blue="0.81176470590000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="NTX-m7-YlE"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="eZh-rl-WP3"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xb6-cT-yuG" userLabel="toolbar">
+                    <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IPA-pp-nrS">
+                            <rect key="frame" x="16" y="0.0" width="24" height="44"/>
+                            <state key="normal" image="ic_circle_close_white"/>
+                            <connections>
+                                <action selector="closeButtonAction:" destination="-1" eventType="touchUpInside" id="2qW-YT-pro"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dive Guide Profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9BV-uw-9Yq">
+                            <rect key="frame" x="16" y="11" width="343" height="22"/>
+                            <fontDescription key="fontDescription" name="FiraSans-Bold" family="Fira Sans" pointSize="18"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.086274509799999996" green="0.45882352939999999" blue="0.81176470590000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="IPA-pp-nrS" secondAttribute="bottom" id="FgV-fx-7Cg"/>
+                        <constraint firstItem="IPA-pp-nrS" firstAttribute="leading" secondItem="Xb6-cT-yuG" secondAttribute="leading" constant="16" id="MV3-YS-xKW"/>
+                        <constraint firstAttribute="height" constant="44" id="Mdx-MB-Iyc"/>
+                        <constraint firstItem="9BV-uw-9Yq" firstAttribute="centerY" secondItem="Xb6-cT-yuG" secondAttribute="centerY" id="UbH-Vd-nUT"/>
+                        <constraint firstItem="9BV-uw-9Yq" firstAttribute="centerX" secondItem="Xb6-cT-yuG" secondAttribute="centerX" id="WdV-vj-6kA"/>
+                        <constraint firstItem="IPA-pp-nrS" firstAttribute="top" secondItem="Xb6-cT-yuG" secondAttribute="top" id="ezw-TP-9EH"/>
+                        <constraint firstAttribute="trailing" secondItem="9BV-uw-9Yq" secondAttribute="trailing" constant="16" id="ufM-lm-qcY"/>
+                        <constraint firstItem="9BV-uw-9Yq" firstAttribute="leading" secondItem="Xb6-cT-yuG" secondAttribute="leading" constant="16" id="wUk-Xw-dka"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="bnD-ak-Ws9"/>
+                </view>
+                <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hk9-jH-glB">
+                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="B6a-Sm-DLf">
+                    <rect key="frame" x="169" y="347" width="37" height="37"/>
+                    <color key="color" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                </activityIndicatorView>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOF-lp-UrV">
+                    <rect key="frame" x="16" y="357" width="343" height="17"/>
+                    <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Frd-jd-8OZ" secondAttribute="trailing" id="9Z9-7j-XFq"/>
+                <constraint firstItem="hk9-jH-glB" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="9dC-lq-PbO"/>
+                <constraint firstItem="Frd-jd-8OZ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="-20" id="BLa-OR-cf3"/>
+                <constraint firstItem="Frd-jd-8OZ" firstAttribute="bottom" secondItem="Xb6-cT-yuG" secondAttribute="top" id="Cwr-in-cF6"/>
+                <constraint firstItem="B6a-Sm-DLf" firstAttribute="centerY" secondItem="hk9-jH-glB" secondAttribute="centerY" id="Jto-9H-AlA"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="hk9-jH-glB" secondAttribute="bottom" id="PXC-ej-jT2"/>
+                <constraint firstItem="B6a-Sm-DLf" firstAttribute="centerX" secondItem="hk9-jH-glB" secondAttribute="centerX" id="Q6s-Jo-goD"/>
+                <constraint firstItem="eOF-lp-UrV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="S9I-vC-VSD"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hk9-jH-glB" secondAttribute="trailing" id="TKv-rQ-HpA"/>
+                <constraint firstItem="Frd-jd-8OZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Ubp-Xw-jdW"/>
+                <constraint firstItem="Xb6-cT-yuG" firstAttribute="leading" secondItem="Frd-jd-8OZ" secondAttribute="leading" id="VN9-cf-7wC"/>
+                <constraint firstItem="eOF-lp-UrV" firstAttribute="centerY" secondItem="hk9-jH-glB" secondAttribute="centerY" id="aHG-me-mLk"/>
+                <constraint firstItem="Xb6-cT-yuG" firstAttribute="trailing" secondItem="Frd-jd-8OZ" secondAttribute="trailing" id="aOL-j8-wbq"/>
+                <constraint firstItem="hk9-jH-glB" firstAttribute="top" secondItem="Xb6-cT-yuG" secondAttribute="bottom" id="jNO-RX-Hyd"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="eOF-lp-UrV" secondAttribute="trailing" constant="16" id="kVb-xS-MIH"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="125.5" y="118.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_circle_close_white" width="24" height="24"/>
+    </resources>
+</document>

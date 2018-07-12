@@ -520,6 +520,24 @@ class NHTTPHelper {
         }
     }
     
+    static var API_PATH_DIVE_GUIDE_LIST: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return ""
+        default:
+            return ""
+        }
+    }
+    
+    static var API_PATH_DIVE_GUIDE_DETAIL: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return ""
+        default:
+            return ""
+        }
+    }
+    
     internal static func basicAuthStringRequest(URLString: URLConvertible,
                                                 parameters: [String: Any]? = nil,
                                                 headers: [String: String]? = nil,

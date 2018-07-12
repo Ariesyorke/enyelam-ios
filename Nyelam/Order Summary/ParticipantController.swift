@@ -9,6 +9,7 @@
 import UIKit
 import SkyFloatingLabelTextField
 import UINavigationControllerWithCompletionBlock
+import ActionSheetPicker_3_0
 
 class ParticipantController: BaseViewController {
     static func push(on controller: UINavigationController, participant: Participant, completion: @escaping (UINavigationController, Participant)-> ()) -> ParticipantController {
@@ -21,7 +22,9 @@ class ParticipantController: BaseViewController {
 
     @IBOutlet weak var fullnameTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var emailTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var titleTextfield: SkyFloatingLabelTextField!
     
+    var pickedTitleName: NameTitle = .mr
     var participant: Participant?
     
     var completion: (UINavigationController, Participant)->() = {navigation, participant in}
@@ -47,6 +50,7 @@ class ParticipantController: BaseViewController {
         }
         self.participant!.name = fullname
         self.participant!.email = emailAddress
+        self.participant!.titleName = self.pickedTitleName
         if let navigation = self.navigationController {
             self.completion(navigation, self.participant!)
         }
@@ -62,6 +66,9 @@ class ParticipantController: BaseViewController {
         if let participant = self.participant {
             self.fullnameTextField.text = participant.name
             self.emailTextField.text = participant.email
+            self.titleTextfield.text = participant.titleName.rawValue
+        } else {
+            self.titleTextfield.text = self.pickedTitleName.rawValue
         }
     }
     
@@ -85,8 +92,36 @@ class ParticipantController: BaseViewController {
         }
         return true
     }
+    
+    @IBAction func titleButtonAction(_ sender: Any) {
+        var titleNames: [String] = ["Mr.", "Mrs.", "Ms."]
+        var position = 0
+        if let participant = self.participant {
+            switch participant.titleName {
+            case .mrs:
+                position = 1
+                break
+            case .ms:
+                position = 2
+                break
+            default:
+                position = 0
+                break
+            }
+        }
+        let actionSheet = ActionSheetStringPicker.init(title: "Title", rows: titleNames, initialSelection: position, doneBlock: {picker, index, value in
+            self.titleTextfield.text = value as! String
+            self.pickedTitleName = NameTitle(rawValue: titleNames[index])!
+        }, cancel: {_ in return
+        }, origin: sender)
+        actionSheet!.show()
+
+    }
+    
     /*
     // MARK: - Navigation
+     
+     
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

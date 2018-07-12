@@ -61,10 +61,11 @@ class DiveCenterController: BaseViewController {
     fileprivate var selectedLicenseType: NLicenseType?
     fileprivate var state: TableState = .detail
     fileprivate var diveCenter: NDiveCenter?
-    
+    fileprivate var diveGuides: [NUser]?
+    fileprivate var reviews: [Review]?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.initView()
         // Do any additional setup after loading the view.
     }
 
@@ -72,6 +73,7 @@ class DiveCenterController: BaseViewController {
         super.viewDidAppear(animated)
         if self.firstTime {
             self.firstTime = false
+            self.initView()
             self.tryLoadDiveCenterDetail(diveCenterId: self.diveCenter!.id!)
         }
     }
@@ -93,6 +95,7 @@ class DiveCenterController: BaseViewController {
         
         self.tableView.register(UINib(nibName: "DiveCenterDetailCell", bundle: nil), forCellReuseIdentifier: "DiveCenterDetailCell")
         self.tableView.register(UINib(nibName: "DiveServiceRelatedCell", bundle: nil), forCellReuseIdentifier: "DiveServiceRelatedCell")
+        self.tableView.register(UINib(nibName: "DiveGuideCell", bundle: nil), forCellReuseIdentifier: "DiveGuideCell")
     }
 
     fileprivate func tryLoadDiveCenterDetail(diveCenterId: String) {
@@ -167,25 +170,73 @@ class DiveCenterController: BaseViewController {
 
 extension DiveCenterController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DiveCenterDetailCell", for: indexPath) as! DiveCenterDetailCell
-            cell.onOpenMap = {coordinate in
-                if #available(iOS 10.0, *) {
-                    let source = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)))
-                    source.name = self.diveCenter!.name
-                    MKMapItem.openMaps(with: [source], launchOptions: nil)
-                } else {
-                    let query = "?ll=\(String(coordinate.latitude)),\(String(coordinate.longitude))"
-                    let urlString = "https://maps.apple.com/".appending(query)
-                    if let url = URL(string: urlString) {
-                        let success = UIApplication.shared.openURL(url)
+        if indexPath.section == 0 {
+            if state == .detail {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "DiveCenterDetailCell", for: indexPath) as! DiveCenterDetailCell
+                cell.onOpenMap = {coordinate in
+                    if #available(iOS 10.0, *) {
+                        let source = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)))
+                        source.name = self.diveCenter!.name
+                        MKMapItem.openMaps(with: [source], launchOptions: nil)
+                    } else {
+                        let query = "?ll=\(String(coordinate.latitude)),\(String(coordinate.longitude))"
+                        let urlString = "https://maps.apple.com/".appending(query)
+                        if let url = URL(string: urlString) {
+                            let success = UIApplication.shared.openURL(url)
+                        }
+                        // Fallback on earlier versions
                     }
-                    // Fallback on earlier versions
                 }
+                cell.initData(diveCenter: self.diveCenter!)
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewCell", for: indexPath) as! ReviewCell
+                let review = self.reviews![indexPath.row]
+                cell.dateLabel.text = review.date!.formatDate(dateFormat: "dd MMM yyyy")
+                cell.ratingView.rating = review.rating
+                cell.userCommentLabel.text = review.content
+                if let user = review.user {
+                    cell.userNameLabel.text = user.fullname
+                    if let picture = user.picture, !picture.isEmpty {
+                        cell.userProfileImageView.af_setImage(withURL: URL(string: picture)!)
+                    }
+                }
+                return cell
             }
-            cell.initData(diveCenter: self.diveCenter!)
-            return cell
-        } else if indexPath.row == 1 {
+        } else if indexPath.section == 1 {
+            if let diveGuides = self.diveGuides, !diveGuides.isEmpty {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "DiveGuideCell", for: indexPath) as! DiveGuideCell
+                let user = diveGuides[indexPath.row]
+                cell.diveGuideNameLabel.text = user.fullname
+                if let licenseType = user.licenseType {
+                    cell.diveGuideLicenseLabel.text = licenseType.name
+                }
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "DiveServiceRelatedCell", for: indexPath) as! DiveServiceRelatedCell
+                cell.isDoTrip = self.forDoTrip
+                cell.controller = self
+                if cell.relatedDiveServices == nil || cell.relatedDiveServices!.isEmpty {
+                    cell.relatedDiveServices = self.relatedDiveServices
+                }
+                if self.forDoCourse {
+                    cell.relatedServiceLabel.text = "Our service courses"
+                } else {
+                    cell.relatedServiceLabel.text = "Our service trips"
+                }
+                cell.onRelatedServiceClicked = {diveService in
+                    if self.forDoTrip {
+                        let date = Date(timeIntervalSince1970: diveService.schedule!.startDate)
+                        _ = DiveServiceController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: self.selectedKeyword, selectedLicense: diveService.license, selectedDiver: 1, selectedDate: date, ecoTrip: self.ecotrip, diveService: diveService)
+                    } else if self.forDoCourse {
+                        let date = Date(timeIntervalSince1970: diveService.schedule!.startDate)
+                        _ = DiveServiceController.push(on: self.navigationController!, forDoCourse: self.forDoCourse, selectedKeyword: self.selectedKeyword, selectedDiver: 1, selectedDate: date, diveService: diveService, selectedOrganization: self.selectedOrganization!, selectedLicenseType: self.selectedLicenseType!)
+                    } else {
+                        _ = DiveServiceController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: self.selectedKeyword, selectedLicense: diveService.license, selectedDiver: 1, selectedDate: self.selectedDate!, ecoTrip: self.ecotrip, diveService: diveService)
+                    }
+                }
+                return cell
+            }
+        } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DiveServiceRelatedCell", for: indexPath) as! DiveServiceRelatedCell
             cell.isDoTrip = self.forDoTrip
             cell.controller = self
@@ -213,17 +264,63 @@ extension DiveCenterController: UITableViewDelegate, UITableViewDataSource {
         return UITableViewCell()
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         var count = 0
         if state == .detail {
             if let _ = self.diveCenter {
                 count += 1
             }
+            if let diveGuides = self.diveGuides, !diveGuides.isEmpty {
+                count += 1
+            }
             if let diveServices = self.relatedDiveServices, !diveServices.isEmpty {
+                count += 1
+            }
+        } else {
+            if let reviews = self.reviews,!reviews.isEmpty {
                 count += 1
             }
         }
         return count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if state == .detail {
+            if section == 0 {
+                return 1
+            } else if section == 1 {
+                if let diveGuides = self.diveGuides, !diveGuides.isEmpty {
+                    return diveGuides.count
+                } else {
+                    return 1
+                }
+            } else {
+                if let diveServices = self.relatedDiveServices, !diveServices.isEmpty {
+                    return 1
+                }
+            }
+        } else {
+            if let reviews = self.reviews, !reviews.isEmpty {
+                return reviews.count
+            }
+        }
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 1 {
+            if let diveGuides = self.diveGuides, !diveGuides.isEmpty {
+                let sectionTitle = NBookingTitleSection(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
+                sectionTitle.subtitleLabel.isHidden = true
+                sectionTitle.titleLabel.text = "Dive Guide Instructor"
+                sectionTitle.baseView.backgroundColor = UIColor.nyOrange
+                return sectionTitle
+            } else {
+                return UIView()
+            }
+        } else {
+            return UIView()
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -248,8 +345,11 @@ extension DiveCenterController: NStickyHeaderViewDelegate {
             self.strechyHeaderView!.tabDetailLineView.isHidden = true
             self.strechyHeaderView!.tabReviewLineView.isHidden = false
             self.state = .review
+            
+            //todo fetch review
         }
         self.tableView.reloadData()
+
     }
 }
 
@@ -271,6 +371,7 @@ class DiveCenterDetailCell: NTableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
     @IBAction func mapButtonAction(_ sender: Any) {
         if let coordinate = self.coordinate {
             self.onOpenMap(coordinate)

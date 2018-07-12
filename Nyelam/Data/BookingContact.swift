@@ -14,15 +14,18 @@ public class BookingContact: NSObject, NSCoding, Parseable {
     private let KEY_PHONE_NUMBER = "phone_number"
     private let KEY_EMAIL = "email"
     private let KEY_COUNTRY_CODE = "country_code"
+    private let KEY_TITLE_NAME = "title"
     
     var name: String?
     var phoneNumber: String?
     var email: String?
     var countryCode: NCountryCode?
+    var titleName: NameTitle = .mr
     
     override init() {
         super.init()
     }
+    
     init(json: [String: Any]) {
         super.init()
         self.parse(json: json)
@@ -72,7 +75,7 @@ public class BookingContact: NSObject, NSCoding, Parseable {
         var json: [String: Any] = [:]
         
         if let name = self.name {
-            json[KEY_NAME] = name
+            json[KEY_NAME] = "\(self.titleName.rawValue) \(name)"
         }
         if let countryCode = self.countryCode, let phoneNumber = self.phoneNumber {
             json[KEY_PHONE_NUMBER] = "+\(countryCode.countryNumber!)\(phoneNumber)"
@@ -82,4 +85,10 @@ public class BookingContact: NSObject, NSCoding, Parseable {
         }
         return json
     }
+}
+
+enum NameTitle: String {
+    case mr = "Mr."
+    case mrs = "Mrs."
+    case ms = "Ms."
 }

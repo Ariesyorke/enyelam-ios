@@ -2,7 +2,7 @@
 //  NSearchResult+CoreDataProperties.swift
 //  Nyelam
 //
-//  Created by Bobi on 6/5/18.
+//  Created by Bobi on 7/11/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //

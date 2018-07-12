@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         GIDSignIn.sharedInstance().clientID =  NConstant.GOOGLE_CLIENT_ID
+        MidtransConfig.shared().setClientKey(NConstant.MIDTRANS_CLIENT_ID, environment: NConstant.MIDTRANS_ENVIRONTMENT, merchantServerURL: NConstant.MIDTRANS_URL)
         GMSServices.provideAPIKey(NConstant.GOOGLE_API_KEY)
          PayPalMobile.initializeWithClientIds(forEnvironments: [NConstant.PAYPAL_ENVIRONTMENT:NConstant.PAYPAL_CLIENT_ID])
         FirebaseApp.configure()

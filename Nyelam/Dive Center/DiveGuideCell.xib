@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="FiraSans-Light.ttf">
+            <string>FiraSans-Light</string>
+        </array>
+        <array key="FiraSans-SemiBold.ttf">
+            <string>FiraSans-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="93" id="KGk-i7-Jjw" customClass="DiveGuideCell" customModule="Nyelam" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="93"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="92.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bbp-hx-b5h">
+                        <rect key="frame" x="0.0" y="0.0" width="283.5" height="92.5"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="faN-rz-HjU">
+                                <rect key="frame" x="16" y="16" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="jk0-Jr-8Lp"/>
+                                    <constraint firstAttribute="height" constant="60" id="p2z-ZM-R1h"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="circled" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dive Guide Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcE-vz-lHl">
+                                <rect key="frame" x="84" y="16" width="131.5" height="20"/>
+                                <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dive Guide License" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zig-M6-AE7">
+                                <rect key="frame" x="84" y="36" width="117.5" height="17"/>
+                                <fontDescription key="fontDescription" name="FiraSans-Light" family="Fira Sans" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="faN-rz-HjU" secondAttribute="bottom" constant="16" id="4AK-Sm-NKV"/>
+                            <constraint firstItem="faN-rz-HjU" firstAttribute="leading" secondItem="bbp-hx-b5h" secondAttribute="leading" constant="16" id="7sG-XX-1r6"/>
+                            <constraint firstItem="PcE-vz-lHl" firstAttribute="top" secondItem="faN-rz-HjU" secondAttribute="top" id="PkQ-87-slG"/>
+                            <constraint firstItem="faN-rz-HjU" firstAttribute="top" secondItem="bbp-hx-b5h" secondAttribute="top" constant="16" id="VEa-I8-JGy"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Zig-M6-AE7" secondAttribute="bottom" constant="16" id="iDO-OR-oPh"/>
+                            <constraint firstItem="Zig-M6-AE7" firstAttribute="top" secondItem="PcE-vz-lHl" secondAttribute="bottom" id="k64-9Y-Ave"/>
+                            <constraint firstItem="PcE-vz-lHl" firstAttribute="leading" secondItem="faN-rz-HjU" secondAttribute="trailing" constant="8" id="l6N-Lf-mtU"/>
+                            <constraint firstItem="Zig-M6-AE7" firstAttribute="leading" secondItem="PcE-vz-lHl" secondAttribute="leading" id="vbD-mZ-meB"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hns-GP-aqk">
+                        <rect key="frame" x="283.5" y="36.5" width="20" height="20"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_arrow_right_grey" translatesAutoresizingMaskIntoConstraints="NO" id="UxE-xl-ZPf">
+                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="D6t-FD-IYF"/>
+                                    <constraint firstAttribute="height" constant="20" id="Uhz-33-YuD"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="UxE-xl-ZPf" firstAttribute="leading" secondItem="hns-GP-aqk" secondAttribute="leading" id="3eI-xa-W6X"/>
+                            <constraint firstAttribute="bottom" secondItem="UxE-xl-ZPf" secondAttribute="bottom" id="Zja-gW-mHY"/>
+                            <constraint firstAttribute="trailing" secondItem="UxE-xl-ZPf" secondAttribute="trailing" id="bsh-0l-dbA"/>
+                            <constraint firstItem="UxE-xl-ZPf" firstAttribute="top" secondItem="hns-GP-aqk" secondAttribute="top" id="dOa-28-LQ9"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B9I-N5-Png">
+                        <rect key="frame" x="0.0" y="91.5" width="320" height="1"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="cMj-XL-Qu2"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="hns-GP-aqk" secondAttribute="trailing" constant="16" id="6FQ-zQ-e5e"/>
+                    <constraint firstAttribute="bottom" secondItem="bbp-hx-b5h" secondAttribute="bottom" id="6Ts-nq-qhr"/>
+                    <constraint firstItem="bbp-hx-b5h" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="9KD-B3-cEe"/>
+                    <constraint firstItem="bbp-hx-b5h" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Sap-bk-co5"/>
+                    <constraint firstItem="B9I-N5-Png" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Zpm-S1-OrA"/>
+                    <constraint firstItem="hns-GP-aqk" firstAttribute="leading" secondItem="bbp-hx-b5h" secondAttribute="trailing" id="bQk-yC-V2S"/>
+                    <constraint firstAttribute="trailing" secondItem="B9I-N5-Png" secondAttribute="trailing" id="iR3-Ad-mFs"/>
+                    <constraint firstAttribute="bottom" secondItem="B9I-N5-Png" secondAttribute="bottom" id="mTU-sB-NdG"/>
+                    <constraint firstItem="hns-GP-aqk" firstAttribute="centerY" secondItem="bbp-hx-b5h" secondAttribute="centerY" id="ufL-Rc-u9h"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="diveGuideLicenseLabel" destination="Zig-M6-AE7" id="CXx-xy-Qsy"/>
+                <outlet property="diveGuideNameLabel" destination="PcE-vz-lHl" id="eq4-Y5-83v"/>
+                <outlet property="profileImageView" destination="faN-rz-HjU" id="WOa-Fb-z6q"/>
+            </connections>
+            <point key="canvasLocation" x="114" y="142.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic_arrow_right_grey" width="32" height="32"/>
+    </resources>
+</document>

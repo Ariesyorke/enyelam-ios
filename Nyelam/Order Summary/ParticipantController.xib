@@ -18,6 +18,7 @@
             <connections>
                 <outlet property="emailTextField" destination="DCC-Z5-Q6h" id="vOq-dk-8eZ"/>
                 <outlet property="fullnameTextField" destination="Nxg-Bq-2IS" id="fec-yR-FDV"/>
+                <outlet property="titleTextfield" destination="XgH-b9-w8w" id="KSZ-1J-4gC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -26,8 +27,47 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wmq-JT-a3k" userLabel="Title Button" customClass="UIControl">
+                    <rect key="frame" x="16" y="16" width="343" height="30"/>
+                    <subviews>
+                        <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XgH-b9-w8w" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                            <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
+                                    <color key="value" red="0.0" green="0.66666666669999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
+                                    <color key="value" red="0.0" green="0.66666666669999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Title"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="selectedTitle" value="Title"/>
+                            </userDefinedRuntimeAttributes>
+                        </textField>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_down_arrow_black" translatesAutoresizingMaskIntoConstraints="NO" id="4j8-1h-SUu">
+                            <rect key="frame" x="335" y="11" width="8" height="8"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="8" id="4GT-RW-KBU"/>
+                                <constraint firstAttribute="width" constant="8" id="PPU-QM-Bof"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="XgH-b9-w8w" secondAttribute="bottom" id="ND7-Vw-hjK"/>
+                        <constraint firstAttribute="trailing" secondItem="4j8-1h-SUu" secondAttribute="trailing" id="Ym3-Bi-Jna"/>
+                        <constraint firstAttribute="trailing" secondItem="XgH-b9-w8w" secondAttribute="trailing" id="k9a-r6-g3V"/>
+                        <constraint firstItem="4j8-1h-SUu" firstAttribute="centerY" secondItem="XgH-b9-w8w" secondAttribute="centerY" id="lRE-ef-t9r"/>
+                        <constraint firstItem="XgH-b9-w8w" firstAttribute="top" secondItem="wmq-JT-a3k" secondAttribute="top" id="oca-FH-9HY"/>
+                        <constraint firstItem="XgH-b9-w8w" firstAttribute="leading" secondItem="wmq-JT-a3k" secondAttribute="leading" id="rPK-ZX-FTP"/>
+                    </constraints>
+                    <connections>
+                        <action selector="titleButtonAction:" destination="-1" eventType="touchUpInside" id="wOg-RM-3XY"/>
+                    </connections>
+                </view>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nxg-Bq-2IS" userLabel="Fullname" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                    <rect key="frame" x="16" y="16" width="343" height="39"/>
+                    <rect key="frame" x="16" y="62" width="343" height="30"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next"/>
@@ -43,7 +83,7 @@
                     </userDefinedRuntimeAttributes>
                 </textField>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DCC-Z5-Q6h" userLabel="Email Address" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                    <rect key="frame" x="16" y="71" width="343" height="39.5"/>
+                    <rect key="frame" x="16" y="108" width="343" height="30"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
@@ -59,7 +99,7 @@
                     </userDefinedRuntimeAttributes>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ce-Lw-02v">
-                    <rect key="frame" x="16" y="126.5" width="343" height="40"/>
+                    <rect key="frame" x="16" y="154" width="343" height="40"/>
                     <color key="backgroundColor" red="0.0" green="0.66666666669999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="iDq-uk-tuw"/>
@@ -80,16 +120,22 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="wmq-JT-a3k" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="16g-IC-hem"/>
+                <constraint firstItem="wmq-JT-a3k" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="16" id="JxN-Zg-YDz"/>
                 <constraint firstAttribute="trailing" secondItem="Nxg-Bq-2IS" secondAttribute="trailing" constant="16" id="K7H-fB-Ftc"/>
                 <constraint firstItem="DCC-Z5-Q6h" firstAttribute="top" secondItem="Nxg-Bq-2IS" secondAttribute="bottom" constant="16" id="NGB-va-pdM"/>
+                <constraint firstItem="Nxg-Bq-2IS" firstAttribute="top" secondItem="wmq-JT-a3k" secondAttribute="bottom" constant="16" id="QGc-37-RfY"/>
                 <constraint firstItem="7ce-Lw-02v" firstAttribute="top" secondItem="DCC-Z5-Q6h" secondAttribute="bottom" constant="16" id="UFw-bX-DTY"/>
                 <constraint firstItem="DCC-Z5-Q6h" firstAttribute="leading" secondItem="Nxg-Bq-2IS" secondAttribute="leading" id="fRE-G3-RK3"/>
+                <constraint firstAttribute="trailing" secondItem="wmq-JT-a3k" secondAttribute="trailing" constant="16" id="gEu-tC-wg5"/>
                 <constraint firstItem="Nxg-Bq-2IS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="jvO-2T-BKs"/>
                 <constraint firstItem="DCC-Z5-Q6h" firstAttribute="trailing" secondItem="Nxg-Bq-2IS" secondAttribute="trailing" id="p7O-ad-fNI"/>
                 <constraint firstItem="7ce-Lw-02v" firstAttribute="trailing" secondItem="DCC-Z5-Q6h" secondAttribute="trailing" id="pQP-dd-zTo"/>
-                <constraint firstItem="Nxg-Bq-2IS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="16" id="yDo-CQ-FSL"/>
                 <constraint firstItem="7ce-Lw-02v" firstAttribute="leading" secondItem="DCC-Z5-Q6h" secondAttribute="leading" id="zVe-rA-c91"/>
             </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="ic_down_arrow_black" width="16" height="16"/>
+    </resources>
 </document>

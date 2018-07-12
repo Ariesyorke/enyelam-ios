@@ -72,7 +72,7 @@ extension NHTTPHelper {
     static func httpDoDiveSearchBy(categories: [String], page: String, diver: Int, certificate: Int, date: TimeInterval, sortBy: Int, ecoTrip: Int?, totalDives: [String]?, facilities: [String]?, priceMin: Int?, priceMax: Int?, complete: @escaping (NHTTPResponse<[NDiveService]>)->()) {
         var param: [String: Any] = [:]
         param["page"] = page
-        param["category_id"] = categories
+        param["dive_category_id"] = categories
         param["diver"] = String(diver)
         param["certificate"] = String(certificate)
         param["date"] = String(date)
@@ -148,7 +148,7 @@ extension NHTTPHelper {
         param["sort_by"] = String(sortBy)
         param["dive_spot_id"] = diveSpotId
         if let categories = categories, !categories.isEmpty {
-            param["category_id"] = categories
+            param["dive_category_id"] = categories
         }
         if let totalDives = totalDives, !totalDives.isEmpty {
             param["total_dives"] = totalDives
@@ -221,7 +221,7 @@ extension NHTTPHelper {
         param["sort_by"] = String(sortBy)
         param["province_id"] = provinceId
         if let categories = categories, !categories.isEmpty {
-            param["category_id"] = categories
+            param["dive_category_id"] = categories
         }
         if let totalDives = totalDives, !totalDives.isEmpty {
             param["total_dives"] = totalDives
@@ -295,7 +295,7 @@ extension NHTTPHelper {
         param["sort_by"] = String(sortBy)
         param["city_id"] = cityId
         if let categories = categories, !categories.isEmpty {
-            param["category_id"] = categories
+            param["dive_category_id"] = categories
         }
         if let totalDives = totalDives, !totalDives.isEmpty {
             param["total_dives"] = totalDives
@@ -371,7 +371,7 @@ extension NHTTPHelper {
         param["sort_by"] = String(sortBy)
         param["dive_center_id"] = diveCenterId
         if let categories = categories, !categories.isEmpty {
-            param["category_id"] = categories
+            param["dive_category_id"] = categories
         }
         if let totalDives = totalDives, !totalDives.isEmpty {
             param["total_dives"] = totalDives
@@ -394,7 +394,6 @@ extension NHTTPHelper {
                                     complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
                                     return
                                 }
-                                print("JSON \(data)")
                                 if let data = data, let json = data as? [String: Any] {
                                     var diveservices: [NDiveService]? = nil
                                     if let diveServiceArray = json["dive_services"] as? Array<[String: Any]>, !diveServiceArray.isEmpty {

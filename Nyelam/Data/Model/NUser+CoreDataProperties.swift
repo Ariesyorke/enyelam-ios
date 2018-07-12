@@ -2,7 +2,7 @@
 //  NUser+CoreDataProperties.swift
 //  Nyelam
 //
-//  Created by Bobi on 6/5/18.
+//  Created by Bobi on 7/11/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //
@@ -35,13 +35,33 @@ extension NUser {
     @NSManaged public var picture: String?
     @NSManaged public var referralCode: String?
     @NSManaged public var username: String?
+    @NSManaged public var about: String?
+    @NSManaged public var specialAbilities: [String]?
     @NSManaged public var country: NCountry?
     @NSManaged public var countryCode: NCountryCode?
     @NSManaged public var language: NLanguage?
+    @NSManaged public var languages: NSSet?
     @NSManaged public var licenseType: NLicenseType?
     @NSManaged public var nationality: NNationality?
     @NSManaged public var organization: NMasterOrganization?
     @NSManaged public var socialMedias: NSSet?
+
+}
+
+// MARK: Generated accessors for languages
+extension NUser {
+
+    @objc(addLanguagesObject:)
+    @NSManaged public func addToLanguages(_ value: NLanguage)
+
+    @objc(removeLanguagesObject:)
+    @NSManaged public func removeFromLanguages(_ value: NLanguage)
+
+    @objc(addLanguages:)
+    @NSManaged public func addToLanguages(_ values: NSSet)
+
+    @objc(removeLanguages:)
+    @NSManaged public func removeFromLanguages(_ values: NSSet)
 
 }
 

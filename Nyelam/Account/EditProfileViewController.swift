@@ -173,19 +173,19 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
         popoverPresentationController!.sourceRect = CGRect(x: 0, y: 0, width: (sender as AnyObject).frame.size.width, height: (sender as AnyObject).frame.size.height)
     }
     @IBAction func organizationButtonAction(_ sender: Any) {
-        UIAlertController.handleErrorMessage(viewController: self, error: "This feature not available now!", completion: {})
+//        UIAlertController.handleErrorMessage(viewController: self, error: "This feature not available now!", completion: {})
 
-//        self.onShowMasterOrganization()
+        self.onShowMasterOrganization()
     }
     
     @IBAction func licenseButtonAction(_ sender: Any) {
-        UIAlertController.handleErrorMessage(viewController: self, error: "This feature not available now!", completion: {})
+//        UIAlertController.handleErrorMessage(viewController: self, error: "This feature not available now!", completion: {})
 
-//        if self.pickedOrganization == nil {
-//            UIAlertController.handleErrorMessage(viewController: self, error: "Please choose organization first!", completion: {})
-//            return
-//        }
-//        self.onShowLicenseType(organizaitonId: self.pickedOrganization!.id!)
+        if self.pickedOrganization == nil {
+            UIAlertController.handleErrorMessage(viewController: self, error: "Please choose organization first!", completion: {})
+            return
+        }
+        self.onShowLicenseType(organizaitonId: self.pickedOrganization!.id!)
     }
     
     

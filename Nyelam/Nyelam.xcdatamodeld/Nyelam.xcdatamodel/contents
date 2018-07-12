@@ -126,6 +126,7 @@
         <relationship name="order" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NOrder" syncable="YES"/>
     </entity>
     <entity name="NUser" representedClassName="NUser" syncable="YES">
+        <attribute name="about" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="birthDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="birthPlace" optional="YES" attributeType="String" syncable="YES"/>
@@ -143,10 +144,12 @@
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="picture" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="referralCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="specialAbilities" optional="YES" attributeType="Transformable" valueTransformerName="" customClassName="[String]" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="country" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NCountry" syncable="YES"/>
         <relationship name="countryCode" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NCountryCode" syncable="YES"/>
         <relationship name="language" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NLanguage" syncable="YES"/>
+        <relationship name="languages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NLanguage" syncable="YES"/>
         <relationship name="licenseType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NLicenseType" syncable="YES"/>
         <relationship name="nationality" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NNationality" syncable="YES"/>
         <relationship name="organization" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NMasterOrganization" syncable="YES"/>
@@ -170,6 +173,6 @@
         <element name="NSearchResult" positionX="-180" positionY="-99" width="128" height="150"/>
         <element name="NSocialMedia" positionX="-144" positionY="-63" width="128" height="75"/>
         <element name="NSummary" positionX="-162" positionY="-81" width="128" height="120"/>
-        <element name="NUser" positionX="-153" positionY="-72" width="128" height="420"/>
+        <element name="NUser" positionX="-153" positionY="-72" width="128" height="465"/>
     </elements>
 </model>

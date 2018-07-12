@@ -11,7 +11,8 @@ import Cosmos
 import MBProgressHUD
 
 class DiveServiceController: BaseViewController {
-    
+    let file = "review.json"
+
     static func push(on controller: UINavigationController, forDoTrip: Bool, selectedKeyword: SearchResult?, selectedLicense: Bool, selectedDiver: Int, selectedDate: Date, ecoTrip: Int?, diveService: NDiveService) -> DiveServiceController {
         let vc: DiveServiceController = DiveServiceController(nibName: "DiveServiceController", bundle: nil)
         vc.selectedLicense = selectedLicense
@@ -72,6 +73,7 @@ class DiveServiceController: BaseViewController {
     fileprivate var selectedLicenseType: NLicenseType?
     fileprivate var state: TableState = .detail
     fileprivate var equipments: [Equipment]?
+    fileprivate var reviews: [Review]?
     
     @IBOutlet weak var loadingView: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
@@ -91,6 +93,35 @@ class DiveServiceController: BaseViewController {
             let id = self.diveService != nil ? self.diveService!.id!:self.selectedKeyword!.id!
             self.tryLoadServiceDetail(serviceId: id, selectedLicense: selectedLicense.number, selectedDate: selectedDate!, selectedDiver: selectedDiver, forDoTrip: self.forDoTrip, forDoCourse: self.forDoCourse)
         }
+    }
+    
+    fileprivate func getReviews() {
+        if let path = Bundle.main.path(forResource: self.file, ofType: nil) {
+            // use path
+            let fileURL = URL(fileURLWithPath: path)
+            do {
+                let jsonString = try String(contentsOf: fileURL, encoding: .utf8)
+                let data = jsonString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let json: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                if let reviewArray = json["reviews"] as? Array<[String: Any]>, !reviewArray.isEmpty {
+                    self.reviews = []
+                    for reviewJson in reviewArray {
+                        let review = Review(json: reviewJson)
+                        self.reviews!.append(review)
+                    }
+                    self.tableView.reloadData()
+                }
+            }
+            catch {
+                print(error)
+            }
+        }
+//        NHTTPHelper.httpGetReviewList(serviceId: self.diveService!.id!, complete: {response in
+//            if let datas = response.data, !datas.isEmpty {
+//                self.reviews = datas
+//                self.tableView.reloadData()
+//            }
+//        })
     }
     
     fileprivate func initView() {
@@ -117,6 +148,7 @@ class DiveServiceController: BaseViewController {
         self.tableView.register(UINib(nibName: "DiveServiceDetailCell", bundle: nil), forCellReuseIdentifier: "DiveServiceDetailCell")
         self.tableView.register(UINib(nibName: "DiveServiceRelatedCell", bundle: nil), forCellReuseIdentifier: "DiveServiceRelatedCell")
         self.tableView.register(UINib(nibName: "AddOnCell", bundle: nil), forCellReuseIdentifier: "AddOnCell")
+        self.tableView.register(UINib(nibName: "ReviewCell", bundle: nil), forCellReuseIdentifier: "ReviewCell")
     }
     
     fileprivate func tryLoadServiceDetail(serviceId: String, selectedLicense: Int, selectedDate: Date, selectedDiver: Int, forDoTrip: Bool, forDoCourse: Bool) {
@@ -241,7 +273,6 @@ class DiveServiceController: BaseViewController {
                 self.tableView.isHidden = false
                 self.tableView.reloadData()
             })
-
         }
     }
     
@@ -342,6 +373,13 @@ class DiveServiceController: BaseViewController {
     
     func createContact(user: NUser) -> BookingContact {
         let contact = BookingContact()
+        
+        if let gender = user.gender, gender.lowercased() == "male" {
+            contact.titleName = .mr
+        } else {
+            contact.titleName = .mrs
+        }
+        
         contact.name = user.fullname
         contact.email = user.email
         if let countryCode = user.countryCode {
@@ -358,6 +396,11 @@ class DiveServiceController: BaseViewController {
             if i == 0 {
                 participant.name = user.fullname
                 participant.email = user.email
+                if let gender = user.gender, gender.lowercased() == "male" {
+                    participant.titleName = .mr
+                } else {
+                    participant.titleName = .mrs
+                }
             }
             participants.append(participant)
         }
@@ -372,11 +415,13 @@ extension DiveServiceController: NStickyHeaderViewDelegate {
             self.strechyHeaderView!.tabDetailLineView.isHidden = false
             self.strechyHeaderView!.tabReviewLineView.isHidden = true
             self.state = .detail
+
         } else {
             self.reviewNotFoundLabel.isHidden = false
             self.strechyHeaderView!.tabDetailLineView.isHidden = true
             self.strechyHeaderView!.tabReviewLineView.isHidden = false
             self.state = .review
+            //todo fetch review
         }
         self.tableView.reloadData()
     }
@@ -441,17 +486,32 @@ extension DiveServiceController: UITableViewDelegate, UITableViewDataSource {
 //        }
 //        return UITableViewCell()
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DiveServiceDetailCell", for: indexPath) as! DiveServiceDetailCell
-            cell.forDoCourse = self.forDoCourse
-            cell.initData(diveService: self.diveService!)
-            cell.onDiveCenterClicked = {diveCenter in
-                if self.forDoCourse {
-                    _ = DiveCenterController.push(on: self.navigationController!, forDoCourse: self.forDoCourse, selectedKeyword: self.selectedKeyword, selectedDiver: 1, selectedDate: self.selectedDate!, selectedOrganization: self.selectedOrganization!, selectedLicenseType: self.selectedLicenseType!, diveCenter: diveCenter)
-                } else {
-                    _ = DiveCenterController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: self.selectedKeyword, selectedLicense: self.selectedLicense, selectedDiver: 1, selectedDate: self.selectedDate!, ecoTrip: self.ecotrip, diveCenter: diveCenter)
+            if state == .detail {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "DiveServiceDetailCell", for: indexPath) as! DiveServiceDetailCell
+                cell.forDoCourse = self.forDoCourse
+                cell.initData(diveService: self.diveService!)
+                cell.onDiveCenterClicked = {diveCenter in
+                    if self.forDoCourse {
+                        _ = DiveCenterController.push(on: self.navigationController!, forDoCourse: self.forDoCourse, selectedKeyword: self.selectedKeyword, selectedDiver: 1, selectedDate: self.selectedDate!, selectedOrganization: self.selectedOrganization!, selectedLicenseType: self.selectedLicenseType!, diveCenter: diveCenter)
+                    } else {
+                        _ = DiveCenterController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: self.selectedKeyword, selectedLicense: self.selectedLicense, selectedDiver: 1, selectedDate: self.selectedDate!, ecoTrip: self.ecotrip, diveCenter: diveCenter)
+                    }
                 }
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewCell", for: indexPath) as! ReviewCell
+                let review = self.reviews![indexPath.row]
+                cell.dateLabel.text = review.date!.formatDate(dateFormat: "dd MMM yyyy")
+                cell.ratingView.rating = review.rating
+                cell.userCommentLabel.text = review.content
+                if let user = review.user {
+                    cell.userNameLabel.text = user.fullname
+                    if let picture = user.picture, !picture.isEmpty {
+                        cell.userProfileImageView.af_setImage(withURL: URL(string: picture)!)
+                    }
+                }
+                return cell
             }
-            return cell
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "AddOnCell", for: indexPath) as! AddOnCell
             if let equipments = self.equipments, !equipments.isEmpty, indexPath.row < equipments.count {
@@ -492,6 +552,10 @@ extension DiveServiceController: UITableViewDelegate, UITableViewDataSource {
             if let diveServices = self.relatedDiveServices, !diveServices.isEmpty {
                 count += 1
             }
+        } else {
+            if let reviews = self.reviews,!reviews.isEmpty {
+                count += 1
+            }
         }
         return count
     }
@@ -523,7 +587,7 @@ extension DiveServiceController: UITableViewDelegate, UITableViewDataSource {
         var count = 0
         if state == .detail {
             if section == 0 {
-                return 1
+                count += 1
             } else if section == 1 {
                 var count = 1
                 if let equipments = self.equipments, !equipments.isEmpty {
@@ -531,7 +595,13 @@ extension DiveServiceController: UITableViewDelegate, UITableViewDataSource {
                 }
                 return count
             } else if section == 2 {
-                return 1
+                 count += 1
+            }
+        } else {
+            if state == .review {
+                if let reviews = self.reviews, !reviews.isEmpty {
+                    count += reviews.count
+                }
             }
         }
         return count
@@ -601,8 +671,6 @@ class DiveServiceDetailCell: NTableViewCell {
     @IBAction func diveCenterButtonAction(_ sender: Any) {
         self.onDiveCenterClicked(diveService!.divecenter!)
     }
-    
-    
     
     func initData(diveService: NDiveService) {
         self.diveService = diveService

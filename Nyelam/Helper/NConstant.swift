@@ -112,6 +112,5 @@ class NConstant {
             }
         }
     }
-
 }
 

@@ -17,11 +17,14 @@ class ContactController: BaseViewController, MMNumberKeyboardDelegate {
     @IBOutlet weak var fullnameTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var emailAddressTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var phoneNumberTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var titleTextField: SkyFloatingLabelTextField!
+    
     @IBOutlet weak var countryCodeLabel: UILabel!
     var phoneRegionCode: String = "ID"
 
     var numberKeyboard: MMNumberKeyboard?
     var bookingContact: BookingContact?
+    var pickedTitleName: NameTitle = .mr
     var pickedCountryCode: NCountryCode?
     var countryCodes: [NCountryCode]? = NCountryCode.getCountryCodes()
     var completion: (UINavigationController, BookingContact)->() = {navigation, contact in }
@@ -61,6 +64,9 @@ class ContactController: BaseViewController, MMNumberKeyboardDelegate {
         if let contact = self.bookingContact {
             self.fullnameTextField.text = contact.name
             self.emailAddressTextField.text = contact.email
+            self.titleTextField.text = contact.titleName.rawValue
+            self.pickedTitleName = contact.titleName
+            
             if let countryCode = contact.countryCode, let number = countryCode.countryNumber {
                 self.pickedCountryCode = countryCode
                 self.countryCodeLabel.text = ("+\(number)")
@@ -87,6 +93,30 @@ class ContactController: BaseViewController, MMNumberKeyboardDelegate {
         return true
     }
     
+    @IBAction func titleButtonAction(_ sender: Any) {
+        var titleNames: [String] = ["Mr.", "Mrs.", "Ms."]
+        var position = 0
+        if let contact = self.bookingContact {
+            switch contact.titleName {
+            case .mrs:
+                    position = 1
+                break
+            case .ms:
+                position = 2
+                break
+            default:
+                position = 0
+                break
+            }
+        }
+        let actionSheet = ActionSheetStringPicker.init(title: "Title", rows: titleNames, initialSelection: position, doneBlock: {picker, index, value in
+            self.titleTextField.text = value as! String
+            self.pickedTitleName = NameTitle(rawValue: titleNames[index])!
+        }, cancel: {_ in return
+        }, origin: sender)
+        actionSheet!.show()
+
+    }
     
     @IBAction func countryCodeButtonAction(_ sender: Any) {
         if let countryCodes = self.countryCodes, !countryCodes.isEmpty {
@@ -113,11 +143,13 @@ class ContactController: BaseViewController, MMNumberKeyboardDelegate {
             UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {})
             return
         }
+        
         self.bookingContact!.name = self.fullnameTextField.text
         self.bookingContact!.email = self.emailAddressTextField.text
         self.bookingContact!.countryCode = self.pickedCountryCode
         self.bookingContact!.phoneNumber = self.phoneNumberTextField.text
-
+        self.bookingContact!.titleName = self.pickedTitleName
+        
         if let navigation = self.navigationController {
             self.completion(navigation, self.bookingContact!)
         }
@@ -136,6 +168,7 @@ class ContactController: BaseViewController, MMNumberKeyboardDelegate {
         }
         return nil
     }
+    
     /*
     // MARK: - Navigation
 
