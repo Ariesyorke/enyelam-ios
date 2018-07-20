@@ -163,6 +163,7 @@ extension BookingDetailController: UITableViewDataSource, UITableViewDelegate {
         } else if indexPath.section == 1 {
             let row = indexPath.row
             let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath) as! ContactCell
+            cell.isEditable = false
             cell.changeButton.isHidden = true
             if let orderReturn = self.orderReturn, let summary = orderReturn.summary, let contact = summary.contact {
                 cell.initData(contact: contact)
@@ -174,6 +175,7 @@ extension BookingDetailController: UITableViewDataSource, UITableViewDelegate {
             cell.changeButton.isHidden = true
             if let orderReturn = self.orderReturn, let summary = orderReturn.summary, let participants = summary.participant, !participants.isEmpty {
                 let participant = participants[row]
+                cell.isEditable = false
                 cell.initData(participant: participant)
             }
             return cell

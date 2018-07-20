@@ -67,6 +67,7 @@ class ParticipantController: BaseViewController {
             self.fullnameTextField.text = participant.name
             self.emailTextField.text = participant.email
             self.titleTextfield.text = participant.titleName.rawValue
+            self.pickedTitleName = participant.titleName
         } else {
             self.titleTextfield.text = self.pickedTitleName.rawValue
         }

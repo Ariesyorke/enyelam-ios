@@ -383,6 +383,7 @@ class ContactCell: NTableViewCell {
     @IBOutlet weak var changeButton: UIButton!
     
     var onChangeContact: () -> () = { }
+    var isEditable: Bool = true
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -402,7 +403,11 @@ class ContactCell: NTableViewCell {
     
     func initData(contact: BookingContact) {
         if let name = contact.name {
-            self.fullNameLabel.text =  "\(contact.titleName.rawValue) \(name)"
+            if self.isEditable {
+                self.fullNameLabel.text =  "\(contact.titleName.rawValue) \(name)"
+            } else {
+                self.fullNameLabel.text = name
+            }
         } else {
             self.fullNameLabel.text = "Fullname"
         }
@@ -433,6 +438,8 @@ class ParticipantCell: NTableViewCell {
     @IBOutlet weak var changeLabel: UILabel!
     @IBOutlet weak var emailAddressLabel: UILabel!
     @IBOutlet weak var changeButton: UIView!
+    var isEditable: Bool = true
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -450,7 +457,11 @@ class ParticipantCell: NTableViewCell {
     func initData(participant: Participant) {
         self.changeLabel.text = "Change"
         if let name = participant.name {
-            self.fullnameLabel.text = "\(participant.titleName.rawValue) \(name)"
+            if self.isEditable {
+                self.fullnameLabel.text = "\(participant.titleName.rawValue) \(name)"
+            } else {
+                self.fullnameLabel.text = name
+            }
         } else {
             self.changeLabel.text = "Fill In"
         }

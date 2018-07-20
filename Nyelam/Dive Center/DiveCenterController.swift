@@ -308,7 +308,7 @@ extension DiveCenterController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 1 {
+        if section == 1 {            
             if let diveGuides = self.diveGuides, !diveGuides.isEmpty {
                 let sectionTitle = NBookingTitleSection(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
                 sectionTitle.subtitleLabel.isHidden = true
@@ -324,11 +324,16 @@ extension DiveCenterController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.00001
+        return 0.1
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0.00001
+        if section == 1 {
+            if let diveGuides = self.diveGuides, !diveGuides.isEmpty {
+                return 40
+            }
+        }
+        return 0.1
     }
 
 }

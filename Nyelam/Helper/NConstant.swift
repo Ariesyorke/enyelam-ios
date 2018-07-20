@@ -35,7 +35,7 @@ class NConstant {
     static var URL_TYPE: NURLType {
         return .staging
     }
-    
+       
     static var GOOGLE_CLIENT_ID: String {
         return "359054383364-qu2ipqnfu6ues5r6bllc5cbk98rlre80.apps.googleusercontent.com"
     }

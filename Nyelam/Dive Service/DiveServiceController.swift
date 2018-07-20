@@ -339,7 +339,10 @@ class DiveServiceController: BaseViewController {
                             self.book(user: user)
                         })
                     } else if error.isKind(of: StatusFailedError.self) {
-                        //TODO
+                        UIAlertController.handleErrorMessage(viewController: self, error: error, completion: { _ in
+                            let err = error as! StatusFailedError
+                            
+                        })
                     }
                 }
                 MBProgressHUD.hide(for: self.view, animated: true)
@@ -358,7 +361,9 @@ class DiveServiceController: BaseViewController {
                         self.book(user: user)
                         })
                     } else if error.isKind(of: StatusFailedError.self) {
-                    //TODO
+                        UIAlertController.handleErrorMessage(viewController: self, error: error, completion: { _ in
+                            
+                        })
                     }
                 }
                 MBProgressHUD.hide(for: self.view, animated: true)
@@ -791,12 +796,12 @@ class DiveServiceDetailCell: NTableViewCell {
             } else {
                 self.accomodationImageView.image = UIImage(named: self.faciltyMapping["accomodation"]![1])
             }
-            if let descript = diveService.diveServiceDescription {
-                self.descriptionLabel.attributedText = NSAttributedString.htmlAttriButedText(str: descript, fontName: "FiraSans-Regular", size: 14, color: UIColor.darkGray
-                )
-            } else {
-                self.descriptionLabel.text = "-"
-            }
+        }
+        if let descript = diveService.diveServiceDescription, !descript.isEmpty {
+            self.descriptionLabel.attributedText = NSAttributedString.htmlAttriButedText(str: descript, fontName: "FiraSans-Regular", size: 14, color: UIColor.darkGray
+            )
+        } else {
+            self.descriptionLabel.text = "-"
         }
     }
 }

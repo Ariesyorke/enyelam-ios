@@ -28,23 +28,24 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="bdO-yB-xy7">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="692"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Review Not Found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rsc-0j-0n9">
-                    <rect key="frame" x="126.5" y="324" width="122" height="18"/>
+                    <rect key="frame" x="126.5" y="336.5" width="122" height="18"/>
                     <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="15"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="COp-9c-I1S">
-                    <rect key="frame" x="169" y="315" width="37" height="37"/>
+                    <rect key="frame" x="169" y="327.5" width="37" height="37"/>
                     <color key="color" red="0.086274509799999996" green="0.45882352939999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                 </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="bdO-yB-xy7" secondAttribute="bottom" id="0Lq-fm-hcy"/>
+                <constraint firstAttribute="bottom" secondItem="bdO-yB-xy7" secondAttribute="bottom" constant="-25" id="0Lq-fm-hcy"/>
                 <constraint firstItem="bdO-yB-xy7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="A8J-7N-p6f"/>
                 <constraint firstItem="rsc-0j-0n9" firstAttribute="centerY" secondItem="bdO-yB-xy7" secondAttribute="centerY" id="OPI-O4-HSd"/>
                 <constraint firstAttribute="trailing" secondItem="bdO-yB-xy7" secondAttribute="trailing" id="ad8-R0-SEe"/>

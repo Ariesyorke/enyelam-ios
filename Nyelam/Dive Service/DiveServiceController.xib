@@ -32,12 +32,13 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Znj-Vg-P2c">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="605"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Znj-Vg-P2c">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="630"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="CkT-bT-99I">
-                    <rect key="frame" x="169" y="284" width="37" height="37"/>
+                    <rect key="frame" x="169" y="296.5" width="37" height="37"/>
                     <color key="color" red="0.086274509799999996" green="0.45882352939999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                 </activityIndicatorView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4FW-xr-LdF">
@@ -160,7 +161,7 @@
                 <constraint firstItem="CkT-bT-99I" firstAttribute="centerX" secondItem="Znj-Vg-P2c" secondAttribute="centerX" id="4Ly-Ci-Efe"/>
                 <constraint firstItem="kxh-Ht-zFN" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="BXh-1J-NSZ"/>
                 <constraint firstAttribute="bottom" secondItem="4FW-xr-LdF" secondAttribute="bottom" id="FYB-l8-K6U"/>
-                <constraint firstItem="4FW-xr-LdF" firstAttribute="top" secondItem="Znj-Vg-P2c" secondAttribute="bottom" id="Hlm-fq-Q4e"/>
+                <constraint firstItem="4FW-xr-LdF" firstAttribute="top" secondItem="Znj-Vg-P2c" secondAttribute="bottom" constant="-25" id="Hlm-fq-Q4e"/>
                 <constraint firstItem="4FW-xr-LdF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Iqj-vL-8BL"/>
                 <constraint firstAttribute="trailing" secondItem="kxh-Ht-zFN" secondAttribute="trailing" constant="16" id="ObK-V8-epK"/>
                 <constraint firstAttribute="trailing" secondItem="4FW-xr-LdF" secondAttribute="trailing" id="P42-MV-pIh"/>

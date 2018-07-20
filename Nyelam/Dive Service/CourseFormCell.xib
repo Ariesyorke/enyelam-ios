@@ -20,7 +20,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="353"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="352.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="353"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6HX-Yk-0zB">
@@ -313,7 +313,9 @@
             <connections>
                 <outlet property="associationLabel" destination="z79-Re-ZBr" id="PM2-33-u0Z"/>
                 <outlet property="keywordLabel" destination="7d5-73-3bN" id="cQt-xj-2pj"/>
+                <outlet property="licenseTypeButton" destination="x0N-bq-iby" id="AT2-Yr-3pF"/>
                 <outlet property="licenseTypeLabel" destination="QAD-82-iaz" id="Wte-8o-uvR"/>
+                <outlet property="organizationButton" destination="aBO-AB-wJX" id="X6R-8x-zRm"/>
                 <outlet property="scheduleLabel" destination="UqL-2Z-tWW" id="bwa-tG-YsW"/>
             </connections>
             <point key="canvasLocation" x="72" y="250.5"/>

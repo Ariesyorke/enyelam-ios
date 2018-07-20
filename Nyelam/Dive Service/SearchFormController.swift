@@ -96,6 +96,7 @@ class SearchFormController: BaseViewController {
         }
         self.title = "Search"
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -131,6 +132,8 @@ class SearchFormController: BaseViewController {
                     if let keyword = keyword as? SearchResultService {
                         let searchResultService = keyword as! SearchResultService
                         self.selectedLicense = searchResultService.license
+                        self.selectedOrganization = searchResultService.organization
+                        self.selectedLicenseType = searchResultService.licenseType
                     }
                     self.selectedKeyword = keyword
                     self.tableView.reloadData()
@@ -311,6 +314,14 @@ extension SearchFormController: UITableViewDelegate, UITableViewDataSource {
                         let _ = SearchKeywordController.push(on: self.navigationController!, type: 3, with: self.onKeywordSelectedHandler())
                     }
                 }
+//                if let _ = self.selectedKeyword as? SearchResultService {
+//                    cell.organizationButton.isUserInteractionEnabled = false
+//                    cell.licenseTypeButton.isUserInteractionEnabled = false
+//                } else {
+//                    cell.organizationButton.isUserInteractionEnabled = true
+//                    cell.licenseTypeButton.isUserInteractionEnabled = true
+//                }
+
                 cell.onDateHandler = { string in
                     self.showDatePicker(forDoCourse: self.forDoCourse, isEcoTrip: self.isEcoTrip, indexPath: indexPath)
                 }
@@ -325,6 +336,7 @@ extension SearchFormController: UITableViewDelegate, UITableViewDataSource {
                 }
                 cell.initData(selectedKeyword: self.selectedKeyword, organization: self.selectedOrganization, licenseType: self.selectedLicenseType, selectedDate: self.selectedDate)
                 cell.onGetCertifiedHandler = {cell in
+
                     if let error = self.validateError(forDoCourse: self.forDoCourse) {
                         UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {})
                         return
@@ -719,7 +731,8 @@ class CourseFormCell: NTableViewCell {
     @IBOutlet weak var licenseTypeLabel: UILabel!
     @IBOutlet weak var scheduleLabel: UILabel!
     @IBOutlet weak var keywordLabel: UILabel!
-
+    @IBOutlet weak var organizationButton: UIControl!
+    @IBOutlet weak var licenseTypeButton: UIControl!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -754,6 +767,8 @@ class CourseFormCell: NTableViewCell {
         }
         if let organization = organization {
             self.associationLabel.text = organization.name
+        } else {
+            self.associationLabel.text = "CMAS, NAUI, PADI, RAID, SSI"
         }
         if let licenseType = licenseType {
             self.licenseTypeLabel.text = licenseType.name
