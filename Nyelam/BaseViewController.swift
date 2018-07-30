@@ -19,6 +19,7 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.rightBarButtonItem = nil
         if self.isKind(of: MainRootController.self) || self.isKind(of: EcoTripIntroductionController.self) {
             self.moveSafeAreaInsets()
         } else {

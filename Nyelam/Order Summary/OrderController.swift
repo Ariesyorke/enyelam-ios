@@ -119,6 +119,11 @@ class OrderController: BaseViewController {
                     NHelper.handleConnectionError(completion: {
                         self.tryResubmitOrder(orderId: orderId, paymentType: paymentType)
                     })
+                } else if error.isKind(of: StatusFailedError.self) {
+                    UIAlertController.handleErrorMessage(viewController: self, error: error, completion: { _ in
+                        let err = error as! StatusFailedError
+                        
+                    })
                 }
                 return
             }
@@ -137,6 +142,11 @@ class OrderController: BaseViewController {
                 if error.isKind(of: NotConnectedInternetError.self) {
                     NHelper.handleConnectionError(completion: {
                         self.trySubmitOrder(cartToken: cartToken, contactJson: contactJson, diverJson: diverJson, paymentMethodType: paymentMethodType, note: note)
+                    })
+                } else if error.isKind(of: StatusFailedError.self) {
+                    UIAlertController.handleErrorMessage(viewController: self, error: error, completion: { _ in
+                        let err = error as! StatusFailedError
+                        
                     })
                 }
                 return

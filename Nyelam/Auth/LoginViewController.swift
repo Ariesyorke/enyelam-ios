@@ -174,10 +174,10 @@ class LoginViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDel
                             } else {
                                 registerViewController.gender = "2"
                             }
-                            if let pictureJson = self.facebookUser!["picture"] as? [String: Any] {
-                                if let pictureData = pictureJson["data"] as? [String: Any] {
-                                    registerViewController.pictureUrl = pictureData["url"] as? String
-                                }
+                        }
+                        if let pictureJson = self.facebookUser!["picture"] as? [String: Any] {
+                            if let pictureData = pictureJson["data"] as? [String: Any] {
+                                registerViewController.pictureUrl = pictureData["url"] as? String
                             }
                         }
                     }

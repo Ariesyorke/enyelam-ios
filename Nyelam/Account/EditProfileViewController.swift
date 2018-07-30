@@ -279,6 +279,7 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
             
             self.genderTextField.text = user.gender
             if let birthDate = user.birthDate {
+                self.pickedBirthdate = birthDate as Date
                 self.birthdateTextField.text = birthDate.formatDate(dateFormat: "dd MMM yyyy")
             }
             if let certificateDate = user.certificateDate {

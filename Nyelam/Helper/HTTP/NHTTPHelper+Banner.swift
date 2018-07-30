@@ -22,14 +22,14 @@ extension NHTTPHelper {
                     banners = []
                     for bannerJson in bannerArray {
                         var type = -1
-                        if let t = bannerJson["id"] as? Int {
+                        if let t = bannerJson["type"] as? Int {
                             type = t
-                        } else if let t = bannerJson["id"] as? String {
+                        } else if let t = bannerJson["type"] as? String {
                             if t.isNumber {
                                 type = Int(t)!
                             }
                         }
-                        if type == 1 {
+                        if type == 1 || type == 3 || type == 4 {
                             let banner = ServiceBanner(json: bannerJson)
                             banners!.append(banner)
                         } else if type == 2 {
@@ -54,7 +54,7 @@ extension NHTTPHelper {
                                     type = Int(t)!
                                 }
                             }
-                            if type == 1 || type == 3 {
+                            if type == 1 || type == 3 || type == 4 {
                                 let banner = ServiceBanner(json: bannerJson)
                                 banners!.append(banner)
                             } else if type == 2 {
@@ -69,6 +69,7 @@ extension NHTTPHelper {
                         print(error)
                     }
                 }
+                complete(NHTTPResponse(resultStatus: true, data: banners, error: nil))
             }
         })
     }

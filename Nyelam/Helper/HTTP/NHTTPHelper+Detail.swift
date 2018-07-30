@@ -12,12 +12,17 @@ import CoreData
 extension NHTTPHelper {
     static func httpDetail(serviceId: String, diver: Int,
                                   certificate: Int, date: Date, complete: @escaping (NHTTPResponse<NDiveService>)->()) {
+        var param: [String: Any] = [:]
+        if let user = NAuthReturn.authUser(){
+            param["user_id"] = user.user!.id!
+        }
+        param["service_id"] = serviceId
+        param["certificate"] = String(certificate)
+        param["date"] = String(date.timeIntervalSince1970)
+        param["diver"] = String(diver)
+        
         self.basicPostRequest(URLString: HOST_URL+API_PATH_DETAIL_SERVICE,
-                              parameters: [
-                                "service_id": serviceId,
-                                "certificate": String(certificate),
-                                "date": String(date.timeIntervalSince1970),
-                                "diver":  diver], headers: nil, complete: {status, data, error in
+                              parameters: param, headers: nil, complete: {status, data, error in
                                     if let error = error {
                                         complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
                                         return
@@ -102,7 +107,6 @@ extension NHTTPHelper {
                 complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
                 return
             }
-            print("data \(data)")
             if let data = data, let json = data as? [String: Any] {
                 let order = OrderReturn(json: json)
                 complete(NHTTPResponse(resultStatus: true, data: order, error: nil))
@@ -113,11 +117,16 @@ extension NHTTPHelper {
     static func httpDetail(doCourseId: String,
                            diver: Int, date: Date,
                            complete: @escaping  (NHTTPResponse<NDiveService>)->()) {
+        var param: [String: Any] = [:]
+        if let user = NAuthReturn.authUser(){
+            param["user_id"] = user.user!.id!
+        }
+        param["do_course_id"] = doCourseId
+        param["date"] = String(date.timeIntervalSince1970)
+        param["diver"] = String(diver)
+        
         self.basicPostRequest(URLString: HOST_URL+API_PATH_DO_COURSE_DETAIL,
-                              parameters: [
-                                "do_course_id": doCourseId,
-                                "date": String(date.timeIntervalSince1970),
-                                "diver":  diver], headers: nil, complete: {status, data, error in
+                              parameters: param, headers: nil, complete: {status, data, error in
                                     if let error = error {
                                         complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
                                         return
@@ -157,12 +166,18 @@ extension NHTTPHelper {
     }
     static func httpDetail(doTripId: String, diver: Int,
                            certificate: Int, date: Date, complete: @escaping (NHTTPResponse<NDiveService>)->()) {
+        var param: [String: Any] = [:]
+        if let user = NAuthReturn.authUser(){
+            param["user_id"] = user.user!.id!
+        }
+        
+        param["service_id"] = doTripId
+        param["certificate"] = String(certificate)
+        param["date"] = String(date.timeIntervalSince1970)
+        param["diver"] = String(diver)
+        
         self.basicPostRequest(URLString: HOST_URL+API_PATH_DO_TRIP_DETAIL,
-                              parameters: [
-                                "service_id": doTripId,
-                                "certificate": String(certificate),
-                                "date": String(date.timeIntervalSince1970),
-                                "diver":  diver], headers: nil, complete: {status, data, error in
+                              parameters: param, headers: nil, complete: {status, data, error in
                                     if let error = error {
                                         complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
                                         return

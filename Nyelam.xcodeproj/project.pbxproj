@@ -147,6 +147,8 @@
 		C08E967720908D0700270CF9 /* RangeSeekSlider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C08E967920908D0700270CF9 /* RangeSeekSlider.framework */; };
 		C08E967B2090929800270CF9 /* PriceRangeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08E967A2090929800270CF9 /* PriceRangeManager.swift */; };
 		C08E967F20909A9C00270CF9 /* TotalDivesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C08E967D20909A9C00270CF9 /* TotalDivesCell.xib */; };
+		C097CADE21087861007BD121 /* DiveGuideDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C097CADC21087861007BD121 /* DiveGuideDetailCell.swift */; };
+		C097CADF21087861007BD121 /* DiveGuideDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C097CADD21087861007BD121 /* DiveGuideDetailCell.xib */; };
 		C097F91B20F35E1B00EE0D50 /* DiveGuideCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C097F91920F35E1B00EE0D50 /* DiveGuideCell.swift */; };
 		C097F91C20F35E1B00EE0D50 /* DiveGuideCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C097F91A20F35E1B00EE0D50 /* DiveGuideCell.xib */; };
 		C09879CC20F484CD008D8EEE /* DiveGuideDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09879CA20F484CD008D8EEE /* DiveGuideDetailController.swift */; };
@@ -519,6 +521,8 @@
 		C08E967920908D0700270CF9 /* RangeSeekSlider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RangeSeekSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C08E967A2090929800270CF9 /* PriceRangeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceRangeManager.swift; sourceTree = "<group>"; };
 		C08E967D20909A9C00270CF9 /* TotalDivesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TotalDivesCell.xib; sourceTree = "<group>"; };
+		C097CADC21087861007BD121 /* DiveGuideDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiveGuideDetailCell.swift; sourceTree = "<group>"; };
+		C097CADD21087861007BD121 /* DiveGuideDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiveGuideDetailCell.xib; sourceTree = "<group>"; };
 		C097F91920F35E1B00EE0D50 /* DiveGuideCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiveGuideCell.swift; sourceTree = "<group>"; };
 		C097F91A20F35E1B00EE0D50 /* DiveGuideCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiveGuideCell.xib; sourceTree = "<group>"; };
 		C09879CA20F484CD008D8EEE /* DiveGuideDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiveGuideDetailController.swift; sourceTree = "<group>"; };
@@ -1164,6 +1168,8 @@
 			children = (
 				C09879CA20F484CD008D8EEE /* DiveGuideDetailController.swift */,
 				C09879CB20F484CD008D8EEE /* DiveGuideDetailController.xib */,
+				C097CADC21087861007BD121 /* DiveGuideDetailCell.swift */,
+				C097CADD21087861007BD121 /* DiveGuideDetailCell.xib */,
 			);
 			path = "Dive Guide";
 			sourceTree = "<group>";
@@ -1651,6 +1657,7 @@
 				C010FB0B207CAF47000059AA /* FiraSans-ExtraLight.ttf in Resources */,
 				C0F42B9720A2A8AB0095C649 /* CourseFormCell.xib in Resources */,
 				C010FB01207CAF47000059AA /* FiraSans-BlackItalic.ttf in Resources */,
+				C097CADF21087861007BD121 /* DiveGuideDetailCell.xib in Resources */,
 				C010FB04207CAF47000059AA /* FiraSans-Black.ttf in Resources */,
 				C0EE281F209ABB8A006ACA5D /* PaymentMethodCell.xib in Resources */,
 				C037E8B42085C434000EB5CF /* TermsViewController.xib in Resources */,
@@ -1997,6 +2004,7 @@
 				C09F22FD2071E32F00B48D32 /* Parseable.swift in Sources */,
 				C0FD7C74208451EA00FC4508 /* AccountTableViewController.swift in Sources */,
 				C00D0B0420763250000D8ED6 /* Bridging-Header.m in Sources */,
+				C097CADE21087861007BD121 /* DiveGuideDetailCell.swift in Sources */,
 				C069838320B274A2009444EE /* Equipment.swift in Sources */,
 				C0FD7C892084888900FC4508 /* BaseTableViewController.swift in Sources */,
 				C0EFE34A209B2C9C009E084F /* NAdditionalView.swift in Sources */,

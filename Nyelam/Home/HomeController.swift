@@ -67,7 +67,6 @@ class HomeController: BaseViewController, UIScrollViewDelegate, MFMailComposeVie
                     i += 1
                     leftView = view
                 }
-
             }
         }
     }
@@ -114,60 +113,60 @@ class HomeController: BaseViewController, UIScrollViewDelegate, MFMailComposeVie
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupSideMenu()
-        self.banners = [Banner(), Banner(), Banner()]
+//        self.banners = [Banner(), Banner(), Banner()]
         self.getDoTrips()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        if self.firstTime {
-//            self.firstTime = false
-//            self.getBanner()
-//        }
+        if self.firstTime {
+            self.firstTime = false
+            self.getBanner()
+        }
     }
     
     fileprivate func getBanner() {
-        if let path = Bundle.main.path(forResource: self.file, ofType: nil) {
-            // use path
-            let fileURL = URL(fileURLWithPath: path)
-            do {
-                let jsonString = try String(contentsOf: fileURL, encoding: .utf8)
-                let data = jsonString.data(using: String.Encoding.utf8, allowLossyConversion: true)
-                let json: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
-                if let bannerArray = json["banners"] as? Array<[String: Any]>, !bannerArray.isEmpty {
-                    var bs: [Banner] = []
-                    for bannerJson in bannerArray {
-                        var type = -1
-                        if let t = bannerJson["type"] as? Int {
-                            type = t
-                        } else if let t = bannerJson["type"] as? String {
-                            if t.isNumber {
-                                type = Int(t)!
-                            }
-                        }
-                        if type == 1 || type == 3  || type == 4 {
-                            let banner = ServiceBanner(json: bannerJson)
-                            bs.append(banner)
-                        } else if type == 2 {
-                            let banner = URLBanner(json: bannerJson)
-                            bs.append(banner)
-                        } else {
-                            let banner = Banner(json: bannerJson)
-                            bs.append(banner)
-                        }
-                    }
-                    self.banners = bs
-                }
-            }
-            catch {
-                print(error)
-            }
-        }
-//        NHTTPHelper.httpGetBanner(complete: { response in
-//            if let datas = response.data, !datas.isEmpty {
-//                self.banners = datas
+//        if let path = Bundle.main.path(forResource: self.file, ofType: nil) {
+//            // use path
+//            let fileURL = URL(fileURLWithPath: path)
+//            do {
+//                let jsonString = try String(contentsOf: fileURL, encoding: .utf8)
+//                let data = jsonString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+//                let json: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+//                if let bannerArray = json["banners"] as? Array<[String: Any]>, !bannerArray.isEmpty {
+//                    var bs: [Banner] = []
+//                    for bannerJson in bannerArray {
+//                        var type = -1
+//                        if let t = bannerJson["type"] as? Int {
+//                            type = t
+//                        } else if let t = bannerJson["type"] as? String {
+//                            if t.isNumber {
+//                                type = Int(t)!
+//                            }
+//                        }
+//                        if type == 1 || type == 3  || type == 4 {
+//                            let banner = ServiceBanner(json: bannerJson)
+//                            bs.append(banner)
+//                        } else if type == 2 {
+//                            let banner = URLBanner(json: bannerJson)
+//                            bs.append(banner)
+//                        } else {
+//                            let banner = Banner(json: bannerJson)
+//                            bs.append(banner)
+//                        }
+//                    }
+//                    self.banners = bs
+//                }
 //            }
-//        })
+//            catch {
+//                print(error)
+//            }
+//        }
+        NHTTPHelper.httpGetBanner(complete: { response in
+            if let datas = response.data, !datas.isEmpty {
+                self.banners = datas
+            }
+        })
     }
     internal func getDoTrips() {
         self.doTripScrollerHeight.constant = 0
@@ -403,13 +402,13 @@ extension HomeController {
         imgView.contentMode = UIViewContentMode.scaleAspectFill
         imgView.clipsToBounds = true
         imgView.backgroundColor = UIColor.clear
-        imgView.image = UIImage(named: self.bannerImages[atindex])!
+//        imgView.image = UIImage(named: self.bannerImages[atindex])!
 //        imgView.af_setImage(withURL: banner.imageUrl)
-//        if banner.imageUrl != nil, let url: URL = URL(string: banner.imageUrl!) {
-//            imgView.af_setImage(withURL: url)
-//        } else {
-//            progress.isHidden = true
-//        }
+        if banner.imageUrl != nil, let url: URL = URL(string: banner.imageUrl!) {
+            imgView.af_setImage(withURL: url)
+        } else {
+            progress.isHidden = true
+        }
         control.addSubview(imgView)
         
         control.addConstraints([

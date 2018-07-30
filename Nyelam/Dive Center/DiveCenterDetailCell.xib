@@ -106,13 +106,13 @@
                             <constraint firstAttribute="width" secondItem="A5f-NI-mJT" secondAttribute="height" multiplier="1:1" id="DSX-rE-ICY"/>
                         </constraints>
                     </view>
-                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="E3y-Q8-mAB">
+                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="E3y-Q8-mAB">
                         <rect key="frame" x="16" y="111" width="288" height="287"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="E3y-Q8-mAB" secondAttribute="height" multiplier="1:1" constant="1" id="mUI-W3-1SE"/>
                         </constraints>
                     </mapView>
-                    <view userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FfV-1P-xpj">
+                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FfV-1P-xpj">
                         <rect key="frame" x="16" y="111.5" width="288" height="288"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vgM-vX-zkR">

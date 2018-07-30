@@ -81,6 +81,7 @@ class DiveCenterController: BaseViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+        
     
     fileprivate func initView() {
         self.title = "Dive Center"
@@ -115,14 +116,38 @@ class DiveCenterController: BaseViewController {
             }
             if let data = response.data {
                 self.diveCenter = data
-                var images: [String] = [self.diveCenter!.featuredImage!]
-                if let imgs = self.diveCenter!.images, !imgs.isEmpty {
-                    images.append(contentsOf: imgs)
+                if let featuredImage = self.diveCenter!.featuredImage, !featuredImage.isEmpty {
+                    var images: [String] = [featuredImage]
+                    if let imgs = self.diveCenter!.images, !imgs.isEmpty {
+                        images.append(contentsOf: imgs)
+                    }
+                    self.strechyHeaderView!.initBanner(images: images)
                 }
-                self.strechyHeaderView!.initBanner(images: images)
                 self.tryLoadRelatedServices(diveCenterId: diveCenterId, selectedLicense: self.selectedLicense ? 1: 0, selectedDate: self.selectedDate!, selectedDiver: self.selectedDiver, ecoTrip: self.ecotrip, forDoTrip: self.forDoTrip, forDoCourse: self.forDoCourse, organizationId: self.selectedOrganization != nil ? self.selectedOrganization!.id! : nil, licenseTypeId: self.selectedLicenseType != nil ? self.selectedLicenseType!.id! : nil)
+//                self.tryLoadDiveGuideList(divecenterId: diveCenterId)
             }
         })
+    }
+    
+    fileprivate func tryLoadDiveGuideList(divecenterId: String) {
+        NHTTPHelper.httpGetDiveGuideList(diveCenterId: divecenterId, complete: {response in
+            if let error = response.error {
+                self.loadingView.isHidden = true
+                UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {error in
+                    if error.isKind(of: NotConnectedInternetError.self) {
+                        NHelper.handleConnectionError(completion: {
+                            self.tryLoadDiveGuideList(divecenterId: divecenterId)
+                        })
+                    }
+                })
+                return
+            }
+            if let datas = response.data, !datas.isEmpty {
+                self.diveGuides = datas
+            }
+            self.tryLoadRelatedServices(diveCenterId: divecenterId, selectedLicense: self.selectedLicense ? 1: 0, selectedDate: self.selectedDate!, selectedDiver: self.selectedDiver, ecoTrip: self.ecotrip, forDoTrip: self.forDoTrip, forDoCourse: self.forDoCourse, organizationId: self.selectedOrganization != nil ? self.selectedOrganization!.id! : nil, licenseTypeId: self.selectedLicenseType != nil ? self.selectedLicenseType!.id! : nil)
+        })
+        
     }
     
     fileprivate func tryLoadRelatedServices(diveCenterId: String, selectedLicense: Int, selectedDate: Date, selectedDiver: Int, ecoTrip: Int?, forDoTrip: Bool, forDoCourse: Bool, organizationId: String?, licenseTypeId: String?) {
@@ -169,6 +194,16 @@ class DiveCenterController: BaseViewController {
 }
 
 extension DiveCenterController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if self.state == .detail {
+            if indexPath.section == 1 {
+                if let diveGuides = self.diveGuides, !diveGuides.isEmpty {
+                    let id = diveGuides[indexPath.row].id!
+                    DiveGuideDetailController.present(on: self, diveGuideId: id)
+                }
+            }
+        }
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             if state == .detail {
@@ -211,6 +246,10 @@ extension DiveCenterController: UITableViewDelegate, UITableViewDataSource {
                 if let licenseType = user.licenseType {
                     cell.diveGuideLicenseLabel.text = licenseType.name
                 }
+                if let picture = user.picture {
+                    cell.profileImageView.loadImage(from: picture, contentMode: .scaleAspectFill, with: "image_default")
+                }
+                return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "DiveServiceRelatedCell", for: indexPath) as! DiveServiceRelatedCell
                 cell.isDoTrip = self.forDoTrip
@@ -378,6 +417,7 @@ class DiveCenterDetailCell: NTableViewCell {
     }
     
     @IBAction func mapButtonAction(_ sender: Any) {
+        print("SELECTED!")
         if let coordinate = self.coordinate {
             self.onOpenMap(coordinate)
         }
@@ -419,9 +459,8 @@ class DiveCenterDetailCell: NTableViewCell {
                 }
                 self.locationLabel.text = locationText
             }
-            
         }
-        if let desc = diveCenter.diveDescription {
+        if let desc = diveCenter.diveDescription, !desc.isEmpty {
             self.descriptionLabel.attributedText = NSAttributedString.htmlAttriButedText(str: desc, fontName: "FiraSans-Regular", size: 14, color: UIColor.darkGray
             )
         } else {

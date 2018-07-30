@@ -93,6 +93,16 @@ class DiveServiceController: BaseViewController {
             let id = self.diveService != nil ? self.diveService!.id!:self.selectedKeyword!.id!
             self.tryLoadServiceDetail(serviceId: id, selectedLicense: selectedLicense.number, selectedDate: selectedDate!, selectedDiver: selectedDiver, forDoTrip: self.forDoTrip, forDoCourse: self.forDoCourse)
         }
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        var item = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(shareButtonAction(_:)))
+        item.setTitleTextAttributes([NSAttributedStringKey.font: UIFont(name: "FiraSans-SemiBold", size: 15)!,
+                                     NSAttributedStringKey.foregroundColor: UIColor.white], for: .normal)
+        self.navigationItem.rightBarButtonItem = item
+
     }
     
     fileprivate func getReviews() {
@@ -123,6 +133,16 @@ class DiveServiceController: BaseViewController {
 //            }
 //        })
     }
+    
+    @objc func shareButtonAction(_ button: UIBarButtonItem) {
+        let url = URL(string: "https://e-nyelam.com/download")!
+        let message = "Download for free on App Store\n"
+        let share = [message, url] as [Any]
+        let activityViewController = UIActivityViewController(activityItems: share, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+
     
     fileprivate func initView() {
         if #available(iOS 11.0, *) {
@@ -168,11 +188,13 @@ class DiveServiceController: BaseViewController {
                 }
                 if let data = response.data {
                     self.diveService = data
-                    var images: [String] = [self.diveService!.featuredImage!]
-                    if let imgs = self.diveService!.images, !imgs.isEmpty {
-                        images.append(contentsOf: imgs)
+                    if let featuredImage = self.diveService!.featuredImage, !featuredImage.isEmpty {
+                        var images: [String] = [featuredImage]
+                        if let imgs = self.diveService!.images, !imgs.isEmpty {
+                            images.append(contentsOf: imgs)
+                        }
+                        self.strechyHeaderView!.initBanner(images: images)
                     }
-                    self.strechyHeaderView!.initBanner(images: images)
                     let diveCenter = self.diveService!.divecenter!
                     self.tryLoadRelatedServices(diveCenterId: diveCenter.id!, selectedLicense: selectedLicense, selectedDate: selectedDate, selectedDiver: selectedDiver, ecoTrip: self.ecotrip, forDoTrip: forDoTrip, forDoCourse: self.forDoCourse, organizationId: self.selectedOrganization != nil ? self.selectedOrganization!.id! : nil, licenseTypeId: self.selectedLicenseType != nil ? self.selectedLicenseType!.id! : nil)
                 } else {
@@ -433,16 +455,19 @@ extension DiveServiceController: NStickyHeaderViewDelegate {
 }
 extension DiveServiceController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 1 {
-            _ = EquipmentRentController.present(on: self.navigationController!, diveCenterId: self.diveService!.divecenter!.id!, selectedDate: self.selectedDate!, equipments: self.equipments, onUpdateEquipment: {controller, equipments in
-                controller.dismiss(animated: true, completion: {
-                    let indexSet = IndexSet(integer: 1)
-                    self.equipments = equipments
-                    self.tableView.reloadSections(indexSet, with: .automatic)
+        if self.state == .detail {
+            if indexPath.section == 1 {
+                _ = EquipmentRentController.present(on: self.navigationController!, diveCenterId: self.diveService!.divecenter!.id!, selectedDate: self.selectedDate!, equipments: self.equipments, onUpdateEquipment: {controller, equipments in
+                    controller.dismiss(animated: true, completion: {
+                        let indexSet = IndexSet(integer: 1)
+                        self.equipments = equipments
+                        self.tableView.reloadSections(indexSet, with: .automatic)
+                    })
                 })
-            })
+            }
         }
     }
+    
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return -20
     }
@@ -922,7 +947,7 @@ class AddOnCell: NTableViewCell {
         
         // Configure the view for the selected state
     }
-    
+
 }
 
 enum TableState {

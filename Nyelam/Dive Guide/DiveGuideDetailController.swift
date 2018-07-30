@@ -25,7 +25,7 @@ class DiveGuideDetailController: BaseViewController {
     fileprivate var diveGuide: NUser?
     fileprivate var diveGuideId: String?
     fileprivate var strechyHeaderView: NStickyDiveGuideHeader?
-
+    fileprivate var state: DiveGuideTableState = .bio
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +62,11 @@ class DiveGuideDetailController: BaseViewController {
             }
             if let data = response.data {
                 self.diveGuide = data
-                self.aboutLabel.text = data.about
+                if let about = data.about, !about.isEmpty {
+                    self.aboutLabel.text = about
+                } else {
+                    self.aboutLabel.text = "No bio descripted"
+                }
                 self.strechyHeaderView!.initUser(user: data)
                 self.loadingView.isHidden = true
                 self.tableView.isHidden = false
@@ -78,7 +82,7 @@ class DiveGuideDetailController: BaseViewController {
         let nibViews = Bundle.main.loadNibNamed("NStickyDiveGuideHeader", owner: self, options: nil)
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
+        self.tableView.register(UINib(nibName: "DiveGuideDetailCell", bundle: nil), forCellReuseIdentifier: "DiveGuideDetailCell")
         self.strechyHeaderView = nibViews!.first as! NStickyDiveGuideHeader
         self.strechyHeaderView!.delegate = self
         self.strechyHeaderView!.expansionMode = .topOnly
@@ -101,12 +105,13 @@ class DiveGuideDetailController: BaseViewController {
 extension DiveGuideDetailController: NStickyDiveGuideHeaderDelegate {
     func stickyHeaderView(_ headerView: NStickyDiveGuideHeader, didSelectTabAt index: Int) {
         if index == 0 {
+            self.state = .bio
             self.aboutLabel.isHidden = true
-            self.tableView.isHidden = false
         } else {
+            self.state = .about
             self.aboutLabel.isHidden = false
-            self.tableView.isHidden = true
         }
+        self.tableView.reloadData()
     }
 }
 extension DiveGuideDetailController: UITableViewDelegate, UITableViewDataSource {
@@ -115,34 +120,32 @@ extension DiveGuideDetailController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let diveGuide = self.diveGuide {
-            return 4
+        if self.state == .bio {
+            if let diveGuide = self.diveGuide {
+                return 4
+            }
         }
         return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell")!
-        cell.textLabel!.text = self.titles[indexPath.row]
-        cell.textLabel!.font = UIFont(name: "FiraSans-SemiBold", size: 12)
-        cell.textLabel!.textColor = UIColor.black
-        cell.detailTextLabel!.font = UIFont(name: "FiraSans-Regular", size: 14)
-        cell.detailTextLabel!.textColor = UIColor.nyGray
-        cell.imageView!.image = UIImage(named: self.images[indexPath.row])
+        var cell = tableView.dequeueReusableCell(withIdentifier: "DiveGuideDetailCell") as! DiveGuideDetailCell
+        cell.titleLabel.text = self.titles[indexPath.row]
+        cell.contentImageView.image = UIImage(named: self.images[indexPath.row])
         if let diveGuide = self.diveGuide {
             switch indexPath.row {
             case 0:
                 if let organization = diveGuide.organization, let certificateNumber = diveGuide.certificateNumber {
-                    cell.detailTextLabel!.text = "\(organization.name) #\(certificateNumber)"
+                    cell.subtitleLabel.text = "\(organization.name) #\(certificateNumber)"
                 } else {
-                    cell.detailTextLabel!.text = "-"
+                    cell.subtitleLabel.text = "-"
                 }
                 break
             case 1:
                 if let nationality = diveGuide.nationality {
-                    cell.detailTextLabel!.text = nationality.name
+                    cell.subtitleLabel.text = nationality.name
                 } else {
-                    cell.detailTextLabel!.text = ""
+                    cell.subtitleLabel.text = "-"
                 }
                 break
             case 2:
@@ -156,7 +159,7 @@ extension DiveGuideDetailController: UITableViewDelegate, UITableViewDataSource 
                             language += ", "
                         }
                     }
-                    cell.detailTextLabel!.text = language
+                    cell.subtitleLabel.text = language
                 }
                 break
             case 3:
@@ -170,15 +173,21 @@ extension DiveGuideDetailController: UITableViewDelegate, UITableViewDataSource 
                             abiities += ", "
                         }
                     }
-                    cell.detailTextLabel!.text = abiities
+                    cell.subtitleLabel.text = abiities
                 } else {
-                    cell.detailTextLabel!.text = "-"
+                    cell.subtitleLabel.text = "-"
                 }
                 break
             default:
-                cell.detailTextLabel!.text = "-"
+                cell.subtitleLabel.text = "-"
             }
         }
         return cell
     }
 }
+
+enum DiveGuideTableState {
+    case bio
+    case about
+}
+

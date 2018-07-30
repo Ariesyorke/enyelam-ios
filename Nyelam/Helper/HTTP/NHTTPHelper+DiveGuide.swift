@@ -45,6 +45,7 @@ extension NHTTPHelper {
                         print(error)
                     }
                 }
+                complete(NHTTPResponse(resultStatus: true, data: user, error: nil))
             }
         })
     }
@@ -71,6 +72,7 @@ extension NHTTPHelper {
                                                 user!.parse(json: diveGuideJson)
                                             }
                                             user!.parse(json: diveGuideJson)
+                                            users!.append(user!)
                                         }
                                     } else if let diveGuideString = json["dive_guides"] as? String {
                                         do {
@@ -87,6 +89,7 @@ extension NHTTPHelper {
                                                     user!.parse(json: diveGuideJson)
                                                 }
                                                 user!.parse(json: diveGuideJson)
+                                                users!.append(user!)
                                             }
                                         } catch {
                                             print(error)

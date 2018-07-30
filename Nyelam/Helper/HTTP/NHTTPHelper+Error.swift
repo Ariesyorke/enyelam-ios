@@ -505,9 +505,9 @@ class NHTTPHelper {
     static var API_PATH_BANNER: String {
         switch NConstant.URL_TYPE {
         case .production:
-            return ""
+            return "master/banner"
         default:
-            return ""
+            return "api/master/banner"
         }
     }
     
@@ -523,18 +523,18 @@ class NHTTPHelper {
     static var API_PATH_DIVE_GUIDE_LIST: String {
         switch NConstant.URL_TYPE {
         case .production:
-            return ""
+            return "api/user/diveguideList"
         default:
-            return ""
+            return "api/user/diveguideList"
         }
     }
     
     static var API_PATH_DIVE_GUIDE_DETAIL: String {
         switch NConstant.URL_TYPE {
         case .production:
-            return ""
+            return "user/diveguide"
         default:
-            return ""
+            return "api/user/diveguide"
         }
     }
     
@@ -898,3 +898,4 @@ class UserNotFoundError: BaseError {
         super.init(statusCode: statusCode, title: title, message: message)
     }
 }
+

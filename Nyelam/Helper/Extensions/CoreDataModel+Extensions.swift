@@ -73,7 +73,11 @@ extension NCategory {
 
 extension NUser {
     func parse(json: [String : Any]) {
-        self.id = json["user_id"] as? String
+        if let id = json["user_id"] as? String {
+            self.id = id
+        } else if let id = json["id"] as? String {
+            self.id = id
+        }
         self.fullname = json["fullname"] as? String
         self.firstName = json["firstname"] as? String
         self.lastName = json["lastname"] as? String

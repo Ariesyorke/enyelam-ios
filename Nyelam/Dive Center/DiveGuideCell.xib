@@ -30,7 +30,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bbp-hx-b5h">
                         <rect key="frame" x="0.0" y="0.0" width="283.5" height="92.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="faN-rz-HjU">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_default.png" translatesAutoresizingMaskIntoConstraints="NO" id="faN-rz-HjU">
                                 <rect key="frame" x="16" y="16" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="jk0-Jr-8Lp"/>
@@ -115,5 +115,6 @@
     </objects>
     <resources>
         <image name="ic_arrow_right_grey" width="32" height="32"/>
+        <image name="image_default.png" width="500" height="375"/>
     </resources>
 </document>

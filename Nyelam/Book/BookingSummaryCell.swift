@@ -48,7 +48,7 @@ class BookingSummaryCell: NTableViewCell {
     
         let serviceAddtionalView: NAdditionalView = NAdditionalView(frame: CGRect.zero)
         serviceAddtionalView.translatesAutoresizingMaskIntoConstraints = false
-        serviceAddtionalView.initData(title: "Service Trip Package x \(selectedDiver)", price: servicePrice)
+        serviceAddtionalView.initData(title: "Service Trip Package x \(selectedDiver)", price: servicePrice * Double(selectedDiver))
         self.additionalViews = []
         for view in self.detailContainer.subviews {
             view.removeFromSuperview()
@@ -66,7 +66,7 @@ class BookingSummaryCell: NTableViewCell {
             for equipment in equipments {
                 let additionalView = NAdditionalView(frame: CGRect.zero)
                 additionalView.translatesAutoresizingMaskIntoConstraints = false
-                additionalView.initData(title: "\(equipment.name!) x\(equipment.quantity)", price: equipment.specialPrice)
+                additionalView.initData(title: "\(equipment.name!) x\(equipment.quantity)", price: equipment.specialPrice * Double(equipment.quantity))
                 self.detailContainer.addSubview(additionalView)
                 self.detailContainer.addConstraints([
                     NSLayoutConstraint(item: self.detailContainer, attribute: .leading, relatedBy: .equal, toItem: additionalView, attribute: .leading, multiplier: 1, constant: 0),
@@ -76,11 +76,12 @@ class BookingSummaryCell: NTableViewCell {
                                        multiplier: 1, constant: -4)
                     ])
                 self.additionalViews!.append(additionalView)
-                i += 1
-                if i >= (equipments.count) && additionals == nil || additionals!.isEmpty {
+                if i >= (equipments.count - 1) && additionals == nil || additionals!.isEmpty {
                     self.detailContainer.addConstraint(NSLayoutConstraint(item: self.detailContainer, attribute: .bottom, relatedBy: .equal, toItem: additionalView, attribute: .bottom, multiplier: 1, constant: 0))
                     return
                 }
+                i += 1
+
             }
         }
         
@@ -107,7 +108,9 @@ class BookingSummaryCell: NTableViewCell {
                 i += 1
             }
         } else {
-            self.additionalViews![0].addConstraint(NSLayoutConstraint(item: serviceAddtionalView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 44))
+            self.detailContainer.addConstraint(NSLayoutConstraint(item: self.detailContainer, attribute: .bottom, relatedBy: .equal, toItem: self.additionalViews![0], attribute: .bottom, multiplier: 1, constant: 0))
+            
+//            self.additionalViews![0].addConstraint(NSLayoutConstraint(item: serviceAddtionalView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 44))
         }
     }
     
