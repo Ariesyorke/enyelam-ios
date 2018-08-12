@@ -123,8 +123,8 @@ class DiveCenterController: BaseViewController {
                     }
                     self.strechyHeaderView!.initBanner(images: images)
                 }
-                self.tryLoadRelatedServices(diveCenterId: diveCenterId, selectedLicense: self.selectedLicense ? 1: 0, selectedDate: self.selectedDate!, selectedDiver: self.selectedDiver, ecoTrip: self.ecotrip, forDoTrip: self.forDoTrip, forDoCourse: self.forDoCourse, organizationId: self.selectedOrganization != nil ? self.selectedOrganization!.id! : nil, licenseTypeId: self.selectedLicenseType != nil ? self.selectedLicenseType!.id! : nil)
-//                self.tryLoadDiveGuideList(divecenterId: diveCenterId)
+//                self.tryLoadRelatedServices(diveCenterId: diveCenterId, selectedLicense: self.selectedLicense ? 1: 0, selectedDate: self.selectedDate!, selectedDiver: self.selectedDiver, ecoTrip: self.ecotrip, forDoTrip: self.forDoTrip, forDoCourse: self.forDoCourse, organizationId: self.selectedOrganization != nil ? self.selectedOrganization!.id! : nil, licenseTypeId: self.selectedLicenseType != nil ? self.selectedLicenseType!.id! : nil)
+                self.tryLoadDiveGuideList(divecenterId: diveCenterId)
             }
         })
     }
@@ -417,7 +417,6 @@ class DiveCenterDetailCell: NTableViewCell {
     }
     
     @IBAction func mapButtonAction(_ sender: Any) {
-        print("SELECTED!")
         if let coordinate = self.coordinate {
             self.onOpenMap(coordinate)
         }
@@ -435,16 +434,19 @@ class DiveCenterDetailCell: NTableViewCell {
             self.phoneNumberLabel.text = contact.phoneNumber
             if let location = contact.location {
                 if let coordinate = location.coordinate {
-                    self.coordinate = coordinate
-                    let centerCoord = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude)
-                    self.mapView.setCenter(centerCoord, animated: true)
-                    let span = MKCoordinateSpanMake(0.075, 0.075)
-                    let region = MKCoordinateRegion(center: centerCoord, span: span)
-                    self.mapView.setRegion(region, animated: true)
-                    let annotation = MKPointAnnotation()
-                    annotation.coordinate = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude)
-                    annotation.title = diveCenter.name
-                    self.mapView.addAnnotation(annotation)
+                    let c = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude)
+                    if CLLocationCoordinate2DIsValid(c) {
+                        self.coordinate = coordinate
+                        let centerCoord = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude)
+                        self.mapView.setCenter(centerCoord, animated: true)
+                        let span = MKCoordinateSpanMake(0.075, 0.075)
+                        let region = MKCoordinateRegion(center: centerCoord, span: span)
+                        self.mapView.setRegion(region, animated: true)
+                        let annotation = MKPointAnnotation()
+                            annotation.coordinate = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude)
+                            annotation.title = diveCenter.name
+                            self.mapView.addAnnotation(annotation)
+                    }
                 }
           
                 var locationText = ""

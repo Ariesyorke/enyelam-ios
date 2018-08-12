@@ -217,12 +217,17 @@ class DiveServiceController: BaseViewController {
                 }
                 if let data = response.data {
                     self.diveService = data
-                    var images: [String] = [self.diveService!.featuredImage!]
-                    if let imgs = self.diveService!.images, !imgs.isEmpty {
-                        images.append(contentsOf: imgs)
+                    if let featuredImage = self.diveService!.featuredImage, !featuredImage.isEmpty {
+                        var images: [String] = [featuredImage]
+                        if let imgs = self.diveService!.images, !imgs.isEmpty {
+                            images.append(contentsOf: imgs)
+                        }
+                        self.strechyHeaderView!.initBanner(images: images)
                     }
-                    self.strechyHeaderView!.initBanner(images: images)
                     let diveCenter = self.diveService!.divecenter!
+                    self.tableView.isHidden = false
+                    self.tableView.reloadData()
+
                     self.tryLoadRelatedServices(diveCenterId: diveCenter.id!, selectedLicense: selectedLicense, selectedDate: selectedDate, selectedDiver: selectedDiver, ecoTrip: self.ecotrip, forDoTrip: forDoTrip, forDoCourse: self.forDoCourse, organizationId: self.selectedOrganization != nil ? self.selectedOrganization!.id! : nil, licenseTypeId: self.selectedLicenseType != nil ? self.selectedLicenseType!.id! : nil)
                 } else {
                     UIAlertController.handleErrorMessage(viewController: self, error: "Stock not available", completion: {
@@ -242,17 +247,20 @@ class DiveServiceController: BaseViewController {
                         }
                     })
                 }
+                
                 if let data = response.data {
                     self.diveService = data
-                    var images: [String] = []
-                    if let featuredImage = self.diveService!.featuredImage {
-                        images.append(featuredImage)
+                    if let featuredImage = self.diveService!.featuredImage, !featuredImage.isEmpty {
+                        var images: [String] = [featuredImage]
+                        if let imgs = self.diveService!.images, !imgs.isEmpty {
+                            images.append(contentsOf: imgs)
+                        }
+                        self.strechyHeaderView!.initBanner(images: images)
                     }
-                    if let imgs = self.diveService!.images, !imgs.isEmpty {
-                        images.append(contentsOf: imgs)
-                    }
-                    self.strechyHeaderView!.initBanner(images: images)
                     let diveCenter = self.diveService!.divecenter!
+//                    self.tableView.isHidden = false
+//                    self.tableView.reloadData()
+
                     self.tryLoadRelatedServices(diveCenterId: diveCenter.id!, selectedLicense: selectedLicense, selectedDate: selectedDate, selectedDiver: selectedDiver, ecoTrip: self.ecotrip, forDoTrip: forDoTrip, forDoCourse: self.forDoCourse, organizationId: self.selectedOrganization != nil ? self.selectedOrganization!.id! : nil, licenseTypeId: self.selectedLicenseType != nil ? self.selectedLicenseType!.id! : nil)
                 } else {
                     UIAlertController.handleErrorMessage(viewController: self, error: "Stock not available", completion: {

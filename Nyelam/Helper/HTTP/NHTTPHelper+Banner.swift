@@ -35,9 +35,6 @@ extension NHTTPHelper {
                         } else if type == 2 {
                             let banner = URLBanner(json: bannerJson)
                             banners!.append(banner)
-                        } else {
-                            let banner = Banner(json: bannerJson)
-                            banners!.append(banner)
                         }
                     }
                 } else if let bannerString = json["banners"] as? String {

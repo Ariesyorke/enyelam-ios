@@ -14,6 +14,7 @@ import MessageUI
 import SwiftDate
 
 class HomeController: BaseViewController, UIScrollViewDelegate, MFMailComposeViewControllerDelegate {
+    
     let file = "banner.json"
     private var bannerImages: [String] = ["banner_1", "banner_2", "banner_3"]
     @IBOutlet weak var bannerScroller: UIScrollView!
@@ -27,9 +28,11 @@ class HomeController: BaseViewController, UIScrollViewDelegate, MFMailComposeVie
     @IBOutlet weak var doTripLoadingView: UIActivityIndicatorView!
     @IBOutlet weak var doTripContainer: UIView!
     @IBOutlet weak var doTripScrollerHeight: NSLayoutConstraint!
+    @IBOutlet weak var homeScroller: UIScrollView!
     
     var contentViews: [UIView] = []
     var sideMenuController: SideMenuController?
+    var refreshControl: UIRefreshControl?
     
     var banners: [Banner]? {
         didSet {
@@ -112,8 +115,9 @@ class HomeController: BaseViewController, UIScrollViewDelegate, MFMailComposeVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupSideMenu()
+    //    self.setupSideMenu()
 //        self.banners = [Banner(), Banner(), Banner()]
+        self.initRefreshControl()
         self.getDoTrips()
     }
     
@@ -123,6 +127,20 @@ class HomeController: BaseViewController, UIScrollViewDelegate, MFMailComposeVie
             self.firstTime = false
             self.getBanner()
         }
+    }
+    
+    
+    fileprivate func initRefreshControl() {
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl!.attributedTitle = NSAttributedString(string: "Please wait")
+        self.refreshControl!.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        self.homeScroller.addSubview(refreshControl!)
+    }
+    
+    @objc func refresh(_ refreshControl: UIRefreshControl) {
+        self.refreshControl!.beginRefreshing()
+        self.getBanner()
+        self.getDoTrips()
     }
     
     fileprivate func getBanner() {
@@ -163,8 +181,14 @@ class HomeController: BaseViewController, UIScrollViewDelegate, MFMailComposeVie
 //            }
 //        }
         NHTTPHelper.httpGetBanner(complete: { response in
+            self.refreshControl!.endRefreshing()
+//            self.bannerPageControl.currentPage = 0
+            self.contentViews = []
             if let datas = response.data, !datas.isEmpty {
                 self.banners = datas
+            } else {
+                self.bannerPageControl.numberOfPages = 1
+                self.banners = nil
             }
         })
     }
@@ -249,18 +273,18 @@ extension HomeController {
             let serviceBanner = self.banners![index] as! ServiceBanner
             if serviceBanner.type == 1 {
                 let result = SearchResultService()
-                result.id = serviceBanner.id
+                result.id = serviceBanner.serviceId
                 result.license = serviceBanner.license
                 result.name = serviceBanner.serviceName
                 _ = DiveServiceController.push(on: self.navigationController!, forDoTrip: serviceBanner.doTrip, selectedKeyword: result, selectedLicense: serviceBanner.license, selectedDiver: 1, selectedDate: serviceBanner.date!, ecoTrip: serviceBanner.ecotrip)
             } else if serviceBanner.type == 4 {
                 let result = SearchResultService()
-                result.id = serviceBanner.id
+                result.id = serviceBanner.serviceId
                 result.license = serviceBanner.license
                 result.name = serviceBanner.serviceName
-                _ = DiveServiceController.push(on: self.navigationController!, forDoCourse: false, selectedKeyword: result, selectedDiver: 1, selectedDate: serviceBanner.date!, diveService: nil, selectedOrganization: serviceBanner.masterOrganization!, selectedLicenseType: serviceBanner.licenseType!)
+                _ = DiveServiceController.push(on: self.navigationController!, forDoCourse: true, selectedKeyword: result, selectedDiver: 1, selectedDate: serviceBanner.date!, diveService: nil, selectedOrganization: serviceBanner.masterOrganization!, selectedLicenseType: serviceBanner.licenseType!)
             } else {
-                _ = SearchFormController.push(on: self.navigationController!, forDoTrip: false, serviceId: serviceBanner.id!, serviceName: serviceBanner.serviceName!, license: serviceBanner.license)
+                _ = SearchFormController.push(on: self.navigationController!, forDoTrip: false, serviceId: serviceBanner.serviceId!, serviceName: serviceBanner.serviceName!, license: serviceBanner.license)
             }
         } else if self.banners![index].isKind(of: URLBanner.self) {
             let urlBanner = self.banners![index] as! URLBanner
