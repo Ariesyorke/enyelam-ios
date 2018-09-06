@@ -1813,7 +1813,7 @@ extension NSummary {
             if self.diveService == nil {
                 self.diveService = NSEntityDescription.insertNewObject(forEntityName: "NDiveService", into: AppDelegate.sharedManagedContext) as! NDiveService
             }
-            self.diveService!.parse(json: json)
+            self.diveService!.parse(json: serviceJson)
         } else if let serviceString = json[KEY_SERVICE] as? String {
             do {
                 let data = serviceString.data(using: String.Encoding.utf8, allowLossyConversion: true)
@@ -1824,7 +1824,7 @@ extension NSummary {
                 if self.diveService == nil {
                     self.diveService = NDiveService()
                 }
-                self.diveService!.parse(json: json)
+                self.diveService!.parse(json: serviceJson)
             } catch {
                 print(error)
             }
@@ -2108,4 +2108,482 @@ extension NLicenseType: Parseable {
         return nil
     }
 
+}
+
+extension NDistrict: Parseable {
+    private var KEY_ID: String  {
+        return "id"
+    }
+    
+    private var KEY_NAME: String {
+        return "name"
+    }
+    
+    func parse(json: [String : Any]) {
+        self.id = json[KEY_ID] as? String
+        self.name = json[KEY_NAME] as? String
+    }
+    
+    func serialized() -> [String : Any] {
+        var json: [String: Any] = [:]
+        if let id = self.id {
+            json[KEY_ID] = id
+        }
+        
+        if let name = self.name {
+            json[KEY_NAME] = name
+        }
+        
+        return json
+    }
+    
+    static func getDistrict(using id: String)->NDistrict? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NDistrict")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        do {
+            let results = try managedContext.fetch(fetchRequest) as? [NDistrict]
+            if let results = results, !results.isEmpty {
+                return results.first
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+}
+
+extension NProductCategory: Parseable {
+    
+    private var KEY_ID: String  {
+        return "id"
+    }
+    
+    private var KEY_NAME: String {
+        return "name"
+    }
+    
+    private var KEY_IMAGE_URL: String {
+        return "image_url"
+    }
+    
+    static func getProductCategory(using id: String)->NProductCategory? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NProductCategory")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        do {
+            let results = try managedContext.fetch(fetchRequest) as? [NProductCategory]
+            if let results = results, !results.isEmpty {
+                return results.first
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+    
+    func parse(json: [String : Any]) {
+        self.id = json[KEY_ID] as? String
+        self.name = json[KEY_NAME] as? String
+        self.imageUrl = json[KEY_IMAGE_URL] as? String
+    }
+    
+    func serialized() -> [String : Any] {
+        var json: [String: Any] = [:]
+        if let id = self.id {
+            json[KEY_ID] = id
+        }
+        if let name = self.name {
+            json[KEY_NAME] = name
+        }
+        if let imageUrl = self.imageUrl {
+            json[KEY_IMAGE_URL] = imageUrl
+        }
+        return json
+    }
+}
+
+extension NProduct: Parseable {
+    private var KEY_ID: String  {
+        return "id"
+    }
+    private var KEY_NAME: String {
+        return "product_name"
+    }
+    private var KEY_FEATURED_IMAGE: String {
+        return "featured_image"
+    }
+    private var KEY_IMAGES: String {
+        return "images"
+    }
+    private var KEY_SPECIAL_PRICE: String {
+        return "special_price"
+    }
+    private var KEY_NORMAL_PRICE: String {
+        return "normal_price"
+    }
+    private var KEY_STATUS: String {
+        return "status"
+    }
+    private var KEY_COLOR: String {
+        return "color"
+    }
+    private var KEY_HEX_COLOR: String {
+        return "hex_color"
+    }
+    private var KEY_SIZE: String {
+        return "size"
+    }
+    private var KEY_CATEGORIES: String {
+        return "categories"
+    }
+    private var KEY_VARIATIONS: String {
+        return "variations"
+    }
+    private var KEY_DESCRIPTION: String {
+        return "description"
+    }
+    
+    static func getProduct(using id: String)->NProduct? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NProduct")
+        fetchRequest.predicate = NSPredicate(format: "productId == %@", id)
+        do {
+            let results = try managedContext.fetch(fetchRequest) as? [NProduct]
+            if let results = results, !results.isEmpty {
+                return results.first
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+
+    
+    func parse(json: [String : Any]) {
+        self.productId = json[KEY_ID] as? String
+        self.productName = json[KEY_NAME] as? String
+        self.featuredImage = json[KEY_FEATURED_IMAGE] as? String
+        self.productDescription = json[KEY_DESCRIPTION] as? String
+        if let images = json[KEY_IMAGES] as? [String], !images.isEmpty {
+            self.images = images
+        } else if let imagesString = json[KEY_IMAGES] as? String {
+            do {
+                let data = imagesString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let images: Array<String> = try JSONSerialization.jsonObject(with: data!, options: []) as! [String]
+                self.images = images
+            } catch {
+                print(error)
+            }
+        }
+        if let specialPrice = json[KEY_SPECIAL_PRICE] as? Double {
+            self.specialPrice = specialPrice
+        } else if let specialPrice = json[KEY_SPECIAL_PRICE] as? String {
+            if specialPrice.isNumber {
+                self.specialPrice = Double(specialPrice)!
+            }
+        }
+        if let normalPrice = json[KEY_NORMAL_PRICE] as? Double {
+            self.normalPrice = normalPrice
+        } else if let normalPrice = json[KEY_NORMAL_PRICE] as? String {
+            if normalPrice.isNumber {
+                self.normalPrice = Double(normalPrice)!
+            }
+        }
+        self.color = json[KEY_COLOR] as? String
+        self.status = json[KEY_STATUS] as? String
+        self.hexColor = json[KEY_HEX_COLOR] as? String
+        if let sizeArray = json[KEY_SIZE] as? Array<[String: Any]>, !sizeArray.isEmpty {
+            for sizeJson in sizeArray {
+                let size = Size(json: sizeJson)
+                if self.sizes == nil {
+                    self.sizes = []
+                }
+                self.sizes!.append(size)
+            }
+        } else if let sizeArrayString = json[KEY_SIZE] as? String {
+            do {
+                let data = sizeArrayString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let sizeArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+                for sizeJson in sizeArray {
+                    let size = Size(json: sizeJson)
+                    if self.sizes == nil {
+                        self.sizes = []
+                    }
+                    self.sizes!.append(size)
+                }
+            } catch {
+                print(error)
+            }
+        }
+        if let categoriesArray = json[KEY_CATEGORIES] as? Array<[String: Any]>, !categoriesArray.isEmpty {
+            for categoryJson in categoriesArray {
+                var category: NProductCategory? = nil
+                if let id = categoryJson["id"] as? String {
+                    category = NProductCategory.getProductCategory(using: id)
+                }
+                if category == nil {
+                    category = NSEntityDescription.insertNewObject(forEntityName: "NProductCategory", into: AppDelegate.sharedManagedContext) as! NProductCategory
+                    category!.parse(json: categoryJson)
+                }
+                self.addToCategories(category!)
+            }
+        } else if let categoriesArrayString = json[KEY_CATEGORIES] as? String {
+            do {
+                let data = categoriesArrayString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let categoriesArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+                for categoryJson in categoriesArray {
+                    var category: NProductCategory? = nil
+                    if let id = categoryJson["id"] as? String {
+                        category = NProductCategory.getProductCategory(using: id)
+                    }
+                    if category == nil {
+                        category = NSEntityDescription.insertNewObject(forEntityName: "NProductCategory", into: AppDelegate.sharedManagedContext) as! NProductCategory
+                        category!.parse(json: categoryJson)
+                    }
+                    self.addToCategories(category!)
+                }
+            } catch {
+                print(error)
+            }
+        }
+        if let variationsArray = json[KEY_VARIATIONS] as? Array<[String: Any]>, !variationsArray.isEmpty {
+            for variationJson in variationsArray {
+                var productVariation: NProduct? = nil
+                if let id = variationJson["id"] as? String {
+                    productVariation = NProduct.getProduct(using: id)
+                }
+                if productVariation == nil {
+                    productVariation = NSEntityDescription.insertNewObject(forEntityName: "NProduct", into: AppDelegate.sharedManagedContext) as! NProduct
+                    productVariation!.parse(json: variationJson)
+                }
+                self.addToVariations(productVariation!)
+            }
+        } else if let variationString = json[KEY_VARIATIONS] as? String {
+            do {
+                let data = variationString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let variationsArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+                for variationJson in variationsArray {
+                    var productVariation: NProduct? = nil
+                    if let id = variationJson["id"] as? String {
+                        productVariation = NProduct.getProduct(using: id)
+                    }
+                    if productVariation == nil {
+                        productVariation = NSEntityDescription.insertNewObject(forEntityName: "NProduct", into: AppDelegate.sharedManagedContext) as! NProduct
+                        productVariation!.parse(json: variationJson)
+                    }
+                    self.addToVariations(productVariation!)
+                }
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    func serialized() -> [String : Any] {
+        var json: [String: Any] = [:]
+        if let productId = self.productId {
+            json[KEY_ID] = productId
+        }
+        if let productName = self.productName {
+            json[KEY_NAME] = productName
+        }
+        if let featuredImage = self.featuredImage {
+            json[KEY_FEATURED_IMAGE] = featuredImage
+        }
+        if let productDescription = self.productDescription {
+            json[KEY_DESCRIPTION] = productDescription
+        }
+        if let images = self.images, !images.isEmpty {
+            json[KEY_IMAGES] = images
+        }
+        json[KEY_SPECIAL_PRICE] = self.specialPrice
+        json[KEY_NORMAL_PRICE] = self.normalPrice
+        if let status = self.status {
+            json[KEY_STATUS] = status
+        }
+        if let color = self.color {
+            json[KEY_COLOR] = color
+        }
+        if let hexColor = self.hexColor {
+            json[KEY_HEX_COLOR] = hexColor
+        }
+        if let sizes = self.sizes, !sizes.isEmpty {
+            var array: Array<[String: Any]> = []
+            for size in sizes {
+                array.append(size.serialized())
+            }
+            json[KEY_SIZE] = array
+        }
+        if let nsset = self.categories, let categories = nsset.allObjects as? [NProductCategory], !categories.isEmpty {
+            var array: Array<[String: Any]> = []
+            for category in categories {
+                array.append(category.serialized())
+            }
+            json[KEY_CATEGORIES] = array
+        }
+        if let nsset = self.variations, let variations = nsset.allObjects as? [NProductCategory], !variations.isEmpty {
+            var array: Array<[String: Any]> = []
+            for variation in variations {
+                array.append(variation.serialized())
+            }
+            json[KEY_VARIATIONS] = array
+        }
+        if let productDescription = self.productDescription {
+            json[KEY_DESCRIPTION] = productDescription
+        }
+        return json
+    }
+}
+
+extension NShippingAddress: Parseable {
+    private var KEY_ADDRESS_ID: String {
+        return "address_id"
+    }
+    
+    private var KEY_FULLNAME: String {
+        return "fullname"
+    }
+    
+    private var KEY_ADDRESS: String {
+        return "address"
+    }
+    
+    private var KEY_ZIPCODE: String {
+        return "zipcode"
+    }
+    
+    private var KEY_PROVINCE: String {
+        return "province"
+    }
+    
+    private var KEY_CITY: String {
+        return "city"
+    }
+    
+    private var KEY_DISTRICT: String {
+        return "district"
+    }
+    
+    private var KEY_PHONE_NUMBER: String {
+        return "phone_number"
+    }
+    
+    private var KEY_IS_PICKED: String {
+        return "is_picked"
+    }
+    
+    func parse(json: [String : Any]) {
+        self.addressId = json[KEY_ADDRESS_ID] as? String
+        self.fullname = json[KEY_FULLNAME] as? String
+        self.address = json[KEY_ADDRESS] as? String
+        self.zipcode = json[KEY_ZIPCODE] as? String
+        if let provinceJson = json[KEY_PROVINCE] as? [String: Any] {
+            if let id = provinceJson["id"] as? String {
+                self.province = NProvince.getProvince(using: id)
+            }
+            if self.province == nil {
+                self.province = NSEntityDescription.insertNewObject(forEntityName: "NProvince", into: AppDelegate.sharedManagedContext) as! NProvince
+                self.province!.parse(json: provinceJson)
+            }
+        } else if let provinceString = json[KEY_PROVINCE] as? String {
+            do {
+                let data = provinceString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let provinceJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                if let id = provinceJson["id"] as? String {
+                    self.province = NProvince.getProvince(using: id)
+                }
+                if self.province == nil {
+                    self.province = NSEntityDescription.insertNewObject(forEntityName: "NProvince", into: AppDelegate.sharedManagedContext) as! NProvince
+                    self.province!.parse(json: provinceJson)
+                }
+            } catch {
+                print(error)
+            }
+        }
+        if let cityJson = json[KEY_CITY] as? [String: Any] {
+            if let id = cityJson["id"] as? String {
+                self.city = NCity.getCity(using: id)
+            }
+            if self.city == nil {
+                self.city = NSEntityDescription.insertNewObject(forEntityName: "NCity", into: AppDelegate.sharedManagedContext) as! NCity
+                self.city!.parse(json: cityJson)
+            }
+        } else if let cityString = json[KEY_CITY] as? String {
+            do {
+                let data = cityString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let cityJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                if let id = cityJson["id"] as? String {
+                    self.city = NCity.getCity(using: id)
+                }
+                if self.city == nil {
+                    self.city = NSEntityDescription.insertNewObject(forEntityName: "NCity", into: AppDelegate.sharedManagedContext) as! NCity
+                    self.city!.parse(json: cityJson)
+                }
+            } catch {
+                print(error)
+            }
+        }
+        if let districtJson = json[KEY_DISTRICT] as? [String: Any] {
+            if let id = districtJson["id"] as? String {
+                self.district = NDistrict.getDistrict(using: id)
+            }
+            if self.district == nil {
+                self.district = NSEntityDescription.insertNewObject(forEntityName: "NDistrict", into: AppDelegate.sharedManagedContext) as! NDistrict
+                self.district!.parse(json: districtJson)
+            }
+        } else if let districtString = json[KEY_DISTRICT] as? String {
+            do {
+                let data = districtString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let districtJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                if let id = districtJson["id"] as? String {
+                    self.district = NDistrict.getDistrict(using: id)
+                }
+                if self.district == nil {
+                    self.district = NSEntityDescription.insertNewObject(forEntityName: "NDistrict", into: AppDelegate.sharedManagedContext) as! NDistrict
+                    self.district!.parse(json: districtJson)
+                }
+            } catch {
+                print(error)
+            }
+        }
+        self.phoneNumber = json[KEY_PHONE_NUMBER] as? String
+        if let isPicked = json[KEY_IS_PICKED] as? Bool {
+            self.isPicked = isPicked
+        } else if let isPicked = json[KEY_IS_PICKED] as? String {
+            self.isPicked = isPicked.toBool
+        }
+    }
+    
+    func serialized() -> [String : Any] {
+        var json: [String: Any] = [:]
+        if let addressId = self.addressId {
+            json[KEY_ADDRESS_ID] = addressId
+        }
+        if let fullname = self.fullname {
+            json[KEY_FULLNAME] = fullname
+        }
+        if let address = self.address {
+            json[KEY_ADDRESS] = address
+        }
+        if let zipcode = self.zipcode {
+            json[KEY_ZIPCODE] = zipcode
+        }
+        if let province = self.province {
+            json[KEY_PROVINCE] = province.serialized()
+        }
+        if let city = self.city {
+            json[KEY_CITY] = city.serialized()
+        }
+        if let district = self.district {
+            json[KEY_DISTRICT] = district.serialized()
+        }
+        if let phoneNumber = self.phoneNumber {
+            json[KEY_PHONE_NUMBER] = phoneNumber
+        }
+        json[KEY_IS_PICKED] = self.isPicked
+        return json
+    }
+    
+    
 }

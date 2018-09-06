@@ -411,6 +411,7 @@ extension NHTTPHelper {
                                             diveservices!.append(diveService!)
                                         }
                                     } else if let diveServiceString = json["dive_services"] as? String {
+                                        print("TEST 5")
                                         do {
                                             let data = diveServiceString.data(using: String.Encoding.utf8, allowLossyConversion: true)
                                             let diveServiceArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
@@ -431,6 +432,7 @@ extension NHTTPHelper {
                                             print(error)
                                         }
                                     }
+                                    print("TEST 6")
                                     complete(NHTTPResponse(resultStatus: true, data: diveservices, error: nil))
                                 }
                                 

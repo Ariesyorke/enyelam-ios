@@ -114,11 +114,18 @@ class StarterViewController: BaseViewController {
                 return
             }
             NSManagedObjectContext.saveData {
-                self.goToHomepage()
+                if let _ = NAuthReturn.authUser() {
+                    self.goToHomepage()
+                } else {
+                    self.goToOnBoarding()
+                }
             }
         })
     }
     
+    internal func goToOnBoarding() {
+        let _ = OnboardingController.present(on: self)
+    }
     internal func goToHomepage() {
 //        let _ = MainRootController.present(on: self)
         let _ = MainNavigationController.present(on: self)

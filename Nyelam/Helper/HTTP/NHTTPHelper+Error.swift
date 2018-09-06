@@ -29,6 +29,7 @@ class NHTTPHelper {
     static let POST_API_VER = "api_ver"
     static let POST_TIMESTAMP = "timestamp"
     static let POST_DEVICE = "device"
+    static let POST_PLATFORM = "platform"
     
     internal static func httpCancelRequest(apiUrl: String) {
         let sessionManager = Alamofire.SessionManager.default
@@ -523,7 +524,7 @@ class NHTTPHelper {
     static var API_PATH_DIVE_GUIDE_LIST: String {
         switch NConstant.URL_TYPE {
         case .production:
-            return "api/user/diveguideList"
+            return "user/diveguideList"
         default:
             return "api/user/diveguideList"
         }
@@ -535,6 +536,15 @@ class NHTTPHelper {
             return "user/diveguide"
         default:
             return "api/user/diveguide"
+        }
+    }
+    
+    static var API_PATH_ADD_VOUCHER: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "order/voucher"
+        default:
+            return "api/order/voucher"
         }
     }
     
@@ -596,11 +606,14 @@ class NHTTPHelper {
             param[POST_OS_VER] = NConstant.osVersion
             param[POST_DEVICE] = NConstant.deviceModel
             param[POST_TIMESTAMP] = String(NConstant.currentTimeStamp)
+            param[POST_PLATFORM] = NConstant.platform
+            
             if let parameters = parameters {
                 for (key, value) in parameters {
                     param[key] = value
                 }
             }
+            
             let headers: HTTPHeaders = [
                 "Content-type": "multipart/form-data"
             ]
@@ -685,6 +698,7 @@ class NHTTPHelper {
             complete(false, nil, UserNotFoundError(statusCode: -1, title: "User is either not login or token is expired", message: nil))
         }
     }
+    
     internal static func basicPostStringRequest(URLString: URLConvertible,
         parameters: [String: Any]? = nil,
         headers: [String: String]? = nil,
@@ -700,6 +714,7 @@ class NHTTPHelper {
         param[POST_OS_VER] = NConstant.osVersion
         param[POST_DEVICE] = NConstant.deviceModel
         param[POST_TIMESTAMP] = String(NConstant.currentTimeStamp)
+        param[POST_PLATFORM] = NConstant.platform
         
         if let parameters = parameters {
             for (key, value) in parameters {
@@ -776,7 +791,8 @@ class NHTTPHelper {
         param[POST_OS_VER] = NConstant.osVersion
         param[POST_DEVICE] = NConstant.deviceModel
         param[POST_TIMESTAMP] = String(NConstant.currentTimeStamp)
-        
+        param[POST_PLATFORM] = NConstant.platform
+
         if let parameters = parameters {
             for (key, value) in parameters {
                 param[key] = value

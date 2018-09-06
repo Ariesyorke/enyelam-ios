@@ -135,8 +135,8 @@ extension DiveGuideDetailController: UITableViewDelegate, UITableViewDataSource 
         if let diveGuide = self.diveGuide {
             switch indexPath.row {
             case 0:
-                if let organization = diveGuide.organization, let certificateNumber = diveGuide.certificateNumber {
-                    cell.subtitleLabel.text = "\(organization.name) #\(certificateNumber)"
+                if let organization = diveGuide.organization, let name = organization.name, let certificateNumber = diveGuide.certificateNumber {
+                    cell.subtitleLabel.text = "\(name) #\(certificateNumber)"
                 } else {
                     cell.subtitleLabel.text = "-"
                 }

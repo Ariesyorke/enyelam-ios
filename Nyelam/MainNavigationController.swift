@@ -25,8 +25,6 @@ class MainNavigationController: BaseNavigationController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

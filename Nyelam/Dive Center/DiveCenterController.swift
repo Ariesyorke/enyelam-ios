@@ -8,13 +8,14 @@
 
 import UIKit
 import Cosmos
-import GoogleMaps
 import MapKit
+import CoreLocation
 
-class DiveCenterController: BaseViewController {
+class DiveCenterController: BaseViewController, CLLocationManagerDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loadingView: UIActivityIndicatorView!
     @IBOutlet weak var reviewNotFoundLabel: UILabel!
+    var locationManager = CLLocationManager()
     
     static func push(on controller: UINavigationController, forDoTrip: Bool, selectedKeyword: SearchResult?, selectedLicense: Bool, selectedDiver: Int, selectedDate: Date, ecoTrip: Int?,
                      diveCenter: NDiveCenter?) -> DiveCenterController {
@@ -73,15 +74,30 @@ class DiveCenterController: BaseViewController {
         super.viewDidAppear(animated)
         if self.firstTime {
             self.firstTime = false
+            self.getLocation()
             self.initView()
             self.tryLoadDiveCenterDetail(diveCenterId: self.diveCenter!.id!)
         }
+    }
+    
+    func getLocation() {
+        self.locationManager.delegate = self
+        if #available(iOS 11.0, *) {
+            self.locationManager.requestAlwaysAuthorization()
+        } else {
+            self.locationManager.requestWhenInUseAuthorization()
+        }
+        self.locationManager.startUpdatingLocation()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-        
+    
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    
+    }
     
     fileprivate func initView() {
         self.title = "Dive Center"

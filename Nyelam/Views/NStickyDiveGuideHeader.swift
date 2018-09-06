@@ -39,8 +39,8 @@ class NStickyDiveGuideHeader: GSKStretchyHeaderView, UIScrollViewDelegate {
         if let licenseType = user.licenseType {
             self.diveGuideLicenseTypeLabel.text = licenseType.name
         }
-        if let picture = user.picture {
-            self.imageProfileView.loadImage(from: picture, contentMode: .scaleAspectFill, with: "image_default")
+        if let picture = user.picture, let url = URL(string: picture) {
+            self.imageProfileView.af_setImage(withURL: url)
         }
     }
 }

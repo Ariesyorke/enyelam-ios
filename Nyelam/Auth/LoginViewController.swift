@@ -153,7 +153,16 @@ class LoginViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDel
                     registerViewController.socmedId = id
                     registerViewController.type = type
                     if type == "google" {
-                        registerViewController.fullName = ("\(self.googleUser!.profile.givenName) \(self.googleUser!.profile.familyName)")
+                        if let googleUser = self.googleUser {
+                            var fullName: String? = nil
+                            if let profile = googleUser.profile {
+                                fullName = profile.givenName!
+                                if let lastName = profile.familyName, !lastName.isEmpty {
+                                    fullName = "\(profile.givenName!) \(lastName)"
+                                }
+                            }
+                            registerViewController.fullName = fullName
+                        }
                         if self.googleUser!.profile.hasImage {
                             registerViewController.pictureUrl = self.googleUser!.profile.imageURL(withDimension: 200).absoluteString
                         }

@@ -11,6 +11,9 @@ import UIKit
 import MidtransCoreKit
 
 class NConstant {
+    static var platform: String {
+        return "2"
+    }
     static var appVersion: String {
         let nsObject: AnyObject? = Bundle.main.infoDictionary!["CFBundleVersion"] as AnyObject?
         return nsObject as! String
@@ -33,7 +36,7 @@ class NConstant {
     }
     
     static var URL_TYPE: NURLType {
-        return .development
+        return .staging
     }
        
     static var GOOGLE_CLIENT_ID: String {

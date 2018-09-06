@@ -14,7 +14,7 @@ import PopupController
 import UINavigationControllerWithCompletionBlock
 
 class OrderController: BaseViewController {
-    private let sections = ["Your Booking", "Contact Details", "Participant Details","Payment Options", "Booking Summary"]
+    private let sections = ["Your Booking", "Contact Details", "Participant Details", "Payment Options", "Voucher", "Booking Summary"]
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var payNowButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -89,7 +89,11 @@ class OrderController: BaseViewController {
                         for participant in self.participants! {
                             participantsJson.append(participant.serialized())
                         }
-                        self.trySubmitOrder(cartToken: cartReturn.cartToken!, contactJson: String.JSONStringify(value: self.contact!.serialized()), diverJson: String.JSONStringify(value: participantsJson), paymentMethodType: String(self.paymentMethodType), note: self.note)
+                        var voucherCode: String? = nil
+                        if let cartReturn = self.cartReturn, let cart = cartReturn.cart, let voucher = cart.voucher, let code = voucher.code {
+                            voucherCode = code
+                        }
+                        self.trySubmitOrder(cartToken: cartReturn.cartToken!, contactJson: String.JSONStringify(value: self.contact!.serialized()), diverJson: String.JSONStringify(value: participantsJson), paymentMethodType: String(self.paymentMethodType), voucher: voucherCode, note: self.note)
                     }
                 })
             }
@@ -104,6 +108,7 @@ class OrderController: BaseViewController {
         self.tableView.register(UINib(nibName: "PaymentMethodCell", bundle: nil), forCellReuseIdentifier: "PaymentMethodCell")
         self.tableView.register(UINib(nibName: "BookingDetailCell", bundle: nil), forCellReuseIdentifier: "BookingDetailCell")
         self.tableView.register(UINib(nibName: "BookingSummaryCell", bundle: nil), forCellReuseIdentifier: "BookingSummaryCell")
+        self.tableView.register(UINib(nibName: "VoucherCell", bundle: nil), forCellReuseIdentifier: "VoucherCell")
         self.tableView.reloadData()
         self.priceLabel.text = self.cartReturn!.cart!.total.toCurrencyFormatString(currency: "Rp")
         self.title = "Booking Summary"
@@ -134,14 +139,14 @@ class OrderController: BaseViewController {
         })
     }
     
-    fileprivate func trySubmitOrder(cartToken: String, contactJson: String, diverJson: String, paymentMethodType: String, note: String) {
+    fileprivate func trySubmitOrder(cartToken: String, contactJson: String, diverJson: String, paymentMethodType: String, voucher: String?, note: String) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        NHTTPHelper.httpOrderSubmit(cartToken: cartToken, contactJson: contactJson, diverJson: diverJson, paymentMethodType: paymentMethodType, note: note, complete: {response in
+        NHTTPHelper.httpOrderSubmit(cartToken: cartToken, contactJson: contactJson, diverJson: diverJson, voucherCode: voucher, paymentMethodType: paymentMethodType, note: note, complete: {response in
             MBProgressHUD.hide(for: self.view, animated: true)
             if let error = response.error {
                 if error.isKind(of: NotConnectedInternetError.self) {
                     NHelper.handleConnectionError(completion: {
-                        self.trySubmitOrder(cartToken: cartToken, contactJson: contactJson, diverJson: diverJson, paymentMethodType: paymentMethodType, note: note)
+                        self.trySubmitOrder(cartToken: cartToken, contactJson: contactJson, diverJson: diverJson, paymentMethodType: paymentMethodType, voucher: voucher, note: note)
                     })
                 } else if error.isKind(of: StatusFailedError.self) {
                     UIAlertController.handleErrorMessage(viewController: self, error: error, completion: { _ in
@@ -160,7 +165,7 @@ class OrderController: BaseViewController {
     
     fileprivate func handlePaymentMethodType(orderReturn: OrderReturn, paymentType: String) {
         if paymentType == "2" || paymentType == "3" {
-            self.payUsingMidtrans(order: orderReturn.summary!.order!, contact: self.contact!, amount: Int(self.cartReturn!.cart!.total), veritransToken: orderReturn.veritransToken!, diveService: self.diveService!, divers: self.participants!.count, paymentType: self.paymentMethodType, additionals: self.cartReturn!.additionals)
+            self.payUsingMidtrans(order: orderReturn.summary!.order!, contact: self.contact!, amount: Int(self.cartReturn!.cart!.total), veritransToken: orderReturn.veritransToken!, diveService: self.diveService!, divers: self.participants!.count, paymentType: self.paymentMethodType, additionals: self.cartReturn!.additionals, voucher: self.cartReturn!.cart!.voucher)
         } else if paymentType == "4" {
             self.payUsingPaypal(orderReturn: orderReturn)
         } else {
@@ -217,6 +222,8 @@ extension OrderController: UITableViewDelegate, UITableViewDataSource {
             return 1
         case 4:
             return 1
+        case 5:
+            return 1
         default:
             return 0
         }
@@ -230,7 +237,7 @@ extension OrderController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -275,12 +282,31 @@ extension OrderController: UITableViewDelegate, UITableViewDataSource {
             cell.onChangePaymentType = {paymentType in
                 self.paymentMethodType = paymentType
                 self.isLoadAdditionalFee = true
-                self.tableView.reloadRows(at: [IndexPath(item: 0, section: 4)], with: .automatic)
+                self.tableView.reloadRows(at: [IndexPath(item: 0, section: 4),  IndexPath(item: 0, section: 5)], with: .automatic)
                 self.tryChangePayment(paymentType: self.paymentMethodType)
             }
             cell.initPayment(paymentType: self.paymentMethodType)
             return cell
         } else if indexPath.section == 4 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "VoucherCell", for: indexPath) as! VoucherCell
+            if let _ = orderReturn {
+                UIAlertController.handleErrorMessage(viewController: self, error: "You already submitted order you cannot change/edit voucher", completion: {})
+            }
+            if let cartReturn = self.cartReturn  {
+                if let cart = cartReturn.cart, let voucher = cart.voucher {
+                    cell.voucherTextField.text = voucher.code
+                }
+                cell.onVoucherApplied = {code in
+                    self.view.endEditing(true)
+                    if let code = code, !code.isEmpty {
+                        self.tryAddVoucher(voucherCode: code, cartToken: cartReturn.cartToken!)
+                    } else {
+                        UIAlertController.handleErrorMessage(viewController: self, error: "Voucher code cannot be empty!", completion: {})
+                    }
+                }
+            }
+            return cell
+        } else if indexPath.section == 5 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "BookingSummaryCell", for: indexPath) as! BookingSummaryCell
             let diver = self.participants!.count
             cell.noteTextField.delegate = self
@@ -292,6 +318,64 @@ extension OrderController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         return UITableViewCell()
+//        if indexPath.section == 0 {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "BookingDetailCell", for: indexPath) as! BookingDetailCell
+//            cell.initData(diveService: self.diveService!, selectedDate: self.selectedDate!)
+//            return cell
+//        } else if indexPath.section == 1 {
+//            let row = indexPath.row
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath) as! ContactCell
+//            cell.initData(contact: self.contact!)
+//            cell.onChangeContact = {
+//                _ = ContactController.push(on: self.navigationController!, contact: self.contact!, completion: {navigation, contact in
+//                    navigation.popViewController(animated: true, withCompletionBlock: {
+//                        DispatchQueue.main.async {
+//                            self.contact! = contact
+//                            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+//                        }
+//                    })
+//                })
+//            }
+//            return cell
+//        } else if indexPath.section == 2 {
+//            let row = indexPath.row
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "ParticipantCell", for: indexPath) as! ParticipantCell
+//            let participant = participants![row]
+//            cell.initData(participant: participant)
+//            cell.onChangeParticipant = {
+//                _ = ParticipantController.push(on: self.navigationController!, participant: participant,  completion: {navigation, participant in
+//                    navigation.popViewController(animated: true, withCompletionBlock: {
+//                        DispatchQueue.main.async {
+//                            self.participants![row] = participant
+//                            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+//                        }
+//                    })
+//                })
+//            }
+//            return cell
+//        } else if indexPath.section == 3 {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "PaymentMethodCell", for: indexPath) as! PaymentMethodCell
+//            cell.paymentType = self.paymentMethodType
+//            cell.onChangePaymentType = {paymentType in
+//                self.paymentMethodType = paymentType
+//                self.isLoadAdditionalFee = true
+//                self.tableView.reloadRows(at: [IndexPath(item: 0, section: 4)], with: .automatic)
+//                self.tryChangePayment(paymentType: self.paymentMethodType)
+//            }
+//            cell.initPayment(paymentType: self.paymentMethodType)
+//            return cell
+//        } else if indexPath.section == 4 {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "BookingSummaryCell", for: indexPath) as! BookingSummaryCell
+//            let diver = self.participants!.count
+//            cell.noteTextField.delegate = self
+//            if self.isLoadAdditionalFee {
+//                cell.loadAdditionalFee()
+//            } else {
+//                cell.initData(note: self.note, cart: cartReturn!.cart!, selectedDiver: diver, servicePrice: self.diveService!.specialPrice, additionals: self.cartReturn!.additionals, equipments: self.cartReturn!.equipments)
+//            }
+//            return cell
+//        }
+//        return UITableViewCell()
     }
     
     
@@ -317,6 +401,33 @@ extension OrderController: UITableViewDelegate, UITableViewDataSource {
         return true
     }
     
+    fileprivate func tryAddVoucher(voucherCode: String, cartToken: String) {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        self.payNowButton.backgroundColor = UIColor.darkGray
+        self.payNowButton.isEnabled = false
+        self.priceLabel.text = "Calculating..."
+
+        NHTTPHelper.httpAddVoucher(cartToken: cartToken, voucherCode: voucherCode, complete: {response in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            if let error = response.error {
+                if error.isKind(of: NotConnectedInternetError.self) {
+                    NHelper.handleConnectionError(completion: {
+                        self.tryAddVoucher(voucherCode: voucherCode, cartToken: cartToken)
+                    })
+                } else {
+                    UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {error in
+                        
+                    })
+                }
+                return
+            }
+            if let data = response.data {
+                self.cartReturn!.cart = data
+                self.tryChangePayment(paymentType: self.paymentMethodType)
+            }
+        })
+    }
+    
     fileprivate func tryChangePayment(paymentType: Int) {
         var id: String = ""
         if let orderReturn = self.orderReturn, let summary = orderReturn.summary, let order = summary.order {
@@ -328,7 +439,12 @@ extension OrderController: UITableViewDelegate, UITableViewDataSource {
         self.payNowButton.backgroundColor = UIColor.darkGray
         self.payNowButton.isEnabled = false
         self.priceLabel.text = "Calculating..."
-        NHTTPHelper.changePaymentMethod(cartToken: id, paymentType: paymentType, complete: {response in
+        var voucherCode: String? = nil
+        if let cartReturn = self.cartReturn, let cart = cartReturn.cart, let voucher = cart.voucher, let code = voucher.code {
+            voucherCode = code
+        }
+
+        NHTTPHelper.changePaymentMethod(cartToken: id, paymentType: paymentType, voucherCode: voucherCode, complete: {response in
             if let error = response.error {
                 if error.isKind(of: NotConnectedInternetError.self) {
                     NHelper.handleConnectionError(completion: {
@@ -343,12 +459,12 @@ extension OrderController: UITableViewDelegate, UITableViewDataSource {
                 self.cartReturn = data
                 self.isLoadAdditionalFee = false
                 self.priceLabel.text = self.cartReturn!.cart!.total.toCurrencyFormatString(currency: "Rp")
-                self.tableView.reloadRows(at: [IndexPath(item: 0, section: 4)], with: .automatic)
+                self.tableView.reloadRows(at: [IndexPath(item: 0, section: 5)], with: .automatic)
             }
         })
     }
     
-    fileprivate func payUsingMidtrans(order: NOrder, contact: BookingContact, amount: Int, veritransToken: String, diveService: NDiveService, divers: Int, paymentType: Int, additionals: [Additional]?) {
+    fileprivate func payUsingMidtrans(order: NOrder, contact: BookingContact, amount: Int, veritransToken: String, diveService: NDiveService, divers: Int, paymentType: Int, additionals: [Additional]?, voucher: Voucher?) {
         MidtransNetworkLogger.shared().startLogging()
         let transactionDetails = MidtransTransactionDetails.init(orderID: order.orderId!, andGrossAmount: NSNumber(value: amount))
         let customerDetails = MidtransCustomerDetails.init(firstName: contact.name!, lastName: "", email: contact.email!, phone: "+\(contact.countryCode!.countryNumber)\(contact.phoneNumber!)", shippingAddress: nil, billingAddress: nil)
@@ -358,12 +474,16 @@ extension OrderController: UITableViewDelegate, UITableViewDataSource {
         var itemDetails: [MidtransItemDetail] = []
         let itemDetail = MidtransItemDetail(itemID: diveService.id!, name: diveService.name!, price: NSNumber(value: diveService.specialPrice), quantity: NSNumber(value: divers))
         itemDetails.append(itemDetail!)
+        var itemID = -1
+
         if let additionals = additionals, !additionals.isEmpty {
-            var itemID = -1
             for additional in additionals {
                 itemDetails.append(MidtransItemDetail(itemID: String(itemID), name: additional.title!, price: NSNumber(value: additional.value!), quantity: 1))
                 itemID -= 1
             }
+        }
+        if let voucher = voucher {
+            itemDetails.append(MidtransItemDetail(itemID: String(itemID), name: "Voucher(\(voucher.code!))", price: NSNumber(value: -voucher.value), quantity: 1))
         }
         let paymentFeature = (paymentType==2 ? MidtransPaymentFeature.MidtransPaymentFeatureCreditCard : MidtransPaymentFeature.MidtransPaymentFeatureBankTransfer)
         let response = MidtransTransactionTokenResponse()

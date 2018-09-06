@@ -75,7 +75,7 @@
                     <color key="color" red="0.086274509799999996" green="0.45882352939999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                 </activityIndicatorView>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOF-lp-UrV">
-                    <rect key="frame" x="16" y="357" width="343" height="17"/>
+                    <rect key="frame" x="16" y="477" width="343" height="17"/>
                     <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -94,7 +94,7 @@
                 <constraint firstAttribute="trailing" secondItem="hk9-jH-glB" secondAttribute="trailing" id="TKv-rQ-HpA"/>
                 <constraint firstItem="Frd-jd-8OZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Ubp-Xw-jdW"/>
                 <constraint firstItem="Xb6-cT-yuG" firstAttribute="leading" secondItem="Frd-jd-8OZ" secondAttribute="leading" id="VN9-cf-7wC"/>
-                <constraint firstItem="eOF-lp-UrV" firstAttribute="centerY" secondItem="hk9-jH-glB" secondAttribute="centerY" id="aHG-me-mLk"/>
+                <constraint firstItem="eOF-lp-UrV" firstAttribute="centerY" secondItem="hk9-jH-glB" secondAttribute="centerY" constant="120" id="aHG-me-mLk"/>
                 <constraint firstItem="Xb6-cT-yuG" firstAttribute="trailing" secondItem="Frd-jd-8OZ" secondAttribute="trailing" id="aOL-j8-wbq"/>
                 <constraint firstItem="hk9-jH-glB" firstAttribute="top" secondItem="Xb6-cT-yuG" secondAttribute="bottom" id="jNO-RX-Hyd"/>
                 <constraint firstAttribute="trailing" secondItem="eOF-lp-UrV" secondAttribute="trailing" constant="16" id="kVb-xS-MIH"/>

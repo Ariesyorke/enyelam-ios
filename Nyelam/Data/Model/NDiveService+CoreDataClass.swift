@@ -2,7 +2,7 @@
 //  NDiveService+CoreDataClass.swift
 //  Nyelam
 //
-//  Created by Bobi on 7/11/18.
+//  Created by Bobi on 8/24/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //
@@ -13,5 +13,4 @@ import CoreData
 @objc(NDiveService)
 public class NDiveService: NSManagedObject {
     var shouldParseDivespot: Bool = false
-    
 }

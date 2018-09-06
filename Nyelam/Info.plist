@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.6.7</string>
+	<string>0.6.16</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -38,7 +38,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>46</string>
+	<string>55</string>
 	<key>FacebookAppID</key>
 	<string>195409427880541</string>
 	<key>FacebookDisplayName</key>
@@ -64,6 +64,12 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>e-Nyelam needs this permission for pick your camera device into profile, cover image, and upload payment proof</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>e-Nyelam need activate your GPS permission to locate dive center location</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>e-Nyelam need activate your GPS permission to locate dive center location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>e-Nyelam need activate your GPS permission to locate dive center location</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>e-Nyelam needs this permission for pick your photos library into profile, cover image and upload payment proof</string>
 	<key>UIAppFonts</key>

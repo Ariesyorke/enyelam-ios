@@ -157,7 +157,11 @@ extension BookingDetailController: UITableViewDataSource, UITableViewDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: "BookingDetailCell", for: indexPath) as! BookingDetailCell
             
             if let orderReturn = self.orderReturn, let summary = orderReturn.summary, let order = summary.order, let diveService = summary.diveService {
-                cell.initData(diveService: diveService, subTotal: order.cart!.subtotal, total: order.cart!.total, selectedDate: Date(timeIntervalSince1970: order.schedule), selectedDiver: summary.participant!.count, additionals: order.additionals, equipments: order.equipments)
+                var voucher: Voucher? = nil
+                if let cart = order.cart, let v = cart.voucher {
+                    voucher = v
+                }
+                cell.initData(diveService: diveService, subTotal: order.cart!.subtotal, total: order.cart!.total, selectedDate: Date(timeIntervalSince1970: order.schedule), selectedDiver: summary.participant!.count, additionals: order.additionals, equipments: order.equipments, voucher: voucher)
             }
             return cell
         } else if indexPath.section == 1 {

@@ -23,6 +23,7 @@
                 <outlet property="doTripLoadingView" destination="QZE-54-jdE" id="TKP-2n-Be7"/>
                 <outlet property="doTripScroller" destination="HqC-Yd-Ngz" id="MTM-e5-WA3"/>
                 <outlet property="doTripScrollerHeight" destination="ytx-bh-Kuf" id="BDS-vZ-Idy"/>
+                <outlet property="homeScroller" destination="ouC-yV-OHs" id="ztb-Zt-zAk"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -40,7 +41,7 @@
                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chU-Ng-B29">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="250" id="4dX-es-NTF"/>
+                                        <constraint firstAttribute="width" secondItem="chU-Ng-B29" secondAttribute="height" multiplier="3:2" id="fvh-dD-u3s"/>
                                     </constraints>
                                     <connections>
                                         <outlet property="delegate" destination="-1" id="wA0-4D-DpH"/>
@@ -64,7 +65,7 @@
                                         <constraint firstAttribute="width" constant="32" id="mcv-6C-Gzk"/>
                                     </constraints>
                                 </imageView>
-                                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="KtY-bo-z5Z">
+                                <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="KtY-bo-z5Z">
                                     <rect key="frame" x="16" y="250" width="343" height="37"/>
                                     <color key="pageIndicatorTintColor" red="0.80392156859999997" green="0.80392156859999997" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="currentPageIndicatorTintColor" red="0.18823529410000001" green="0.52941176469999995" blue="0.81568627449999997" alpha="1" colorSpace="calibratedRGB"/>

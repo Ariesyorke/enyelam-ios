@@ -12,9 +12,12 @@ public class Cart: NSObject, NSCoding, Parseable {
     private let KEY_SUBTOTAL = "sub_total"
     private let KEY_TOTAL = "total"
     private let KEY_CURRENCY = "currency"
+    private let KEY_VOUCHER = "voucher"
+    
     var subtotal: Double = 0
     var total: Double = 0
     var currency: String?
+    var voucher: Voucher?
     
     override init(){}
     init(json: [String: Any]) {
@@ -49,11 +52,29 @@ public class Cart: NSObject, NSCoding, Parseable {
             }
         }
         self.currency = json[KEY_CURRENCY] as? String
+        if let voucherJson = json[KEY_VOUCHER] as? [String: Any] {
+            self.voucher = Voucher(json: voucherJson)
+        } else if let voucherString = json[KEY_VOUCHER] as? String {
+            do {
+                let data = voucherString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let voucherJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                self.voucher = Voucher(json: voucherJson)
+            } catch {
+                print(error)
+            }
+        }
     }
     
     func serialized() -> [String : Any] {
         var json: [String: Any] = [:]
-        
+        json[KEY_SUBTOTAL] = subtotal
+        json[KEY_TOTAL] = total
+        if let currency = json[KEY_CURRENCY] as? String {
+            json[KEY_CURRENCY] = currency
+        }
+        if let voucher = self.voucher {
+            json[KEY_VOUCHER] = voucher.serialized()
+        }
         return json
     }
 }

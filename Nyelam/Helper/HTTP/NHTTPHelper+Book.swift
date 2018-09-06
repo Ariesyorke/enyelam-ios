@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import Alamofire
 
 extension NHTTPHelper {
     static func httpUploadPaymentProof(data: Data, bookingDetailId: String, complete: @escaping(NHTTPResponse<Bool>)->()) {
@@ -95,10 +96,13 @@ extension NHTTPHelper {
         })
     }
     
-    static func changePaymentMethod(cartToken: String, paymentType: Int, complete: @escaping(NHTTPResponse<CartReturn>)->()) {
+    static func changePaymentMethod(cartToken: String, paymentType: Int, voucherCode: String?, complete: @escaping(NHTTPResponse<CartReturn>)->()) {
+        var param: [String: Any] = ["cart_token": cartToken, "type": String(paymentType)]
+        if let voucherCode = voucherCode {
+            param["voucher_code"] = voucherCode
+        }
         self.basicAuthRequest(URLString: HOST_URL + API_PATH_CHANGE_PAYMENT_METHOD,
-                              parameters: ["cart_token": cartToken,
-                                           "type":String(paymentType)],
+                              parameters: param,
                               headers: nil,
                               complete: {status, data, error in
             if let error = error {
@@ -144,12 +148,19 @@ extension NHTTPHelper {
         })
     }
     
-    static func httpOrderSubmit(cartToken: String, contactJson: String, diverJson: String, paymentMethodType: String, note: String?, complete: @escaping (NHTTPResponse<OrderReturn>)->()) {
+    static func httpOrderSubmit(cartToken: String, contactJson: String, diverJson: String, voucherCode: String?, paymentMethodType: String, note: String?, complete: @escaping (NHTTPResponse<OrderReturn>)->()) {
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 150 // seconds
+        configuration.timeoutIntervalForResource = 150
+        let sessionManager = Alamofire.SessionManager(configuration: configuration)
         var param: [String: Any] = [:]
         param["cart_token"] = cartToken
         param["contact"] = contactJson
         param["diver"] = diverJson
         param["type"] = paymentMethodType
+        if let voucherCode = voucherCode {
+            param["voucher_code"] = voucherCode
+        }
         if let note = note {
             param["note"] = note
         }
@@ -165,12 +176,38 @@ extension NHTTPHelper {
         })
     }
     
+    static func httpAddVoucher(cartToken: String, voucherCode: String, complete: @escaping(NHTTPResponse<Cart>)->()) {
+        self.basicAuthRequest(URLString: HOST_URL + API_PATH_ADD_VOUCHER,
+                              parameters: ["cart_token": cartToken, "voucher_code": voucherCode],
+                              headers: nil,
+                              complete: {status, data, error in
+                                if let error = error {
+                                    complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
+                                    return
+                                }
+                                if let data = data, let json = data as? [String: Any] {
+                                    var cart: Cart? = nil
+                                    if let cartJson = json["cart"] as? [String: Any] {
+                                        cart = Cart(json: cartJson)
+                                    } else if let cartString = json["cart"] as? String {
+                                        do {
+                                            let data = cartString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                                            let cartJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                                            cart = Cart(json: cartJson)
+                                        } catch {
+                                            print(error)
+                                        }
+                                    }
+                                    complete(NHTTPResponse(resultStatus: true, data: cart, error: nil))
+                                }
+
+        })
+    }    
     static func httpResubmitOrder(orderId: String, paymentType: Int, complete: @escaping (NHTTPResponse<OrderReturn>)->()) {
         self.basicAuthRequest(URLString: HOST_URL + API_PATH_RESUBMIT_ORDER,
                               parameters: [
                                 "order_id": orderId,
-                                "payment_type": String(paymentType)
-                                ],
+                                "payment_type": String(paymentType)                                ],
                               headers: nil,
                               complete: {status, data, error in
             if let error = error {

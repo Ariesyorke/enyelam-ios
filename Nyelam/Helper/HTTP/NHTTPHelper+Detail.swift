@@ -27,6 +27,7 @@ extension NHTTPHelper {
                                         complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
                                         return
                                     }
+
                                     if let data = data, let json = data as? [String: Any] {
                                         var service: NDiveService? = nil
                                         if let serviceJson = json["service"] as? [String: Any] {
@@ -54,9 +55,8 @@ extension NHTTPHelper {
                                                 print(error)
                                             }
                                         }
-                                        NSManagedObjectContext.saveData {
-                                            complete(NHTTPResponse(resultStatus: true, data: service, error: nil))
-                                        }
+                                        NSManagedObjectContext.saveData()
+                                        complete(NHTTPResponse(resultStatus: true, data: service, error: nil))
                                     }
         })
     }

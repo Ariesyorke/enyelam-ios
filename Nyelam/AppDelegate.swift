@@ -9,8 +9,6 @@
 import UIKit
 import CoreData
 import FBSDKLoginKit
-import GoogleMaps
-import GooglePlaces
 import GoogleSignIn
 import MidtransCoreKit
 import Google
@@ -27,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         GIDSignIn.sharedInstance().clientID =  NConstant.GOOGLE_CLIENT_ID
         MidtransConfig.shared().setClientKey(NConstant.MIDTRANS_CLIENT_ID, environment: NConstant.MIDTRANS_ENVIRONTMENT, merchantServerURL: NConstant.MIDTRANS_URL)
-        GMSServices.provideAPIKey(NConstant.GOOGLE_API_KEY)
          PayPalMobile.initializeWithClientIds(forEnvironments: [NConstant.PAYPAL_ENVIRONTMENT:NConstant.PAYPAL_CLIENT_ID])
         FirebaseApp.configure()
         if NConstant.URL_TYPE == .production {

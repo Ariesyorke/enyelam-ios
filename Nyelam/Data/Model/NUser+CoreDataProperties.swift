@@ -2,7 +2,7 @@
 //  NUser+CoreDataProperties.swift
 //  Nyelam
 //
-//  Created by Bobi on 7/11/18.
+//  Created by Bobi on 8/24/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //
@@ -17,6 +17,7 @@ extension NUser {
         return NSFetchRequest<NUser>(entityName: "NUser")
     }
 
+    @NSManaged public var about: String?
     @NSManaged public var address: String?
     @NSManaged public var birthDate: NSDate?
     @NSManaged public var birthPlace: String?
@@ -34,9 +35,8 @@ extension NUser {
     @NSManaged public var phone: String?
     @NSManaged public var picture: String?
     @NSManaged public var referralCode: String?
-    @NSManaged public var username: String?
-    @NSManaged public var about: String?
     @NSManaged public var specialAbilities: [String]?
+    @NSManaged public var username: String?
     @NSManaged public var country: NCountry?
     @NSManaged public var countryCode: NCountryCode?
     @NSManaged public var language: NLanguage?

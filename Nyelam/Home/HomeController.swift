@@ -440,7 +440,7 @@ extension HomeController {
             NSLayoutConstraint(item: control, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: imgView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: control, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: imgView, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: control, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: imgView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: control, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 250)
+            NSLayoutConstraint(item: control, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: self.view.frame.width*2/3)
             ])
         return control
     }

@@ -11,8 +11,6 @@ target 'Nyelam' do
   pod 'FacebookCore', '0.3.0'
   pod 'FacebookLogin', '0.3.0'
   pod 'FacebookShare', '0.3.0'
-  pod 'GoogleMaps'
-  pod 'GooglePlaces'
   pod 'Google/Analytics', '~> 2.0.4'
   pod 'SideMenu', '~> 2.3.4'
   pod 'UINavigationControllerWithCompletionBlock'
@@ -41,7 +39,8 @@ target 'Nyelam' do
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'KMPlaceholderTextView', '~> 1.3.0'
-  
+  pod 'EAIntroView'
+
   target 'NyelamTests' do
     inherit! :search_paths
     # Pods for testing

@@ -45,7 +45,7 @@ class BookingDetailCell: NTableViewCell {
         }
     }
     
-    func initData(diveService: NDiveService, subTotal: Double, total: Double, selectedDate: Date, selectedDiver: Int, additionals: [Additional]?, equipments: [Equipment]? = nil) {
+    func initData(diveService: NDiveService, subTotal: Double, total: Double, selectedDate: Date, selectedDiver: Int, additionals: [Additional]?, equipments: [Equipment]? = nil, voucher: Voucher? = nil) {
         self.eventLabel.text = diveService.name
         //        self.rateView.rating = diveService.rating
         self.bookingDateLabel.text = selectedDate.formatDate(dateFormat: "dd MMMM yyyy")
@@ -88,7 +88,7 @@ class BookingDetailCell: NTableViewCell {
                                        multiplier: 1, constant: -4)
                     ])
                 self.additionalViews!.append(additionalView)
-                if i >= (equipments.count - 1) && additionals == nil || additionals!.isEmpty {
+                if i >= (equipments.count - 1) && voucher == nil && (additionals == nil || additionals!.isEmpty) {
                     let additionalView = NAdditionalView(frame: CGRect.zero)
                     additionalView.translatesAutoresizingMaskIntoConstraints = false
                     additionalView.initData(title: "Total", price: total)
@@ -108,6 +108,42 @@ class BookingDetailCell: NTableViewCell {
                 i += 1
             }
         }
+        
+        if let voucher = voucher, let code = voucher.code, !code.isEmpty {
+            let additionalView = NAdditionalView(frame: CGRect.zero)
+            additionalView.translatesAutoresizingMaskIntoConstraints = false
+            additionalView.initData(title: "Voucher(\(code))", price: voucher.value, additional: "-")
+            self.summaryContainer.addSubview(additionalView)
+            self.summaryContainer.addConstraints([
+                NSLayoutConstraint(item: self.summaryContainer, attribute: .leading, relatedBy: .equal, toItem: additionalView, attribute: .leading, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: self.summaryContainer, attribute: .trailing, relatedBy: .equal, toItem: additionalView, attribute: .trailing, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: self.additionalViews![self.additionalViews!.count - 1], attribute: .bottom,
+                                   relatedBy: .equal, toItem: additionalView, attribute: .top,
+                                   multiplier: 1, constant: -4)
+                ])
+            self.additionalViews!.append(additionalView)
+            if additionals == nil || additionals!.isEmpty {
+                let additionalView = NAdditionalView(frame: CGRect.zero)
+                additionalView.translatesAutoresizingMaskIntoConstraints = false
+                additionalView.initData(title: "Total", price: total)
+                additionalView.titleLabel.textColor = UIColor.nyOrange
+                additionalView.priceLabel.textColor = UIColor.nyOrange
+                self.summaryContainer.addSubview(additionalView)
+                self.summaryContainer.addConstraints([
+                    NSLayoutConstraint(item: self.summaryContainer, attribute: .leading, relatedBy: .equal, toItem: additionalView, attribute: .leading, multiplier: 1, constant: 0),
+                    NSLayoutConstraint(item: self.summaryContainer, attribute: .trailing, relatedBy: .equal, toItem: additionalView, attribute: .trailing, multiplier: 1, constant: 0),
+                    NSLayoutConstraint(item: self.additionalViews![self.additionalViews!.count - 1], attribute: .bottom,
+                                       relatedBy: .equal, toItem: additionalView, attribute: .top,
+                                       multiplier: 1, constant: -4)
+                    ])
+                self.summaryContainer.addConstraint(NSLayoutConstraint(item: self.summaryContainer, attribute: .bottom, relatedBy: .equal, toItem: additionalView, attribute: .bottom, multiplier: 1, constant: 0))
+                self.additionalViews!.append(additionalView)
+
+                return
+            }
+            i+=1
+        }
+
         if let additionals = additionals, !additionals.isEmpty {
             var j: Int = 0
             for additional in additionals {

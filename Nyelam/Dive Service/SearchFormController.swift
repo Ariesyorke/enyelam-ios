@@ -399,6 +399,7 @@ extension SearchFormController: UITableViewDelegate, UITableViewDataSource {
                     if self.isEcoTrip {
                         ecoTrip = 1
                     }
+                    
                     if let keyword = self.selectedKeyword as? SearchResultService {
                         _ = DiveServiceController.push(on: self.navigationController!, forDoTrip: self.forDoTrip, selectedKeyword: keyword, selectedLicense: self.selectedLicense!, selectedDiver: self.selectedDiver, selectedDate: self.selectedDate!, ecoTrip: ecoTrip)
                     } else {

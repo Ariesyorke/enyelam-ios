@@ -24,6 +24,10 @@
         <attribute name="countryNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="NDistrict" representedClassName="NDistrict" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="NDiveCenter" representedClassName="NDiveCenter" syncable="YES">
         <attribute name="contact" optional="YES" attributeType="Transformable" customClassName="Contact" syncable="YES"/>
         <attribute name="diveDescription" optional="YES" attributeType="String" syncable="YES"/>
@@ -100,6 +104,26 @@
         <attribute name="schedule" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="NProduct" representedClassName="NProduct" syncable="YES">
+        <attribute name="color" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="featuredImage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hexColor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="images" optional="YES" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
+        <attribute name="normalPrice" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="productDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="productId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="productName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sizes" optional="YES" attributeType="Transformable" customClassName="[Size]" syncable="YES"/>
+        <attribute name="specialPrice" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NProductCategory" syncable="YES"/>
+        <relationship name="variations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NProduct" syncable="YES"/>
+    </entity>
+    <entity name="NProductCategory" representedClassName="NProductCategory" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="NProvince" representedClassName="NProvince" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -113,6 +137,17 @@
         <attribute name="province" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="rating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="NShippingAddress" representedClassName="NShippingAddress" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="addressId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fullname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isPicked" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zipcode" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="city" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NCity" syncable="YES"/>
+        <relationship name="district" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NDistrict" syncable="YES"/>
+        <relationship name="province" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NProvince" syncable="YES"/>
     </entity>
     <entity name="NSocialMedia" representedClassName="NSocialMedia" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
@@ -174,5 +209,9 @@
         <element name="NSocialMedia" positionX="-144" positionY="-63" width="128" height="75"/>
         <element name="NSummary" positionX="-162" positionY="-81" width="128" height="120"/>
         <element name="NUser" positionX="-153" positionY="-72" width="128" height="465"/>
+        <element name="NProduct" positionX="-180" positionY="-99" width="128" height="240"/>
+        <element name="NProductCategory" positionX="-171" positionY="-90" width="128" height="90"/>
+        <element name="NShippingAddress" positionX="-153" positionY="-72" width="128" height="180"/>
+        <element name="NDistrict" positionX="-144" positionY="-63" width="128" height="75"/>
     </elements>
 </model>

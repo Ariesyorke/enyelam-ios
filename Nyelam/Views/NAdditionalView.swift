@@ -62,4 +62,9 @@ class NAdditionalView: UIView {
         self.titleLabel.text = title
         self.priceLabel.text = "\(price.toCurrencyFormatString(currency: "Rp")),-"
     }
+    
+    func initData(title: String, price: Double, additional: String) {
+        self.titleLabel.text = title
+        self.priceLabel.text = "\(additional) \(price.toCurrencyFormatString(currency: "Rp")),-"
+    }
 }
