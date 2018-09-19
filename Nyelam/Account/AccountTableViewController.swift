@@ -104,13 +104,14 @@ UINavigationControllerDelegate, PECropViewControllerDelegate {
             }
             break
         case 5:
-            let composeVC = MFMailComposeViewController()
-            composeVC.setToRecipients(["info@e-nyelam.com"])
-            composeVC.mailComposeDelegate = self
-            if let parent = self.parent {
-                parent.present(composeVC, animated: true, completion: nil)
+            var controller: UIViewController? = nil
+            if let parent = self.parent as? MainRootController {
+                controller = parent
             } else {
-                self.present(composeVC, animated: true, completion: nil)
+                controller = self
+            }
+            if let navigation = controller!.navigationController {
+                CreateInboxController.push(on: navigation, inboxType: 3, fromHome: true, subject: "General")
             }
             break
         case 6:

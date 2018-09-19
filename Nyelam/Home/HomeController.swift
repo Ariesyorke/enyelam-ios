@@ -327,7 +327,7 @@ extension HomeController {
         sideMenuController!.handleMenuItem = {item in
             switch item {
             case SideMenuItemType.login:
-                self.goToAuth()
+                self.goToAuth(completion: {})
                 break
             case SideMenuItemType.contactus:
                 self.contactUs()

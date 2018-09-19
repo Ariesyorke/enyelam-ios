@@ -103,7 +103,6 @@ class BookingListController: BaseViewController, IndicatorInfoProvider {
 extension BookingListController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let summary = self.summaries![indexPath.row]
-        print("BOOKING TYPE \(bookingType)")
         BookingDetailController.push(on: self.navigationController!, bookingId: summary.id!, type: String(self.bookingType))
     }
     func numberOfSections(in tableView: UITableView) -> Int {

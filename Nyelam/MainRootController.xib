@@ -16,6 +16,7 @@
                 <outlet property="tabContainer" destination="CAv-NP-6mk" id="TvK-zz-Hwu"/>
                 <outlet property="tabMenuAccount" destination="fCQ-mH-wL4" id="gQs-lk-3kO"/>
                 <outlet property="tabMenuHome" destination="dfN-pF-k5J" id="D3z-Ki-7VS"/>
+                <outlet property="tabMenuInbox" destination="HRE-5t-xkv" id="D5o-yd-eSn"/>
                 <outlet property="tabMenuOrder" destination="9Eu-SN-bwi" id="Sev-Dp-rt2"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -33,17 +34,17 @@
                     <rect key="frame" x="0.0" y="607" width="375" height="60"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dfN-pF-k5J" customClass="MainRootTabItemView" customModule="Nyelam" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="125" height="60"/>
+                            <rect key="frame" x="0.0" y="0.0" width="94" height="60"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tab_home" translatesAutoresizingMaskIntoConstraints="NO" id="5v8-Xi-YHM">
-                                    <rect key="frame" x="47" y="15" width="30" height="30"/>
+                                    <rect key="frame" x="31.5" y="15" width="30" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="30" id="6tm-el-XGX"/>
                                         <constraint firstAttribute="height" constant="30" id="anV-VF-aKx"/>
                                     </constraints>
                                 </imageView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EMK-ck-yNg">
-                                    <rect key="frame" x="0.0" y="52" width="125" height="8"/>
+                                    <rect key="frame" x="0.0" y="52" width="94" height="8"/>
                                     <color key="backgroundColor" red="0.87058823529411766" green="0.89803921568627454" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="8" id="hem-rH-VAK"/>
@@ -65,17 +66,17 @@
                             </connections>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Eu-SN-bwi" customClass="MainRootTabItemView" customModule="Nyelam" customModuleProvider="target">
-                            <rect key="frame" x="125" y="0.0" width="125" height="60"/>
+                            <rect key="frame" x="94" y="0.0" width="93.5" height="60"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tab_order" translatesAutoresizingMaskIntoConstraints="NO" id="L57-Cq-Ehv">
-                                    <rect key="frame" x="47" y="15" width="30" height="30"/>
+                                    <rect key="frame" x="31" y="15" width="30" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="7FN-ZE-bka"/>
                                         <constraint firstAttribute="width" constant="30" id="yEY-oZ-83x"/>
                                     </constraints>
                                 </imageView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B3N-D1-jIe">
-                                    <rect key="frame" x="0.0" y="52" width="125" height="8"/>
+                                    <rect key="frame" x="0.0" y="52" width="93.5" height="8"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="8" id="S4F-ZV-dnA"/>
@@ -96,18 +97,50 @@
                                 <outlet property="iconView" destination="L57-Cq-Ehv" id="9pd-F5-snZ"/>
                             </connections>
                         </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HRE-5t-xkv" userLabel="Tab Menu Inbox" customClass="MainRootTabItemView" customModule="Nyelam" customModuleProvider="target">
+                            <rect key="frame" x="187" y="0.0" width="94" height="60"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_inbox" translatesAutoresizingMaskIntoConstraints="NO" id="OE1-ym-xfM">
+                                    <rect key="frame" x="31.5" y="15" width="30" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="Jzt-r7-Wv4"/>
+                                        <constraint firstAttribute="width" constant="30" id="bxC-n8-yTG"/>
+                                    </constraints>
+                                </imageView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D1p-1d-Xwm">
+                                    <rect key="frame" x="0.0" y="52" width="94" height="8"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="8" id="Iqi-1a-gg9"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="OE1-ym-xfM" firstAttribute="centerY" secondItem="HRE-5t-xkv" secondAttribute="centerY" id="JsF-6t-8du"/>
+                                <constraint firstAttribute="trailing" secondItem="D1p-1d-Xwm" secondAttribute="trailing" id="KYK-fT-NM1"/>
+                                <constraint firstItem="OE1-ym-xfM" firstAttribute="centerX" secondItem="HRE-5t-xkv" secondAttribute="centerX" id="e9O-R9-sAS"/>
+                                <constraint firstAttribute="bottom" secondItem="D1p-1d-Xwm" secondAttribute="bottom" id="rGq-eH-DK4"/>
+                                <constraint firstItem="D1p-1d-Xwm" firstAttribute="leading" secondItem="HRE-5t-xkv" secondAttribute="leading" id="v3L-qN-TLe"/>
+                            </constraints>
+                            <connections>
+                                <action selector="onClickWithTabItem:" destination="-1" eventType="touchUpInside" id="wBm-y6-dhH"/>
+                                <outlet property="bottomLineView" destination="D1p-1d-Xwm" id="M0T-qq-gcA"/>
+                                <outlet property="iconView" destination="OE1-ym-xfM" id="Wff-aG-IEG"/>
+                            </connections>
+                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fCQ-mH-wL4" customClass="MainRootTabItemView" customModule="Nyelam" customModuleProvider="target">
-                            <rect key="frame" x="250" y="0.0" width="125" height="60"/>
+                            <rect key="frame" x="281.5" y="0.0" width="93.5" height="60"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tab_account" translatesAutoresizingMaskIntoConstraints="NO" id="u2z-Pl-eTe">
-                                    <rect key="frame" x="47" y="15" width="30" height="30"/>
+                                    <rect key="frame" x="31" y="15" width="30" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="30" id="0mH-KM-8op"/>
                                         <constraint firstAttribute="height" constant="30" id="VXz-Sr-wkZ"/>
                                     </constraints>
                                 </imageView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ivp-5y-epI">
-                                    <rect key="frame" x="0.0" y="52" width="125" height="8"/>
+                                    <rect key="frame" x="0.0" y="52" width="93.5" height="8"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="8" id="FcT-qS-RiO"/>
@@ -133,16 +166,20 @@
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="fCQ-mH-wL4" secondAttribute="bottom" id="3UI-ZW-5Fi"/>
                         <constraint firstAttribute="bottom" secondItem="dfN-pF-k5J" secondAttribute="bottom" id="4gD-wN-fAa"/>
+                        <constraint firstItem="HRE-5t-xkv" firstAttribute="width" secondItem="9Eu-SN-bwi" secondAttribute="width" id="9Eh-Qt-Q7S"/>
                         <constraint firstAttribute="height" constant="60" id="ILZ-Bd-Y2o"/>
                         <constraint firstItem="dfN-pF-k5J" firstAttribute="leading" secondItem="CAv-NP-6mk" secondAttribute="leading" id="PsT-19-qvu"/>
                         <constraint firstItem="9Eu-SN-bwi" firstAttribute="top" secondItem="CAv-NP-6mk" secondAttribute="top" id="RIL-vh-UIa"/>
                         <constraint firstItem="fCQ-mH-wL4" firstAttribute="top" secondItem="CAv-NP-6mk" secondAttribute="top" id="VAO-8E-IxQ"/>
+                        <constraint firstItem="fCQ-mH-wL4" firstAttribute="leading" secondItem="HRE-5t-xkv" secondAttribute="trailing" id="Vef-fQ-5RU"/>
                         <constraint firstItem="9Eu-SN-bwi" firstAttribute="leading" secondItem="dfN-pF-k5J" secondAttribute="trailing" id="YPc-KK-8z3"/>
+                        <constraint firstItem="HRE-5t-xkv" firstAttribute="leading" secondItem="9Eu-SN-bwi" secondAttribute="trailing" id="YTA-dK-ahQ"/>
                         <constraint firstItem="9Eu-SN-bwi" firstAttribute="width" secondItem="dfN-pF-k5J" secondAttribute="width" id="gZo-e8-92A"/>
                         <constraint firstAttribute="bottom" secondItem="9Eu-SN-bwi" secondAttribute="bottom" id="kvz-US-epB"/>
                         <constraint firstItem="fCQ-mH-wL4" firstAttribute="width" secondItem="9Eu-SN-bwi" secondAttribute="width" id="kx5-j8-eUP"/>
+                        <constraint firstAttribute="bottom" secondItem="HRE-5t-xkv" secondAttribute="bottom" id="lTH-aw-bGj"/>
+                        <constraint firstItem="HRE-5t-xkv" firstAttribute="top" secondItem="CAv-NP-6mk" secondAttribute="top" id="mxb-FR-Rvp"/>
                         <constraint firstAttribute="trailing" secondItem="fCQ-mH-wL4" secondAttribute="trailing" id="p7j-ra-fLR"/>
-                        <constraint firstItem="fCQ-mH-wL4" firstAttribute="leading" secondItem="9Eu-SN-bwi" secondAttribute="trailing" id="ta2-6p-3m3"/>
                         <constraint firstItem="dfN-pF-k5J" firstAttribute="top" secondItem="CAv-NP-6mk" secondAttribute="top" id="uQL-ro-SJl"/>
                     </constraints>
                 </view>
@@ -162,6 +199,7 @@
         </view>
     </objects>
     <resources>
+        <image name="ic_inbox" width="32" height="32"/>
         <image name="tab_account" width="24" height="24"/>
         <image name="tab_home" width="24" height="24"/>
         <image name="tab_order" width="24" height="24"/>

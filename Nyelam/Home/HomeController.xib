@@ -307,8 +307,8 @@
                                                                 <constraint firstItem="bfp-tC-2eY" firstAttribute="top" secondItem="zC6-Oq-HzT" secondAttribute="top" id="ro8-Oi-WW6"/>
                                                             </constraints>
                                                         </view>
-                                                        <view hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UDv-Jc-KgU">
-                                                            <rect key="frame" x="112" y="-25" width="163.5" height="145"/>
+                                                        <view hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UDv-Jc-KgU">
+                                                            <rect key="frame" x="-0.5" y="-1.5" width="163.5" height="129"/>
                                                             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="radius">
@@ -475,7 +475,7 @@
         <image name="home_menu_dodive" width="64" height="64"/>
         <image name="home_menu_doshop" width="64" height="64"/>
         <image name="home_menu_ecotrip" width="64" height="64"/>
-        <image name="ic_header_nyelam_white" width="24" height="24"/>
+        <image name="ic_header_nyelam_white" width="32" height="32"/>
         <image name="ic_navigation_drawer" width="24" height="24"/>
     </resources>
 </document>

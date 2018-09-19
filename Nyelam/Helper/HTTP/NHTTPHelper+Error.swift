@@ -548,6 +548,40 @@ class NHTTPHelper {
         }
     }
     
+    static var API_PATH_GET_INBOX: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "inbox/all"
+        default:
+            return "api/inbox/all"
+        }
+    }
+    static var API_PATH_INBOX_DETAIL: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "inbox/detail"
+        default:
+            return "api/inbox/detail"
+        }
+    }
+    static var API_PATH_POST_INBOX: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "inbox/post"
+        default:
+            return "api/inbox/post"
+        }
+    }
+    
+    static var API_PATH_POST_INBOX_DETAIL: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "inbox/add"
+        default:
+            return "api/inbox/add"
+        }
+    }
+        
     internal static func basicAuthStringRequest(URLString: URLConvertible,
                                                 parameters: [String: Any]? = nil,
                                                 headers: [String: String]? = nil,
@@ -593,7 +627,6 @@ class NHTTPHelper {
                                             complete: @escaping (Bool, Any?, BaseError?)->()) {
         print("http post result ----")
         print("--- url = \(URLString)")
-        print("--- parameters = \(parameters)")
         print("--- multiparts = \(multiparts)")
         print("--- headers = \(headers)")
         print("--- need session = \(headers)")
@@ -614,6 +647,8 @@ class NHTTPHelper {
                 }
             }
             
+            print("--- parameters = \(param)")
+
             let headers: HTTPHeaders = [
                 "Content-type": "multipart/form-data"
             ]

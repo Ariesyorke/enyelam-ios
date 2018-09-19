@@ -74,8 +74,18 @@ class BookingDetailController: BaseViewController {
 //        } else {
 //            self.writeReviewButton.isHidden = false
 //        }
+        
     }
     
+    fileprivate func initInbox() {
+        if let orderReturn = self.orderReturn, let summary = orderReturn.summary, let order = summary.order {
+            if let status = order.status, (status == "unpaid" || status == "order received" || status == "accepted") && self.type == "1" {
+                self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_inbox_small"), style: .plain, target: self, action: #selector(inboxButtonAction(_:)))
+            } else {
+                self.navigationItem.rightBarButtonItem = nil
+            }
+        }
+    }
     fileprivate func loadBookingDetail(bookingId: String) {
         NHTTPHelper.httpDetail(bookingId: bookingId, complete: {response in
             self.loadingView.isHidden = true
@@ -90,10 +100,20 @@ class BookingDetailController: BaseViewController {
             }
             if let data = response.data {
                 self.orderReturn = data
+                self.initInbox()
                 self.tableView.reloadData()
             }
         })
     }
+    
+    @objc func inboxButtonAction(_ button: UIBarButtonItem) {
+        var subject = ""
+        if let orderReturn = self.orderReturn, let summary = orderReturn.summary, let diveService = summary.diveService {
+            subject = "\(diveService.name!) - #\(self.bookingId!)"
+            CreateInboxController.push(on: self.navigationController!, inboxType: 2, fromHome: false, refId: self.bookingId!, subject: subject)
+        }
+    }
+
     
     override func backButtonAction(_ sender: UIBarButtonItem) {
         if isComeFromOrder {

@@ -40,7 +40,9 @@ target 'Nyelam' do
   pod 'Crashlytics'
   pod 'KMPlaceholderTextView', '~> 1.3.0'
   pod 'EAIntroView'
-
+  pod 'MultilineTextField'
+  pod 'SimpleImageViewer', '~> 1.1.1'
+  
   target 'NyelamTests' do
     inherit! :search_paths
     # Pods for testing

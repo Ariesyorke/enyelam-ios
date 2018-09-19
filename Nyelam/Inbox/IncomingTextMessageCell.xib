@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="109" id="KGk-i7-Jjw" customClass="IncomingTextMessageCell" customModule="Nyelam" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="109"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="108.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OSg-nP-c0P">
+                        <rect key="frame" x="16" y="16" width="82.5" height="76.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Message" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9tD-5q-xDF" userLabel="Message Label">
+                                <rect key="frame" x="8" y="30.5" width="66.5" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIl-TD-xI8" userLabel="Date Label">
+                                <rect key="frame" x="8" y="53" width="66.5" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="User Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UXE-TJ-Gvc" userLabel="User Name Label">
+                                <rect key="frame" x="8" y="8" width="66.5" height="14.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="EIl-TD-xI8" secondAttribute="bottom" constant="8" id="2Co-Qw-W8s"/>
+                            <constraint firstItem="EIl-TD-xI8" firstAttribute="top" secondItem="9tD-5q-xDF" secondAttribute="bottom" constant="8" id="2UL-J7-TgC"/>
+                            <constraint firstItem="9tD-5q-xDF" firstAttribute="top" secondItem="UXE-TJ-Gvc" secondAttribute="bottom" constant="8" id="Ba7-BM-bxe"/>
+                            <constraint firstItem="9tD-5q-xDF" firstAttribute="leading" secondItem="OSg-nP-c0P" secondAttribute="leading" constant="8" id="E1i-hH-dRy"/>
+                            <constraint firstItem="EIl-TD-xI8" firstAttribute="leading" secondItem="OSg-nP-c0P" secondAttribute="leading" constant="8" id="LEX-us-8nx"/>
+                            <constraint firstItem="EIl-TD-xI8" firstAttribute="trailing" secondItem="9tD-5q-xDF" secondAttribute="trailing" id="NDt-1b-RXX"/>
+                            <constraint firstAttribute="trailing" secondItem="9tD-5q-xDF" secondAttribute="trailing" constant="8" id="OtO-5V-pKL"/>
+                            <constraint firstItem="UXE-TJ-Gvc" firstAttribute="top" secondItem="OSg-nP-c0P" secondAttribute="top" constant="8" id="QGd-49-J4K"/>
+                            <constraint firstAttribute="trailing" secondItem="UXE-TJ-Gvc" secondAttribute="trailing" constant="8" id="dts-34-8o6"/>
+                            <constraint firstItem="UXE-TJ-Gvc" firstAttribute="leading" secondItem="OSg-nP-c0P" secondAttribute="leading" constant="8" id="mZD-x3-XVH"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="OSg-nP-c0P" secondAttribute="bottom" constant="16" id="D8P-eN-LWq"/>
+                    <constraint firstItem="OSg-nP-c0P" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="Q1Q-5l-2e1"/>
+                    <constraint firstItem="OSg-nP-c0P" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="nSN-wU-GMt"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="OSg-nP-c0P" secondAttribute="trailing" constant="16" id="sw2-hI-dRD"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="dateLabel" destination="EIl-TD-xI8" id="1E4-TA-CMc"/>
+                <outlet property="messageLabel" destination="9tD-5q-xDF" id="ROy-2j-1i4"/>
+                <outlet property="userNameLabel" destination="UXE-TJ-Gvc" id="tgy-c4-Dqf"/>
+            </connections>
+            <point key="canvasLocation" x="73" y="103.5"/>
+        </tableViewCell>
+    </objects>
+</document>

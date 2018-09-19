@@ -84,25 +84,6 @@ class BookingSummaryCell: NTableViewCell {
             }
         }
         
-        if let voucher = cart.voucher, let code = voucher.code, !code.isEmpty {
-            let additionalView = NAdditionalView(frame: CGRect.zero)
-            additionalView.translatesAutoresizingMaskIntoConstraints = false
-            additionalView.initData(title: "Voucher(\(code))", price: voucher.value, additional: "-")
-            self.detailContainer.addSubview(additionalView)
-            self.detailContainer.addConstraints([
-                NSLayoutConstraint(item: self.detailContainer, attribute: .leading, relatedBy: .equal, toItem: additionalView, attribute: .leading, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: self.detailContainer, attribute: .trailing, relatedBy: .equal, toItem: additionalView, attribute: .trailing, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: self.additionalViews![i], attribute: .bottom,
-                                   relatedBy: .equal, toItem: additionalView, attribute: .top,
-                                   multiplier: 1, constant: -4)
-                ])
-            self.additionalViews!.append(additionalView)
-            if additionals == nil || additionals!.isEmpty {
-                self.detailContainer.addConstraint(NSLayoutConstraint(item: self.detailContainer, attribute: .bottom, relatedBy: .equal, toItem: additionalView, attribute: .bottom, multiplier: 1, constant: 0))
-                return
-            }
-            i+=1
-        }
         if let additionals = additionals, !additionals.isEmpty {
             var j: Int = 0
             for additional in additionals {
@@ -118,15 +99,47 @@ class BookingSummaryCell: NTableViewCell {
                                        relatedBy: .equal, toItem: additionalView, attribute: .top,
                                        multiplier: 1, constant: -4)
                     ])
-                if j >= additionals.count - 1 {
+                if j >= additionals.count - 1 && cart.voucher == nil {
                     self.detailContainer.addConstraint(NSLayoutConstraint(item: self.detailContainer, attribute: .bottom, relatedBy: .equal, toItem: additionalView, attribute: .bottom, multiplier: 1, constant: 0))
                 }
                 self.additionalViews!.append(additionalView)
                 j += 1
                 i += 1
             }
+            if let voucher = cart.voucher, let code = voucher.code, !code.isEmpty {
+                let additionalView = NAdditionalView(frame: CGRect.zero)
+                additionalView.translatesAutoresizingMaskIntoConstraints = false
+                additionalView.initData(title: "Voucher(\(code))", price: voucher.value, additional: "-")
+                self.detailContainer.addSubview(additionalView)
+                self.detailContainer.addConstraints([
+                    NSLayoutConstraint(item: self.detailContainer, attribute: .leading, relatedBy: .equal, toItem: additionalView, attribute: .leading, multiplier: 1, constant: 0),
+                    NSLayoutConstraint(item: self.detailContainer, attribute: .trailing, relatedBy: .equal, toItem: additionalView, attribute: .trailing, multiplier: 1, constant: 0),
+                    NSLayoutConstraint(item: self.additionalViews![i], attribute: .bottom,
+                                       relatedBy: .equal, toItem: additionalView, attribute: .top,
+                                       multiplier: 1, constant: -4)
+                    ])
+                self.detailContainer.addConstraint(NSLayoutConstraint(item: self.detailContainer, attribute: .bottom, relatedBy: .equal, toItem: additionalView, attribute: .bottom, multiplier: 1, constant: 0))
+                self.additionalViews!.append(additionalView)
+                i+=1
+            }
         } else {
-            self.detailContainer.addConstraint(NSLayoutConstraint(item: self.detailContainer, attribute: .bottom, relatedBy: .equal, toItem: self.additionalViews![0], attribute: .bottom, multiplier: 1, constant: 0))
+            if let voucher = cart.voucher, let code = voucher.code, !code.isEmpty {
+                let additionalView = NAdditionalView(frame: CGRect.zero)
+                additionalView.translatesAutoresizingMaskIntoConstraints = false
+                additionalView.initData(title: "Voucher(\(code))", price: voucher.value, additional: "-")
+                self.detailContainer.addSubview(additionalView)
+                self.detailContainer.addConstraints([
+                    NSLayoutConstraint(item: self.detailContainer, attribute: .leading, relatedBy: .equal, toItem: additionalView, attribute: .leading, multiplier: 1, constant: 0),
+                    NSLayoutConstraint(item: self.detailContainer, attribute: .trailing, relatedBy: .equal, toItem: additionalView, attribute: .trailing, multiplier: 1, constant: 0),
+                    NSLayoutConstraint(item: self.additionalViews![i], attribute: .bottom,
+                                       relatedBy: .equal, toItem: additionalView, attribute: .top,
+                                       multiplier: 1, constant: -4)
+                    ])
+                self.additionalViews!.append(additionalView)
+                i+=1
+            }
+
+            self.detailContainer.addConstraint(NSLayoutConstraint(item: self.detailContainer, attribute: .bottom, relatedBy: .equal, toItem: self.additionalViews![i], attribute: .bottom, multiplier: 1, constant: 0))
             
 //            self.additionalViews![0].addConstraint(NSLayoutConstraint(item: serviceAddtionalView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 44))
         }

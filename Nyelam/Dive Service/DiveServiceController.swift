@@ -82,7 +82,6 @@ class DiveServiceController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -344,17 +343,17 @@ class DiveServiceController: BaseViewController {
             if let authUser = NAuthReturn.authUser() {
                 self.book(user: authUser.user!)
             } else {
-                self.goToAuth()
+                self.goToAuth(completion: {
+                    if let authUser = NAuthReturn.authUser() {
+                        self.book(user: authUser.user!)
+                    }
+                })
             }
         }
     }
     
-    override func goToAuth() {
-        let _ = AuthNavigationController.present(on: self, dismissCompletion: {
-            if let authUser = NAuthReturn.authUser() {
-                self.book(user: authUser.user!)
-            }
-        })
+    override func goToAuth(completion: @escaping () -> ()) {
+        let _ = AuthNavigationController.present(on: self, dismissCompletion: completion)
     }
     
     fileprivate func book(user: NUser) {
@@ -528,6 +527,17 @@ extension DiveServiceController: UITableViewDelegate, UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "DiveServiceDetailCell", for: indexPath) as! DiveServiceDetailCell
                 cell.forDoCourse = self.forDoCourse
                 cell.initData(diveService: self.diveService!)
+                cell.onChatDCClicked = {serviceId in
+                    if let authUser = NAuthReturn.authUser() {
+                        CreateInboxController.push(on: self.navigationController!, inboxType: 1, fromHome: false, refId: serviceId, subject: self.diveService!.name!)
+                    } else {
+                        self.goToAuth(completion: {
+                            if let authUser = NAuthReturn.authUser() {
+                                CreateInboxController.push(on: self.navigationController!, inboxType: 1, fromHome: false, refId: serviceId, subject: self.diveService!.name!)
+                            }
+                        })
+                    }
+                }
                 cell.onDiveCenterClicked = {diveCenter in
                     if self.forDoCourse {
                         _ = DiveCenterController.push(on: self.navigationController!, forDoCourse: self.forDoCourse, selectedKeyword: self.selectedKeyword, selectedDiver: 1, selectedDate: self.selectedDate!, selectedOrganization: self.selectedOrganization!, selectedLicenseType: self.selectedLicenseType!, diveCenter: diveCenter)
@@ -694,6 +704,8 @@ class DiveServiceDetailCell: NTableViewCell {
     fileprivate var forDoCourse: Bool = false
     fileprivate var diveService: NDiveService?
     var onDiveCenterClicked: (NDiveCenter) -> () = {divecenter in }
+    var onChatDCClicked: (String) -> () = {serviceId in }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -705,6 +717,10 @@ class DiveServiceDetailCell: NTableViewCell {
         // Configure the view for the selected state
     }
     
+    
+    @IBAction func chatButtonAction(_ sender: Any) {
+        self.onChatDCClicked(self.diveService!.id!)
+    }
     
     @IBAction func diveCenterButtonAction(_ sender: Any) {
         self.onDiveCenterClicked(diveService!.divecenter!)
@@ -849,6 +865,7 @@ class DiveServiceRelatedCell: NTableViewCell {
     var controller: UIViewController?
     
     @IBOutlet weak var scrollerHeightConstraint: NSLayoutConstraint!
+    
     var relatedDiveServices: [NDiveService]? {
         didSet {
             for subview: UIView in self.scroller.subviews {

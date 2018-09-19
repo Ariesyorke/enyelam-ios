@@ -21,17 +21,21 @@ class MainRootController: BaseViewController {
     @IBOutlet weak var tabMenuHome: MainRootTabItemView!
     @IBOutlet weak var tabMenuOrder: MainRootTabItemView!
     @IBOutlet weak var tabMenuAccount: MainRootTabItemView!
+    @IBOutlet weak var tabMenuInbox: MainRootTabItemView!
     
     var tabMenus: [MainRootTabItemView] {
-        return [tabMenuHome, tabMenuOrder, tabMenuAccount]
+        return [tabMenuHome, tabMenuOrder, tabMenuAccount, tabMenuInbox]
     }
+    
     var tabMenuTypes: [TabItemType] {
-        return [TabItemType.Home, TabItemType.Order, TabItemType.Account]
+        return [TabItemType.Home, TabItemType.Order, TabItemType.Account,TabItemType.Inbox]
     }
+    
     var currentController: UIViewController?
     var homeController: HomeController?
     var accountController: AccountTableViewController?
     var bookingController: BookingViewController?
+    var inboxController: InboxController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +79,15 @@ class MainRootController: BaseViewController {
                 self.bookingController!.view.translatesAutoresizingMaskIntoConstraints = false
             }
             self.put(controller: self.bookingController!)
+        } else if type == TabItemType.Inbox {
+            if self.currentController != nil && self.currentController == self.inboxController {
+                return
+            }
+            if self.inboxController == nil {
+                self.inboxController = InboxController(nibName: "InboxController", bundle: nil)
+                self.inboxController!.view.translatesAutoresizingMaskIntoConstraints = false
+            }
+            self.put(controller: self.inboxController!)
         }
     }
     
@@ -83,8 +96,11 @@ class MainRootController: BaseViewController {
         for tab: MainRootTabItemView in self.tabMenus {
             tab.tabSelected = tab == tabItem
             if tab == tabItem {
-                if NAuthReturn.authUser() == nil && (index == 1 || index == 2) {
-                    self.goToAuth()
+                if NAuthReturn.authUser() == nil && (index == 1 || index == 2 || index == 3) {
+                    self.goToAuth(completion: {
+                        self.navigationController!.setNavigationBarHidden(true, animated: true)
+                        self.checkLoginState()
+                    })
                     return
                 }
                 self.onSelectTab(type: self.tabMenuTypes[index])
@@ -116,13 +132,6 @@ class MainRootController: BaseViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override func goToAuth() {
-        let _ = AuthNavigationController.present(on: self, dismissCompletion: {
-            self.navigationController!.setNavigationBarHidden(true, animated: true)
-            self.checkLoginState()
-        })
     }
 
     func checkLoginState() {
@@ -175,4 +184,5 @@ enum TabItemType {
     case Home
     case Order
     case Account
+    case Inbox
 }

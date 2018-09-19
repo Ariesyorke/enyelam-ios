@@ -68,6 +68,8 @@ class OnboardingController: UIViewController, EAIntroDelegate {
         let currentPage = introView!.currentPageIndex + 1
         if currentPage < 3 {
             self.introView!.scrollToPage(for: currentPage, animated: true)
+        } else {
+            let _ = MainNavigationController.present(on: self)
         }
     }
     /*

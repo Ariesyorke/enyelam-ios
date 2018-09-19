@@ -63,9 +63,8 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
     }
 
-    func goToAuth() {
-        let auth = AuthNavigationController.present(on: self, dismissCompletion: {
-        })
+    func goToAuth(completion: @escaping ()->()) {
+        let _ = AuthNavigationController.present(on: self, dismissCompletion: completion)
     }
     
     func goToAccount() {

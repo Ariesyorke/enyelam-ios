@@ -92,7 +92,6 @@ class SearchKeywordController: BaseViewController, UISearchControllerDelegate, U
         self.searchController.dimsBackgroundDuringPresentation = true
         
         self.navigationItem.titleView = searchController.searchBar
-        
         self.definesPresentationContext = true
 
 //        self.navigationItem.titleView = self.createSearchBarView(size: CGSize(width: self.view.frame.width, height: 44))
