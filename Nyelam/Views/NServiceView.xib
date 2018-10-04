@@ -26,6 +26,7 @@
                 <outlet property="linceseNeededImageView" destination="i9e-d2-y1m" id="0Ft-3b-3MH"/>
                 <outlet property="normalPriceContainerView" destination="3u2-Ws-O6m" id="Yx4-gw-Iya"/>
                 <outlet property="normalPriceLabel" destination="yU1-ef-eVx" id="Sle-7K-Ugj"/>
+                <outlet property="rateView" destination="ykN-tn-ir2" id="F2F-VF-Bd5"/>
                 <outlet property="scheduleHeightConstant" destination="Qc9-ja-Rzl" id="MdR-hW-Rwn"/>
                 <outlet property="serviceImageView" destination="9kx-N2-A7y" id="FUy-oP-tmK"/>
                 <outlet property="serviceNameLabel" destination="SpE-Pp-u7N" id="CxJ-6C-b0u"/>
@@ -48,11 +49,11 @@
                     </constraints>
                 </imageView>
                 <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BrZ-ka-FCO">
-                    <rect key="frame" x="0.0" y="0.0" width="291" height="194"/>
+                    <rect key="frame" x="0.0" y="0.0" width="249" height="166"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SpE-Pp-u7N">
-                    <rect key="frame" x="16" y="164" width="259" height="22"/>
+                    <rect key="frame" x="16" y="136" width="217" height="22"/>
                     <fontDescription key="fontDescription" name="FiraSans-Bold" family="Fira Sans" pointSize="18"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -62,7 +63,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Date - End Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="guM-CP-Fif">
-                    <rect key="frame" x="16" y="202" width="133" height="18"/>
+                    <rect key="frame" x="16" y="174" width="133" height="18"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="18" id="Qc9-ja-Rzl"/>
                     </constraints>
@@ -71,7 +72,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kn5-2U-tiw" userLabel="Dive Days Container">
-                    <rect key="frame" x="16" y="228" width="253" height="18"/>
+                    <rect key="frame" x="16" y="200" width="253" height="18"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Dives" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="04j-Qb-vFy">
                             <rect key="frame" x="0.0" y="0.0" width="45.5" height="18"/>
@@ -107,13 +108,19 @@
                         <constraint firstItem="04j-Qb-vFy" firstAttribute="top" secondItem="kn5-2U-tiw" secondAttribute="top" id="oba-95-l7R"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ykN-tn-ir2">
-                    <rect key="frame" x="16" y="254" width="100" height="0.0"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ykN-tn-ir2" customClass="CosmosView" customModule="Cosmos">
+                    <rect key="frame" x="16" y="226" width="100" height="20"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="ScE-iY-xLm"/>
-                        <constraint firstAttribute="height" id="oib-Ld-v9G"/>
+                        <constraint firstAttribute="height" constant="20" id="oib-Ld-v9G"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="updateOnTouch" value="NO"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="fillMode">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="mB8-S8-tgc" userLabel="Dive Center Container">
                     <rect key="frame" x="16" y="254" width="253" height="23"/>
@@ -213,7 +220,7 @@
                 <constraint firstAttribute="trailing" secondItem="3u2-Ws-O6m" secondAttribute="trailing" constant="16" id="Klk-ex-zLh"/>
                 <constraint firstItem="kn5-2U-tiw" firstAttribute="top" secondItem="guM-CP-Fif" secondAttribute="bottom" constant="8" id="NAj-XJ-slj"/>
                 <constraint firstItem="3u2-Ws-O6m" firstAttribute="top" secondItem="mB8-S8-tgc" secondAttribute="bottom" id="PX1-a2-Xoa"/>
-                <constraint firstItem="ykN-tn-ir2" firstAttribute="bottom" secondItem="mB8-S8-tgc" secondAttribute="top" id="Squ-NR-g9u"/>
+                <constraint firstItem="ykN-tn-ir2" firstAttribute="bottom" secondItem="mB8-S8-tgc" secondAttribute="top" constant="-8" id="Squ-NR-g9u"/>
                 <constraint firstAttribute="bottom" secondItem="KRT-I8-rtl" secondAttribute="bottom" id="VBv-wY-9qH"/>
                 <constraint firstItem="BrZ-ka-FCO" firstAttribute="trailing" secondItem="9kx-N2-A7y" secondAttribute="trailing" id="Vdv-Eu-gby"/>
                 <constraint firstAttribute="trailing" secondItem="KRT-I8-rtl" secondAttribute="trailing" id="Weu-Av-5Xv"/>

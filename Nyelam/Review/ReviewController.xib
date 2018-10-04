@@ -15,10 +15,17 @@
         <array key="FiraSans-Regular.ttf">
             <string>FiraSans-Regular</string>
         </array>
+        <array key="FiraSans-SemiBold.ttf">
+            <string>FiraSans-SemiBold</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReviewController" customModule="Nyelam" customModuleProvider="target">
             <connections>
+                <outlet property="commentTextView" destination="ec5-XG-wHM" id="B3Z-Hy-kmk"/>
+                <outlet property="cosmosView" destination="WWR-uQ-lKJ" id="zBL-tZ-BH6"/>
+                <outlet property="doneButton" destination="hUf-RI-eKt" id="vOa-Tm-gZw"/>
+                <outlet property="scrollBottomConstraint" destination="SaB-O8-2Xb" id="Baa-d9-Gsq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -37,6 +44,19 @@
                                 <action selector="dismissButtonAction:" destination="-1" eventType="touchUpInside" id="l07-z8-eBp"/>
                             </connections>
                         </button>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUf-RI-eKt">
+                            <rect key="frame" x="325" y="7.5" width="50" height="29"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="hbu-Ki-jyy"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                            <state key="normal" title="Done">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="doneButtonClicked:" destination="-1" eventType="touchUpInside" id="4Ad-Tr-3Cw"/>
+                            </connections>
+                        </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Review" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNV-Ra-t9B">
                             <rect key="frame" x="16" y="11" width="343" height="22"/>
                             <fontDescription key="fontDescription" name="FiraSans-Bold" family="Fira Sans" pointSize="18"/>
@@ -46,6 +66,7 @@
                     </subviews>
                     <color key="backgroundColor" red="0.086274509799999996" green="0.45882352939999999" blue="0.81176470590000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstItem="hUf-RI-eKt" firstAttribute="centerY" secondItem="iAC-Ft-mYb" secondAttribute="centerY" id="0hu-Yc-U6P"/>
                         <constraint firstItem="N5c-Mg-adp" firstAttribute="top" secondItem="iAC-Ft-mYb" secondAttribute="top" id="56Y-Aw-d3x"/>
                         <constraint firstAttribute="bottom" secondItem="N5c-Mg-adp" secondAttribute="bottom" id="O5l-bR-66u"/>
                         <constraint firstItem="VNV-Ra-t9B" firstAttribute="centerY" secondItem="iAC-Ft-mYb" secondAttribute="centerY" id="SIs-kO-yU7"/>
@@ -54,6 +75,7 @@
                         <constraint firstItem="VNV-Ra-t9B" firstAttribute="leading" secondItem="iAC-Ft-mYb" secondAttribute="leading" constant="16" id="dPb-fP-mxe"/>
                         <constraint firstAttribute="trailing" secondItem="VNV-Ra-t9B" secondAttribute="trailing" constant="16" id="e12-hn-r7F"/>
                         <constraint firstItem="VNV-Ra-t9B" firstAttribute="centerX" secondItem="iAC-Ft-mYb" secondAttribute="centerX" id="kO3-8U-aNc"/>
+                        <constraint firstAttribute="trailing" secondItem="hUf-RI-eKt" secondAttribute="trailing" id="vc2-sF-PnM"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rav-ey-yTs" userLabel="separator">
@@ -63,78 +85,98 @@
                         <constraint firstAttribute="height" constant="20" id="lH4-fi-55s"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WWR-uQ-lKJ" customClass="CosmosView" customModule="Cosmos">
-                    <rect key="frame" x="32" y="80" width="311" height="64"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pxr-uN-AHa">
+                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WWR-uQ-lKJ" customClass="CosmosView" customModule="Cosmos">
+                            <rect key="frame" x="32" y="16" width="311" height="64"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="64" id="qok-PO-4iP"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                    <real key="value" value="0.0"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
+                                    <integer key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="starSize">
+                                    <real key="value" value="40"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="updateOnTouch" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="minTouchRating">
+                                    <real key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="starMargin">
+                                    <real key="value" value="0.0"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="fillMode">
+                                    <integer key="value" value="0"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ec5-XG-wHM" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
+                            <rect key="frame" x="32" y="96" width="311" height="128"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="128" id="jTW-fc-ZYc"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Write Review Here"/>
+                            </userDefinedRuntimeAttributes>
+                        </textView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mro-tF-Eoc">
+                            <rect key="frame" x="32" y="256" width="311" height="40"/>
+                            <color key="backgroundColor" red="0.086274509799999996" green="0.45882352939999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="3Aq-ds-QNN"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="17"/>
+                            <state key="normal" title="Submit">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                    <real key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="submitButtonAction:" destination="-1" eventType="touchUpInside" id="K00-cK-GVF"/>
+                            </connections>
+                        </button>
+                    </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="64" id="qok-PO-4iP"/>
+                        <constraint firstItem="mro-tF-Eoc" firstAttribute="leading" secondItem="ec5-XG-wHM" secondAttribute="leading" id="1Io-9Q-ccF"/>
+                        <constraint firstItem="mro-tF-Eoc" firstAttribute="trailing" secondItem="ec5-XG-wHM" secondAttribute="trailing" id="3Ax-hw-mPi"/>
+                        <constraint firstItem="mro-tF-Eoc" firstAttribute="top" secondItem="ec5-XG-wHM" secondAttribute="bottom" constant="32" id="8D7-WH-arP"/>
+                        <constraint firstAttribute="trailing" secondItem="WWR-uQ-lKJ" secondAttribute="trailing" constant="32" id="JsT-Wh-WsC"/>
+                        <constraint firstItem="WWR-uQ-lKJ" firstAttribute="top" secondItem="Pxr-uN-AHa" secondAttribute="top" constant="16" id="MBA-TI-e8F"/>
+                        <constraint firstItem="WWR-uQ-lKJ" firstAttribute="centerX" secondItem="Pxr-uN-AHa" secondAttribute="centerX" id="Oib-2l-t3e"/>
+                        <constraint firstItem="ec5-XG-wHM" firstAttribute="trailing" secondItem="WWR-uQ-lKJ" secondAttribute="trailing" id="XfQ-Nd-1W6"/>
+                        <constraint firstAttribute="bottom" secondItem="mro-tF-Eoc" secondAttribute="bottom" constant="16" id="k81-1j-R5d"/>
+                        <constraint firstItem="ec5-XG-wHM" firstAttribute="leading" secondItem="WWR-uQ-lKJ" secondAttribute="leading" id="kDx-Bi-Fkh"/>
+                        <constraint firstItem="WWR-uQ-lKJ" firstAttribute="leading" secondItem="Pxr-uN-AHa" secondAttribute="leading" constant="32" id="kLR-lm-2qo"/>
+                        <constraint firstItem="ec5-XG-wHM" firstAttribute="top" secondItem="WWR-uQ-lKJ" secondAttribute="bottom" constant="16" id="rtw-jf-F7z"/>
                     </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="rating">
-                            <real key="value" value="0.0"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
-                            <integer key="value" value="5"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="starSize">
-                            <real key="value" value="40"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="updateOnTouch" value="YES"/>
-                        <userDefinedRuntimeAttribute type="number" keyPath="minTouchRating">
-                            <real key="value" value="1"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="starMargin">
-                            <real key="value" value="0.0"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </view>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ec5-XG-wHM" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                    <rect key="frame" x="32" y="160" width="311" height="128"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="128" id="jTW-fc-ZYc"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Write Review Here"/>
-                    </userDefinedRuntimeAttributes>
-                </textView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mro-tF-Eoc">
-                    <rect key="frame" x="32" y="304" width="311" height="40"/>
-                    <color key="backgroundColor" red="0.086274509799999996" green="0.45882352939999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="3Aq-ds-QNN"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="17"/>
-                    <state key="normal" title="Submit">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="radius">
-                            <real key="value" value="5"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </button>
+                </scrollView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="ec5-XG-wHM" firstAttribute="trailing" secondItem="WWR-uQ-lKJ" secondAttribute="trailing" id="0eT-N9-S7V"/>
-                <constraint firstAttribute="trailing" secondItem="WWR-uQ-lKJ" secondAttribute="trailing" constant="32" id="2gt-eg-dbM"/>
+                <constraint firstItem="Pxr-uN-AHa" firstAttribute="leading" secondItem="iAC-Ft-mYb" secondAttribute="leading" id="1LV-PK-txu"/>
+                <constraint firstItem="Pxr-uN-AHa" firstAttribute="top" secondItem="iAC-Ft-mYb" secondAttribute="bottom" id="9AP-JG-Myl"/>
                 <constraint firstItem="iAC-Ft-mYb" firstAttribute="trailing" secondItem="rav-ey-yTs" secondAttribute="trailing" id="9js-xH-nKh"/>
                 <constraint firstItem="rav-ey-yTs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="C6L-pZ-sAg"/>
-                <constraint firstItem="WWR-uQ-lKJ" firstAttribute="top" secondItem="iAC-Ft-mYb" secondAttribute="bottom" constant="16" id="GiT-mv-8d1"/>
                 <constraint firstItem="iAC-Ft-mYb" firstAttribute="top" secondItem="rav-ey-yTs" secondAttribute="bottom" id="KTy-Gt-Eay"/>
-                <constraint firstItem="mro-tF-Eoc" firstAttribute="leading" secondItem="ec5-XG-wHM" secondAttribute="leading" id="LFl-lu-VRN"/>
+                <constraint firstAttribute="bottom" secondItem="Pxr-uN-AHa" secondAttribute="bottom" id="SaB-O8-2Xb"/>
+                <constraint firstItem="Pxr-uN-AHa" firstAttribute="trailing" secondItem="iAC-Ft-mYb" secondAttribute="trailing" id="U66-f0-sN0"/>
                 <constraint firstAttribute="trailing" secondItem="rav-ey-yTs" secondAttribute="trailing" id="VQR-tH-YfW"/>
-                <constraint firstItem="mro-tF-Eoc" firstAttribute="trailing" secondItem="ec5-XG-wHM" secondAttribute="trailing" id="Wof-L6-cEP"/>
                 <constraint firstItem="iAC-Ft-mYb" firstAttribute="leading" secondItem="rav-ey-yTs" secondAttribute="leading" id="XZ5-hV-nsw"/>
                 <constraint firstItem="rav-ey-yTs" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="cVN-Sj-j0w"/>
-                <constraint firstItem="mro-tF-Eoc" firstAttribute="top" secondItem="ec5-XG-wHM" secondAttribute="bottom" constant="16" id="eNF-cF-pOT"/>
-                <constraint firstItem="WWR-uQ-lKJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="32" id="ivP-Z4-7KG"/>
-                <constraint firstItem="ec5-XG-wHM" firstAttribute="top" secondItem="WWR-uQ-lKJ" secondAttribute="bottom" constant="16" id="qzB-kQ-4xH"/>
-                <constraint firstItem="ec5-XG-wHM" firstAttribute="leading" secondItem="WWR-uQ-lKJ" secondAttribute="leading" id="rD5-1o-fnv"/>
             </constraints>
+            <point key="canvasLocation" x="33.5" y="72.5"/>
         </view>
     </objects>
     <resources>

@@ -33,12 +33,21 @@ class OnboardingController: UIViewController, EAIntroDelegate {
         let page1 = EAIntroPage.init(customViewFromNibNamed: "OnboardingView")
         let page1View: OnboardingView = page1?.customView as! OnboardingView
         page1View.onboardingImageView.image = UIImage(named: self.images[0])
+        page1View.completion = {
+            self.nextButtonAction(UIButton())
+        }
         let page2 = EAIntroPage.init(customViewFromNibNamed: "OnboardingView")
         let page2View: OnboardingView = page2?.customView as! OnboardingView
+        page2View.completion = {
+            self.nextButtonAction(UIButton())
+        }
         page2View.onboardingImageView.image = UIImage(named: self.images[1])
         
         let page3 = EAIntroPage.init(customViewFromNibNamed: "OnboardingView")
         let page3View: OnboardingView = page3?.customView as! OnboardingView
+        page3View.completion = {
+            self.nextButtonAction(UIButton())
+        }
         page3View.onboardingImageView.image = UIImage(named: self.images[2])
         
         introView = EAIntroView(frame: self.view.bounds, andPages: [page1!, page2!, page3!])
@@ -48,6 +57,7 @@ class OnboardingController: UIViewController, EAIntroDelegate {
         introView!.pageControlY = 43
         introView!.delegate = self
         introView!.swipeToExit = false
+        introView!.tapToNext = false
         introView!.skipButtonAlignment = .left
         introView!.skipButtonY = 48
         introView!.skipButton.setTitle("SKIP", for: .normal)
@@ -60,12 +70,9 @@ class OnboardingController: UIViewController, EAIntroDelegate {
         let _ = MainNavigationController.present(on: self)
     }
     
-    @IBAction func skipButtonAction(_ sender: Any) {
-        let _ = MainNavigationController.present(on: self)
-    }
-    
     @IBAction func nextButtonAction(_ sender: Any) {
         let currentPage = introView!.currentPageIndex + 1
+//        print("CURRENT PAGE \(currentPage)")
         if currentPage < 3 {
             self.introView!.scrollToPage(for: currentPage, animated: true)
         } else {

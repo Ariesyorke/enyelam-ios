@@ -11,9 +11,22 @@ import Alamofire
 import AlamofireImage
 
 extension NHTTPHelper {
-    static func httpGetReviewList(serviceId: String, complete: @escaping (NHTTPResponse<[Review]>)->()) {
-        self.basicPostRequest(URLString: HOST_URL+API_PATH_REVIEW_LIST,
-                              parameters: ["service_id": serviceId],
+    static func httpSubmitReview(serviceId: String, rating: String, review: String, complete: @escaping(NHTTPResponse<Bool>)->()) {
+        self.basicAuthRequest(URLString: HOST_URL + API_PATH_SUBMIT_REVIEW, parameters: ["service_id": serviceId, "rating": rating, "review": review], headers: nil, complete: {status, data, error in
+            if let error = error {
+                complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
+                return
+            }
+            if let data = data, let _ = data as? [String: Any] {
+                complete(NHTTPResponse(resultStatus: false, data: true, error: error))
+            }
+        })
+    }
+    
+    static func httpGetReviewList(page: String, serviceId: String, complete: @escaping (NHTTPResponse<[Review]>)->()) {
+        self.basicAuthRequest(URLString: HOST_URL+API_PATH_REVIEW_LIST,
+                              parameters: ["service_id": serviceId,
+                                           "page": page],
                               headers: nil,
                               complete: {status, data, error in
                                 if let error = error {

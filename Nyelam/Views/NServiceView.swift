@@ -29,7 +29,7 @@ class NServiceView: UIView {
     @IBOutlet weak var normalPriceContainerView: UIView!
     @IBOutlet weak var diveCenterName: UILabel!
     
-//    @IBOutlet weak var rateView: CosmosView!
+    @IBOutlet weak var rateView: CosmosView!
     var isDoTrip: Bool = false
     var isDoCourse: Bool = false
     
@@ -136,6 +136,6 @@ class NServiceView: UIView {
             self.linceseNeededImageView.image = UIImage(named: "icon_license_off")
         }
         self.layoutIfNeeded()
-//        self.rateView.rating = Double(Int(diveService.rating))
+        self.rateView.rating = Double(Int(diveService.rating))
     }
 }

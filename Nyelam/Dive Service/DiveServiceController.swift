@@ -9,6 +9,7 @@
 import UIKit
 import Cosmos
 import MBProgressHUD
+import UIScrollView_InfiniteScroll
 
 class DiveServiceController: BaseViewController {
     let file = "review.json"
@@ -73,7 +74,15 @@ class DiveServiceController: BaseViewController {
     fileprivate var selectedLicenseType: NLicenseType?
     fileprivate var state: TableState = .detail
     fileprivate var equipments: [Equipment]?
-    fileprivate var reviews: [Review]?
+    fileprivate var reviews: [Review]? {
+        didSet{
+            if self.reviews != nil && !self.reviews!.isEmpty {
+                if self.state == .review {
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
     
     @IBOutlet weak var loadingView: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
@@ -91,6 +100,7 @@ class DiveServiceController: BaseViewController {
             self.initView()
             let id = self.diveService != nil ? self.diveService!.id!:self.selectedKeyword!.id!
             self.tryLoadServiceDetail(serviceId: id, selectedLicense: selectedLicense.number, selectedDate: selectedDate!, selectedDiver: selectedDiver, forDoTrip: self.forDoTrip, forDoCourse: self.forDoCourse)
+            self.tryGetReviews(serviceId: id)
         }
         
     }
@@ -101,36 +111,27 @@ class DiveServiceController: BaseViewController {
         item.setTitleTextAttributes([NSAttributedStringKey.font: UIFont(name: "FiraSans-SemiBold", size: 15)!,
                                      NSAttributedStringKey.foregroundColor: UIColor.white], for: .normal)
         self.navigationItem.rightBarButtonItem = item
-
     }
     
-    fileprivate func getReviews() {
-        if let path = Bundle.main.path(forResource: self.file, ofType: nil) {
-            // use path
-            let fileURL = URL(fileURLWithPath: path)
-            do {
-                let jsonString = try String(contentsOf: fileURL, encoding: .utf8)
-                let data = jsonString.data(using: String.Encoding.utf8, allowLossyConversion: true)
-                let json: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
-                if let reviewArray = json["reviews"] as? Array<[String: Any]>, !reviewArray.isEmpty {
-                    self.reviews = []
-                    for reviewJson in reviewArray {
-                        let review = Review(json: reviewJson)
-                        self.reviews!.append(review)
-                    }
-                    self.tableView.reloadData()
+    fileprivate func tryGetReviews(serviceId: String) {
+        NHTTPHelper.httpGetReviewList(page: String(page), serviceId: serviceId, complete: {response in
+            self.tableView.finishInfiniteScroll()
+            if let error = response.error {
+                if error.isKind(of: NotConnectedInternetError.self) {
+                    NHelper.handleConnectionError(completion: {
+                        self.tryGetReviews(serviceId: serviceId)
+                    })
                 }
+                return
             }
-            catch {
-                print(error)
+            if let datas = response.data, !datas.isEmpty {
+                self.page += 1
+                if self.reviews == nil {
+                    self.reviews = []
+                }
+                self.reviews!.append(contentsOf: datas)
             }
-        }
-//        NHTTPHelper.httpGetReviewList(serviceId: self.diveService!.id!, complete: {response in
-//            if let datas = response.data, !datas.isEmpty {
-//                self.reviews = datas
-//                self.tableView.reloadData()
-//            }
-//        })
+        })
     }
     
     @objc func shareButtonAction(_ button: UIBarButtonItem) {
@@ -168,6 +169,13 @@ class DiveServiceController: BaseViewController {
         self.tableView.register(UINib(nibName: "DiveServiceRelatedCell", bundle: nil), forCellReuseIdentifier: "DiveServiceRelatedCell")
         self.tableView.register(UINib(nibName: "AddOnCell", bundle: nil), forCellReuseIdentifier: "AddOnCell")
         self.tableView.register(UINib(nibName: "ReviewCell", bundle: nil), forCellReuseIdentifier: "ReviewCell")
+        
+//        self.tableView.addInfiniteScroll(handler: {tableView in
+//            if self.state == .review {
+//                let id = self.diveService != nil ? self.diveService!.id!:self.selectedKeyword!.id!
+//                self.tryGetReviews(serviceId: id)
+//            }
+//        })
     }
     
     fileprivate func tryLoadServiceDetail(serviceId: String, selectedLicense: Int, selectedDate: Date, selectedDiver: Int, forDoTrip: Bool, forDoCourse: Bool) {
@@ -451,7 +459,7 @@ extension DiveServiceController: NStickyHeaderViewDelegate {
             self.state = .detail
 
         } else {
-            self.reviewNotFoundLabel.isHidden = false
+            self.reviewNotFoundLabel.isHidden = true
             self.strechyHeaderView!.tabDetailLineView.isHidden = true
             self.strechyHeaderView!.tabReviewLineView.isHidden = false
             self.state = .review
@@ -668,7 +676,7 @@ class DiveServiceDetailCell: NTableViewCell {
     @IBOutlet weak var diveCenterImage: UIImageView!
     @IBOutlet weak var diveCenterNameLabel: UILabel!
     @IBOutlet weak var divespotLabel: UILabel!
-//    @IBOutlet weak var ratingView: CosmosView!
+    @IBOutlet weak var ratingView: CosmosView!
     @IBOutlet weak var visitorCounterLabel: UILabel!
     @IBOutlet weak var normalPriceContainer: UIView!
     @IBOutlet weak var specialPriceLabel: UILabel!
@@ -753,7 +761,7 @@ class DiveServiceDetailCell: NTableViewCell {
         } else {
             self.divespotLabel.text = "-"
         }
-//        self.ratingView.rating = diveService.rating
+        self.ratingView.rating = diveService.rating
 //        self.visitorCounterLabel.text = "\(diveService.ratingCount) / \(diveService.visited) visited"
         self.normalPriceLabel.text = diveService.normalPrice.toCurrencyFormatString(currency: "Rp.")
         self.specialPriceLabel.text = diveService.specialPrice.toCurrencyFormatString(currency:"Rp.")
@@ -873,18 +881,7 @@ class DiveServiceRelatedCell: NTableViewCell {
             }
             
             if self.relatedDiveServices != nil {
-                var height: CGFloat = 340
-                if self.isDoTrip {
-                    height = 350
-                }
-                if NDisplay.typeIsLike == .iphone5 || NDisplay.typeIsLike == .iphone4 {
-                    if self.isDoTrip {
-                        height = 300
-                    } else {
-                        height = 290
-                    }
-                }
-                self.scrollerHeightConstraint.constant = height
+
                 
                 var i: Int = 0
                 var leftView: UIView? = nil
@@ -915,6 +912,18 @@ class DiveServiceRelatedCell: NTableViewCell {
                     i += 1
                     leftView = view
                 }
+                var height: CGFloat = 360
+                if self.isDoTrip {
+                    height = 370
+                }
+                if NDisplay.typeIsLike == .iphone5 || NDisplay.typeIsLike == .iphone4 {
+                    if self.isDoTrip {
+                        height = 320
+                    } else {
+                        height = 310
+                    }
+                }
+                self.scrollerHeightConstraint.constant = height
             }
         }
     }
@@ -929,15 +938,15 @@ class DiveServiceRelatedCell: NTableViewCell {
         let view: NServiceView = NServiceView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.controller!.view.frame.width * 75/100))
-        var height: CGFloat = 340
+        var height: CGFloat = 360
         if self.isDoTrip {
-            height = 350
+            height = 370
         }
         if NDisplay.typeIsLike == .iphone5 || NDisplay.typeIsLike == .iphone4 {
             if self.isDoTrip {
-                height = 300
+                height = 320
             } else {
-                height = 290
+                height = 310
             }
         }
 

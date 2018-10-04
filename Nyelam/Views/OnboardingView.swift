@@ -11,5 +11,10 @@ import UIKit
 
 class OnboardingView: UIView {
     @IBOutlet weak var onboardingImageView: UIImageView!
+    var completion: () -> () = {}
+    @IBAction func nextButtonAction(_ sender: Any) {
+        print("NEXT BUTTON CLICKED")
+        self.completion()
+    }
     
 }

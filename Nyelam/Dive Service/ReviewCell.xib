@@ -53,9 +53,9 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YHf-CM-dHC">
-                        <rect key="frame" x="43" y="71" width="1" height="41.5"/>
+                        <rect key="frame" x="42.5" y="71" width="2" height="41.5"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="1" id="r86-1S-PHc"/>
+                            <constraint firstAttribute="width" constant="2" id="r86-1S-PHc"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z6q-HK-nCn" customClass="CosmosView" customModule="Cosmos">

@@ -515,9 +515,9 @@ class NHTTPHelper {
     static var API_PATH_REVIEW_LIST: String {
         switch NConstant.URL_TYPE {
         case .production:
-            return ""
+            return "service/review"
         default:
-            return ""
+            return "api/service/review"
         }
     }
     
@@ -581,7 +581,16 @@ class NHTTPHelper {
             return "api/inbox/add"
         }
     }
-        
+    
+    static var API_PATH_SUBMIT_REVIEW: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "service/review/submit"
+        default:
+            return "api/service/review/submit"
+        }
+    }
+    
     internal static func basicAuthStringRequest(URLString: URLConvertible,
                                                 parameters: [String: Any]? = nil,
                                                 headers: [String: String]? = nil,

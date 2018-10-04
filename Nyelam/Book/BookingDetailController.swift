@@ -69,11 +69,6 @@ class BookingDetailController: BaseViewController {
         self.tableView.register(UINib(nibName: "ContactCell", bundle: nil), forCellReuseIdentifier: "ContactCell")
         self.tableView.register(UINib(nibName: "ParticipantCell", bundle: nil), forCellReuseIdentifier: "ParticipantCell")
         self.tableView.register(UINib(nibName: "PaymentProofCell", bundle: nil), forCellReuseIdentifier: "PaymentProofCell")
-//        if self.type == "1" {
-            self.writeReviewButton.isHidden = true
-//        } else {
-//            self.writeReviewButton.isHidden = false
-//        }
         
     }
     
@@ -84,6 +79,14 @@ class BookingDetailController: BaseViewController {
             } else {
                 self.navigationItem.rightBarButtonItem = nil
             }
+        }
+    }
+    
+    fileprivate func initReview() {
+        if let orderReturn = self.orderReturn, let summary = orderReturn.summary, let order = summary.order, let status = order.status, self.type == "2" && status.lowercased() == "accepted" {
+            self.writeReviewButton.isHidden = false
+        } else {
+            self.writeReviewButton.isHidden = true
         }
     }
     fileprivate func loadBookingDetail(bookingId: String) {
@@ -101,6 +104,7 @@ class BookingDetailController: BaseViewController {
             if let data = response.data {
                 self.orderReturn = data
                 self.initInbox()
+                self.initReview()
                 self.tableView.reloadData()
             }
         })
@@ -130,7 +134,9 @@ class BookingDetailController: BaseViewController {
     }
 
     @IBAction func reviewButtonAction(_ sender: Any) {
-        ReviewController.present(on: self.navigationController!, bookingId: self.bookingId!)
+        if let orderReturn = self.orderReturn, let summary = orderReturn.summary, let service = summary.diveService {
+            ReviewController.present(on: self.navigationController!, serviceId: service.id!)
+        }
     }
     /*
     // MARK: - Navigation
