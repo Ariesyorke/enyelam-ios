@@ -17,27 +17,34 @@ class InboxDetailController: BaseViewController {
     @IBOutlet weak var arrowRightImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     var refreshControl: UIRefreshControl?
-    @IBOutlet weak var loadingView: UIActivityIndicatorView!
     @IBOutlet weak var attachImageView: UIImageView!
     @IBOutlet weak var bottomView: NSLayoutConstraint!
     @IBOutlet weak var ImageAttachContainer: UIView!
+    @IBOutlet weak var inputContainer: UIView!
+    @IBOutlet weak var inputContainerHeight: NSLayoutConstraint!
     
     var senderId: String = ""
     var inboxDetails: [InboxDetail]? = nil
     var attachment: Data?
     var page: Int = 1
     let picker = UIImagePickerController()
-
-    static func push(on controller: UINavigationController, inbox: Inbox, senderId: String) -> InboxDetailController {
+    var closed: Bool = false
+    
+    static func push(on controller: UINavigationController, inbox: Inbox, senderId: String, closed: Bool) -> InboxDetailController {
         let vc = InboxDetailController(nibName: "InboxDetailController", bundle: nil)
         vc.inbox = inbox
         vc.senderId = senderId
+        vc.closed = closed
         controller.setNavigationBarHidden(false, animated: true)
         controller.pushViewController(vc, animated: true)
         return vc
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        if self.closed {
+            self.inputContainerHeight.constant = 0
+            self.inputContainer.isHidden = true
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -51,14 +58,15 @@ class InboxDetailController: BaseViewController {
         if self.firstTime {
             self.firstTime = false
             self.initView()
+            MBProgressHUD.showAdded(to: self.view, animated: true)
             self.tryLoadInboxDetail(inboxId: self.inbox!.ticketId!, isLatest: true)
         }
     }
     
     fileprivate func tryLoadInboxDetail(inboxId: String, isLatest: Bool) {
-        MBProgressHUD.showAdded(to: self.view, animated: true)
         NHTTPHelper.httpGetInboxDetail(page: isLatest ? 1 : self.page, inboxId: inboxId, complete: {response in
-            self.loadingView.isHidden = true
+            self.refreshControl!.endRefreshing()
+            self.tableView.finishInfiniteScroll()
             MBProgressHUD.hide(for: self.view, animated: true)
             if let error = response.error {
                 UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {error in
@@ -133,6 +141,16 @@ class InboxDetailController: BaseViewController {
         self.tableView.register(UINib(nibName: "IncomingImageMessageCell", bundle: nil), forCellReuseIdentifier: "IncomingImageMessageCell")
         self.tableView.register(UINib(nibName: "OutcomingTextMessageCell", bundle: nil), forCellReuseIdentifier: "OutcomingTextMessageCell")
         self.tableView.register(UINib(nibName: "OutcomingImageMessageCell", bundle: nil), forCellReuseIdentifier: "OutcomingImageMessageCell")
+        self.tableView.addInfiniteScroll(handler: self.infiniteScroll)
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl!.attributedTitle = NSAttributedString(string: "Please wait")
+        self.refreshControl!.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        if #available(iOS 10.0, *) {
+            self.tableView.refreshControl = self.refreshControl
+        } else {
+            self.tableView.addSubview(self.refreshControl!)
+        }
+
     }
     
     override func backButtonAction(_ sender: UIBarButtonItem) {
@@ -147,9 +165,12 @@ class InboxDetailController: BaseViewController {
     @IBAction func sendButtonAction(_ sender: Any) {
         self.view.endEditing(true)
         let message = inputTextField.text!
-        if !message.isEmpty {
+        if !message.isEmpty || attachment != nil {
             self.tryAddInbox(ticketId: self.inbox!.ticketId!, message: message, attachment: self.attachment)
+        } else {
+            UIAlertController.handleErrorMessage(viewController: self, error: "You must at least input a message or insert an attachment!", completion: {})
         }
+        
     }
     
     @IBAction func attachButtonAction(_ sender: Any) {
@@ -196,6 +217,7 @@ class InboxDetailController: BaseViewController {
                     return
                 }
             }
+            self.deleteAttachment()
             self.tryLoadInboxDetail(inboxId: self.inbox!.ticketId!, isLatest: true)
         })
     }
@@ -216,7 +238,6 @@ class InboxDetailController: BaseViewController {
         self.ImageAttachContainer.isHidden = true
         self.attachImageView.image = nil
         self.attachment = nil
-
     }
     
     /*
@@ -319,15 +340,14 @@ extension InboxDetailController: UITableViewDataSource, UITableViewDelegate {
         })
 
     }
-    
-    
 }
 
 extension InboxDetailController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         self.dismiss(animated: true, completion: {
             if let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-                self.attachment = UIImageJPEGRepresentation(chosenImage, 0.75)
+                let resizedImage = chosenImage.resized(toWidth: 400)
+                self.attachment = UIImageJPEGRepresentation(resizedImage!, 0.75)
                 self.ImageAttachContainer.isHidden = false
                 self.attachImageView.image = UIImage(data: self.attachment!)
             }

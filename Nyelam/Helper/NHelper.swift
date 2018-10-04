@@ -77,6 +77,12 @@ class NHelper {
         }
     }
     
+    static func getMaximumBirthDate() -> Date {
+        let cal =  CalendarName.gregorian.calendar
+        let pickedDate = cal.date(byAdding: .year, value: -13, to: Date())
+        return pickedDate!
+    }
+    
     static func isLogin()->Bool {
         if let _ = NAuthReturn.authUser() {
             return true

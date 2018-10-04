@@ -26,7 +26,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="558"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="558"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="557.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qSj-IF-wZM" userLabel="General Info">
@@ -299,11 +299,11 @@
                             <constraint firstItem="Edi-QZ-uML" firstAttribute="leading" secondItem="709-0I-96Q" secondAttribute="leading" id="xVk-S4-Ihb"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iuj-Cr-rjv">
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iuj-Cr-rjv">
                         <rect key="frame" x="16" y="287.5" width="288" height="30"/>
                         <color key="backgroundColor" red="0.086274509799999996" green="0.45882352939999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="Tob-Wz-fJM"/>
+                            <constraint firstAttribute="height" id="Tob-Wz-fJM"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                         <inset key="imageEdgeInsets" minX="-16" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -610,7 +610,7 @@
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="iuj-Cr-rjv" firstAttribute="top" secondItem="fQP-v0-GHg" secondAttribute="bottom" constant="16" id="2LD-xF-eAq"/>
+                    <constraint firstItem="iuj-Cr-rjv" firstAttribute="top" secondItem="fQP-v0-GHg" secondAttribute="bottom" id="2LD-xF-eAq"/>
                     <constraint firstItem="iuj-Cr-rjv" firstAttribute="leading" secondItem="fQP-v0-GHg" secondAttribute="leading" id="3uM-yT-qGD"/>
                     <constraint firstItem="iuj-Cr-rjv" firstAttribute="trailing" secondItem="fQP-v0-GHg" secondAttribute="trailing" id="5CF-1X-QzV"/>
                     <constraint firstItem="4Vf-Ca-Y01" firstAttribute="trailing" secondItem="qSj-IF-wZM" secondAttribute="trailing" id="7Rr-3p-A1J"/>
@@ -628,7 +628,7 @@
                     <constraint firstItem="5N3-Yp-KL4" firstAttribute="leading" secondItem="qSj-IF-wZM" secondAttribute="leading" id="cgp-UJ-SAX"/>
                     <constraint firstItem="UKS-O0-dQh" firstAttribute="leading" secondItem="F0q-d0-aue" secondAttribute="trailing" constant="8" id="dD8-83-xED"/>
                     <constraint firstItem="fQP-v0-GHg" firstAttribute="trailing" secondItem="qSj-IF-wZM" secondAttribute="trailing" id="h3R-kU-tis"/>
-                    <constraint firstItem="F0q-d0-aue" firstAttribute="top" secondItem="iuj-Cr-rjv" secondAttribute="bottom" constant="8" id="hfX-uY-BkX"/>
+                    <constraint firstItem="F0q-d0-aue" firstAttribute="top" secondItem="iuj-Cr-rjv" secondAttribute="bottom" id="hfX-uY-BkX"/>
                     <constraint firstItem="5N3-Yp-KL4" firstAttribute="top" secondItem="4Vf-Ca-Y01" secondAttribute="bottom" constant="16" id="hk4-Io-cWV"/>
                     <constraint firstItem="qSj-IF-wZM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="hrZ-xT-CJA"/>
                     <constraint firstItem="F0q-d0-aue" firstAttribute="leading" secondItem="qSj-IF-wZM" secondAttribute="leading" id="kcr-dq-aQG"/>
@@ -691,7 +691,7 @@
         <image name="ic_equipment_unactive" width="24" height="24"/>
         <image name="ic_ferry" width="24" height="24"/>
         <image name="ic_food_and_drink_unactive" width="24" height="24"/>
-        <image name="ic_inbox_small" width="25" height="25"/>
+        <image name="ic_inbox_small" width="20" height="20"/>
         <image name="ic_license_white" width="24" height="24"/>
         <image name="ic_towel_unactive" width="24" height="24"/>
         <image name="ic_transportation_unactive" width="24" height="24"/>

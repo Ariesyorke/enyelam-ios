@@ -18,6 +18,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateInboxController" customModule="Nyelam" customModuleProvider="target">
             <connections>
                 <outlet property="attachButton" destination="CSS-in-zOh" id="GtO-6Q-AkQ"/>
+                <outlet property="attachImageView" destination="LNf-xZ-fq8" id="VSv-CN-SrT"/>
                 <outlet property="downArrow" destination="o6M-cv-5FN" id="6PY-ZC-bgB"/>
                 <outlet property="messageContainerVerticalSpacing" destination="zNR-XL-fSW" id="fg9-sU-N1s"/>
                 <outlet property="messageTextField" destination="8St-8H-ywk" id="6vC-NT-vq3"/>
@@ -157,13 +158,22 @@
                                 <action selector="attachButtonAction:" destination="-1" eventType="touchUpInside" id="rlC-7K-0nK"/>
                             </connections>
                         </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LNf-xZ-fq8">
+                            <rect key="frame" x="16" y="312" width="100" height="100"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="100" id="8mF-us-Vsf"/>
+                                <constraint firstAttribute="width" constant="100" id="DUx-n2-YZ6"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <constraints>
+                        <constraint firstItem="LNf-xZ-fq8" firstAttribute="top" secondItem="CSS-in-zOh" secondAttribute="bottom" constant="16" id="0Ca-Gj-AQO"/>
+                        <constraint firstItem="LNf-xZ-fq8" firstAttribute="leading" secondItem="CSS-in-zOh" secondAttribute="leading" id="4UC-bA-Zqd"/>
                         <constraint firstItem="CSS-in-zOh" firstAttribute="top" secondItem="4a2-ew-WiK" secondAttribute="bottom" constant="8" id="Kvq-s9-qY5"/>
                         <constraint firstItem="9nn-vV-51u" firstAttribute="top" secondItem="LDY-9P-f5p" secondAttribute="top" constant="16" id="WFm-ar-rRW"/>
-                        <constraint firstAttribute="bottom" secondItem="CSS-in-zOh" secondAttribute="bottom" constant="16" id="ZkY-Oc-hag"/>
                         <constraint firstItem="9nn-vV-51u" firstAttribute="leading" secondItem="LDY-9P-f5p" secondAttribute="leading" id="abN-Ex-LqT"/>
                         <constraint firstItem="CSS-in-zOh" firstAttribute="leading" secondItem="4a2-ew-WiK" secondAttribute="leading" constant="16" id="bV9-m8-DPM"/>
+                        <constraint firstAttribute="bottom" secondItem="LNf-xZ-fq8" secondAttribute="bottom" constant="189" id="fZD-9M-jJk"/>
                         <constraint firstItem="4a2-ew-WiK" firstAttribute="leading" secondItem="9nn-vV-51u" secondAttribute="leading" id="g2N-0y-GaL"/>
                         <constraint firstItem="4a2-ew-WiK" firstAttribute="trailing" secondItem="9nn-vV-51u" secondAttribute="trailing" id="k2T-Ef-yQh"/>
                         <constraint firstAttribute="trailing" secondItem="9nn-vV-51u" secondAttribute="trailing" id="oeQ-UR-znk"/>

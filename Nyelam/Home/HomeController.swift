@@ -429,8 +429,10 @@ extension HomeController {
 //        imgView.image = UIImage(named: self.bannerImages[atindex])!
 //        imgView.af_setImage(withURL: banner.imageUrl)
         if banner.imageUrl != nil, let url: URL = URL(string: banner.imageUrl!) {
-            imgView.af_setImage(withURL: url)
+            imgView.af_setImage(withURL: url, placeholderImage: UIImage(named:"bg_placeholder"), filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: true, completion: nil)
+//            imgView.af_setImage(withURL: url)
         } else {
+            imgView.image = UIImage(named: "bg_placeholder")
             progress.isHidden = true
         }
         control.addSubview(imgView)

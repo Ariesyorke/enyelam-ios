@@ -12,6 +12,7 @@ import MMNumberKeyboard
 import ActionSheetPicker_3_0
 import MBProgressHUD
 import CoreData
+import SwiftDate
 
 class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
     @IBOutlet weak var firstNameTextField: SkyFloatingLabelTextField!
@@ -91,20 +92,55 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
     }
     
     @IBAction func certificateDateButtonAction(_ sender: Any) {
-        let datePickerController = DTMDatePickerController(nibName: "DTMDatePickerController", bundle: nil)
-        datePickerController.modalPresentationStyle = .popover
-        datePickerController.preferredContentSize = CGSize(width: self.view.frame.width/2, height: self.view.frame.height/2)
+        let vc = UIViewController()
+        vc.preferredContentSize = CGSize(width: 250, height: 300)
+        let pickerView: UIView
+        let datePicker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: 250, height: 300))
+        datePicker.datePickerMode = UIDatePickerMode.date
+//        datePicker.minimumDate = NHelper.getMinimumBirthDate()
         if let pickedDate = self.pickedCertificateDate {
-            datePickerController.defaultDate = pickedDate
+            datePicker.date = pickedDate
+        } else {
+            datePicker.date = Date()
         }
-        datePickerController.onDatePickedHandler = {controller, date in
-            self.pickedCertificateDate = date
-            self.certificateDateTextFIeld.text = date.formatDate(dateFormat: "dd/MM/yyyy")
-        }
-        self.present(datePickerController, animated: true, completion: nil)
-        let popoverPresentationController = datePickerController.popoverPresentationController
-        popoverPresentationController!.sourceView = sender as? UIView
-        popoverPresentationController!.sourceRect = CGRect(x: 0, y: 0, width: (sender as AnyObject).frame.size.width, height: (sender as AnyObject).frame.size.height)
+        pickerView = datePicker
+        vc.view.addSubview(pickerView)
+        let editRadiusAlert = UIAlertController(title: "Please choose", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        editRadiusAlert.setValue(vc, forKey: "contentViewController")
+        editRadiusAlert.addAction(UIAlertAction(title: "Done", style: .default, handler: { action in
+            if let temp: UIDatePicker = pickerView as? UIDatePicker {
+                let cal = CalendarName.gregorian.calendar
+                var comp: DateComponents = DateComponents()
+                comp.timeZone = TimeZoneName.asiaJakarta.timeZone
+                comp.calendar = CalendarName.gregorian.calendar
+                comp.day = cal.component(.day, from: temp.date)
+                comp.month = cal.component(.month, from: temp.date)
+                comp.year = cal.component(.year, from: temp.date)
+                comp.minute = 0
+                comp.hour = 0
+                comp.second = 0
+                let date = DateInRegion(components: comp)!
+                self.pickedCertificateDate = date.absoluteDate
+                self.certificateDateTextFIeld.text = self.pickedCertificateDate!.formatDate(dateFormat: "dd MMM yyyy")
+            }
+        }))
+        editRadiusAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(editRadiusAlert, animated: true)
+
+//        let datePickerController = DTMDatePickerController(nibName: "DTMDatePickerController", bundle: nil)
+//        datePickerController.modalPresentationStyle = .popover
+//        datePickerController.preferredContentSize = CGSize(width: self.view.frame.width/2, height: self.view.frame.height/2)
+//        if let pickedDate = self.pickedCertificateDate {
+//            datePickerController.defaultDate = pickedDate
+//        }
+//        datePickerController.onDatePickedHandler = {controller, date in
+//            self.pickedCertificateDate = date
+//            self.certificateDateTextFIeld.text = date.formatDate(dateFormat: "dd/MM/yyyy")
+//        }
+//        self.present(datePickerController, animated: true, completion: nil)
+//        let popoverPresentationController = datePickerController.popoverPresentationController
+//        popoverPresentationController!.sourceView = sender as? UIView
+//        popoverPresentationController!.sourceRect = CGRect(x: 0, y: 0, width: (sender as AnyObject).frame.size.width, height: (sender as AnyObject).frame.size.height)
     }
     
     @IBAction func languageButtonAction(_ sender: Any) {
@@ -157,20 +193,54 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
         }
     }
     @IBAction func birthdateButtonAction(_ sender: Any) {
-        let datePickerController = DTMDatePickerController(nibName: "DTMDatePickerController", bundle: nil)
-        datePickerController.modalPresentationStyle = .popover
+        let vc = UIViewController()
+        vc.preferredContentSize = CGSize(width: 250, height: 300)
+        let pickerView: UIView
+        let datePicker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: 250, height: 300))
+        datePicker.datePickerMode = UIDatePickerMode.date
+        datePicker.maximumDate = NHelper.getMaximumBirthDate()
         if let pickedDate = self.pickedBirthdate {
-            datePickerController.defaultDate = pickedDate
+            datePicker.date = pickedDate
+        } else {
+            datePicker.date = NHelper.getMaximumBirthDate()
         }
-        datePickerController.preferredContentSize = CGSize(width: self.view.frame.width/2, height: self.view.frame.height/2)
-        datePickerController.onDatePickedHandler = {controller, date in
-            self.pickedBirthdate = date
-            self.birthdateTextField.text = date.formatDate(dateFormat: "dd MMM yyyy")
-        }
-        self.present(datePickerController, animated: true, completion: nil)
-        let popoverPresentationController = datePickerController.popoverPresentationController
-        popoverPresentationController!.sourceView = sender as? UIView
-        popoverPresentationController!.sourceRect = CGRect(x: 0, y: 0, width: (sender as AnyObject).frame.size.width, height: (sender as AnyObject).frame.size.height)
+        pickerView = datePicker
+        vc.view.addSubview(pickerView)
+        let editRadiusAlert = UIAlertController(title: "Please choose", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        editRadiusAlert.setValue(vc, forKey: "contentViewController")
+        editRadiusAlert.addAction(UIAlertAction(title: "Done", style: .default, handler: { action in
+            if let temp: UIDatePicker = pickerView as? UIDatePicker {
+                let cal = CalendarName.gregorian.calendar
+                var comp: DateComponents = DateComponents()
+                comp.timeZone = TimeZoneName.asiaJakarta.timeZone
+                comp.calendar = CalendarName.gregorian.calendar
+                comp.day = cal.component(.day, from: temp.date)
+                comp.month = cal.component(.month, from: temp.date)
+                comp.year = cal.component(.year, from: temp.date)
+                comp.minute = 0
+                comp.hour = 0
+                comp.second = 0
+                let date = DateInRegion(components: comp)!
+                self.pickedBirthdate = date.absoluteDate
+                self.birthdateTextField.text = self.pickedBirthdate!.formatDate(dateFormat: "dd MMM yyyy")
+            }
+        }))
+        editRadiusAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(editRadiusAlert, animated: true)
+//        let datePickerController = DTMDatePickerController(nibName: "DTMDatePickerController", bundle: nil)
+//        datePickerController.modalPresentationStyle = .popover
+//        if let pickedDate = self.pickedBirthdate {
+//            datePickerController.defaultDate = pickedDate
+//        }
+//        datePickerController.preferredContentSize = CGSize(width: self.view.frame.width/2, height: self.view.frame.height/2)
+//        datePickerController.onDatePickedHandler = {controller, date in
+//            self.pickedBirthdate = date
+//            self.birthdateTextField.text = date.formatDate(dateFormat: "dd MMM yyyy")
+//        }
+//        self.present(datePickerController, animated: true, completion: nil)
+//        let popoverPresentationController = datePickerController.popoverPresentationController
+//        popoverPresentationController!.sourceView = sender as? UIView
+//        popoverPresentationController!.sourceRect = CGRect(x: 0, y: 0, width: (sender as AnyObject).frame.size.width, height: (sender as AnyObject).frame.size.height)
     }
     @IBAction func organizationButtonAction(_ sender: Any) {
 //        UIAlertController.handleErrorMessage(viewController: self, error: "This feature not available now!", completion: {})
@@ -283,6 +353,7 @@ class EditProfileViewController: BaseViewController, MMNumberKeyboardDelegate {
                 self.birthdateTextField.text = birthDate.formatDate(dateFormat: "dd MMM yyyy")
             }
             if let certificateDate = user.certificateDate {
+                self.pickedCertificateDate = certificateDate as Date
                 self.certificateDateTextFIeld.text = certificateDate.formatDate(dateFormat: "dd MMM yyyy")
             }
             self.certificateNumberTextField.text = user.certificateNumber

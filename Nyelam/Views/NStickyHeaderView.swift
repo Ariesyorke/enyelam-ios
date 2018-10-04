@@ -94,12 +94,13 @@ class NStickyHeaderView: GSKStretchyHeaderView, UIScrollViewDelegate {
         imgView.contentMode = UIViewContentMode.scaleAspectFill
         imgView.clipsToBounds = true
         imgView.backgroundColor = UIColor.clear
-//        imgView
-        if let url = banner.imageUrl {
-            imgView.loadImage(from: url, contentMode: .scaleToFill, with: "bg_placeholder.png")
+        if let imageUrl = banner.imageUrl, let url = URL(string: imageUrl) {
+            imgView.af_setImage(withURL: url, placeholderImage: UIImage(named: "bg_placeholder"), filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: true, completion: nil)
+//            imgView.loadImage(from: url, contentMode: .scaleToFill, with: "bg_placeholder.png")
 //            imgView.af_setImage(withURL: url)
         } else {
             progress.isHidden = true
+            imgView.image = UIImage(named: "bg_placeholder")
         }
         control.addSubview(imgView)
         control.addConstraints([

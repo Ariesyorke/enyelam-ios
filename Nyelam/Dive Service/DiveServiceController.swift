@@ -529,11 +529,11 @@ extension DiveServiceController: UITableViewDelegate, UITableViewDataSource {
                 cell.initData(diveService: self.diveService!)
                 cell.onChatDCClicked = {serviceId in
                     if let authUser = NAuthReturn.authUser() {
-                        CreateInboxController.push(on: self.navigationController!, inboxType: 1, fromHome: false, refId: serviceId, subject: self.diveService!.name!)
+                        CreateInboxController.push(on: self.navigationController!, inboxType: 1, fromHome: false, refId: serviceId, subject: self.diveService!.name!, completion: {})
                     } else {
                         self.goToAuth(completion: {
                             if let authUser = NAuthReturn.authUser() {
-                                CreateInboxController.push(on: self.navigationController!, inboxType: 1, fromHome: false, refId: serviceId, subject: self.diveService!.name!)
+                                CreateInboxController.push(on: self.navigationController!, inboxType: 1, fromHome: false, refId: serviceId, subject: self.diveService!.name!, completion: {})
                             }
                         })
                     }

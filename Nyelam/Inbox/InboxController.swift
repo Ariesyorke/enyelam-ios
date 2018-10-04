@@ -67,6 +67,7 @@ class InboxController: BaseViewController {
                 })
                 return
             }
+            self.tableView.finishInfiniteScroll()
             if let datas = response.data, !datas.isEmpty {
                 self.initInboxes(inboxes: datas)
             }
@@ -79,8 +80,8 @@ class InboxController: BaseViewController {
     
     fileprivate func initInboxes(inboxes: [Inbox]) {
         self.loadingView.isHidden = true
+        self.page += 1
         if self.inboxes == nil {
-            self.page += 1
             self.inboxes = []
         }
         self.inboxes!.append(contentsOf: inboxes)
@@ -125,11 +126,14 @@ extension InboxController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let inbox = self.inboxes![indexPath.row]
+        var closed = true
         if let status = inbox.status, status.lowercased() == "open" {
-            if let authReturn = NAuthReturn.authUser(), let user = authReturn.user {
-                InboxDetailController.push(on: self.navigationController!, inbox: inbox, senderId: user.id!)
-            }
+            closed = false
         }
+        if let authReturn = NAuthReturn.authUser(), let user = authReturn.user {
+            InboxDetailController.push(on: self.navigationController!, inbox: inbox, senderId: user.id!, closed: closed)
+        }
+
     }
 }
 

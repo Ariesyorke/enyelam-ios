@@ -36,7 +36,6 @@ extension UITableView {
             // In the case that [0, 0] is valid (perhaps no data source?), ensure we don't encounter an
             // exception here
             guard self.indexPathIsValid(indexPath: indexPath) else { return }
-            
             self.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
     }

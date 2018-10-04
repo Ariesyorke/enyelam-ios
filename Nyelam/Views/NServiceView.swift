@@ -93,8 +93,11 @@ class NServiceView: UIView {
             self.totalDivesLabel.text = String(diveService.totalDives) + " Dive" + (diveService.totalDives>1 ? "s" : "")
             self.totalDaysLabel.text = String(diveService.totalDays) + " Day" + (diveService.totalDays>1 ? "s" : "")
         }
-        if let url = diveService.featuredImage {
-           self.serviceImageView.loadImage(from: url, contentMode: .scaleAspectFill, with: "bg_placeholder.png")
+        if let featuredImage = diveService.featuredImage, let url = URL(string: featuredImage) {
+            self.serviceImageView.af_setImage(withURL: url, placeholderImage: UIImage(named: "bg_placeholder"), filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: true, completion: nil)
+//           self.serviceImageView.loadImage(from: url, contentMode: .scaleAspectFill, with: "bg_placeholder.png")
+        } else {
+            self.serviceImageView.image = UIImage(named: "bg_placeholder")
         }
         if let schedule = diveService.schedule {
             let startDate = Date(timeIntervalSince1970: schedule.startDate).formatDate(dateFormat: "dd MMM yyyy")

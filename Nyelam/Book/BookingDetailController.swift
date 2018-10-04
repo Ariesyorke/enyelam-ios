@@ -80,7 +80,7 @@ class BookingDetailController: BaseViewController {
     fileprivate func initInbox() {
         if let orderReturn = self.orderReturn, let summary = orderReturn.summary, let order = summary.order {
             if let status = order.status, (status == "unpaid" || status == "order received" || status == "accepted") && self.type == "1" {
-                self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_inbox_small"), style: .plain, target: self, action: #selector(inboxButtonAction(_:)))
+//                self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_inbox_small"), style: .plain, target: self, action: #selector(inboxButtonAction(_:)))
             } else {
                 self.navigationItem.rightBarButtonItem = nil
             }
@@ -110,7 +110,9 @@ class BookingDetailController: BaseViewController {
         var subject = ""
         if let orderReturn = self.orderReturn, let summary = orderReturn.summary, let diveService = summary.diveService {
             subject = "\(diveService.name!) - #\(self.bookingId!)"
-            CreateInboxController.push(on: self.navigationController!, inboxType: 2, fromHome: false, refId: self.bookingId!, subject: subject)
+            CreateInboxController.push(on: self.navigationController!, inboxType: 2, fromHome: false, refId: self.bookingId!, subject: subject, completion: {
+                self.initInbox()
+            })
         }
     }
 

@@ -61,6 +61,7 @@ class BookingListController: BaseViewController, IndicatorInfoProvider {
         self.tableView.reloadData()
         self.tryGetBookingList(bookingType: self.bookingType)
     }
+    
     fileprivate func tryGetBookingList(bookingType: Int) {
         NHTTPHelper.httpBookingHistory(page: String(self.page), type: String(bookingType), complete: {response in
             if let error = response.error {

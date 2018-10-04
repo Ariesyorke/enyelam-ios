@@ -11,6 +11,7 @@ import MultilineTextField
 import ActionSheetPicker_3_0
 import MBProgressHUD
 import UIScrollView_InfiniteScroll
+import UINavigationControllerWithCompletionBlock
 
 class CreateInboxController: BaseViewController {
     var reportTypes = ["General", "Issue App", "Payment"]
@@ -25,30 +26,33 @@ class CreateInboxController: BaseViewController {
     @IBOutlet weak var downArrow: UIImageView!
     @IBOutlet weak var attachButton: UIButton!
     @IBOutlet weak var messageTextField: MultilineTextField!
+    @IBOutlet weak var attachImageView: UIImageView!
     
     var index: Int = 0
     var inboxType: Int = -1
     var refId: String?
     var attachment: Data?
-
+    var completion: ()->() = {}
     let picker = UIImagePickerController()
-
-    static func push(on controller: UINavigationController, inboxType: Int, fromHome: Bool, subject: String) -> CreateInboxController {
+    
+    static func push(on controller: UINavigationController, inboxType: Int, fromHome: Bool, subject: String, completion: @escaping ()->()) -> CreateInboxController {
         let vc: CreateInboxController = CreateInboxController(nibName: "CreateInboxController", bundle: nil)
         vc.inboxType = inboxType
         vc.fromHome = fromHome
         vc.subject = subject
+        vc.completion = completion
         controller.setNavigationBarHidden(false, animated: true)
         controller.pushViewController(vc, animated: true)
         return vc
     }
     
-    static func push(on controller: UINavigationController, inboxType: Int, fromHome: Bool, refId: String?, subject: String) -> CreateInboxController {
+    static func push(on controller: UINavigationController, inboxType: Int, fromHome: Bool, refId: String?, subject: String, completion: @escaping ()->()) -> CreateInboxController {
         let vc: CreateInboxController = CreateInboxController(nibName: "CreateInboxController", bundle: nil)
         vc.inboxType = inboxType
         vc.fromHome = fromHome
         vc.refId = refId
         vc.subject = subject
+        vc.completion = completion
         controller.setNavigationBarHidden(false, animated: true)
         controller.pushViewController(vc, animated: true)
         return vc
@@ -71,8 +75,9 @@ class CreateInboxController: BaseViewController {
                 navigation.setNavigationBarHidden(true, animated: true)
                 navigation.navigationBar.barTintColor = UIColor.primary
             }
+            navigation.popViewController(animated: true, withCompletionBlock: completion)
         }
-        super.backButtonAction(sender)
+//        super.backButtonAction(sender)
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,6 +89,8 @@ class CreateInboxController: BaseViewController {
             self.index = index
             self.inboxType = index + 3
             self.reportTypeLabel.text = self.reportTypes[index]
+            self.subject = self.reportTypes[index]
+            
         }, cancel: {_ in return
         }, origin: sender)
         actionSheet!.show()
@@ -178,6 +185,8 @@ class CreateInboxController: BaseViewController {
             })
         })
     }
+
+    
     /*
     // MARK: - Navigation
 
@@ -194,8 +203,10 @@ extension CreateInboxController: UIImagePickerControllerDelegate, UINavigationCo
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         self.dismiss(animated: true, completion: {
             if let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-                self.attachment = UIImageJPEGRepresentation(chosenImage, 0.75)
+                let resizedImage = chosenImage.resized(toWidth: 400)
+                self.attachment = UIImageJPEGRepresentation(resizedImage!, 0.75)
                 self.attachButton.setTitle("Attached", for: .normal)
+                self.attachImageView.image = resizedImage
             }
         })
     }
