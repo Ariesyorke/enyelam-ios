@@ -9,84 +9,97 @@
 import UIKit
 import EAIntroView
 
-class OnboardingController: UIViewController, EAIntroDelegate {
+class OnboardingController: UIViewController {
     let images = ["onboarding_1", "onboarding_2", "onboarding_3"]
-    var introView: EAIntroView?
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var pageControl: UIPageControl!
     
+    var currentPage: Int = 0
+    var initOnboarding: Bool = true
+    var contentViews: [UIView] = []
     static func present(on controller: UIViewController) -> OnboardingController {
         let vc = OnboardingController(nibName: "OnboardingController", bundle: nil)
         controller.present(vc, animated: true, completion: nil)
         return vc
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.initView()
-        // Do any additional setup after loading the view.
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if self.initOnboarding {
+            self.initOnboarding = false
+            self.createOnboarding()
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    fileprivate func initView() {
-        let page1 = EAIntroPage.init(customViewFromNibNamed: "OnboardingView")
-        let page1View: OnboardingView = page1?.customView as! OnboardingView
-        page1View.onboardingImageView.image = UIImage(named: self.images[0])
-        page1View.completion = {
-            self.nextButtonAction(UIButton())
-        }
-        let page2 = EAIntroPage.init(customViewFromNibNamed: "OnboardingView")
-        let page2View: OnboardingView = page2?.customView as! OnboardingView
-        page2View.completion = {
-            self.nextButtonAction(UIButton())
-        }
-        page2View.onboardingImageView.image = UIImage(named: self.images[1])
-        
-        let page3 = EAIntroPage.init(customViewFromNibNamed: "OnboardingView")
-        let page3View: OnboardingView = page3?.customView as! OnboardingView
-        page3View.completion = {
-            self.nextButtonAction(UIButton())
-        }
-        page3View.onboardingImageView.image = UIImage(named: self.images[2])
-        
-        introView = EAIntroView(frame: self.view.bounds, andPages: [page1!, page2!, page3!])
-    
-        introView!.pageControl.currentPageIndicatorTintColor = UIColor.primary
-        introView!.pageControl.pageIndicatorTintColor = UIColor.gray
-        introView!.pageControlY = 43
-        introView!.delegate = self
-        introView!.swipeToExit = false
-        introView!.tapToNext = false
-        introView!.skipButtonAlignment = .left
-        introView!.skipButtonY = 48
-        introView!.skipButton.setTitle("SKIP", for: .normal)
-        introView!.skipButton.titleLabel?.font = UIFont(name: "FiraSans-SemiBold", size: 15)
-        introView!.skipButton.setTitleColor(UIColor.darkGray, for: .normal)
-        introView!.show(in: self.view, animateDuration: 0.3)
-    }
-    
-    func introDidFinish(_ introView: EAIntroView!, wasSkipped: Bool) {
-        let _ = MainNavigationController.present(on: self)
-    }
     
     @IBAction func nextButtonAction(_ sender: Any) {
-        let currentPage = introView!.currentPageIndex + 1
-//        print("CURRENT PAGE \(currentPage)")
-        if currentPage < 3 {
-            self.introView!.scrollToPage(for: currentPage, animated: true)
+        if self.currentPage < images.count {
+            self.currentPage += 1
+            let rect = CGRect(x: self.scrollView.bounds.width * CGFloat(self.currentPage), y: 0, width: self.scrollView.bounds.width, height: self.scrollView.bounds.height)
+            self.scrollView.scrollRectToVisible(rect, animated: true)
+            self.pageControl.currentPage = self.currentPage
         } else {
             let _ = MainNavigationController.present(on: self)
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func skipButtonAction(_ sender: Any) {
+        let _ = MainNavigationController.present(on: self)
     }
-    */
+    
+    fileprivate func createView(atindex: Int) -> UIView {
+        let onboardingView = OnboardingView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        onboardingView.onboardingImageView.image = UIImage(named: self.images[atindex])
+        onboardingView.translatesAutoresizingMaskIntoConstraints = false
+        return onboardingView
+    }
+    
+    fileprivate func createOnboarding() {
+        self.pageControl.numberOfPages = self.images.count
+        self.scrollView.delegate = self
+        self.scrollView.translatesAutoresizingMaskIntoConstraints = false
+        self.contentViews = []
+        for subview: UIView in self.scrollView.subviews {
+            subview.removeFromSuperview()
+        }
+        var i = 0
+        var leftView: UIView? = nil
+        while i < self.images.count {
+            let view: UIView = self.createView(atindex: i)
+            view.tag = i
+            self.scrollView.addSubview(view)
+            self.contentViews.append(view)
+            self.scrollView.addConstraints([
+                NSLayoutConstraint(item: self.scrollView, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: self.scrollView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: self.scrollView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.width, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: self.scrollView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.height, multiplier: 1, constant: 0)
+                ])
+            
+            if leftView == nil {
+                self.scrollView.addConstraint(NSLayoutConstraint(item: self.scrollView, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.left, multiplier: 1, constant: 0))
+            } else {
+                self.scrollView.addConstraint(NSLayoutConstraint(item: leftView!, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.left, multiplier: 1, constant: 0))
+            }
+            
+            if i == self.images.count - 1 {
+                self.scrollView.addConstraint(NSLayoutConstraint(item: self.scrollView, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 0))
+            }
+            i += 1
+            leftView = view
+        }
+    }
+}
 
+extension OnboardingController: UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let gap = Int((scrollView.contentSize.width - scrollView.contentOffset.x)/scrollView.bounds.width)
+        let index = Int(contentViews.count - gap)
+        self.pageControl.currentPage = index
+        self.currentPage = index
+    }
 }

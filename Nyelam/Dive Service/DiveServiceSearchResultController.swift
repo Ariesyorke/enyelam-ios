@@ -147,12 +147,11 @@ class DiveServiceSearchResultController: BaseViewController, UITableViewDataSour
             self.title = "Do Trip"
             self.getAllDoTrip(page: page, selectedDiver: selectedDiver!, filter: filter)
         } else if self.forDoCourse {
-            let title = self.selectedDate!.formatDate(dateFormat: "MMM yyyy") + " " + String(self.selectedDiver!) + " pax(s)"
+            let title = self.selectedDate!.formatDate(dateFormat: "MMM yyyy")
             self.title = title
             self.searchDoCourse(selectedKeyword: self.selectedKeyword!, selectedDate: self.selectedDate!, selectedDiver: self.selectedDiver!, selectedOrganization: self.selectedOrganization!, selectedLicenseType: self.selectedLicenseType!, selectedfilter: self.filter)
         } else {
-        
-            let title = self.selectedDate!.formatDate(dateFormat: "dd MMM yyyy") + " " + String(self.selectedDiver!) + " pax(s)"
+            let title = self.selectedDate!.formatDate(dateFormat: "dd MMM yyyy")
             self.title = title
             self.searchDiveService(selectedKeyword: self.selectedKeyword!, selectedDate: self.selectedDate!, selectedDiver: self.selectedDiver!, selectedLicense: self.selectedLicense, forDoTrip: self.forDoTrip, filter: self.filter, ecotrip: self.ecotrip)
         }

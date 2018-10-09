@@ -83,11 +83,11 @@ class BookingDetailController: BaseViewController {
     }
     
     fileprivate func initReview() {
-        if let orderReturn = self.orderReturn, let summary = orderReturn.summary, let order = summary.order, let status = order.status, self.type == "2" && status.lowercased() == "accepted" {
-            self.writeReviewButton.isHidden = false
-        } else {
+//        if let orderReturn = self.orderReturn, let summary = orderReturn.summary, let order = summary.order, let status = order.status, self.type == "2" && status.lowercased() == "accepted" {
+//            self.writeReviewButton.isHidden = false
+//        } else {
             self.writeReviewButton.isHidden = true
-        }
+//        }
     }
     fileprivate func loadBookingDetail(bookingId: String) {
         NHTTPHelper.httpDetail(bookingId: bookingId, complete: {response in

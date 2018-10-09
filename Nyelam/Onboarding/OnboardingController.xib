@@ -17,6 +17,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OnboardingController" customModule="Nyelam" customModuleProvider="target">
             <connections>
+                <outlet property="pageControl" destination="pxZ-bO-g9p" id="zYm-dq-CPb"/>
+                <outlet property="scrollView" destination="wWw-fc-PTr" id="l4V-Ed-YCu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -25,6 +27,9 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wWw-fc-PTr">
+                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H0z-h1-lao">
                     <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                     <subviews>
@@ -38,20 +43,44 @@
                                 <action selector="nextButtonAction:" destination="-1" eventType="touchUpInside" id="cDF-bS-owP"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OVy-EJ-ZSp">
+                            <rect key="frame" x="8" y="0.0" width="32" height="50"/>
+                            <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="15"/>
+                            <state key="normal" title="SKIP">
+                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="skipButtonAction:" destination="-1" eventType="touchUpInside" id="SB7-iR-FSQ"/>
+                            </connections>
+                        </button>
+                        <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="pxZ-bO-g9p">
+                            <rect key="frame" x="184" y="6" width="7" height="37"/>
+                            <color key="pageIndicatorTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="currentPageIndicatorTintColor" red="0.086274509799999996" green="0.45882352939999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                        </pageControl>
                     </subviews>
                     <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="WUC-D4-oyq" firstAttribute="top" secondItem="H0z-h1-lao" secondAttribute="top" id="Aq7-bb-tnO"/>
                         <constraint firstAttribute="trailing" secondItem="WUC-D4-oyq" secondAttribute="trailing" constant="8" id="Cdx-Yf-1Pp"/>
+                        <constraint firstItem="pxZ-bO-g9p" firstAttribute="centerY" secondItem="H0z-h1-lao" secondAttribute="centerY" id="GDY-Ge-ZMt"/>
+                        <constraint firstAttribute="bottom" secondItem="OVy-EJ-ZSp" secondAttribute="bottom" id="Ne5-h8-0Ff"/>
+                        <constraint firstItem="OVy-EJ-ZSp" firstAttribute="leading" secondItem="H0z-h1-lao" secondAttribute="leading" constant="8" id="TQd-Xd-XQi"/>
+                        <constraint firstItem="pxZ-bO-g9p" firstAttribute="centerX" secondItem="H0z-h1-lao" secondAttribute="centerX" id="cDO-Pn-3CW"/>
                         <constraint firstAttribute="height" constant="50" id="e8Z-J3-Jut"/>
+                        <constraint firstItem="OVy-EJ-ZSp" firstAttribute="top" secondItem="H0z-h1-lao" secondAttribute="top" id="iCc-Bd-Qv4"/>
                         <constraint firstAttribute="bottom" secondItem="WUC-D4-oyq" secondAttribute="bottom" id="y21-rO-nGt"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="wWw-fc-PTr" secondAttribute="top" id="13Z-3M-0eV"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="H0z-h1-lao" secondAttribute="trailing" id="9SM-P3-eWZ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="wWw-fc-PTr" secondAttribute="bottom" id="Acb-ED-Egb"/>
                 <constraint firstItem="H0z-h1-lao" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Pfg-A1-avt"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wWw-fc-PTr" secondAttribute="trailing" id="W6m-tw-PvE"/>
+                <constraint firstItem="wWw-fc-PTr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ZTa-b2-jwd"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="H0z-h1-lao" secondAttribute="bottom" id="d4i-h7-gmP"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

@@ -100,7 +100,7 @@ class DiveServiceController: BaseViewController {
             self.initView()
             let id = self.diveService != nil ? self.diveService!.id!:self.selectedKeyword!.id!
             self.tryLoadServiceDetail(serviceId: id, selectedLicense: selectedLicense.number, selectedDate: selectedDate!, selectedDiver: selectedDiver, forDoTrip: self.forDoTrip, forDoCourse: self.forDoCourse)
-            self.tryGetReviews(serviceId: id)
+//            self.tryGetReviews(serviceId: id)
         }
         
     }
@@ -148,11 +148,11 @@ class DiveServiceController: BaseViewController {
         if #available(iOS 11.0, *) {
             self.tableView.contentInsetAdjustmentBehavior = .never
         }
-        if self.forDoTrip {
-            let title = self.selectedDate!.formatDate(dateFormat: "MMM yyyy") + " " + String(self.selectedDiver) + " pax(s)"
+        if self.forDoCourse {
+            let title = self.selectedDate!.formatDate(dateFormat: "MMM yyyy")
             self.title = title
         } else {
-            let title = self.selectedDate!.formatDate(dateFormat: "dd MMM yyyy") + " " + String(self.selectedDiver) + " pax(s)"
+            let title = self.selectedDate!.formatDate(dateFormat: "dd MMM yyyy")
             self.title = title
         }
         self.tableView.delegate = self
@@ -938,18 +938,17 @@ class DiveServiceRelatedCell: NTableViewCell {
         let view: NServiceView = NServiceView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.controller!.view.frame.width * 75/100))
-        var height: CGFloat = 360
+        var height: CGFloat = 340
         if self.isDoTrip {
-            height = 370
+            height = 350
         }
         if NDisplay.typeIsLike == .iphone5 || NDisplay.typeIsLike == .iphone4 {
             if self.isDoTrip {
-                height = 320
+                height = 300
             } else {
-                height = 310
+                height = 290
             }
         }
-
         view.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: height))
 
         return view

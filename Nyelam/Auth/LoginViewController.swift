@@ -100,6 +100,8 @@ class LoginViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDel
     
     @IBAction func googleButtonAction(_ sender: Any) {
         self.view.endEditing(true)
+        print("GOOGLE BUTTON")
+        GIDSignIn.sharedInstance().signOut()
         GIDSignIn.sharedInstance().signIn()
     }
     

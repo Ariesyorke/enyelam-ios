@@ -31,7 +31,7 @@
                     <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xx2-PY-mAr">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xx2-PY-mAr">
                     <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I9l-EC-tqr" userLabel="Tab Menu Detail" customClass="UIControl">

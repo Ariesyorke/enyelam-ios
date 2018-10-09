@@ -49,13 +49,13 @@ class SearchKeywordController: BaseViewController, UISearchControllerDelegate, U
 
         self.setupUI()
         self.setupNavigationItem()
-        self.setupSavedData()
+        self.setupSavedData(forDoCourse: self.type == 3 ? true: false, exceptionalType: self.type == 3 ? 1 : 4)
         self.tableView.reloadData()
         // TODO: end of testing
     }
     
-    fileprivate func setupSavedData() {
-        if let savedResults = NSearchResult.getSavedResults() {
+    fileprivate func setupSavedData(forDoCourse: Bool, exceptionalType: Int) {
+        if let savedResults = NSearchResult.getSavedResults(exceptionalType: Int16(exceptionalType)) {
             self.savedResults = []
             for result in savedResults {
                 var json = result.serialized()
@@ -151,7 +151,7 @@ extension SearchKeywordController: UITableViewDelegate, UITableViewDataSource {
             result = savedResults![indexPath.row]
         }
         if pickedFromServer {
-            var searchResult = NSearchResult.getSavedResult(using: String(result!.type), and: (result!.id!))
+            var searchResult = NSearchResult.getSavedResult(using: (result!.id!), and: Int16(result!.type))
             if searchResult == nil {
                 searchResult = NSEntityDescription.insertNewObject(forEntityName: "NSearchResult", into: AppDelegate.sharedManagedContext) as! NSearchResult
                 searchResult!.parse(json: result!.serialized())

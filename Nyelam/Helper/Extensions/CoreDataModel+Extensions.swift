@@ -1905,7 +1905,8 @@ extension NSearchResult {
     private var KEY_COUNT: String { return "count" }
     private var KEY_PROVINCE: String { return "province" }
     private var KEY_LICENSE: String { return "license" }
-
+    private var KEY_LICENSE_TYPE: String {return "license_type"}
+    private var KEY_ORGANIZATION: String {return "organization"}
     func parse(json: [String : Any]) {
         self.id = json[KEY_ID] as? String
         self.name = json[KEY_NAME] as? String
@@ -1939,7 +1940,56 @@ extension NSearchResult {
         } else if let license = json[KEY_LICENSE] as? String {
             self.license = license.toBool
         }
-
+        if let organizationJson = json[KEY_ORGANIZATION] as? [String: Any] {
+            if let id = organizationJson["id"] as? String {
+                self.organization = NMasterOrganization.getOrganization(using: id)
+            }
+            if self.organization == nil {
+                self.organization =  NSEntityDescription.insertNewObject(forEntityName: "NMasterOrganization", into: AppDelegate.sharedManagedContext) as! NMasterOrganization
+                
+            }
+            self.organization!.parse(json: organizationJson)
+        } else if let organizationString = json[KEY_ORGANIZATION] as? String {
+            do {
+                let data = organizationString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let organizationJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                if let id = organizationJson["id"] as? String {
+                    self.organization = NMasterOrganization.getOrganization(using: id)
+                }
+                if self.organization == nil {
+                    self.organization =  NSEntityDescription.insertNewObject(forEntityName: "NMasterOrganization", into: AppDelegate.sharedManagedContext) as! NMasterOrganization
+                    
+                }
+                self.organization!.parse(json: organizationJson)
+            } catch {
+                print(error)
+            }
+        }
+        if let licenseTypeJson = json[KEY_LICENSE_TYPE] as? [String:Any] {
+            if let id = licenseTypeJson["id"] as? String {
+                self.licenseType = NLicenseType.getLicenseType(using: id)
+            }
+            if self.licenseType == nil {
+                self.licenseType = NSEntityDescription.insertNewObject(forEntityName: "NLicenseType", into: AppDelegate.sharedManagedContext) as! NLicenseType
+                
+            }
+            self.licenseType!.parse(json: licenseTypeJson)
+        } else if let licenseTypeString = json[KEY_LICENSE_TYPE] as? String {
+            do {
+                let data = licenseTypeString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let licenseTypeJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                if let id = licenseTypeJson["id"] as? String {
+                    self.licenseType = NLicenseType.getLicenseType(using: id)
+                }
+                if self.licenseType == nil {
+                    self.licenseType = NSEntityDescription.insertNewObject(forEntityName: "NLicenseType", into: AppDelegate.sharedManagedContext) as! NLicenseType
+                    
+                }
+                self.licenseType!.parse(json: licenseTypeJson)
+            } catch {
+                print(error)
+            }
+        }
     }
     
     func serialized() -> [String : Any] {
@@ -1959,13 +2009,19 @@ extension NSearchResult {
         json[KEY_RATING] = rating
         json[KEY_TYPE] = Int(type)
         json[KEY_COUNT] = Int(count)
+        if let organization = self.organization {
+            json[KEY_ORGANIZATION] = organization.serialized()
+        }
+        if let licenseType = self.licenseType {
+            json[KEY_LICENSE_TYPE] = licenseType.serialized()
+        }
         return json
     }
 
-    static func getSavedResult(using id: String, and type: String)->NSearchResult? {
+    static func getSavedResult(using id: String, and type: Int16)->NSearchResult? {
         let managedContext = AppDelegate.sharedManagedContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NSearchResult")
-        fetchRequest.predicate = NSPredicate(format: "type == %@ AND id == %@", type, id)
+        fetchRequest.predicate = NSPredicate(format: "type == \(type) AND id == \(id)")
         do {
             let results = try managedContext.fetch(fetchRequest) as? [NSearchResult]
             if let results = results, !results.isEmpty {
@@ -1976,10 +2032,12 @@ extension NSearchResult {
         }
         return nil
     }
-    static func getSavedResults() -> [NSearchResult]? {
+    static func getSavedResults(exceptionalType: Int16) -> [NSearchResult]? {
         let managedContext = AppDelegate.sharedManagedContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NSearchResult")
-        fetchRequest.predicate = NSPredicate(format: "id != nil && name != nil && type > 0")
+//        let predicate = NSPredicate(format: "id != nil AND name != nil AND type > 0 AND type != %s", exceptionalType)
+        let predicate = NSPredicate(format: "id != nil AND name != nil AND type != \(exceptionalType)")
+        fetchRequest.predicate = predicate
         do {
             let results = try managedContext.fetch(fetchRequest) as? [NSearchResult]
             if let results = results, !results.isEmpty {

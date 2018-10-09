@@ -398,9 +398,9 @@ extension HomeController {
         view.translatesAutoresizingMaskIntoConstraints = false
         
         view.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.view.frame.width * 75/100))
-        var height: CGFloat = 370
+        var height: CGFloat = 350
         if NDisplay.typeIsLike == .iphone5 || NDisplay.typeIsLike == .iphone4 {
-            height = 320
+            height = 300
         }
         view.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: height))
 
@@ -426,11 +426,8 @@ extension HomeController {
         imgView.contentMode = UIViewContentMode.scaleAspectFill
         imgView.clipsToBounds = true
         imgView.backgroundColor = UIColor.clear
-//        imgView.image = UIImage(named: self.bannerImages[atindex])!
-//        imgView.af_setImage(withURL: banner.imageUrl)
         if banner.imageUrl != nil, let url: URL = URL(string: banner.imageUrl!) {
             imgView.af_setImage(withURL: url, placeholderImage: UIImage(named:"bg_placeholder"), filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: true, completion: nil)
-//            imgView.af_setImage(withURL: url)
         } else {
             imgView.image = UIImage(named: "bg_placeholder")
             progress.isHidden = true

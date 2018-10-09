@@ -61,7 +61,7 @@
                         <constraint firstItem="NV4-Mh-e2g" firstAttribute="top" secondItem="mxd-3t-6IJ" secondAttribute="bottom" id="yZ9-Tc-OqV"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="icz-T8-sDl">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="icz-T8-sDl">
                     <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C2T-n3-Lpr" userLabel="Tab Menu Bio" customClass="UIControl">
