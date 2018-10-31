@@ -104,23 +104,23 @@ UINavigationControllerDelegate, PECropViewControllerDelegate {
             }
             break
         case 5:
-            let composeVC = MFMailComposeViewController()
-            composeVC.setToRecipients(["info@e-nyelam.com"])
-            composeVC.mailComposeDelegate = self
-            if let parent = self.parent {
-                parent.present(composeVC, animated: true, completion: nil)
-            } else {
-                self.present(composeVC, animated: true, completion: nil)
-            }
-//            var controller: UIViewController? = nil
-//            if let parent = self.parent as? MainRootController {
-//                controller = parent
+//            let composeVC = MFMailComposeViewController()
+//            composeVC.setToRecipients(["info@e-nyelam.com"])
+//            composeVC.mailComposeDelegate = self
+//            if let parent = self.parent {
+//                parent.present(composeVC, animated: true, completion: nil)
 //            } else {
-//                controller = self
+//                self.present(composeVC, animated: true, completion: nil)
 //            }
-//            if let navigation = controller!.navigationController {
-//                CreateInboxController.push(on: navigation, inboxType: 3, fromHome: true, subject: "General", completion: {})
-//            }
+            var controller: UIViewController? = nil
+            if let parent = self.parent as? MainRootController {
+                controller = parent
+            } else {
+                controller = self
+            }
+            if let navigation = controller!.navigationController {
+                CreateInboxController.push(on: navigation, inboxType: 3, fromHome: true, subject: "General", completion: {})
+            }
             break
         case 6:
             UIAlertController.showAlertWithMultipleChoices(title: "Are you sure want to logout?", message: "", viewController: self, buttons: [

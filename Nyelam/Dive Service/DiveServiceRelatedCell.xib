@@ -24,15 +24,15 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You may like these" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CqW-tw-3JF">
-                        <rect key="frame" x="16" y="16" width="288" height="31.5"/>
+                        <rect key="frame" x="16" y="16" width="288" height="1.5"/>
                         <fontDescription key="fontDescription" name="FiraSans-Light" family="Fira Sans" pointSize="17"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ALS-EV-x77">
-                        <rect key="frame" x="16" y="63.5" width="288" height="320"/>
+                        <rect key="frame" x="16" y="33.5" width="288" height="350"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="320" id="83G-Pa-P69"/>
+                            <constraint firstAttribute="height" constant="350" id="83G-Pa-P69"/>
                         </constraints>
                     </scrollView>
                 </subviews>

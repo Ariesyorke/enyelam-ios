@@ -78,23 +78,45 @@ extension NUser {
         } else if let id = json["id"] as? String {
             self.id = id
         }
-        self.fullname = json["fullname"] as? String
-        self.firstName = json["firstname"] as? String
-        self.lastName = json["lastname"] as? String
-        self.phone = json["phone_number"] as? String
-        self.email = json["email"] as? String
-        self.gender = json["gender"] as? String
-        self.picture = json["picture"] as? String
-        self.about = json["about"] as? String
+        if let fullname = json["fullname"] as? String {
+            self.fullname = fullname
+        }
+        if let lastname = json["lastname"] as? String {
+            self.lastName = lastname
+        }
+        if let firstname = json["firstname"] as? String {
+            self.firstName = firstname
+        }
+        if let phone = json["phone_number"] as? String {
+            self.phone = phone
+        }
+        if let email = json["email"] as? String {
+            self.email = email
+        }
+        if let gender = json["gender"] as? String {
+            self.gender = gender
+        }
+        if let picture = json["picture"] as? String {
+            self.picture = picture
+        }
+        if let about = json["about"] as? String {
+            self.about = about
+        }
         
         if let isVerified = json["is_verified"] as? Bool {
             self.isVerified = isVerified
         } else if let isVerified = json["is_verified"] as? String {
             self.isVerified = isVerified.toBool
         }
-        self.referralCode = json["referral_code"] as? String
-        self.address = json["address"] as? String
-        self.birthPlace = json["birthplace"] as? String
+        if let referralCode = json["referral_code"] as? String {
+            self.referralCode = referralCode
+        }
+        if let address = json["address"] as? String {
+            self.address = address
+        }
+        if let birthPlace = json["birthplace"] as? String {
+            self.birthPlace = birthPlace
+        }
         if let birthDateTimeStamp = json["birthdate"] as? Double {
             self.birthDate = NSDate(timeIntervalSince1970: birthDateTimeStamp)
         } else if let birthDateTimeStamp = json["birthdate"] as? String {
@@ -103,7 +125,9 @@ extension NUser {
                 self.birthDate = NSDate(timeIntervalSince1970: timestamp)
             }
         }
-        self.certificateNumber = json["certificate_number"] as? String
+        if let certificateNumber = json["certificate_number"] as? String {
+            self.certificateNumber = certificateNumber
+        }
         if let certificateTimeStamp = json["certificate_date"] as? Double {
             self.certificateDate = NSDate(timeIntervalSince1970: certificateTimeStamp)
         } else if let certificateTimestamp = json["certificate_date"] as? String {
@@ -112,8 +136,12 @@ extension NUser {
                 self.certificateDate = NSDate(timeIntervalSince1970: timestamp)
             }
         }
-        self.username = json["username"] as? String
-        self.cover = json["cover"] as? String
+        if let username = json["username"] as? String {
+            self.username = username
+        }
+        if let cover = json["cover"] as? String {
+            self.cover = cover
+        }
         if let countryCodeJson = json["country_code"] as? [String: Any] {
             if let id = countryCodeJson["id"] as? String {
                 self.countryCode = NCountryCode.getCountryCode(using: id)

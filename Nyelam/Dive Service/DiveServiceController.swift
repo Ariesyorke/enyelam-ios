@@ -100,7 +100,7 @@ class DiveServiceController: BaseViewController {
             self.initView()
             let id = self.diveService != nil ? self.diveService!.id!:self.selectedKeyword!.id!
             self.tryLoadServiceDetail(serviceId: id, selectedLicense: selectedLicense.number, selectedDate: selectedDate!, selectedDiver: selectedDiver, forDoTrip: self.forDoTrip, forDoCourse: self.forDoCourse)
-//            self.tryGetReviews(serviceId: id)
+            self.tryGetReviews(serviceId: id)
         }
         
     }
@@ -114,6 +114,7 @@ class DiveServiceController: BaseViewController {
     }
     
     fileprivate func tryGetReviews(serviceId: String) {
+        print("GET REVIEW!!")
         NHTTPHelper.httpGetReviewList(page: String(page), serviceId: serviceId, complete: {response in
             self.tableView.finishInfiniteScroll()
             if let error = response.error {
@@ -170,12 +171,12 @@ class DiveServiceController: BaseViewController {
         self.tableView.register(UINib(nibName: "AddOnCell", bundle: nil), forCellReuseIdentifier: "AddOnCell")
         self.tableView.register(UINib(nibName: "ReviewCell", bundle: nil), forCellReuseIdentifier: "ReviewCell")
         
-//        self.tableView.addInfiniteScroll(handler: {tableView in
-//            if self.state == .review {
-//                let id = self.diveService != nil ? self.diveService!.id!:self.selectedKeyword!.id!
-//                self.tryGetReviews(serviceId: id)
-//            }
-//        })
+        self.tableView.addInfiniteScroll(handler: {tableView in
+            if self.state == .review {
+                let id = self.diveService != nil ? self.diveService!.id!:self.selectedKeyword!.id!
+                self.tryGetReviews(serviceId: id)
+            }
+        })
     }
     
     fileprivate func tryLoadServiceDetail(serviceId: String, selectedLicense: Int, selectedDate: Date, selectedDiver: Int, forDoTrip: Bool, forDoCourse: Bool) {
@@ -562,6 +563,7 @@ extension DiveServiceController: UITableViewDelegate, UITableViewDataSource {
                 cell.userCommentLabel.text = review.content
                 if let user = review.user {
                     cell.userNameLabel.text = user.fullname
+                    print("USER PICTURE \(user.picture)")
                     if let picture = user.picture, !picture.isEmpty {
                         cell.userProfileImageView.af_setImage(withURL: URL(string: picture)!)
                     }
@@ -709,6 +711,8 @@ class DiveServiceDetailCell: NTableViewCell {
     @IBOutlet weak var specialPriceTopSpacing: NSLayoutConstraint!
     @IBOutlet weak var stockLabel: UILabel!
     @IBOutlet weak var aboutTitleLabel: UILabel!
+    @IBOutlet weak var normalPriceHeight: NSLayoutConstraint!
+    
     fileprivate var forDoCourse: Bool = false
     fileprivate var diveService: NDiveService?
     var onDiveCenterClicked: (NDiveCenter) -> () = {divecenter in }
@@ -768,9 +772,11 @@ class DiveServiceDetailCell: NTableViewCell {
         if diveService.normalPrice == diveService.specialPrice {
             self.normalPriceContainer.isHidden = true
             self.specialPriceTopSpacing.constant = 0
+            self.normalPriceHeight.constant = 0
         } else {
             self.specialPriceTopSpacing.constant = 8
             self.normalPriceContainer.isHidden = false
+            self.normalPriceHeight.constant = 17
         }
         if self.forDoCourse {
             self.aboutTitleLabel.text = "About Course"
@@ -912,15 +918,15 @@ class DiveServiceRelatedCell: NTableViewCell {
                     i += 1
                     leftView = view
                 }
-                var height: CGFloat = 360
+                var height: CGFloat = 340
                 if self.isDoTrip {
-                    height = 370
+                    height = 350
                 }
                 if NDisplay.typeIsLike == .iphone5 || NDisplay.typeIsLike == .iphone4 {
                     if self.isDoTrip {
-                        height = 320
+                        height = 340
                     } else {
-                        height = 310
+                        height = 330
                     }
                 }
                 self.scrollerHeightConstraint.constant = height
@@ -938,15 +944,15 @@ class DiveServiceRelatedCell: NTableViewCell {
         let view: NServiceView = NServiceView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.controller!.view.frame.width * 75/100))
-        var height: CGFloat = 340
+        var height: CGFloat = 320
         if self.isDoTrip {
             height = 350
         }
         if NDisplay.typeIsLike == .iphone5 || NDisplay.typeIsLike == .iphone4 {
             if self.isDoTrip {
-                height = 300
+                height = 340
             } else {
-                height = 290
+                height = 310
             }
         }
         view.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: height))

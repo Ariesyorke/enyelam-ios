@@ -24,7 +24,7 @@ extension NHTTPHelper {
     }
     
     static func httpGetReviewList(page: String, serviceId: String, complete: @escaping (NHTTPResponse<[Review]>)->()) {
-        self.basicAuthRequest(URLString: HOST_URL+API_PATH_REVIEW_LIST,
+        self.basicPostRequest(URLString: HOST_URL+API_PATH_REVIEW_LIST,
                               parameters: ["service_id": serviceId,
                                            "page": page],
                               headers: nil,

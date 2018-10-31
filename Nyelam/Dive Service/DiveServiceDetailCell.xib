@@ -29,25 +29,25 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="600.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qSj-IF-wZM" userLabel="General Info">
-                        <rect key="frame" x="16" y="0.0" width="288" height="147.5"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qSj-IF-wZM" userLabel="General Info">
+                        <rect key="frame" x="16" y="0.0" width="288" height="155.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c63-Ex-tIU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c63-Ex-tIU">
                                 <rect key="frame" x="0.0" y="0.0" width="288" height="20.5"/>
                                 <fontDescription key="fontDescription" name="FiraSans-Bold" family="Fira Sans" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fC2-aP-0xH" userLabel="Dive Center" customClass="UIControl">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fC2-aP-0xH" userLabel="Dive Center" customClass="UIControl">
                                 <rect key="frame" x="0.0" y="36.5" width="288" height="50"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKl-x8-3TY">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKl-x8-3TY">
                                         <rect key="frame" x="58" y="16.5" width="230" height="17"/>
                                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="ic_app" translatesAutoresizingMaskIntoConstraints="NO" id="pOx-ND-O3Z">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_app" translatesAutoresizingMaskIntoConstraints="NO" id="pOx-ND-O3Z">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="YpP-mA-YxX"/>
@@ -74,34 +74,34 @@
                                     <action selector="diveCenterButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="zxR-hq-7FP"/>
                                 </connections>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gK-A7-oQg">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gK-A7-oQg">
                                 <rect key="frame" x="0.0" y="102.5" width="288" height="17"/>
                                 <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Vf-7I-6mm" customClass="CosmosView" customModule="Cosmos">
-                                <rect key="frame" x="0.0" y="127.5" width="100" height="20"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Vf-7I-6mm" customClass="CosmosView" customModule="Cosmos">
+                                <rect key="frame" x="0.0" y="135.5" width="100" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="5y7-Rm-HNT"/>
-                                    <constraint firstAttribute="height" id="t90-uP-iOX"/>
+                                    <constraint firstAttribute="height" constant="20" id="t90-uP-iOX"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="starSize">
-                                        <real key="value" value="0.0"/>
+                                        <real key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="updateOnTouch" value="NO"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="fillMode">
                                         <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
-                                        <integer key="value" value="0"/>
+                                        <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ud-PJ-XFn">
-                                <rect key="frame" x="114" y="137.5" width="174" height="0.0"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ud-PJ-XFn">
+                                <rect key="frame" x="114" y="145.5" width="174" height="0.0"/>
                                 <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -116,7 +116,7 @@
                             <constraint firstItem="8Vf-7I-6mm" firstAttribute="leading" secondItem="4gK-A7-oQg" secondAttribute="leading" id="NDA-Db-2t3"/>
                             <constraint firstItem="c63-Ex-tIU" firstAttribute="top" secondItem="qSj-IF-wZM" secondAttribute="top" id="RkJ-4y-1Ew"/>
                             <constraint firstItem="4gK-A7-oQg" firstAttribute="top" secondItem="fC2-aP-0xH" secondAttribute="bottom" constant="16" id="XHk-gH-oiA"/>
-                            <constraint firstItem="4gK-A7-oQg" firstAttribute="bottom" secondItem="8Vf-7I-6mm" secondAttribute="top" id="ame-9H-KbB"/>
+                            <constraint firstItem="4gK-A7-oQg" firstAttribute="bottom" secondItem="8Vf-7I-6mm" secondAttribute="top" constant="-16" id="ame-9H-KbB"/>
                             <constraint firstItem="6Ud-PJ-XFn" firstAttribute="centerY" secondItem="8Vf-7I-6mm" secondAttribute="centerY" id="c1t-a9-C42"/>
                             <constraint firstItem="fC2-aP-0xH" firstAttribute="top" secondItem="c63-Ex-tIU" secondAttribute="bottom" constant="16" id="kQg-uG-ldn"/>
                             <constraint firstAttribute="bottom" secondItem="8Vf-7I-6mm" secondAttribute="bottom" id="lVS-jl-XLa"/>
@@ -125,16 +125,16 @@
                             <constraint firstItem="4gK-A7-oQg" firstAttribute="leading" secondItem="c63-Ex-tIU" secondAttribute="leading" id="yY4-bs-Zbg"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n85-DW-gBq" userLabel="Normal Price Container">
-                        <rect key="frame" x="16" y="163.5" width="89" height="17"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n85-DW-gBq" userLabel="Normal Price Container">
+                        <rect key="frame" x="16" y="171.5" width="89" height="17"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Rp. 99.999.999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WXR-sW-xNN">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rp. 99.999.999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WXR-sW-xNN">
                                 <rect key="frame" x="0.0" y="0.0" width="89" height="17"/>
                                 <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YDg-Xy-IOQ">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YDg-Xy-IOQ">
                                 <rect key="frame" x="0.0" y="8" width="89" height="1"/>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -154,10 +154,10 @@
                             <constraint firstItem="WXR-sW-xNN" firstAttribute="leading" secondItem="n85-DW-gBq" secondAttribute="leading" id="vEK-UK-oq4"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u9T-mL-s17" userLabel="Special Price Container">
-                        <rect key="frame" x="16" y="188.5" width="288" height="24"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u9T-mL-s17" userLabel="Special Price Container">
+                        <rect key="frame" x="16" y="196.5" width="288" height="24"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Rp. 99.999.999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uhu-st-cUP">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rp. 99.999.999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uhu-st-cUP">
                                 <rect key="frame" x="0.0" y="0.0" width="119" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="DDz-MA-1dI"/>
@@ -166,7 +166,7 @@
                                 <color key="textColor" red="1" green="0.59607843140000005" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="/ pax" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hyh-mc-vkI">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/ pax" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hyh-mc-vkI">
                                 <rect key="frame" x="127" y="4" width="34" height="17"/>
                                 <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                                 <nil key="textColor"/>
@@ -183,16 +183,16 @@
                             <constraint firstItem="Uhu-st-cUP" firstAttribute="top" secondItem="u9T-mL-s17" secondAttribute="top" id="peE-bI-Hcv"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fQP-v0-GHg" userLabel="Detail Info">
-                        <rect key="frame" x="16" y="228.5" width="288" height="80"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fQP-v0-GHg" userLabel="Detail Info">
+                        <rect key="frame" x="16" y="236.5" width="288" height="80"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Total Dives" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TaH-0l-bwi">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Dives" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TaH-0l-bwi">
                                 <rect key="frame" x="0.0" y="0.0" width="69" height="17"/>
                                 <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text=":" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NfR-D1-XTZ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=":" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NfR-D1-XTZ">
                                 <rect key="frame" x="142" y="0.0" width="4" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="4" id="tmB-ag-WTv"/>
@@ -201,19 +201,19 @@
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Divespot Option" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="709-0I-96Q">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Divespot Option" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="709-0I-96Q">
                                 <rect key="frame" x="0.0" y="21" width="138" height="17"/>
                                 <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Trip Durations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBT-QO-fzC">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trip Durations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBT-QO-fzC">
                                 <rect key="frame" x="0.0" y="42" width="138" height="17"/>
                                 <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Available Slot" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Edi-QZ-uML">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available Slot" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Edi-QZ-uML">
                                 <rect key="frame" x="0.0" y="63" width="138" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="CLe-ql-IaG"/>
@@ -222,7 +222,7 @@
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text=":" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0f6-QU-Dvr">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=":" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0f6-QU-Dvr">
                                 <rect key="frame" x="142" y="21" width="4" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="4" id="lpa-96-Dw3"/>
@@ -231,7 +231,7 @@
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text=":" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7d-Qv-MvR">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=":" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7d-Qv-MvR">
                                 <rect key="frame" x="142" y="63" width="4" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="4" id="NJg-WW-mQf"/>
@@ -240,25 +240,25 @@
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEB-ax-uIh">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEB-ax-uIh">
                                 <rect key="frame" x="150" y="21" width="138" height="17"/>
                                 <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="978-IV-LzU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="978-IV-LzU">
                                 <rect key="frame" x="150" y="0.0" width="138" height="17"/>
                                 <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z2J-je-uRg">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z2J-je-uRg">
                                 <rect key="frame" x="150" y="63" width="138" height="17"/>
                                 <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text=":" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbE-i2-nLc">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=":" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbE-i2-nLc">
                                 <rect key="frame" x="142" y="42" width="4" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="4" id="NPT-t6-KKb"/>
@@ -267,7 +267,7 @@
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0 Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jo-mB-WFe">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jo-mB-WFe">
                                 <rect key="frame" x="150" y="42" width="138" height="17"/>
                                 <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -314,11 +314,11 @@
                             <constraint firstItem="Edi-QZ-uML" firstAttribute="leading" secondItem="709-0I-96Q" secondAttribute="leading" id="xVk-S4-Ihb"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iuj-Cr-rjv">
-                        <rect key="frame" x="16" y="316.5" width="288" height="40"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iuj-Cr-rjv">
+                        <rect key="frame" x="16" y="324.5" width="288" height="40"/>
                         <color key="backgroundColor" red="0.086274509799999996" green="0.45882352939999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" id="Tob-Wz-fJM"/>
+                            <constraint firstAttribute="height" constant="40" id="Tob-Wz-fJM"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                         <inset key="imageEdgeInsets" minX="-16" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -334,17 +334,17 @@
                             <action selector="chatButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="lGJ-Ac-qi1"/>
                         </connections>
                     </button>
-                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UKS-O0-dQh">
-                        <rect key="frame" x="164" y="364.5" width="140" height="32"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UKS-O0-dQh">
+                        <rect key="frame" x="164" y="372.5" width="140" height="32"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="ic_ferry" translatesAutoresizingMaskIntoConstraints="NO" id="WhI-bB-2sc">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_ferry" translatesAutoresizingMaskIntoConstraints="NO" id="WhI-bB-2sc">
                                 <rect key="frame" x="4" y="4" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="GhZ-g9-3uH"/>
                                     <constraint firstAttribute="width" constant="24" id="Yop-UM-47g"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Daily Trip" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G0p-jM-yTE">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daily Trip" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G0p-jM-yTE">
                                 <rect key="frame" x="32" y="8" width="104" height="14.5"/>
                                 <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -367,17 +367,17 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F0q-d0-aue">
-                        <rect key="frame" x="16" y="364.5" width="140" height="32"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F0q-d0-aue">
+                        <rect key="frame" x="16" y="372.5" width="140" height="32"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="ic_license_white" translatesAutoresizingMaskIntoConstraints="NO" id="Bzq-oQ-hgi">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_license_white" translatesAutoresizingMaskIntoConstraints="NO" id="Bzq-oQ-hgi">
                                 <rect key="frame" x="4" y="4" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="D5E-9v-RDh"/>
                                     <constraint firstAttribute="height" constant="24" id="foE-BX-lFD"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="License Needed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOx-SJ-Nak">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="License Needed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOx-SJ-Nak">
                                 <rect key="frame" x="32" y="9" width="104" height="14.5"/>
                                 <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -399,20 +399,20 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Vf-Ca-Y01" userLabel="Facilities">
-                        <rect key="frame" x="16" y="412.5" width="288" height="88"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Vf-Ca-Y01" userLabel="Facilities">
+                        <rect key="frame" x="16" y="420.5" width="288" height="88"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tYr-4U-lWI" userLabel="Dive Guide">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tYr-4U-lWI" userLabel="Dive Guide">
                                 <rect key="frame" x="0.0" y="0.0" width="140" height="24"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="ic_dive_guide_unactive" translatesAutoresizingMaskIntoConstraints="NO" id="Usg-SQ-ddW">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_dive_guide_unactive" translatesAutoresizingMaskIntoConstraints="NO" id="Usg-SQ-ddW">
                                         <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="imJ-nc-n64"/>
                                             <constraint firstAttribute="width" constant="24" id="y21-e7-rgG"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Dive Guide" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OH6-y8-hTO">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dive Guide" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OH6-y8-hTO">
                                         <rect key="frame" x="28" y="3.5" width="112" height="17"/>
                                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -429,17 +429,17 @@
                                     <constraint firstItem="OH6-y8-hTO" firstAttribute="leading" secondItem="Usg-SQ-ddW" secondAttribute="trailing" constant="4" id="wNa-2q-x4C"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jrB-z1-8cm" userLabel="Equipment">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jrB-z1-8cm" userLabel="Equipment">
                                 <rect key="frame" x="148" y="0.0" width="140" height="24"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="ic_equipment_unactive" translatesAutoresizingMaskIntoConstraints="NO" id="KWc-NF-oCH">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_equipment_unactive" translatesAutoresizingMaskIntoConstraints="NO" id="KWc-NF-oCH">
                                         <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="6V7-pE-Vft"/>
                                             <constraint firstAttribute="width" constant="24" id="vXK-Ap-vro"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Equipment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OH8-NY-VNw">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Equipment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OH8-NY-VNw">
                                         <rect key="frame" x="28" y="3.5" width="112" height="17"/>
                                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -456,17 +456,17 @@
                                     <constraint firstItem="OH8-NY-VNw" firstAttribute="centerY" secondItem="KWc-NF-oCH" secondAttribute="centerY" id="mbJ-qh-fZ2"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QNS-Wu-Gbs" userLabel="Food And Drink">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QNS-Wu-Gbs" userLabel="Food And Drink">
                                 <rect key="frame" x="0.0" y="32" width="140" height="24"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="ic_food_and_drink_unactive" translatesAutoresizingMaskIntoConstraints="NO" id="1sB-78-Ksg">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_food_and_drink_unactive" translatesAutoresizingMaskIntoConstraints="NO" id="1sB-78-Ksg">
                                         <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="HgL-mj-MEa"/>
                                             <constraint firstAttribute="height" constant="24" id="WnH-T2-zZW"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Food And Drink" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oCf-Ab-gy0">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food And Drink" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oCf-Ab-gy0">
                                         <rect key="frame" x="28" y="3.5" width="112" height="17"/>
                                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -483,17 +483,17 @@
                                     <constraint firstAttribute="bottom" secondItem="1sB-78-Ksg" secondAttribute="bottom" id="yVz-wO-5W1"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jkc-mF-SJA" userLabel="Transportation">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jkc-mF-SJA" userLabel="Transportation">
                                 <rect key="frame" x="148" y="32" width="140" height="24"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="ic_transportation_unactive" translatesAutoresizingMaskIntoConstraints="NO" id="Ct6-6p-dWR">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_transportation_unactive" translatesAutoresizingMaskIntoConstraints="NO" id="Ct6-6p-dWR">
                                         <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="37x-nY-E8w"/>
                                             <constraint firstAttribute="width" constant="24" id="kq7-qI-v37"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Transportation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Th9-cI-MwN">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Transportation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Th9-cI-MwN">
                                         <rect key="frame" x="28" y="3.5" width="112" height="17"/>
                                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -510,17 +510,17 @@
                                     <constraint firstItem="Ct6-6p-dWR" firstAttribute="leading" secondItem="jkc-mF-SJA" secondAttribute="leading" id="yti-QJ-yHU"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HyG-CC-n85" userLabel="Towel">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HyG-CC-n85" userLabel="Towel">
                                 <rect key="frame" x="0.0" y="64" width="140" height="24"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="ic_towel_unactive" translatesAutoresizingMaskIntoConstraints="NO" id="q1f-Ff-CLr">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_towel_unactive" translatesAutoresizingMaskIntoConstraints="NO" id="q1f-Ff-CLr">
                                         <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="hw9-WD-mez"/>
                                             <constraint firstAttribute="height" constant="24" id="qvX-5T-lyY"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Towel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y8a-Wn-39F">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Towel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y8a-Wn-39F">
                                         <rect key="frame" x="28" y="3.5" width="112" height="17"/>
                                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -537,17 +537,17 @@
                                     <constraint firstAttribute="trailing" secondItem="Y8a-Wn-39F" secondAttribute="trailing" id="yon-nU-OJC"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4ga-vd-NlK" userLabel="Accomodation">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ga-vd-NlK" userLabel="Accomodation">
                                 <rect key="frame" x="148" y="64" width="140" height="24"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="ic_accomodation_unactive" translatesAutoresizingMaskIntoConstraints="NO" id="brw-y1-kfx">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_accomodation_unactive" translatesAutoresizingMaskIntoConstraints="NO" id="brw-y1-kfx">
                                         <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="812-R9-WIQ"/>
                                             <constraint firstAttribute="width" constant="24" id="uvg-Oh-Wrt"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Accomodation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YE8-99-ky2">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accomodation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YE8-99-ky2">
                                         <rect key="frame" x="28" y="3.5" width="112" height="17"/>
                                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -588,23 +588,23 @@
                             <constraint firstItem="4ga-vd-NlK" firstAttribute="leading" secondItem="jkc-mF-SJA" secondAttribute="leading" id="zsB-aQ-lSd"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5N3-Yp-KL4">
-                        <rect key="frame" x="16" y="516.5" width="288" height="1"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5N3-Yp-KL4">
+                        <rect key="frame" x="16" y="524.5" width="288" height="1"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="It1-qA-8jA"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sSO-91-mwT" userLabel="Description">
-                        <rect key="frame" x="16" y="533.5" width="288" height="55"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sSO-91-mwT" userLabel="Description">
+                        <rect key="frame" x="16" y="541.5" width="288" height="55"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="About Trip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LME-bP-kmr">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About Trip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LME-bP-kmr">
                                 <rect key="frame" x="0.0" y="0.0" width="288" height="22"/>
                                 <fontDescription key="fontDescription" name="FiraSans-Bold" family="Fira Sans" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1Y-u9-bqv">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1Y-u9-bqv">
                                 <rect key="frame" x="0.0" y="38" width="288" height="17"/>
                                 <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -625,7 +625,7 @@
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="iuj-Cr-rjv" firstAttribute="top" secondItem="fQP-v0-GHg" secondAttribute="bottom" id="2LD-xF-eAq"/>
+                    <constraint firstItem="iuj-Cr-rjv" firstAttribute="top" secondItem="fQP-v0-GHg" secondAttribute="bottom" constant="8" id="2LD-xF-eAq"/>
                     <constraint firstItem="iuj-Cr-rjv" firstAttribute="leading" secondItem="fQP-v0-GHg" secondAttribute="leading" id="3uM-yT-qGD"/>
                     <constraint firstItem="iuj-Cr-rjv" firstAttribute="trailing" secondItem="fQP-v0-GHg" secondAttribute="trailing" id="5CF-1X-QzV"/>
                     <constraint firstAttribute="bottom" secondItem="sSO-91-mwT" secondAttribute="bottom" constant="4" id="5Gz-s5-9Yv"/>
@@ -644,7 +644,7 @@
                     <constraint firstItem="5N3-Yp-KL4" firstAttribute="leading" secondItem="qSj-IF-wZM" secondAttribute="leading" id="cgp-UJ-SAX"/>
                     <constraint firstItem="UKS-O0-dQh" firstAttribute="leading" secondItem="F0q-d0-aue" secondAttribute="trailing" constant="8" id="dD8-83-xED"/>
                     <constraint firstItem="fQP-v0-GHg" firstAttribute="trailing" secondItem="qSj-IF-wZM" secondAttribute="trailing" id="h3R-kU-tis"/>
-                    <constraint firstItem="F0q-d0-aue" firstAttribute="top" secondItem="iuj-Cr-rjv" secondAttribute="bottom" id="hfX-uY-BkX"/>
+                    <constraint firstItem="F0q-d0-aue" firstAttribute="top" secondItem="iuj-Cr-rjv" secondAttribute="bottom" constant="8" id="hfX-uY-BkX"/>
                     <constraint firstItem="5N3-Yp-KL4" firstAttribute="top" secondItem="4Vf-Ca-Y01" secondAttribute="bottom" constant="16" id="hk4-Io-cWV"/>
                     <constraint firstItem="qSj-IF-wZM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="hrZ-xT-CJA"/>
                     <constraint firstItem="F0q-d0-aue" firstAttribute="leading" secondItem="qSj-IF-wZM" secondAttribute="leading" id="kcr-dq-aQG"/>
@@ -685,6 +685,7 @@
                 <outlet property="licenseLabel" destination="gOx-SJ-Nak" id="ue6-Xe-WhO"/>
                 <outlet property="licenseTopSpacing" destination="2LD-xF-eAq" id="63f-Bs-UZ5"/>
                 <outlet property="normalPriceContainer" destination="n85-DW-gBq" id="NaD-Cj-c9L"/>
+                <outlet property="normalPriceHeight" destination="0sm-XK-YOA" id="NXP-Hr-YBV"/>
                 <outlet property="normalPriceLabel" destination="WXR-sW-xNN" id="JzN-lv-qpj"/>
                 <outlet property="ratingView" destination="8Vf-7I-6mm" id="QXd-Wy-7Jb"/>
                 <outlet property="specialPriceLabel" destination="Uhu-st-cUP" id="qcz-8q-yS2"/>

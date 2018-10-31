@@ -397,22 +397,22 @@ class NHTTPHelper {
     static var API_VERITRANS_PAYPAL_NOTIFICATION: String {
         switch NConstant.URL_TYPE {
         case .production:
-            return "https://e-nyelam.com/notification/veritrans"
+            return "https://api.e-nyelam.com/notification/veritrans"
         case .development:
-            return "https://nyelam-adam.dantech.id/notification/veritrans"
+            return "https://nyelam-adam.dantech.id/api/notification/veritrans"
         default:
-            return "https://nyelam.dantech.id/notification/veritrans"
+            return "https://nyelam.dantech.id/api/notification/veritrans"
         }
     }
     
     static var API_PATH_PAYPAL_NOTIFICATION: String {
         switch NConstant.URL_TYPE {
         case .production:
-            return "https://e-nyelam.com/notification/paypal"
+            return "https://api.e-nyelam.com/notification/paypal"
         case .development:
-            return "https://nyelam-adam.dantech.id/notification/paypal"
+            return "https://nyelam-adam.dantech.id/api/notification/paypal"
         default:
-            return "https://nyelam.dantech.id/notification/paypal"
+            return "https://nyelam.dantech.id/api/notification/paypal"
         }
     }
     

@@ -29,6 +29,7 @@
 		A6C2708A207BEF63007E4D2A /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C27089207BEF63007E4D2A /* BaseNavigationController.swift */; };
 		A6C2708D207BF0A2007E4D2A /* MainRootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C2708B207BF0A2007E4D2A /* MainRootController.swift */; };
 		A6C2708E207BF0A2007E4D2A /* MainRootController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6C2708C207BF0A2007E4D2A /* MainRootController.xib */; };
+		C00135B3218833FA001FAC1D /* NSDecimalNumber+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00135B2218833FA001FAC1D /* NSDecimalNumber+Extensions.swift */; };
 		C003A26A20A010EA003B217B /* libopencv_imgproc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C003A25E20A010E8003B217B /* libopencv_imgproc.a */; };
 		C003A26B20A010EA003B217B /* libCardIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C003A26420A010E9003B217B /* libCardIO.a */; };
 		C003A26C20A010EA003B217B /* CardIO.m in Sources */ = {isa = PBXBuildFile; fileRef = C003A26720A010E9003B217B /* CardIO.m */; };
@@ -417,6 +418,7 @@
 		A6C2708B207BF0A2007E4D2A /* MainRootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRootController.swift; sourceTree = "<group>"; };
 		A6C2708C207BF0A2007E4D2A /* MainRootController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainRootController.xib; sourceTree = "<group>"; };
 		A6C2708F207BFD02007E4D2A /* Nyelam-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nyelam-Bridging-Header.h"; sourceTree = "<group>"; };
+		C00135B2218833FA001FAC1D /* NSDecimalNumber+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDecimalNumber+Extensions.swift"; sourceTree = "<group>"; };
 		C003A25E20A010E8003B217B /* libopencv_imgproc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_imgproc.a; path = Nyelam/Helper/Libraries/CardIO/libopencv_imgproc.a; sourceTree = SOURCE_ROOT; };
 		C003A25F20A010E8003B217B /* CardIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardIO.h; path = Nyelam/Helper/Libraries/CardIO/CardIO.h; sourceTree = SOURCE_ROOT; };
 		C003A26020A010E8003B217B /* CardIODetectionMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardIODetectionMode.h; path = Nyelam/Helper/Libraries/CardIO/CardIODetectionMode.h; sourceTree = SOURCE_ROOT; };
@@ -1377,6 +1379,7 @@
 				C0F90378208EE23E009F5104 /* Bool+Extensions.swift */,
 				C0B05BF72096C96D003FE74B /* NSAttributedString.swift */,
 				C08310A0215238B2009213F2 /* UITableView+Extensions.swift */,
+				C00135B2218833FA001FAC1D /* NSDecimalNumber+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2166,6 +2169,7 @@
 				C0EE27FB209992B9006ACA5D /* OrderController.swift in Sources */,
 				C0985A6E216CA67F009CE877 /* NOrder+CoreDataProperties.swift in Sources */,
 				A6C27086207BEBDE007E4D2A /* MainNavigationController.swift in Sources */,
+				C00135B3218833FA001FAC1D /* NSDecimalNumber+Extensions.swift in Sources */,
 				C090E1292121469A00EE0654 /* OnboardingController.swift in Sources */,
 				C02B9B65207B47CF00BE2508 /* DiveSpot.swift in Sources */,
 				C0985A48216CA67F009CE877 /* NCity+CoreDataProperties.swift in Sources */,

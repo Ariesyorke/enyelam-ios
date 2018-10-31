@@ -480,6 +480,7 @@ class TripCategoryCell: NTableViewCell {
             button.addTarget(self, action: #selector(tagButtonAction(_:)), for: .touchUpInside)
             self.flowLayout.addSubview(button)
             var additional: CGFloat = 0
+            
             for category in categories {
                 let button = UIButton()
                 button.layer.cornerRadius = 5

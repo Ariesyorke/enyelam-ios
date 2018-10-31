@@ -314,7 +314,6 @@ class DiveServiceSearchResultController: BaseViewController, UITableViewDataSour
             }
         } else if let keyword = selectedKeyword as? SearchResultProvince {
             if forDoTrip {
-                //DEPRECATED
                 NHTTPHelper.httpDoTripSearchBy(provinceId: keyword.id!, page: String(page), diver: selectedDiver, certificate: selectedLicense.number, date: selectedDate.timeIntervalSince1970, sortBy: sortBy, ecoTrip: ecotrip, totalDives: totalDives, categories: categories, facilities: facilities, priceMin: priceMin, priceMax: priceMax, complete: {response in
                     if let error = response.error {
                         UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {error in

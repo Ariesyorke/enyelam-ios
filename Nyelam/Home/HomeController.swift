@@ -216,9 +216,9 @@ class HomeController: BaseViewController, UIScrollViewDelegate, MFMailComposeVie
                     }
                 }
                 self.doTrips = diveServices
-                var height: CGFloat = 370
+                var height: CGFloat = 350
                 if NDisplay.typeIsLike == .iphone5 || NDisplay.typeIsLike == .iphone4 {
-                    height = 320
+                    height = 340
                 }
                 self.doTripScrollerHeight.constant = height
                 self.view.layoutIfNeeded()
@@ -400,7 +400,7 @@ extension HomeController {
         view.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.view.frame.width * 75/100))
         var height: CGFloat = 350
         if NDisplay.typeIsLike == .iphone5 || NDisplay.typeIsLike == .iphone4 {
-            height = 300
+            height = 340
         }
         view.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: height))
 

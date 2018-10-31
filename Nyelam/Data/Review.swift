@@ -54,8 +54,8 @@ class Review: NSObject, Parseable {
                 }
                 if self.user == nil {
                     self.user = NUser.init(entity: NSEntityDescription.entity(forEntityName: "NUser", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
-                    self.user!.parse(json: userJson)
                 }
+                self.user!.parse(json: userJson)
             } catch {
                 print(error)
             }

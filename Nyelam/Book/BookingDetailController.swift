@@ -75,7 +75,7 @@ class BookingDetailController: BaseViewController {
     fileprivate func initInbox() {
         if let orderReturn = self.orderReturn, let summary = orderReturn.summary, let order = summary.order {
             if let status = order.status, (status == "unpaid" || status == "order received" || status == "accepted") && self.type == "1" {
-//                self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_inbox_small"), style: .plain, target: self, action: #selector(inboxButtonAction(_:)))
+                self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_inbox_small"), style: .plain, target: self, action: #selector(inboxButtonAction(_:)))
             } else {
                 self.navigationItem.rightBarButtonItem = nil
             }
@@ -83,11 +83,11 @@ class BookingDetailController: BaseViewController {
     }
     
     fileprivate func initReview() {
-//        if let orderReturn = self.orderReturn, let summary = orderReturn.summary, let order = summary.order, let status = order.status, self.type == "2" && status.lowercased() == "accepted" {
-//            self.writeReviewButton.isHidden = false
-//        } else {
+        if let orderReturn = self.orderReturn, let summary = orderReturn.summary, let order = summary.order, let status = order.status, self.type == "2" && status.lowercased() == "accepted" {
+            self.writeReviewButton.isHidden = false
+        } else {
             self.writeReviewButton.isHidden = true
-//        }
+        }
     }
     fileprivate func loadBookingDetail(bookingId: String) {
         NHTTPHelper.httpDetail(bookingId: bookingId, complete: {response in

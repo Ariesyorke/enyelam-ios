@@ -499,9 +499,11 @@ extension OrderController: UITableViewDelegate, UITableViewDataSource {
     }
     
     fileprivate func payUsingPaypal(orderReturn: OrderReturn) {
-        let amount = NSDecimalNumber(value: orderReturn.paypalCurrency!.amount)
-        let paypalPayment = PayPalPayment(amount: amount, currencyCode: orderReturn.paypalCurrency!.currency!, shortDescription: "#\(orderReturn.summary!.order!.orderId!)", intent: PayPalPaymentIntent.sale)
-        let paymentController = PayPalPaymentViewController(payment: paypalPayment, configuration: payPalConfig, delegate: self)
+        var amount = NSDecimalNumber(value: orderReturn.paypalCurrency!.amount)
+        amount = amount.round(2)
+        let paypalPayment = PayPalPayment(amount: amount, currencyCode: orderReturn.paypalCurrency!.currency!, shortDescription: "\(orderReturn.summary!.order!.orderId!)", intent: PayPalPaymentIntent.sale)
+        paypalPayment.invoiceNumber = "\(orderReturn.summary!.order!.orderId!)"
+       let paymentController = PayPalPaymentViewController(payment: paypalPayment, configuration: payPalConfig, delegate: self)
         self.present(paymentController!, animated: true, completion: nil)
     }
 }
@@ -541,6 +543,7 @@ class ContactCell: NTableViewCell {
         } else {
             self.fullNameLabel.text = "Fullname"
         }
+        
         if let countryCode = contact.countryCode, let countryNumber = countryCode.countryNumber, let phoneNumber = contact.phoneNumber {
             self.phoneNumberLabel.text = "+\(countryNumber)\(phoneNumber)"
         } else {
@@ -659,13 +662,7 @@ extension OrderController: MidtransUIPaymentViewControllerDelegate, PayPalPaymen
     func payPalPaymentViewController(_ paymentViewController: PayPalPaymentViewController, didComplete completedPayment: PayPalPayment) {
         paymentViewController.dismiss(animated: true, completion: {
             UIAlertController.handlePopupMessage(viewController: self, title: "Order Success!", actionButtonTitle: "OK", completion: {
-                MBProgressHUD.showAdded(to: self.view, animated: true)
-                if let data = completedPayment.confirmation["response"] as? [String: Any] {
-                    NHTTPHelper.httpPaypalNotification(paypalId: data["id"]as! String, complete: {response in
-                        MBProgressHUD.hide(for: self.view, animated: true)
-                        _ = BookingDetailController.push(on: self.navigationController!, bookingId: self.orderReturn!.summary!.id!, type: "1", isComeFromOrder: true)
-                    })
-                }
+                _ = BookingDetailController.push(on: self.navigationController!, bookingId: self.orderReturn!.summary!.id!, type: "1", isComeFromOrder: true)
             })
         })
     }

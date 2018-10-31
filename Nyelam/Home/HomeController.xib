@@ -36,7 +36,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="djm-1r-7cD">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="943"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="993"/>
                             <subviews>
                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chU-Ng-B29">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
@@ -372,7 +372,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fC0-ux-WbJ" userLabel="Do Trip Container">
-                                    <rect key="frame" x="0.0" y="581" width="375" height="362"/>
+                                    <rect key="frame" x="0.0" y="581" width="375" height="412"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Omg-II-NY4">
                                             <rect key="frame" x="94" y="19" width="203" height="1"/>
@@ -402,9 +402,9 @@
                                             <rect key="frame" x="177" y="50.5" width="20" height="20"/>
                                         </activityIndicatorView>
                                         <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HqC-Yd-Ngz">
-                                            <rect key="frame" x="0.0" y="46" width="375" height="300"/>
+                                            <rect key="frame" x="0.0" y="46" width="375" height="350"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="300" id="ytx-bh-Kuf"/>
+                                                <constraint firstAttribute="height" constant="350" id="ytx-bh-Kuf"/>
                                             </constraints>
                                         </scrollView>
                                     </subviews>
