@@ -2,7 +2,7 @@
 //  NProductCategory+CoreDataProperties.swift
 //  Nyelam
 //
-//  Created by Bobi on 10/9/18.
+//  Created by Bobi on 11/13/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //
@@ -18,7 +18,7 @@ extension NProductCategory {
     }
 
     @NSManaged public var id: String?
-    @NSManaged public var imageUrl: String?
-    @NSManaged public var name: String?
+    @NSManaged public var categoryImage: String?
+    @NSManaged public var categoryName: String?
 
 }

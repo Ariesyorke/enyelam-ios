@@ -14,6 +14,7 @@ public class CartReturn: NSObject, NSCoding, Parseable {
     private let KEY_CART = "cart"
     private let KEY_ADDITIONAL = "additional"
     private let KEY_EQUIPMENT_RENTS = "equipment_rents"
+    private let KEY_PRODUCTS = "products"
     
     var cartToken: String?
     var expiry: Double = 0
@@ -97,7 +98,6 @@ public class CartReturn: NSObject, NSCoding, Parseable {
                 print(error)
             }
         }
-
     }
     
     func serialized() -> [String : Any] {
@@ -112,7 +112,7 @@ public class CartReturn: NSObject, NSCoding, Parseable {
         if let cart = self.cart {
             json[KEY_CART] = cart.serialized()
         }
-        
+
         if let additionals = self.additionals, !additionals.isEmpty {
             var additionalArray: Array<[String: Any]> = []
             for additional in additionals {

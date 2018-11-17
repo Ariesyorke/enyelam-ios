@@ -2,7 +2,7 @@
 //  NProduct+CoreDataProperties.swift
 //  Nyelam
 //
-//  Created by Bobi on 10/9/18.
+//  Created by Bobi on 11/13/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //
@@ -19,17 +19,16 @@ extension NProduct {
 
     @NSManaged public var color: String?
     @NSManaged public var featuredImage: String?
-    @NSManaged public var hexColor: String?
     @NSManaged public var images: [String]?
     @NSManaged public var normalPrice: Double
     @NSManaged public var productDescription: String?
     @NSManaged public var productId: String?
     @NSManaged public var productName: String?
-    @NSManaged public var sizes: [Size]?
     @NSManaged public var specialPrice: Double
     @NSManaged public var status: String?
+    @NSManaged public var variations: [Variation]?
+    @NSManaged public var merchant: Merchant?
     @NSManaged public var categories: NSSet?
-    @NSManaged public var variations: NSSet?
 
 }
 
@@ -47,22 +46,5 @@ extension NProduct {
 
     @objc(removeCategories:)
     @NSManaged public func removeFromCategories(_ values: NSSet)
-
-}
-
-// MARK: Generated accessors for variations
-extension NProduct {
-
-    @objc(addVariationsObject:)
-    @NSManaged public func addToVariations(_ value: NProduct)
-
-    @objc(removeVariationsObject:)
-    @NSManaged public func removeFromVariations(_ value: NProduct)
-
-    @objc(addVariations:)
-    @NSManaged public func addToVariations(_ values: NSSet)
-
-    @objc(removeVariations:)
-    @NSManaged public func removeFromVariations(_ values: NSSet)
 
 }

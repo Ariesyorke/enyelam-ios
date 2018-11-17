@@ -302,4 +302,50 @@ extension NHTTPHelper {
                                 }
         })
     }
+    
+    static func httpGetMasterDoShopCategory(complete: @escaping (NHTTPResponse<[NProductCategory]>) -> ()) {
+        self.basicPostRequest(URLString: HOST_URL + API_PATH_DO_SHOP_CATEGORY, complete: {status, data, error in
+            if let error = error {
+                complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
+                return
+            }
+            if let data = data, let json = data as? [String: Any] {
+                var categories: [NProductCategory]? = nil
+                if let categoriesArray = json["categories"] as? Array<[String: Any]>, !categoriesArray.isEmpty {
+                    categories = []
+                    for categoryJson in categoriesArray {
+                        var category: NProductCategory? = nil
+                        if let id = categoryJson["id"] as? String {
+                            category = NProductCategory.getCategory(using: id)
+                        }
+                        if category == nil {
+                            category = NProductCategory.init(entity: NSEntityDescription.entity(forEntityName: "NProductCategory", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
+                        }
+                        category!.parse(json: categoryJson)
+                        categories!.append(category!)
+                    }
+                } else if let categoriesString = json["categories"] as? String {
+                    do {
+                        let data = categoriesString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                        let categoriesArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+                        categories = []
+                        for categoryJson in categoriesArray {
+                            var category: NProductCategory? = nil
+                            if let id = categoryJson["id"] as? String {
+                                category = NProductCategory.getCategory(using: id)
+                            }
+                            if category == nil {
+                                category = NProductCategory.init(entity: NSEntityDescription.entity(forEntityName: "NProductCategory", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
+                            }
+                            category!.parse(json: categoryJson)
+                            categories!.append(category!)
+                        }
+                    } catch {
+                        print(error)
+                    }
+                }
+                complete(NHTTPResponse(resultStatus: true, data: categories, error: nil))
+            }
+        })
+    }
 }

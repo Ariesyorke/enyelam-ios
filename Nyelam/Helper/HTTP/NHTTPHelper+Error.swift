@@ -591,6 +591,87 @@ class NHTTPHelper {
         }
     }
     
+    static var API_PATH_RECOMMENDED_SHOP: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "doshop/"
+        default:
+            return "api/doshop/"
+        }
+    }
+    
+    static var API_PATH_DO_SHOP_CATEGORY: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "doshop/category"
+        default:
+            return "api/doshop/category"
+        }
+    }
+    
+    static var API_PATH_DO_SHOP_PRODUCT_LIST: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "doshop/product_list"
+        default:
+            return "api/doshop/product_list"
+        }
+    }
+    
+    static var API_PATH_DO_SHOP_ADD_TO_CART: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "doshop/product_list"
+        default:
+            return "api/doshop/product_list"
+        }
+    }
+    static var API_PATH_ADD_TO_CART: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "doshop/product_detail"
+        default:
+            return "api/doshop/product_detail"
+        }
+    }
+    
+    static var API_PATH_PRODUCT_DETAIL: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "doshop/cart_add/"
+        default:
+            return "api/doshop/cart_add/"
+        }
+    }
+    
+    static var API_PATH_CART_LIST: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "doshop/cart_list/"
+        default:
+            return "api/doshop/cart_list/"
+        }
+    }
+    
+    static var API_PATH_DOSHOP_ADD_VOUCHER: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "api/doshop/addressList "
+        default:
+            return "doshop/addressList "
+        }
+    }
+    
+    static var API_PATH_ADDRESS_LIST: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "api/doshop/add_voucher"
+        default:
+            return "doshop/add_voucher"
+        }
+
+    }
+    
     internal static func basicAuthStringRequest(URLString: URLConvertible,
                                                 parameters: [String: Any]? = nil,
                                                 headers: [String: String]? = nil,

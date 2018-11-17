@@ -17,6 +17,7 @@ class OnboardingController: UIViewController {
     var currentPage: Int = 0
     var initOnboarding: Bool = true
     var contentViews: [UIView] = []
+    
     static func present(on controller: UIViewController) -> OnboardingController {
         let vc = OnboardingController(nibName: "OnboardingController", bundle: nil)
         controller.present(vc, animated: true, completion: nil)

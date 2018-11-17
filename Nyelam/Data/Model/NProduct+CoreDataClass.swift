@@ -2,7 +2,7 @@
 //  NProduct+CoreDataClass.swift
 //  Nyelam
 //
-//  Created by Bobi on 10/9/18.
+//  Created by Bobi on 11/13/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //

@@ -42,6 +42,7 @@ target 'Nyelam' do
   pod 'EAIntroView'
   pod 'MultilineTextField'
   pod 'SimpleImageViewer', '~> 1.1.1'
+  pod 'CollectionKit', '~> 2.1.0'
   
   target 'NyelamTests' do
     inherit! :search_paths

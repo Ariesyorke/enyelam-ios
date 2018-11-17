@@ -563,7 +563,6 @@ extension DiveServiceController: UITableViewDelegate, UITableViewDataSource {
                 cell.userCommentLabel.text = review.content
                 if let user = review.user {
                     cell.userNameLabel.text = user.fullname
-                    print("USER PICTURE \(user.picture)")
                     if let picture = user.picture, !picture.isEmpty {
                         cell.userProfileImageView.af_setImage(withURL: URL(string: picture)!)
                     }
@@ -918,9 +917,9 @@ class DiveServiceRelatedCell: NTableViewCell {
                     i += 1
                     leftView = view
                 }
-                var height: CGFloat = 340
+                var height: CGFloat = 350
                 if self.isDoTrip {
-                    height = 350
+                    height = 360
                 }
                 if NDisplay.typeIsLike == .iphone5 || NDisplay.typeIsLike == .iphone4 {
                     if self.isDoTrip {
@@ -944,15 +943,15 @@ class DiveServiceRelatedCell: NTableViewCell {
         let view: NServiceView = NServiceView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: self.controller!.view.frame.width * 75/100))
-        var height: CGFloat = 320
+        var height: CGFloat = 350
         if self.isDoTrip {
-            height = 350
+            height = 360
         }
         if NDisplay.typeIsLike == .iphone5 || NDisplay.typeIsLike == .iphone4 {
             if self.isDoTrip {
                 height = 340
             } else {
-                height = 310
+                height = 330
             }
         }
         view.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: height))

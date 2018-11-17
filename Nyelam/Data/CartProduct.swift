@@ -13,14 +13,19 @@ class CartProduct: Parseable {
     private let KEY_PRODUCT_NAME = "product_name"
     private let KEY_FEATURED_IMAGE = "featured_image"
     private let KEY_QTY = "qty"
+    private let KEY_WEIGHT = "weight"
     private let KEY_SPECIAL_PRICE = "special_price"
     
     var productCartId: String?
     var productName: String?
     var featuredImage: String?
     var qty: Int = 0
+    var weight: Double = 0.0
     var specialPrice: Double = 0
     
+    init(json: [String: Any]) {
+        self.parse(json: json)
+    }
     func parse(json: [String : Any]) {
         self.productCartId = json[KEY_PRODUCT_CART_ID] as? String
         self.productName = json[KEY_PRODUCT_NAME] as? String
@@ -37,6 +42,13 @@ class CartProduct: Parseable {
         } else if let specialPrice = json[KEY_SPECIAL_PRICE] as? String {
             if specialPrice.isNumber {
                 self.specialPrice = Double(specialPrice)!
+            }
+        }
+        if let weight = json[KEY_WEIGHT] as? Double {
+            self.weight = weight
+        } else if let weight = json[KEY_WEIGHT] as? String {
+            if weight.isNumber {
+                self.weight = Double(weight)!
             }
         }
     }

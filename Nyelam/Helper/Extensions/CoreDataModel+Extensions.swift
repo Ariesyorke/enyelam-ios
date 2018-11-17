@@ -22,6 +22,9 @@ extension NCategory {
         self.id = json["id"] as? String
         self.name = json["name"] as? String
         self.icon = json["icon"] as? String
+        if self.icon == nil {
+            json["image_url"] as? String
+        }
     }
     
     func serialized() -> [String : Any] {
@@ -2239,56 +2242,6 @@ extension NDistrict: Parseable {
     }
 }
 
-extension NProductCategory: Parseable {
-    
-    private var KEY_ID: String  {
-        return "id"
-    }
-    
-    private var KEY_NAME: String {
-        return "name"
-    }
-    
-    private var KEY_IMAGE_URL: String {
-        return "image_url"
-    }
-    
-    static func getProductCategory(using id: String)->NProductCategory? {
-        let managedContext = AppDelegate.sharedManagedContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NProductCategory")
-        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
-        do {
-            let results = try managedContext.fetch(fetchRequest) as? [NProductCategory]
-            if let results = results, !results.isEmpty {
-                return results.first
-            }
-        } catch {
-            print(error)
-        }
-        return nil
-    }
-    
-    func parse(json: [String : Any]) {
-        self.id = json[KEY_ID] as? String
-        self.name = json[KEY_NAME] as? String
-        self.imageUrl = json[KEY_IMAGE_URL] as? String
-    }
-    
-    func serialized() -> [String : Any] {
-        var json: [String: Any] = [:]
-        if let id = self.id {
-            json[KEY_ID] = id
-        }
-        if let name = self.name {
-            json[KEY_NAME] = name
-        }
-        if let imageUrl = self.imageUrl {
-            json[KEY_IMAGE_URL] = imageUrl
-        }
-        return json
-    }
-}
-
 extension NProduct: Parseable {
     private var KEY_ID: String  {
         return "id"
@@ -2378,35 +2331,12 @@ extension NProduct: Parseable {
         }
         self.color = json[KEY_COLOR] as? String
         self.status = json[KEY_STATUS] as? String
-        self.hexColor = json[KEY_HEX_COLOR] as? String
-        if let sizeArray = json[KEY_SIZE] as? Array<[String: Any]>, !sizeArray.isEmpty {
-            for sizeJson in sizeArray {
-                let size = Size(json: sizeJson)
-                if self.sizes == nil {
-                    self.sizes = []
-                }
-                self.sizes!.append(size)
-            }
-        } else if let sizeArrayString = json[KEY_SIZE] as? String {
-            do {
-                let data = sizeArrayString.data(using: String.Encoding.utf8, allowLossyConversion: true)
-                let sizeArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
-                for sizeJson in sizeArray {
-                    let size = Size(json: sizeJson)
-                    if self.sizes == nil {
-                        self.sizes = []
-                    }
-                    self.sizes!.append(size)
-                }
-            } catch {
-                print(error)
-            }
-        }
+        
         if let categoriesArray = json[KEY_CATEGORIES] as? Array<[String: Any]>, !categoriesArray.isEmpty {
             for categoryJson in categoriesArray {
                 var category: NProductCategory? = nil
                 if let id = categoryJson["id"] as? String {
-                    category = NProductCategory.getProductCategory(using: id)
+                    category = NProductCategory.getCategory(using: id)
                 }
                 if category == nil {
                     category = NSEntityDescription.insertNewObject(forEntityName: "NProductCategory", into: AppDelegate.sharedManagedContext) as! NProductCategory
@@ -2421,7 +2351,7 @@ extension NProduct: Parseable {
                 for categoryJson in categoriesArray {
                     var category: NProductCategory? = nil
                     if let id = categoryJson["id"] as? String {
-                        category = NProductCategory.getProductCategory(using: id)
+                        category = NProductCategory.getCategory(using: id)
                     }
                     if category == nil {
                         category = NSEntityDescription.insertNewObject(forEntityName: "NProductCategory", into: AppDelegate.sharedManagedContext) as! NProductCategory
@@ -2433,37 +2363,29 @@ extension NProduct: Parseable {
                 print(error)
             }
         }
-        if let variationsArray = json[KEY_VARIATIONS] as? Array<[String: Any]>, !variationsArray.isEmpty {
+        
+        if let variationsArray = json[KEY_VARIATIONS] as? Array<[String: Any]> {
+            self.variations = []
             for variationJson in variationsArray {
-                var productVariation: NProduct? = nil
-                if let id = variationJson["id"] as? String {
-                    productVariation = NProduct.getProduct(using: id)
-                }
-                if productVariation == nil {
-                    productVariation = NSEntityDescription.insertNewObject(forEntityName: "NProduct", into: AppDelegate.sharedManagedContext) as! NProduct
-                    productVariation!.parse(json: variationJson)
-                }
-                self.addToVariations(productVariation!)
+                var variation = Variation(json: variationJson)
+                self.variations!.append(variation)
             }
-        } else if let variationString = json[KEY_VARIATIONS] as? String {
+        } else if let variationArrayString = json[KEY_VARIATIONS] as? String {
             do {
-                let data = variationString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let data = variationArrayString.data(using: String.Encoding.utf8, allowLossyConversion: true)
                 let variationsArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+                self.variations = []
                 for variationJson in variationsArray {
-                    var productVariation: NProduct? = nil
-                    if let id = variationJson["id"] as? String {
-                        productVariation = NProduct.getProduct(using: id)
-                    }
-                    if productVariation == nil {
-                        productVariation = NSEntityDescription.insertNewObject(forEntityName: "NProduct", into: AppDelegate.sharedManagedContext) as! NProduct
-                        productVariation!.parse(json: variationJson)
-                    }
-                    self.addToVariations(productVariation!)
+                    var variation = Variation(json: variationJson)
+                    self.variations!.append(variation)
                 }
+
             } catch {
                 print(error)
             }
+
         }
+        
     }
     
     func serialized() -> [String : Any] {
@@ -2491,29 +2413,12 @@ extension NProduct: Parseable {
         if let color = self.color {
             json[KEY_COLOR] = color
         }
-        if let hexColor = self.hexColor {
-            json[KEY_HEX_COLOR] = hexColor
-        }
-        if let sizes = self.sizes, !sizes.isEmpty {
-            var array: Array<[String: Any]> = []
-            for size in sizes {
-                array.append(size.serialized())
-            }
-            json[KEY_SIZE] = array
-        }
-        if let nsset = self.categories, let categories = nsset.allObjects as? [NProductCategory], !categories.isEmpty {
+        if let nsset = self.categories, let categories = nsset.allObjects as? [NCategory], !categories.isEmpty {
             var array: Array<[String: Any]> = []
             for category in categories {
                 array.append(category.serialized())
             }
             json[KEY_CATEGORIES] = array
-        }
-        if let nsset = self.variations, let variations = nsset.allObjects as? [NProductCategory], !variations.isEmpty {
-            var array: Array<[String: Any]> = []
-            for variation in variations {
-                array.append(variation.serialized())
-            }
-            json[KEY_VARIATIONS] = array
         }
         if let productDescription = self.productDescription {
             json[KEY_DESCRIPTION] = productDescription
@@ -2522,7 +2427,7 @@ extension NProduct: Parseable {
     }
 }
 
-extension NShippingAddress: Parseable {
+extension NAddress: Parseable {
     private var KEY_ADDRESS_ID: String {
         return "address_id"
     }
@@ -2672,4 +2577,59 @@ extension NShippingAddress: Parseable {
     }
     
     
+}
+
+extension NProductCategory {
+    func parse(json: [String : Any]) {
+        self.id = json["id"] as? String
+        self.categoryName = json["name"] as? String
+        self.categoryImage = json["image_url"] as? String
+    }
+    
+    func serialized() -> [String : Any] {
+        var json: [String: Any] = [:]
+        if let id = self.id {
+            json["id"] = id
+        }
+        if let name = self.categoryName {
+            json["name"] = name
+        }
+        if let icon = self.categoryImage {
+            json["image_url"] = icon
+        }
+        return json
+    }
+    
+    static func getCategories() -> [NProductCategory]? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NProductCategory")
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        do {
+            let categories = try managedContext.fetch(fetchRequest) as? [NProductCategory]
+            if let categories = categories, !categories.isEmpty {
+                return categories
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+    
+    static func getCategory(using id: String) -> NProductCategory? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NProductCategory")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        do {
+            let categories = try managedContext.fetch(fetchRequest) as? [NProductCategory]
+            if let categories = categories, !categories.isEmpty {
+                return categories.first
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+
 }

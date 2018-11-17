@@ -2,7 +2,7 @@
 //  NSearchResult+CoreDataProperties.swift
 //  Nyelam
 //
-//  Created by Bobi on 10/9/18.
+//  Created by Bobi on 11/13/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //
@@ -24,7 +24,7 @@ extension NSearchResult {
     @NSManaged public var province: String?
     @NSManaged public var rating: Double
     @NSManaged public var type: Int16
-    @NSManaged public var organization: NMasterOrganization?
     @NSManaged public var licenseType: NLicenseType?
+    @NSManaged public var organization: NMasterOrganization?
 
 }
