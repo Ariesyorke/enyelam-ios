@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="FiraSans-Regular.ttf">
+            <string>FiraSans-Regular</string>
+        </array>
+        <array key="FiraSans-SemiBold.ttf">
+            <string>FiraSans-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NVariationView" customModule="Nyelam" customModuleProvider="target">
+            <connections>
+                <outlet property="variationContainer" destination="AHd-ah-d3i" id="m1O-hk-EVO"/>
+                <outlet property="variationNameLabel" destination="2EU-dT-j1g" id="GRV-KM-uEU"/>
+                <outlet property="variationTitleLabel" destination="d6F-8V-iiy" id="Wqu-EQ-Jqn"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="366" height="62"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AHd-ah-d3i" customClass="UIControl">
+                    <rect key="frame" x="0.0" y="21" width="366" height="32"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="ic_down_arrow_black" translatesAutoresizingMaskIntoConstraints="NO" id="F5A-Le-uCm">
+                            <rect key="frame" x="350" y="16" width="8" height="8"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="8" id="OQO-ju-lEq"/>
+                                <constraint firstAttribute="height" constant="8" id="Xr9-TP-vNA"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2EU-dT-j1g">
+                            <rect key="frame" x="8" y="11" width="334" height="17"/>
+                            <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="F5A-Le-uCm" secondAttribute="trailing" constant="8" id="GLQ-zL-VM1"/>
+                        <constraint firstItem="2EU-dT-j1g" firstAttribute="leading" secondItem="AHd-ah-d3i" secondAttribute="leading" constant="8" id="MHr-cl-AiE"/>
+                        <constraint firstAttribute="bottom" secondItem="2EU-dT-j1g" secondAttribute="bottom" constant="8" id="Pev-Go-YTp"/>
+                        <constraint firstItem="2EU-dT-j1g" firstAttribute="centerY" secondItem="F5A-Le-uCm" secondAttribute="centerY" id="iNk-Ac-JtW"/>
+                        <constraint firstItem="F5A-Le-uCm" firstAttribute="leading" secondItem="2EU-dT-j1g" secondAttribute="trailing" constant="8" id="mA6-Kh-EHs"/>
+                        <constraint firstItem="2EU-dT-j1g" firstAttribute="top" secondItem="AHd-ah-d3i" secondAttribute="top" constant="8" id="vRV-iL-ayM"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="variationButtonAction:" destination="-1" eventType="touchUpInside" id="Tfd-cC-xh1"/>
+                    </connections>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d6F-8V-iiy">
+                    <rect key="frame" x="0.0" y="0.0" width="366" height="17"/>
+                    <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="AHd-ah-d3i" firstAttribute="top" secondItem="d6F-8V-iiy" secondAttribute="bottom" constant="4" id="9ZH-xF-tAc"/>
+                <constraint firstItem="d6F-8V-iiy" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="FrT-9c-Qwi"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="d6F-8V-iiy" secondAttribute="trailing" id="JwA-xB-dLT"/>
+                <constraint firstItem="d6F-8V-iiy" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="ND4-DR-pPx"/>
+                <constraint firstItem="AHd-ah-d3i" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="qzP-dK-TmM"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="AHd-ah-d3i" secondAttribute="trailing" id="tMh-2X-Kxa"/>
+                <constraint firstItem="AHd-ah-d3i" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="yhw-on-lTH"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="-29" y="-756"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_down_arrow_black" width="16" height="16"/>
+    </resources>
+</document>

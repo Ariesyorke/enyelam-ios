@@ -2363,20 +2363,24 @@ extension NProduct: Parseable {
                 print(error)
             }
         }
-        
-        if let variationsArray = json[KEY_VARIATIONS] as? Array<[String: Any]> {
+        if let variationJson = json[KEY_VARIATIONS] as? [String: Any] {
             self.variations = []
-            for variationJson in variationsArray {
-                var variation = Variation(json: variationJson)
+            for (key, _) in variationJson {
+                var variation = Variation()
+                variation.key = key
+                variation.parse(json: variationJson)
                 self.variations!.append(variation)
             }
+            
         } else if let variationArrayString = json[KEY_VARIATIONS] as? String {
             do {
                 let data = variationArrayString.data(using: String.Encoding.utf8, allowLossyConversion: true)
-                let variationsArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+                let variationJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
                 self.variations = []
-                for variationJson in variationsArray {
-                    var variation = Variation(json: variationJson)
+                for (key, _) in variationJson {
+                    var variation = Variation()
+                    variation.key = key
+                    variation.parse(json: variationJson)
                     self.variations!.append(variation)
                 }
 
@@ -2422,6 +2426,12 @@ extension NProduct: Parseable {
         }
         if let productDescription = self.productDescription {
             json[KEY_DESCRIPTION] = productDescription
+        }
+        if let variations = self.variations, !variations.isEmpty {
+            var obj: [String: Any] = [:]
+            for variation in variations {
+                obj[variation.key!] = variation.serialized()[variation.key!]
+            }
         }
         return json
     }

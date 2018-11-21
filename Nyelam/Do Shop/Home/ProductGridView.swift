@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ProductGridView: UIView {
+class ProductGridView: UIControl {
     var contentView: UIView?
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var productNameLabel: UILabel!

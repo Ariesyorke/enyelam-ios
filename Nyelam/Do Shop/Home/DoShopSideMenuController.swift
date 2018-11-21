@@ -17,6 +17,12 @@ class DoShopSideMenuController: BaseViewController {
         }
     }
     
+    static func push(on controller: DoShopSideMenuNavigationController) ->  DoShopSideMenuController {
+        let vc = DoShopSideMenuController(nibName: "DoShopSideMenuController", bundle: nil)
+        controller.pushViewController(vc, animated: true)
+        return vc
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.refreshControl = UIRefreshControl()
@@ -70,7 +76,6 @@ class DoShopSideMenuController: BaseViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
 
 extension DoShopSideMenuController: UITableViewDelegate, UITableViewDataSource {

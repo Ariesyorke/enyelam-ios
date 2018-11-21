@@ -19,7 +19,7 @@ class DoShopHomeController: BaseViewController {
     internal var categoryDataSource: ArrayDataSource<NProductCategory> = ArrayDataSource()
     
     internal var refreshControl: UIRefreshControl!
-    internal var sideMenuController: DoShopSideMenuController?
+    internal var sideMenuController: DoShopSideMenuNavigationController?
 
     static func push(on controller: UINavigationController) -> DoShopHomeController {
         let vc = DoShopHomeController(nibName: "DoShopHomeController", bundle: nil)
@@ -47,7 +47,9 @@ class DoShopHomeController: BaseViewController {
         
         self.productGridSize = CGSize(width: columnWidth, height: imageH + contentH + (40))
         self.categoryGridSize = CGSize(width: categoryColumnWidth, height: categoryColumnWidth)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_navigation_menu"), style: .plain, target: self, action: #selector(DoShopHomeController.onNavigation(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_navigation_drawer"), style: .plain, target: self, action: #selector(DoShopHomeController.onNavigation(_:)))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_cart"), style: .plain, target: self, action: #selector(DoShopHomeController.onCart(_:)))
+        
         self.setupSideMenu()
     }
     
@@ -72,6 +74,9 @@ class DoShopHomeController: BaseViewController {
     
     @objc func onNavigation(_ sender: UIBarButtonItem) {
         self.present(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
+    }
+    @objc func onCart(_ sender: UIBarButtonItem) {
+        
     }
     fileprivate func initCollectionView() {
         let productViewSource: ClosureViewSource = ClosureViewSource(viewUpdater: {
@@ -111,6 +116,7 @@ class DoShopHomeController: BaseViewController {
                                                                 .inset(by: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)),
                                                             animator: nil,
                                                             tapHandler: {context in
+                                                                let _ = DoShopProductDetailController.push(on: self.navigationController!, productId: context.data.productId!)
         })
         
         let productHeaderProvider: BasicProvider = BasicProvider(dataSource: ArrayDataSource(data: ["RECOMMENDED FOR YOU"]),
@@ -150,11 +156,24 @@ class DoShopHomeController: BaseViewController {
     fileprivate func setupSideMenu() {
         SideMenuManager.menuPresentMode = .menuSlideIn
         SideMenuManager.menuFadeStatusBar = false
-        self.sideMenuController = DoShopSideMenuController(nibName: "DoShopSideMenuController", bundle: nil)
-        let sideMenuNavController: UISideMenuNavigationController = UISideMenuNavigationController(rootViewController: sideMenuController!)
+        let sideMenuNavController: DoShopSideMenuNavigationController = DoShopSideMenuNavigationController.create()
         sideMenuNavController.setNavigationBarHidden(true, animated: false)
+        sideMenuNavController.onSideMenuClicked = {sideMenu in
+            self.openSideMenu(sideMenu: sideMenu)
+        }
         SideMenuManager.menuLeftNavigationController = sideMenuNavController
         SideMenuManager.menuAddScreenEdgePanGesturesToPresent(toView: self.view, forMenu: UIRectEdge.left)
+    }
+    fileprivate func openSideMenu(sideMenu: DoShopSideMenuType) {
+        switch  sideMenu {
+        case .order:
+            break
+        default:
+            self.navigationController!.dismiss(animated: true, completion: {
+                self.navigationController!.dismiss(animated: true, completion: nil)
+            })
+            break
+        }
     }
 }
 
@@ -183,4 +202,9 @@ class SectionHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
+}
+
+enum DoShopSideMenuType {
+    case order
+    case exit
 }

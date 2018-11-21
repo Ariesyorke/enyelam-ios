@@ -49,13 +49,15 @@ extension NHTTPHelper {
             }
         })
     }
-    static func httpGetProductList(keyword: String?,
+    static func httpGetProductList(page: Int,
+                                   keyword: String?,
                                    categoryId: String?,
-                                   priceMin: Int?,
-                                   priceMax: Int?,
+                                   priceMin: Double?,
+                                   priceMax: Double?,
                                    sortBy: Int?,
+                                   merchantId: String?,
                                    complete: @escaping (NHTTPResponse<[NProduct]>)->()) {
-        var params: [String: Any] = [:]
+        var params: [String: Any] = ["page": String(page)]
         if let keyword = keyword {
             params["keyword"] = keyword
         }
@@ -63,13 +65,16 @@ extension NHTTPHelper {
             params["category_id"] =  categoryId
         }
         if let priceMin = priceMin {
-            params["price_min"] = String(priceMin)
+            params["price_min"] = String(Int64(priceMin))
         }
         if let priceMax = priceMax {
-            params["price_max"] = String(priceMax)
+            params["price_max"] = String(Int64(priceMax))
         }
         if let sortBy = sortBy {
             params["sort_by"] = String(sortBy)
+        }
+        if let merchantId = merchantId {
+            params["merchant_id"] = merchantId
         }
         self.basicPostRequest(URLString: HOST_URL + API_PATH_DO_SHOP_PRODUCT_LIST, parameters: params, headers: nil, complete: {status, data, error in
             if let error = error {

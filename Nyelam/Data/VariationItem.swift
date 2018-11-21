@@ -14,12 +14,14 @@ class VariationItem: Parseable {
     fileprivate let KEY_QTY = "qty"
     fileprivate let KEY_NORMAL_PRICE = "normal_price"
     fileprivate let KEY_SPECIAL_PRICE = "special_price"
-
+    fileprivate let KEY_PICKED  = "picked"
+    
     var id: String?
     var name: String?
     var qty: Int = 0
     var normalPrice: Double = 0.0
     var specialPrice: Double = 0.0
+    var picked: Bool = false
     
     init(json: [String: Any]) {
         self.parse(json: json)
@@ -49,6 +51,9 @@ class VariationItem: Parseable {
                 self.specialPrice = Double(specialPrice)!
             }
         }
+        if let picked = json[KEY_PICKED] as? Bool {
+            self.picked = picked
+        }
      }
     
     func serialized() -> [String : Any] {
@@ -62,6 +67,8 @@ class VariationItem: Parseable {
         json[KEY_QTY] = self.qty
         json[KEY_NORMAL_PRICE] = self.normalPrice
         json[KEY_SPECIAL_PRICE] = self.specialPrice
+        json[KEY_PICKED] = self.picked
+        
         return json
     }
 }

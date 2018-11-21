@@ -19,10 +19,14 @@ public class Variation: NSObject, NSCoding, Parseable {
         }
         self.init(json: json)
     }
+    
     public func encode(with aCoder: NSCoder) {
         aCoder.encode(self.serialized(), forKey: "json")
     }
-
+    
+    override init() {
+        super.init()
+    }
 
     init(json: [String: Any]) {
         super.init()
@@ -30,15 +34,36 @@ public class Variation: NSObject, NSCoding, Parseable {
     }
 
     func parse(json: [String : Any]) {
-        for (key, value) in json {
-            self.key = key
-            if let array = value as? Array<[String: Any]> {
+        if let key = self.key, !key.isEmpty {
+            if let array = json[key] as? Array<[String: Any]> {
                 for obj in array {
                     if self.variationItems == nil {
                         self.variationItems = []
                     }
                     let item = VariationItem(json: obj)
                     self.variationItems?.append(item)
+                }
+            }
+        } else {
+            for (key, value) in json {
+                self.key = key
+                if let array = value as? Array<[String: Any]> {
+                    for obj in array {
+                        if self.variationItems == nil {
+                            self.variationItems = []
+                        }
+                        var q: Int = 0
+                        if let qty = obj["qty"] as? Int {
+                            q = qty
+                        } else if let qty = obj["qty"] as? String, qty.isNumber {
+                            q = Int(qty)!
+                        }
+                        if q <= 0 {
+                            continue
+                        }
+                        let item = VariationItem(json: obj)
+                        self.variationItems?.append(item)
+                    }
                 }
             }
         }

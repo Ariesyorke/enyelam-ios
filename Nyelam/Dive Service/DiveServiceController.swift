@@ -114,7 +114,6 @@ class DiveServiceController: BaseViewController {
     }
     
     fileprivate func tryGetReviews(serviceId: String) {
-        print("GET REVIEW!!")
         NHTTPHelper.httpGetReviewList(page: String(page), serviceId: serviceId, complete: {response in
             self.tableView.finishInfiniteScroll()
             if let error = response.error {
@@ -886,8 +885,6 @@ class DiveServiceRelatedCell: NTableViewCell {
             }
             
             if self.relatedDiveServices != nil {
-
-                
                 var i: Int = 0
                 var leftView: UIView? = nil
                 for service: NDiveService in self.relatedDiveServices! {

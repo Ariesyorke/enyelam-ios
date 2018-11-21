@@ -8,12 +8,13 @@
 
 import Foundation
 extension NHTTPHelper {
-    static func addToCartRequest(productId: String,
+    static func httpAddToCartRequest(productId: String,
+                                     qty: Int,
                           variations: [String]?,
                           complete: @escaping (NHTTPResponse<CartReturn>)->()) {
-        var parameters: [String: Any] = ["product_id": productId]
+        var parameters: [String: Any] = ["product_id": productId, "qty": String(qty)]
         if let variations = variations, !variations.isEmpty {
-            parameters["variation"] = variations
+            parameters["variations"] = variations
         }
         self.basicAuthRequest(URLString: HOST_URL + API_PATH_ADD_TO_CART, parameters: parameters, headers: nil, complete: {status, data, error in
             if let error = error {
