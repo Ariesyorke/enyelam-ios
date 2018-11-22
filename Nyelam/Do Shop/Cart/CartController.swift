@@ -8,8 +8,14 @@
 
 import UIKit
 
-class CartController: UIViewController {
-
+class CartController: BaseViewController {
+    var refreshControl: UIRefreshControl = UIRefreshControl()
+    
+    static func push(on controller: UINavigationController) -> CartController {
+        let vc = CartController(nibName: "CartController", bundle: nil)
+        controller.pushViewController(vc, animated: true)
+        return vc
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 

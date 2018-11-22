@@ -20,6 +20,7 @@ class DoShopHomeController: BaseViewController {
     
     internal var refreshControl: UIRefreshControl!
     internal var sideMenuController: DoShopSideMenuNavigationController?
+    var searchController : UISearchController?
 
     static func push(on controller: UINavigationController) -> DoShopHomeController {
         let vc = DoShopHomeController(nibName: "DoShopHomeController", bundle: nil)
@@ -47,8 +48,18 @@ class DoShopHomeController: BaseViewController {
         
         self.productGridSize = CGSize(width: columnWidth, height: imageH + contentH + (40))
         self.categoryGridSize = CGSize(width: categoryColumnWidth, height: categoryColumnWidth)
+        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_navigation_drawer"), style: .plain, target: self, action: #selector(DoShopHomeController.onNavigation(_:)))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_cart"), style: .plain, target: self, action: #selector(DoShopHomeController.onCart(_:)))
+        self.searchController = UISearchController(searchResultsController:  nil)
+        self.searchController!.searchResultsUpdater = self
+        self.searchController!.delegate = self
+        self.searchController!.searchBar.placeholder = "Enter keywords..."
+        self.searchController!.searchBar.delegate = self
+        self.searchController!.hidesNavigationBarDuringPresentation = false
+        self.searchController!.dimsBackgroundDuringPresentation = true
+        self.navigationItem.titleView = self.searchController!.searchBar
+        self.definesPresentationContext = true
         
         self.setupSideMenu()
     }
@@ -76,7 +87,7 @@ class DoShopHomeController: BaseViewController {
         self.present(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
     }
     @objc func onCart(_ sender: UIBarButtonItem) {
-        
+        let _ = CartController.push(on: self.navigationController!)
     }
     fileprivate func initCollectionView() {
         let productViewSource: ClosureViewSource = ClosureViewSource(viewUpdater: {
@@ -175,6 +186,21 @@ class DoShopHomeController: BaseViewController {
             break
         }
     }
+    override func keyboardWillShow(keyboardFrame: CGRect, animationDuration: TimeInterval) {
+        
+    }
+    override func keyboardWillHide(animationDuration: TimeInterval) {
+        
+    }
+}
+
+extension DoShopHomeController: UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate {
+    func updateSearchResults(for searchController: UISearchController) {
+        
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+    }
 }
 
 class SectionHeaderView: UIView {
@@ -202,6 +228,8 @@ class SectionHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
+    
+    
 }
 
 enum DoShopSideMenuType {

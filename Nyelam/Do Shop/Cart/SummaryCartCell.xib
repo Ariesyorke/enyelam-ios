@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="FiraSans-Regular.ttf">
+            <string>FiraSans-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="149" id="KGk-i7-Jjw" customClass="SummaryCartCell" customModule="Nyelam" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="410" height="149"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="410" height="148.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SFF-dW-tMN">
+                        <rect key="frame" x="16" y="16" width="378" height="33"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUMMARY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vFe-hN-SAE">
+                                <rect key="frame" x="8" y="8" width="362" height="17"/>
+                                <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="vFe-hN-SAE" secondAttribute="bottom" constant="8" id="0Dq-Fr-itp"/>
+                            <constraint firstItem="vFe-hN-SAE" firstAttribute="leading" secondItem="SFF-dW-tMN" secondAttribute="leading" constant="8" id="3Q9-M5-whB"/>
+                            <constraint firstAttribute="trailing" secondItem="vFe-hN-SAE" secondAttribute="trailing" constant="8" id="6tf-4c-8Lv"/>
+                            <constraint firstItem="vFe-hN-SAE" firstAttribute="top" secondItem="SFF-dW-tMN" secondAttribute="top" constant="8" id="igU-Hc-DF8"/>
+                        </constraints>
+                    </view>
+                    <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="RhQ-1h-g9C" userLabel="Summary Container">
+                        <rect key="frame" x="16" y="57" width="378" height="1.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fdO-OF-pQS">
+                        <rect key="frame" x="16" y="66.5" width="378" height="66"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The shipping fee will appear after you enter the delivery address in the next page" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Gb-cZ-nSU">
+                                <rect key="frame" x="16" y="16" width="346" height="34"/>
+                                <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
+                                <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.94545488821715251" blue="0.77075149095204121" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="4Gb-cZ-nSU" secondAttribute="bottom" constant="16" id="790-E6-OhF"/>
+                            <constraint firstItem="4Gb-cZ-nSU" firstAttribute="top" secondItem="fdO-OF-pQS" secondAttribute="top" constant="16" id="7YF-so-Z1b"/>
+                            <constraint firstAttribute="trailing" secondItem="4Gb-cZ-nSU" secondAttribute="trailing" constant="16" id="XN3-Xk-kJ2"/>
+                            <constraint firstItem="4Gb-cZ-nSU" firstAttribute="leading" secondItem="fdO-OF-pQS" secondAttribute="leading" constant="16" id="ot4-Jd-cAL"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="fdO-OF-pQS" firstAttribute="top" secondItem="RhQ-1h-g9C" secondAttribute="bottom" constant="8" id="1sB-Nu-Oku"/>
+                    <constraint firstItem="fdO-OF-pQS" firstAttribute="leading" secondItem="RhQ-1h-g9C" secondAttribute="leading" id="Q1j-1j-qCi"/>
+                    <constraint firstAttribute="bottom" secondItem="fdO-OF-pQS" secondAttribute="bottom" constant="16" id="djf-hZ-eYc"/>
+                    <constraint firstItem="RhQ-1h-g9C" firstAttribute="top" secondItem="SFF-dW-tMN" secondAttribute="bottom" constant="8" id="dli-Fz-7mW"/>
+                    <constraint firstItem="SFF-dW-tMN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="gdi-yd-Btj"/>
+                    <constraint firstAttribute="trailing" secondItem="SFF-dW-tMN" secondAttribute="trailing" constant="16" id="o4t-C8-sMI"/>
+                    <constraint firstItem="RhQ-1h-g9C" firstAttribute="trailing" secondItem="SFF-dW-tMN" secondAttribute="trailing" id="stu-7v-mtJ"/>
+                    <constraint firstItem="SFF-dW-tMN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="wmP-W6-wbE"/>
+                    <constraint firstItem="fdO-OF-pQS" firstAttribute="trailing" secondItem="RhQ-1h-g9C" secondAttribute="trailing" id="yT5-lk-XO5"/>
+                    <constraint firstItem="RhQ-1h-g9C" firstAttribute="leading" secondItem="SFF-dW-tMN" secondAttribute="leading" id="zVN-xn-eQu"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <point key="canvasLocation" x="79" y="106.5"/>
+        </tableViewCell>
+    </objects>
+</document>

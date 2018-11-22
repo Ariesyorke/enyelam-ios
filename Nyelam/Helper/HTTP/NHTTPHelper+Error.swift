@@ -629,9 +629,9 @@ class NHTTPHelper {
     static var API_PATH_ADD_TO_CART: String {
         switch NConstant.URL_TYPE {
         case .production:
-            return "doshop/product_detail"
+            return "doshop/cart_add/"
         default:
-            return "api/doshop/product_detail"
+            return "api/doshop/cart_add/"
         }
     }
     

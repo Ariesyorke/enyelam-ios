@@ -9,6 +9,7 @@
 import UIKit
 import MBProgressHUD
 import ActionSheetPicker_3_0
+import PopupController
 
 class DoShopProductDetailController: BaseViewController {
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
@@ -130,12 +131,40 @@ class DoShopProductDetailController: BaseViewController {
                         _ = error as! StatusFailedError
                     })
                 }
+                return
             }
-            UIAlertController.handlePopupMessage(viewController: self, title: "Product added to cart!", actionButtonTitle: "OK", completion: {
-                self.refreshControl.beginRefreshing()
-                self.onRefresh(self.refreshControl)
-            })
+            self.createCartPopup(product: self.product!)
         })
+    }
+    
+    fileprivate func createCartPopup(product: NProduct) {
+        let popupWidth = UIScreen.main.bounds.width - 32
+        let imageH = CGFloat(popupWidth - 16)
+        let titleH = CGFloat(48)
+        let bottomH = CGFloat(112)
+        let popupSize = CGSize(width: popupWidth, height: imageH + titleH + bottomH)
+        let addedToCartController = AddedToCartController.create(product: product, size: popupSize)
+        let popup = PopupController.create(self.navigationController!).customize(
+            [
+                .animation(.fadeIn),
+                .backgroundStyle(.blackFilter(alpha: 0.7)),
+                .dismissWhenTaps(false),
+                .layout(.center)
+            ])
+        
+        _ = popup.show(addedToCartController)
+        addedToCartController.onGoToCart = {
+            popup.dismiss({
+                let _ = CartController.push(on: self.navigationController!)
+            })
+        }
+        addedToCartController.onContinueShopping = {
+            popup.dismiss({
+                
+            })
+        }
+
+
     }
     /*
     // MARK: - Navigation

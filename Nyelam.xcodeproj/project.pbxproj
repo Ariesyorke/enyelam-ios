@@ -125,6 +125,14 @@
 		C040B98C20B6B1CC00A19D7E /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = C040B98120B6B1CC00A19D7E /* splash.png */; };
 		C0482B4921A2CB8800906D27 /* NVariationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0482B4821A2CB8800906D27 /* NVariationView.xib */; };
 		C0482B4B21A2CFA600906D27 /* NVariationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0482B4A21A2CFA600906D27 /* NVariationView.swift */; };
+		C050749121A664D200877342 /* AddedToCartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050748F21A664D200877342 /* AddedToCartController.swift */; };
+		C050749221A664D200877342 /* AddedToCartController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C050749021A664D200877342 /* AddedToCartController.xib */; };
+		C050749521A681E800877342 /* ProductCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050749321A681E800877342 /* ProductCartCell.swift */; };
+		C050749621A681E800877342 /* ProductCartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C050749421A681E800877342 /* ProductCartCell.xib */; };
+		C050749921A68E5F00877342 /* VoucherCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050749721A68E5F00877342 /* VoucherCodeCell.swift */; };
+		C050749A21A68E5F00877342 /* VoucherCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C050749821A68E5F00877342 /* VoucherCodeCell.xib */; };
+		C050749D21A6948700877342 /* SummaryCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050749B21A6948700877342 /* SummaryCartCell.swift */; };
+		C050749E21A6948700877342 /* SummaryCartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C050749C21A6948700877342 /* SummaryCartCell.xib */; };
 		C055B9C4209F1D1B0033A0D4 /* XLPagerTabStrip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C055B9C5209F1D1B0033A0D4 /* XLPagerTabStrip.framework */; };
 		C055B9D2209F216F0033A0D4 /* BookingListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C055B9D0209F216F0033A0D4 /* BookingListController.swift */; };
 		C055B9D3209F21700033A0D4 /* BookingListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C055B9D1209F216F0033A0D4 /* BookingListController.xib */; };
@@ -576,6 +584,14 @@
 		C040B98120B6B1CC00A19D7E /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		C0482B4821A2CB8800906D27 /* NVariationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NVariationView.xib; sourceTree = "<group>"; };
 		C0482B4A21A2CFA600906D27 /* NVariationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NVariationView.swift; sourceTree = "<group>"; };
+		C050748F21A664D200877342 /* AddedToCartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedToCartController.swift; sourceTree = "<group>"; };
+		C050749021A664D200877342 /* AddedToCartController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddedToCartController.xib; sourceTree = "<group>"; };
+		C050749321A681E800877342 /* ProductCartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCartCell.swift; sourceTree = "<group>"; };
+		C050749421A681E800877342 /* ProductCartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCartCell.xib; sourceTree = "<group>"; };
+		C050749721A68E5F00877342 /* VoucherCodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherCodeCell.swift; sourceTree = "<group>"; };
+		C050749821A68E5F00877342 /* VoucherCodeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoucherCodeCell.xib; sourceTree = "<group>"; };
+		C050749B21A6948700877342 /* SummaryCartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCartCell.swift; sourceTree = "<group>"; };
+		C050749C21A6948700877342 /* SummaryCartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SummaryCartCell.xib; sourceTree = "<group>"; };
 		C055B9C5209F1D1B0033A0D4 /* XLPagerTabStrip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = XLPagerTabStrip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C055B9D0209F216F0033A0D4 /* BookingListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingListController.swift; sourceTree = "<group>"; };
 		C055B9D1209F216F0033A0D4 /* BookingListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookingListController.xib; sourceTree = "<group>"; };
@@ -1126,6 +1142,8 @@
 				C06174B021A28FEF007DAFF6 /* RelatedProductCell.xib */,
 				C0BFAB1B21A2AFED00D38E1F /* DoShopProductListController.swift */,
 				C0BFAB1C21A2AFED00D38E1F /* DoShopProductListController.xib */,
+				C050748F21A664D200877342 /* AddedToCartController.swift */,
+				C050749021A664D200877342 /* AddedToCartController.xib */,
 			);
 			path = Product;
 			sourceTree = "<group>";
@@ -1351,6 +1369,12 @@
 			children = (
 				C06D90B521A5617D0057765A /* CartController.swift */,
 				C06D90B621A5617D0057765A /* CartController.xib */,
+				C050749321A681E800877342 /* ProductCartCell.swift */,
+				C050749421A681E800877342 /* ProductCartCell.xib */,
+				C050749721A68E5F00877342 /* VoucherCodeCell.swift */,
+				C050749821A68E5F00877342 /* VoucherCodeCell.xib */,
+				C050749B21A6948700877342 /* SummaryCartCell.swift */,
+				C050749C21A6948700877342 /* SummaryCartCell.xib */,
 			);
 			path = Cart;
 			sourceTree = "<group>";
@@ -1963,6 +1987,7 @@
 				C097CADF21087861007BD121 /* DiveGuideDetailCell.xib in Resources */,
 				C010FB04207CAF47000059AA /* FiraSans-Black.ttf in Resources */,
 				C0EE281F209ABB8A006ACA5D /* PaymentMethodCell.xib in Resources */,
+				C050749E21A6948700877342 /* SummaryCartCell.xib in Resources */,
 				C037E8B42085C434000EB5CF /* TermsViewController.xib in Resources */,
 				C010FB0F207CAF47000059AA /* FiraSans-MediumItalic.ttf in Resources */,
 				C069838E20B29157009444EE /* EquipmentRentController.xib in Resources */,
@@ -1980,7 +2005,9 @@
 				C0D667A6214F76E000F45039 /* InboxCell.xib in Resources */,
 				C090E12A2121469A00EE0654 /* OnboardingController.xib in Resources */,
 				C0BE91932070B758004E1B92 /* DTMDatePickerController.xib in Resources */,
+				C050749221A664D200877342 /* AddedToCartController.xib in Resources */,
 				C010FB05207CAF47000059AA /* FiraSans-Medium.ttf in Resources */,
+				C050749621A681E800877342 /* ProductCartCell.xib in Resources */,
 				C0D3C9292084AD8D00FF587B /* PEPhotoCropEditor.bundle in Resources */,
 				C0B2A278207B84DC00D46336 /* LoginViewController.xib in Resources */,
 				C0F3B5A121510FFC007BD42A /* IncomingImageMessageCell.xib in Resources */,
@@ -1990,6 +2017,7 @@
 				C0FD7C7D20845B8B00FC4508 /* SectionViewCell.xib in Resources */,
 				A6691A50207E78BF004B1C2E /* SearchFormController.xib in Resources */,
 				C0DBEB0020E0D51A0011A190 /* ReviewCell.xib in Resources */,
+				C050749A21A68E5F00877342 /* VoucherCodeCell.xib in Resources */,
 				C037AD612070A38800DD5CBC /* Main.storyboard in Resources */,
 				C069838920B27FDF009444EE /* AddOnCell.xib in Resources */,
 				C010FB0E207CAF47000059AA /* FiraSans-ExtraBoldItalic.ttf in Resources */,
@@ -2227,6 +2255,7 @@
 				C07F929C219AD5D500F79F58 /* NExperience+CoreDataProperties.swift in Sources */,
 				C03A03C120B7F97F00056E35 /* NDisplay.swift in Sources */,
 				C07F92BF219AD5D500F79F58 /* NSummary+CoreDataClass.swift in Sources */,
+				C050749921A68E5F00877342 /* VoucherCodeCell.swift in Sources */,
 				C0DE14202088A1E500A67494 /* EcoTripIntroductionController.swift in Sources */,
 				C07F92A8219AD5D500F79F58 /* NUser+CoreDataProperties.swift in Sources */,
 				C07F92B7219AD5D500F79F58 /* NProvince+CoreDataClass.swift in Sources */,
@@ -2324,6 +2353,7 @@
 				C090E1292121469A00EE0654 /* OnboardingController.swift in Sources */,
 				C07F92B0219AD5D500F79F58 /* NLanguage+CoreDataProperties.swift in Sources */,
 				C02B9B65207B47CF00BE2508 /* DiveSpot.swift in Sources */,
+				C050749D21A6948700877342 /* SummaryCartCell.swift in Sources */,
 				C0FD7C832084764900FC4508 /* NTableViewCell.swift in Sources */,
 				C0BE92602070D725004E1B92 /* Update.swift in Sources */,
 				C0BE923A2070D096004E1B92 /* Additional.swift in Sources */,
@@ -2353,6 +2383,7 @@
 				C0FD7C892084888900FC4508 /* BaseTableViewController.swift in Sources */,
 				C0EFE34A209B2C9C009E084F /* NAdditionalView.swift in Sources */,
 				C07F92AF219AD5D500F79F58 /* NLanguage+CoreDataClass.swift in Sources */,
+				C050749121A664D200877342 /* AddedToCartController.swift in Sources */,
 				C07F92A6219AD5D500F79F58 /* NCountryCode+CoreDataProperties.swift in Sources */,
 				C07F92BD219AD5D500F79F58 /* NProductCategory+CoreDataClass.swift in Sources */,
 				C0D3C9272084AD8600FF587B /* PECropViewController.m in Sources */,
@@ -2374,6 +2405,7 @@
 				C07F92A3219AD5D500F79F58 /* NProduct+CoreDataClass.swift in Sources */,
 				C0F3B5A821511030007BD42A /* OutcomingImageMessageCell.swift in Sources */,
 				C0E17FDD20778A59003942D1 /* OrderReturn.swift in Sources */,
+				C050749521A681E800877342 /* ProductCartCell.swift in Sources */,
 				A60E1F1F207D9E7D00427CF8 /* HomeController.swift in Sources */,
 				C07F92AE219AD5D500F79F58 /* NNationality+CoreDataProperties.swift in Sources */,
 				C0BE92502070D4AC004E1B92 /* DiveSpotModule.swift in Sources */,
