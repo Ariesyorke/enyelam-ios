@@ -74,6 +74,7 @@ class DoShopProductDetailController: BaseViewController {
                         let err = error as! StatusFailedError
                     })
                 }
+                return
             }
             if let data = response.data {
                 self.product = data

@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CartController" customModule="Nyelam" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="9Tf-pM-ywM" id="B55-Xz-can"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

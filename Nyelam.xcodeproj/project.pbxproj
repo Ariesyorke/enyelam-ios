@@ -133,6 +133,8 @@
 		C050749A21A68E5F00877342 /* VoucherCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C050749821A68E5F00877342 /* VoucherCodeCell.xib */; };
 		C050749D21A6948700877342 /* SummaryCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050749B21A6948700877342 /* SummaryCartCell.swift */; };
 		C050749E21A6948700877342 /* SummaryCartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C050749C21A6948700877342 /* SummaryCartCell.xib */; };
+		C05074A121A6B53B00877342 /* ProductTitleCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050749F21A6B53B00877342 /* ProductTitleCartCell.swift */; };
+		C05074A221A6B53B00877342 /* ProductTitleCartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C05074A021A6B53B00877342 /* ProductTitleCartCell.xib */; };
 		C055B9C4209F1D1B0033A0D4 /* XLPagerTabStrip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C055B9C5209F1D1B0033A0D4 /* XLPagerTabStrip.framework */; };
 		C055B9D2209F216F0033A0D4 /* BookingListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C055B9D0209F216F0033A0D4 /* BookingListController.swift */; };
 		C055B9D3209F21700033A0D4 /* BookingListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C055B9D1209F216F0033A0D4 /* BookingListController.xib */; };
@@ -592,6 +594,8 @@
 		C050749821A68E5F00877342 /* VoucherCodeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoucherCodeCell.xib; sourceTree = "<group>"; };
 		C050749B21A6948700877342 /* SummaryCartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCartCell.swift; sourceTree = "<group>"; };
 		C050749C21A6948700877342 /* SummaryCartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SummaryCartCell.xib; sourceTree = "<group>"; };
+		C050749F21A6B53B00877342 /* ProductTitleCartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTitleCartCell.swift; sourceTree = "<group>"; };
+		C05074A021A6B53B00877342 /* ProductTitleCartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductTitleCartCell.xib; sourceTree = "<group>"; };
 		C055B9C5209F1D1B0033A0D4 /* XLPagerTabStrip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = XLPagerTabStrip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C055B9D0209F216F0033A0D4 /* BookingListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingListController.swift; sourceTree = "<group>"; };
 		C055B9D1209F216F0033A0D4 /* BookingListController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookingListController.xib; sourceTree = "<group>"; };
@@ -1375,6 +1379,8 @@
 				C050749821A68E5F00877342 /* VoucherCodeCell.xib */,
 				C050749B21A6948700877342 /* SummaryCartCell.swift */,
 				C050749C21A6948700877342 /* SummaryCartCell.xib */,
+				C050749F21A6B53B00877342 /* ProductTitleCartCell.swift */,
+				C05074A021A6B53B00877342 /* ProductTitleCartCell.xib */,
 			);
 			path = Cart;
 			sourceTree = "<group>";
@@ -1914,6 +1920,7 @@
 				C010FB02207CAF47000059AA /* FiraSans-BoldItalic.ttf in Resources */,
 				C0482B4921A2CB8800906D27 /* NVariationView.xib in Resources */,
 				C08E967F20909A9C00270CF9 /* TotalDivesCell.xib in Resources */,
+				C05074A221A6B53B00877342 /* ProductTitleCartCell.xib in Resources */,
 				C010FB0A207CAF47000059AA /* FiraSans-Light.ttf in Resources */,
 				C090E12F21214DF500EE0654 /* onboarding_1.png in Resources */,
 				C040B98B20B6B1CC00A19D7E /* eco_trip_6.png in Resources */,
@@ -2334,6 +2341,7 @@
 				C003A27C20A0337F003B217B /* DiveEthicAgreementController.swift in Sources */,
 				C0BE91982070B758004E1B92 /* DTMCore.swift in Sources */,
 				C0B2A26E207B5E5A00D46336 /* UIAlertController+Extensions.swift in Sources */,
+				C05074A121A6B53B00877342 /* ProductTitleCartCell.swift in Sources */,
 				C07F92B2219AD5D500F79F58 /* NOrder+CoreDataProperties.swift in Sources */,
 				C0D2E70020C8E70C00956819 /* NHTTPHelper+EcoTrip.swift in Sources */,
 				C037E8AE2085B420000EB5CF /* SideMenuController.swift in Sources */,
