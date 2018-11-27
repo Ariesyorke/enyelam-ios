@@ -9,7 +9,7 @@
 import Foundation
 
 extension NHTTPHelper {
-    static func addVoucherRequest(cartToken: String,
+    static func httpDoShopAddVoucherRequest(cartToken: String,
                                   voucherCode: String,
                                   complete: @escaping (NHTTPResponse<CartReturn>)->()) {
         self.basicAuthRequest(URLString: HOST_URL + API_PATH_DOSHOP_ADD_VOUCHER, parameters: ["cart_token": cartToken, "voucher_code": voucherCode], headers: nil, complete: {status, data, error in

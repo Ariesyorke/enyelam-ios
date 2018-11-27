@@ -30,6 +30,7 @@ class NHTTPHelper {
     static let POST_TIMESTAMP = "timestamp"
     static let POST_DEVICE = "device"
     static let POST_PLATFORM = "platform"
+    static let API_RAJA_ONGKIR_KEY = "f6884fab1a6386a9438b9c541b1d3333"
     
     internal static func httpCancelRequest(apiUrl: String) {
         let sessionManager = Alamofire.SessionManager.default
@@ -51,7 +52,17 @@ class NHTTPHelper {
             return "https://api.e-nyelam.com/"
         }
     }
-    
+    static var RAJA_ONGKIR_URL: String  {
+        switch NConstant.URL_TYPE {
+        case .staging:
+            return "https://pro.rajaongkir.com/"
+        case .development:
+            return "https://pro.rajaongkir.com/"
+        default:
+            return "https://pro.rajaongkir.com/"
+        }
+
+    }
     static var API_PATH_LOGIN: String {
         switch NConstant.URL_TYPE {
         case .production:
@@ -656,20 +667,104 @@ class NHTTPHelper {
     static var API_PATH_DOSHOP_ADD_VOUCHER: String {
         switch NConstant.URL_TYPE {
         case .production:
-            return "api/doshop/addressList "
+            return "doshop/add_voucher"
         default:
-            return "doshop/addressList "
+            return "api/doshop/add_voucher"
         }
     }
     
     static var API_PATH_ADDRESS_LIST: String {
         switch NConstant.URL_TYPE {
         case .production:
-            return "api/doshop/add_voucher"
+            return "doshop/get_address"
         default:
-            return "doshop/add_voucher"
+            return "api/doshop/get_address"
+        }
+    }
+    
+    static var API_PATH_REMOVE_PRODUCT_CART: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "doshop/cart_remove/"
+        default:
+            return "api/doshop/cart_remove/"
+        }
+    }
+    
+    static var API_PATH_GET_LOCATION: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "doshop/get_location"
+        default:
+            return "api/doshop/get_location"
+        }
+    }
+    
+    static var API_PATH_GET_RAJA_ONGKIR_SUB_DISTRICT: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "api/subdistrict"
+        default:
+            return "api/subdistrict"
+        }
+    }
+    
+    static var API_PATH_ADD_ADDRESS: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "doshop/add_address"
+        default:
+            return "api/doshop/add_address"
         }
 
+    }
+    
+    internal static func basicRajaOngkirRequest(URLString: URLConvertible,
+                                                method: HTTPMethod = HTTPMethod.get,
+                                                parameters: [String: Any]? = nil,
+                                                headers: [String: String]? = nil,
+                                                encoding: URLEncoding = URLEncoding.default,
+                                                complete: @escaping (Bool, Any?, BaseError?)->()) {
+        print("http post result ----")
+        print("--- url = \(URLString)")
+        print("--- params = \(parameters)")
+        var headerParam: [String: String] = ["key": API_RAJA_ONGKIR_KEY]
+        if let headers = headers {
+            for (key, value) in headers {
+                headerParam[key] = value
+            }
+        }
+        print("--- need session = \(headerParam)")
+
+        Alamofire.request(URLString, method: method, parameters: parameters, encoding: URLEncoding.default, headers: headerParam).responseJSON(completionHandler: {response in
+            if let error = response.error as? URLError {
+                if error.code == URLError.Code.notConnectedToInternet {
+                    complete(false, nil, NotConnectedInternetError(statusCode: error.code.rawValue, title: "Connection Error", message: ""))
+                }
+                return
+            }
+            if let value = response.value, let jsonResult = value as? [String: Any], let rajaOngkirJson = jsonResult["rajaongkir"] as? [String: Any] {
+                var code = -1
+                var title = ""
+                if let statusJson = rajaOngkirJson["status"] as? [String: Any] {
+                    if let c = statusJson["code"] as? Int {
+                        code = c
+                    } else if let c = statusJson["code"] as? String {
+                        if c.isNumber {
+                            code = Int(c)!
+                        }
+                    }
+                    if let desc = statusJson["description"] as? String {
+                        title = desc
+                    }
+                }
+                if code < 0 || code >= 400 {
+                    complete(false, nil, UnknownError(statusCode: code, title: title, message: ""))
+                } else {
+                    complete(true, rajaOngkirJson, nil)
+                }
+            }
+        })
     }
     
     internal static func basicAuthStringRequest(URLString: URLConvertible,

@@ -9,7 +9,9 @@
 import UIKit
 
 class VoucherCodeCell: NTableViewCell {
-
+    @IBOutlet weak var voucherCodeTextField: UITextField!
+    var onApplyVoucherCode: (String) -> () = {voucherCode in }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -19,6 +21,14 @@ class VoucherCodeCell: NTableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func initData(voucher: Voucher) {
+        self.voucherCodeTextField.text = voucher.code
+    }
+    
+    @IBAction func applyButtonAction(_ sender: Any) {
+        self.onApplyVoucherCode(voucherCodeTextField.text!)
     }
     
 }

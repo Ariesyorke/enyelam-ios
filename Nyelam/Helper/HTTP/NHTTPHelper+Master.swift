@@ -8,8 +8,139 @@
 
 import Foundation
 import CoreData
+import Alamofire
 
 extension NHTTPHelper {
+    static func httpGetDistrict(cityId: String,
+                                complete: @escaping(NHTTPResponse<[NDistrict]>)->()) {
+        self.basicRajaOngkirRequest(
+            URLString: RAJA_ONGKIR_URL + API_PATH_GET_RAJA_ONGKIR_SUB_DISTRICT,
+            method: .get,
+            parameters: ["city": cityId],
+            headers: nil,
+            encoding: URLEncoding.default,
+            complete: {status, data, error in
+            if let error = error {
+                complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
+                return
+            }
+            if let data = data, let json = data as? [String: Any] {
+                var districts: [NDistrict]? = nil
+                if let districtArray = json["results"] as? Array<[String: Any]>, !districtArray.isEmpty {
+                    districts = []
+                    for districtJson in districtArray {
+                        var district: NDistrict? = nil
+                        if let id = districtJson["subdistrict_id"] as? String {
+                            district = NDistrict.getDistrict(using: id)
+                        }
+                        if district == nil {
+                            district = NDistrict.init(entity: NSEntityDescription.entity(forEntityName: "NDistrict", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
+                        }
+                        district!.parse(json: districtJson)
+                        districts!.append(district!)
+                    }
+                }
+                complete(NHTTPResponse(resultStatus: true, data: districts, error: nil))
+            }
+        })
+    }
+    static func httpGetCity(
+        provinceId: String,
+        complete: @escaping (NHTTPResponse<[NCity]>)->()) {
+        self.basicAuthRequest(URLString: HOST_URL + API_PATH_GET_LOCATION, parameters: ["province_id": provinceId], headers: nil, complete: {status, data, error in
+            if let error = error {
+                complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
+                return
+            }
+            if let data = data, let json = data as? [String: Any] {
+                var cities: [NCity]? = nil
+                if let cityArray = json["areas"] as? Array<[String: Any]>,
+                    !cityArray.isEmpty {
+                    cities = []
+                    for cityJson in cityArray {
+                        var city: NCity? = nil
+                        if let id = cityJson["id"] as? String {
+                            city = NCity.getCity(using: id)
+                        }
+                        if city == nil {
+                            city = NCity.init(entity: NSEntityDescription.entity(forEntityName: "NCity", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
+                        }
+                        city!.parse(json: cityJson)
+                        cities!.append(city!)
+                    }
+                } else if let citiesString = json["areas"] as? String {
+                    do {
+                        cities = []
+                        let data = citiesString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                        let cityArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+                        for cityJson in cityArray {
+                            var city: NCity? = nil
+                            if let id = cityJson["id"] as? String {
+                                city = NCity.getCity(using: id)
+                            }
+                            if city == nil {
+                                city = NCity.init(entity: NSEntityDescription.entity(forEntityName: "NCity", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
+                            }
+                            city!.parse(json: cityJson)
+                            cities!.append(city!)
+                        }
+                    } catch {
+                        print(error)
+                    }
+                }
+                complete(NHTTPResponse(resultStatus: true, data: cities, error: nil))
+            }
+        })
+    }
+    
+    static func httpGetProvince(complete: @escaping (NHTTPResponse<[NProvince]>)->()) {
+        self.basicAuthRequest(URLString: HOST_URL + API_PATH_GET_LOCATION,
+                              complete: {status, data, error in
+                                if let error = error {
+                                    complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
+                                    return
+                                }
+                                if let data = data, let json = data as? [String: Any] {
+                                    var provinces: [NProvince]? = nil
+                                    if let provincesArray = json["areas"] as? Array<[String: Any]>,
+                                        !provincesArray.isEmpty {
+                                        provinces = []
+                                        for provinceJson in provincesArray {
+                                            var province: NProvince? = nil
+                                            if let id = provinceJson["id"] as? String {
+                                                province = NProvince.getProvince(using: id)
+                                            }
+                                            if province == nil {
+                                                province = NProvince.init(entity: NSEntityDescription.entity(forEntityName: "NProvince", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
+                                            }
+                                            province!.parse(json: provinceJson)
+                                            provinces!.append(province!)
+                                        }
+                                    } else if let provincesString = json["areas"] as? String {
+                                        do {
+                                            provinces = []
+                                            let data = provincesString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                                            let provincesArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+                                            for provinceJson in provincesArray {
+                                                var province: NProvince? = nil
+                                                if let id = provinceJson["id"] as? String {
+                                                    province = NProvince.getProvince(using: id)
+                                                }
+                                                if province == nil {
+                                                    province = NProvince.init(entity: NSEntityDescription.entity(forEntityName: "NProvince", in: AppDelegate.sharedManagedContext)!, insertInto: AppDelegate.sharedManagedContext)
+                                                }
+                                                province!.parse(json: provinceJson)
+                                                provinces!.append(province!)
+                                            }
+                                        } catch {
+                                            print(error)
+                                        }
+                                    }
+                                    complete(NHTTPResponse(resultStatus: true, data: provinces, error: nil))
+                                }
+        })
+    }
+    
     static func httpGetMasterOrganization(complete: @escaping (NHTTPResponse<[NMasterOrganization]>)->()) {
         self.basicPostRequest(URLString: HOST_URL+API_PATH_MASTER_ORGANIZATION) { status, data, error in
             if let error = error {

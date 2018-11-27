@@ -10,7 +10,7 @@ import Foundation
 
 public class Merchant: NSObject, NSCoding, Parseable {
     private let KEY_ID = "id"
-    private let KEY_MERCHANT_NAME = "merchant_name"
+    private let KEY_MERCHANT_NAME = "name"
     private let KEY_MERCHANT_LOGO = "merchant_logo"
     private let KEY_PROVINCE_ID = "province_id"
     private let KEY_CITY_ID = "city_id"

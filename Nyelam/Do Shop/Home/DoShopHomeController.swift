@@ -175,6 +175,7 @@ class DoShopHomeController: BaseViewController {
         SideMenuManager.menuLeftNavigationController = sideMenuNavController
         SideMenuManager.menuAddScreenEdgePanGesturesToPresent(toView: self.view, forMenu: UIRectEdge.left)
     }
+    
     fileprivate func openSideMenu(sideMenu: DoShopSideMenuType) {
         switch  sideMenu {
         case .order:
@@ -186,6 +187,7 @@ class DoShopHomeController: BaseViewController {
             break
         }
     }
+    
     override func keyboardWillShow(keyboardFrame: CGRect, animationDuration: TimeInterval) {
         
     }

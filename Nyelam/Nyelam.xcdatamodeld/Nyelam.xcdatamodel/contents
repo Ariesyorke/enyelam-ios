@@ -3,8 +3,9 @@
     <entity name="NAddress" representedClassName="NAddress" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="addressId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="default_billling" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="default_shipping" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="fullname" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="isPicked" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="zipcode" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="city" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NCity" syncable="YES"/>
@@ -192,7 +193,7 @@
         <relationship name="socialMedias" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="NSocialMedia" syncable="YES"/>
     </entity>
     <elements>
-        <element name="NAddress" positionX="-153" positionY="-72" width="128" height="180"/>
+        <element name="NAddress" positionX="-153" positionY="-72" width="128" height="195"/>
         <element name="NAuthReturn" positionX="-369" positionY="-216" width="128" height="75"/>
         <element name="NCategory" positionX="-108" positionY="-252" width="128" height="90"/>
         <element name="NCity" positionX="-288" positionY="234" width="128" height="90"/>
@@ -208,11 +209,11 @@
         <element name="NNationality" positionX="-180" positionY="-99" width="128" height="75"/>
         <element name="NOrder" positionX="-171" positionY="-90" width="128" height="135"/>
         <element name="NProduct" positionX="-180" positionY="-99" width="128" height="225"/>
+        <element name="NProductCategory" positionX="-180" positionY="-99" width="128" height="90"/>
         <element name="NProvince" positionX="16" positionY="234" width="128" height="90"/>
         <element name="NSearchResult" positionX="-180" positionY="-99" width="128" height="180"/>
         <element name="NSocialMedia" positionX="-144" positionY="-63" width="128" height="75"/>
         <element name="NSummary" positionX="-162" positionY="-81" width="128" height="120"/>
         <element name="NUser" positionX="-153" positionY="-72" width="128" height="465"/>
-        <element name="NProductCategory" positionX="-180" positionY="-99" width="128" height="90"/>
     </elements>
 </model>

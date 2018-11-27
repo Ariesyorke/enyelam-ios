@@ -25,7 +25,7 @@ target 'Nyelam' do
   pod 'MMNumberKeyboard'
   pod 'PopupController'
   pod 'MBProgressHUD', '~> 1.1.0'
-  pod 'SkyFloatingLabelTextField', '~> 3.0'
+  pod 'SkyFloatingLabelTextField', '~> 3.4.0'
   pod 'Cosmos'
   pod 'SwiftDate'
   pod 'UIScrollView-InfiniteScroll'
@@ -38,7 +38,7 @@ target 'Nyelam' do
   pod 'Firebase/Crash'
   pod 'Fabric'
   pod 'Crashlytics'
-  pod 'KMPlaceholderTextView', '~> 1.3.0'
+  pod 'KMPlaceholderTextView'
   pod 'EAIntroView'
   pod 'MultilineTextField'
   pod 'SimpleImageViewer', '~> 1.1.1'
@@ -57,7 +57,8 @@ target 'Nyelam' do
   post_install do |installer|
       installer.pods_project.targets.each do |target|
           target.build_configurations.each do |config|
-              config.build_settings['SWIFT_VERSION'] = '3.0'
+              config.build_settings.delete('CODE_SIGNING_ALLOWED')
+              config.build_settings.delete('CODE_SIGNING_REQUIRED')
           end
       end
   end

@@ -2208,9 +2208,25 @@ extension NDistrict: Parseable {
         return "name"
     }
     
+    private var KEY_SUBDISTRICT_ID: String {
+        return "subdistrict_id"
+    }
+    
+    private var KEY_SUBDISTRICT_NAME: String {
+        return "subdistrict_name"
+    }
+    
     func parse(json: [String : Any]) {
-        self.id = json[KEY_ID] as? String
-        self.name = json[KEY_NAME] as? String
+        if let id = json[KEY_ID] as? String {
+            self.id = id
+        } else if let id = json[KEY_SUBDISTRICT_ID] as? String {
+            self.id = id
+        }
+        if let name = json[KEY_NAME] as? String {
+            self.name = name
+        } else if let name = json[KEY_SUBDISTRICT_NAME] as? String {
+            self.name = name
+        }
     }
     
     func serialized() -> [String : Any] {
@@ -2383,7 +2399,6 @@ extension NProduct: Parseable {
                     variation.parse(json: variationJson)
                     self.variations!.append(variation)
                 }
-
             } catch {
                 print(error)
             }
@@ -2470,9 +2485,29 @@ extension NAddress: Parseable {
         return "phone_number"
     }
     
-    private var KEY_IS_PICKED: String {
-        return "is_picked"
+    private var KEY_DEFAULT_SHIPPING: String {
+        return "default_shipping"
     }
+    
+    private var KEY_DEFAULT_BILLING: String {
+        return "default_billing"
+    }
+    
+    static func getAddress(using id: String) -> NAddress? {
+        let managedContext = AppDelegate.sharedManagedContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NAddress")
+        fetchRequest.predicate = NSPredicate(format: "address_id == %@", id)
+        do {
+            let addresses = try managedContext.fetch(fetchRequest) as? [NAddress]
+            if let addresses = addresses, !addresses.isEmpty {
+                return addresses.first
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+
     
     func parse(json: [String : Any]) {
         self.addressId = json[KEY_ADDRESS_ID] as? String
@@ -2549,10 +2584,19 @@ extension NAddress: Parseable {
             }
         }
         self.phoneNumber = json[KEY_PHONE_NUMBER] as? String
-        if let isPicked = json[KEY_IS_PICKED] as? Bool {
-            self.isPicked = isPicked
-        } else if let isPicked = json[KEY_IS_PICKED] as? String {
-            self.isPicked = isPicked.toBool
+        if let defaultBilling = json[KEY_DEFAULT_BILLING] as? Int {
+            self.default_billling = Int16(defaultBilling)
+        } else if let defaultBilling = json[KEY_DEFAULT_BILLING] as? String {
+            if defaultBilling.isNumber {
+                self.default_billling = Int16(defaultBilling)!
+            }
+        }
+        if let defaultShipping = json[KEY_DEFAULT_SHIPPING] as? Int {
+            self.default_shipping = Int16(defaultShipping)
+        } else if let defaultShipping = json[KEY_DEFAULT_SHIPPING] as? String {
+            if defaultShipping.isNumber {
+                self.default_shipping = Int16(defaultShipping)!
+            }
         }
     }
     
@@ -2582,7 +2626,8 @@ extension NAddress: Parseable {
         if let phoneNumber = self.phoneNumber {
             json[KEY_PHONE_NUMBER] = phoneNumber
         }
-        json[KEY_IS_PICKED] = self.isPicked
+        json[KEY_DEFAULT_BILLING] = Int(default_billling)
+        json[KEY_DEFAULT_SHIPPING] = Int(default_shipping)
         return json
     }
     

@@ -2,7 +2,7 @@
 //  NDiveService+CoreDataProperties.swift
 //  Nyelam
 //
-//  Created by Bobi on 11/13/18.
+//  Created by Bobi on 11/26/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //
@@ -44,6 +44,7 @@ extension NDiveService {
     @NSManaged public var divecenter: NDiveCenter?
     @NSManaged public var licenseType: NLicenseType?
     @NSManaged public var organization: NMasterOrganization?
+
 }
 
 // MARK: Generated accessors for categories

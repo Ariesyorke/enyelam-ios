@@ -47,6 +47,11 @@ extension UIView {
         layer.rasterizationScale = scale ? UIScreen.main.scale : 1
     }
 
+    func halfCircledView() {
+        self.layer.cornerRadius = (self.frame.size.width/2.5)
+        self.clipsToBounds = true
+    }
+    
     func circledView() {
         self.layer.cornerRadius = self.frame.size.width/2
         self.clipsToBounds = true

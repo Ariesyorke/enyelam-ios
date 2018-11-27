@@ -83,6 +83,28 @@ class NHelper {
         return pickedDate!
     }
     
+    static func formatAddress(address: NAddress) -> String {
+        var a = ""
+        if let addr = address.address {
+            a = addr
+        }
+        var locationName = ""
+        if let district = address.district, let districtName = district.name {
+            locationName = districtName
+        }
+        if let city = address.city, let cityName = city.name {
+            locationName = "\(locationName), \(cityName)"
+        }
+        if let province = address.province, let provinceName = province.name {
+            locationName = "\(locationName)\n\(provinceName)"
+        }
+        if let zipCode = address.zipcode {
+            locationName = "\(locationName) - \(zipCode)"
+        }
+        a = "\(a)\n\(locationName)"
+        return a
+    }
+    
     static func isLogin()->Bool {
         if let _ = NAuthReturn.authUser() {
             return true

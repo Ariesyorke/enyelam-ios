@@ -21,29 +21,11 @@
             <rect key="frame" x="0.0" y="0.0" width="410" height="149"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="410" height="148.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="410" height="149"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SFF-dW-tMN">
-                        <rect key="frame" x="16" y="16" width="378" height="33"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUMMARY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vFe-hN-SAE">
-                                <rect key="frame" x="8" y="8" width="362" height="17"/>
-                                <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="vFe-hN-SAE" secondAttribute="bottom" constant="8" id="0Dq-Fr-itp"/>
-                            <constraint firstItem="vFe-hN-SAE" firstAttribute="leading" secondItem="SFF-dW-tMN" secondAttribute="leading" constant="8" id="3Q9-M5-whB"/>
-                            <constraint firstAttribute="trailing" secondItem="vFe-hN-SAE" secondAttribute="trailing" constant="8" id="6tf-4c-8Lv"/>
-                            <constraint firstItem="vFe-hN-SAE" firstAttribute="top" secondItem="SFF-dW-tMN" secondAttribute="top" constant="8" id="igU-Hc-DF8"/>
-                        </constraints>
-                    </view>
                     <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="RhQ-1h-g9C" userLabel="Summary Container">
-                        <rect key="frame" x="16" y="57" width="378" height="1.5"/>
+                        <rect key="frame" x="16" y="16" width="378" height="42.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fdO-OF-pQS">
@@ -72,18 +54,18 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="fdO-OF-pQS" firstAttribute="top" secondItem="RhQ-1h-g9C" secondAttribute="bottom" constant="8" id="1sB-Nu-Oku"/>
+                    <constraint firstItem="RhQ-1h-g9C" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="2x1-0J-qEW"/>
+                    <constraint firstItem="RhQ-1h-g9C" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="Ezh-NA-onV"/>
                     <constraint firstItem="fdO-OF-pQS" firstAttribute="leading" secondItem="RhQ-1h-g9C" secondAttribute="leading" id="Q1j-1j-qCi"/>
                     <constraint firstAttribute="bottom" secondItem="fdO-OF-pQS" secondAttribute="bottom" constant="16" id="djf-hZ-eYc"/>
-                    <constraint firstItem="RhQ-1h-g9C" firstAttribute="top" secondItem="SFF-dW-tMN" secondAttribute="bottom" constant="8" id="dli-Fz-7mW"/>
-                    <constraint firstItem="SFF-dW-tMN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="gdi-yd-Btj"/>
-                    <constraint firstAttribute="trailing" secondItem="SFF-dW-tMN" secondAttribute="trailing" constant="16" id="o4t-C8-sMI"/>
-                    <constraint firstItem="RhQ-1h-g9C" firstAttribute="trailing" secondItem="SFF-dW-tMN" secondAttribute="trailing" id="stu-7v-mtJ"/>
-                    <constraint firstItem="SFF-dW-tMN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="wmP-W6-wbE"/>
+                    <constraint firstAttribute="trailing" secondItem="RhQ-1h-g9C" secondAttribute="trailing" constant="16" id="uyP-mr-rDZ"/>
                     <constraint firstItem="fdO-OF-pQS" firstAttribute="trailing" secondItem="RhQ-1h-g9C" secondAttribute="trailing" id="yT5-lk-XO5"/>
-                    <constraint firstItem="RhQ-1h-g9C" firstAttribute="leading" secondItem="SFF-dW-tMN" secondAttribute="leading" id="zVN-xn-eQu"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="summaryContainer" destination="RhQ-1h-g9C" id="UFd-Yz-laM"/>
+            </connections>
             <point key="canvasLocation" x="79" y="106.5"/>
         </tableViewCell>
     </objects>

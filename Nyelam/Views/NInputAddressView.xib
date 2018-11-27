@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NInputAddressView" customModule="Nyelam" customModuleProvider="target">
+            <connections>
+                <outlet property="addressTextView" destination="aYk-gp-V4w" id="Xmc-7z-6s6"/>
+                <outlet property="cityTextField" destination="Qfk-wf-NP2" id="eYU-Wn-wqx"/>
+                <outlet property="districtTextField" destination="qhF-ty-sAw" id="KyS-z4-CPm"/>
+                <outlet property="fullnameTextField" destination="sVx-Fd-Ajt" id="a2B-KM-Aps"/>
+                <outlet property="noteTextField" destination="N05-N6-PwO" id="2jO-tz-Yw6"/>
+                <outlet property="phoneNumberTextfield" destination="Aet-hp-Dq4" id="huK-6M-y0a"/>
+                <outlet property="provinceTextField" destination="l8P-0j-eGM" id="c2S-MA-OUA"/>
+                <outlet property="zipCodeTextField" destination="LCk-Yn-uLY" id="QH6-ei-hXM"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sVx-Fd-Ajt" userLabel="First Name Text Field" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                    <rect key="frame" x="0.0" y="20" width="375" height="39"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done" textContentType="name"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
+                            <color key="value" red="0.0" green="0.66666666669999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
+                            <color key="value" red="0.0" green="0.66666666669999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Fullname*"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="selectedTitle" value="Fullname*"/>
+                    </userDefinedRuntimeAttributes>
+                </textField>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="aYk-gp-V4w" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
+                    <rect key="frame" x="0.0" y="67" width="375" height="128"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="128" id="YRv-6w-Ptx"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Write Review Here"/>
+                    </userDefinedRuntimeAttributes>
+                </textView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bzb-DR-nQ3" userLabel="Province" customClass="UIControl">
+                    <rect key="frame" x="0.0" y="203" width="375" height="30"/>
+                    <subviews>
+                        <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l8P-0j-eGM" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
+                                    <color key="value" red="0.0" green="0.66666666669999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
+                                    <color key="value" red="0.0" green="0.66666666669999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Province*"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="selectedTitle" value="Province*"/>
+                            </userDefinedRuntimeAttributes>
+                        </textField>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_down_arrow_black" translatesAutoresizingMaskIntoConstraints="NO" id="aj4-dY-4Ih">
+                            <rect key="frame" x="359" y="11" width="8" height="8"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="8" id="eiU-j9-cAB"/>
+                                <constraint firstAttribute="height" constant="8" id="mfh-ax-FRH"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="l8P-0j-eGM" firstAttribute="leading" secondItem="bzb-DR-nQ3" secondAttribute="leading" id="Cfo-IJ-4qU"/>
+                        <constraint firstItem="aj4-dY-4Ih" firstAttribute="centerY" secondItem="l8P-0j-eGM" secondAttribute="centerY" id="D9l-F3-0Wj"/>
+                        <constraint firstAttribute="bottom" secondItem="l8P-0j-eGM" secondAttribute="bottom" id="aY8-TM-1Ou"/>
+                        <constraint firstAttribute="trailing" secondItem="l8P-0j-eGM" secondAttribute="trailing" id="c6g-XU-qn1"/>
+                        <constraint firstItem="l8P-0j-eGM" firstAttribute="top" secondItem="bzb-DR-nQ3" secondAttribute="top" id="g41-Hp-rZP"/>
+                        <constraint firstAttribute="trailing" secondItem="aj4-dY-4Ih" secondAttribute="trailing" constant="8" id="ycm-oO-Vt4"/>
+                    </constraints>
+                    <connections>
+                        <action selector="provinceButtonAction:" destination="-1" eventType="touchUpInside" id="Y0H-N0-cTD"/>
+                    </connections>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZNH-wZ-55Z" userLabel="City" customClass="UIControl">
+                    <rect key="frame" x="0.0" y="241" width="375" height="30"/>
+                    <subviews>
+                        <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qfk-wf-NP2" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
+                                    <color key="value" red="0.0" green="0.66666666669999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
+                                    <color key="value" red="0.0" green="0.66666666669999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="City*"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="selectedTitle" value="City*"/>
+                            </userDefinedRuntimeAttributes>
+                        </textField>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_down_arrow_black" translatesAutoresizingMaskIntoConstraints="NO" id="MKP-jN-cXK">
+                            <rect key="frame" x="359" y="11" width="8" height="8"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="8" id="7mT-e7-0nr"/>
+                                <constraint firstAttribute="height" constant="8" id="vhe-qt-nhC"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="MKP-jN-cXK" firstAttribute="centerY" secondItem="Qfk-wf-NP2" secondAttribute="centerY" id="Lsa-M6-Pp4"/>
+                        <constraint firstItem="Qfk-wf-NP2" firstAttribute="leading" secondItem="ZNH-wZ-55Z" secondAttribute="leading" id="OKY-RL-1kD"/>
+                        <constraint firstItem="Qfk-wf-NP2" firstAttribute="top" secondItem="ZNH-wZ-55Z" secondAttribute="top" id="TbT-eY-dBi"/>
+                        <constraint firstAttribute="trailing" secondItem="MKP-jN-cXK" secondAttribute="trailing" constant="8" id="WaB-jz-a5J"/>
+                        <constraint firstAttribute="trailing" secondItem="Qfk-wf-NP2" secondAttribute="trailing" id="Z7g-CM-gg5"/>
+                        <constraint firstAttribute="bottom" secondItem="Qfk-wf-NP2" secondAttribute="bottom" id="vR9-Mo-DAN"/>
+                    </constraints>
+                    <connections>
+                        <action selector="cityButtonAction:" destination="-1" eventType="touchUpInside" id="3Qt-Io-Woo"/>
+                    </connections>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rNh-mR-VF8" userLabel="District" customClass="UIControl">
+                    <rect key="frame" x="0.0" y="279" width="375" height="30"/>
+                    <subviews>
+                        <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qhF-ty-sAw" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
+                                    <color key="value" red="0.0" green="0.66666666669999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
+                                    <color key="value" red="0.0" green="0.66666666669999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="District*"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="selectedTitle" value="District*"/>
+                            </userDefinedRuntimeAttributes>
+                        </textField>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_down_arrow_black" translatesAutoresizingMaskIntoConstraints="NO" id="7m8-VQ-0eD">
+                            <rect key="frame" x="359" y="11" width="8" height="8"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="8" id="Gch-zv-bq3"/>
+                                <constraint firstAttribute="height" constant="8" id="rlD-JG-dux"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="qhF-ty-sAw" secondAttribute="trailing" id="a85-t9-A3T"/>
+                        <constraint firstAttribute="trailing" secondItem="7m8-VQ-0eD" secondAttribute="trailing" constant="8" id="cyM-zI-imM"/>
+                        <constraint firstItem="qhF-ty-sAw" firstAttribute="top" secondItem="rNh-mR-VF8" secondAttribute="top" id="kbo-u8-PjP"/>
+                        <constraint firstItem="7m8-VQ-0eD" firstAttribute="centerY" secondItem="qhF-ty-sAw" secondAttribute="centerY" id="qzy-5X-ylp"/>
+                        <constraint firstAttribute="bottom" secondItem="qhF-ty-sAw" secondAttribute="bottom" id="xmn-Is-fVI"/>
+                        <constraint firstItem="qhF-ty-sAw" firstAttribute="leading" secondItem="rNh-mR-VF8" secondAttribute="leading" id="yOp-SH-VHG"/>
+                    </constraints>
+                    <connections>
+                        <action selector="districtButtonAction:" destination="-1" eventType="touchUpInside" id="Nps-Rv-Z7w"/>
+                    </connections>
+                </view>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LCk-Yn-uLY" userLabel="Postal Code" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                    <rect key="frame" x="0.0" y="314" width="375" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done" textContentType="name"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
+                            <color key="value" red="0.0" green="0.66666666669999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
+                            <color key="value" red="0.0" green="0.66666666669999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Postal Code*"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="selectedTitle" value="Postal Code*"/>
+                    </userDefinedRuntimeAttributes>
+                </textField>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Aet-hp-Dq4" userLabel="Phone Number" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                    <rect key="frame" x="0.0" y="352" width="375" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done" textContentType="name"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
+                            <color key="value" red="0.0" green="0.66666666669999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
+                            <color key="value" red="0.0" green="0.66666666669999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Phone Number*"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="selectedTitle" value="Phone Number*"/>
+                    </userDefinedRuntimeAttributes>
+                </textField>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N05-N6-PwO" userLabel="Note" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                    <rect key="frame" x="0.0" y="374" width="375" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done" textContentType="name"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
+                            <color key="value" red="0.0" green="0.66666666669999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
+                            <color key="value" red="0.0" green="0.66666666669999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="e.g Home Address*"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="selectedTitle" value="Note*"/>
+                    </userDefinedRuntimeAttributes>
+                </textField>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="sVx-Fd-Ajt" secondAttribute="trailing" id="5BG-er-sse"/>
+                <constraint firstItem="LCk-Yn-uLY" firstAttribute="top" secondItem="rNh-mR-VF8" secondAttribute="bottom" constant="5" id="6bs-Nj-WIb"/>
+                <constraint firstItem="Aet-hp-Dq4" firstAttribute="top" secondItem="LCk-Yn-uLY" secondAttribute="bottom" constant="8" id="CVC-Df-GIU"/>
+                <constraint firstItem="rNh-mR-VF8" firstAttribute="trailing" secondItem="ZNH-wZ-55Z" secondAttribute="trailing" id="E1s-Yr-4nO"/>
+                <constraint firstItem="Aet-hp-Dq4" firstAttribute="trailing" secondItem="LCk-Yn-uLY" secondAttribute="trailing" id="FDu-qf-rzN"/>
+                <constraint firstItem="ZNH-wZ-55Z" firstAttribute="leading" secondItem="bzb-DR-nQ3" secondAttribute="leading" id="FK6-Xf-N6e"/>
+                <constraint firstItem="aYk-gp-V4w" firstAttribute="trailing" secondItem="sVx-Fd-Ajt" secondAttribute="trailing" id="IPd-cv-bS1"/>
+                <constraint firstItem="aYk-gp-V4w" firstAttribute="leading" secondItem="sVx-Fd-Ajt" secondAttribute="leading" id="IVd-Aq-BD5"/>
+                <constraint firstItem="rNh-mR-VF8" firstAttribute="top" secondItem="ZNH-wZ-55Z" secondAttribute="bottom" constant="8" id="KR2-AD-C5T"/>
+                <constraint firstItem="bzb-DR-nQ3" firstAttribute="leading" secondItem="aYk-gp-V4w" secondAttribute="leading" id="Njd-2G-gRK"/>
+                <constraint firstItem="Aet-hp-Dq4" firstAttribute="leading" secondItem="LCk-Yn-uLY" secondAttribute="leading" id="OOP-TS-iUR"/>
+                <constraint firstItem="aYk-gp-V4w" firstAttribute="top" secondItem="sVx-Fd-Ajt" secondAttribute="bottom" constant="8" id="P3u-u3-P6W"/>
+                <constraint firstItem="rNh-mR-VF8" firstAttribute="leading" secondItem="ZNH-wZ-55Z" secondAttribute="leading" id="SFF-36-KMH"/>
+                <constraint firstItem="Aet-hp-Dq4" firstAttribute="bottom" secondItem="N05-N6-PwO" secondAttribute="top" constant="8" id="XHH-SF-Ga1"/>
+                <constraint firstItem="ZNH-wZ-55Z" firstAttribute="trailing" secondItem="bzb-DR-nQ3" secondAttribute="trailing" id="Ye5-AM-eIa"/>
+                <constraint firstItem="bzb-DR-nQ3" firstAttribute="top" secondItem="aYk-gp-V4w" secondAttribute="bottom" constant="8" id="aXh-T5-cRh"/>
+                <constraint firstItem="bzb-DR-nQ3" firstAttribute="trailing" secondItem="aYk-gp-V4w" secondAttribute="trailing" id="b1p-dd-8mS"/>
+                <constraint firstItem="sVx-Fd-Ajt" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="eeN-Kg-ZvE"/>
+                <constraint firstItem="LCk-Yn-uLY" firstAttribute="leading" secondItem="sVx-Fd-Ajt" secondAttribute="leading" id="iMT-2Y-sD8"/>
+                <constraint firstItem="sVx-Fd-Ajt" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="lkw-kh-hA6"/>
+                <constraint firstItem="ZNH-wZ-55Z" firstAttribute="top" secondItem="bzb-DR-nQ3" secondAttribute="bottom" constant="8" id="nmf-ls-CF0"/>
+                <constraint firstItem="LCk-Yn-uLY" firstAttribute="trailing" secondItem="sVx-Fd-Ajt" secondAttribute="trailing" id="rH2-Ph-eYe"/>
+                <constraint firstItem="N05-N6-PwO" firstAttribute="leading" secondItem="Aet-hp-Dq4" secondAttribute="leading" id="rcM-aK-0te"/>
+                <constraint firstItem="N05-N6-PwO" firstAttribute="trailing" secondItem="Aet-hp-Dq4" secondAttribute="trailing" id="xcR-Nr-Pl6"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_down_arrow_black" width="16" height="16"/>
+    </resources>
+</document>

@@ -7,15 +7,20 @@
 //
 
 import UIKit
+import ActionSheetPicker_3_0
+import MBProgressHUD
 
 class CartController: BaseViewController {
+    
     var refreshControl: UIRefreshControl = UIRefreshControl()
     var cartReturn: CartReturn? {
         didSet {
+            self.checkoutButton.isHidden = false
             self.tableView.reloadData()
         }
     }
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var checkoutButton: UIButton!
     
     static func push(on controller: UINavigationController) -> CartController {
         let vc = CartController(nibName: "CartController", bundle: nil)
@@ -33,7 +38,7 @@ class CartController: BaseViewController {
         self.tableView.register(UINib(nibName: "ProductTitleCartCell", bundle: nil), forCellReuseIdentifier: "ProductTitleCartCell")
         self.tableView.addSubview(self.refreshControl)
         self.refreshControl.addTarget(self, action: #selector(CartController.onRefresh(_:)), for: UIControlEvents.valueChanged)
-        
+        self.title = "Cart"
         // Do any additional setup after loading the view.
     }
     
@@ -42,6 +47,7 @@ class CartController: BaseViewController {
         super.viewWillAppear(animated)
         if self.firstTime {
             self.firstTime = false
+            self.refreshControl.beginRefreshing()
             self.onRefresh(self.refreshControl)
         }
     }
@@ -52,11 +58,12 @@ class CartController: BaseViewController {
     }
     
     @objc func onRefresh(_ refreshControl: UIRefreshControl) {
-        
+        self.checkoutButton.isHidden = true
+        self.tryLoadCartList()
     }
     
     fileprivate func tryLoadCartList() {
-        NHTTPHelper.cartListRequest(complete: {response in
+        NHTTPHelper.httpCartListRequest(complete: {response in
             self.refreshControl.endRefreshing()
             if let error = response.error {
                 if error.isKind(of: NotConnectedInternetError.self) {
@@ -72,9 +79,16 @@ class CartController: BaseViewController {
             }
             if let data = response.data {
                 self.cartReturn = data
+            } else {
+                self.tableView.reloadData()
             }
         })
     }
+    
+    @IBAction func checkoutButtonAction(_ sender: Any) {
+        let _ = CheckoutController.push(on: self.navigationController!)
+    }
+    
 }
 
 extension CartController: UITableViewDelegate, UITableViewDataSource {
@@ -83,11 +97,11 @@ extension CartController: UITableViewDelegate, UITableViewDataSource {
             let cart = cartReturn.cart,
             let merchants = cart.merchants, !merchants.isEmpty {
             if section == 0 {
-                return 50
+                return 33
             } else {
                 let index = section - 1
-                if index < merchants.count {
-                    return 50
+                if index < merchants.count || index > merchants.count {
+                    return 33
                 }
             }
         }
@@ -99,15 +113,20 @@ extension CartController: UITableViewDelegate, UITableViewDataSource {
             let cart = cartReturn.cart,
             let merchants = cart.merchants, !merchants.isEmpty {
             if section == 0 {
-                let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
-                view.backgroundColor = UIColor.darkGray
+                let view = NCartHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 33))
+                view.titleLabel.text = "ORDER DETAILS"
                 return view
             } else {
                 let index = section - 1
                 if index < merchants.count {
-                    let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
-                    view.backgroundColor = UIColor.white
+                    let view = NCartHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 33))
+                    view.titleLabel.text = merchants[index].merchantName?.uppercased()
                     return view
+                } else if index > merchants.count {
+                    let view = NCartHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 33))
+                    view.titleLabel.text = "SUMMARY"
+                    return view
+
                 }
             }
         }
@@ -142,20 +161,101 @@ extension CartController: UITableViewDelegate, UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "ProductTitleCartCell", for: indexPath) as! ProductTitleCartCell
                 return cell
             } else {
-                var index = indexPath.section - 1
+                let index = indexPath.section - 1
                 if index < merchants.count {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCartCell", for: indexPath) as! ProductCartCell
+                    cell.initData(product: merchants[index].products![indexPath.row])
+                    cell.onChangeQuantity = {qty in
+                        self.changeQuantity(quantity: qty)
+                    }
+                    cell.onDeleteButton = {productCartId in
+                        UIAlertController.showAlertWithMultipleChoices(title: "Are you sure want to delete this product?", message: nil, viewController: self, buttons: [UIAlertAction(title: "Yes", style: .default, handler: {action in
+                            self.tryDeleteProductCart(productCartId: productCartId)
+                        }),UIAlertAction(title: "No", style: .cancel, handler: nil)])
+                    }
                     return cell
                 } else if index == merchants.count {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "VoucherCodeCell", for: indexPath) as! VoucherCodeCell
+                    if let voucher =  cart.voucher {
+                        cell.initData(voucher: voucher)
+                    }
+                    cell.onApplyVoucherCode = {voucherCode in
+                        self.view.endEditing(true)
+                        if voucherCode.isEmpty {
+                            UIAlertController.handleErrorMessage(viewController: self, error: "Vouche code cannot be empty!", completion: {})
+                            return
+                        }
+                        self.tryAddVoucher(voucherCode: voucherCode)
+                    }
                     return cell
                 } else {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "SummaryCartCell", for: indexPath) as! SummaryCartCell
+                    cell.initData(cart: self.cartReturn!.cart!, additionals: self.cartReturn!.additionals)
+                    return cell
                 }
             }
         }
+        return UITableViewCell()
     }
     
+    fileprivate func tryDeleteProductCart(productCartId: String) {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        NHTTPHelper.httpDeleteProductCart(productCartId: [productCartId], complete: {response in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            if let error = response.error {
+                if error.isKind(of: NotConnectedInternetError.self) {
+                    NHelper.handleConnectionError(completion: {
+                        self.tryLoadCartList()
+                    })
+                } else if error.isKind(of: StatusFailedError.self) {
+                    UIAlertController.handleErrorMessage(viewController: self, error: error, completion: { _ in
+                        let err = error as! StatusFailedError
+                    })
+                }
+                return
+            }
+            if let data = response.data {
+                self.cartReturn = data
+            } else {
+                self.tableView.reloadData()
+            }
+        })
+    }
+    
+    fileprivate func tryAddVoucher(voucherCode: String) {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        NHTTPHelper.httpDoShopAddVoucherRequest(cartToken: self.cartReturn!.cartToken!, voucherCode: voucherCode, complete: {response in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            if let error = response.error {
+                if error.isKind(of: NotConnectedInternetError.self) {
+                    NHelper.handleConnectionError(completion: {
+                        self.tryLoadCartList()
+                    })
+                } else if error.isKind(of: StatusFailedError.self) {
+                    UIAlertController.handleErrorMessage(viewController: self, error: error, completion: { _ in
+                        let err = error as! StatusFailedError
+                    })
+                }
+                self.tableView.reloadData()
+                return
+            }
+            if let data = response.data {
+                self.cartReturn = data
+            }
+        })
+    }
+    fileprivate func changeQuantity(quantity: Int) {
+        var quantities: [String] = []
+        for var i in 0..<31 {
+            quantities.append(String(i+1))
+        }
+        let actionSheet = ActionSheetStringPicker.init(title: "Change Quantity", rows: quantities, initialSelection: quantity-1, doneBlock: {picker, index, value in
+            
+        }, cancel: {_ in return
+        }, origin: self.view)
+        actionSheet!.show()
+
+    }
     func numberOfSections(in tableView: UITableView) -> Int {
         var section = 0
         if let cartReturn = self.cartReturn,

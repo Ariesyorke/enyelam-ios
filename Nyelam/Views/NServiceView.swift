@@ -58,7 +58,7 @@ class NServiceView: UIView {
         xibSetup()
         contentView?.prepareForInterfaceBuilder()
     }
-    
+        
     func xibSetup() {
         guard let view = loadViewFromNib() else { return }
         view.frame = bounds
@@ -116,8 +116,6 @@ class NServiceView: UIView {
             self.serviceStartDateEndDateLabel.isHidden = true
             self.specialPriceVerticalConstraint.constant = 0            
         }
-        
-    
         
         self.normalPriceLabel.text = diveService.normalPrice.toCurrencyFormatString(currency: "Rp.")
         self.specialPriceLabel.text = diveService.specialPrice.toCurrencyFormatString(currency:"Rp.")
