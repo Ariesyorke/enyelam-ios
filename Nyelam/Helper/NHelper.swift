@@ -101,6 +101,7 @@ class NHelper {
         if let zipCode = address.zipcode {
             locationName = "\(locationName) - \(zipCode)"
         }
+        
         a = "\(a)\n\(locationName)"
         return a
     }

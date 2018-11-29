@@ -86,7 +86,7 @@ class CartController: BaseViewController {
     }
     
     @IBAction func checkoutButtonAction(_ sender: Any) {
-        let _ = CheckoutController.push(on: self.navigationController!)
+        let _ = CheckoutController2.push(on: self.navigationController!, cartReturn: self.cartReturn!)
     }
     
 }

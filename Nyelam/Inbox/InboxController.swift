@@ -131,7 +131,7 @@ extension InboxController: UITableViewDelegate, UITableViewDataSource {
             closed = false
         }
         if let authReturn = NAuthReturn.authUser(), let user = authReturn.user {
-            InboxDetailController.push(on: self.navigationController!, inbox: inbox, senderId: user.id!, closed: closed)
+            let _ = InboxDetailController.push(on: self.navigationController!, inbox: inbox, senderId: user.id!, closed: closed)
         }
 
     }

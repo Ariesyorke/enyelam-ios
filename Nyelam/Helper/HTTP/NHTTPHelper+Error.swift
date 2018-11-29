@@ -716,6 +716,15 @@ class NHTTPHelper {
         default:
             return "api/doshop/add_address"
         }
+    }
+    
+    static var API_PATH_RAJA_ONGKIR_DELIVERY_COST: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "api/cost"
+        default:
+            return "api/cost"
+        }
 
     }
     
@@ -1025,6 +1034,7 @@ class NHTTPHelper {
                 }
                 return
             }
+            
             if let value = response.value, let jsonResult = value as? [String: Any] {
                 var status = -1
                 if let s = jsonResult[KEY_STATUS] as? Int {

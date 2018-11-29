@@ -28,7 +28,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EsN-Md-0W5" userLabel="Fullname Text Field" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                    <rect key="frame" x="16" y="36" width="343" height="30"/>
+                    <rect key="frame" x="16" y="36" width="343" height="39"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done" textContentType="name"/>
@@ -44,7 +44,7 @@
                     </userDefinedRuntimeAttributes>
                 </textField>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Aqx-rE-gMC" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                    <rect key="frame" x="16" y="82" width="343" height="128"/>
+                    <rect key="frame" x="16" y="91" width="343" height="128"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="128" id="gq6-0d-SXj"/>
@@ -56,10 +56,10 @@
                     </userDefinedRuntimeAttributes>
                 </textView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CWv-Kx-xjh" userLabel="Province Button" customClass="UIControl">
-                    <rect key="frame" x="16" y="218" width="343" height="30"/>
+                    <rect key="frame" x="16" y="227" width="343" height="39.5"/>
                     <subviews>
                         <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2bI-j8-HlP" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                            <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
+                            <rect key="frame" x="0.0" y="0.0" width="343" height="39.5"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next"/>
@@ -75,7 +75,7 @@
                             </userDefinedRuntimeAttributes>
                         </textField>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_down_arrow_black" translatesAutoresizingMaskIntoConstraints="NO" id="UDE-LU-WMH">
-                            <rect key="frame" x="327" y="11" width="8" height="8"/>
+                            <rect key="frame" x="327" y="16.5" width="8" height="8"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="8" id="T21-Ay-y1R"/>
                                 <constraint firstAttribute="height" constant="8" id="ubx-kJ-uLm"/>
@@ -95,10 +95,10 @@
                     </connections>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ulL-lY-w8i" userLabel="City Button" customClass="UIControl">
-                    <rect key="frame" x="16" y="256" width="343" height="30"/>
+                    <rect key="frame" x="16" y="274.5" width="343" height="39"/>
                     <subviews>
                         <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kq6-tx-rMT" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                            <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
+                            <rect key="frame" x="0.0" y="0.0" width="343" height="39"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next"/>
@@ -114,7 +114,7 @@
                             </userDefinedRuntimeAttributes>
                         </textField>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_down_arrow_black" translatesAutoresizingMaskIntoConstraints="NO" id="Tpb-3b-V1u">
-                            <rect key="frame" x="327" y="11" width="8" height="8"/>
+                            <rect key="frame" x="327" y="15.5" width="8" height="8"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="8" id="HDP-AR-Kag"/>
                                 <constraint firstAttribute="width" constant="8" id="LzL-xi-JsR"/>
@@ -134,10 +134,10 @@
                     </connections>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="of4-PS-D0w" userLabel="District Button" customClass="UIControl">
-                    <rect key="frame" x="16" y="294" width="343" height="30"/>
+                    <rect key="frame" x="16" y="321.5" width="343" height="39.5"/>
                     <subviews>
                         <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sBt-MC-PZz" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                            <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
+                            <rect key="frame" x="0.0" y="0.0" width="343" height="39.5"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next"/>
@@ -153,7 +153,7 @@
                             </userDefinedRuntimeAttributes>
                         </textField>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_down_arrow_black" translatesAutoresizingMaskIntoConstraints="NO" id="emN-nd-S9n">
-                            <rect key="frame" x="327" y="11" width="8" height="8"/>
+                            <rect key="frame" x="327" y="16.5" width="8" height="8"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="8" id="3FB-MO-f32"/>
                                 <constraint firstAttribute="height" constant="8" id="Rtk-7M-fln"/>
@@ -173,7 +173,7 @@
                     </connections>
                 </view>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="av4-1J-wi9" userLabel="Zip Code Text Field" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                    <rect key="frame" x="16" y="332" width="343" height="30"/>
+                    <rect key="frame" x="16" y="369" width="343" height="39"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done" textContentType="name"/>
@@ -189,7 +189,7 @@
                     </userDefinedRuntimeAttributes>
                 </textField>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h8f-4h-zBc" userLabel="Phone Number Text Field" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                    <rect key="frame" x="16" y="370" width="343" height="30"/>
+                    <rect key="frame" x="16" y="416" width="343" height="39.5"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done" textContentType="name"/>

@@ -2466,7 +2466,7 @@ extension NAddress: Parseable {
     }
     
     private var KEY_ZIPCODE: String {
-        return "zipcode"
+        return "zip_code"
     }
     
     private var KEY_PROVINCE: String {
@@ -2496,7 +2496,7 @@ extension NAddress: Parseable {
     static func getAddress(using id: String) -> NAddress? {
         let managedContext = AppDelegate.sharedManagedContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NAddress")
-        fetchRequest.predicate = NSPredicate(format: "address_id == %@", id)
+        fetchRequest.predicate = NSPredicate(format: "addressId == %@", id)
         do {
             let addresses = try managedContext.fetch(fetchRequest) as? [NAddress]
             if let addresses = addresses, !addresses.isEmpty {
@@ -2520,8 +2520,8 @@ extension NAddress: Parseable {
             }
             if self.province == nil {
                 self.province = NSEntityDescription.insertNewObject(forEntityName: "NProvince", into: AppDelegate.sharedManagedContext) as! NProvince
-                self.province!.parse(json: provinceJson)
             }
+            self.province!.parse(json: provinceJson)
         } else if let provinceString = json[KEY_PROVINCE] as? String {
             do {
                 let data = provinceString.data(using: String.Encoding.utf8, allowLossyConversion: true)
@@ -2531,8 +2531,8 @@ extension NAddress: Parseable {
                 }
                 if self.province == nil {
                     self.province = NSEntityDescription.insertNewObject(forEntityName: "NProvince", into: AppDelegate.sharedManagedContext) as! NProvince
-                    self.province!.parse(json: provinceJson)
                 }
+                self.province!.parse(json: provinceJson)
             } catch {
                 print(error)
             }
@@ -2543,8 +2543,8 @@ extension NAddress: Parseable {
             }
             if self.city == nil {
                 self.city = NSEntityDescription.insertNewObject(forEntityName: "NCity", into: AppDelegate.sharedManagedContext) as! NCity
-                self.city!.parse(json: cityJson)
             }
+            self.city!.parse(json: cityJson)
         } else if let cityString = json[KEY_CITY] as? String {
             do {
                 let data = cityString.data(using: String.Encoding.utf8, allowLossyConversion: true)
@@ -2554,8 +2554,8 @@ extension NAddress: Parseable {
                 }
                 if self.city == nil {
                     self.city = NSEntityDescription.insertNewObject(forEntityName: "NCity", into: AppDelegate.sharedManagedContext) as! NCity
-                    self.city!.parse(json: cityJson)
                 }
+                self.city!.parse(json: cityJson)
             } catch {
                 print(error)
             }
@@ -2566,8 +2566,8 @@ extension NAddress: Parseable {
             }
             if self.district == nil {
                 self.district = NSEntityDescription.insertNewObject(forEntityName: "NDistrict", into: AppDelegate.sharedManagedContext) as! NDistrict
-                self.district!.parse(json: districtJson)
             }
+            self.district!.parse(json: districtJson)
         } else if let districtString = json[KEY_DISTRICT] as? String {
             do {
                 let data = districtString.data(using: String.Encoding.utf8, allowLossyConversion: true)
@@ -2577,8 +2577,8 @@ extension NAddress: Parseable {
                 }
                 if self.district == nil {
                     self.district = NSEntityDescription.insertNewObject(forEntityName: "NDistrict", into: AppDelegate.sharedManagedContext) as! NDistrict
-                    self.district!.parse(json: districtJson)
                 }
+                self.district!.parse(json: districtJson)
             } catch {
                 print(error)
             }
