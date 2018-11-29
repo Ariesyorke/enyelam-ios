@@ -219,7 +219,6 @@ class CheckoutController: BaseViewController, UITextViewDelegate {
                 } else if error.isKind(of: StatusFailedError.self) {
                     UIAlertController.handleErrorMessage(viewController: self, error: error, completion: { _ in
                         let err = error as! StatusFailedError
-                        
                     })
                 }
                 return
@@ -242,7 +241,6 @@ class CheckoutController: BaseViewController, UITextViewDelegate {
                 } else if error.isKind(of: StatusFailedError.self) {
                     UIAlertController.handleErrorMessage(viewController: self, error: error, completion: { _ in
                         let _ = error as! StatusFailedError
-                        
                     })
                 }
                 return

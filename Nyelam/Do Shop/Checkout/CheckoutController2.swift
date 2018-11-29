@@ -14,8 +14,8 @@ class CheckoutController2: BaseViewController {
     
     var billingAddress: NAddress?
     var shippingAddress: NAddress?
-    var pickedCourier: Courier?
-    var pickedCourierType: CourierType?
+    var pickedCouriers: [Courier] = []
+    var pickedCourierTypes: [CourierType] = []
     
     var cartReturn: CartReturn?
 
@@ -171,19 +171,29 @@ extension CheckoutController2: UITableViewDelegate, UITableViewDataSource {
                 }
             }
             cell.onChangeAddress = {row in
-                let _ = AddressListController.push(on: self.navigationController!, type: row == 0 ? "billing" : "shipping", completion: {address in
+                let _ = AddressListController.push(on: self.navigationController!, type: row == 0 ? "billing" : "shipping", completion: {address, sameasbilling in
                     if row == 0 {
                         self.billingAddress = address
                     } else {
                         self.shippingAddress = address
                     }
-                    self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                    if sameasbilling {
+                        self.shippingAddress = address
+                    }
+                    self.tableView.reloadRows(at: [IndexPath(row: 0, col: 1), IndexPath(row: 1, col: 1)], with: .automatic)
                 })
             }
             cell.row = indexPath.row
             return cell
         } else if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CourierCell", for: indexPath) as! CourierCell
+            let courierType: CourierType? = !self.pickedCourierTypes.isEmpty ? self.pickedCourierTypes[indexPath.row] : nil
+            let courier: Courier? = !self.pickedCourierTypes.isEmpty ? self.pickedCouriers[indexPath.row] : nil
+
+            cell.initData(merchant: self.cartReturn!.cart!.merchants![indexPath.row], courier: courier, courierType: courierType)
+            cell.onChangeCourier = {row in
+                
+            }
             return cell
         } else if indexPath.section == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PaymentMethodCell", for: indexPath) as! PaymentMethodCell

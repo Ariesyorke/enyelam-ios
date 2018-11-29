@@ -18,6 +18,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddAddressViewController" customModule="Nyelam" customModuleProvider="target">
             <connections>
                 <outlet property="addressTextField" destination="f6M-Mi-8Dw" id="rUw-TL-KV0"/>
+                <outlet property="bottomConstraint" destination="g14-rO-Nec" id="wH6-qX-Qps"/>
+                <outlet property="checkButton" destination="Nrs-hb-clV" id="a6k-qf-yjP"/>
+                <outlet property="checkButtonContainer" destination="AXX-ZH-qIf" id="3sb-8V-Ac8"/>
                 <outlet property="cityTextField" destination="O3X-BR-iTJ" id="b7p-qG-2Pl"/>
                 <outlet property="districtTextField" destination="l0K-4R-Wdo" id="tw0-4m-e1g"/>
                 <outlet property="fullnameTextField" destination="38h-fj-tLY" id="YkK-D2-qze"/>
@@ -37,10 +40,10 @@
                     <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kIF-2Y-qty" userLabel="Province" customClass="UIControl">
-                            <rect key="frame" x="16" y="190" width="343" height="30"/>
+                            <rect key="frame" x="16" y="199" width="343" height="39.5"/>
                             <subviews>
                                 <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zls-4u-lwE" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                    <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="39.5"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done"/>
@@ -56,7 +59,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </textField>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_down_arrow_black" translatesAutoresizingMaskIntoConstraints="NO" id="NeL-qo-8ss">
-                                    <rect key="frame" x="327" y="11.5" width="8" height="8"/>
+                                    <rect key="frame" x="327" y="16.5" width="8" height="8"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="8" id="KZm-hC-1An"/>
                                         <constraint firstAttribute="height" constant="8" id="rxB-eS-JcP"/>
@@ -71,12 +74,15 @@
                                 <constraint firstAttribute="trailing" secondItem="NeL-qo-8ss" secondAttribute="trailing" constant="8" id="WR3-kx-LTr"/>
                                 <constraint firstItem="NeL-qo-8ss" firstAttribute="centerY" secondItem="Zls-4u-lwE" secondAttribute="centerY" id="mhU-Kv-vek"/>
                             </constraints>
+                            <connections>
+                                <action selector="provinceButtonAction:" destination="-1" eventType="touchUpInside" id="dzq-Br-lz8"/>
+                            </connections>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dck-wQ-IZv" userLabel="City" customClass="UIControl">
-                            <rect key="frame" x="16" y="228" width="343" height="30"/>
+                            <rect key="frame" x="16" y="246.5" width="343" height="39"/>
                             <subviews>
                                 <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O3X-BR-iTJ" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                    <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="39"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done"/>
@@ -92,7 +98,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </textField>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_down_arrow_black" translatesAutoresizingMaskIntoConstraints="NO" id="4Ez-YS-CZU">
-                                    <rect key="frame" x="327" y="11" width="8" height="8"/>
+                                    <rect key="frame" x="327" y="15.5" width="8" height="8"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="8" id="Pqy-8y-In4"/>
                                         <constraint firstAttribute="width" constant="8" id="aYc-Ox-iqj"/>
@@ -107,9 +113,12 @@
                                 <constraint firstItem="O3X-BR-iTJ" firstAttribute="leading" secondItem="dck-wQ-IZv" secondAttribute="leading" id="eHY-xg-XaA"/>
                                 <constraint firstItem="O3X-BR-iTJ" firstAttribute="top" secondItem="dck-wQ-IZv" secondAttribute="top" id="ofe-4G-S55"/>
                             </constraints>
+                            <connections>
+                                <action selector="cityButtonAction:" destination="-1" eventType="touchUpInside" id="bJ8-BG-b5j"/>
+                            </connections>
                         </view>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h60-Oi-ehs" userLabel="Postal Code" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                            <rect key="frame" x="16" y="301" width="343" height="30"/>
+                            <rect key="frame" x="16" y="338" width="343" height="39"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad" returnKeyType="next"/>
@@ -125,7 +134,7 @@
                             </userDefinedRuntimeAttributes>
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="38h-fj-tLY" userLabel="First Name Text Field" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                            <rect key="frame" x="16" y="16" width="343" height="30"/>
+                            <rect key="frame" x="16" y="16" width="343" height="39"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next" textContentType="name"/>
@@ -141,7 +150,7 @@
                             </userDefinedRuntimeAttributes>
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="exp-jH-Gfa" userLabel="Note" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                            <rect key="frame" x="16" y="377" width="343" height="30"/>
+                            <rect key="frame" x="16" y="432.5" width="343" height="39"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done" textContentType="name"/>
@@ -157,7 +166,7 @@
                             </userDefinedRuntimeAttributes>
                         </textField>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="f6M-Mi-8Dw" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                            <rect key="frame" x="16" y="54" width="343" height="128"/>
+                            <rect key="frame" x="16" y="63" width="343" height="128"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="128" id="gfg-UG-aAj"/>
@@ -169,10 +178,10 @@
                             </userDefinedRuntimeAttributes>
                         </textView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8He-jy-1b2" userLabel="District" customClass="UIControl">
-                            <rect key="frame" x="16" y="266" width="343" height="30"/>
+                            <rect key="frame" x="16" y="293.5" width="343" height="39.5"/>
                             <subviews>
                                 <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l0K-4R-Wdo" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                    <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="39.5"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done"/>
@@ -188,7 +197,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </textField>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_down_arrow_black" translatesAutoresizingMaskIntoConstraints="NO" id="Lyu-sE-7NE">
-                                    <rect key="frame" x="327" y="11.5" width="8" height="8"/>
+                                    <rect key="frame" x="327" y="16.5" width="8" height="8"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="8" id="ifZ-Km-hup"/>
                                         <constraint firstAttribute="height" constant="8" id="sRP-qw-QPD"/>
@@ -203,9 +212,12 @@
                                 <constraint firstAttribute="trailing" secondItem="l0K-4R-Wdo" secondAttribute="trailing" id="vC9-X3-peU"/>
                                 <constraint firstItem="l0K-4R-Wdo" firstAttribute="leading" secondItem="8He-jy-1b2" secondAttribute="leading" id="y0Y-Zn-8oM"/>
                             </constraints>
+                            <connections>
+                                <action selector="districtButtonAction:" destination="-1" eventType="touchUpInside" id="nzE-gG-CsZ"/>
+                            </connections>
                         </view>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Et-PR-DA4" userLabel="Phone Number" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                            <rect key="frame" x="16" y="339" width="343" height="30"/>
+                            <rect key="frame" x="16" y="385" width="343" height="39.5"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="phonePad" returnKeyType="done" textContentType="tel"/>
@@ -221,7 +233,7 @@
                             </userDefinedRuntimeAttributes>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79k-Lb-zgD">
-                            <rect key="frame" x="16" y="415" width="343" height="29"/>
+                            <rect key="frame" x="16" y="537.5" width="343" height="29"/>
                             <color key="backgroundColor" red="0.086274509799999996" green="0.45882352939999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                             <state key="normal" title="Submit">
@@ -232,9 +244,61 @@
                                     <real key="value" value="5"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="submitButtonAction:" destination="-1" eventType="touchUpInside" id="Zvb-tS-lgX"/>
+                            </connections>
                         </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AXX-ZH-qIf" customClass="UIControl">
+                            <rect key="frame" x="16" y="479.5" width="343" height="50"/>
+                            <subviews>
+                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rz0-U1-qyU">
+                                    <rect key="frame" x="38" y="18" width="297" height="14"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shipping address same as billing address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Jo-rm-AEz">
+                                            <rect key="frame" x="0.0" y="0.0" width="297" height="14"/>
+                                            <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="5Jo-rm-AEz" firstAttribute="leading" secondItem="rz0-U1-qyU" secondAttribute="leading" id="H5f-Dy-KWJ"/>
+                                        <constraint firstAttribute="bottom" secondItem="5Jo-rm-AEz" secondAttribute="bottom" id="LB9-Su-qIb"/>
+                                        <constraint firstAttribute="trailing" secondItem="5Jo-rm-AEz" secondAttribute="trailing" id="dbw-ET-7hr"/>
+                                        <constraint firstItem="5Jo-rm-AEz" firstAttribute="top" secondItem="rz0-U1-qyU" secondAttribute="top" id="h0H-nW-szv"/>
+                                    </constraints>
+                                </view>
+                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nrs-hb-clV" customClass="DLRadioButton">
+                                    <rect key="frame" x="0.0" y="8" width="30" height="34"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="30" id="0Vg-3E-x4D"/>
+                                    </constraints>
+                                    <state key="normal">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="iconSquare" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="Nrs-hb-clV" firstAttribute="centerY" secondItem="AXX-ZH-qIf" secondAttribute="centerY" id="3ji-2F-RTS"/>
+                                <constraint firstItem="rz0-U1-qyU" firstAttribute="leading" secondItem="Nrs-hb-clV" secondAttribute="trailing" constant="8" id="5j9-9N-ZQh"/>
+                                <constraint firstItem="rz0-U1-qyU" firstAttribute="centerY" secondItem="AXX-ZH-qIf" secondAttribute="centerY" id="JMW-jZ-Sgd"/>
+                                <constraint firstItem="Nrs-hb-clV" firstAttribute="top" secondItem="AXX-ZH-qIf" secondAttribute="top" constant="8" id="Jkm-GI-KKR"/>
+                                <constraint firstItem="Nrs-hb-clV" firstAttribute="leading" secondItem="AXX-ZH-qIf" secondAttribute="leading" id="b6M-lt-yIi"/>
+                                <constraint firstItem="rz0-U1-qyU" firstAttribute="centerY" secondItem="Nrs-hb-clV" secondAttribute="centerY" id="iIW-jd-fqc"/>
+                                <constraint firstAttribute="trailing" secondItem="rz0-U1-qyU" secondAttribute="trailing" constant="8" id="nA8-TP-5jJ"/>
+                                <constraint firstAttribute="bottom" secondItem="Nrs-hb-clV" secondAttribute="bottom" constant="8" id="vQc-Ls-byA"/>
+                            </constraints>
+                            <viewLayoutGuide key="safeArea" id="Qnf-F2-bDp"/>
+                            <connections>
+                                <action selector="checkButtonAction:" destination="-1" eventType="touchUpInside" id="ziV-vm-3xq"/>
+                            </connections>
+                        </view>
                     </subviews>
                     <constraints>
+                        <constraint firstItem="exp-jH-Gfa" firstAttribute="bottom" secondItem="AXX-ZH-qIf" secondAttribute="top" constant="-8" id="1Ts-GG-AX7"/>
                         <constraint firstItem="0Et-PR-DA4" firstAttribute="bottom" secondItem="exp-jH-Gfa" secondAttribute="top" constant="-8" id="1dh-UG-aAZ"/>
                         <constraint firstItem="79k-Lb-zgD" firstAttribute="leading" secondItem="exp-jH-Gfa" secondAttribute="leading" id="4NO-x9-gm9"/>
                         <constraint firstItem="exp-jH-Gfa" firstAttribute="leading" secondItem="0Et-PR-DA4" secondAttribute="leading" id="6yz-7G-oMi"/>
@@ -242,11 +306,13 @@
                         <constraint firstItem="38h-fj-tLY" firstAttribute="leading" secondItem="Uom-nE-xck" secondAttribute="leading" constant="16" id="CX2-Cl-vq8"/>
                         <constraint firstItem="h60-Oi-ehs" firstAttribute="top" secondItem="8He-jy-1b2" secondAttribute="bottom" constant="5" id="Fhv-hf-jAv"/>
                         <constraint firstItem="dck-wQ-IZv" firstAttribute="top" secondItem="kIF-2Y-qty" secondAttribute="bottom" constant="8" id="HhE-el-Gcz"/>
+                        <constraint firstItem="AXX-ZH-qIf" firstAttribute="bottom" secondItem="79k-Lb-zgD" secondAttribute="top" constant="-8" id="Iha-De-xeD"/>
                         <constraint firstItem="kIF-2Y-qty" firstAttribute="trailing" secondItem="f6M-Mi-8Dw" secondAttribute="trailing" id="Is3-pk-gN7"/>
                         <constraint firstItem="0Et-PR-DA4" firstAttribute="leading" secondItem="h60-Oi-ehs" secondAttribute="leading" id="Npu-TP-SY4"/>
                         <constraint firstItem="8He-jy-1b2" firstAttribute="top" secondItem="dck-wQ-IZv" secondAttribute="bottom" constant="8" id="OTD-yI-2CJ"/>
                         <constraint firstItem="f6M-Mi-8Dw" firstAttribute="leading" secondItem="38h-fj-tLY" secondAttribute="leading" id="UiC-Dw-jhb"/>
                         <constraint firstAttribute="bottom" secondItem="79k-Lb-zgD" secondAttribute="bottom" constant="16" id="WAa-tF-MYN"/>
+                        <constraint firstItem="AXX-ZH-qIf" firstAttribute="leading" secondItem="38h-fj-tLY" secondAttribute="leading" id="ZZS-fs-Voc"/>
                         <constraint firstItem="f6M-Mi-8Dw" firstAttribute="top" secondItem="38h-fj-tLY" secondAttribute="bottom" constant="8" id="axV-mJ-u9c"/>
                         <constraint firstItem="kIF-2Y-qty" firstAttribute="leading" secondItem="f6M-Mi-8Dw" secondAttribute="leading" id="c07-vg-wwI"/>
                         <constraint firstItem="kIF-2Y-qty" firstAttribute="top" secondItem="f6M-Mi-8Dw" secondAttribute="bottom" constant="8" id="d1s-kc-ZKS"/>
@@ -257,12 +323,12 @@
                         <constraint firstItem="8He-jy-1b2" firstAttribute="trailing" secondItem="dck-wQ-IZv" secondAttribute="trailing" id="oMB-nG-ade"/>
                         <constraint firstItem="79k-Lb-zgD" firstAttribute="trailing" secondItem="exp-jH-Gfa" secondAttribute="trailing" id="oUL-JA-f96"/>
                         <constraint firstItem="exp-jH-Gfa" firstAttribute="trailing" secondItem="0Et-PR-DA4" secondAttribute="trailing" id="oqf-bx-50o"/>
-                        <constraint firstItem="79k-Lb-zgD" firstAttribute="top" secondItem="exp-jH-Gfa" secondAttribute="bottom" constant="8" id="qyg-97-hjo"/>
                         <constraint firstItem="8He-jy-1b2" firstAttribute="leading" secondItem="dck-wQ-IZv" secondAttribute="leading" id="rCc-QK-cQ9"/>
                         <constraint firstItem="dck-wQ-IZv" firstAttribute="trailing" secondItem="kIF-2Y-qty" secondAttribute="trailing" id="s7z-zP-oN3"/>
                         <constraint firstAttribute="trailing" secondItem="38h-fj-tLY" secondAttribute="trailing" constant="16" id="vI4-QP-knC"/>
                         <constraint firstItem="38h-fj-tLY" firstAttribute="top" secondItem="Uom-nE-xck" secondAttribute="top" constant="16" id="xR1-qY-Hjx"/>
                         <constraint firstItem="dck-wQ-IZv" firstAttribute="leading" secondItem="kIF-2Y-qty" secondAttribute="leading" id="xae-SN-zxJ"/>
+                        <constraint firstItem="AXX-ZH-qIf" firstAttribute="trailing" secondItem="38h-fj-tLY" secondAttribute="trailing" id="yiN-N7-j4l"/>
                         <constraint firstItem="h60-Oi-ehs" firstAttribute="leading" secondItem="38h-fj-tLY" secondAttribute="leading" id="zoA-rm-b3t"/>
                     </constraints>
                 </scrollView>

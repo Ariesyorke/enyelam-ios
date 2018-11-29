@@ -8,8 +8,11 @@
 
 import UIKit
 
-class ChangeCourierController: UIViewController {
-
+class ChangeCourierController: BaseViewController {
+    
+    static func push(on controller: UINavigationController, completion: (Int) -> ()) {
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 

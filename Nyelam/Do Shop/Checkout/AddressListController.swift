@@ -19,9 +19,9 @@ class AddressListController: BaseViewController {
     }
     
     @IBOutlet weak var tableView: UITableView!
-    var completion: (NAddress) -> () = {address in }
+    var completion: (NAddress, Bool) -> () = {address, sameasbilling in }
     
-    static func push(on controller: UINavigationController, type: String, completion: @escaping (NAddress)->()) -> AddressListController {
+    static func push(on controller: UINavigationController, type: String, completion: @escaping (NAddress, Bool)->()) -> AddressListController {
         let vc = AddressListController(nibName: "AddressListController", bundle: nil)
         vc.completion = completion
         vc.type = type
@@ -81,7 +81,11 @@ class AddressListController: BaseViewController {
         })
     }
     @objc func addButtonAction(_ sender: UIBarButtonItem) {
-    
+        let _ = AddAddressViewController.push(on: self.navigationController!, defaultShipping: type == "shipping" ? 1 : 0, defaultBillng: type == "billing" ? 1 : 0, successCompletion: {sameasbiiling, address in
+            self.navigationController!.popViewController(animated: true, withCompletionBlock: {
+                self.completion(address, sameasbiiling)
+            })
+        })
     }
     /*
     // MARK: - Navigation
@@ -99,7 +103,7 @@ extension AddressListController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let address = self.addresses![indexPath.row]
         self.navigationController!.popViewController(animated: true, withCompletionBlock: {
-            self.completion(address)
+            self.completion(address, false)
         })
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
