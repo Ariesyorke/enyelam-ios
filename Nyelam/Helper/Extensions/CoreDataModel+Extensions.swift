@@ -1275,7 +1275,9 @@ extension NOrder {
     private var KEY_CART: String { return "cart" }
     private var KEY_ADDITIONAL: String { return "additional" }
     private var KEY_EQUIPMENT_RENTS: String { return "equipment_rents" }
-
+    private var KEY_SHIPPING_ADDRESS: String {return "shipping_address"}
+    private var KEY_BILLING_ADDRESS: String {return "billing_address" }
+    
     func parse(json: [String : Any]) {
         if let orderId = json[KEY_ORDER_ID] as? String {
             self.orderId = orderId
@@ -1340,6 +1342,53 @@ extension NOrder {
                 print(error)
             }
         }
+        if let billingAddressJson = json[KEY_BILLING_ADDRESS] as? [String: Any] {
+            if let id = billingAddressJson["address_id"] as? String {
+                self.billingAddress = NAddress.getAddress(using: id)
+            }
+            if self.billingAddress == nil {
+                self.billingAddress = NSEntityDescription.insertNewObject(forEntityName: "NAddress", into: AppDelegate.sharedManagedContext) as! NAddress
+            }
+            self.billingAddress!.parse(json: billingAddressJson)
+        } else if let billingAddressString = json[KEY_BILLING_ADDRESS] as? String {
+            do {
+                let data = billingAddressString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let billingAddressJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                if let id = billingAddressJson["address_id"] as? String {
+                    self.billingAddress = NAddress.getAddress(using: id)
+                }
+                if self.billingAddress == nil {
+                    self.billingAddress = NSEntityDescription.insertNewObject(forEntityName: "NAddress", into: AppDelegate.sharedManagedContext) as! NAddress
+                }
+                self.billingAddress!.parse(json: billingAddressJson)
+            } catch {
+                print(error)
+            }
+        }
+        
+        if let shippingAddressJson = json[KEY_SHIPPING_ADDRESS] as? [String: Any] {
+            if let id = shippingAddressJson["address_id"] as? String {
+                self.shippingAddress = NAddress.getAddress(using: id)
+            }
+            if self.shippingAddress == nil {
+                self.shippingAddress = NSEntityDescription.insertNewObject(forEntityName: "NAddress", into: AppDelegate.sharedManagedContext) as! NAddress
+            }
+            self.shippingAddress!.parse(json: shippingAddressJson)
+        } else if let shippingAddressString = json[KEY_SHIPPING_ADDRESS] as? String {
+            do {
+                let data = shippingAddressString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let shippingAddressJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                if let id = shippingAddressJson["address_id"] as? String {
+                    self.shippingAddress = NAddress.getAddress(using: id)
+                }
+                if self.shippingAddress == nil {
+                    self.shippingAddress = NSEntityDescription.insertNewObject(forEntityName: "NAddress", into: AppDelegate.sharedManagedContext) as! NAddress
+                }
+                self.shippingAddress!.parse(json: shippingAddressJson)
+            } catch {
+                print(error)
+            }
+        }
 
     }
     
@@ -1369,6 +1418,12 @@ extension NOrder {
                 equipmentArray.append(equipment.serialized())
             }
             json[KEY_EQUIPMENT_RENTS] = equipmentArray
+        }
+        if let billingAddress = self.billingAddress {
+            json[KEY_BILLING_ADDRESS] = billingAddress.serialized()
+        }
+        if let shippingAddress = self.shippingAddress {
+            json[KEY_SHIPPING_ADDRESS] = shippingAddress.serialized()
         }
         return json
     }
@@ -2493,6 +2548,10 @@ extension NAddress: Parseable {
         return "default_billing"
     }
     
+    private var KEY_EMAIL: String {
+        return "email"
+    }
+    
     static func getAddress(using id: String) -> NAddress? {
         let managedContext = AppDelegate.sharedManagedContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NAddress")
@@ -2514,6 +2573,7 @@ extension NAddress: Parseable {
         self.fullname = json[KEY_FULLNAME] as? String
         self.address = json[KEY_ADDRESS] as? String
         self.zipcode = json[KEY_ZIPCODE] as? String
+        self.emailAddress = json[KEY_EMAIL] as? String
         if let provinceJson = json[KEY_PROVINCE] as? [String: Any] {
             if let id = provinceJson["id"] as? String {
                 self.province = NProvince.getProvince(using: id)

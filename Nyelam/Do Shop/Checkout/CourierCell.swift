@@ -61,11 +61,12 @@ class CourierCell: NTableViewCell {
         }
         if let courier = courier, let courierType = courierType {
             let view = self.createView(for: courier, courierType: courierType)
+            self.courierContainer.addSubview(view)
             self.courierContainer.addConstraints([
-                NSLayoutConstraint(item: self.productItemContainer, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: self.productItemContainer, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: self.productItemContainer, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: self.productItemContainer, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
+                NSLayoutConstraint(item: self.courierContainer, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: self.courierContainer, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: self.courierContainer, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: self.courierContainer, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
             ])
         }
     }

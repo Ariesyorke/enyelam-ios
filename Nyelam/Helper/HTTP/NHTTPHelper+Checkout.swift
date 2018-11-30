@@ -9,6 +9,35 @@
 import Foundation
 
 extension NHTTPHelper {
+    static func httpDoShopSubmitOrderRequest(paymentMethodId: String,
+                                       cartToken: String,
+                                       billingAddressId: String,
+                                       shippingAddressId: String,
+                                       deliveryServiceMapping: [String: String],
+                                       voucherCode: String?,
+                                       complete: @escaping (NHTTPResponse<OrderReturn>) -> ()) {
+        var param: [String: Any] = ["payment_method_id": paymentMethodId,
+                                    "cart_token": cartToken,
+                                    "billing_address_id": billingAddressId,
+                                    "shipping_address_id": shippingAddressId]
+        for (key, value) in deliveryServiceMapping {
+            param[key] = value
+        }
+        if let voucherCode = voucherCode {
+            param["voucher_code"] = voucherCode
+        }
+        self.basicAuthRequest(URLString: HOST_URL + API_PATH_DO_SHOP_SUBMIT_ORDER, parameters: param, headers: nil, complete: {status, data, error in
+            if let error = error {
+                complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
+                return
+            }
+            if let data = data, let json = data as? [String: Any] {
+                let order = OrderReturn(json: json)
+                complete(NHTTPResponse(resultStatus: true, data: order, error: nil))
+            }
+        })
+    }
+    
     static func httpDoShopAddVoucherRequest(cartToken: String,
                                   voucherCode: String,
                                   complete: @escaping (NHTTPResponse<CartReturn>)->()) {
@@ -23,6 +52,7 @@ extension NHTTPHelper {
             }
         })
     }
+    
     static func httpDoShopDeliveryCostRequest(originType: String = "subdistrict",
                                               destinationType: String = "subdistrict",
                                               courier: String = "jne:tiki",

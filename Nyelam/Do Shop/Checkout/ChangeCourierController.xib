@@ -9,9 +9,16 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="FiraSans-SemiBold.ttf">
+            <string>FiraSans-SemiBold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChangeCourierController" customModule="Nyelam" customModuleProvider="target">
             <connections>
+                <outlet property="courierTextField" destination="Djw-Ig-yKZ" id="YVJ-Hh-n2b"/>
+                <outlet property="courierTypeTextField" destination="4b8-rR-BhS" id="BYW-eJ-p4i"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,130 +27,110 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Tq-5Y-3Gs">
-                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xUn-2f-v90" userLabel="Courier Type" customClass="UIControl">
+                    <rect key="frame" x="187.5" y="36" width="171.5" height="39"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u71-v8-iPq">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" id="evN-uR-JZe"/>
-                            </constraints>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xUn-2f-v90" userLabel="Courier Type" customClass="UIControl">
-                            <rect key="frame" x="187.5" y="0.0" width="187.5" height="39.5"/>
-                            <subviews>
-                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4b8-rR-BhS" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                    <rect key="frame" x="0.0" y="0.0" width="187.5" height="39.5"/>
-                                    <nil key="textColor"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
-                                            <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
-                                            <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Courier Type*"/>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="selectedTitle" value="Courier Type*"/>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="text" value="-"/>
-                                    </userDefinedRuntimeAttributes>
-                                </textField>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_down_arrow_black" translatesAutoresizingMaskIntoConstraints="NO" id="3b4-ls-TXX">
-                                    <rect key="frame" x="171.5" y="16" width="8" height="8"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="8" id="cZA-ZN-GMW"/>
-                                        <constraint firstAttribute="height" constant="8" id="fzx-FI-LwV"/>
-                                    </constraints>
-                                </imageView>
-                            </subviews>
-                            <constraints>
-                                <constraint firstAttribute="trailing" secondItem="3b4-ls-TXX" secondAttribute="trailing" constant="8" id="2RS-Rc-xCy"/>
-                                <constraint firstItem="4b8-rR-BhS" firstAttribute="leading" secondItem="xUn-2f-v90" secondAttribute="leading" id="JTu-7l-0ZW"/>
-                                <constraint firstAttribute="trailing" secondItem="4b8-rR-BhS" secondAttribute="trailing" id="Ow3-pU-knm"/>
-                                <constraint firstItem="3b4-ls-TXX" firstAttribute="centerY" secondItem="4b8-rR-BhS" secondAttribute="centerY" id="PoR-hM-g01"/>
-                                <constraint firstItem="4b8-rR-BhS" firstAttribute="top" secondItem="xUn-2f-v90" secondAttribute="top" id="aXz-TK-QYM"/>
-                                <constraint firstAttribute="bottom" secondItem="4b8-rR-BhS" secondAttribute="bottom" id="gQR-Zi-ePI"/>
-                            </constraints>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hx8-rY-6aU" userLabel="Courier" customClass="UIControl">
-                            <rect key="frame" x="0.0" y="0.0" width="187.5" height="40"/>
-                            <subviews>
-                                <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Djw-Ig-yKZ" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                    <rect key="frame" x="0.0" y="0.0" width="179.5" height="39.5"/>
-                                    <nil key="textColor"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
-                                            <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
-                                            <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Courier*"/>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="selectedTitle" value="Courier*"/>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="text" value="-"/>
-                                    </userDefinedRuntimeAttributes>
-                                </textField>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_down_arrow_black" translatesAutoresizingMaskIntoConstraints="NO" id="9cJ-Cp-xhZ">
-                                    <rect key="frame" x="171.5" y="16" width="8" height="8"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="8" id="03f-8q-315"/>
-                                        <constraint firstAttribute="width" constant="8" id="zBU-EC-oNl"/>
-                                    </constraints>
-                                </imageView>
-                            </subviews>
-                            <constraints>
-                                <constraint firstItem="9cJ-Cp-xhZ" firstAttribute="centerY" secondItem="Djw-Ig-yKZ" secondAttribute="centerY" id="4PH-CE-AVp"/>
-                                <constraint firstAttribute="trailing" secondItem="Djw-Ig-yKZ" secondAttribute="trailing" constant="8" id="7IN-AF-OS4"/>
-                                <constraint firstItem="Djw-Ig-yKZ" firstAttribute="leading" secondItem="Hx8-rY-6aU" secondAttribute="leading" id="Jhy-kU-QeX"/>
-                                <constraint firstItem="Djw-Ig-yKZ" firstAttribute="top" secondItem="Hx8-rY-6aU" secondAttribute="top" id="RKr-Yh-lft"/>
-                                <constraint firstAttribute="trailing" secondItem="9cJ-Cp-xhZ" secondAttribute="trailing" constant="8" id="VUu-VJ-8G4"/>
-                                <constraint firstAttribute="bottom" secondItem="Djw-Ig-yKZ" secondAttribute="bottom" id="iju-Or-gry"/>
-                            </constraints>
-                        </view>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="moI-df-w7p" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
-                            <rect key="frame" x="0.0" y="47.5" width="375" height="128"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="128" id="89V-Ae-feP"/>
-                            </constraints>
+                        <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4b8-rR-BhS" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                            <rect key="frame" x="0.0" y="0.0" width="171.5" height="39"/>
+                            <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Note"/>
-                                <userDefinedRuntimeAttribute type="number" keyPath="radius">
-                                    <real key="value" value="5"/>
+                                <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
+                                    <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
+                                    <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Courier Type*"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="selectedTitle" value="Courier Type*"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="text" value="-"/>
                             </userDefinedRuntimeAttributes>
-                        </textView>
+                        </textField>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_down_arrow_black" translatesAutoresizingMaskIntoConstraints="NO" id="3b4-ls-TXX">
+                            <rect key="frame" x="155.5" y="16" width="8" height="8"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="8" id="cZA-ZN-GMW"/>
+                                <constraint firstAttribute="height" constant="8" id="fzx-FI-LwV"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="xUn-2f-v90" firstAttribute="width" secondItem="Hx8-rY-6aU" secondAttribute="width" id="7rD-9C-sxz"/>
-                        <constraint firstItem="u71-v8-iPq" firstAttribute="top" secondItem="0Tq-5Y-3Gs" secondAttribute="top" id="HbI-S2-pPh"/>
-                        <constraint firstItem="Hx8-rY-6aU" firstAttribute="top" secondItem="0Tq-5Y-3Gs" secondAttribute="top" id="IOn-Db-aNY"/>
-                        <constraint firstItem="xUn-2f-v90" firstAttribute="leading" secondItem="Hx8-rY-6aU" secondAttribute="trailing" id="TSn-Ih-SFy"/>
-                        <constraint firstItem="xUn-2f-v90" firstAttribute="top" secondItem="Hx8-rY-6aU" secondAttribute="top" id="UfK-fR-Pwq"/>
-                        <constraint firstItem="u71-v8-iPq" firstAttribute="leading" secondItem="0Tq-5Y-3Gs" secondAttribute="leading" id="Y8h-qT-Gy9"/>
-                        <constraint firstItem="u71-v8-iPq" firstAttribute="centerX" secondItem="0Tq-5Y-3Gs" secondAttribute="centerX" id="Z63-7K-MGT"/>
-                        <constraint firstItem="moI-df-w7p" firstAttribute="trailing" secondItem="xUn-2f-v90" secondAttribute="trailing" id="c02-yq-6pW"/>
-                        <constraint firstItem="moI-df-w7p" firstAttribute="top" secondItem="xUn-2f-v90" secondAttribute="bottom" constant="8" id="kgL-2V-a2Y"/>
-                        <constraint firstItem="moI-df-w7p" firstAttribute="leading" secondItem="Hx8-rY-6aU" secondAttribute="leading" id="mRP-TL-UAn"/>
-                        <constraint firstAttribute="trailing" secondItem="u71-v8-iPq" secondAttribute="trailing" id="mfR-u0-5fE"/>
-                        <constraint firstAttribute="bottom" secondItem="moI-df-w7p" secondAttribute="bottom" constant="8" id="r2E-98-Xsi"/>
-                        <constraint firstItem="xUn-2f-v90" firstAttribute="trailing" secondItem="u71-v8-iPq" secondAttribute="trailing" id="rLL-f0-aFU"/>
-                        <constraint firstItem="Hx8-rY-6aU" firstAttribute="leading" secondItem="u71-v8-iPq" secondAttribute="leading" id="uPi-nd-ZFs"/>
+                        <constraint firstAttribute="trailing" secondItem="3b4-ls-TXX" secondAttribute="trailing" constant="8" id="2RS-Rc-xCy"/>
+                        <constraint firstItem="4b8-rR-BhS" firstAttribute="leading" secondItem="xUn-2f-v90" secondAttribute="leading" id="JTu-7l-0ZW"/>
+                        <constraint firstAttribute="trailing" secondItem="4b8-rR-BhS" secondAttribute="trailing" id="Ow3-pU-knm"/>
+                        <constraint firstItem="3b4-ls-TXX" firstAttribute="centerY" secondItem="4b8-rR-BhS" secondAttribute="centerY" id="PoR-hM-g01"/>
+                        <constraint firstItem="4b8-rR-BhS" firstAttribute="top" secondItem="xUn-2f-v90" secondAttribute="top" id="aXz-TK-QYM"/>
+                        <constraint firstAttribute="bottom" secondItem="4b8-rR-BhS" secondAttribute="bottom" id="gQR-Zi-ePI"/>
                     </constraints>
-                </scrollView>
+                    <viewLayoutGuide key="safeArea" id="umA-r3-i1A"/>
+                    <connections>
+                        <action selector="courierTypeButtonAction:" destination="-1" eventType="touchUpInside" id="6Do-Cr-XBc"/>
+                    </connections>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hx8-rY-6aU" userLabel="Courier" customClass="UIControl">
+                    <rect key="frame" x="16" y="20" width="171.5" height="55.5"/>
+                    <subviews>
+                        <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Djw-Ig-yKZ" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                            <rect key="frame" x="0.0" y="16" width="163.5" height="39"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
+                                    <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
+                                    <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Courier*"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="selectedTitle" value="Courier*"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="text" value="-"/>
+                            </userDefinedRuntimeAttributes>
+                        </textField>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_down_arrow_black" translatesAutoresizingMaskIntoConstraints="NO" id="9cJ-Cp-xhZ">
+                            <rect key="frame" x="155.5" y="32" width="8" height="8"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="8" id="03f-8q-315"/>
+                                <constraint firstAttribute="width" constant="8" id="zBU-EC-oNl"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="9cJ-Cp-xhZ" firstAttribute="centerY" secondItem="Djw-Ig-yKZ" secondAttribute="centerY" id="4PH-CE-AVp"/>
+                        <constraint firstAttribute="trailing" secondItem="Djw-Ig-yKZ" secondAttribute="trailing" constant="8" id="7IN-AF-OS4"/>
+                        <constraint firstItem="Djw-Ig-yKZ" firstAttribute="leading" secondItem="Hx8-rY-6aU" secondAttribute="leading" id="Jhy-kU-QeX"/>
+                        <constraint firstItem="Djw-Ig-yKZ" firstAttribute="top" secondItem="Hx8-rY-6aU" secondAttribute="top" constant="16" id="RKr-Yh-lft"/>
+                        <constraint firstAttribute="trailing" secondItem="9cJ-Cp-xhZ" secondAttribute="trailing" constant="8" id="VUu-VJ-8G4"/>
+                        <constraint firstAttribute="bottom" secondItem="Djw-Ig-yKZ" secondAttribute="bottom" id="iju-Or-gry"/>
+                    </constraints>
+                    <connections>
+                        <action selector="courierButtonAction:" destination="-1" eventType="touchUpInside" id="dOV-a2-SgM"/>
+                    </connections>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5xd-5G-FSh">
+                    <rect key="frame" x="16" y="91" width="343" height="30"/>
+                    <color key="backgroundColor" red="0.086274509799999996" green="0.45882352939999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="15"/>
+                    <state key="normal" title="Change Courier">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="changeCourierButtonAction:" destination="-1" eventType="touchUpInside" id="Ml3-23-S9d"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="0Tq-5Y-3Gs" secondAttribute="trailing" id="1nh-IV-b6w"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="0Tq-5Y-3Gs" secondAttribute="bottom" id="Vwp-I8-ljx"/>
-                <constraint firstItem="0Tq-5Y-3Gs" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="cBa-fJ-2YB"/>
-                <constraint firstItem="0Tq-5Y-3Gs" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="veh-2u-4Ub"/>
+                <constraint firstItem="xUn-2f-v90" firstAttribute="leading" secondItem="Hx8-rY-6aU" secondAttribute="trailing" id="6B1-A4-c6r"/>
+                <constraint firstItem="xUn-2f-v90" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="IU5-JS-n30"/>
+                <constraint firstItem="5xd-5G-FSh" firstAttribute="leading" secondItem="Hx8-rY-6aU" secondAttribute="leading" id="J2P-Km-UkJ"/>
+                <constraint firstItem="Hx8-rY-6aU" firstAttribute="width" secondItem="xUn-2f-v90" secondAttribute="width" id="NRH-Mj-b7k"/>
+                <constraint firstItem="5xd-5G-FSh" firstAttribute="top" secondItem="xUn-2f-v90" secondAttribute="bottom" constant="16" id="Ugf-Z1-7PE"/>
+                <constraint firstItem="5xd-5G-FSh" firstAttribute="trailing" secondItem="xUn-2f-v90" secondAttribute="trailing" id="f3D-Os-Bh6"/>
+                <constraint firstItem="Hx8-rY-6aU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="gl8-vo-ref"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xUn-2f-v90" secondAttribute="trailing" constant="16" id="rSj-J0-gBd"/>
+                <constraint firstItem="Hx8-rY-6aU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="zOL-83-Tnr"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="35.5" y="53.5"/>

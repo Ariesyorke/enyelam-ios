@@ -2,7 +2,7 @@
 //  NOrder+CoreDataProperties.swift
 //  Nyelam
 //
-//  Created by Bobi on 11/26/18.
+//  Created by Bobi on 11/30/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //
@@ -23,5 +23,7 @@ extension NOrder {
     @NSManaged public var orderId: String?
     @NSManaged public var schedule: Double
     @NSManaged public var status: String?
+    @NSManaged public var shippingAddress: NAddress?
+    @NSManaged public var billingAddress: NAddress?
 
 }

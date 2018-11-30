@@ -405,6 +405,8 @@ class NHTTPHelper {
         }
     }
     
+    
+    
     static var API_VERITRANS_PAYPAL_NOTIFICATION: String {
         switch NConstant.URL_TYPE {
         case .production:
@@ -700,6 +702,15 @@ class NHTTPHelper {
         }
     }
     
+    static var API_PATH_DO_SHOP_SUBMIT_ORDER: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "doshop/submit_order"
+        default:
+            return "api/doshop/submit_order"
+        }
+    }
+    
     static var API_PATH_GET_RAJA_ONGKIR_SUB_DISTRICT: String {
         switch NConstant.URL_TYPE {
         case .production:
@@ -725,7 +736,6 @@ class NHTTPHelper {
         default:
             return "api/cost"
         }
-
     }
     
     internal static func basicRajaOngkirRequest(URLString: URLConvertible,
