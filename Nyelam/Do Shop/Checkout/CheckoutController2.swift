@@ -27,7 +27,7 @@ class CheckoutController2: BaseViewController {
     fileprivate var payPalConfig = PayPalConfiguration()
     fileprivate var paymentMethodType: Int = 1
     fileprivate var isLoadAdditionalFee: Bool = false
-    fileprivate var orderReturn: OrderReturn?
+    fileprivate var order: NOrder?
 
     static func push(on controller: UINavigationController, cartReturn: CartReturn) -> CheckoutController2 {
         let vc = CheckoutController2(nibName: "CheckoutController2", bundle: nil)
@@ -109,6 +109,7 @@ class CheckoutController2: BaseViewController {
     
     fileprivate func calculateGrandTotal() {
         if let cartReturn = self.cartReturn, let cart = cartReturn.cart {
+            self.grandTotal = 0
             self.grandTotal += cart.total
             if !self.pickedCourierTypes.isEmpty, self.pickedCourierTypes.count == cart.merchants!.count {
                 for pickedPickedType in self.pickedCourierTypes {
@@ -126,25 +127,45 @@ class CheckoutController2: BaseViewController {
     }
     
     @IBAction func payButtonAction(_ sender: Any) {
-        if self.grandTotal < 0 {
+        if self.grandTotal < 0 && self.billingAddress == nil && self.shippingAddress == nil {
             UIAlertController.handleErrorMessage(viewController: self, error: "Make sure you complete your data including shipping address, billing address, courier", completion: {})
             return
         }
-        if let orderReturn = self.orderReturn, let summary = orderReturn.summary, let order = summary.order {
+        if let order = self.order {
             
         } else if let cartReturn = self.cartReturn {
-            
+            let deliveryMapping = self.formatPostDeliveryOrder(merchants: self.cartReturn!.cart!.merchants!, couriers: self.pickedCouriers, courierTypes: self.pickedCourierTypes)
+            self.trySubmitOrder(shippingAddressId: self.shippingAddress!.addressId!, billingAddressId: self.billingAddress!.addressId!, paymentMethodId: String(self.paymentMethodType), cartToken: self.cartReturn!.cartToken!, deliveryServiceHasmap: deliveryMapping, voucher: self.cartReturn!.cart!.voucher)
         }
     }
     
-    fileprivate func trySubmitOrder(shippingAddressId: String, billingAddressId: String, paymentMethodId: String, cartToken: String, deliveryServiceHasmap: [String: String], voucherCode: String?) {
+    fileprivate func formatPostDeliveryOrder(merchants: [Merchant], couriers: [Courier], courierTypes: [CourierType]) -> [String: String] {
+        var deliveryMapping: [String: String] = [:]
+        var i = 0
+        for merchant in merchants {
+            let courier = couriers[i]
+            let courierType = courierTypes[i]
+            var price: Int64 = 0
+            if let costs = courierType.costs, !costs.isEmpty {
+                price = costs[0].value
+            }
+            
+            let key = "delivery_service[\(merchant.id!)]"
+            let value = "\(courierType.service!):\(String(price)):\(courier.code!)"
+            deliveryMapping[key] = value
+            i+=1
+        }
+        return deliveryMapping
+    }
+    
+    fileprivate func trySubmitOrder(shippingAddressId: String, billingAddressId: String, paymentMethodId: String, cartToken: String, deliveryServiceHasmap: [String: String], voucher: Voucher?) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        NHTTPHelper.httpDoShopSubmitOrderRequest(paymentMethodId: paymentMethodId, cartToken: cartToken, billingAddressId: billingAddressId, shippingAddressId: shippingAddressId, deliveryServiceMapping: deliveryServiceHasmap, voucherCode: voucherCode, complete: {response in
+        NHTTPHelper.httpDoShopSubmitOrderRequest(paymentMethodId: paymentMethodId, cartToken: cartToken, billingAddressId: billingAddressId, shippingAddressId: shippingAddressId, deliveryServiceMapping: deliveryServiceHasmap, voucherCode: voucher?.code, complete: {response in
             MBProgressHUD.hide(for: self.view, animated: true)
             if let error = response.error {
                 if error.isKind(of: NotConnectedInternetError.self) {
                     NHelper.handleConnectionError(completion: {
-                        self.trySubmitOrder(shippingAddressId: shippingAddressId, billingAddressId: billingAddressId, paymentMethodId: paymentMethodId, cartToken: cartToken, deliveryServiceHasmap: deliveryServiceHasmap, voucherCode: voucherCode)
+                        self.trySubmitOrder(shippingAddressId: shippingAddressId, billingAddressId: billingAddressId, paymentMethodId: paymentMethodId, cartToken: cartToken, deliveryServiceHasmap: deliveryServiceHasmap, voucher: voucher)
                     })
                 } else if error.isKind(of: StatusFailedError.self) {
                     UIAlertController.handleErrorMessage(viewController: self, error: error, completion: { _ in
@@ -154,27 +175,28 @@ class CheckoutController2: BaseViewController {
                 return
             }
             if let data = response.data {
-                self.orderReturn = data
-                self.handlePaymentMethodType(orderReturn: data, paymentType: paymentMethodId)
+                self.order = data
+                self.handlePaymentMethodType(order: data, paymentType: paymentMethodId)
             }
         })
     }
     
-    fileprivate func handlePaymentMethodType(orderReturn: OrderReturn, paymentType: String) {
+    fileprivate func handlePaymentMethodType(order: NOrder, paymentType: String) {
         if paymentType == "2" || paymentType == "3" {
+            self.payUsingMidtrans(orderId: order.orderId!, value: order.cart!.total, billingAddress: order.billingAddress!, shippingAddress: order.shippingAddress!, merchants: order.cart!.merchants!, additionals: order.additionals, voucher: order.cart!.voucher, veritransToken: order.veritransToken!, paymentType: Int(paymentType)!)
         } else if paymentType == "4" {
-            self.payUsingPaypal(orderReturn: orderReturn)
+            self.payUsingPaypal(order: order)
         } else {
             UIAlertController.handlePopupMessage(viewController: self, title: "Order Success!", actionButtonTitle: "OK", completion: {
-                _ = BookingDetailController.push(on: self.navigationController!, bookingId: orderReturn.summary!.id!, type: "1", isComeFromOrder: true)
+//                _ = BookingDetailController.push(on: self.navigationController!, bookingId: orderReturn.summary!.id!, type: "1", isComeFromOrder: true)
             })
         }
     }
-    fileprivate func payUsingPaypal(orderReturn: OrderReturn) {
-        var amount = NSDecimalNumber(value: orderReturn.paypalCurrency!.amount)
+    fileprivate func payUsingPaypal(order: NOrder) {
+        var amount = NSDecimalNumber(value: order.paypalCurrency!.amount)
         amount = amount.round(2)
-        let paypalPayment = PayPalPayment(amount: amount, currencyCode: orderReturn.paypalCurrency!.currency!, shortDescription: "\(orderReturn.summary!.order!.orderId!)", intent: PayPalPaymentIntent.sale)
-        paypalPayment.invoiceNumber = "\(orderReturn.summary!.order!.orderId!)"
+        let paypalPayment = PayPalPayment(amount: amount, currencyCode: order.paypalCurrency!.currency!, shortDescription: "\(order.orderId!)", intent: PayPalPaymentIntent.sale)
+        paypalPayment.invoiceNumber = "\(order.orderId!)"
         let paymentController = PayPalPaymentViewController(payment: paypalPayment, configuration: payPalConfig, delegate: self)
         self.present(paymentController!, animated: true, completion: nil)
     }
@@ -191,7 +213,10 @@ class CheckoutController2: BaseViewController {
         MidtransNetworkLogger.shared().startLogging()
         let transactionDetails = MidtransTransactionDetails.init(orderID: orderId, andGrossAmount: NSNumber(value: value))
     
-        let customerDetails = MidtransCustomerDetails.init(firstName: billingAddress.fullname!, lastName: "", email: billingAddress.emailAddress!, phone: billingAddress.phoneNumber, shippingAddress: nil, billingAddress: nil)
+        let billingMidtransAddress = MidtransAddress(firstName: billingAddress.fullname!, lastName: "", phone: billingAddress.phoneNumber!, address: billingAddress.address!, city: billingAddress.city!.name!, postalCode: billingAddress.zipcode != nil ? billingAddress.zipcode! : "", countryCode: "ID")
+        let shippingMidtransAddress = MidtransAddress(firstName: shippingAddress.fullname!, lastName: "", phone: shippingAddress.phoneNumber!, address: shippingAddress.address!, city: shippingAddress.city!.name!, postalCode: shippingAddress.zipcode != nil ? billingAddress.zipcode! : "", countryCode: "ID")
+        let customerDetails = MidtransCustomerDetails.init(firstName: billingAddress.fullname!, lastName: "", email: billingAddress.emailAddress!, phone: billingAddress.phoneNumber, shippingAddress: shippingMidtransAddress, billingAddress: billingMidtransAddress)
+        
         let preferences = UserDefaults.standard
         preferences.set(billingAddress.emailAddress!, forKey: "email_address")
         preferences.set(billingAddress.phoneNumber!, forKey: "phone_number")
@@ -236,7 +261,7 @@ class CheckoutController2: BaseViewController {
         self.payNowButton.isEnabled = false
         self.payNowButton.backgroundColor = UIColor.darkGray
         var id: String = ""
-        if let orderReturn = self.orderReturn, let summary = orderReturn.summary, let order = summary.order {
+        if let order = self.order {
             id = order.orderId!
         } else if let cartReturn = self.cartReturn {
             id = cartReturn.cartToken!
@@ -250,23 +275,23 @@ class CheckoutController2: BaseViewController {
             voucherCode = code
         }
         
-        NHTTPHelper.changePaymentMethod(cartToken: id, paymentType: paymentType, voucherCode: voucherCode, complete: {response in
-            if let error = response.error {
-                if error.isKind(of: NotConnectedInternetError.self) {
-                    NHelper.handleConnectionError(completion: {
-                        self.tryChangePayment(paymentType: paymentType)
-                    })
-                }
-                return
-            }
-            self.payNowButton.backgroundColor = UIColor.blueActive
-            self.payNowButton.isEnabled = true
-            if let data = response.data {
-                self.cartReturn = data
-                self.isLoadAdditionalFee = false
-                self.calculateGrandTotal()
-            }
-        })
+//        NHTTPHelper.changePaymentMethod(cartToken: id, paymentType: paymentType, voucherCode: voucherCode, complete: {response in
+//            if let error = response.error {
+//                if error.isKind(of: NotConnectedInternetError.self) {
+//                    NHelper.handleConnectionError(completion: {
+//                        self.tryChangePayment(paymentType: paymentType)
+//                    })
+//                }
+//                return
+//            }
+//            self.payNowButton.backgroundColor = UIColor.blueActive
+//            self.payNowButton.isEnabled = true
+//            if let data = response.data {
+//                self.cartReturn = data
+//                self.isLoadAdditionalFee = false
+//                self.calculateGrandTotal()
+//            }
+//        })
     }
     /*
     // MARK: - Navigation
@@ -397,9 +422,8 @@ extension CheckoutController2: UITableViewDelegate, UITableViewDataSource {
             cell.paymentType = self.paymentMethodType
             cell.onChangePaymentType = {paymentType in
                 self.paymentMethodType = paymentType
-                self.isLoadAdditionalFee = true
-                self.tableView.reloadRows(at: [IndexPath(item: 0, section: 4),  IndexPath(item: 0, section: 5)], with: .automatic)
-                self.tryChangePayment(paymentType: self.paymentMethodType)
+                self.tableView.reloadRows(at: [IndexPath(item: 0, section: 3),  IndexPath(item: 0, section: 4)], with: .automatic)
+//                self.tryChangePayment(paymentType: self.paymentMethodType)
             }
             cell.initPayment(paymentType: self.paymentMethodType)
             return cell
@@ -437,7 +461,6 @@ extension CheckoutController2: PayPalPaymentDelegate, PayPalFuturePaymentDelegat
                 MBProgressHUD.showAdded(to: self.view, animated: true)
                 NHTTPHelper.httpVeritransNotification(parameters: transactionResult.serialized(), complete: {response in
                     MBProgressHUD.hide(for: self.view, animated: true)
-                    _ = BookingDetailController.push(on: self.navigationController!, bookingId: self.orderReturn!.summary!.id!, type: "1", isComeFromOrder: true)
                 })
             })
         })
@@ -450,7 +473,7 @@ extension CheckoutController2: PayPalPaymentDelegate, PayPalFuturePaymentDelegat
                 MBProgressHUD.showAdded(to: self.view, animated: true)
                 NHTTPHelper.httpVeritransNotification(parameters: transactionResult.serialized(), complete: {response in
                     MBProgressHUD.hide(for: self.view, animated: true)
-                    _ = BookingDetailController.push(on: self.navigationController!, bookingId: self.orderReturn!.summary!.id!, type: "1", isComeFromOrder: true)
+
                 })
             })
         })
@@ -478,7 +501,7 @@ extension CheckoutController2: PayPalPaymentDelegate, PayPalFuturePaymentDelegat
     func payPalPaymentViewController(_ paymentViewController: PayPalPaymentViewController, didComplete completedPayment: PayPalPayment) {
         paymentViewController.dismiss(animated: true, completion: {
             UIAlertController.handlePopupMessage(viewController: self, title: "Order Success!", actionButtonTitle: "OK", completion: {
-                _ = BookingDetailController.push(on: self.navigationController!, bookingId: self.orderReturn!.summary!.id!, type: "1", isComeFromOrder: true)
+
             })
         })
     }

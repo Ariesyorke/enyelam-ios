@@ -87,7 +87,13 @@ class DoShopHomeController: BaseViewController {
         self.present(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
     }
     @objc func onCart(_ sender: UIBarButtonItem) {
-        let _ = CartController.push(on: self.navigationController!)
+        if let authUser = NAuthReturn.authUser() {
+            let _ = CartController.push(on: self.navigationController!)
+        } else {
+            self.goToAuth(completion: {
+                let _ = CartController.push(on: self.navigationController!)
+            })
+        }
     }
     fileprivate func initCollectionView() {
         let productViewSource: ClosureViewSource = ClosureViewSource(viewUpdater: {
@@ -179,6 +185,13 @@ class DoShopHomeController: BaseViewController {
     fileprivate func openSideMenu(sideMenu: DoShopSideMenuType) {
         switch  sideMenu {
         case .order:
+            if let authUser = NAuthReturn.authUser() {
+                let _ = OrderViewController.push(on: self.navigationController!)
+            } else {
+                self.goToAuth(completion: {
+                    let _ = OrderViewController.push(on: self.navigationController!)
+                })
+            }
             break
         default:
             self.navigationController!.dismiss(animated: true, completion: {

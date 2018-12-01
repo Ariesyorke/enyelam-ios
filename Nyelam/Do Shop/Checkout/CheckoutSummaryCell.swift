@@ -50,14 +50,14 @@ class CheckoutSummaryCell: NTableViewCell {
                     let view = NAdditionalView()
                     view.translatesAutoresizingMaskIntoConstraints = false
                     self.detailContainerView.addSubview(view)
-                    var detailName = courier.code
+                    var detailName = courier.code!
                     var price: Double = 0.0
                     let courierType = courierTypes[i]
                     detailName = "\(detailName) - \(courierType.service!)"
                     if let costs = courierType.costs, !costs.isEmpty {
                         price = Double(costs[0].value)
                     }
-                    view.initData(title: detailName!, price: price)
+                    view.initData(title: detailName, price: price)
                     self.detailContainerView.addConstraints([NSLayoutConstraint(item: view, attribute: .leading, relatedBy: .equal, toItem: self.detailContainerView, attribute: .leading, multiplier: 1, constant: 0), NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: self.detailContainerView, attribute: .trailing, multiplier: 1, constant: 0)])
                     if topView == nil {
                         self.detailContainerView.addConstraint(NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: self.detailContainerView, attribute: .top, multiplier: 1, constant: 0))

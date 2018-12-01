@@ -1277,8 +1277,36 @@ extension NOrder {
     private var KEY_EQUIPMENT_RENTS: String { return "equipment_rents" }
     private var KEY_SHIPPING_ADDRESS: String {return "shipping_address"}
     private var KEY_BILLING_ADDRESS: String {return "billing_address" }
+    private var KEY_VERITRANS_TOKEN: String {return "veritrans_token"}
+    private var KEY_PAYPAL_CURRENCY: String {return "paypal_currency"}
     
     func parse(json: [String : Any]) {
+        if let veritransJson = json[KEY_VERITRANS_TOKEN] as? [String: Any] {
+            if let id = veritransJson["token_id"] as? String {
+                self.veritransToken = id
+            }
+        } else if let veritransString = json[KEY_VERITRANS_TOKEN] as? String {
+            do {
+                let data = veritransString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let veritransJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                if let id = veritransJson["token_id"] as? String {
+                    self.veritransToken = id
+                }
+            } catch {
+                print(error)
+            }
+        }
+        if let paypalCurrencyJson = json[KEY_PAYPAL_CURRENCY] as? [String: Any] {
+            self.paypalCurrency = PaypalCurrency(json: paypalCurrencyJson)
+        } else if let paypalCurrencyString = json[KEY_PAYPAL_CURRENCY] as? String {
+            do {
+                let data = paypalCurrencyString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let paypalCurrencyJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                self.paypalCurrency = PaypalCurrency(json: paypalCurrencyJson)
+            } catch {
+                print(error)
+            }
+        }
         if let orderId = json[KEY_ORDER_ID] as? String {
             self.orderId = orderId
         } else if let orderId = json[KEY_ORDER_ID] as? Int {

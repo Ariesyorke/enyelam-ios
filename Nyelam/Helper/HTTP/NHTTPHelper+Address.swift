@@ -92,6 +92,10 @@ extension NHTTPHelper {
             param["label"] = label
         }
         self.basicAuthRequest(URLString: HOST_URL + API_PATH_ADD_ADDRESS, parameters: param, headers: nil, complete: {status, data, error in
+            if let error = error {
+                complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
+                return
+            }
             if let data = data, let json = data as? [String: Any] {
                 var addresses: [NAddress]? = nil
                 if let addressesArray = json["address"] as? Array<[String: Any]>, !addressesArray.isEmpty {

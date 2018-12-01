@@ -738,6 +738,24 @@ class NHTTPHelper {
         }
     }
     
+    static var API_PATH_DO_SHOP_ORDER_LIST: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "doshop/order_list"
+        default:
+            return "api/doshop/order_list"
+        }
+    }
+    
+    static var API_PATH_DO_SHOP_ORDER_DETAIL: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "doshop/order_detail"
+        default:
+            return "api/doshop/order_detail"
+        }
+    }
+    
     internal static func basicRajaOngkirRequest(URLString: URLConvertible,
                                                 method: HTTPMethod = HTTPMethod.get,
                                                 parameters: [String: Any]? = nil,

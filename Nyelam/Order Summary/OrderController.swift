@@ -318,64 +318,6 @@ extension OrderController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         return UITableViewCell()
-//        if indexPath.section == 0 {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "BookingDetailCell", for: indexPath) as! BookingDetailCell
-//            cell.initData(diveService: self.diveService!, selectedDate: self.selectedDate!)
-//            return cell
-//        } else if indexPath.section == 1 {
-//            let row = indexPath.row
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell", for: indexPath) as! ContactCell
-//            cell.initData(contact: self.contact!)
-//            cell.onChangeContact = {
-//                _ = ContactController.push(on: self.navigationController!, contact: self.contact!, completion: {navigation, contact in
-//                    navigation.popViewController(animated: true, withCompletionBlock: {
-//                        DispatchQueue.main.async {
-//                            self.contact! = contact
-//                            self.tableView.reloadRows(at: [indexPath], with: .automatic)
-//                        }
-//                    })
-//                })
-//            }
-//            return cell
-//        } else if indexPath.section == 2 {
-//            let row = indexPath.row
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "ParticipantCell", for: indexPath) as! ParticipantCell
-//            let participant = participants![row]
-//            cell.initData(participant: participant)
-//            cell.onChangeParticipant = {
-//                _ = ParticipantController.push(on: self.navigationController!, participant: participant,  completion: {navigation, participant in
-//                    navigation.popViewController(animated: true, withCompletionBlock: {
-//                        DispatchQueue.main.async {
-//                            self.participants![row] = participant
-//                            self.tableView.reloadRows(at: [indexPath], with: .automatic)
-//                        }
-//                    })
-//                })
-//            }
-//            return cell
-//        } else if indexPath.section == 3 {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "PaymentMethodCell", for: indexPath) as! PaymentMethodCell
-//            cell.paymentType = self.paymentMethodType
-//            cell.onChangePaymentType = {paymentType in
-//                self.paymentMethodType = paymentType
-//                self.isLoadAdditionalFee = true
-//                self.tableView.reloadRows(at: [IndexPath(item: 0, section: 4)], with: .automatic)
-//                self.tryChangePayment(paymentType: self.paymentMethodType)
-//            }
-//            cell.initPayment(paymentType: self.paymentMethodType)
-//            return cell
-//        } else if indexPath.section == 4 {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "BookingSummaryCell", for: indexPath) as! BookingSummaryCell
-//            let diver = self.participants!.count
-//            cell.noteTextField.delegate = self
-//            if self.isLoadAdditionalFee {
-//                cell.loadAdditionalFee()
-//            } else {
-//                cell.initData(note: self.note, cart: cartReturn!.cart!, selectedDiver: diver, servicePrice: self.diveService!.specialPrice, additionals: self.cartReturn!.additionals, equipments: self.cartReturn!.equipments)
-//            }
-//            return cell
-//        }
-//        return UITableViewCell()
     }
     
     

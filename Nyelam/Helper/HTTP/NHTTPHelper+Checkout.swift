@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 extension NHTTPHelper {
     static func httpDoShopSubmitOrderRequest(paymentMethodId: String,
@@ -15,7 +16,7 @@ extension NHTTPHelper {
                                        shippingAddressId: String,
                                        deliveryServiceMapping: [String: String],
                                        voucherCode: String?,
-                                       complete: @escaping (NHTTPResponse<OrderReturn>) -> ()) {
+                                       complete: @escaping (NHTTPResponse<NOrder>) -> ()) {
         var param: [String: Any] = ["payment_method_id": paymentMethodId,
                                     "cart_token": cartToken,
                                     "billing_address_id": billingAddressId,
@@ -32,7 +33,30 @@ extension NHTTPHelper {
                 return
             }
             if let data = data, let json = data as? [String: Any] {
-                let order = OrderReturn(json: json)
+                var order: NOrder? = nil
+                if let orderJson = json["order"] as? [String: Any] {
+                    if let orderId = orderJson["order_id"] as? String {
+                        order = NOrder.getOrder(using: orderId)
+                    }
+                    if order == nil {
+                        order = NSEntityDescription.insertNewObject(forEntityName: "NOrder", into: AppDelegate.sharedManagedContext) as! NOrder
+                    }
+                    order!.parse(json: orderJson)
+                } else if let orderString = json["order"] as? String {
+                    do {
+                        let data = orderString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                        let orderJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                        if let orderId = orderJson["order_id"] as? String {
+                            order = NOrder.getOrder(using: orderId)
+                        }
+                        if order == nil {
+                            order = NSEntityDescription.insertNewObject(forEntityName: "NOrder", into: AppDelegate.sharedManagedContext) as! NOrder
+                        }
+                        order!.parse(json: orderJson)
+                    } catch {
+                        print(error)
+                    }
+                }
                 complete(NHTTPResponse(resultStatus: true, data: order, error: nil))
             }
         })

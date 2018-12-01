@@ -114,8 +114,10 @@
         <attribute name="cart" optional="YES" attributeType="Transformable" customClassName="Cart" syncable="YES"/>
         <attribute name="equipments" optional="YES" attributeType="Transformable" customClassName="[Equipment]" syncable="YES"/>
         <attribute name="orderId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="paypalCurrency" optional="YES" attributeType="Transformable" valueTransformerName="" customClassName="PaypalCurrency" syncable="YES"/>
         <attribute name="schedule" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="veritransToken" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="billingAddress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NAddress" syncable="YES"/>
         <relationship name="shippingAddress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NAddress" syncable="YES"/>
     </entity>
@@ -210,7 +212,7 @@
         <element name="NLicenseType" positionX="-171" positionY="-90" width="128" height="75"/>
         <element name="NMasterOrganization" positionX="-180" positionY="-99" width="128" height="75"/>
         <element name="NNationality" positionX="-180" positionY="-99" width="128" height="75"/>
-        <element name="NOrder" positionX="-171" positionY="-90" width="128" height="165"/>
+        <element name="NOrder" positionX="-171" positionY="-90" width="128" height="195"/>
         <element name="NProduct" positionX="-180" positionY="-99" width="128" height="225"/>
         <element name="NProductCategory" positionX="-180" positionY="-99" width="128" height="90"/>
         <element name="NProvince" positionX="16" positionY="234" width="128" height="90"/>
