@@ -43,10 +43,10 @@ class OrderViewController: ButtonBarPagerTabStripViewController {
     
 
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-        return [OrderListController.create(bookingType: 1), OrderListController.create(bookingType: 2),
-               OrderListController.create(bookingType: 3), OrderListController.create(bookingType: 4),
-               OrderListController.create(bookingType: 5), OrderListController.create(bookingType: 6),
-               OrderListController.create(bookingType: 7), OrderListController.create(bookingType: 8)]
+        return [OrderListController.create(paymentType: 1), OrderListController.create(paymentType: 2),
+               OrderListController.create(paymentType: 3), OrderListController.create(paymentType: 4),
+               OrderListController.create(paymentType: 5), OrderListController.create(paymentType: 6),
+               OrderListController.create(paymentType: 7), OrderListController.create(paymentType: 8)]
     }
     
     func disableLeftBarButton() {

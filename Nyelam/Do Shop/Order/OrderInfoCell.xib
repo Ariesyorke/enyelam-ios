@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="FiraSans-Regular.ttf">
+            <string>FiraSans-Regular</string>
+        </array>
+        <array key="FiraSans-SemiBold.ttf">
+            <string>FiraSans-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="130" id="KGk-i7-Jjw" customClass="OrderInfoCell" customModule="Nyelam" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="tid-JI-Sjt">
+                        <rect key="frame" x="16" y="57" width="288" height="0.0"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KBP-OM-21O" userLabel="Merchant Container">
+                        <rect key="frame" x="16" y="16" width="288" height="33"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vkp-Ub-mAm">
+                                <rect key="frame" x="8" y="8" width="272" height="17"/>
+                                <viewLayoutGuide key="safeArea" id="PYZ-yO-YUy"/>
+                                <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="vkp-Ub-mAm" secondAttribute="bottom" constant="8" id="kfg-St-Z7h"/>
+                            <constraint firstItem="vkp-Ub-mAm" firstAttribute="top" secondItem="KBP-OM-21O" secondAttribute="top" constant="8" id="ljO-9d-kXO"/>
+                            <constraint firstItem="vkp-Ub-mAm" firstAttribute="leading" secondItem="KBP-OM-21O" secondAttribute="leading" constant="8" id="qMR-N9-iGi"/>
+                            <constraint firstAttribute="trailing" secondItem="vkp-Ub-mAm" secondAttribute="trailing" constant="8" id="rDp-x2-FFL"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tracking No." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxI-WZ-roR">
+                        <rect key="frame" x="16" y="78.5" width="288" height="17"/>
+                        <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vms-wM-sPi">
+                        <rect key="frame" x="16" y="104.5" width="288" height="17"/>
+                        <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="a6B-cP-IzU">
+                        <rect key="frame" x="16" y="65" width="288" height="0.0"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="KBP-OM-21O" firstAttribute="bottom" secondItem="tid-JI-Sjt" secondAttribute="top" constant="-8" id="4Iu-pv-DEt"/>
+                    <constraint firstAttribute="trailing" secondItem="KBP-OM-21O" secondAttribute="trailing" constant="16" id="5DJ-Wr-QHc"/>
+                    <constraint firstItem="fxI-WZ-roR" firstAttribute="trailing" secondItem="a6B-cP-IzU" secondAttribute="trailing" id="5lW-Ui-a6O"/>
+                    <constraint firstItem="fxI-WZ-roR" firstAttribute="top" secondItem="a6B-cP-IzU" secondAttribute="bottom" constant="8" id="9fb-eh-F1T"/>
+                    <constraint firstItem="fxI-WZ-roR" firstAttribute="leading" secondItem="a6B-cP-IzU" secondAttribute="leading" id="BKU-Re-slE"/>
+                    <constraint firstItem="KBP-OM-21O" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="D6L-Ej-745"/>
+                    <constraint firstItem="Vms-wM-sPi" firstAttribute="top" secondItem="fxI-WZ-roR" secondAttribute="bottom" constant="9" id="Esh-Bi-Fkq"/>
+                    <constraint firstAttribute="bottom" secondItem="Vms-wM-sPi" secondAttribute="bottom" constant="8" id="GJQ-0V-hhs"/>
+                    <constraint firstAttribute="trailing" secondItem="tid-JI-Sjt" secondAttribute="trailing" constant="16" id="KW5-BR-8qE"/>
+                    <constraint firstItem="Vms-wM-sPi" firstAttribute="trailing" secondItem="fxI-WZ-roR" secondAttribute="trailing" id="Nd0-fb-jCe"/>
+                    <constraint firstItem="Vms-wM-sPi" firstAttribute="leading" secondItem="fxI-WZ-roR" secondAttribute="leading" id="bf5-Lg-K2I"/>
+                    <constraint firstItem="KBP-OM-21O" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="cqq-YK-Cte"/>
+                    <constraint firstItem="a6B-cP-IzU" firstAttribute="leading" secondItem="tid-JI-Sjt" secondAttribute="leading" id="ohB-6U-OPa"/>
+                    <constraint firstItem="a6B-cP-IzU" firstAttribute="trailing" secondItem="tid-JI-Sjt" secondAttribute="trailing" id="qTG-hs-kyb"/>
+                    <constraint firstItem="a6B-cP-IzU" firstAttribute="top" secondItem="tid-JI-Sjt" secondAttribute="bottom" constant="8" id="rHK-0q-znI"/>
+                    <constraint firstItem="tid-JI-Sjt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="tcW-zh-6TK"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="courierContainer" destination="a6B-cP-IzU" id="u6N-aY-5Tc"/>
+                <outlet property="merchantNameLabel" destination="vkp-Ub-mAm" id="8S5-1R-kzf"/>
+                <outlet property="productItemContainer" destination="tid-JI-Sjt" id="C5j-Wd-3xg"/>
+                <outlet property="trackingNameLabel" destination="Vms-wM-sPi" id="Qt3-wv-88k"/>
+            </connections>
+            <point key="canvasLocation" x="34" y="97"/>
+        </tableViewCell>
+    </objects>
+</document>

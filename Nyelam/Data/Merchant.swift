@@ -19,6 +19,7 @@ public class Merchant: NSObject, NSCoding, Parseable {
     private let KEY_ADDRESS = "address"
     private let KEY_TOTAL_WEIGHT = "total_weight"
     private let KEY_PRODUCTS = "products"
+    private let KEY_DELIVERY_SERVICE = "delivery_service"
     
     var id: String?
     var merchantName: String?
@@ -30,6 +31,7 @@ public class Merchant: NSObject, NSCoding, Parseable {
     var address: String?
     var totalWeight: Double = 0.0
     var products: [CartProduct]?
+    var deliveryService: DeliveryService?
     
     public convenience required init?(coder aDecoder: NSCoder) {
         guard let json = aDecoder.decodeObject(forKey: "json") as? [String: Any] else {
@@ -81,6 +83,17 @@ public class Merchant: NSObject, NSCoding, Parseable {
                 print(error)
             }
         }
+        if let deliveryServiceJson = json[KEY_DELIVERY_SERVICE] as? [String: Any] {
+            self.deliveryService = DeliveryService(json: deliveryServiceJson)
+        } else if let deliveryServiceString = json[KEY_DELIVERY_SERVICE] as? String {
+            do {
+                let data = deliveryServiceString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let deliveryServiceJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                self.deliveryService = DeliveryService(json: deliveryServiceJson)
+            } catch {
+                print(error)
+            }
+        }
     }
     
     func serialized() -> [String : Any] {
@@ -116,6 +129,9 @@ public class Merchant: NSObject, NSCoding, Parseable {
                 array.append(product.serialized())
             }
             json[KEY_PRODUCTS] = array
+        }
+        if let deliverySerivce = self.deliveryService {
+            json[KEY_DELIVERY_SERVICE] = deliveryService?.serialized()
         }
         return json
     }

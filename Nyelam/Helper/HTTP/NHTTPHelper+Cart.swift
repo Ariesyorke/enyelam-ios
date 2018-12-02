@@ -24,10 +24,26 @@ extension NHTTPHelper {
             }
         })
     }
+    static func httpChangeCartQuantityRequest(productCartId: String,
+                                              qty: String,
+                                              complete: @escaping (NHTTPResponse<CartReturn>)->()) {
+        self.basicAuthRequest(URLString: HOST_URL + API_PATH_DO_SHOP_CHANGE_QUANTITY, parameters: ["product_cart_id": productCartId, "qty": qty], headers: nil, complete: {status, data, error in
+            if let error = error {
+                complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
+                return
+            }
+            if let data = data, let json = data as? [String: Any], let _ = json["cart"] {
+                let cartReturns = CartReturn(json: json)
+                complete(NHTTPResponse(resultStatus: true, data: cartReturns, error: nil))
+            } else {
+                complete(NHTTPResponse(resultStatus: true, data: nil, error: nil))
+            }
+        })
+    }
     static func httpAddToCartRequest(productId: String,
                                      qty: Int,
-                          variations: [String]?,
-                          complete: @escaping (NHTTPResponse<CartReturn>)->()) {
+                                    variations: [String]?,
+                                    complete: @escaping (NHTTPResponse<CartReturn>)->()) {
         var parameters: [String: Any] = ["product_id": productId, "qty": String(qty)]
         if let variations = variations, !variations.isEmpty {
             parameters["variations"] = variations

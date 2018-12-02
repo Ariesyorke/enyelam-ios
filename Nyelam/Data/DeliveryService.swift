@@ -12,13 +12,19 @@ class DeliveryService: Parseable {
     private let KEY_ID = "id"
     private let KEY_NAME = "name"
     private let KEY_PRICE = "price"
-    
+    private let KEY_TRACKING_ID = "tracking_id"
     var id: String?
     var name: String?
     var price: Double = 0
+    var trackingId: String?
+    
+    init(json: [String: Any]) {
+        self.parse(json: json)
+    }
     func parse(json: [String : Any]) {
         self.id = json[KEY_ID] as? String
         self.name = json[KEY_NAME] as? String
+        self.trackingId = json[KEY_TRACKING_ID] as? String
         if let price = json[KEY_PRICE] as? Double {
             self.price = price
         } else if let price = json[KEY_PRICE] as? String {
@@ -35,6 +41,9 @@ class DeliveryService: Parseable {
         }
         if let name = self.name {
             json[KEY_NAME] = name
+        }
+        if let trackingId = self.trackingId {
+            json[KEY_TRACKING_ID] = trackingId
         }
         json[KEY_PRICE] = price
         return json

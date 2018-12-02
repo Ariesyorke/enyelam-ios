@@ -27,7 +27,7 @@ class DoShopProductListController: UIViewController {
         self.refreshControl.backgroundColor = UIColor.clear
         self.collectionView.addSubview(self.refreshControl)
         self.collectionView.addInfiniteScroll(handler: {scrollView in
-            
+            self.tryLoadProductList(filter: self.filter)
         })
         
         let categoryLabelH = CGFloat(14)
@@ -64,6 +64,7 @@ class DoShopProductListController: UIViewController {
     fileprivate func tryLoadProductList(filter: DoShopFilter) {
         NHTTPHelper.httpGetProductList(page: self.page, keyword: filter.keyword, categoryId: filter.categoryId, priceMin: filter.priceMin, priceMax: filter.priceMax, sortBy: filter.sortBy, merchantId: filter.merchantId, complete: {response in
             self.refreshControl.endRefreshing()
+            self.collectionView.finishInfiniteScroll()
             if let error = response.error {
                 if error.isKind(of: NotConnectedInternetError.self) {
                     NHelper.handleConnectionError(completion: {

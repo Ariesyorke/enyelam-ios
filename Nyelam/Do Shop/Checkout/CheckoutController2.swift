@@ -131,12 +131,14 @@ class CheckoutController2: BaseViewController {
             UIAlertController.handleErrorMessage(viewController: self, error: "Make sure you complete your data including shipping address, billing address, courier", completion: {})
             return
         }
-        if let order = self.order {
-            
-        } else if let cartReturn = self.cartReturn {
-            let deliveryMapping = self.formatPostDeliveryOrder(merchants: self.cartReturn!.cart!.merchants!, couriers: self.pickedCouriers, courierTypes: self.pickedCourierTypes)
-            self.trySubmitOrder(shippingAddressId: self.shippingAddress!.addressId!, billingAddressId: self.billingAddress!.addressId!, paymentMethodId: String(self.paymentMethodType), cartToken: self.cartReturn!.cartToken!, deliveryServiceHasmap: deliveryMapping, voucher: self.cartReturn!.cart!.voucher)
-        }
+        UIAlertController.showAlertWithMultipleChoices(title: "Are you sure want to checkout?", message: "You cannot change your courier and address after checkout!", viewController: self, buttons: [UIAlertAction(title: "Yes", style: .default, handler: {action in
+            if let order = self.order {
+                self.tryResubmitOrder(orderId: order.orderId!, paymentMethodId: String(self.paymentMethodType))
+            } else if let cartReturn = self.cartReturn {
+                let deliveryMapping = self.formatPostDeliveryOrder(merchants: self.cartReturn!.cart!.merchants!, couriers: self.pickedCouriers, courierTypes: self.pickedCourierTypes)
+                self.trySubmitOrder(shippingAddressId: self.shippingAddress!.addressId!, billingAddressId: self.billingAddress!.addressId!, paymentMethodId: String(self.paymentMethodType), cartToken: self.cartReturn!.cartToken!, deliveryServiceHasmap: deliveryMapping, voucher: self.cartReturn!.cart!.voucher)
+            }
+        }),UIAlertAction(title: "No", style: .cancel, handler: nil)])
     }
     
     fileprivate func formatPostDeliveryOrder(merchants: [Merchant], couriers: [Courier], courierTypes: [CourierType]) -> [String: String] {
@@ -158,6 +160,29 @@ class CheckoutController2: BaseViewController {
         return deliveryMapping
     }
     
+    fileprivate func tryResubmitOrder(orderId: String, paymentMethodId: String) {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        NHTTPHelper.httpDoShopResubmitOrder(paymentMethodId: paymentMethodId, orderId: orderId, complete: {response in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            if let error = response.error {
+                if error.isKind(of: NotConnectedInternetError.self) {
+                    NHelper.handleConnectionError(completion: {
+                        self.tryResubmitOrder(orderId: orderId, paymentMethodId: paymentMethodId)
+                    })
+                } else if error.isKind(of: StatusFailedError.self) {
+                    UIAlertController.handleErrorMessage(viewController: self, error: error, completion: { _ in
+                        let err = error as! StatusFailedError
+                    })
+                }
+                return
+            }
+            if let data = response.data {
+                self.order = data
+                self.handlePaymentMethodType(order: data, paymentType: paymentMethodId)
+            }
+
+        })
+    }
     fileprivate func trySubmitOrder(shippingAddressId: String, billingAddressId: String, paymentMethodId: String, cartToken: String, deliveryServiceHasmap: [String: String], voucher: Voucher?) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
         NHTTPHelper.httpDoShopSubmitOrderRequest(paymentMethodId: paymentMethodId, cartToken: cartToken, billingAddressId: billingAddressId, shippingAddressId: shippingAddressId, deliveryServiceMapping: deliveryServiceHasmap, voucherCode: voucher?.code, complete: {response in
@@ -258,6 +283,7 @@ class CheckoutController2: BaseViewController {
     
     fileprivate func tryChangePayment(paymentType: Int) {
         self.priceLabel.text = "Calculating"
+        self.grandTotal = -1.0
         self.payNowButton.isEnabled = false
         self.payNowButton.backgroundColor = UIColor.darkGray
         var id: String = ""
@@ -274,24 +300,27 @@ class CheckoutController2: BaseViewController {
         if let cartReturn = self.cartReturn, let cart = cartReturn.cart, let voucher = cart.voucher, let code = voucher.code {
             voucherCode = code
         }
-        
-//        NHTTPHelper.changePaymentMethod(cartToken: id, paymentType: paymentType, voucherCode: voucherCode, complete: {response in
-//            if let error = response.error {
-//                if error.isKind(of: NotConnectedInternetError.self) {
-//                    NHelper.handleConnectionError(completion: {
-//                        self.tryChangePayment(paymentType: paymentType)
-//                    })
-//                }
-//                return
-//            }
-//            self.payNowButton.backgroundColor = UIColor.blueActive
-//            self.payNowButton.isEnabled = true
-//            if let data = response.data {
-//                self.cartReturn = data
-//                self.isLoadAdditionalFee = false
-//                self.calculateGrandTotal()
-//            }
-//        })
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        NHTTPHelper.httpChangePaymentMethodFee(paymentMethodId: String(paymentType), orderId: id, voucherCode:voucherCode, complete: {response in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            if let error = response.error {
+                if error.isKind(of: NotConnectedInternetError.self) {
+                    NHelper.handleConnectionError(completion: {
+                        self.tryChangePayment(paymentType: paymentType)
+                    })
+                }
+                return
+            }
+            if let data = response.data {
+                self.cartReturn = data
+                if let _ = self.order {
+                    self.order!.cart!.additionals = data.cart!.additionals
+                    self.order!.additionals = data.additionals!
+                    self.calculateGrandTotal()
+                    self.tableView.reloadSections(IndexSet(integer: 4), with: .automatic)
+                }
+            }
+        })
     }
     /*
     // MARK: - Navigation
@@ -362,6 +391,10 @@ extension CheckoutController2: UITableViewDelegate, UITableViewDataSource {
                 }
             }
             cell.onChangeAddress = {row in
+                if self.order != nil {
+                    UIAlertController.handleErrorMessage(viewController: self, error: "You cannot change address after checkout!", completion: {})
+                    return
+                }
                 let _ = AddressListController.push(on: self.navigationController!, type: row == 0 ? "billing" : "shipping", completion: {address, sameasbilling in
                     if row == 0 {
                         self.billingAddress = address
@@ -396,6 +429,10 @@ extension CheckoutController2: UITableViewDelegate, UITableViewDataSource {
                     UIAlertController.handleErrorMessage(viewController: self, error: "Please pick shipping address!", completion: {})
                     return
                 }
+                if self.order != nil {
+                    UIAlertController.handleErrorMessage(viewController: self, error: "You cannot change courier after checkout!", completion: {})
+                    return
+                }
                 var courier: Courier? = nil
                 if !self.pickedCouriers.isEmpty && row <= self.pickedCouriers.count - 1 && !self.pickedCourierTypes.isEmpty && row <= self.pickedCourierTypes.count - 1 {
                     courier = self.pickedCouriers[row]
@@ -423,7 +460,7 @@ extension CheckoutController2: UITableViewDelegate, UITableViewDataSource {
             cell.onChangePaymentType = {paymentType in
                 self.paymentMethodType = paymentType
                 self.tableView.reloadRows(at: [IndexPath(item: 0, section: 3),  IndexPath(item: 0, section: 4)], with: .automatic)
-//                self.tryChangePayment(paymentType: self.paymentMethodType)
+                self.tryChangePayment(paymentType: self.paymentMethodType)
             }
             cell.initPayment(paymentType: self.paymentMethodType)
             return cell

@@ -756,6 +756,33 @@ class NHTTPHelper {
         }
     }
     
+    static var API_PATH_DO_SHOP_RESUBMIT_ORDER: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "doshop/resubmit_order"
+        default:
+            return "api/doshop/resubmit_order"
+        }
+    }
+    
+    static var API_PATH_DO_SHOP_CHANGE_QUANTITY: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "doshop/cart_edit/"
+        default:
+            return "api/doshop/cart_edit/"
+        }
+    }
+    
+    static var API_PATH_DO_SHOP_PAYMENT_METHOD_FEE: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "doshop/payment_fee"
+        default:
+            return "api/doshop/payment_fee"
+        }
+    }
+    
     internal static func basicRajaOngkirRequest(URLString: URLConvertible,
                                                 method: HTTPMethod = HTTPMethod.get,
                                                 parameters: [String: Any]? = nil,

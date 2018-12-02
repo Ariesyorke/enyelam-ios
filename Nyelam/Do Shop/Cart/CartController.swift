@@ -166,7 +166,7 @@ extension CartController: UITableViewDelegate, UITableViewDataSource {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCartCell", for: indexPath) as! ProductCartCell
                     cell.initData(product: merchants[index].products![indexPath.row])
                     cell.onChangeQuantity = {qty in
-                        self.changeQuantity(quantity: qty)
+                        self.changeQuantity(quantity: qty, productCartId: merchants[index].products![indexPath.row].productCartId!)
                     }
                     cell.onDeleteButton = {productCartId in
                         UIAlertController.showAlertWithMultipleChoices(title: "Are you sure want to delete this product?", message: nil, viewController: self, buttons: [UIAlertAction(title: "Yes", style: .default, handler: {action in
@@ -244,7 +244,7 @@ extension CartController: UITableViewDelegate, UITableViewDataSource {
             }
         })
     }
-    fileprivate func changeQuantity(quantity: Int) {
+    fileprivate func changeQuantity(quantity: Int, productCartId: String) {
         var quantities: [String] = []
         for var i in 0..<31 {
             quantities.append(String(i+1))
@@ -254,8 +254,33 @@ extension CartController: UITableViewDelegate, UITableViewDataSource {
         }, cancel: {_ in return
         }, origin: self.view)
         actionSheet!.show()
-
     }
+    
+    fileprivate func tryChangeCart(productCartId: String, quantity: Int) {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        NHTTPHelper.httpChangeCartQuantityRequest(productCartId: productCartId, qty: String(quantity), complete: {response in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            if let error = response.error {
+                if error.isKind(of: NotConnectedInternetError.self) {
+                    NHelper.handleConnectionError(completion: {
+                        self.tryLoadCartList()
+                    })
+                } else if error.isKind(of: StatusFailedError.self) {
+                    UIAlertController.handleErrorMessage(viewController: self, error: error, completion: { _ in
+                        let err = error as! StatusFailedError
+                    })
+                }
+                return
+            }
+            if let data = response.data {
+                self.cartReturn = data
+            } else {
+                self.tableView.reloadData()
+            }
+        })
+    }
+    
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         var section = 0
         if let cartReturn = self.cartReturn,

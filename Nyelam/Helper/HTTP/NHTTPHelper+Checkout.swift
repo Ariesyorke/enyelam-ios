@@ -10,6 +10,65 @@ import Foundation
 import CoreData
 
 extension NHTTPHelper {
+    static func httpChangePaymentMethodFee(paymentMethodId: String,
+                                           orderId: String,
+                                           voucherCode: String?,
+                                           complete: @escaping(NHTTPResponse<CartReturn>) -> ()) {
+        var param: [String: Any] = ["payment_method_id": paymentMethodId, "cart_token": orderId]
+        if let voucherCode = voucherCode {
+            param["voucher_code"] = voucherCode
+        }
+        self.basicAuthRequest(URLString: HOST_URL + API_PATH_DO_SHOP_PAYMENT_METHOD_FEE, parameters: param, headers: nil, complete: {status, data, error in
+            if let error = error {
+                complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
+                return
+            }
+            if let data = data, let json = data as? [String: Any], let _ = json["cart"] {
+                let cartReturns = CartReturn(json: json)
+                complete(NHTTPResponse(resultStatus: true, data: cartReturns, error: nil))
+            } else {
+                complete(NHTTPResponse(resultStatus: true, data: nil, error: nil))
+            }
+        })
+    }
+    
+    static func httpDoShopResubmitOrder(paymentMethodId: String,
+                                  orderId: String,
+                                  complete: @escaping (NHTTPResponse<NOrder>) -> ()) {
+        self.basicAuthRequest(URLString: HOST_URL + API_PATH_DO_SHOP_RESUBMIT_ORDER, parameters: ["order_id": orderId, "payment_method_id": paymentMethodId], headers: nil, complete: {status, data, error in
+            if let error = error {
+                complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
+                return
+            }
+            if let data = data, let json = data as? [String: Any] {
+                var order: NOrder? = nil
+                if let orderJson = json["order"] as? [String: Any] {
+                    if let orderId = orderJson["order_id"] as? String {
+                        order = NOrder.getOrder(using: orderId)
+                    }
+                    if order == nil {
+                        order = NSEntityDescription.insertNewObject(forEntityName: "NOrder", into: AppDelegate.sharedManagedContext) as! NOrder
+                    }
+                    order!.parse(json: orderJson)
+                } else if let orderString = json["order"] as? String {
+                    do {
+                        let data = orderString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                        let orderJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                        if let orderId = orderJson["order_id"] as? String {
+                            order = NOrder.getOrder(using: orderId)
+                        }
+                        if order == nil {
+                            order = NSEntityDescription.insertNewObject(forEntityName: "NOrder", into: AppDelegate.sharedManagedContext) as! NOrder
+                        }
+                        order!.parse(json: orderJson)
+                    } catch {
+                        print(error)
+                    }
+                }
+                complete(NHTTPResponse(resultStatus: true, data: order, error: nil))
+            }
+        })
+    }
     static func httpDoShopSubmitOrderRequest(paymentMethodId: String,
                                        cartToken: String,
                                        billingAddressId: String,
