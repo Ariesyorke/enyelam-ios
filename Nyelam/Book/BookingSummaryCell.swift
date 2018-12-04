@@ -89,7 +89,7 @@ class BookingSummaryCell: NTableViewCell {
             for additional in additionals {
                 let additionalView = NAdditionalView(frame: CGRect.zero)
                 additionalView.translatesAutoresizingMaskIntoConstraints = false
-                additionalView.initData(title: additional.title!, price: additional.value!)
+                additionalView.initData(title: additional.title!, price: additional.value)
 //                additionalView.addConstraint(NSLayoutConstraint(item: additionalView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 54))
                 self.detailContainer.addSubview(additionalView)
                 self.detailContainer.addConstraints([

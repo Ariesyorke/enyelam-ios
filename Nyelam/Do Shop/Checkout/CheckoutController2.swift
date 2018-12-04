@@ -108,7 +108,7 @@ class CheckoutController2: BaseViewController {
     }
     
     fileprivate func calculateGrandTotal() {
-        if let cartReturn = self.cartReturn, let cart = cartReturn.cart {
+        if let cartReturn = self.cartReturn, let cart = cartReturn.cart, self.shippingAddress != nil && self.billingAddress != nil {
             self.grandTotal = 0
             self.grandTotal += cart.total
             if !self.pickedCourierTypes.isEmpty, self.pickedCourierTypes.count == cart.merchants!.count {
@@ -120,6 +120,11 @@ class CheckoutController2: BaseViewController {
                 self.priceLabel.text = self.grandTotal.toCurrencyFormatString(currency: "Rp")
                 self.payNowButton.isEnabled = true
                 self.payNowButton.backgroundColor = UIColor.primary
+            }
+            if let additionals = cartReturn.additionals, !additionals.isEmpty {
+                for additional in additionals {
+                    self.grandTotal += additional.value
+                }
             }
         } else {
             self.grandTotal = -1.0
@@ -153,12 +158,13 @@ class CheckoutController2: BaseViewController {
             }
             
             let key = "delivery_service[\(merchant.id!)]"
-            let value = "\(courierType.service!):\(String(price)):\(courier.code!)"
+            let value = "\(courier.code!.uppercased()) \(courierType.service!.uppercased()):\(String(price))"
             deliveryMapping[key] = value
             i+=1
         }
         return deliveryMapping
     }
+
     
     fileprivate func tryResubmitOrder(orderId: String, paymentMethodId: String) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
@@ -180,7 +186,6 @@ class CheckoutController2: BaseViewController {
                 self.order = data
                 self.handlePaymentMethodType(order: data, paymentType: paymentMethodId)
             }
-
         })
     }
     fileprivate func trySubmitOrder(shippingAddressId: String, billingAddressId: String, paymentMethodId: String, cartToken: String, deliveryServiceHasmap: [String: String], voucher: Voucher?) {
@@ -213,7 +218,7 @@ class CheckoutController2: BaseViewController {
             self.payUsingPaypal(order: order)
         } else {
             UIAlertController.handlePopupMessage(viewController: self, title: "Order Success!", actionButtonTitle: "OK", completion: {
-//                _ = BookingDetailController.push(on: self.navigationController!, bookingId: orderReturn.summary!.id!, type: "1", isComeFromOrder: true)
+                _ = OrderDetailController.push(on: self.navigationController!, orderId: self.order!.orderId!, isComeFromOrder: true)
             })
         }
     }
@@ -260,7 +265,7 @@ class CheckoutController2: BaseViewController {
 
         if let additionals = additionals, !additionals.isEmpty {
             for additional in additionals {
-                itemDetails.append(MidtransItemDetail(itemID: String(itemID), name: additional.title!, price: NSNumber(value: additional.value!), quantity: 1))
+                itemDetails.append(MidtransItemDetail(itemID: String(itemID), name: additional.title!, price: NSNumber(value: additional.value), quantity: 1))
                 itemID -= 1
             }
         }
@@ -287,6 +292,7 @@ class CheckoutController2: BaseViewController {
         self.payNowButton.isEnabled = false
         self.payNowButton.backgroundColor = UIColor.darkGray
         var id: String = ""
+        
         if let order = self.order {
             id = order.orderId!
         } else if let cartReturn = self.cartReturn {
@@ -300,6 +306,7 @@ class CheckoutController2: BaseViewController {
         if let cartReturn = self.cartReturn, let cart = cartReturn.cart, let voucher = cart.voucher, let code = voucher.code {
             voucherCode = code
         }
+        
         MBProgressHUD.showAdded(to: self.view, animated: true)
         NHTTPHelper.httpChangePaymentMethodFee(paymentMethodId: String(paymentType), orderId: id, voucherCode:voucherCode, complete: {response in
             MBProgressHUD.hide(for: self.view, animated: true)
@@ -316,9 +323,9 @@ class CheckoutController2: BaseViewController {
                 if let _ = self.order {
                     self.order!.cart!.additionals = data.cart!.additionals
                     self.order!.additionals = data.additionals!
-                    self.calculateGrandTotal()
-                    self.tableView.reloadSections(IndexSet(integer: 4), with: .automatic)
                 }
+                self.calculateGrandTotal()
+                self.tableView.reloadRows(at: [IndexPath(item: 0, section: 3),  IndexPath(item: 0, section: 4)], with: .automatic)
             }
         })
     }
@@ -414,6 +421,7 @@ extension CheckoutController2: UITableViewDelegate, UITableViewDataSource {
                     self.tableView.reloadRows(at: [IndexPath(row: 0, col: 1), IndexPath(row: 1, col: 1)], with: .automatic)
                     self.tableView.reloadSections(IndexSet(integer: 2), with: .automatic)
                     self.tableView.reloadSections(IndexSet(integer: 4), with: .automatic)
+
                 })
             }
             cell.row = indexPath.row
@@ -459,7 +467,6 @@ extension CheckoutController2: UITableViewDelegate, UITableViewDataSource {
             cell.paymentType = self.paymentMethodType
             cell.onChangePaymentType = {paymentType in
                 self.paymentMethodType = paymentType
-                self.tableView.reloadRows(at: [IndexPath(item: 0, section: 3),  IndexPath(item: 0, section: 4)], with: .automatic)
                 self.tryChangePayment(paymentType: self.paymentMethodType)
             }
             cell.initPayment(paymentType: self.paymentMethodType)
@@ -510,7 +517,7 @@ extension CheckoutController2: PayPalPaymentDelegate, PayPalFuturePaymentDelegat
                 MBProgressHUD.showAdded(to: self.view, animated: true)
                 NHTTPHelper.httpVeritransNotification(parameters: transactionResult.serialized(), complete: {response in
                     MBProgressHUD.hide(for: self.view, animated: true)
-
+                    _ = OrderDetailController.push(on: self.navigationController!, orderId: self.order!.orderId!, isComeFromOrder: true)
                 })
             })
         })
@@ -538,7 +545,7 @@ extension CheckoutController2: PayPalPaymentDelegate, PayPalFuturePaymentDelegat
     func payPalPaymentViewController(_ paymentViewController: PayPalPaymentViewController, didComplete completedPayment: PayPalPayment) {
         paymentViewController.dismiss(animated: true, completion: {
             UIAlertController.handlePopupMessage(viewController: self, title: "Order Success!", actionButtonTitle: "OK", completion: {
-
+                _ = OrderDetailController.push(on: self.navigationController!, orderId: self.order!.orderId!, isComeFromOrder: true)
             })
         })
     }

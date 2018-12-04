@@ -37,7 +37,7 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qdw-1p-tsx" userLabel="Right Line">
                                 <rect key="frame" x="181.5" y="35" width="32" height="5"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.66666666669999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="5" id="YH5-O8-TrT"/>
                                 </constraints>
@@ -74,7 +74,7 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.66666666669999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="a0v-ud-10X" firstAttribute="centerX" secondItem="Adj-4Z-ikx" secondAttribute="centerX" id="SAK-vq-tar"/>
                                     <constraint firstItem="a0v-ud-10X" firstAttribute="centerY" secondItem="Adj-4Z-ikx" secondAttribute="centerY" id="mjx-et-e6C"/>
@@ -94,7 +94,7 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.66666666669999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="aXV-SQ-DGk" firstAttribute="centerY" secondItem="1gQ-u5-3lf" secondAttribute="centerY" id="454-7U-ktj"/>
                                     <constraint firstItem="aXV-SQ-DGk" firstAttribute="centerX" secondItem="1gQ-u5-3lf" secondAttribute="centerX" id="J9C-fV-WO4"/>

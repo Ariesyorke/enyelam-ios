@@ -104,7 +104,7 @@ class DoShopProductDetailController: BaseViewController {
                 }
             }
 
-            if let datas = response.data, !datas.isEmpty {
+            if let data = response.data, let datas = data.products, !datas.isEmpty {
                 self.relatedProducts = datas
             }
             self.tableView.reloadData()

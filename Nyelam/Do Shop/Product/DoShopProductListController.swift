@@ -11,15 +11,23 @@ import CollectionKit
 import UIScrollView_InfiniteScroll
 import ActionSheetPicker_3_0
 
-class DoShopProductListController: UIViewController {
+class DoShopProductListController: BaseViewController {
     @IBOutlet weak var collectionView: CollectionView!
     fileprivate var refreshControl: UIRefreshControl = UIRefreshControl()
     fileprivate var filter: DoShopFilter = DoShopFilter()
     fileprivate var page: Int = 1
     fileprivate var productDataSource: ArrayDataSource<NProduct> = ArrayDataSource()
     fileprivate var productGridSize: CGSize!
+    fileprivate var nextPage: Int = -1
+    fileprivate var searchController : UISearchController?
 
-    static func push(on controller: UINavigationController, filter: DoShopFilter) {}
+    static func push(on controller: UINavigationController, filter: DoShopFilter) -> DoShopProductListController {
+        let vc = DoShopProductListController(nibName: "DoShopProductListController", bundle: nil)
+        vc.filter = filter
+        controller.pushViewController(vc, animated: true)
+        return vc
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.refreshControl = UIRefreshControl()
@@ -27,7 +35,11 @@ class DoShopProductListController: UIViewController {
         self.refreshControl.backgroundColor = UIColor.clear
         self.collectionView.addSubview(self.refreshControl)
         self.collectionView.addInfiniteScroll(handler: {scrollView in
-            self.tryLoadProductList(filter: self.filter)
+            if self.nextPage > 0 {
+                self.tryLoadProductList(filter: self.filter)
+            } else {
+                self.collectionView.finishInfiniteScroll()
+            }
         })
         
         let categoryLabelH = CGFloat(14)
@@ -42,8 +54,23 @@ class DoShopProductListController: UIViewController {
         
         self.productGridSize = CGSize(width: columnWidth, height: imageH + contentH + (40))
         self.initCollectionView()
-
+        if self.filter.keyword != nil && self.filter.keyword!.isEmpty {
+            
+        }
+        
         // Do any additional setup after loading the view.
+    }
+    
+    fileprivate func setupSearch(keyword: String) {
+        self.searchController = UISearchController(searchResultsController:  nil)
+        self.searchController!.searchResultsUpdater = self
+        self.searchController!.delegate = self
+        self.searchController!.searchBar.placeholder = "Enter keywords..."
+        self.searchController!.searchBar.delegate = self
+        self.searchController!.hidesNavigationBarDuringPresentation = false
+        self.searchController!.dimsBackgroundDuringPresentation = true
+        self.navigationItem.titleView = self.searchController!.searchBar
+        self.definesPresentationContext = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,9 +78,19 @@ class DoShopProductListController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if self.firstTime {
+            self.firstTime = false
+            self.refreshControl.beginRefreshing()
+            self.onRefresh(self.refreshControl)
+        }
+    }
+    
 
     @objc func onRefresh(_ refreshControl: UIRefreshControl) {
         self.page = 1
+        self.nextPage = -1
         self.productDataSource.data = []
         self.collectionView.reloadData()
         self.tryLoadProductList(filter: filter)
@@ -76,10 +113,13 @@ class DoShopProductListController: UIViewController {
                     })
                 }
             }
-            if let datas = response.data, !datas.isEmpty {
+            if let data = response.data {
                 self.page += 1
-                self.productDataSource.data.append(contentsOf: datas)
-                self.collectionView.reloadData()
+                self.nextPage = data.next
+                if let datas = data.products, !datas.isEmpty {
+                    self.productDataSource.data.append(contentsOf: datas)
+                    self.collectionView.reloadData()
+                }
             }
         })
     }
@@ -116,6 +156,25 @@ class DoShopProductListController: UIViewController {
     */
 
 }
+
+extension DoShopProductListController: UISearchControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate {
+    func updateSearchResults(for searchController: UISearchController) {
+        
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.view.endEditing(true)
+        let keyword = searchBar.text!
+        if !keyword.isEmpty {
+            self.filter.keyword = keyword
+            self.refreshControl.beginRefreshing()
+            self.onRefresh(self.refreshControl)
+        } else {
+            UIAlertController.handleErrorMessage(viewController: self, error: "Keyword cannot be empty!", completion: {})
+        }
+        
+    }
+}
+
 
 class DoShopFilter {
     var keyword: String?

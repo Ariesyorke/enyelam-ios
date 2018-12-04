@@ -293,8 +293,6 @@ UINavigationControllerDelegate {
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-    
 }
 class PaymentProofCell: NTableViewCell {
     var onChangePhoto: ()->() = {}

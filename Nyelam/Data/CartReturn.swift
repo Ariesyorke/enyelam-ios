@@ -13,6 +13,7 @@ public class CartReturn: NSObject, NSCoding, Parseable {
     private let KEY_EXPIRY = "expiry"
     private let KEY_CART = "cart"
     private let KEY_ADDITIONAL = "additional"
+    private let KEY_ADDITIONALS = "additionals"
     private let KEY_EQUIPMENT_RENTS = "equipment_rents"
     private let KEY_PRODUCTS = "products"
     
@@ -78,6 +79,27 @@ public class CartReturn: NSObject, NSCoding, Parseable {
                 print(error)
             }
         }
+        
+        if let additionalArray = json[KEY_ADDITIONALS] as? Array<[String: Any]> {
+            self.additionals = []
+            for additionalJson in additionalArray {
+                let additional = Additional(json: additionalJson)
+                self.additionals?.append(additional)
+            }
+        } else if let additionalString = json[KEY_ADDITIONALS] as? String {
+            do {
+                let data = additionalString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let additionalArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+                self.additionals = []
+                for additionalJson in additionalArray {
+                    let additional = Additional(json: additionalJson)
+                    self.additionals!.append(additional)
+                }
+            } catch {
+                print(error)
+            }
+        }
+
         
         if let equipmentArray = json[KEY_EQUIPMENT_RENTS] as? Array<[String: Any]> {
             self.equipments = []

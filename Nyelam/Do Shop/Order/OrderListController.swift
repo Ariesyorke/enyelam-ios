@@ -14,9 +14,12 @@ class OrderListController: BaseViewController, IndicatorInfoProvider {
     private let orderStatuses: [String] = ["Pending", "Waiting for Payment", "Payment Accepted", "Payment Declined", "Order Canceled", "Order Processed", "Order Sent", "Order Closed"]
     var paymentType: Int = 1
     var page: Int = 1
+    var nextPage: Int = -1
     fileprivate var orders: [NOrder]?
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var emptyLabel: UILabel!
+    
     var refreshControl: UIRefreshControl = UIRefreshControl()
     
     static func create(paymentType: Int) -> OrderListController {
@@ -34,11 +37,16 @@ class OrderListController: BaseViewController, IndicatorInfoProvider {
         self.refreshControl.backgroundColor = UIColor.clear
         self.tableView.addSubview(self.refreshControl)
         self.tableView.addInfiniteScroll(handler: {scrollView in
-            
+            if self.nextPage > 0 {
+                self.tryLoadOrderList(paymentType: self.paymentType)
+            } else {
+                self.tableView.finishInfiniteScroll()
+            }
         })
         
         // Do any additional setup after loading the view.
     }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -49,11 +57,21 @@ class OrderListController: BaseViewController, IndicatorInfoProvider {
         return IndicatorInfo(title: self.orderStatuses[self.paymentType - 1])
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if self.firstTime {
+            self.firstTime = false
+            self.refreshControl.beginRefreshing()
+            self.onRefresh(self.refreshControl)
+        }
+    }
     @objc func onRefresh(_ refreshControl: UIRefreshControl) {
+        self.emptyLabel.isHidden = true
         self.page = 1
+        self.nextPage = -1
         self.orders = []
         self.tableView.reloadData()
-        
+        self.tryLoadOrderList(paymentType: self.paymentType)
     }
     
     fileprivate func tryLoadOrderList(paymentType: Int) {
@@ -71,17 +89,30 @@ class OrderListController: BaseViewController, IndicatorInfoProvider {
                     })
                 }
             }
-            if let datas = response.data, !datas.isEmpty {
+            if let data = response.data {
                 self.page += 1
-                if self.orders == nil {
-                    self.orders = []
+                self.nextPage = data.next
+                if let datas = data.orders, !datas.isEmpty {
+                    if self.orders == nil {
+                        self.orders = []
+                    }
+                    self.orders!.append(contentsOf: datas)
+                    self.tableView.reloadData()
                 }
-                self.orders!.append(contentsOf: datas)
-                self.tableView.reloadData()
+            }
+            if self.orders == nil || self.orders!.isEmpty {
+                self.emptyLabel.isHidden = false
             }
         })
     }
 
+    override func keyboardWillHide(animationDuration: TimeInterval) {
+        
+    }
+    
+    override func keyboardWillShow(keyboardFrame: CGRect, animationDuration: TimeInterval) {
+        
+    }
     /*
     // MARK: - Navigation
 
@@ -110,6 +141,7 @@ extension OrderListController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let order = self.orders![indexPath.row]
-        
+        let _ = OrderDetailController.push(on: self.navigationController!, orderId: order.orderId!)
     }
+    
 }

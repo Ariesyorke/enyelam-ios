@@ -19,7 +19,7 @@ class DoShopHomeController: BaseViewController {
     internal var categoryDataSource: ArrayDataSource<NProductCategory> = ArrayDataSource()
     
     internal var refreshControl: UIRefreshControl!
-    internal var sideMenuController: DoShopSideMenuNavigationController?
+    internal var sideMenuNavController: DoShopSideMenuNavigationController?
     var searchController : UISearchController?
 
     static func push(on controller: UINavigationController) -> DoShopHomeController {
@@ -121,6 +121,10 @@ class DoShopHomeController: BaseViewController {
                                                                 .inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)),
                                                             animator: nil,
                                                             tapHandler: {context in
+                                                                let filter = DoShopFilter()
+                                                                filter.categoryId = context.data.id!
+                                                                let _ = DoShopProductListController.push(on: self.navigationController!, filter: filter)
+                                                                
         })
         
         let productProvider: BasicProvider = BasicProvider(dataSource: self.productDataSource,
@@ -146,6 +150,7 @@ class DoShopHomeController: BaseViewController {
                                                             .inset(by: UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)),
                                                            animator: nil,
                                                            tapHandler: {context in
+                                                           
         })
         
         let finalProvider = ComposedProvider(sections: [categoryProvider, productHeaderProvider, productProvider])
@@ -173,9 +178,9 @@ class DoShopHomeController: BaseViewController {
     fileprivate func setupSideMenu() {
         SideMenuManager.menuPresentMode = .menuSlideIn
         SideMenuManager.menuFadeStatusBar = false
-        let sideMenuNavController: DoShopSideMenuNavigationController = DoShopSideMenuNavigationController.create()
-        sideMenuNavController.setNavigationBarHidden(true, animated: false)
-        sideMenuNavController.onSideMenuClicked = {sideMenu in
+        self.sideMenuNavController = DoShopSideMenuNavigationController.create()
+        sideMenuNavController!.setNavigationBarHidden(true, animated: false)
+        sideMenuNavController!.onSideMenuClicked = {sideMenu in
             self.openSideMenu(sideMenu: sideMenu)
         }
         SideMenuManager.menuLeftNavigationController = sideMenuNavController
@@ -185,13 +190,15 @@ class DoShopHomeController: BaseViewController {
     fileprivate func openSideMenu(sideMenu: DoShopSideMenuType) {
         switch  sideMenu {
         case .order:
-            if let authUser = NAuthReturn.authUser() {
-                let _ = OrderViewController.push(on: self.navigationController!)
-            } else {
-                self.goToAuth(completion: {
+            self.sideMenuNavController!.dismiss(animated: true, completion: {
+                if let authUser = NAuthReturn.authUser() {
                     let _ = OrderViewController.push(on: self.navigationController!)
-                })
-            }
+                } else {
+                    self.goToAuth(completion: {
+                        let _ = OrderViewController.push(on: self.navigationController!)
+                    })
+                }
+            })
             break
         default:
             self.navigationController!.dismiss(animated: true, completion: {
@@ -214,6 +221,15 @@ extension DoShopHomeController: UISearchControllerDelegate, UISearchResultsUpdat
         
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.view.endEditing(true)
+        var keyword = searchBar.text!
+        if !keyword.isEmpty {
+            let filter = DoShopFilter()
+            filter.keyword = keyword
+            let _ = DoShopProductListController.push(on: self.navigationController!, filter: filter)
+        } else {
+            UIAlertController.handleErrorMessage(viewController: self, error: "Keyword cannot be empty!", completion: {})
+        }
         
     }
 }

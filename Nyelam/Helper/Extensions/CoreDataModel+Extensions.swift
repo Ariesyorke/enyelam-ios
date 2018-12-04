@@ -1271,6 +1271,7 @@ extension NDiveService {
 extension NOrder {
     private var KEY_ORDER_ID: String { return "order_id" }
     private var KEY_STATUS: String  { return "status" }
+    private var KEY_ORDER_STATUS: String {return "order_status"}
     private var KEY_SCHEDULE: String { return "schedule" }
     private var KEY_CART: String { return "cart" }
     private var KEY_ADDITIONAL: String { return "additional" }
@@ -1312,7 +1313,11 @@ extension NOrder {
         } else if let orderId = json[KEY_ORDER_ID] as? Int {
             self.orderId = String(orderId)
         }
-        self.status = json[KEY_STATUS] as? String
+        if let status = json[KEY_STATUS] as? String {
+            self.status = status
+        } else if let status = json[KEY_ORDER_STATUS] as? String {
+            self.status = status
+        }
         if let schedule = json[KEY_SCHEDULE] as? Double {
             self.schedule = schedule
         } else if let schedule = json[KEY_SCHEDULE] as? String {
@@ -1370,6 +1375,7 @@ extension NOrder {
                 print(error)
             }
         }
+        
         if let billingAddressJson = json[KEY_BILLING_ADDRESS] as? [String: Any] {
             if let id = billingAddressJson["address_id"] as? String {
                 self.billingAddress = NAddress.getAddress(using: id)
@@ -1417,7 +1423,7 @@ extension NOrder {
                 print(error)
             }
         }
-
+        
     }
     
     func serialized() -> [String : Any] {

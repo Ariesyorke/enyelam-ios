@@ -62,7 +62,7 @@ class OrderSummaryCell: NTableViewCell {
             for additional in additionals {
                 let view = NAdditionalView()
                 view.translatesAutoresizingMaskIntoConstraints = false
-                view.initData(title: additional.title!, price: additional.value!)
+                view.initData(title: additional.title!, price: additional.value)
                 self.containerView.addSubview(view)
                 self.containerView.addConstraints([NSLayoutConstraint(item: view, attribute: .leading, relatedBy: .equal, toItem: self.containerView, attribute: .leading, multiplier: 1, constant: 0), NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: self.containerView, attribute: .trailing, multiplier: 1, constant: 0)])
                 if topView == nil {

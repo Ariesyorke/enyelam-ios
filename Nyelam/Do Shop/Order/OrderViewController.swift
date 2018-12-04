@@ -33,6 +33,7 @@ class OrderViewController: ButtonBarPagerTabStripViewController {
 
         super.viewDidLoad()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_back_button_white"), style: .plain, target: self, action: #selector(backButtonAction(_:)))
+        self.title = "Orders"
         // Do any additional setup after loading the view.
     }
 

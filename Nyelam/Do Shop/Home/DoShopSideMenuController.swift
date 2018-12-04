@@ -79,6 +79,13 @@ class DoShopSideMenuController: BaseViewController {
 }
 
 extension DoShopSideMenuController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let category = self.categories![indexPath.row]
+        let filter = DoShopFilter()
+        filter.categoryId = category.id!
+        let _ = DoShopProductListController.push(on: self.navigationController!, filter: filter)
+        
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let categories = self.categories, !categories.isEmpty {
             return categories.count

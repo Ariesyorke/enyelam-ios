@@ -420,7 +420,7 @@ extension OrderController: UITableViewDelegate, UITableViewDataSource {
 
         if let additionals = additionals, !additionals.isEmpty {
             for additional in additionals {
-                itemDetails.append(MidtransItemDetail(itemID: String(itemID), name: additional.title!, price: NSNumber(value: additional.value!), quantity: 1))
+                itemDetails.append(MidtransItemDetail(itemID: String(itemID), name: additional.title!, price: NSNumber(value: additional.value), quantity: 1))
                 itemID -= 1
             }
         }

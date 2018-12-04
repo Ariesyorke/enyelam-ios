@@ -24,7 +24,7 @@ public class Additional: NSObject, NSCoding, Parseable {
     private let KEY_VALUE = "value"
     
     var title: String?
-    var value: Double?
+    var value: Double = 0.0
     
     override init(){}
     init(json: [String: Any]) {
@@ -39,7 +39,7 @@ public class Additional: NSObject, NSCoding, Parseable {
             self.value = value
         } else if let value = json[KEY_VALUE] as? String {
             if value.isNumber {
-                self.value = Double(value)
+                self.value = Double(value)!
             }
         }
     }
@@ -50,9 +50,7 @@ public class Additional: NSObject, NSCoding, Parseable {
         if let title = self.title {
             json[KEY_TITLE] = title
         }
-        if let value = self.value {
-            json[KEY_VALUE] = value
-        }
+        json[KEY_VALUE] = value
         return json
     }
     

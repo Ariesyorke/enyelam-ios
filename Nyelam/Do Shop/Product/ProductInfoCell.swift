@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProductInfoCell: NTableViewCell, UITextFieldDelegate {
+class ProductInfoCell: NTableViewCell, UITextFieldDelegate, UIScrollViewDelegate {
     @IBOutlet weak var featuredImageScroller: UIScrollView!
     @IBOutlet weak var productNameLabel: UILabel!
     @IBOutlet weak var merchantNameLabel: UILabel!
@@ -19,6 +19,7 @@ class ProductInfoCell: NTableViewCell, UITextFieldDelegate {
     @IBOutlet weak var variationContainer: UIView!
     @IBOutlet weak var quantityTextField: UITextField!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var featuredImageView: UIImageView!
     
     var onAddToCart: () -> () = {}
     var onVariationTriggered: (Variation, NVariationView) -> () = {variation, view in }
@@ -39,6 +40,13 @@ class ProductInfoCell: NTableViewCell, UITextFieldDelegate {
     }
     
     func initData(product: NProduct, qty: Int) {
+        if let featuredImage = product.featuredImage, let url = URL(string: featuredImage) {
+            self.featuredImageView.af_setImage(withURL: url)
+            self.featuredImageView.contentMode = .scaleAspectFit
+        } else {
+            self.featuredImageView.image = UIImage(named: "image_default")
+            self.featuredImageView.contentMode = .scaleAspectFill
+        }
         self.productNameLabel.text = product.productName
         if let merchant = product.merchant {
             self.merchantNameLabel.text = merchant.merchantName
@@ -105,5 +113,7 @@ class ProductInfoCell: NTableViewCell, UITextFieldDelegate {
             self.onUpdateQuantity(Int(textField.text!)!)
         }
     }
+    
+    
     
 }

@@ -56,7 +56,7 @@ extension NHTTPHelper {
                                    priceMax: Double?,
                                    sortBy: Int?,
                                    merchantId: String?,
-                                   complete: @escaping (NHTTPResponse<[NProduct]>)->()) {
+                                   complete: @escaping (NHTTPResponse<ProductReturn>)->()) {
         var params: [String: Any] = ["page": String(page)]
         if let keyword = keyword {
             params["keyword"] = keyword
@@ -82,40 +82,74 @@ extension NHTTPHelper {
                 return
             }
             if let data = data, let json = data as? [String: Any] {
-                var products: [NProduct]? = nil
-                if let productArray = json["products"] as? Array<[String: Any]>, !productArray.isEmpty {
-                    products = []
-                    for productJson in productArray {
-                        var product: NProduct? = nil
-                        if let id = productJson["id"] as? String {
-                            product = NProduct.getProduct(using: id)
-                        }
-                        if product == nil {
-                            product = NSEntityDescription.insertNewObject(forEntityName: "NProduct", into: AppDelegate.sharedManagedContext) as! NProduct
-                        }
-                        product!.parse(json: productJson)
-                    }
-                } else if let productArrayString = json["products"] as? String {
-                    do {
-                        var product: NProduct? = nil
-                        let data = productArrayString.data(using: String.Encoding.utf8, allowLossyConversion: true)
-                        let productArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
-                        for productJson in productArray {
-                            var product: NProduct? = nil
-                            if let id = productJson["id"] as? String {
-                                product = NProduct.getProduct(using: id)
-                            }
-                            if product == nil {
-                                product = NSEntityDescription.insertNewObject(forEntityName: "NProduct", into: AppDelegate.sharedManagedContext) as! NProduct
-                            }
-                            product!.parse(json: productJson)
-                        }
-                    } catch {
-                        print(error)
-                    }
-                }
-                complete(NHTTPResponse(resultStatus: true, data: products, error: nil))
+                let productReturn: ProductReturn = ProductReturn(json: json)
+                complete(NHTTPResponse(resultStatus: true, data: productReturn, error: nil))
             }
         })
+    }
+}
+
+class ProductReturn: Parseable {
+    var next: Int = -1
+    var products: [NProduct]?
+    
+    init(json: [String: Any]) {
+        self.parse(json: json)
+    }
+    
+    func parse(json: [String : Any]) {
+        if let next = json["next"] as? Int {
+            self.next = next
+        } else if let next = json["next"] as? String {
+            if next.isNumber {
+                self.next = Int(next)!
+            }
+        }
+        if let productArray = json["products"] as? Array<[String: Any]>, !productArray.isEmpty {
+            self.products = []
+            for productJson in productArray {
+                var product: NProduct? = nil
+                if let id = productJson["id"] as? String {
+                    product = NProduct.getProduct(using: id)
+                }
+                if product == nil {
+                    product = NSEntityDescription.insertNewObject(forEntityName: "NProduct", into: AppDelegate.sharedManagedContext) as! NProduct
+                }
+                product!.parse(json: productJson)
+                self.products!.append(product!)
+            }
+        } else if let productArrayString = json["products"] as? String {
+            do {
+                var product: NProduct? = nil
+                let data = productArrayString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let productArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+                for productJson in productArray {
+                    var product: NProduct? = nil
+                    if let id = productJson["id"] as? String {
+                        product = NProduct.getProduct(using: id)
+                    }
+                    if product == nil {
+                        product = NSEntityDescription.insertNewObject(forEntityName: "NProduct", into: AppDelegate.sharedManagedContext) as! NProduct
+                    }
+                    product!.parse(json: productJson)
+                    self.products!.append(product!)
+                }
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    func serialized() -> [String : Any] {
+        var json: [String: Any] = [:]
+        json["next"] = next
+        if let products = self.products, !products.isEmpty {
+            var array: Array<[String: Any]> = []
+            for product in products {
+                array.append(product.serialized())
+            }
+            json["products"] = array
+        }
+        return json
     }
 }

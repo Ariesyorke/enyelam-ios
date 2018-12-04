@@ -28,15 +28,21 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="496"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="495.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="496"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ju-C7-4B5">
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9ju-C7-4B5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="213.5"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="9ju-C7-4B5" secondAttribute="height" multiplier="3:2" id="Dol-hT-B3M"/>
                         </constraints>
                     </scrollView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SZ0-aO-N06">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="213.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="SZ0-aO-N06" secondAttribute="height" multiplier="3:2" id="2tu-3A-ib8"/>
+                        </constraints>
+                    </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Caa-pm-1al" userLabel="General Info Container">
                         <rect key="frame" x="16" y="221.5" width="288" height="76"/>
                         <subviews>
@@ -220,8 +226,10 @@
                 <constraints>
                     <constraint firstItem="Caa-pm-1al" firstAttribute="top" secondItem="9ju-C7-4B5" secondAttribute="bottom" constant="8" id="23a-zZ-4lG"/>
                     <constraint firstAttribute="trailing" secondItem="9ju-C7-4B5" secondAttribute="trailing" id="3qA-gt-lJ0"/>
+                    <constraint firstItem="SZ0-aO-N06" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="GAB-CU-mnR"/>
                     <constraint firstAttribute="bottom" secondItem="yh3-f2-1Rh" secondAttribute="bottom" constant="8" id="HZt-41-oqE"/>
                     <constraint firstItem="9ju-C7-4B5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Jz0-D6-9Md"/>
+                    <constraint firstItem="SZ0-aO-N06" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Qa3-Wh-XvR"/>
                     <constraint firstItem="yh3-f2-1Rh" firstAttribute="trailing" secondItem="Caa-pm-1al" secondAttribute="trailing" id="T1p-UB-30w"/>
                     <constraint firstItem="yh3-f2-1Rh" firstAttribute="leading" secondItem="Caa-pm-1al" secondAttribute="leading" id="TNG-l9-4U5"/>
                     <constraint firstItem="yh3-f2-1Rh" firstAttribute="top" secondItem="ZnL-ba-hUG" secondAttribute="bottom" constant="8" id="XHc-Fn-NTE"/>
@@ -230,6 +238,7 @@
                     <constraint firstItem="ZnL-ba-hUG" firstAttribute="top" secondItem="Caa-pm-1al" secondAttribute="bottom" constant="8" id="ick-Wc-Ju3"/>
                     <constraint firstItem="ZnL-ba-hUG" firstAttribute="leading" secondItem="Caa-pm-1al" secondAttribute="leading" id="jKy-2p-6XC"/>
                     <constraint firstItem="Caa-pm-1al" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="wrA-Qk-6pX"/>
+                    <constraint firstAttribute="trailing" secondItem="SZ0-aO-N06" secondAttribute="trailing" id="x6t-2m-Xy4"/>
                     <constraint firstItem="ZnL-ba-hUG" firstAttribute="trailing" secondItem="Caa-pm-1al" secondAttribute="trailing" id="xdT-kU-SS0"/>
                 </constraints>
             </tableViewCellContentView>
@@ -237,6 +246,7 @@
             <connections>
                 <outlet property="descriptionLabel" destination="X4X-CX-AhA" id="Qzu-u7-tqc"/>
                 <outlet property="featuredImageScroller" destination="9ju-C7-4B5" id="s5V-Hr-wsM"/>
+                <outlet property="featuredImageView" destination="SZ0-aO-N06" id="50W-UT-2Aw"/>
                 <outlet property="merchantImageView" destination="q6W-5w-gpr" id="dPt-MN-eN1"/>
                 <outlet property="merchantNameLabel" destination="y8k-eX-OnF" id="Xrl-Em-bva"/>
                 <outlet property="normalPriceContainer" destination="4iT-rz-D1f" id="cCu-OO-v98"/>
