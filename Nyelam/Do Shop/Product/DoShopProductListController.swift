@@ -30,6 +30,8 @@ class DoShopProductListController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Products"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_cart"), style: .plain, target: self, action: #selector(DoShopProductListController.onCart(_:)))
         self.refreshControl = UIRefreshControl()
         self.refreshControl.addTarget(self, action: #selector(DoShopProductListController.onRefresh(_:)), for: UIControlEvents.valueChanged)
         self.refreshControl.backgroundColor = UIColor.clear
@@ -140,11 +142,30 @@ class DoShopProductListController: BaseViewController {
                                                             .inset(by: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)),
                                                            animator: nil,
                                                            tapHandler: {context in
+                                                            let _ = DoShopProductDetailController.push(on: self.navigationController!, productId: context.data.productId!)
         })
 
         self.collectionView.provider = provider
     }
 
+    @objc func onCart(_ sender: UIBarButtonItem) {
+        if let authUser = NAuthReturn.authUser() {
+            let _ = CartController.push(on: self.navigationController!)
+        } else {
+            self.goToAuth(completion: {
+                let _ = CartController.push(on: self.navigationController!)
+            })
+        }
+    }
+
+    
+    override func keyboardWillHide(animationDuration: TimeInterval) {
+    
+    }
+    
+    override func keyboardWillShow(keyboardFrame: CGRect, animationDuration: TimeInterval) {
+        
+    }
     /*
     // MARK: - Navigation
 

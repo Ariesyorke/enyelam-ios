@@ -25,6 +25,7 @@ class DoShopSideMenuController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Categories"
         self.refreshControl = UIRefreshControl()
         self.refreshControl.addTarget(self, action: #selector(DoShopSideMenuController.onRefresh(_:)), for: UIControlEvents.valueChanged)
         self.refreshControl.backgroundColor = UIColor.clear

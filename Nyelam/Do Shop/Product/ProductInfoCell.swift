@@ -19,7 +19,8 @@ class ProductInfoCell: NTableViewCell, UITextFieldDelegate, UIScrollViewDelegate
     @IBOutlet weak var variationContainer: UIView!
     @IBOutlet weak var quantityTextField: UITextField!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var featuredImageView: UIImageView!
+    @IBOutlet weak var brandNameLabel: UILabel!
+    @IBOutlet weak var brandImageView: UIImageView!
     
     var onAddToCart: () -> () = {}
     var onVariationTriggered: (Variation, NVariationView) -> () = {variation, view in }
@@ -39,21 +40,38 @@ class ProductInfoCell: NTableViewCell, UITextFieldDelegate, UIScrollViewDelegate
         self.onAddToCart()
     }
     
-    func initData(product: NProduct, qty: Int) {
-        if let featuredImage = product.featuredImage, let url = URL(string: featuredImage) {
-            self.featuredImageView.af_setImage(withURL: url)
-            self.featuredImageView.contentMode = .scaleAspectFit
-        } else {
-            self.featuredImageView.image = UIImage(named: "image_default")
-            self.featuredImageView.contentMode = .scaleAspectFill
+    func initData(product: NProduct, qty: Int, controllerView: UIView) {
+        var images: [String]? = nil
+        for subview in self.featuredImageScroller.subviews {
+            subview.removeFromSuperview()
         }
-        self.productNameLabel.text = product.productName
-        if let merchant = product.merchant {
-            self.merchantNameLabel.text = merchant.merchantName
-            if let merchantUrl = merchant.merchantLogo, let url = URL(string: merchantUrl) {
-                self.merchantImageView.af_setImage(withURL: url, placeholderImage: UIImage(named: "image_default"), filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: true, completion: nil)
+        if let imgs = product.images, !imgs.isEmpty {
+            images = []
+            images!.append(contentsOf: imgs)
+        }
+        
+        var leftView: UIView? = nil
+        if let images = images, !images.isEmpty {
+            var i = 0
+            for image in images {
+                let view = self.createView(for: image, width: controllerView.frame.width, height: (controllerView.frame.width * 2 / 3),at: i)
+                self.featuredImageScroller.addSubview(view)
+                self.featuredImageScroller.addConstraints([NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: self.featuredImageScroller, attribute: .top, multiplier: 1, constant: 0),NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: self.featuredImageScroller, attribute: .bottom, multiplier: 1, constant: 0),
+                    NSLayoutConstraint(item: view, attribute: .centerY, relatedBy: .equal, toItem: self.featuredImageScroller, attribute: .centerY, multiplier: 1, constant: 0)])
+                if leftView == nil {
+                    self.featuredImageScroller.addConstraint(NSLayoutConstraint(item: self.featuredImageScroller, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0))
+                } else {
+                    self.featuredImageScroller.addConstraint(NSLayoutConstraint(item: leftView, attribute: .trailing, relatedBy: .equal, toItem: self.featuredImageScroller, attribute: .trailing, multiplier: 1, constant: 0))
+                }
+                if i >= images.count - 1 {
+                    self.featuredImageScroller.addConstraint(NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: self.featuredImageScroller, attribute: .trailing, multiplier: 1, constant: 0))
+                }
+                leftView = view
+                i += 1
             }
         }
+        
+        self.productNameLabel.text = product.productName
         if product.normalPrice == product.specialPrice {
             self.normalPriceContainer.isHidden = true
         } else {
@@ -62,15 +80,18 @@ class ProductInfoCell: NTableViewCell, UITextFieldDelegate, UIScrollViewDelegate
         }
         self.specialPriceLabel.text = product.specialPrice.toCurrencyFormatString(currency: "Rp")
         self.quantityTextField.text = String(qty)
+        
         for subview in self.variationContainer.subviews {
             subview.removeFromSuperview()
         }
+        
         if let descript = product.productDescription, !descript.isEmpty {
             self.descriptionLabel.attributedText = NSAttributedString.htmlAttriButedText(str: descript, fontName: "FiraSans-Regular", size: 14, color: UIColor.darkGray
             )
         } else {
             self.descriptionLabel.text = "-"
         }
+        
         if let variations = product.variations, !variations.isEmpty {
             var i = 0
             var leftView: UIView? = nil
@@ -109,11 +130,36 @@ class ProductInfoCell: NTableViewCell, UITextFieldDelegate, UIScrollViewDelegate
         if textField.text!.isEmpty {
             textField.text = "1"
         }
+        
         if textField.text!.isNumber {
             self.onUpdateQuantity(Int(textField.text!)!)
         }
     }
     
-    
+    fileprivate func createView(for image: String, width: CGFloat, height: CGFloat, at index: Int) -> UIView {
+        let control = UIControl()
+        control.translatesAutoresizingMaskIntoConstraints = false
+        control.addConstraints([NSLayoutConstraint(item: control, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: width),
+                                NSLayoutConstraint(item: control, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: height)])
+        control.tag = index
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        control.addSubview(imageView)
+        control.addConstraints([
+                                NSLayoutConstraint(item: imageView, attribute: .leading, relatedBy: .equal, toItem: control, attribute: .leading, multiplier: 1, constant: 0),
+                                NSLayoutConstraint(item: imageView, attribute: .trailing, relatedBy: .equal, toItem: control, attribute: .trailing, multiplier: 1, constant: 0),
+                                NSLayoutConstraint(item: imageView, attribute: .top, relatedBy: .equal, toItem: control, attribute: .top, multiplier: 1, constant: 0),
+                                NSLayoutConstraint(item: imageView, attribute: .bottom, relatedBy: .equal, toItem: control, attribute: .bottom, multiplier: 1, constant: 0)
+            ])
+        if let url = URL(string: image) {
+            imageView.af_setImage(withURL: url)
+            imageView.contentMode = .scaleAspectFit
+        } else {
+            imageView.image = UIImage(named: "image_default")
+            imageView.contentMode = .scaleAspectFill
+        }
+
+        return control
+    }
     
 }

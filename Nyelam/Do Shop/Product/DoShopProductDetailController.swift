@@ -78,9 +78,12 @@ class DoShopProductDetailController: BaseViewController {
             }
             if let data = response.data {
                 self.product = data
+                print("PANGGIL 1")
                 if let nsset = data.categories, let categories = nsset.allObjects as? [NCategory], !categories.isEmpty {
+                    print("PANGGIL 2")
                     self.tryRelatedProduct(categoryId: categories[0].id!)
                 } else {
+                    print("PANGGIL 3")
                     self.refreshControl.endRefreshing()
                     self.tableView.reloadData()
                 }
@@ -164,8 +167,6 @@ class DoShopProductDetailController: BaseViewController {
                 
             })
         }
-
-
     }
     /*
     // MARK: - Navigation
@@ -199,7 +200,7 @@ extension DoShopProductDetailController: UITableViewDelegate, UITableViewDataSou
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProductInfoCell", for: indexPath)
             as! ProductInfoCell
-            cell.initData(product: self.product!, qty: self.qty)
+            cell.initData(product: self.product!, qty: self.qty, controllerView: self.view)
             cell.onVariationTriggered = {variation, variationView in
                 self.openVariation(variation: variation, sender: variationView)
             }
