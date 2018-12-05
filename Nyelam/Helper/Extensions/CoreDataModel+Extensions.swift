@@ -2387,7 +2387,12 @@ extension NProduct: Parseable {
     private var KEY_DESCRIPTION: String {
         return "description"
     }
-    
+    private var KEY_BRAND: String {
+        return "brand"
+    }
+    private var KEY_MERCHANT: String {
+        return "merchant"
+    }
     static func getProduct(using id: String)->NProduct? {
         let managedContext = AppDelegate.sharedManagedContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NProduct")
@@ -2434,19 +2439,25 @@ extension NProduct: Parseable {
                 self.normalPrice = Double(normalPrice)!
             }
         }
+        
         self.color = json[KEY_COLOR] as? String
         self.status = json[KEY_STATUS] as? String
         
         if let categoriesArray = json[KEY_CATEGORIES] as? Array<[String: Any]>, !categoriesArray.isEmpty {
+            print("PANGGIL 1")
             for categoryJson in categoriesArray {
+                print("PANGGIL 2")
                 var category: NProductCategory? = nil
                 if let id = categoryJson["id"] as? String {
+                    print("PANGGIL 3")
                     category = NProductCategory.getCategory(using: id)
                 }
                 if category == nil {
+                    print("PANGGIL 3")
                     category = NSEntityDescription.insertNewObject(forEntityName: "NProductCategory", into: AppDelegate.sharedManagedContext) as! NProductCategory
                     category!.parse(json: categoryJson)
                 }
+                print("PANGGIL 3")
                 self.addToCategories(category!)
             }
         } else if let categoriesArrayString = json[KEY_CATEGORIES] as? String {
@@ -2493,7 +2504,28 @@ extension NProduct: Parseable {
             }
 
         }
-        
+        if let brandJson = json[KEY_BRAND] as? [String: Any] {
+            self.brand = Brand(json: brandJson)
+        } else if let brandString = json[KEY_BRAND] as? String {
+            do {
+                let data = brandString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let brandJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                self.brand = Brand(json: brandJson)
+            } catch {
+                print(error)
+            }
+        }
+        if let merchantJson = json[KEY_MERCHANT] as? [String: Any] {
+            self.merchant = Merchant(json: merchantJson)
+        } else if let merchantString = json[KEY_MERCHANT] as? String {
+            do {
+                let data = merchantString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let merchantJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                self.merchant = Merchant(json: merchantJson)
+            } catch {
+                print(error)
+            }
+        }
     }
     
     func serialized() -> [String : Any] {
@@ -2536,6 +2568,12 @@ extension NProduct: Parseable {
             for variation in variations {
                 obj[variation.key!] = variation.serialized()[variation.key!]
             }
+        }
+        if let brand = self.brand {
+            json[KEY_BRAND] = brand.serialized()
+        }
+        if let merchant = self.merchant {
+            json[KEY_MERCHANT] = merchant.serialized()
         }
         return json
     }

@@ -73,16 +73,14 @@ class NVariationView: UIView {
         self.onVariationClicked(self, self.variation!)
     }
     
+    func initData(variation: String) {
+        self.variationNameLabel.text = variation
+    }
+    
     func initData(variation: Variation) {
         self.variation = variation
         if let variationItems = variation.variationItems, !variationItems.isEmpty {
-            for variationItem in variationItems {
-                if variationItem.picked {
-                    self.variationNameLabel.text = variationItem.name
-                    return
-                }
-            }
-            self.variationNameLabel.text = variationItems[0].name
+            self.variationNameLabel.text = "-- Select \(variation.key!) --"
         } else {
             self.variationNameLabel.text = "-"
         }

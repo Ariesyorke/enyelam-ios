@@ -2,7 +2,7 @@
 //  NProduct+CoreDataProperties.swift
 //  Nyelam
 //
-//  Created by Bobi on 12/1/18.
+//  Created by Bobi on 05/12/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //
@@ -28,6 +28,7 @@ extension NProduct {
     @NSManaged public var specialPrice: Double
     @NSManaged public var status: String?
     @NSManaged public var variations: [Variation]?
+    @NSManaged public var brand: Brand?
     @NSManaged public var categories: NSSet?
 
 }

@@ -2,7 +2,7 @@
 //  NOrder+CoreDataProperties.swift
 //  Nyelam
 //
-//  Created by Bobi on 12/1/18.
+//  Created by Bobi on 05/12/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //
@@ -21,9 +21,9 @@ extension NOrder {
     @NSManaged public var cart: Cart?
     @NSManaged public var equipments: [Equipment]?
     @NSManaged public var orderId: String?
+    @NSManaged public var paypalCurrency: PaypalCurrency?
     @NSManaged public var schedule: Double
     @NSManaged public var status: String?
-    @NSManaged public var paypalCurrency: PaypalCurrency?
     @NSManaged public var veritransToken: String?
     @NSManaged public var billingAddress: NAddress?
     @NSManaged public var shippingAddress: NAddress?

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,28 +24,43 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="61.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bdE-gy-RJe">
+                        <rect key="frame" x="264" y="8" width="40" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="5vb-Tv-7ez"/>
+                            <constraint firstAttribute="height" constant="20" id="6Ev-pE-iJa"/>
+                        </constraints>
+                        <state key="normal" title="Edit">
+                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                        </state>
+                        <connections>
+                            <action selector="editButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="XRJ-Si-Q0W"/>
+                        </connections>
+                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPj-ww-Ku2">
-                        <rect key="frame" x="16" y="8" width="288" height="17"/>
+                        <rect key="frame" x="16" y="8" width="244" height="17"/>
                         <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIi-37-Y7X">
-                        <rect key="frame" x="16" y="33" width="288" height="17"/>
+                        <rect key="frame" x="16" y="33" width="244" height="17"/>
                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="bdE-gy-RJe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="0du-BG-ELi"/>
                     <constraint firstItem="hPj-ww-Ku2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Aqi-6d-SzW"/>
                     <constraint firstItem="bIi-37-Y7X" firstAttribute="top" secondItem="hPj-ww-Ku2" secondAttribute="bottom" constant="8" id="OCF-1d-NFi"/>
                     <constraint firstAttribute="bottom" secondItem="bIi-37-Y7X" secondAttribute="bottom" constant="16" id="P2T-R5-qA7"/>
                     <constraint firstItem="bIi-37-Y7X" firstAttribute="trailing" secondItem="hPj-ww-Ku2" secondAttribute="trailing" id="Tj9-xe-UOn"/>
-                    <constraint firstAttribute="trailing" secondItem="hPj-ww-Ku2" secondAttribute="trailing" constant="16" id="a3p-Gu-Ku1"/>
+                    <constraint firstAttribute="trailing" secondItem="bdE-gy-RJe" secondAttribute="trailing" constant="16" id="Vmf-13-dlp"/>
+                    <constraint firstItem="bdE-gy-RJe" firstAttribute="leading" secondItem="hPj-ww-Ku2" secondAttribute="trailing" constant="4" id="ZlU-L8-adK"/>
                     <constraint firstItem="hPj-ww-Ku2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="m0M-GM-d6p"/>
                     <constraint firstItem="bIi-37-Y7X" firstAttribute="leading" secondItem="hPj-ww-Ku2" secondAttribute="leading" id="rG6-h8-1Qn"/>
                 </constraints>

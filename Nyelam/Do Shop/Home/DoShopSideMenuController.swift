@@ -10,7 +10,9 @@ import UIKit
 
 class DoShopSideMenuController: BaseViewController {
     var refreshControl: UIRefreshControl = UIRefreshControl()
+    
     @IBOutlet weak var tableView: UITableView!
+    
     var categories: [NProductCategory]? {
         didSet {
             self.tableView.reloadData()
@@ -79,6 +81,7 @@ class DoShopSideMenuController: BaseViewController {
     */
 }
 
+
 extension DoShopSideMenuController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let category = self.categories![indexPath.row]
@@ -98,6 +101,7 @@ extension DoShopSideMenuController: UITableViewDelegate, UITableViewDataSource {
         let cell = UITableViewCell()
         let category = self.categories![indexPath.row]
         cell.textLabel!.text = category.categoryName
+        cell.selectionStyle = .none
         if let imageUrl = category.categoryImage, let url = URL(string: imageUrl) {
             cell.imageView!.af_setImage(withURL: url, placeholderImage: UIImage(named: "image_default"), filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: true, completion: nil)
         }

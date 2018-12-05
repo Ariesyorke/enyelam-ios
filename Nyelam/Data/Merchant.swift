@@ -10,7 +10,8 @@ import Foundation
 
 public class Merchant: NSObject, NSCoding, Parseable {
     private let KEY_ID = "id"
-    private let KEY_MERCHANT_NAME = "name"
+    private let KEY_NAME = "name"
+    private let KEY_MERCHANT_NAME = "merchant_name"
     private let KEY_MERCHANT_LOGO = "merchant_logo"
     private let KEY_PROVINCE_ID = "province_id"
     private let KEY_CITY_ID = "city_id"
@@ -50,7 +51,11 @@ public class Merchant: NSObject, NSCoding, Parseable {
 
     func parse(json: [String : Any]) {
         self.id = json[KEY_ID] as? String
-        self.merchantName = json[KEY_MERCHANT_NAME] as? String
+        if let name = json[KEY_MERCHANT_NAME] as? String {
+            self.merchantName = name
+        } else if let name = json[KEY_NAME] as? String {
+            self.merchantName = name
+        }
         self.merchantLogo = json[KEY_MERCHANT_LOGO] as? String
         self.provinceId = json[KEY_PROVINCE_ID] as? String
         self.cityId = json[KEY_CITY_ID] as? String

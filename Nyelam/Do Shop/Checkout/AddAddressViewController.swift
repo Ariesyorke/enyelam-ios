@@ -30,6 +30,7 @@ class AddAddressViewController: BaseViewController, UITextViewDelegate {
     
     var defaultShip: Int = 0
     var defaultBill: Int = 0
+    var address: NAddress?
     var successCompletion: (Bool, NAddress) -> () = {shipsameasbill, address in }
     
     static func push(on controller: UINavigationController, defaultShipping: Int, defaultBillng: Int, successCompletion: @escaping (Bool, NAddress) -> ()) -> AddAddressViewController {
@@ -40,6 +41,17 @@ class AddAddressViewController: BaseViewController, UITextViewDelegate {
         vc.successCompletion = successCompletion
         return vc
     }
+    
+    static func push(on controller: UINavigationController, defaultShipping: Int, defaultBillng: Int, address: NAddress, successCompletion: @escaping (Bool, NAddress) -> ()) -> AddAddressViewController {
+        let vc = AddAddressViewController(nibName: "AddAddressViewController", bundle: nil)
+        vc.defaultShip = defaultShipping
+        vc.defaultBill = defaultBillng
+        vc.address = address
+        controller.pushViewController(vc, animated: true)
+        vc.successCompletion = successCompletion
+        return vc
+    }
+    
     fileprivate var province: NProvince? {
         didSet {
             self.provinceTextField.text = self.province!.name

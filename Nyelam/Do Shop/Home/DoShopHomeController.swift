@@ -180,14 +180,14 @@ class DoShopHomeController: BaseViewController {
         SideMenuManager.menuFadeStatusBar = false
         self.sideMenuNavController = DoShopSideMenuNavigationController.create()
         sideMenuNavController!.setNavigationBarHidden(true, animated: false)
-        sideMenuNavController!.onSideMenuClicked = {sideMenu in
-            self.openSideMenu(sideMenu: sideMenu)
+        sideMenuNavController!.onSideMenuClicked = {sideMenu, category in
+            self.openSideMenu(sideMenu: sideMenu, category: category)
         }
         SideMenuManager.menuLeftNavigationController = sideMenuNavController
         SideMenuManager.menuAddScreenEdgePanGesturesToPresent(toView: self.view, forMenu: UIRectEdge.left)
     }
     
-    fileprivate func openSideMenu(sideMenu: DoShopSideMenuType) {
+    fileprivate func openSideMenu(sideMenu: DoShopSideMenuType, category: NProductCategory?) {
         switch  sideMenu {
         case .order:
             self.sideMenuNavController!.dismiss(animated: true, completion: {
@@ -197,6 +197,15 @@ class DoShopHomeController: BaseViewController {
                     self.goToAuth(completion: {
                         let _ = OrderViewController.push(on: self.navigationController!)
                     })
+                }
+            })
+            break
+        case .category:
+            self.sideMenuNavController!.dismiss(animated: true, completion: {
+                if let category = category {
+                    let filter = DoShopFilter()
+                    filter.categoryId = category.id!
+                    let _ = DoShopProductListController.push(on: self.navigationController!, filter: filter)
                 }
             })
             break
@@ -265,5 +274,6 @@ class SectionHeaderView: UIView {
 
 enum DoShopSideMenuType {
     case order
+    case category
     case exit
 }

@@ -32,6 +32,7 @@ class DoShopProductDetailController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Product Detail"
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.register(UINib(nibName: "ProductInfoCell", bundle: nil), forCellReuseIdentifier: "ProductInfoCell")
@@ -41,6 +42,8 @@ class DoShopProductDetailController: BaseViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -78,12 +81,9 @@ class DoShopProductDetailController: BaseViewController {
             }
             if let data = response.data {
                 self.product = data
-                print("PANGGIL 1")
-                if let nsset = data.categories, let categories = nsset.allObjects as? [NCategory], !categories.isEmpty {
-                    print("PANGGIL 2")
+                if let nsset = data.categories, let categories = nsset.allObjects as? [NProductCategory], !categories.isEmpty {
                     self.tryRelatedProduct(categoryId: categories[0].id!)
                 } else {
-                    print("PANGGIL 3")
                     self.refreshControl.endRefreshing()
                     self.tableView.reloadData()
                 }
@@ -95,6 +95,7 @@ class DoShopProductDetailController: BaseViewController {
     
     fileprivate func tryRelatedProduct(categoryId: String) {
         NHTTPHelper.httpGetProductList(page: 1, keyword: nil, categoryId: categoryId, priceMin: nil, priceMax: nil, sortBy: nil, merchantId: nil, complete: {response in
+            self.refreshControl.endRefreshing()
             if let error = response.error {
                 if error.isKind(of: NotConnectedInternetError.self) {
                     NHelper.handleConnectionError(completion: {
@@ -108,14 +109,23 @@ class DoShopProductDetailController: BaseViewController {
             }
 
             if let data = response.data, let datas = data.products, !datas.isEmpty {
-                self.relatedProducts = datas
+                var i = 0
+                for data in datas {
+                    i += 1
+                    if self.relatedProducts == nil {
+                        self.relatedProducts = []
+                    }
+                    self.relatedProducts!.append(data)
+                    if i >= 2 {
+                        break
+                    }
+                }
+                self.tableView.reloadData()
             }
-            self.tableView.reloadData()
         })
     }
     
     fileprivate func tryAddToCart(productId: String, pickedVariations: [String: String], qty: Int) {
-        MBProgressHUD.showAdded(to: self.view, animated: true)
         var variations: [String]? = nil
         for (_, value) in pickedVariations {
             if variations == nil {
@@ -123,22 +133,27 @@ class DoShopProductDetailController: BaseViewController {
             }
             variations!.append(value)
         }
-        NHTTPHelper.httpAddToCartRequest(productId: productId, qty: qty, variations: variations, complete: {response in
-            MBProgressHUD.hide(for: self.view, animated: true)
-            if let error = response.error {
-                if error.isKind(of: NotConnectedInternetError.self) {
-                    NHelper.handleConnectionError(completion: {
-                        self.tryAddToCart(productId: productId, pickedVariations: pickedVariations, qty: qty)
-                    })
-                } else if error.isKind(of: StatusFailedError.self) {
-                    UIAlertController.handleErrorMessage(viewController: self, error: error, completion: { _ in
-                        _ = error as! StatusFailedError
-                    })
+        if let variations = variations, let productVars = product!.variations, variations.count == productVars.count {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            NHTTPHelper.httpAddToCartRequest(productId: productId, qty: qty, variations: variations, complete: {response in
+                MBProgressHUD.hide(for: self.view, animated: true)
+                if let error = response.error {
+                    if error.isKind(of: NotConnectedInternetError.self) {
+                        NHelper.handleConnectionError(completion: {
+                            self.tryAddToCart(productId: productId, pickedVariations: pickedVariations, qty: qty)
+                        })
+                    } else if error.isKind(of: StatusFailedError.self) {
+                        UIAlertController.handleErrorMessage(viewController: self, error: error, completion: { _ in
+                            _ = error as! StatusFailedError
+                        })
+                    }
+                    return
                 }
-                return
-            }
-            self.createCartPopup(product: self.product!)
-        })
+                self.createCartPopup(product: self.product!)
+            })
+        } else {
+            UIAlertController.handleErrorMessage(viewController: self, error: "Please pick all product options", completion: {})
+        }
     }
     
     fileprivate func createCartPopup(product: NProduct) {
@@ -168,6 +183,7 @@ class DoShopProductDetailController: BaseViewController {
             })
         }
     }
+    
     /*
     // MARK: - Navigation
 
@@ -187,11 +203,7 @@ extension DoShopProductDetailController: UITableViewDelegate, UITableViewDataSou
             count += 1
         }
         if let products = self.relatedProducts, !products.isEmpty {
-            if products.count > 2 {
-                count += 2
-            } else {
-                count += products.count
-            }
+            count += 1
         }
         return count
     }
@@ -200,7 +212,7 @@ extension DoShopProductDetailController: UITableViewDelegate, UITableViewDataSou
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProductInfoCell", for: indexPath)
             as! ProductInfoCell
-            cell.initData(product: self.product!, qty: self.qty, controllerView: self.view)
+            cell.initData(product: self.product!, qty: self.qty, controllerView: self.view, controller: self)
             cell.onVariationTriggered = {variation, variationView in
                 self.openVariation(variation: variation, sender: variationView)
             }
@@ -221,6 +233,10 @@ extension DoShopProductDetailController: UITableViewDelegate, UITableViewDataSou
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "RelatedProductCell", for: indexPath) as! RelatedProductCell
+            cell.initData(products: self.relatedProducts!)
+            cell.onOpenProductDetail = {product in
+                let _ = DoShopProductDetailController.push(on: self.navigationController!, productId: product.productId!)
+            }
             cell.onSeeAllProduct = {
                 if let nsset = self.product!.categories, let categories = nsset.allObjects as? [NProductCategory], !categories.isEmpty {
                     let filter = DoShopFilter()

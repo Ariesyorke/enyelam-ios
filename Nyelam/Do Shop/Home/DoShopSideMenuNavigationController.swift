@@ -11,7 +11,7 @@ import UIKit
 import SideMenu
 
 class DoShopSideMenuNavigationController: UISideMenuNavigationController {
-    var onSideMenuClicked: (DoShopSideMenuType) -> () = {menu in }
+    var onSideMenuClicked: (DoShopSideMenuType, NProductCategory?) -> () = {menu, category in }
     static func create() -> DoShopSideMenuNavigationController {
         let vc = DoShopSideMenuHomeController(nibName: "DoShopSideMenuHomeController", bundle: nil)
         let controller = DoShopSideMenuNavigationController(rootViewController: vc)

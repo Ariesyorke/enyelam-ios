@@ -11,7 +11,8 @@ import UIKit
 class AddressCell: NTableViewCell {
     @IBOutlet weak var fullnameLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
-    
+    var address: NAddress?
+    var onAddressClicked: (NAddress) -> () = {address in }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,8 +25,14 @@ class AddressCell: NTableViewCell {
     }
     
     func initData(address: NAddress) {
+        self.address = address
         self.fullnameLabel.text = address.fullname
         self.addressLabel.text = NHelper.formatAddress(address: address)
     }
+    
+    @IBAction func editButtonAction(_ sender: Any) {
+        self.onAddressClicked(self.address!)
+    }
+    
     
 }

@@ -8,9 +8,9 @@ target 'Nyelam' do
   # Pods for Nyelam
 
   pod 'GoogleSignIn'
-  pod 'FacebookCore', '0.3.0'
-  pod 'FacebookLogin', '0.3.0'
-  pod 'FacebookShare', '0.3.0'
+  pod 'FacebookCore', :git => 'https://github.com/facebook/facebook-sdk-swift', :branch => 'master'
+  pod 'FacebookLogin', :git => 'https://github.com/facebook/facebook-sdk-swift', :branch => 'master'
+  pod 'FacebookShare', :git => 'https://github.com/facebook/facebook-sdk-swift', :branch => 'master'
   pod 'Google/Analytics', '~> 2.0.4'
   pod 'SideMenu', '~> 2.3.4'
   pod 'UINavigationControllerWithCompletionBlock'
@@ -43,7 +43,9 @@ target 'Nyelam' do
   pod 'MultilineTextField'
   pod 'SimpleImageViewer', '~> 1.1.1'
   pod 'CollectionKit', '~> 2.1.0'
-  
+  pod 'ExpyTableView'
+  pod 'MIBadgeButton-Swift', :git => 'https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git', :branch => 'master'
+
   target 'NyelamTests' do
     inherit! :search_paths
     # Pods for testing
