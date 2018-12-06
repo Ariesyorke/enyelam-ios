@@ -110,6 +110,13 @@ extension AddressListController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AddressCell", for: indexPath) as! AddressCell
         let address = self.addresses![indexPath.row]
         cell.initData(address: address)
+        cell.onAddressClicked = {address in
+            let _ = AddAddressViewController.push(on: self.navigationController!, defaultShipping: self.type == "shipping" ? 1 : 0, defaultBillng: self.type == "billing" ? 1 : 0, address: address, successCompletion: {sameasbiiling, address in
+                self.navigationController!.popViewController(animated: true, withCompletionBlock: {
+                    self.completion(address, sameasbiiling)
+                })
+            })
+        }
         return cell
     }
     

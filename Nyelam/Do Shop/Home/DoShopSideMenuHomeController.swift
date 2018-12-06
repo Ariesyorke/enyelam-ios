@@ -90,7 +90,7 @@ extension DoShopSideMenuHomeController: ExpyTableViewDataSource, ExpyTableViewDe
             }
             break
         case 1:
-            if indexPath.row == 1 {
+            if indexPath.row >= 1 {
                 if let navigationController = self.navigationController as? DoShopSideMenuNavigationController {
                     let index = indexPath.row - 1
                     let category = self.categories![index]

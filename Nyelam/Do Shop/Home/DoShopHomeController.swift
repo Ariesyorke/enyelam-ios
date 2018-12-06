@@ -15,6 +15,7 @@ class DoShopHomeController: BaseViewController {
     
     internal var productGridSize: CGSize!
     internal var categoryGridSize: CGSize!
+    internal var bannerSize: CGSize!
     internal var productDataSource: ArrayDataSource<NProduct> = ArrayDataSource()
     internal var categoryDataSource: ArrayDataSource<NProductCategory> = ArrayDataSource()
     
@@ -48,7 +49,7 @@ class DoShopHomeController: BaseViewController {
         
         self.productGridSize = CGSize(width: columnWidth, height: imageH + contentH + (40))
         self.categoryGridSize = CGSize(width: categoryColumnWidth, height: categoryColumnWidth)
-        
+        self.bannerSize = CGSize(width: screenWidth, height: (screenWidth * 2)/3)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_navigation_drawer"), style: .plain, target: self, action: #selector(DoShopHomeController.onNavigation(_:)))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_cart"), style: .plain, target: self, action: #selector(DoShopHomeController.onCart(_:)))
         self.searchController = UISearchController(searchResultsController:  nil)
@@ -86,6 +87,7 @@ class DoShopHomeController: BaseViewController {
     @objc func onNavigation(_ sender: UIBarButtonItem) {
         self.present(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
     }
+    
     @objc func onCart(_ sender: UIBarButtonItem) {
         if let authUser = NAuthReturn.authUser() {
             let _ = CartController.push(on: self.navigationController!)
@@ -95,10 +97,34 @@ class DoShopHomeController: BaseViewController {
             })
         }
     }
+    
     fileprivate func initCollectionView() {
         let productViewSource: ClosureViewSource = ClosureViewSource(viewUpdater: {
             (view: ProductGridView, data: NProduct, index: Int) in
             view.initData(product: data)
+        })
+        
+        let bannerSectionViewSource: ClosureViewSource = ClosureViewSource(viewUpdater: {
+            (view: SectionBannerView, data: String, index: Int) in
+            view.loadBanner()
+            view.isUserInteractionEnabled = true
+            view.onBannerClicked = {banner in
+                if let type = banner.bannerType {
+                    if type.lowercased() == "url", let target = banner.target, let url = URL(string: target) {
+                        UIApplication.shared.openURL(url)
+                    } else if type.lowercased() == "product", let target = banner.target {
+                        let _ = DoShopProductDetailController.push(on: self.navigationController!, productId: target)
+                    } else if type.lowercased()  == "category", let target = banner.target {
+                        let filter = DoShopFilter()
+                        filter.categoryId = target
+                        let _ = DoShopProductListController.push(on: self.navigationController!, filter: filter)
+                    } else if type.lowercased() == "brand", let target = banner.target {
+                        let filter = DoShopFilter()
+                        filter.brandId = target
+                        let _ = DoShopProductListController.push(on: self.navigationController!, filter: filter)
+                    }
+                }
+            }
         })
         
         let productSectionViewSource: ClosureViewSource = ClosureViewSource(viewUpdater: {
@@ -121,9 +147,13 @@ class DoShopHomeController: BaseViewController {
                                                                 .inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)),
                                                             animator: nil,
                                                             tapHandler: {context in
-                                                                let filter = DoShopFilter()
-                                                                filter.categoryId = context.data.id!
-                                                                let _ = DoShopProductListController.push(on: self.navigationController!, filter: filter)
+                                                                if context.data.id! == "-1" {
+                                                                    let _ = CategoryViewController.push(on: self.navigationController!)
+                                                                } else {
+                                                                    let filter = DoShopFilter()
+                                                                    filter.categoryId = context.data.id!
+                                                                    let _ = DoShopProductListController.push(on: self.navigationController!, filter: filter)
+                                                                }
                                                                 
         })
         
@@ -138,6 +168,7 @@ class DoShopHomeController: BaseViewController {
                                                             animator: nil,
                                                             tapHandler: {context in
                                                                 let _ = DoShopProductDetailController.push(on: self.navigationController!, productId: context.data.productId!)
+                                                                
         })
         
         let productHeaderProvider: BasicProvider = BasicProvider(dataSource: ArrayDataSource(data: ["RECOMMENDED FOR YOU"]),
@@ -153,7 +184,19 @@ class DoShopHomeController: BaseViewController {
                                                            
         })
         
-        let finalProvider = ComposedProvider(sections: [categoryProvider, productHeaderProvider, productProvider])
+        let bannerProvider: BasicProvider = BasicProvider(dataSource: ArrayDataSource(data: [""]),
+                                                                 viewSource: bannerSectionViewSource,
+                                                                 sizeSource: {
+                                                                    (index: Int, data: String, maxSize: CGSize) in
+                                                                    return self.bannerSize
+        },
+                                                                 layout: FlowLayout(spacing: 1, justifyContent: .start, alignItems: .start)
+                                                                    .inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 32, right: 0)),
+                                                                 animator: nil,
+                                                                 tapHandler: nil)
+
+        
+        let finalProvider = ComposedProvider(sections: [bannerProvider, categoryProvider, productHeaderProvider, productProvider])
         self.collectionView.provider = finalProvider
     }
     
@@ -243,6 +286,97 @@ extension DoShopHomeController: UISearchControllerDelegate, UISearchResultsUpdat
     }
 }
 
+class SectionBannerView: UIView {
+    var doShopBanners: [DoShopBanner]? {
+        didSet {
+            if let banners = self.doShopBanners, !banners.isEmpty {
+                for subview in self.scrollView.subviews {
+                    subview.removeFromSuperview()
+                }
+                var i = 0
+                var leftView: UIView? = nil
+                for banner in banners {
+                    let view = self.createView(for: banner.bannerImage ?? "", width: self.frame.width, height: (self.frame.width * 2 / 3),at: i)
+                    self.scrollView.addSubview(view)
+                    self.scrollView.addConstraints([NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: self.scrollView, attribute: .top, multiplier: 1, constant: 0),NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: self.scrollView, attribute: .bottom, multiplier: 1, constant: 0),
+                                                               NSLayoutConstraint(item: view, attribute: .centerY, relatedBy: .equal, toItem: self.scrollView, attribute: .centerY, multiplier: 1, constant: 0)])
+                    if leftView == nil {
+                        self.scrollView.addConstraint(NSLayoutConstraint(item: self.scrollView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0))
+                    } else {
+                        self.scrollView.addConstraint(NSLayoutConstraint(item: leftView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0))
+                    }
+                    if i >= banners.count - 1 {
+                        self.scrollView.addConstraint(NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: self.scrollView, attribute: .trailing, multiplier: 1, constant: 0))
+                    }
+                    leftView = view
+                    i += 1
+
+                }
+            }
+        }
+    }
+    
+    fileprivate func createView(for image: String, width: CGFloat, height: CGFloat, at index: Int) -> UIView {
+        let control = UIControl()
+        control.translatesAutoresizingMaskIntoConstraints = false
+        control.addConstraints([NSLayoutConstraint(item: control, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: width), NSLayoutConstraint(item: control, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: height)])
+        control.tag = index
+        let imageView = UIImageView()
+        imageView.clipsToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        control.addSubview(imageView)
+        control.addConstraints([
+            NSLayoutConstraint(item: imageView, attribute: .leading, relatedBy: .equal, toItem: control, attribute: .leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: imageView, attribute: .trailing, relatedBy: .equal, toItem: control, attribute: .trailing, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: imageView, attribute: .top, relatedBy: .equal, toItem: control, attribute: .top, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: imageView, attribute: .bottom, relatedBy: .equal, toItem: control, attribute: .bottom, multiplier: 1, constant: 0)
+            ])
+        control.addTarget(self, action: #selector(onImageClicked(_:)), for: .touchUpInside)
+        if let url = URL(string: image) {
+            imageView.af_setImage(withURL: url)
+            imageView.contentMode = .scaleAspectFill
+        } else {
+            imageView.image = UIImage(named: "image_default")
+            imageView.contentMode = .scaleAspectFill
+        }
+        
+        return control
+    }
+    
+    @objc func onImageClicked(_ sender: UIControl) {
+        print("CLICKED!")
+        self.onBannerClicked(self.doShopBanners![sender.tag])
+    }
+    
+    var onBannerClicked: (DoShopBanner) -> () = {banner in}
+
+    var scrollView: UIScrollView! {
+        if _scrollView == nil {
+            _scrollView = UIScrollView()
+            _scrollView!.translatesAutoresizingMaskIntoConstraints = false
+            _scrollView!.isPagingEnabled = true
+            _scrollView!.showsHorizontalScrollIndicator = false
+            self.addSubview(_scrollView!)
+            self.addConstraints([
+                NSLayoutConstraint(item: _scrollView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: _scrollView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: _scrollView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: _scrollView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
+                ])
+        }
+        return _scrollView!
+    }
+    
+    fileprivate var _scrollView: UIScrollView?
+
+    func loadBanner() {
+        NHTTPHelper.httpGetDoShopBanners(complete: {response in
+            if let datas = response.data, !datas.isEmpty {
+                self.doShopBanners = datas
+            }
+        })
+    }
+}
 class SectionHeaderView: UIView {
     var label: UILabel! {
         if _label == nil {
@@ -260,7 +394,7 @@ class SectionHeaderView: UIView {
         return _label
     }
     fileprivate var _label: UILabel?
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

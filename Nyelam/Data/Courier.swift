@@ -17,6 +17,7 @@ class Courier: Parseable {
     var name: String?
     var courierTypes: [CourierType]?
     
+    init() {}
     init(json: [String: Any]) {
         self.parse(json: json)
     }

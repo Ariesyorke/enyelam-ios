@@ -57,6 +57,43 @@ extension NHTTPHelper {
         })
     }
     
+    static func httpEditAddressRequest(addressId: String,
+                                       emailAddress: String,
+                                       fullname: String,
+                                       address: String,
+                                       phoneNumber: String,
+                                       provinceId: String,
+                                       provinceName: String,
+                                       cityId: String,
+                                       cityName: String,
+                                       districtId: String,
+                                       districtName: String,
+                                       defaultBill: Int,
+                                       defaultShip: Int,
+                                       zipCode: String?,
+                                       label: String?,
+                                       complete: @escaping (NHTTPResponse<[NAddress]>)->()) {
+        var param: [String: Any] = ["address_id": addressId,
+                                    "email": emailAddress,
+                                    "fullname": fullname,
+                                    "address": address,
+                                    "phone_number":phoneNumber,
+                                    "province_id": provinceId,
+                                    "province_name": provinceName,
+                                    "city_id": cityId,
+                                    "city_name": cityName,
+                                    "district_id": districtId,
+                                    "district_name": districtName,
+                                    "default_bill": String(defaultBill),
+                                    "default_ship": String(defaultShip)]
+        if let zipCode = zipCode, !zipCode.isEmpty {
+            param["zip_code"] = zipCode
+        }
+        if let label = label, !label.isEmpty {
+            param["label"] = label
+        }
+    }
+    
     static func httpAddAddressRequest(emailAddress: String,
                                       fullname: String,
                                       address: String,
@@ -70,7 +107,6 @@ extension NHTTPHelper {
                                       defaultBill: Int,
                                       defaultShip: Int,
                                       zipCode: String?,
-                                      addressId: String?,
                                       label: String?,
                                       complete: @escaping (NHTTPResponse<[NAddress]>)->()) {
         var param: [String: Any] = ["email": emailAddress,

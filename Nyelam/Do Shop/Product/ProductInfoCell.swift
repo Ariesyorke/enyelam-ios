@@ -24,9 +24,13 @@ class ProductInfoCell: NTableViewCell, UITextFieldDelegate, UIScrollViewDelegate
     @IBOutlet weak var merchImageView: UIImageView!
     @IBOutlet weak var stockStatusLabel: UILabel!
     @IBOutlet weak var cartButton: UIButton!
+    var product: NProduct?
     
     var onAddToCart: () -> () = {}
     var onVariationTriggered: (Variation, NVariationView) -> () = {variation, view in }
+    var onOpenBrand: (Brand) -> () = {brand in }
+    var onOpenMerchant: (Merchant) -> () = {merchant in }
+    
     var onUpdateQuantity: (Int) -> () = {qty in }
     var imageViews: [UIImageView]?
     var controller: UIViewController?
@@ -49,6 +53,7 @@ class ProductInfoCell: NTableViewCell, UITextFieldDelegate, UIScrollViewDelegate
         for subview in self.featuredImageScroller.subviews {
             subview.removeFromSuperview()
         }
+        self.product = product
         self.controller = controller
         self.imageViews = []
         var images: [String]? = nil
@@ -114,13 +119,14 @@ class ProductInfoCell: NTableViewCell, UITextFieldDelegate, UIScrollViewDelegate
         }
         
         if let variations = product.variations, !variations.isEmpty {
-            self.cartButton.backgroundColor = UIColor.primary
+            self.cartButton.backgroundColor = UIColor.nyOrange
             self.cartButton.isEnabled = true
             self.stockStatusLabel.text = "IN STOCK"
             self.stockStatusLabel.textColor = UIColor.nyGreen
             var i = 0
             var topView: UIView? = nil
-            for variation in variations {
+            let vs = variations.reversed()
+            for variation in vs {
                 let view = self.createView(for: variation)
                 self.variationContainer.addSubview(view)
                 self.variationContainer.addConstraints([NSLayoutConstraint(item: view, attribute: .leading, relatedBy: .equal, toItem: self.variationContainer, attribute: .leading, multiplier: 1, constant: 0), NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: self.variationContainer, attribute: .trailing, multiplier: 1, constant: 0)])
@@ -169,17 +175,25 @@ class ProductInfoCell: NTableViewCell, UITextFieldDelegate, UIScrollViewDelegate
         view.translatesAutoresizingMaskIntoConstraints = false
         view.initData(variation: variation)
         return view
-
     }
     
+    @IBAction func brandButtonAction(_ sender: Any) {
+        if let product = self.product, let brand = product.brand {
+            self.onOpenBrand(brand)
+        }
+    }
+    
+    @IBAction func merchantButtonAction(_ sender: Any) {
+        if let product = self.product, let merchant = product.merchant {
+            self.onOpenMerchant(merchant)
+        }
+    }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-        if textField.text!.isEmpty {
-            textField.text = "1"
-        }
-        
         if textField.text!.isNumber {
             self.onUpdateQuantity(Int(textField.text!)!)
+        } else {
+            self.onUpdateQuantity(0)
         }
     }
     
@@ -195,8 +209,7 @@ class ProductInfoCell: NTableViewCell, UITextFieldDelegate, UIScrollViewDelegate
     fileprivate func createView(for image: String, width: CGFloat, height: CGFloat, at index: Int) -> UIView {
         let control = UIControl()
         control.translatesAutoresizingMaskIntoConstraints = false
-        control.addConstraints([NSLayoutConstraint(item: control, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: width),
-                                NSLayoutConstraint(item: control, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: height)])
+        control.addConstraints([NSLayoutConstraint(item: control, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: width), NSLayoutConstraint(item: control, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: height)])
         control.tag = index
         let imageView = UIImageView()
         imageView.clipsToBounds = true

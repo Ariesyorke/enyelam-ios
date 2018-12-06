@@ -52,16 +52,18 @@ class ChangeCourierController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let courier = self.pickedCourier {
-            self.courierTextField.text = courier.code
+        if let courier = self.pickedCourier, let code = courier.code {
+            self.courierTextField.text = code.uppercased()
         }
         
         if let courierType = self.pickedCourierType {
-            var type = courierType.service!
-            if let costs = courierType.costs, !costs.isEmpty {
+            if let service = courierType.service {
+                var type = courierType.service!
+                if let costs = courierType.costs, !costs.isEmpty {
                 type = "\(type) - \(Double(costs[0].value).toCurrencyFormatString(currency: "Rp"))"
+                }
+                self.courierTypeTextField.text = type
             }
-            self.courierTypeTextField.text = type
         }
         
     }
@@ -104,7 +106,7 @@ class ChangeCourierController: BaseViewController {
     
     fileprivate func tryLoadCourier(originId: String, destinationId: String, weight: Int) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        NHTTPHelper.httpDoShopDeliveryCostRequest(originType: "subdistrict", destinationType: "subdistrict", courier: "jne:tiki", weight: weight, originId: originId, destinationId: destinationId, complete: {response in
+        NHTTPHelper.httpDoShopDeliveryCostRequest(originType: "subdistrict", destinationType: "subdistrict", courier: "jne:tiki:jnt", weight: weight, originId: originId, destinationId: destinationId, complete: {response in
             MBProgressHUD.hide(for: self.view, animated: true)
             if let error = response.error {
                 if error.isKind(of: NotConnectedInternetError.self) {
@@ -138,7 +140,7 @@ class ChangeCourierController: BaseViewController {
         }
         let actionSheet = ActionSheetStringPicker.init(title: "Choose Courier", rows: cours, initialSelection: position >= 0 ? position : 0, doneBlock: {picker, index, value in
             self.pickedCourier = couriers[index]
-            self.courierTextField.text = self.pickedCourier!.name
+            self.courierTextField.text = self.pickedCourier!.code!.uppercased()
             self.courierTypeTextField.text = "-"
         }, cancel: {_ in return
         }, origin: self.view)

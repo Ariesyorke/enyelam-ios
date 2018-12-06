@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="174"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="174"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="173.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recommended For You" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Pv-gS-1vI">
@@ -30,8 +30,8 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dw9-BJ-C3D">
-                        <rect key="frame" x="114" y="41" width="92" height="27"/>
+                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dw9-BJ-C3D">
+                        <rect key="frame" x="114" y="33" width="92" height="27"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <state key="normal" title="See all products">
                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -40,19 +40,19 @@
                             <action selector="seeAllProductButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="yKg-aC-iLc"/>
                         </connections>
                     </button>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Sx-RQ-jGV">
-                        <rect key="frame" x="16" y="76" width="288" height="97.5"/>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="7Sx-RQ-jGV">
+                        <rect key="frame" x="16" y="41" width="288" height="0.0"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="7Sx-RQ-jGV" firstAttribute="leading" secondItem="9Pv-gS-1vI" secondAttribute="leading" id="7fb-Ro-XN6"/>
-                    <constraint firstItem="7Sx-RQ-jGV" firstAttribute="top" secondItem="Dw9-BJ-C3D" secondAttribute="bottom" constant="8" id="Dv0-sn-4JQ"/>
-                    <constraint firstAttribute="bottom" secondItem="7Sx-RQ-jGV" secondAttribute="bottom" id="Uhq-Sr-ogH"/>
+                    <constraint firstItem="7Sx-RQ-jGV" firstAttribute="bottom" secondItem="Dw9-BJ-C3D" secondAttribute="top" constant="8" id="bCS-bg-eLq"/>
                     <constraint firstItem="9Pv-gS-1vI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="ccC-b4-xms"/>
                     <constraint firstAttribute="trailing" secondItem="9Pv-gS-1vI" secondAttribute="trailing" constant="16" id="ckL-xh-fCE"/>
-                    <constraint firstItem="Dw9-BJ-C3D" firstAttribute="top" secondItem="9Pv-gS-1vI" secondAttribute="bottom" constant="8" id="j5o-4J-q8B"/>
+                    <constraint firstAttribute="bottom" secondItem="Dw9-BJ-C3D" secondAttribute="bottom" id="fXb-Ks-HwS"/>
                     <constraint firstItem="9Pv-gS-1vI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="klF-Xi-vxg"/>
+                    <constraint firstItem="7Sx-RQ-jGV" firstAttribute="top" secondItem="9Pv-gS-1vI" secondAttribute="bottom" constant="8" id="u8C-gA-Vqm"/>
                     <constraint firstItem="Dw9-BJ-C3D" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="yGK-kw-F7G"/>
                     <constraint firstItem="7Sx-RQ-jGV" firstAttribute="trailing" secondItem="9Pv-gS-1vI" secondAttribute="trailing" id="ybG-8l-Rj6"/>
                 </constraints>

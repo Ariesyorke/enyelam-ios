@@ -107,7 +107,7 @@ class DiveServiceController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        var item = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(shareButtonAction(_:)))
+        let item = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(shareButtonAction(_:)))
         item.setTitleTextAttributes([NSAttributedStringKey.font: UIFont(name: "FiraSans-SemiBold", size: 15)!,
                                      NSAttributedStringKey.foregroundColor: UIColor.white], for: .normal)
         self.navigationItem.rightBarButtonItem = item

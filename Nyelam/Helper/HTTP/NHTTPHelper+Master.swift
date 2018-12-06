@@ -11,6 +11,38 @@ import CoreData
 import Alamofire
 
 extension NHTTPHelper {
+    static func httpGetDoShopBanners(complete: @escaping (NHTTPResponse<[DoShopBanner]>) -> ()) {
+        self.basicPostRequest(URLString: HOST_URL + API_PATH_DO_SHOP_BANNER, complete: {status, data, error in
+            if let error = error {
+                complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
+                return
+            }
+            if let data = data, let json = data as? [String: Any] {
+                var banners: [DoShopBanner]? = nil
+                if let bannerArray = json["banners"] as? Array<[String: Any]>, !bannerArray.isEmpty {
+                    banners = []
+                    for bannerJson in bannerArray {
+                        let banner = DoShopBanner(json: bannerJson)
+                        banners!.append(banner)
+                    }
+                } else if let bannerString = json["banners"] as? String {
+                    do {
+                        let data = bannerString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                        let bannerArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+                        banners = []
+                        for bannerJson in bannerArray {
+                            let banner = DoShopBanner(json: bannerJson)
+                            banners!.append(banner)
+                        }
+                    } catch {
+                        print(error)
+                    }
+                }
+                complete(NHTTPResponse(resultStatus: true, data: banners, error: nil))
+            }
+        })
+    }
+    
     static func httpGetDistrict(cityId: String,
                                 complete: @escaping(NHTTPResponse<[NDistrict]>)->()) {
         self.basicRajaOngkirRequest(

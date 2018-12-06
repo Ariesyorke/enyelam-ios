@@ -13,6 +13,8 @@ import ActionSheetPicker_3_0
 
 class DoShopProductListController: BaseViewController {
     @IBOutlet weak var collectionView: CollectionView!
+    @IBOutlet weak var filterButton: UIButton!
+    
     fileprivate var refreshControl: UIRefreshControl = UIRefreshControl()
     fileprivate var filter: DoShopFilter = DoShopFilter()
     fileprivate var page: Int = 1
@@ -20,7 +22,8 @@ class DoShopProductListController: BaseViewController {
     fileprivate var productGridSize: CGSize!
     fileprivate var nextPage: Int = -1
     fileprivate var searchController : UISearchController?
-
+    fileprivate var price: Price?
+    
     static func push(on controller: UINavigationController, filter: DoShopFilter) -> DoShopProductListController {
         let vc = DoShopProductListController(nibName: "DoShopProductListController", bundle: nil)
         vc.filter = filter
@@ -57,10 +60,8 @@ class DoShopProductListController: BaseViewController {
         self.productGridSize = CGSize(width: columnWidth, height: imageH + contentH + (40))
         self.initCollectionView()
         if self.filter.keyword != nil && self.filter.keyword!.isEmpty {
-            
+            self.setupSearch(keyword: self.filter.keyword!)
         }
-        
-        // Do any additional setup after loading the view.
     }
     
     fileprivate func setupSearch(keyword: String) {
@@ -95,13 +96,35 @@ class DoShopProductListController: BaseViewController {
         self.nextPage = -1
         self.productDataSource.data = []
         self.collectionView.reloadData()
-        self.tryLoadProductList(filter: filter)
-        
+        self.filterButton.isHidden = true
+        self.tryGetMinMaxPrice(filter: self.filter)
     }
     
+    fileprivate func tryGetMinMaxPrice(filter: DoShopFilter) {
+        NHTTPHelper.httpDoShopMinMax(keyword: filter.keyword, categoryId: filter.categoryId, brandId: filter.brandId, complete: {response in
+            if let error = response.error {
+                if error.isKind(of: NotConnectedInternetError.self) {
+                    NHelper.handleConnectionError(completion: {
+                        self.tryGetMinMaxPrice(filter: filter)
+                    })
+                } else if error.isKind(of: StatusFailedError.self) {
+                    UIAlertController.handleErrorMessage(viewController: self, error: error, completion: { _ in
+                        let _ = error as! StatusFailedError
+                    })
+                }
+            }
+            if let data = response.data {
+                self.price = data
+                self.filterButton.isHidden = false
+                self.filter.selectedPriceMin = data.lowestPrice
+                self.filter.selectedPriceMax = data.highestPrice
+                self.tryLoadProductList(filter: self.filter)
+            }
+        })
+    }
     
     fileprivate func tryLoadProductList(filter: DoShopFilter) {
-        NHTTPHelper.httpGetProductList(page: self.page, keyword: filter.keyword, categoryId: filter.categoryId, priceMin: filter.priceMin, priceMax: filter.priceMax, sortBy: filter.sortBy, merchantId: filter.merchantId, complete: {response in
+        NHTTPHelper.httpGetProductList(page: self.page, keyword: filter.keyword, categoryId: filter.categoryId, priceMin: filter.selectedPriceMin, priceMax: filter.selectedPriceMax, sortBy: filter.sortBy, merchantId: filter.merchantId, brandId: filter.brandId, recommended: filter.recommended, complete: {response in
             self.refreshControl.endRefreshing()
             self.collectionView.finishInfiniteScroll()
             if let error = response.error {
@@ -139,7 +162,7 @@ class DoShopProductListController: BaseViewController {
                                                             return self.productGridSize
         },
                                                            layout: FlowLayout(spacing: 8, justifyContent: .start, alignItems: .start)
-                                                            .inset(by: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)),
+                                                            .inset(by: UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)),
                                                            animator: nil,
                                                            tapHandler: {context in
                                                             let _ = DoShopProductDetailController.push(on: self.navigationController!, productId: context.data.productId!)
@@ -158,6 +181,11 @@ class DoShopProductListController: BaseViewController {
         }
     }
 
+    @IBAction func filterButtonAction(_ sender: Any) {
+        let _ = DoShopFilterController.present(on: self.navigationController!, price: self.price!, filter: self.filter, onUpdateFilter: {filter in
+            self.filter = filter
+        })
+    }
     
     override func keyboardWillHide(animationDuration: TimeInterval) {
     
@@ -200,9 +228,10 @@ extension DoShopProductListController: UISearchControllerDelegate, UISearchResul
 class DoShopFilter {
     var keyword: String?
     var categoryId: String?
-    var priceMin: Double?
-    var priceMax: Double?
+    var selectedPriceMax: CGFloat?
+    var selectedPriceMin: CGFloat?
     var sortBy: Int = 1
     var merchantId: String?
-    
+    var brandId: String?
+    var recommended: Int?
 }

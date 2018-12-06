@@ -94,7 +94,7 @@ class DoShopProductDetailController: BaseViewController {
     }
     
     fileprivate func tryRelatedProduct(categoryId: String) {
-        NHTTPHelper.httpGetProductList(page: 1, keyword: nil, categoryId: categoryId, priceMin: nil, priceMax: nil, sortBy: nil, merchantId: nil, complete: {response in
+        NHTTPHelper.httpGetProductList(page: 1, keyword: nil, categoryId: categoryId, priceMin: nil, priceMax: nil, sortBy: nil, merchantId: nil, brandId: nil, recommended: 1, complete: {response in
             self.refreshControl.endRefreshing()
             if let error = response.error {
                 if error.isKind(of: NotConnectedInternetError.self) {
@@ -212,19 +212,34 @@ extension DoShopProductDetailController: UITableViewDelegate, UITableViewDataSou
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProductInfoCell", for: indexPath)
             as! ProductInfoCell
+            cell.onOpenMerchant = {merchant in
+                let filter = DoShopFilter()
+                filter.merchantId = merchant.id
+                let _ = DoShopProductListController.push(on: self.navigationController!, filter: filter)
+            }
+            
+            cell.onOpenBrand = {brand in
+                let filter = DoShopFilter()
+                filter.brandId = brand.id
+                let _ = DoShopProductListController.push(on: self.navigationController!, filter: filter)
+            }
             cell.initData(product: self.product!, qty: self.qty, controllerView: self.view, controller: self)
             cell.onVariationTriggered = {variation, variationView in
                 self.openVariation(variation: variation, sender: variationView)
             }
             cell.onAddToCart = {
-                if let authUser = NAuthReturn.authUser() {
-                    self.tryAddToCart(productId: self.productId!, pickedVariations: self.pickedVariation, qty: self.qty)
-                } else {
-                    self.goToAuth(completion: {
-                        if let authUser = NAuthReturn.authUser() {
+                if self.qty > 0 {
+                    if let authUser = NAuthReturn.authUser() {
+                        self.tryAddToCart(productId: self.productId!, pickedVariations: self.pickedVariation, qty: self.qty)
+                    } else {
+                        self.goToAuth(completion: {
+                            if let authUser = NAuthReturn.authUser() {
                             self.tryAddToCart(productId: self.productId!, pickedVariations: self.pickedVariation, qty: self.qty)
-                        }
-                    })
+                            }
+                        })
+                    }
+                } else {
+                    UIAlertController.handleErrorMessage(viewController: self, error: "Minimum quantity is 1!", completion: {})
                 }
             }
             cell.onUpdateQuantity = {qty in
@@ -241,6 +256,7 @@ extension DoShopProductDetailController: UITableViewDelegate, UITableViewDataSou
                 if let nsset = self.product!.categories, let categories = nsset.allObjects as? [NProductCategory], !categories.isEmpty {
                     let filter = DoShopFilter()
                     filter.categoryId = categories[0].id
+                    filter.recommended = 1
                     let _ = DoShopProductListController.push(on: self.navigationController!, filter: filter)
                 }
             }

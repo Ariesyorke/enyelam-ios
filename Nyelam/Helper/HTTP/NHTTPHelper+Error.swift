@@ -405,8 +405,6 @@ class NHTTPHelper {
         }
     }
     
-    
-    
     static var API_VERITRANS_PAYPAL_NOTIFICATION: String {
         switch NConstant.URL_TYPE {
         case .production:
@@ -780,6 +778,24 @@ class NHTTPHelper {
             return "doshop/payment_fee"
         default:
             return "api/doshop/payment_fee"
+        }
+    }
+    
+    static var API_PATH_DO_SHOP_BANNER: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "doshop/banner"
+        default:
+            return "api/doshop/banner"
+        }
+    }
+    
+    static var API_PATH_DO_SHOP_PRODUCT_FILTER: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "doshop/product_filter"
+        default:
+            return "api/doshop/product_filter"
         }
     }
     

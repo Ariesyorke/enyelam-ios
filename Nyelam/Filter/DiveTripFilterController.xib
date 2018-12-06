@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -51,7 +51,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O60-Lu-zrH">
-                            <rect key="frame" x="16" y="10.5" width="343" height="22"/>
+                            <rect key="frame" x="16" y="11" width="343" height="22"/>
                             <fontDescription key="fontDescription" name="FiraSans-Bold" family="Fira Sans" pointSize="18"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -73,7 +73,7 @@
                     <rect key="frame" x="0.0" y="595" width="375" height="72"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5va-YP-Qw9">
-                            <rect key="frame" x="8" y="16" width="171.5" height="40"/>
+                            <rect key="frame" x="191.5" y="16" width="167.5" height="40"/>
                             <color key="backgroundColor" red="0.086274509799999996" green="0.45882352939999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="l78-b4-p0x"/>
@@ -92,7 +92,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Die-oR-LnU">
-                            <rect key="frame" x="187.5" y="16" width="171.5" height="40"/>
+                            <rect key="frame" x="16" y="16" width="167.5" height="40"/>
                             <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="17"/>
                             <state key="normal" title="Clear">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -109,13 +109,13 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="5va-YP-Qw9" firstAttribute="leading" secondItem="Die-oR-LnU" secondAttribute="trailing" constant="8" id="4fP-d3-4Cj"/>
+                        <constraint firstAttribute="trailing" secondItem="5va-YP-Qw9" secondAttribute="trailing" constant="16" id="CfD-Xf-i2I"/>
                         <constraint firstItem="5va-YP-Qw9" firstAttribute="width" secondItem="Die-oR-LnU" secondAttribute="width" id="DcV-tg-Od4"/>
-                        <constraint firstAttribute="trailing" secondItem="Die-oR-LnU" secondAttribute="trailing" constant="16" id="Ia2-a2-C9V"/>
                         <constraint firstAttribute="bottom" secondItem="5va-YP-Qw9" secondAttribute="bottom" constant="16" id="OWO-Xn-sLJ"/>
                         <constraint firstItem="Die-oR-LnU" firstAttribute="top" secondItem="5va-YP-Qw9" secondAttribute="top" id="Oro-Ai-zbf"/>
+                        <constraint firstItem="Die-oR-LnU" firstAttribute="leading" secondItem="Y2u-Q1-D3j" secondAttribute="leading" constant="16" id="aBI-o9-Y8n"/>
                         <constraint firstItem="5va-YP-Qw9" firstAttribute="top" secondItem="Y2u-Q1-D3j" secondAttribute="top" constant="16" id="gJ1-80-Gth"/>
-                        <constraint firstItem="5va-YP-Qw9" firstAttribute="leading" secondItem="Y2u-Q1-D3j" secondAttribute="leading" constant="8" id="n3H-kN-QXX"/>
-                        <constraint firstItem="Die-oR-LnU" firstAttribute="leading" secondItem="5va-YP-Qw9" secondAttribute="trailing" constant="8" id="tLb-Oj-p26"/>
                         <constraint firstItem="Die-oR-LnU" firstAttribute="bottom" secondItem="5va-YP-Qw9" secondAttribute="bottom" id="v3e-ze-lfj"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>

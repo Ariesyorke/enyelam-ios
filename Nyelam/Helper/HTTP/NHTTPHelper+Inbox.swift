@@ -97,7 +97,6 @@ extension NHTTPHelper {
             multipartParam = ["file": attachment]
         }
         self.basicUploadRequest(URLString: HOST_URL + API_PATH_POST_INBOX_DETAIL, multiparts: multipartParam, parameters: param, headers: nil, complete: {status, data, error in
-            print("DATA \(data)")
             if let error = error {
                 complete(NHTTPResponse(resultStatus: false, data: false, error: error))
                 return

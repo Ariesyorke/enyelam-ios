@@ -90,6 +90,9 @@ class AddAddressViewController: BaseViewController, UITextViewDelegate {
         self.addressTextField.delegate = self
         self.phoneNumberTextField.delegate = self
         self.districtTextField.delegate = self
+        self.addressTextField.layer.borderWidth = 1
+        self.addressTextField.layer.borderColor = UIColor.lightGray.cgColor
+        
         if self.defaultShip == 1 {
             self.checkButtonContainer.isHidden = false
         }
@@ -163,12 +166,42 @@ class AddAddressViewController: BaseViewController, UITextViewDelegate {
             UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {})
             return
         }
-        self.tryAddAddress(emailAddress: emailAddress, fullname: fullname, phoneNumber: phoneNumber, zipCode: zipCode, note: note, address: address, province: self.province!, city: self.city!, district: self.district!, defaultBilling: self.defaultBill, defaultShipping: self.checkButton.isSelected ? 1 : self.defaultShip)
+        if let addr = self.address {
+            self.tryEditAddress(addressId: addr.addressId!, emailAddress: emailAddress, fullname: fullname, phoneNumber: phoneNumber, zipCode: zipCode, note: note, address: address, province: self.province!, city: self.city!, district: self.district!, defaultBilling: self.defaultBill, defaultShipping: self.checkButton.isSelected ? 1 : self.defaultShip)
+        } else {
+           self.tryAddAddress(emailAddress: emailAddress, fullname: fullname, phoneNumber: phoneNumber, zipCode: zipCode, note: note, address: address, province: self.province!, city: self.city!, district: self.district!, defaultBilling: self.defaultBill, defaultShipping: self.checkButton.isSelected ? 1 : self.defaultShip)
+        }
+        
     }
-    
+    fileprivate func tryEditAddress(addressId: String, emailAddress: String, fullname: String, phoneNumber: String, zipCode: String, note: String, address: String, province: NProvince, city: NCity, district: NDistrict, defaultBilling: Int, defaultShipping: Int) {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        NHTTPHelper.httpEditAddressRequest(addressId: addressId, emailAddress: emailAddress, fullname: fullname, address: address, phoneNumber: phoneNumber, provinceId: province.id!, provinceName: province.name!, cityId: city.id!, cityName: city.name!, districtId: district.id!, districtName: district.name!, defaultBill: defaultBilling, defaultShip: defaultBilling, zipCode: zipCode, label: note, complete: {response in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            if let error = response.error {
+                if error.isKind(of: NotConnectedInternetError.self) {
+                    NHelper.handleConnectionError(completion: {
+                        self.tryAddAddress(emailAddress: emailAddress, fullname: fullname, phoneNumber: phoneNumber, zipCode: zipCode, note: note, address: emailAddress, province: province, city: city, district: district, defaultBilling: defaultBilling, defaultShipping: defaultShipping)
+                    })
+                } else if error.isKind(of: StatusFailedError.self) {
+                    UIAlertController.handleErrorMessage(viewController: self, error: error, completion: { _ in
+                        let err = error as! StatusFailedError
+                        
+                    })
+                }
+                return
+            }
+            if let datas = response.data, !datas.isEmpty {
+                UIAlertController.handlePopupMessage(viewController: self, title: "Address successfully added!", actionButtonTitle: "OK", completion: {
+                    self.findAddress(addresses: datas)
+                })
+            }
+            
+        })
+
+    }
     fileprivate func tryAddAddress(emailAddress: String, fullname: String, phoneNumber: String, zipCode: String, note: String, address: String, province: NProvince, city: NCity, district: NDistrict, defaultBilling: Int, defaultShipping: Int) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        NHTTPHelper.httpAddAddressRequest(emailAddress: emailAddress, fullname: fullname, address: address, phoneNumber: phoneNumber, provinceId: province.id!, provinceName: province.name!, cityId: city.id!, cityName: city.name!, districtId: district.id!, districtName: district.name!, defaultBill: defaultBilling, defaultShip: defaultBilling, zipCode: zipCode, addressId: nil, label: note, complete: {response in
+        NHTTPHelper.httpAddAddressRequest(emailAddress: emailAddress, fullname: fullname, address: address, phoneNumber: phoneNumber, provinceId: province.id!, provinceName: province.name!, cityId: city.id!, cityName: city.name!, districtId: district.id!, districtName: district.name!, defaultBill: defaultBilling, defaultShip: defaultBilling, zipCode: zipCode, label: note, complete: {response in
             MBProgressHUD.hide(for: self.view, animated: true)
             if let error = response.error {
                 if error.isKind(of: NotConnectedInternetError.self) {

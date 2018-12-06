@@ -17,6 +17,7 @@ class CourierType: Parseable {
     var serviceDescription: String?
     var costs: [CourierCost]?
     
+    init() {}
     init(json: [String: Any]) {
         self.parse(json: json)
     }

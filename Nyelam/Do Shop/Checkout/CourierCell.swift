@@ -29,8 +29,9 @@ class CourierCell: NTableViewCell {
     @IBAction func courierButtonAction(_ sender: Any) {
         self.onChangeCourier(row)
     }
-    func initData(merchant: Merchant, courier: Courier?, courierType: CourierType?) {
+    func initData(merchant: Merchant, courier: Courier?, courierType: CourierType?, row: Int) {
         self.merchantTitleLabel.text = merchant.merchantName
+        self.row = row
         for subview in self.productItemContainer.subviews {
             subview.removeFromSuperview()
         }
@@ -59,7 +60,7 @@ class CourierCell: NTableViewCell {
                 i += 1
             }
         }
-        if let courier = courier, let courierType = courierType {
+        if let courier = courier, let courierType = courierType, let code = courier.code {
             let view = self.createView(for: courier, courierType: courierType)
             self.courierContainer.addSubview(view)
             self.courierContainer.addConstraints([

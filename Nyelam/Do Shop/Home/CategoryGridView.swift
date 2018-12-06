@@ -64,8 +64,8 @@ class CategoryGridView: UIView {
         self.categoryNameLabel.text = category.categoryName
         if let imageUrl = category.categoryImage, let url = URL(string: imageUrl) {
             self.categoryImageView.af_setImage(withURL: url, placeholderImage: UIImage(named: "image_default"), filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: true, completion: nil)
+        } else {
+            self.categoryImageView.image = UIImage(named: "image_default")
         }
     }
-
-    
 }

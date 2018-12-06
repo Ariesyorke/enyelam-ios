@@ -112,4 +112,18 @@ class NHelper {
         }
         return false
     }
+    static func calculateCourier(merchants: [Merchant]) -> [Courier] {
+        var couriers: [Courier] = []
+        for _ in merchants {
+            couriers.append(Courier())
+        }
+        return couriers
+    }
+    static func calculateCourierTypes(merchants: [Merchant]) -> [CourierType] {
+        var courierTypes: [CourierType] = []
+        for _ in merchants {
+            courierTypes.append(CourierType())
+        }
+        return courierTypes
+    }
 }

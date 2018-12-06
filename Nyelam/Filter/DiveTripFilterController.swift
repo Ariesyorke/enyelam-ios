@@ -235,7 +235,7 @@ class SortByCell: NTableViewCell {
         // Initialization code
     }
     
-    fileprivate func initSort() {
+    func initSort() {
         if sortType == 2 {
             self.priceSort.isSelected = true
         } else {

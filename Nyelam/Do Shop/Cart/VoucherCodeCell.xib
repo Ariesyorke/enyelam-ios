@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,26 +24,26 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="114"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="114"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="113.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mVR-h4-4h4">
                         <rect key="frame" x="16" y="16" width="288" height="81.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Voucher Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WXs-C7-iry">
-                                <rect key="frame" x="8" y="8" width="272" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Enter Voucher Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WXs-C7-iry">
+                                <rect key="frame" x="16" y="8" width="256" height="17"/>
                                 <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6K5-GC-rPh">
-                                <rect key="frame" x="8" y="33" width="176" height="32.5"/>
+                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6K5-GC-rPh">
+                                <rect key="frame" x="16" y="33" width="165.5" height="32.5"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oib-GI-B4q">
-                                <rect key="frame" x="192" y="33" width="88" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oib-GI-B4q">
+                                <rect key="frame" x="189.5" y="33" width="82.5" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.59607843140000005" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="15"/>
                                 <state key="normal" title="APPLY">
@@ -63,14 +62,14 @@
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Oib-GI-B4q" firstAttribute="width" secondItem="6K5-GC-rPh" secondAttribute="width" multiplier="1:2" id="30r-dr-FsY"/>
-                            <constraint firstItem="6K5-GC-rPh" firstAttribute="top" secondItem="WXs-C7-iry" secondAttribute="bottom" constant="8" id="LAG-NY-JEU"/>
+                            <constraint firstItem="6K5-GC-rPh" firstAttribute="top" secondItem="WXs-C7-iry" secondAttribute="bottom" constant="16" id="LAG-NY-JEU"/>
                             <constraint firstItem="6K5-GC-rPh" firstAttribute="leading" secondItem="WXs-C7-iry" secondAttribute="leading" id="NxB-XQ-Dam"/>
-                            <constraint firstAttribute="trailing" secondItem="WXs-C7-iry" secondAttribute="trailing" constant="8" id="RQP-Ga-nPo"/>
+                            <constraint firstAttribute="trailing" secondItem="WXs-C7-iry" secondAttribute="trailing" constant="16" id="RQP-Ga-nPo"/>
                             <constraint firstAttribute="bottom" secondItem="6K5-GC-rPh" secondAttribute="bottom" constant="16" id="S9E-TV-rhG"/>
                             <constraint firstItem="Oib-GI-B4q" firstAttribute="trailing" secondItem="WXs-C7-iry" secondAttribute="trailing" id="WUj-dM-Gs4"/>
-                            <constraint firstItem="WXs-C7-iry" firstAttribute="leading" secondItem="mVR-h4-4h4" secondAttribute="leading" constant="8" id="YUQ-My-AL0"/>
+                            <constraint firstItem="WXs-C7-iry" firstAttribute="leading" secondItem="mVR-h4-4h4" secondAttribute="leading" constant="16" id="YUQ-My-AL0"/>
                             <constraint firstItem="Oib-GI-B4q" firstAttribute="leading" secondItem="6K5-GC-rPh" secondAttribute="trailing" constant="8" id="ezr-Gg-fsD"/>
-                            <constraint firstItem="WXs-C7-iry" firstAttribute="top" secondItem="mVR-h4-4h4" secondAttribute="top" constant="8" id="mlF-Jm-JLL"/>
+                            <constraint firstItem="WXs-C7-iry" firstAttribute="top" secondItem="mVR-h4-4h4" secondAttribute="top" constant="16" id="mlF-Jm-JLL"/>
                             <constraint firstItem="Oib-GI-B4q" firstAttribute="top" secondItem="6K5-GC-rPh" secondAttribute="top" id="saO-5i-eXA"/>
                         </constraints>
                     </view>

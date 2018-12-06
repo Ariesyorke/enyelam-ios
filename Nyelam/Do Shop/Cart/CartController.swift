@@ -15,15 +15,21 @@ class CartController: BaseViewController {
     var refreshControl: UIRefreshControl = UIRefreshControl()
     var cartReturn: CartReturn? {
         didSet {
-            self.checkoutButton.isHidden = false
-            self.tableView.reloadData()
+            if let _ = self.cartReturn {
+                self.checkoutButton.isHidden = false
+                self.tableView.reloadData()
+            } else {
+                self.checkoutButton.isHidden = true
+            }
         }
     }
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var checkoutButton: UIButton!
     
     static func push(on controller: UINavigationController) -> CartController {
         let vc = CartController(nibName: "CartController", bundle: nil)
+        controller.setNavigationBarHidden(false, animated: true)
         controller.pushViewController(vc, animated: true)
         return vc
     }
@@ -80,6 +86,7 @@ class CartController: BaseViewController {
             if let data = response.data {
                 self.cartReturn = data
             } else {
+                self.checkoutButton.isHidden = true
                 self.tableView.reloadData()
             }
         })
@@ -101,7 +108,7 @@ extension CartController: UITableViewDelegate, UITableViewDataSource {
             } else {
                 let index = section - 1
                 if index < merchants.count || index > merchants.count {
-                    return 33
+                    return 1
                 }
             }
         }
@@ -116,21 +123,24 @@ extension CartController: UITableViewDelegate, UITableViewDataSource {
                 let view = NCartHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 33))
                 view.titleLabel.text = "ORDER DETAILS"
                 return view
-            } else {
-                let index = section - 1
-                if index < merchants.count {
-                    let view = NCartHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 33))
-                    view.titleLabel.text = merchants[index].merchantName?.uppercased()
-                    return view
-                } else if index > merchants.count {
-                    let view = NCartHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 33))
-                    view.titleLabel.text = "SUMMARY"
-                    return view
-
-                }
             }
+//            else {
+//                let index = section - 1
+//                if index < merchants.count {
+//                    let view = NCartHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 33))
+//                    view.titleLabel.text = merchants[index].merchantName?.uppercased()
+//                    return view
+//                } else if index > merchants.count {
+//                    let view = NCartHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 33))
+//                    view.titleLabel.text = "SUMMARY"
+//                    return view
+//
+//                }
+//            }
         }
-        return UIView()
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 1))
+        view.backgroundColor = UIColor.white
+        return view
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let cartReturn = self.cartReturn,

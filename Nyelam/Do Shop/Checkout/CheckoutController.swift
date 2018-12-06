@@ -354,7 +354,6 @@ class CheckoutController: BaseViewController, UITextViewDelegate {
             NSLayoutConstraint(item: container, attribute: .leading, relatedBy: .equal, toItem: titleLabel, attribute: .leading, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: container, attribute: .trailing, relatedBy: .equal, toItem: titleLabel, attribute: .trailing, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: container, attribute: .top, relatedBy: .equal, toItem: titleLabel, attribute: .top, multiplier: 1, constant: 0)])
-
         container.addConstraints([
             NSLayoutConstraint(item: container, attribute: .leading, relatedBy: .equal, toItem: descriptionLabel, attribute: .leading, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: container, attribute: .trailing, relatedBy: .equal, toItem: descriptionLabel, attribute: .trailing, multiplier: 1, constant: 0),
@@ -387,7 +386,7 @@ class CheckoutController: BaseViewController, UITextViewDelegate {
     fileprivate func tryAddAddress(view: NInputAddressView, defaultBill: Int, defaultShip: Int) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
         if let authReturn = NAuthReturn.authUser(), let user = authReturn.user {
-            NHTTPHelper.httpAddAddressRequest(emailAddress: user.email!, fullname: view.fullnameTextField.text!, address: view.addressTextView.text!, phoneNumber: view.phoneNumberTextfield.text!, provinceId: view.province!.id!, provinceName: view.province!.name!, cityId: view.city!.id!, cityName: view.city!.name!, districtId: view.district!.id!, districtName: view.district!.name!, defaultBill: defaultBill, defaultShip: defaultShip, zipCode: view.zipCodeTextField.text, addressId: nil, label: view.noteTextField.text, complete: {response in
+            NHTTPHelper.httpAddAddressRequest(emailAddress: user.email!, fullname: view.fullnameTextField.text!, address: view.addressTextView.text!, phoneNumber: view.phoneNumberTextfield.text!, provinceId: view.province!.id!, provinceName: view.province!.name!, cityId: view.city!.id!, cityName: view.city!.name!, districtId: view.district!.id!, districtName: view.district!.name!, defaultBill: defaultBill, defaultShip: defaultShip, zipCode: view.zipCodeTextField.text, label: view.noteTextField.text, complete: {response in
                 MBProgressHUD.hide(for: self.view, animated: true)
                 if let error = response.error {
                     if error.isKind(of: NotConnectedInternetError.self) {

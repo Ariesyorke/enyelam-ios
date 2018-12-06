@@ -23,6 +23,7 @@ class DoShopRecommended: Parseable {
     func parse(json: [String : Any]) {
         if let categoriesArray = json[KEY_CATEGORIES] as? Array<[String: Any]>, !categoriesArray.isEmpty {
             self.categories = []
+            var i = 0
             for categoryJson in categoriesArray {
                 var category: NProductCategory? = nil
                 if let id = categoryJson["id"] as? String {
@@ -33,12 +34,24 @@ class DoShopRecommended: Parseable {
                 }
                 category!.parse(json: categoryJson)
                 self.categories!.append(category!)
+                i+=1
+                if i >= 3 {
+                    var c: NProductCategory? = NProductCategory.getCategory(using: "-1")
+                    if c == nil {
+                        c = NSEntityDescription.insertNewObject(forEntityName: "NProductCategory", into: AppDelegate.sharedManagedContext) as! NProductCategory
+                        c!.id = "-1"
+                        c!.categoryName = "View All"
+                    }
+                    self.categories!.append(c!)
+                    break
+                }
             }
         } else if let categoriesArrayString = json[KEY_CATEGORIES] as? String {
             do {
                 var category: NProductCategory? = nil
                 let data = categoriesArrayString.data(using: String.Encoding.utf8, allowLossyConversion: true)
                 let categoriesArray: Array<[String: Any]> = try JSONSerialization.jsonObject(with: data!, options: []) as! Array<[String: Any]>
+                var i = 0
                 for categoryJson in categoriesArray {
                     if let id = categoryJson["id"] as? String {
                         category = NProductCategory.getCategory(using: id)
@@ -48,6 +61,18 @@ class DoShopRecommended: Parseable {
                     }
                     category!.parse(json: categoryJson)
                     self.categories!.append(category!)
+                    i+=1
+                    if i >= 3 {
+                        var c: NProductCategory? = NProductCategory.getCategory(using: "-1")
+                        if c == nil {
+                            c = NSEntityDescription.insertNewObject(forEntityName: "NProductCategory", into: AppDelegate.sharedManagedContext) as! NProductCategory
+                            c!.id = "-1"
+                            c!.categoryName = "View All"
+                        }
+                        self.categories!.append(c!)
+                        break
+                    }
+
                 }
             } catch {
                 print(error)

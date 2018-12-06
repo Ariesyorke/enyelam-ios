@@ -72,6 +72,8 @@
 		C010FB11207CAF47000059AA /* FiraSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C010FAFF207CAF46000059AA /* FiraSans-LightItalic.ttf */; };
 		C010FB12207CAF47000059AA /* FiraSans-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C010FB00207CAF47000059AA /* FiraSans-Thin.ttf */; };
 		C010FB19207CC3BA000059AA /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C010FB18207CC3BA000059AA /* UIView+Extensions.swift */; };
+		C011C11621B965E600F17581 /* DoShopFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C011C11421B965E600F17581 /* DoShopFilterController.swift */; };
+		C011C11721B965E600F17581 /* DoShopFilterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C011C11521B965E600F17581 /* DoShopFilterController.xib */; };
 		C019C939213E40E900D9D71F /* VoucherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C019C937213E40E900D9D71F /* VoucherCell.swift */; };
 		C019C93A213E40E900D9D71F /* VoucherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C019C938213E40E900D9D71F /* VoucherCell.xib */; };
 		C01AAC18208DA0FB00EDDB37 /* CoreDataModel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01AAC17208DA0FB00EDDB37 /* CoreDataModel+Extensions.swift */; };
@@ -181,6 +183,10 @@
 		C06D90B321A5415F0057765A /* DoShopSideMenuNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D90B221A5415F0057765A /* DoShopSideMenuNavigationController.swift */; };
 		C06D90B721A5617D0057765A /* CartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06D90B521A5617D0057765A /* CartController.swift */; };
 		C06D90B821A5617D0057765A /* CartController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C06D90B621A5617D0057765A /* CartController.xib */; };
+		C07A6D9321B8D551003F51BF /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07A6D9121B8D551003F51BF /* CategoryViewController.swift */; };
+		C07A6D9421B8D551003F51BF /* CategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C07A6D9221B8D551003F51BF /* CategoryViewController.xib */; };
+		C07A6D9621B8D9E8003F51BF /* DoShopBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07A6D9521B8D9E8003F51BF /* DoShopBanner.swift */; };
+		C07A6D9821B90C95003F51BF /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07A6D9721B90C95003F51BF /* UIViewController+Extensions.swift */; };
 		C07BF9B721B02F9A009C28DD /* NProductItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C07BF9B621B02F9A009C28DD /* NProductItemView.xib */; };
 		C07BF9B921B032AA009C28DD /* NProductItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07BF9B821B032AA009C28DD /* NProductItemView.swift */; };
 		C07BF9BB21B03450009C28DD /* NCourierItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C07BF9BA21B03450009C28DD /* NCourierItemView.xib */; };
@@ -574,6 +580,8 @@
 		C010FAFF207CAF46000059AA /* FiraSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		C010FB00207CAF47000059AA /* FiraSans-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FiraSans-Thin.ttf"; sourceTree = "<group>"; };
 		C010FB18207CC3BA000059AA /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		C011C11421B965E600F17581 /* DoShopFilterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoShopFilterController.swift; sourceTree = "<group>"; };
+		C011C11521B965E600F17581 /* DoShopFilterController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DoShopFilterController.xib; sourceTree = "<group>"; };
 		C019C937213E40E900D9D71F /* VoucherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherCell.swift; sourceTree = "<group>"; };
 		C019C938213E40E900D9D71F /* VoucherCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoucherCell.xib; sourceTree = "<group>"; };
 		C01AAC17208DA0FB00EDDB37 /* CoreDataModel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataModel+Extensions.swift"; sourceTree = "<group>"; };
@@ -693,6 +701,10 @@
 		C06D90B221A5415F0057765A /* DoShopSideMenuNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoShopSideMenuNavigationController.swift; sourceTree = "<group>"; };
 		C06D90B521A5617D0057765A /* CartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartController.swift; sourceTree = "<group>"; };
 		C06D90B621A5617D0057765A /* CartController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartController.xib; sourceTree = "<group>"; };
+		C07A6D9121B8D551003F51BF /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		C07A6D9221B8D551003F51BF /* CategoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryViewController.xib; sourceTree = "<group>"; };
+		C07A6D9521B8D9E8003F51BF /* DoShopBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoShopBanner.swift; sourceTree = "<group>"; };
+		C07A6D9721B90C95003F51BF /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		C07BF9B621B02F9A009C28DD /* NProductItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NProductItemView.xib; sourceTree = "<group>"; };
 		C07BF9B821B032AA009C28DD /* NProductItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NProductItemView.swift; sourceTree = "<group>"; };
 		C07BF9BA21B03450009C28DD /* NCourierItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NCourierItemView.xib; sourceTree = "<group>"; };
@@ -1352,6 +1364,15 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		C011C10F21B9659F00F17581 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				C011C11421B965E600F17581 /* DoShopFilterController.swift */,
+				C011C11521B965E600F17581 /* DoShopFilterController.xib */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
 		C026FF842084C9EA00357EE5 /* Side Menu */ = {
 			isa = PBXGroup;
 			children = (
@@ -1408,8 +1429,8 @@
 				C037AD5D2070A38800DD5CBC /* StarterViewController.swift */,
 				C037AD652070A38800DD5CBC /* Assets.xcassets */,
 				A6C2708C207BF0A2007E4D2A /* MainRootController.xib */,
-				C0CA9177207F69D000D3ECED /* Account */,
 				C0B2A274207B84CD00D46336 /* Auth */,
+				C0CA9177207F69D000D3ECED /* Account */,
 				C0BE919B2070BFB8004E1B92 /* Data */,
 				C0CB3F102092CA8A00BE5644 /* Dive Center */,
 				A6691A4C207E7896004B1C2E /* Dive Service */,
@@ -1496,6 +1517,15 @@
 			path = Cart;
 			sourceTree = "<group>";
 		};
+		C07A6D9021B8D4E6003F51BF /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				C07A6D9121B8D551003F51BF /* CategoryViewController.swift */,
+				C07A6D9221B8D551003F51BF /* CategoryViewController.xib */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		C087B03320BE579C00BDBF7E /* Review */ = {
 			isa = PBXGroup;
 			children = (
@@ -1547,6 +1577,8 @@
 		C09AC93B2192CE3F005CAF05 /* Do Shop */ = {
 			isa = PBXGroup;
 			children = (
+				C011C10F21B9659F00F17581 /* Filter */,
+				C07A6D9021B8D4E6003F51BF /* Category */,
 				C08CC14A21B28DC00043ADEF /* Order */,
 				C0C2ADEE21A7F0B200051D74 /* Checkout */,
 				C06D90B421A561690057765A /* Cart */,
@@ -1667,6 +1699,7 @@
 				C0B05BF72096C96D003FE74B /* NSAttributedString.swift */,
 				C08310A0215238B2009213F2 /* UITableView+Extensions.swift */,
 				C00135B2218833FA001FAC1D /* NSDecimalNumber+Extensions.swift */,
+				C07A6D9721B90C95003F51BF /* UIViewController+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1725,6 +1758,7 @@
 				C00A5979219290FE00DFEB1E /* VariationItem.swift */,
 				C09F5FA421300E8B00E1F789 /* Voucher.swift */,
 				C0D671F221B77E7C00F2652B /* Brand.swift */,
+				C07A6D9521B8D9E8003F51BF /* DoShopBanner.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -2196,6 +2230,7 @@
 				C003A27D20A0337F003B217B /* DiveEthicAgreementController.xib in Resources */,
 				C06D90B821A5617D0057765A /* CartController.xib in Resources */,
 				C0EE27FC209992B9006ACA5D /* OrderController.xib in Resources */,
+				C07A6D9421B8D551003F51BF /* CategoryViewController.xib in Resources */,
 				C037E8AF2085B420000EB5CF /* SideMenuController.xib in Resources */,
 				C0A09EEF21AFD3EE00E77545 /* AddressListController.xib in Resources */,
 				C0D667A6214F76E000F45039 /* InboxCell.xib in Resources */,
@@ -2208,6 +2243,7 @@
 				C0B2A278207B84DC00D46336 /* LoginViewController.xib in Resources */,
 				C0F3B5A121510FFC007BD42A /* IncomingImageMessageCell.xib in Resources */,
 				C0BFAB1E21A2AFED00D38E1F /* DoShopProductListController.xib in Resources */,
+				C011C11721B965E600F17581 /* DoShopFilterController.xib in Resources */,
 				C040B98220B6B1CC00A19D7E /* background_blur.png in Resources */,
 				C0D6679E214F5AAE00F45039 /* InboxDetailController.xib in Resources */,
 				C0FD7C7D20845B8B00FC4508 /* SectionViewCell.xib in Resources */,
@@ -2544,6 +2580,7 @@
 				C0FC0C3720919DB900C8D428 /* NTagView.swift in Sources */,
 				A60A2861207FB888004A8FC2 /* SearchKeywordController.swift in Sources */,
 				C0C2ADED21A7B01800051D74 /* NCartHeaderView.swift in Sources */,
+				C011C11621B965E600F17581 /* DoShopFilterController.swift in Sources */,
 				C0D6722921B7837B00F2652B /* NAddress+CoreDataProperties.swift in Sources */,
 				C06D90B721A5617D0057765A /* CartController.swift in Sources */,
 				C0A09F0221AFDCF700E77545 /* CourierCell.swift in Sources */,
@@ -2604,6 +2641,7 @@
 				C0CB3F172092CAEB00BE5644 /* DiveCenterDetailController.swift in Sources */,
 				C0BE91942070B758004E1B92 /* MenuBarView.swift in Sources */,
 				C0E17FCD207721E1003942D1 /* NHTTPHelper+DoDive.swift in Sources */,
+				C07A6D9321B8D551003F51BF /* CategoryViewController.swift in Sources */,
 				C003A27C20A0337F003B217B /* DiveEthicAgreementController.swift in Sources */,
 				C0BE91982070B758004E1B92 /* DTMCore.swift in Sources */,
 				C0B2A26E207B5E5A00D46336 /* UIAlertController+Extensions.swift in Sources */,
@@ -2695,11 +2733,13 @@
 				C0D6724821B7837B00F2652B /* NProduct+CoreDataClass.swift in Sources */,
 				C0D6724921B7837B00F2652B /* NProduct+CoreDataProperties.swift in Sources */,
 				C0F90372208EDB9E009F5104 /* DiveTripFilterController.swift in Sources */,
+				C07A6D9821B90C95003F51BF /* UIViewController+Extensions.swift in Sources */,
 				C0803B0221AE3F3800535ADB /* CourierCost.swift in Sources */,
 				C0D6724421B7837B00F2652B /* NSearchResult+CoreDataClass.swift in Sources */,
 				C0A09EEA21AFD30300E77545 /* PersonalInformationCell.swift in Sources */,
 				C0D6723221B7837B00F2652B /* NCategory+CoreDataClass.swift in Sources */,
 				C0E17FCF20772E3F003942D1 /* SearchResultSpot.swift in Sources */,
+				C07A6D9621B8D9E8003F51BF /* DoShopBanner.swift in Sources */,
 				C09F5F9B2130080200E1F789 /* DeliveryService.swift in Sources */,
 				C0D6723A21B7837B00F2652B /* NLanguage+CoreDataClass.swift in Sources */,
 				C0D6722E21B7837B00F2652B /* NSummary+CoreDataClass.swift in Sources */,
