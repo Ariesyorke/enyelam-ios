@@ -11,7 +11,7 @@ import CollectionKit
 import UIScrollView_InfiniteScroll
 import ActionSheetPicker_3_0
 
-class DoShopProductListController: BaseViewController {
+class DoShopProductListController: BaseDoShopViewController {
     @IBOutlet weak var collectionView: CollectionView!
     @IBOutlet weak var filterButton: UIButton!
     
@@ -34,7 +34,6 @@ class DoShopProductListController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Products"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_cart"), style: .plain, target: self, action: #selector(DoShopProductListController.onCart(_:)))
         self.refreshControl = UIRefreshControl()
         self.refreshControl.addTarget(self, action: #selector(DoShopProductListController.onRefresh(_:)), for: UIControlEvents.valueChanged)
         self.refreshControl.backgroundColor = UIColor.clear
@@ -87,6 +86,7 @@ class DoShopProductListController: BaseViewController {
             self.firstTime = false
             self.refreshControl.beginRefreshing()
             self.onRefresh(self.refreshControl)
+            self.tryGetMinMaxPrice(filter: self.filter)
         }
     }
     
@@ -97,7 +97,6 @@ class DoShopProductListController: BaseViewController {
         self.productDataSource.data = []
         self.collectionView.reloadData()
         self.filterButton.isHidden = true
-        self.tryGetMinMaxPrice(filter: self.filter)
     }
     
     fileprivate func tryGetMinMaxPrice(filter: DoShopFilter) {
@@ -113,9 +112,9 @@ class DoShopProductListController: BaseViewController {
                     })
                 }
             }
+            
             if let data = response.data {
                 self.price = data
-                self.filterButton.isHidden = false
                 self.filter.selectedPriceMin = data.lowestPrice
                 self.filter.selectedPriceMax = data.highestPrice
                 self.tryLoadProductList(filter: self.filter)
@@ -142,6 +141,7 @@ class DoShopProductListController: BaseViewController {
                 self.page += 1
                 self.nextPage = data.next
                 if let datas = data.products, !datas.isEmpty {
+                    self.filterButton.isHidden = false
                     self.productDataSource.data.append(contentsOf: datas)
                     self.collectionView.reloadData()
                 }
@@ -171,19 +171,12 @@ class DoShopProductListController: BaseViewController {
         self.collectionView.provider = provider
     }
 
-    @objc func onCart(_ sender: UIBarButtonItem) {
-        if let authUser = NAuthReturn.authUser() {
-            let _ = CartController.push(on: self.navigationController!)
-        } else {
-            self.goToAuth(completion: {
-                let _ = CartController.push(on: self.navigationController!)
-            })
-        }
-    }
-
     @IBAction func filterButtonAction(_ sender: Any) {
         let _ = DoShopFilterController.present(on: self.navigationController!, price: self.price!, filter: self.filter, onUpdateFilter: {filter in
             self.filter = filter
+            self.refreshControl.beginRefreshing()
+            self.onRefresh(self.refreshControl)
+            self.tryLoadProductList(filter: self.filter)
         })
     }
     
@@ -220,7 +213,6 @@ extension DoShopProductListController: UISearchControllerDelegate, UISearchResul
         } else {
             UIAlertController.handleErrorMessage(viewController: self, error: "Keyword cannot be empty!", completion: {})
         }
-        
     }
 }
 
@@ -230,7 +222,7 @@ class DoShopFilter {
     var categoryId: String?
     var selectedPriceMax: CGFloat?
     var selectedPriceMin: CGFloat?
-    var sortBy: Int = 1
+    var sortBy: Int = 0
     var merchantId: String?
     var brandId: String?
     var recommended: Int?

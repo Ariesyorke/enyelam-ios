@@ -69,6 +69,7 @@ class ProductGridView: UIControl {
         }
         self.normalPriceLabel.text = product.normalPrice.toCurrencyFormatString(currency: "Rp")
         self.specialPriceLabel.text = product.specialPrice.toCurrencyFormatString(currency: "Rp")
+        self.imageView.clipsToBounds = true
         if let imageUrl = product.featuredImage, let url = URL(string: imageUrl) {
             self.imageView.af_setImage(withURL: url, placeholderImage: UIImage(named: "image_default"), filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: true, completion: nil)
         } else {

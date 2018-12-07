@@ -25,7 +25,7 @@ class DoShopFilterController: BaseViewController {
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.register(UINib(nibName: "SortByCell", bundle: nil), forCellReuseIdentifier: "SortByCell")
+        self.tableView.register(UINib(nibName: "DoShopSortByCell", bundle: nil), forCellReuseIdentifier: "DoShopSortByCell")
         self.tableView.register(UINib(nibName: "PriceRangeCell", bundle: nil), forCellReuseIdentifier: "PriceRangeCell")
         self.tableView.reloadData()
 
@@ -46,18 +46,25 @@ class DoShopFilterController: BaseViewController {
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func cleaarButotnAction(_ sender: Any) {
-    
+        self.filter = DoShopFilter()
+        self.tableView.reloadData()
     }
     
     @IBAction func applyButtonAction(_ sender: Any) {
-        self.onUpdateFilter(self.filter!)
+        self.dismiss(animated: true, completion: {
+            self.onUpdateFilter(self.filter!)
+        })
     }
 }
 
 extension DoShopFilterController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return CGFloat(108)
+        } 
         return UITableViewAutomaticDimension
     }
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
@@ -80,9 +87,10 @@ extension DoShopFilterController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
         if section == 0 {
-            let cell: SortByCell = tableView.dequeueReusableCell(withIdentifier: "SortByCell", for: indexPath) as! SortByCell
+            let cell: DoShopSortByCell = tableView.dequeueReusableCell(withIdentifier: "DoShopSortByCell", for: indexPath) as! DoShopSortByCell
             cell.sortType = filter!.sortBy
             cell.onChangeSort = {sortType in
+                print("SORT BY \(sortType)")
                 self.filter!.sortBy = sortType
             }
             cell.initSort()
@@ -90,8 +98,16 @@ extension DoShopFilterController: UITableViewDelegate, UITableViewDataSource {
         } else if section == 1 {
             let cell: PriceRangeCell = tableView.dequeueReusableCell(withIdentifier: "PriceRangeCell", for: indexPath) as! PriceRangeCell
             cell.price = self.price
-            cell.priceMin = Int(self.filter!.selectedPriceMin!)
-            cell.priceMax = Int(self.filter!.selectedPriceMax!)
+            if let selectedPriceMin = self.filter!.selectedPriceMin {
+                cell.priceMin = Int(selectedPriceMin)
+            } else {
+                cell.priceMin = nil
+            }
+            if let selectedPriceMax = self.filter!.selectedPriceMax {
+                cell.priceMax = Int(selectedPriceMax)
+            } else {
+                cell.priceMax = nil
+            }
             cell.initData()
             cell.onChangePrice = {priceMin, priceMax in
                 self.filter!.selectedPriceMax = CGFloat(priceMin)

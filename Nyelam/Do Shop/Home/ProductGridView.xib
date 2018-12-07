@@ -33,19 +33,19 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c0r-7U-ATJ">
-                    <rect key="frame" x="0.0" y="0.0" width="155" height="155"/>
+                    <rect key="frame" x="14" y="14" width="127" height="127"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="c0r-7U-ATJ" secondAttribute="height" multiplier="1:1" id="91Q-yr-4JB"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lc2-NH-WYt">
-                    <rect key="frame" x="8" y="163" width="139" height="17"/>
+                    <rect key="frame" x="8" y="149" width="139" height="17"/>
                     <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ovm-WK-re3" userLabel="Normal Price Container">
-                    <rect key="frame" x="8" y="184" width="139" height="14.5"/>
+                    <rect key="frame" x="8" y="170" width="139" height="14.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rp. 99.999.999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4l-jV-0cm">
                             <rect key="frame" x="31.5" y="0.0" width="76" height="14.5"/>
@@ -72,7 +72,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ObA-56-C0p" userLabel="Special Price Container">
-                    <rect key="frame" x="8" y="200.5" width="139" height="24"/>
+                    <rect key="frame" x="8" y="186.5" width="139" height="24"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rp. 99.999.999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBJ-vT-Hi8">
                             <rect key="frame" x="0.0" y="0.0" width="139" height="24"/>
@@ -97,17 +97,17 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="lc2-NH-WYt" firstAttribute="top" secondItem="c0r-7U-ATJ" secondAttribute="bottom" constant="8" id="FFF-G3-Bwt"/>
+                <constraint firstItem="lc2-NH-WYt" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="RVr-EE-J3V"/>
                 <constraint firstItem="ObA-56-C0p" firstAttribute="leading" secondItem="lc2-NH-WYt" secondAttribute="leading" id="SqA-lp-7fo"/>
                 <constraint firstItem="ovm-WK-re3" firstAttribute="trailing" secondItem="lc2-NH-WYt" secondAttribute="trailing" id="SxA-EK-e9P"/>
                 <constraint firstItem="ObA-56-C0p" firstAttribute="top" secondItem="ovm-WK-re3" secondAttribute="bottom" constant="2" id="Uvx-RR-WUc"/>
-                <constraint firstItem="lc2-NH-WYt" firstAttribute="trailing" secondItem="c0r-7U-ATJ" secondAttribute="trailing" constant="-8" id="dMO-qp-IAW"/>
-                <constraint firstItem="lc2-NH-WYt" firstAttribute="leading" secondItem="c0r-7U-ATJ" secondAttribute="leading" constant="8" id="e1S-u5-Pvp"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="lc2-NH-WYt" secondAttribute="trailing" constant="8" id="X6p-Z7-0Mt"/>
                 <constraint firstItem="ovm-WK-re3" firstAttribute="top" secondItem="lc2-NH-WYt" secondAttribute="bottom" constant="4" id="i6f-Nl-qt5"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="c0r-7U-ATJ" secondAttribute="trailing" id="iZf-e8-5ns"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="c0r-7U-ATJ" secondAttribute="trailing" constant="14" id="iZf-e8-5ns"/>
                 <constraint firstItem="ovm-WK-re3" firstAttribute="leading" secondItem="lc2-NH-WYt" secondAttribute="leading" id="qdS-cW-PYO"/>
                 <constraint firstItem="ObA-56-C0p" firstAttribute="trailing" secondItem="lc2-NH-WYt" secondAttribute="trailing" id="qec-3K-6lJ"/>
-                <constraint firstItem="c0r-7U-ATJ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="wzX-ly-bhS"/>
-                <constraint firstItem="c0r-7U-ATJ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="zHo-cv-MZ4"/>
+                <constraint firstItem="c0r-7U-ATJ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="14" id="wzX-ly-bhS"/>
+                <constraint firstItem="c0r-7U-ATJ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="14" id="zHo-cv-MZ4"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

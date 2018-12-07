@@ -10,17 +10,18 @@ import UIKit
 import CollectionKit
 import SideMenu
 
-class DoShopHomeController: BaseViewController {
+class DoShopHomeController: BaseDoShopViewController {
     @IBOutlet weak var collectionView: CollectionView!
     
-    internal var productGridSize: CGSize!
-    internal var categoryGridSize: CGSize!
-    internal var bannerSize: CGSize!
-    internal var productDataSource: ArrayDataSource<NProduct> = ArrayDataSource()
-    internal var categoryDataSource: ArrayDataSource<NProductCategory> = ArrayDataSource()
+    fileprivate var productGridSize: CGSize!
+    fileprivate var categoryGridSize: CGSize!
+    fileprivate var bannerSize: CGSize!
+    fileprivate var productDataSource: ArrayDataSource<NProduct> = ArrayDataSource()
+    fileprivate var categoryDataSource: ArrayDataSource<NProductCategory> = ArrayDataSource()
     
-    internal var refreshControl: UIRefreshControl!
-    internal var sideMenuNavController: DoShopSideMenuNavigationController?
+    fileprivate var refreshControl: UIRefreshControl!
+    fileprivate var sideMenuNavController: DoShopSideMenuNavigationController?
+    
     var searchController : UISearchController?
 
     static func push(on controller: UINavigationController) -> DoShopHomeController {
@@ -51,7 +52,6 @@ class DoShopHomeController: BaseViewController {
         self.categoryGridSize = CGSize(width: categoryColumnWidth, height: categoryColumnWidth)
         self.bannerSize = CGSize(width: screenWidth, height: (screenWidth * 2)/3)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_navigation_drawer"), style: .plain, target: self, action: #selector(DoShopHomeController.onNavigation(_:)))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_cart"), style: .plain, target: self, action: #selector(DoShopHomeController.onCart(_:)))
         self.searchController = UISearchController(searchResultsController:  nil)
         self.searchController!.searchResultsUpdater = self
         self.searchController!.delegate = self
@@ -88,16 +88,6 @@ class DoShopHomeController: BaseViewController {
         self.present(SideMenuManager.menuLeftNavigationController!, animated: true, completion: nil)
     }
     
-    @objc func onCart(_ sender: UIBarButtonItem) {
-        if let authUser = NAuthReturn.authUser() {
-            let _ = CartController.push(on: self.navigationController!)
-        } else {
-            self.goToAuth(completion: {
-                let _ = CartController.push(on: self.navigationController!)
-            })
-        }
-    }
-    
     fileprivate func initCollectionView() {
         let productViewSource: ClosureViewSource = ClosureViewSource(viewUpdater: {
             (view: ProductGridView, data: NProduct, index: Int) in
@@ -108,23 +98,6 @@ class DoShopHomeController: BaseViewController {
             (view: SectionBannerView, data: String, index: Int) in
             view.loadBanner()
             view.isUserInteractionEnabled = true
-            view.onBannerClicked = {banner in
-                if let type = banner.bannerType {
-                    if type.lowercased() == "url", let target = banner.target, let url = URL(string: target) {
-                        UIApplication.shared.openURL(url)
-                    } else if type.lowercased() == "product", let target = banner.target {
-                        let _ = DoShopProductDetailController.push(on: self.navigationController!, productId: target)
-                    } else if type.lowercased()  == "category", let target = banner.target {
-                        let filter = DoShopFilter()
-                        filter.categoryId = target
-                        let _ = DoShopProductListController.push(on: self.navigationController!, filter: filter)
-                    } else if type.lowercased() == "brand", let target = banner.target {
-                        let filter = DoShopFilter()
-                        filter.brandId = target
-                        let _ = DoShopProductListController.push(on: self.navigationController!, filter: filter)
-                    }
-                }
-            }
         })
         
         let productSectionViewSource: ClosureViewSource = ClosureViewSource(viewUpdater: {
@@ -178,7 +151,7 @@ class DoShopHomeController: BaseViewController {
                                                             return CGSize(width: self.view.frame.width, height: 50)
         },
                                                            layout: FlowLayout(spacing: 1, justifyContent: .start, alignItems: .start)
-                                                            .inset(by: UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)),
+                                                            .inset(by: UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)),
                                                            animator: nil,
                                                            tapHandler: {context in
                                                            
@@ -191,9 +164,32 @@ class DoShopHomeController: BaseViewController {
                                                                     return self.bannerSize
         },
                                                                  layout: FlowLayout(spacing: 1, justifyContent: .start, alignItems: .start)
-                                                                    .inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 32, right: 0)),
+                                                                    .inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)),
                                                                  animator: nil,
-                                                                 tapHandler: nil)
+                                                                 tapHandler: {context in
+                if let banners = context.view.doShopBanners, !banners.isEmpty {
+                        let banner = banners[context.view.index]
+                            if let type = banner.bannerType {
+                                if type.lowercased() == "url", let target = banner.target, let url = URL(string: target) {
+                                        if #available(iOS 10.0, *) {
+                                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                        } else {
+                                            UIApplication.shared.openURL(url)
+                                        }
+                                } else if type.lowercased() == "product", let target = banner.target {
+                                    let _ = DoShopProductDetailController.push(on: self.navigationController!, productId: target)
+                                } else if type.lowercased()  == "category", let target = banner.target {
+                                    let filter = DoShopFilter()
+                                    filter.categoryId = target
+                                    let _ = DoShopProductListController.push(on: self.navigationController!, filter: filter)
+                                } else if type.lowercased() == "brand", let target = banner.target {
+                                    let filter = DoShopFilter()
+                                    filter.brandId = target
+                                    let _ = DoShopProductListController.push(on: self.navigationController!, filter: filter)
+                                }
+                            }
+                        }
+        })
 
         
         let finalProvider = ComposedProvider(sections: [bannerProvider, categoryProvider, productHeaderProvider, productProvider])
@@ -286,7 +282,8 @@ extension DoShopHomeController: UISearchControllerDelegate, UISearchResultsUpdat
     }
 }
 
-class SectionBannerView: UIView {
+class SectionBannerView: UIView, UIScrollViewDelegate {
+    var index: Int = 0
     var doShopBanners: [DoShopBanner]? {
         didSet {
             if let banners = self.doShopBanners, !banners.isEmpty {
@@ -305,6 +302,7 @@ class SectionBannerView: UIView {
                     } else {
                         self.scrollView.addConstraint(NSLayoutConstraint(item: leftView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0))
                     }
+                    self.scrollView.delegate = self
                     if i >= banners.count - 1 {
                         self.scrollView.addConstraint(NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: self.scrollView, attribute: .trailing, multiplier: 1, constant: 0))
                     }
@@ -314,6 +312,12 @@ class SectionBannerView: UIView {
                 }
             }
         }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let gap = Int((scrollView.contentSize.width - scrollView.contentOffset.x)/scrollView.bounds.width)
+        self.index = Int(self.doShopBanners!.count - gap)
+        
     }
     
     fileprivate func createView(for image: String, width: CGFloat, height: CGFloat, at index: Int) -> UIView {
@@ -331,7 +335,6 @@ class SectionBannerView: UIView {
             NSLayoutConstraint(item: imageView, attribute: .top, relatedBy: .equal, toItem: control, attribute: .top, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: imageView, attribute: .bottom, relatedBy: .equal, toItem: control, attribute: .bottom, multiplier: 1, constant: 0)
             ])
-        control.addTarget(self, action: #selector(onImageClicked(_:)), for: .touchUpInside)
         if let url = URL(string: image) {
             imageView.af_setImage(withURL: url)
             imageView.contentMode = .scaleAspectFill
@@ -342,13 +345,6 @@ class SectionBannerView: UIView {
         
         return control
     }
-    
-    @objc func onImageClicked(_ sender: UIControl) {
-        print("CLICKED!")
-        self.onBannerClicked(self.doShopBanners![sender.tag])
-    }
-    
-    var onBannerClicked: (DoShopBanner) -> () = {banner in}
 
     var scrollView: UIScrollView! {
         if _scrollView == nil {

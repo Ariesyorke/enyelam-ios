@@ -11,7 +11,7 @@ import Foundation
 class DoShopBanner: Parseable {
     private let KEY_ID = "id"
     private let KEY_BANNER_IMAGE = "banner_image"
-    private let KEY_BANNER_TYPE = "type"
+    private let KEY_BANNER_TYPE = "banner_type"
     private let KEY_TARGET_NAME = "target_name"
     private let KEY_TARGET = "target"
     
@@ -27,7 +27,7 @@ class DoShopBanner: Parseable {
     func parse(json: [String : Any]) {
         self.id = json[KEY_ID] as? String
         self.bannerImage = json[KEY_BANNER_IMAGE] as? String
-        self.bannerType = json[KEY_BANNER_IMAGE] as? String
+        self.bannerType = json[KEY_BANNER_TYPE] as? String
         self.targetName = json[KEY_TARGET_NAME] as? String
         self.target = json[KEY_TARGET] as? String
     }

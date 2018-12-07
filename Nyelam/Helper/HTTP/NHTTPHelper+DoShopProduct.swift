@@ -26,7 +26,7 @@ extension NHTTPHelper {
         }
         
         self.basicPostRequest(
-            URLString: HOST_URL+API_PATH_DO_SHOP_BANNER,
+            URLString: HOST_URL+API_PATH_DO_SHOP_PRODUCT_FILTER,
             parameters:param,
             headers:nil,
             complete:

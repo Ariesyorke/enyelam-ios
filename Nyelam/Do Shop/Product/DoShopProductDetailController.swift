@@ -111,6 +111,9 @@ class DoShopProductDetailController: BaseViewController {
             if let data = response.data, let datas = data.products, !datas.isEmpty {
                 var i = 0
                 for data in datas {
+                    if data.productId! == self.productId! {
+                        continue
+                    }
                     i += 1
                     if self.relatedProducts == nil {
                         self.relatedProducts = []
@@ -174,7 +177,9 @@ class DoShopProductDetailController: BaseViewController {
         _ = popup.show(addedToCartController)
         addedToCartController.onGoToCart = {
             popup.dismiss({
-                let _ = CartController.push(on: self.navigationController!)
+                self.delay(0.5, closure: {
+                    let _ = CartController.push(on: self.navigationController!)
+                })
             })
         }
         addedToCartController.onContinueShopping = {

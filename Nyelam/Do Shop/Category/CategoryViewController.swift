@@ -9,7 +9,7 @@
 import UIKit
 import CollectionKit
 
-class CategoryViewController: BaseViewController {
+class CategoryViewController: BaseDoShopViewController {
     @IBOutlet weak var collectionView: CollectionView!
     fileprivate var refreshControl = UIRefreshControl()
     fileprivate var categoryDataSource: ArrayDataSource<NProductCategory> = ArrayDataSource()
@@ -37,7 +37,6 @@ class CategoryViewController: BaseViewController {
 //        let categoryColumnWidth: CGFloat = (screenWidth - 40)/CGFloat(columnCount)
         
         self.categoryGridSize = CGSize(width: columnWidth, height: columnWidth)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_cart"), style: .plain, target: self, action: #selector(DoShopHomeController.onCart(_:)))
         self.initCollectionView()
         // Do any additional setup after loading the view.
     }
@@ -91,17 +90,6 @@ class CategoryViewController: BaseViewController {
                                                                 
         })
         self.collectionView.provider = categoryProvider
-
-    }
-
-    @objc func onCart(_ sender: UIBarButtonItem) {
-        if let authUser = NAuthReturn.authUser() {
-            let _ = CartController.push(on: self.navigationController!)
-        } else {
-            self.goToAuth(completion: {
-                let _ = CartController.push(on: self.navigationController!)
-            })
-        }
     }
 
     /*
