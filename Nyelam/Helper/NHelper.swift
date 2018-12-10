@@ -126,4 +126,7 @@ class NHelper {
         }
         return courierTypes
     }
+    static func calculateDiscount(normalPrice: Double, specialPrice: Double) -> Int {
+        return Int(((normalPrice - specialPrice)/normalPrice)*100)
+    }
 }

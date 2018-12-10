@@ -29,7 +29,9 @@ class BaseViewController: UIViewController, UITextFieldDelegate {
             self.resetInsets()
         }
         dtmViewDidLoad()
-        self.extendedLayoutIncludesOpaqueBars = true
+        if #available(iOS 11.0, *) {
+            self.extendedLayoutIncludesOpaqueBars = true
+        }
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_back_button_white"), style: .plain, target: self, action: #selector(backButtonAction(_:)))
     }
     

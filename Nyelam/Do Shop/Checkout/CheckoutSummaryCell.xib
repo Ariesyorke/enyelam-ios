@@ -1,41 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="FiraSans-Regular.ttf">
+            <string>FiraSans-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="146" id="KGk-i7-Jjw" customClass="CheckoutSummaryCell" customModule="Nyelam" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="387" height="146"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="335" id="KGk-i7-Jjw" customClass="CheckoutSummaryCell" customModule="Nyelam" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="387" height="335"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="387" height="145.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="387" height="334.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="Bji-hW-TwE" userLabel="Detail Container">
-                        <rect key="frame" x="16" y="16" width="355" height="113.5"/>
+                        <rect key="frame" x="16" y="16" width="355" height="180.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CLD-3l-6Z8" customClass="UIControl">
+                        <rect key="frame" x="16" y="204.5" width="355" height="66"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I have read and agreed to the terms and conditions" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TVC-iZ-jel">
+                                <rect key="frame" x="38" y="16" width="317" height="34"/>
+                                <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vZN-PJ-6mA" customClass="DLRadioButton">
+                                <rect key="frame" x="0.0" y="16" width="30" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="0WJ-Gr-in8"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="iconSquare" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="TVC-iZ-jel" secondAttribute="bottom" constant="16" id="AKF-U6-iVc"/>
+                            <constraint firstItem="vZN-PJ-6mA" firstAttribute="leading" secondItem="CLD-3l-6Z8" secondAttribute="leading" id="Hlq-zf-zfO"/>
+                            <constraint firstItem="TVC-iZ-jel" firstAttribute="top" secondItem="CLD-3l-6Z8" secondAttribute="top" constant="16" id="Ksr-aw-IMM"/>
+                            <constraint firstItem="TVC-iZ-jel" firstAttribute="leading" secondItem="vZN-PJ-6mA" secondAttribute="trailing" constant="8" id="hcT-Qd-stc"/>
+                            <constraint firstAttribute="trailing" secondItem="TVC-iZ-jel" secondAttribute="trailing" id="pt2-zF-WQS"/>
+                            <constraint firstItem="vZN-PJ-6mA" firstAttribute="centerY" secondItem="TVC-iZ-jel" secondAttribute="centerY" id="xCR-lZ-V7d"/>
+                        </constraints>
+                        <connections>
+                            <action selector="checkButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="wci-AN-9Lk"/>
+                        </connections>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f3n-cn-WaK">
+                        <rect key="frame" x="16" y="278.5" width="355" height="40"/>
+                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="211-lB-q55"/>
+                        </constraints>
+                        <state key="normal" title="CONTINUE">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="payButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="DKR-Wy-5R6"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="Bji-hW-TwE" secondAttribute="bottom" constant="16" id="66p-yo-0fw"/>
+                    <constraint firstAttribute="bottom" secondItem="f3n-cn-WaK" secondAttribute="bottom" constant="16" id="3jo-19-PP6"/>
+                    <constraint firstItem="CLD-3l-6Z8" firstAttribute="top" secondItem="Bji-hW-TwE" secondAttribute="bottom" constant="8" id="H1x-rV-4Ss"/>
+                    <constraint firstItem="f3n-cn-WaK" firstAttribute="leading" secondItem="CLD-3l-6Z8" secondAttribute="leading" id="Hz4-2J-hQR"/>
                     <constraint firstItem="Bji-hW-TwE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="N8I-UQ-0VH"/>
+                    <constraint firstItem="f3n-cn-WaK" firstAttribute="top" secondItem="CLD-3l-6Z8" secondAttribute="bottom" constant="8" id="aOo-S7-Od8"/>
                     <constraint firstAttribute="trailing" secondItem="Bji-hW-TwE" secondAttribute="trailing" constant="16" id="btd-Z4-oL5"/>
+                    <constraint firstItem="CLD-3l-6Z8" firstAttribute="leading" secondItem="Bji-hW-TwE" secondAttribute="leading" id="nSm-ns-mJI"/>
+                    <constraint firstItem="CLD-3l-6Z8" firstAttribute="trailing" secondItem="Bji-hW-TwE" secondAttribute="trailing" id="rBt-Jn-HUy"/>
                     <constraint firstItem="Bji-hW-TwE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="tL9-UB-vcy"/>
+                    <constraint firstItem="f3n-cn-WaK" firstAttribute="trailing" secondItem="CLD-3l-6Z8" secondAttribute="trailing" id="yG4-G5-Lij"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="checkButton" destination="vZN-PJ-6mA" id="XCU-zy-WKn"/>
                 <outlet property="detailContainerView" destination="Bji-hW-TwE" id="sq5-fG-ykT"/>
             </connections>
-            <point key="canvasLocation" x="68.5" y="135"/>
+            <point key="canvasLocation" x="68" y="219.94002998500753"/>
         </tableViewCell>
     </objects>
 </document>

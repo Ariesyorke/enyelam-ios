@@ -121,6 +121,11 @@
                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You Save: 25%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epC-k8-ohK">
+                                        <rect key="frame" x="97" y="1" width="76.5" height="14.5"/>
+                                        <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="12"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="am6-QP-zoB">
                                         <rect key="frame" x="0.0" y="8" width="89" height="1"/>
                                         <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -133,9 +138,12 @@
                                 <constraints>
                                     <constraint firstItem="am6-QP-zoB" firstAttribute="leading" secondItem="4iT-rz-D1f" secondAttribute="leading" id="6BS-lX-bJc"/>
                                     <constraint firstItem="4iT-rz-D1f" firstAttribute="leading" secondItem="xSe-1J-viA" secondAttribute="leading" id="K3y-lo-4oI"/>
+                                    <constraint firstItem="epC-k8-ohK" firstAttribute="leading" secondItem="4iT-rz-D1f" secondAttribute="trailing" constant="8" id="S7n-Ki-tac"/>
                                     <constraint firstItem="am6-QP-zoB" firstAttribute="centerY" secondItem="4iT-rz-D1f" secondAttribute="centerY" id="Wmd-tY-Q9a"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="epC-k8-ohK" secondAttribute="trailing" id="b7g-hJ-ofb"/>
                                     <constraint firstAttribute="bottom" secondItem="4iT-rz-D1f" secondAttribute="bottom" id="bu6-Xr-Y7d"/>
                                     <constraint firstItem="am6-QP-zoB" firstAttribute="trailing" secondItem="4iT-rz-D1f" secondAttribute="trailing" id="eBu-M7-MYA"/>
+                                    <constraint firstItem="epC-k8-ohK" firstAttribute="centerY" secondItem="4iT-rz-D1f" secondAttribute="centerY" id="eF8-Zv-Ugp"/>
                                     <constraint firstAttribute="height" constant="17" id="lww-Ij-MfF"/>
                                     <constraint firstItem="4iT-rz-D1f" firstAttribute="top" secondItem="xSe-1J-viA" secondAttribute="top" id="zwc-PP-s45"/>
                                 </constraints>
@@ -268,6 +276,7 @@
                 <outlet property="brandButton" destination="ev6-Zk-CwU" id="Kr5-RF-C6h"/>
                 <outlet property="cartButton" destination="jew-mh-GDO" id="8IX-6c-e5h"/>
                 <outlet property="descriptionLabel" destination="X4X-CX-AhA" id="Qzu-u7-tqc"/>
+                <outlet property="discountLabel" destination="epC-k8-ohK" id="Nsb-8N-OwF"/>
                 <outlet property="featuredImageScroller" destination="9ju-C7-4B5" id="s5V-Hr-wsM"/>
                 <outlet property="merchImageView" destination="LfG-Od-J0F" id="Gmz-86-Mjn"/>
                 <outlet property="merchantNameLabel" destination="zbz-db-wrr" id="mNM-vC-n2y"/>

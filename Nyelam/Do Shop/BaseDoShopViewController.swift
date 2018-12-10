@@ -30,7 +30,9 @@ class BaseDoShopViewController: BaseViewController {
                 var count = 0
                 for merchant in merchants {
                     if let products = merchant.products, !products.isEmpty {
-                        count += products.count
+                        for product in products {
+                            count += product.qty
+                        }
                    }
                 }
                 self.cartButton.badgeValue = String(describing: count)

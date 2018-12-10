@@ -24,6 +24,8 @@ class ProductInfoCell: NTableViewCell, UITextFieldDelegate, UIScrollViewDelegate
     @IBOutlet weak var merchImageView: UIImageView!
     @IBOutlet weak var stockStatusLabel: UILabel!
     @IBOutlet weak var cartButton: UIButton!
+    @IBOutlet weak var discountLabel: UILabel!
+    
     var product: NProduct?
     
     var onAddToCart: () -> () = {}
@@ -93,6 +95,7 @@ class ProductInfoCell: NTableViewCell, UITextFieldDelegate, UIScrollViewDelegate
         }
         
         self.productNameLabel.text = product.productName
+        self.discountLabel.text = "You Save: \(String(NHelper.calculateDiscount(normalPrice: product.normalPrice, specialPrice: product.specialPrice)))%"
         if product.normalPrice == product.specialPrice {
             self.normalPriceContainer.isHidden = true
         } else {

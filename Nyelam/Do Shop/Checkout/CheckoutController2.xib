@@ -1,28 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="FiraSans-Regular.ttf">
-            <string>FiraSans-Regular</string>
-        </array>
-        <array key="FiraSans-SemiBold.ttf">
-            <string>FiraSans-SemiBold</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheckoutController2" customModule="Nyelam" customModuleProvider="target">
             <connections>
-                <outlet property="payNowButton" destination="90Y-YL-t4I" id="voa-nm-KQT"/>
-                <outlet property="priceLabel" destination="k76-q6-MsP" id="ytN-P5-o4m"/>
                 <outlet property="tableView" destination="N9E-Eh-1nl" id="tRI-qw-0G4"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -33,65 +22,16 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="N9E-Eh-1nl">
-                    <rect key="frame" x="0.0" y="20" width="375" height="563"/>
+                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iRT-7p-bQH">
-                    <rect key="frame" x="0.0" y="583" width="375" height="84"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calculating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k76-q6-MsP" userLabel="Price Label">
-                            <rect key="frame" x="16" y="44" width="218" height="24"/>
-                            <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="20"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Payment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23e-ym-jyk">
-                            <rect key="frame" x="16" y="16" width="102.5" height="20"/>
-                            <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="16"/>
-                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90Y-YL-t4I">
-                            <rect key="frame" x="250" y="38" width="109" height="30"/>
-                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="15"/>
-                            <state key="normal" title="Pay">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="radius">
-                                    <real key="value" value="5"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                            <connections>
-                                <action selector="payButtonAction:" destination="-1" eventType="touchUpInside" id="YDT-2E-Zt3"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="trailing" secondItem="90Y-YL-t4I" secondAttribute="trailing" constant="16" id="4i7-7Z-fPW"/>
-                        <constraint firstItem="90Y-YL-t4I" firstAttribute="width" secondItem="k76-q6-MsP" secondAttribute="width" multiplier="1:2" id="4o0-ny-gEh"/>
-                        <constraint firstItem="90Y-YL-t4I" firstAttribute="leading" secondItem="k76-q6-MsP" secondAttribute="trailing" constant="16" id="6WB-pE-z68"/>
-                        <constraint firstItem="k76-q6-MsP" firstAttribute="leading" secondItem="iRT-7p-bQH" secondAttribute="leading" constant="16" id="9ST-uR-5sB"/>
-                        <constraint firstItem="23e-ym-jyk" firstAttribute="top" secondItem="iRT-7p-bQH" secondAttribute="top" constant="16" id="EWR-Eu-NkK"/>
-                        <constraint firstAttribute="bottom" secondItem="k76-q6-MsP" secondAttribute="bottom" constant="16" id="G2k-GS-4Hx"/>
-                        <constraint firstItem="90Y-YL-t4I" firstAttribute="bottom" secondItem="k76-q6-MsP" secondAttribute="bottom" id="KLB-wk-L8D"/>
-                        <constraint firstItem="23e-ym-jyk" firstAttribute="leading" secondItem="k76-q6-MsP" secondAttribute="leading" id="Wmq-gW-ORE"/>
-                        <constraint firstAttribute="bottom" secondItem="90Y-YL-t4I" secondAttribute="bottom" constant="16" id="a3f-aw-vbo"/>
-                        <constraint firstItem="23e-ym-jyk" firstAttribute="bottom" secondItem="k76-q6-MsP" secondAttribute="top" constant="-8" id="jWE-90-khQ"/>
-                    </constraints>
-                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="iRT-7p-bQH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="MvU-2r-inF"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="iRT-7p-bQH" secondAttribute="trailing" id="RSI-PV-eNY"/>
-                <constraint firstItem="iRT-7p-bQH" firstAttribute="top" secondItem="N9E-Eh-1nl" secondAttribute="bottom" id="YkY-bd-2nx"/>
                 <constraint firstItem="N9E-Eh-1nl" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="g95-qg-j4U"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="iRT-7p-bQH" secondAttribute="bottom" id="iuG-NL-C41"/>
                 <constraint firstItem="N9E-Eh-1nl" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="l3f-Mx-uI3"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="N9E-Eh-1nl" secondAttribute="trailing" id="nCs-x2-S6M"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="N9E-Eh-1nl" secondAttribute="bottom" id="ngD-L5-1mj"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>

@@ -18,10 +18,9 @@ class CheckoutController2: BaseViewController {
     var pickedCouriers: [Courier] = []
     var pickedCourierTypes: [CourierType] = []
     var cartReturn: CartReturn?
+    var checked: Bool = false
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var payNowButton: UIButton!
     
     fileprivate var grandTotal: Double = -1.0
     fileprivate var payPalConfig = PayPalConfiguration()
@@ -69,6 +68,7 @@ class CheckoutController2: BaseViewController {
             })
         }
     }
+    
     func tryLoadAddress(type: String, completion: @escaping () -> ()) {
         NHTTPHelper.httpAddressListRequest(type: type, complete: {response in
             if let error = response.error {
@@ -123,9 +123,6 @@ class CheckoutController2: BaseViewController {
                 }
                 if self.grandTotal > 0 {
                     self.grandTotal += cart.total
-                    self.priceLabel.text = self.grandTotal.toCurrencyFormatString(currency: "Rp")
-                    self.payNowButton.isEnabled = true
-                    self.payNowButton.backgroundColor = UIColor.primary
                     if let additionals = cartReturn.additionals, !additionals.isEmpty {
                         for additional in additionals {
                             self.grandTotal += additional.value
@@ -138,8 +135,13 @@ class CheckoutController2: BaseViewController {
     }
     
     @IBAction func payButtonAction(_ sender: Any) {
+        self.calculateGrandTotal()
         if self.grandTotal < 0 && self.billingAddress == nil && self.shippingAddress == nil {
             UIAlertController.handleErrorMessage(viewController: self, error: "Make sure you complete your data including shipping address, billing address, courier", completion: {})
+            return
+        }
+        if !self.checked {
+            UIAlertController.handleErrorMessage(viewController: self, error: "Please accept terms and conditions!", completion: {})
             return
         }
         UIAlertController.showAlertWithMultipleChoices(title: "Are you sure want to checkout?", message: "You cannot change your courier and address after checkout!", viewController: self, buttons: [UIAlertAction(title: "Yes", style: .default, handler: {action in
@@ -293,10 +295,6 @@ class CheckoutController2: BaseViewController {
 
     
     fileprivate func tryChangePayment(paymentType: Int) {
-        self.priceLabel.text = "Calculating"
-        self.grandTotal = -1.0
-        self.payNowButton.isEnabled = false
-        self.payNowButton.backgroundColor = UIColor.darkGray
         var id: String = ""
         if let order = self.order {
             id = order.orderId!
@@ -304,9 +302,6 @@ class CheckoutController2: BaseViewController {
             id = cartReturn.cartToken!
         }
         
-        self.payNowButton.backgroundColor = UIColor.darkGray
-        self.payNowButton.isEnabled = false
-        self.priceLabel.text = "Calculating..."
         var voucherCode: String? = nil
         if let cartReturn = self.cartReturn, let cart = cartReturn.cart, let voucher = cart.voucher, let code = voucher.code {
             voucherCode = code
@@ -329,7 +324,6 @@ class CheckoutController2: BaseViewController {
                     self.order!.cart!.additionals = data.cart!.additionals
                     self.order!.additionals = data.additionals!
                 }
-                self.calculateGrandTotal()
                 self.tableView.reloadRows(at: [IndexPath(item: 0, section: 2),  IndexPath(item: 0, section: 3)], with: .automatic)
 
 //                self.tableView.reloadRows(at: [IndexPath(item: 0, section: 3),  IndexPath(item: 0, section: 4)], with: .automatic)
@@ -529,9 +523,6 @@ extension CheckoutController2: UITableViewDelegate, UITableViewDataSource {
                         self.shippingAddress = address
                     }
                     if self.shippingAddress != nil {
-                        self.priceLabel.text = "Calculating"
-                        self.payNowButton.isEnabled = false
-                        self.payNowButton.backgroundColor = UIColor.darkGray
                         self.pickedCourierTypes = []
                         self.pickedCouriers = []
                     }
@@ -567,9 +558,6 @@ extension CheckoutController2: UITableViewDelegate, UITableViewDataSource {
                     courierType = self.pickedCourierTypes[row]
                 }
                 let _ = ChangeCourierController.push(on: self.navigationController!, row: row, originAddressId: merchant.districtId!, destinationAddressId: self.shippingAddress!.district!.id!, weight: Int(ceil(merchant.totalWeight)), pickedCourier: courier, pickedCourierType: courierType, completion: {index, cour, courType in
-                    self.priceLabel.text = "Calculating"
-                    self.payNowButton.isEnabled = false
-                    self.payNowButton.backgroundColor = UIColor.darkGray
                     if !self.pickedCouriers.isEmpty && row <= self.pickedCouriers.count - 1 && !self.pickedCourierTypes.isEmpty && row <= self.pickedCourierTypes.count - 1 {
                         self.pickedCouriers[row] = cour
                         self.pickedCourierTypes[row] = courType
@@ -578,7 +566,6 @@ extension CheckoutController2: UITableViewDelegate, UITableViewDataSource {
                         self.pickedCourierTypes.append(courType)
                     }
                     self.tableView.reloadRows(at: [indexPath], with: .automatic)
-                    self.calculateGrandTotal()
                 })
             }
             return cell
@@ -593,10 +580,19 @@ extension CheckoutController2: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else if indexPath.section == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CheckoutSummaryCell", for: indexPath) as! CheckoutSummaryCell
+            cell.checked = self.checked
+            cell.checkButton.isSelected = self.checked
             if let cartReturn = self.cartReturn, let cart = cartReturn.cart {
                 cell.initData(merchants: cart.merchants!, voucher: cart.voucher, couriers: self.pickedCouriers, courierTypes: self.pickedCourierTypes, additionals: cartReturn.additionals)
             }
+            cell.onCheckedClicked = {checked in
+                self.checked = checked
+            }
+            cell.onPayButtonClicked = {view in
+                self.payButtonAction(view)
+            }
             return cell
+            
         }
         return UITableViewCell()
     }
