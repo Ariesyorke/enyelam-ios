@@ -1269,17 +1269,18 @@ extension NDiveService {
 
 
 extension NOrder {
-    private var KEY_ORDER_ID: String { return "order_id" }
-    private var KEY_STATUS: String  { return "status" }
+    private var KEY_ORDER_ID: String {return "order_id"}
+    private var KEY_STATUS: String  {return "status"}
     private var KEY_ORDER_STATUS: String {return "order_status"}
-    private var KEY_SCHEDULE: String { return "schedule" }
-    private var KEY_CART: String { return "cart" }
-    private var KEY_ADDITIONAL: String { return "additional" }
-    private var KEY_EQUIPMENT_RENTS: String { return "equipment_rents" }
+    private var KEY_SCHEDULE: String {return "schedule"}
+    private var KEY_CART: String {return "cart"}
+    private var KEY_ADDITIONAL: String {return "additional"}
+    private var KEY_EQUIPMENT_RENTS: String {return "equipment_rents"}
     private var KEY_SHIPPING_ADDRESS: String {return "shipping_address"}
     private var KEY_BILLING_ADDRESS: String {return "billing_address" }
     private var KEY_VERITRANS_TOKEN: String {return "veritrans_token"}
     private var KEY_PAYPAL_CURRENCY: String {return "paypal_currency"}
+    private var KEY_ORDER_DATE: String {return "order_date"}
     
     func parse(json: [String : Any]) {
         if let veritransJson = json[KEY_VERITRANS_TOKEN] as? [String: Any] {
@@ -1423,7 +1424,13 @@ extension NOrder {
                 print(error)
             }
         }
-        
+        if let timestamp = json[KEY_ORDER_DATE] as? Double {
+            self.orderDate = NSDate(timeIntervalSince1970: timestamp)
+        } else if let timestamp = json[KEY_ORDER_DATE] as? String {
+            if timestamp.isNumber {
+                self.orderDate = NSDate(timeIntervalSince1970: Double(timestamp)!)
+            }
+        }
     }
     
     func serialized() -> [String : Any] {
@@ -1458,6 +1465,9 @@ extension NOrder {
         }
         if let shippingAddress = self.shippingAddress {
             json[KEY_SHIPPING_ADDRESS] = shippingAddress.serialized()
+        }
+        if let orderDate = self.orderDate {
+            json[KEY_ORDER_DATE] = orderDate.timeIntervalSince1970
         }
         return json
     }
@@ -2444,20 +2454,15 @@ extension NProduct: Parseable {
         self.status = json[KEY_STATUS] as? String
         
         if let categoriesArray = json[KEY_CATEGORIES] as? Array<[String: Any]>, !categoriesArray.isEmpty {
-            print("PANGGIL 1")
             for categoryJson in categoriesArray {
-                print("PANGGIL 2")
                 var category: NProductCategory? = nil
                 if let id = categoryJson["id"] as? String {
-                    print("PANGGIL 3")
                     category = NProductCategory.getCategory(using: id)
                 }
                 if category == nil {
-                    print("PANGGIL 3")
                     category = NSEntityDescription.insertNewObject(forEntityName: "NProductCategory", into: AppDelegate.sharedManagedContext) as! NProductCategory
                     category!.parse(json: categoryJson)
                 }
-                print("PANGGIL 3")
                 self.addToCategories(category!)
             }
         } else if let categoriesArrayString = json[KEY_CATEGORIES] as? String {
@@ -2624,6 +2629,10 @@ extension NAddress: Parseable {
         return "email"
     }
     
+    private var KEY_LABEL: String {
+        return "label"
+    }
+    
     static func getAddress(using id: String) -> NAddress? {
         let managedContext = AppDelegate.sharedManagedContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "NAddress")
@@ -2646,6 +2655,9 @@ extension NAddress: Parseable {
         self.address = json[KEY_ADDRESS] as? String
         self.zipcode = json[KEY_ZIPCODE] as? String
         self.emailAddress = json[KEY_EMAIL] as? String
+        if let label = json[KEY_LABEL] as? String {
+            self.label = label
+        }
         if let provinceJson = json[KEY_PROVINCE] as? [String: Any] {
             if let id = provinceJson["id"] as? String {
                 self.province = NProvince.getProvince(using: id)
@@ -2757,6 +2769,9 @@ extension NAddress: Parseable {
         }
         if let phoneNumber = self.phoneNumber {
             json[KEY_PHONE_NUMBER] = phoneNumber
+        }
+        if let label = self.label {
+            json[KEY_LABEL] = label
         }
         json[KEY_DEFAULT_BILLING] = Int(default_billling)
         json[KEY_DEFAULT_SHIPPING] = Int(default_shipping)

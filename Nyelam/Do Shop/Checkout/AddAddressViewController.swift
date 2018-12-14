@@ -94,9 +94,32 @@ class AddAddressViewController: BaseViewController, UITextViewDelegate {
         self.addressTextField.layer.borderColor = UIColor.lightGray.cgColor
         
         if self.defaultShip == 1 {
-            self.checkButtonContainer.isHidden = false
+            self.checkButtonContainer.isHidden = true
+        }
+        if let address = self.address {
+            self.initData(address: address)
         }
         // Do any additional setup after loading the view.
+    }
+    
+    fileprivate func initData(address: NAddress) {
+        self.fullnameTextField.text = address.fullname
+        if let province = address.province {
+            self.province = province
+            self.provinceTextField.text = province.name
+        }
+        if let city = address.city {
+            self.city = city
+            self.cityTextField.text = city.name
+        }
+        if let district = address.district {
+            self.district = district
+            self.districtTextField.text = district.name
+        }
+        self.postalCodeTextField.text = address.zipcode
+        self.noteTextField.text = address.label
+        self.addressTextField.text = address.address
+        self.phoneNumberTextField.text = address.phoneNumber
     }
 
     override func didReceiveMemoryWarning() {

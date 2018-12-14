@@ -16,7 +16,7 @@ extension NHTTPHelper {
                 complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
                 return
             }
-            if let data = data, let json = data as? [String: Any], let _ = json["cart"] {
+            if let data = data, let json = data as? [String: Any], let _ = json["cart"] as? [String: Any] {
                 let cartReturns = CartReturn(json: json)
                 complete(NHTTPResponse(resultStatus: true, data: cartReturns, error: nil))
             } else {
@@ -69,7 +69,7 @@ extension NHTTPHelper {
                 complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
                 return
             }
-            if let data = data, let json = data as? [String: Any], let _ = json["cart"] {
+            if let data = data, let json = data as? [String: Any], let _ = json["cart"] as? [String: Any] {
                 let cartReturns = CartReturn(json: json)
                 complete(NHTTPResponse(resultStatus: true, data: cartReturns, error: nil))
             } else {

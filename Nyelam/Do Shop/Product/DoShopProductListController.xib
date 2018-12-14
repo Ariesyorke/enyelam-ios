@@ -19,6 +19,7 @@
             <connections>
                 <outlet property="collectionView" destination="sXj-TH-viS" id="vG5-Bi-7eE"/>
                 <outlet property="filterButton" destination="Rkg-Md-kl8" id="Zyr-cC-189"/>
+                <outlet property="notFoundLabel" destination="TL0-9p-Cae" id="mkM-AA-omZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -50,12 +51,22 @@
                         <action selector="filterButtonAction:" destination="-1" eventType="touchUpInside" id="AvC-Ho-O39"/>
                     </connections>
                 </button>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Empty" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TL0-9p-Cae">
+                    <rect key="frame" x="16" y="335" width="343" height="17"/>
+                    <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="TL0-9p-Cae" firstAttribute="centerX" secondItem="sXj-TH-viS" secondAttribute="centerX" id="475-fx-4O3"/>
                 <constraint firstItem="sXj-TH-viS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="C6C-Dc-5eI"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="sXj-TH-viS" secondAttribute="trailing" id="KtS-2r-CG2"/>
+                <constraint firstItem="TL0-9p-Cae" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="NhJ-bx-dNq"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Rkg-Md-kl8" secondAttribute="bottom" constant="16" id="bbU-Yd-SP2"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="TL0-9p-Cae" secondAttribute="trailing" constant="16" id="cLK-mr-pBH"/>
+                <constraint firstItem="TL0-9p-Cae" firstAttribute="centerY" secondItem="sXj-TH-viS" secondAttribute="centerY" id="fcs-6h-Qea"/>
                 <constraint firstItem="sXj-TH-viS" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="hsq-iH-Ch9"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="sXj-TH-viS" secondAttribute="bottom" id="jxV-Mc-Jvs"/>
                 <constraint firstItem="Rkg-Md-kl8" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="nfV-yU-oN5"/>

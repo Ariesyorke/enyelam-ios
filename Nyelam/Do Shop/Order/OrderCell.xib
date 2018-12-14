@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,11 +17,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="109" id="KGk-i7-Jjw" customClass="OrderCell" customModule="Nyelam" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="109"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="152" id="KGk-i7-Jjw" customClass="OrderCell" customModule="Nyelam" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="152"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="108.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="151.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Merchant" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VED-TK-cZi">
@@ -51,43 +51,82 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yN0-ij-6KS">
-                        <rect key="frame" x="0.0" y="91.5" width="320" height="1"/>
+                        <rect key="frame" x="0.0" y="120.5" width="320" height="1"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="f69-Wi-364"/>
                         </constraints>
                     </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_calendar" translatesAutoresizingMaskIntoConstraints="NO" id="8tl-yP-e0u">
+                        <rect key="frame" x="16" y="129.5" width="14" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="2XM-vo-Lb1"/>
+                            <constraint firstAttribute="width" constant="14" id="DqN-Ng-gtI"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ivY-OV-2zp">
+                        <rect key="frame" x="38" y="130.5" width="211" height="12"/>
+                        <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="10"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bLO-qE-hET">
+                        <rect key="frame" x="279" y="130.5" width="25" height="12"/>
+                        <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="10"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_money" translatesAutoresizingMaskIntoConstraints="NO" id="rtR-xq-yaR">
+                        <rect key="frame" x="257" y="129.5" width="14" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="AJY-NK-P8e"/>
+                            <constraint firstAttribute="width" constant="14" id="xV5-UR-u1i"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="8tl-yP-e0u" secondAttribute="bottom" constant="8" id="0Ed-QI-XXn"/>
                     <constraint firstItem="yN0-ij-6KS" firstAttribute="top" relation="greaterThanOrEqual" secondItem="3ER-a7-G1k" secondAttribute="bottom" constant="8" id="3ct-cQ-7bD"/>
+                    <constraint firstAttribute="trailing" secondItem="bLO-qE-hET" secondAttribute="trailing" constant="16" id="3tf-o1-GQR"/>
                     <constraint firstAttribute="trailing" secondItem="bVg-mk-BIu" secondAttribute="trailing" constant="8" id="4fR-nJ-vLU"/>
                     <constraint firstItem="bVg-mk-BIu" firstAttribute="leading" secondItem="VRg-r5-65D" secondAttribute="trailing" constant="8" id="5hp-P4-tFf"/>
+                    <constraint firstItem="8tl-yP-e0u" firstAttribute="leading" secondItem="3ER-a7-G1k" secondAttribute="leading" id="71K-b7-R9u"/>
                     <constraint firstItem="bVg-mk-BIu" firstAttribute="centerY" secondItem="3ER-a7-G1k" secondAttribute="centerY" id="8Fe-KF-I4W"/>
                     <constraint firstItem="VED-TK-cZi" firstAttribute="trailing" secondItem="VRg-r5-65D" secondAttribute="trailing" id="CUk-42-m07"/>
                     <constraint firstItem="3ER-a7-G1k" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="D6v-CQ-HQZ"/>
                     <constraint firstItem="VED-TK-cZi" firstAttribute="leading" secondItem="VRg-r5-65D" secondAttribute="leading" id="E8n-UE-JMs"/>
                     <constraint firstItem="yN0-ij-6KS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Emd-Ju-0lz"/>
                     <constraint firstItem="VED-TK-cZi" firstAttribute="height" secondItem="bVg-mk-BIu" secondAttribute="height" id="HkN-7I-kcA"/>
+                    <constraint firstItem="rtR-xq-yaR" firstAttribute="leading" secondItem="ivY-OV-2zp" secondAttribute="trailing" constant="8" id="HoI-Y9-NgB"/>
                     <constraint firstItem="yN0-ij-6KS" firstAttribute="top" relation="greaterThanOrEqual" secondItem="VED-TK-cZi" secondAttribute="bottom" constant="8" id="RYL-aK-eX4"/>
-                    <constraint firstAttribute="bottom" secondItem="yN0-ij-6KS" secondAttribute="bottom" constant="16" id="UCG-uW-CKr"/>
+                    <constraint firstItem="bLO-qE-hET" firstAttribute="top" secondItem="ivY-OV-2zp" secondAttribute="top" id="RgS-H1-c2m"/>
+                    <constraint firstItem="ivY-OV-2zp" firstAttribute="centerY" secondItem="8tl-yP-e0u" secondAttribute="centerY" id="Yhd-hC-2dc"/>
                     <constraint firstItem="VED-TK-cZi" firstAttribute="top" secondItem="VRg-r5-65D" secondAttribute="bottom" id="ana-bP-DyF"/>
                     <constraint firstItem="VRg-r5-65D" firstAttribute="leading" secondItem="3ER-a7-G1k" secondAttribute="trailing" constant="8" id="eMO-9D-vNW"/>
                     <constraint firstAttribute="trailing" secondItem="yN0-ij-6KS" secondAttribute="trailing" id="eNl-HY-U0M"/>
+                    <constraint firstItem="ivY-OV-2zp" firstAttribute="leading" secondItem="8tl-yP-e0u" secondAttribute="trailing" constant="8" id="ixw-d3-x07"/>
                     <constraint firstItem="VRg-r5-65D" firstAttribute="top" secondItem="3ER-a7-G1k" secondAttribute="top" id="pqd-RQ-7t9"/>
                     <constraint firstItem="3ER-a7-G1k" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="qxc-a9-0Mn"/>
+                    <constraint firstItem="rtR-xq-yaR" firstAttribute="top" secondItem="8tl-yP-e0u" secondAttribute="top" id="rzc-6B-dqT"/>
+                    <constraint firstItem="yN0-ij-6KS" firstAttribute="bottom" secondItem="8tl-yP-e0u" secondAttribute="top" constant="-8" id="sBO-tP-7in"/>
+                    <constraint firstItem="bLO-qE-hET" firstAttribute="leading" secondItem="rtR-xq-yaR" secondAttribute="trailing" constant="8" id="sEN-Md-uct"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="merchantNameLabel" destination="VED-TK-cZi" id="VY3-QJ-j6D"/>
+                <outlet property="orderDateLabel" destination="ivY-OV-2zp" id="WjY-X1-idi"/>
                 <outlet property="productImageView" destination="3ER-a7-G1k" id="g9h-Qe-ixp"/>
                 <outlet property="productNameLabel" destination="VRg-r5-65D" id="ZgK-YS-NVA"/>
+                <outlet property="totalPriceLabel" destination="bLO-qE-hET" id="eLv-Vm-eEO"/>
             </connections>
-            <point key="canvasLocation" x="34" y="86.5"/>
+            <point key="canvasLocation" x="33.600000000000001" y="105.24737631184409"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="ic_app" width="50" height="50"/>
         <image name="ic_arrow_right_grey" width="32" height="32"/>
+        <image name="ic_calendar" width="14" height="14"/>
+        <image name="ic_money" width="14" height="14"/>
     </resources>
 </document>

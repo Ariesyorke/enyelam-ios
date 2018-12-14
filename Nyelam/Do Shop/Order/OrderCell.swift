@@ -8,10 +8,12 @@
 
 import UIKit
 
-class OrderCell: UITableViewCell {
+class OrderCell: NTableViewCell {
     @IBOutlet weak var merchantNameLabel: UILabel!
     @IBOutlet weak var productNameLabel: UILabel!
     @IBOutlet weak var productImageView: UIImageView!
+    @IBOutlet weak var orderDateLabel: UILabel!
+    @IBOutlet weak var totalPriceLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,7 +26,7 @@ class OrderCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func initData(merchant: Merchant) {
+    func initData(merchant: Merchant, cart: Cart, date: Date?) {
         self.merchantNameLabel.text = merchant.merchantName
         if let products = merchant.products, !products.isEmpty {
             self.productNameLabel.text = products[0].productName
@@ -35,6 +37,10 @@ class OrderCell: UITableViewCell {
                 self.productImageView.image = UIImage(named: "image_default")
                 self.productImageView.contentMode = .scaleAspectFill
             }
+        }
+        self.totalPriceLabel.text = cart.total.toCurrencyFormatString(currency: "Rp")
+        if let date = date {
+            self.orderDateLabel.text = date.formatDate(dateFormat: "dd MMM yyy")
         }
     }
 }

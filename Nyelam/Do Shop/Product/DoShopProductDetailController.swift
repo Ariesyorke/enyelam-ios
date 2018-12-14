@@ -129,6 +129,7 @@ class DoShopProductDetailController: BaseViewController {
     }
     
     fileprivate func tryAddToCart(productId: String, pickedVariations: [String: String], qty: Int) {
+        self.view.endEditing(true)
         var variations: [String]? = nil
         for (_, value) in pickedVariations {
             if variations == nil {

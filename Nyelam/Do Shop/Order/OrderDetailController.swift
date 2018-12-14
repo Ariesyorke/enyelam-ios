@@ -174,7 +174,7 @@ extension OrderDetailController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         if let order = self.order {
             var section = 2
-            if let status = order.status, status == "pending", order.veritransToken == nil && order.paypalCurrency == nil {
+            if let status = order.status, status.lowercased() == "pending" || status.lowercased() == "waiting for payment", order.veritransToken == nil && order.paypalCurrency == nil {
                 section += 1
             }
             return section
@@ -188,7 +188,7 @@ extension OrderDetailController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "OrderSummaryCell") as! OrderSummaryCell
-            cell.initData(cart: self.order!.cart!, merchants: self.order!.cart!.merchants!, voucher: self.order!.cart!.voucher, additionals: self.order!.additionals)
+            cell.initData(cart: self.order!.cart!, merchants: self.order!.cart!.merchants!, voucher: self.order!.cart!.voucher, additionals: self.order!.additionals, date: self.order!.orderDate as? Date)
             return cell
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "OrderInfoCell") as! OrderInfoCell

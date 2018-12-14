@@ -112,23 +112,31 @@ class CheckoutController2: BaseViewController {
     fileprivate func calculateGrandTotal() {
         self.grandTotal = -1.0
         if let cartReturn = self.cartReturn, let cart = cartReturn.cart, self.shippingAddress != nil && self.billingAddress != nil {
-            if !self.pickedCourierTypes.isEmpty, self.pickedCourierTypes.count == cart.merchants!.count {
-                for pickedPickedType in self.pickedCourierTypes {
-                    if let costs = pickedPickedType.costs, !costs.isEmpty {
+            if !self.pickedCourierTypes.isEmpty {
+                let totalCount = cart.merchants!.count
+                var currentCount = 0
+                for pickedCourierType in self.pickedCourierTypes {
+                    if let costs = pickedCourierType.costs, !costs.isEmpty {
+                        print("PANGGIL 1")
+                        currentCount+=1
                         if grandTotal < 0 {
                             self.grandTotal = 0
                         }
                         self.grandTotal += Double(costs[0].value)
                     }
                 }
-                if self.grandTotal > 0 {
-                    self.grandTotal += cart.total
-                    if let additionals = cartReturn.additionals, !additionals.isEmpty {
-                        for additional in additionals {
-                            self.grandTotal += additional.value
+                if totalCount == currentCount {
+                    if self.grandTotal > 0 {
+                        self.grandTotal += cart.total
+                        if let additionals = cartReturn.additionals, !additionals.isEmpty {
+                            for additional in additionals {
+                                self.grandTotal += additional.value
+                            }
                         }
+                        return
                     }
-                    return
+                } else {
+                    self.grandTotal = -1.0
                 }
             }
         }
@@ -136,7 +144,7 @@ class CheckoutController2: BaseViewController {
     
     @IBAction func payButtonAction(_ sender: Any) {
         self.calculateGrandTotal()
-        if self.grandTotal < 0 && self.billingAddress == nil && self.shippingAddress == nil {
+        if self.grandTotal < 0 || self.billingAddress == nil || self.shippingAddress == nil {
             UIAlertController.handleErrorMessage(viewController: self, error: "Make sure you complete your data including shipping address, billing address, courier", completion: {})
             return
         }
@@ -401,102 +409,6 @@ extension CheckoutController2: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        if indexPath.section == 0 {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "CheckoutProgressCell", for: indexPath) as! CheckoutProgressCell
-//            return cell
-//        } else if indexPath.section == 1 {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "PersonalInformationCell", for: indexPath) as! PersonalInformationCell
-//            if cell.row == 0 {
-//                if let billingAddress = self.billingAddress {
-//                    cell.initData(address: billingAddress)
-//                }
-//            } else if cell.row == 1 {
-//                if let shippingAddress = self.shippingAddress {
-//                    cell.initData(address: shippingAddress)
-//                }
-//            }
-//            cell.onChangeAddress = {row in
-//                if self.order != nil {
-//                    UIAlertController.handleErrorMessage(viewController: self, error: "You cannot change address after checkout!", completion: {})
-//                    return
-//                }
-//                let _ = AddressListController.push(on: self.navigationController!, type: row == 0 ? "billing" : "shipping", completion: {address, sameasbilling in
-//                    if row == 0 {
-//                        self.billingAddress = address
-//                    } else {
-//                        self.shippingAddress = address
-//                    }
-//                    if sameasbilling {
-//                        self.shippingAddress = address
-//                    }
-//                    if self.shippingAddress != nil {
-//                        self.priceLabel.text = "Calculating"
-//                        self.payNowButton.isEnabled = false
-//                        self.payNowButton.backgroundColor = UIColor.darkGray
-//                        self.pickedCourierTypes = []
-//                        self.pickedCouriers = []
-//                    }
-//                    self.tableView.reloadRows(at: [IndexPath(row: 0, col: 1), IndexPath(row: 1, col: 1)], with: .automatic)
-//                    self.tableView.reloadSections(IndexSet(integer: 2), with: .automatic)
-//                    self.tableView.reloadSections(IndexSet(integer: 4), with: .automatic)
-//
-//                })
-//            }
-//            cell.row = indexPath.row
-//            return cell
-//        } else if indexPath.section == 2 {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "CourierCell", for: indexPath) as! CourierCell
-//            var courierType: CourierType? = !self.pickedCourierTypes.isEmpty ? self.pickedCourierTypes[indexPath.row] : nil
-//            let courier: Courier? = !self.pickedCourierTypes.isEmpty ? self.pickedCouriers[indexPath.row] : nil
-//            let merchant = self.cartReturn!.cart!.merchants![indexPath.row]
-//            cell.initData(merchant: merchant, courier: courier, courierType: courierType, row: indexPath.row)
-//            cell.onChangeCourier = {row in
-//                if self.shippingAddress == nil {
-//                    UIAlertController.handleErrorMessage(viewController: self, error: "Please pick shipping address!", completion: {})
-//                    return
-//                }
-//                if self.order != nil {
-//                    UIAlertController.handleErrorMessage(viewController: self, error: "You cannot change courier after checkout!", completion: {})
-//                    return
-//                }
-//                var courier: Courier? = nil
-//                if !self.pickedCouriers.isEmpty && row <= self.pickedCouriers.count - 1 && !self.pickedCourierTypes.isEmpty && row <= self.pickedCourierTypes.count - 1 {
-//                    courier = self.pickedCouriers[row]
-//                    courierType = self.pickedCourierTypes[row]
-//                }
-//                let _ = ChangeCourierController.push(on: self.navigationController!, row: row, originAddressId: merchant.districtId!, destinationAddressId: self.shippingAddress!.district!.id!, weight: Int(ceil(merchant.totalWeight)), pickedCourier: courier, pickedCourierType: courierType, completion: {index, cour, courType in
-//                    self.priceLabel.text = "Calculating"
-//                    self.payNowButton.isEnabled = false
-//                    self.payNowButton.backgroundColor = UIColor.darkGray
-//                    if !self.pickedCouriers.isEmpty && row <= self.pickedCouriers.count - 1 && !self.pickedCourierTypes.isEmpty && row <= self.pickedCourierTypes.count - 1 {
-//                        self.pickedCouriers[row] = cour
-//                        self.pickedCourierTypes[row] = courType
-//                    } else {
-//                        self.pickedCouriers.append(cour)
-//                        self.pickedCourierTypes.append(courType)
-//                    }
-//                    self.tableView.reloadRows(at: [indexPath], with: .automatic)
-//                    self.calculateGrandTotal()
-//                })
-//            }
-//            return cell
-//        } else if indexPath.section == 3 {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "PaymentMethodCell", for: indexPath) as! PaymentMethodCell
-//            cell.paymentType = self.paymentMethodType
-//            cell.onChangePaymentType = {paymentType in
-//                self.paymentMethodType = paymentType
-//                self.tryChangePayment(paymentType: self.paymentMethodType)
-//            }
-//            cell.initPayment(paymentType: self.paymentMethodType)
-//            return cell
-//        } else if indexPath.section == 4 {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "CheckoutSummaryCell", for: indexPath) as! CheckoutSummaryCell
-//            if let cartReturn = self.cartReturn, let cart = cartReturn.cart {
-//                cell.initData(merchants: cart.merchants!, voucher: cart.voucher, couriers: self.pickedCouriers, courierTypes: self.pickedCourierTypes, additionals: cartReturn.additionals)
-//            }
-//            return cell
-//        }
-//        return UITableViewCell()
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PersonalInformationCell", for: indexPath) as! PersonalInformationCell
             if cell.row == 0 {

@@ -16,6 +16,7 @@ class ProductGridView: UIControl {
     @IBOutlet weak var normalPriceContainer: UIView!
     @IBOutlet weak var normalPriceLabel: UILabel!
     @IBOutlet weak var specialPriceLabel: UILabel!
+    @IBOutlet weak var control: UIControl!
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -20,6 +20,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductGridView" customModule="Nyelam" customModuleProvider="target">
             <connections>
+                <outlet property="control" destination="ar0-al-UwL" id="DHO-Wb-eY5"/>
                 <outlet property="imageView" destination="c0r-7U-ATJ" id="beF-zj-nUs"/>
                 <outlet property="normalPriceContainer" destination="ovm-WK-re3" id="Etr-Si-pvg"/>
                 <outlet property="normalPriceLabel" destination="y4l-jV-0cm" id="gxh-5R-qe4"/>
@@ -93,10 +94,14 @@
                         <constraint firstItem="zBJ-vT-Hi8" firstAttribute="top" secondItem="ObA-56-C0p" secondAttribute="top" id="eNE-i8-MIR"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ar0-al-UwL" customClass="UIControl">
+                    <rect key="frame" x="0.0" y="0.0" width="155" height="230"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="lc2-NH-WYt" firstAttribute="top" secondItem="c0r-7U-ATJ" secondAttribute="bottom" constant="8" id="FFF-G3-Bwt"/>
+                <constraint firstItem="ar0-al-UwL" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="IRV-Qr-cH7"/>
                 <constraint firstItem="lc2-NH-WYt" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="RVr-EE-J3V"/>
                 <constraint firstItem="ObA-56-C0p" firstAttribute="leading" secondItem="lc2-NH-WYt" secondAttribute="leading" id="SqA-lp-7fo"/>
                 <constraint firstItem="ovm-WK-re3" firstAttribute="trailing" secondItem="lc2-NH-WYt" secondAttribute="trailing" id="SxA-EK-e9P"/>
@@ -104,8 +109,11 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="lc2-NH-WYt" secondAttribute="trailing" constant="8" id="X6p-Z7-0Mt"/>
                 <constraint firstItem="ovm-WK-re3" firstAttribute="top" secondItem="lc2-NH-WYt" secondAttribute="bottom" constant="4" id="i6f-Nl-qt5"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="c0r-7U-ATJ" secondAttribute="trailing" constant="14" id="iZf-e8-5ns"/>
+                <constraint firstItem="ar0-al-UwL" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="lI9-vl-u41"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="ar0-al-UwL" secondAttribute="bottom" id="pBy-7s-lY5"/>
                 <constraint firstItem="ovm-WK-re3" firstAttribute="leading" secondItem="lc2-NH-WYt" secondAttribute="leading" id="qdS-cW-PYO"/>
                 <constraint firstItem="ObA-56-C0p" firstAttribute="trailing" secondItem="lc2-NH-WYt" secondAttribute="trailing" id="qec-3K-6lJ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="leading" secondItem="ar0-al-UwL" secondAttribute="leading" id="uhX-q7-SdJ"/>
                 <constraint firstItem="c0r-7U-ATJ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="14" id="wzX-ly-bhS"/>
                 <constraint firstItem="c0r-7U-ATJ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="14" id="zHo-cv-MZ4"/>
             </constraints>

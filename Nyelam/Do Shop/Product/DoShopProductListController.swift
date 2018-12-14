@@ -14,6 +14,7 @@ import ActionSheetPicker_3_0
 class DoShopProductListController: BaseDoShopViewController {
     @IBOutlet weak var collectionView: CollectionView!
     @IBOutlet weak var filterButton: UIButton!
+    @IBOutlet weak var notFoundLabel: UILabel!
     
     fileprivate var refreshControl: UIRefreshControl = UIRefreshControl()
     fileprivate var filter: DoShopFilter = DoShopFilter()
@@ -83,6 +84,7 @@ class DoShopProductListController: BaseDoShopViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if self.firstTime {
+            self.notFoundLabel.isHidden = true
             self.firstTime = false
             self.refreshControl.beginRefreshing()
             self.onRefresh(self.refreshControl)
@@ -118,6 +120,9 @@ class DoShopProductListController: BaseDoShopViewController {
                 self.filter.selectedPriceMin = data.lowestPrice
                 self.filter.selectedPriceMax = data.highestPrice
                 self.tryLoadProductList(filter: self.filter)
+            } else {
+                self.refreshControl.endRefreshing()
+                self.notFoundLabel.isHidden = false
             }
         })
     }
@@ -137,6 +142,7 @@ class DoShopProductListController: BaseDoShopViewController {
                     })
                 }
             }
+            
             if let data = response.data {
                 self.page += 1
                 self.nextPage = data.next
@@ -145,6 +151,9 @@ class DoShopProductListController: BaseDoShopViewController {
                     self.productDataSource.data.append(contentsOf: datas)
                     self.collectionView.reloadData()
                 }
+            }
+            if self.productDataSource.data.isEmpty {
+                self.notFoundLabel.isHidden = false
             }
         })
     }

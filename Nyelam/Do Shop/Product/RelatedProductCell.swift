@@ -42,9 +42,9 @@ class RelatedProductCell: NTableViewCell {
         var leftView: UIView? = nil
         
         for product in products {
-            let view = createView(for: product)
-            view.tag = i
-            view.addTarget(self, action: #selector(productButtonAction(_:)), for: .touchUpInside)
+            let view = self.createView(for: product)
+            view.control.tag = i
+            view.control.addTarget(self, action: #selector(productButtonAction(_:)), for: .touchUpInside)
             self.relatedProductContainer.addSubview(view)
             self.relatedProductContainer.addConstraints([
                 NSLayoutConstraint(item: self.relatedProductContainer, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0),
@@ -56,7 +56,7 @@ class RelatedProductCell: NTableViewCell {
                 self.relatedProductContainer.addConstraint(NSLayoutConstraint(item: leftView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 8))
             }
             leftView = view
-            if i >= products.count - 1 {
+            if i >= products.count - 1 && products.count > 1 {
                 self.relatedProductContainer.addConstraint(NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: self.relatedProductContainer, attribute: .trailing, multiplier: 1, constant: 0))
             }
             i+=1
@@ -77,7 +77,7 @@ class RelatedProductCell: NTableViewCell {
         let view = ProductGridView()
         view.initData(product: product)
         view.translatesAutoresizingMaskIntoConstraints = false
-        
+        view.isUserInteractionEnabled = true
         view.addConstraints([NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: columnWidth), NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: imageH + contentH + (40))])
         
         return view

@@ -10,6 +10,7 @@ import UIKit
 
 class OrderSummaryCell: NTableViewCell {
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var orderDateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,41 +23,50 @@ class OrderSummaryCell: NTableViewCell {
         // Configure the view for the selected state
     }
     
-    func initData(cart: Cart, merchants: [Merchant], voucher: Voucher?, additionals: [Additional]?) {
+    func initData(cart: Cart, merchants: [Merchant], voucher: Voucher?, additionals: [Additional]?, date: Date?) {
         for subview in self.containerView.subviews {
             subview.removeFromSuperview()
         }
         
         var topView: UIView?
+        var totalProductPrice: Double = 0.0
+        var totalShippingPrice: Double = 0.0
+        
         for merchant in merchants {
             if let products = merchant.products, !products.isEmpty {
                 for product in products {
-                    let view = NAdditionalView()
-                    view.translatesAutoresizingMaskIntoConstraints = false
-                    self.containerView.addSubview(view)
-                    view.initData(title: "\(product.productName!) \(String(product.qty))x", price: product.specialPrice)
-                    self.containerView.addConstraints([NSLayoutConstraint(item: view, attribute: .leading, relatedBy: .equal, toItem: self.containerView, attribute: .leading, multiplier: 1, constant: 0), NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: self.containerView, attribute: .trailing, multiplier: 1, constant: 0)])
-                    if topView == nil {
-                        self.containerView.addConstraint(NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: self.containerView, attribute: .top, multiplier: 1, constant: 0))
-                    } else {
-                        self.containerView.addConstraint(NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: topView, attribute: .bottom, multiplier: 1, constant: 4))
-                    }
-                    topView = view
+                    totalProductPrice += product.specialPrice
                 }
             }
             if let courier = merchant.deliveryService {
-                let view = NAdditionalView()
-                view.translatesAutoresizingMaskIntoConstraints = false
-                self.containerView.addSubview(view)
-                view.initData(title: "\(courier.name!)", price: courier.price)
-                self.containerView.addConstraints([NSLayoutConstraint(item: view, attribute: .leading, relatedBy: .equal, toItem: self.containerView, attribute: .leading, multiplier: 1, constant: 0), NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: self.containerView, attribute: .trailing, multiplier: 1, constant: 0)])
-                if topView == nil {
-                    self.containerView.addConstraint(NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: self.containerView, attribute: .top, multiplier: 1, constant: 0))
-                } else {
-                    self.containerView.addConstraint(NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: topView, attribute: .bottom, multiplier: 1, constant: 4))
-                }
-                topView = view
+                totalShippingPrice += courier.price
             }
+        }
+        if totalProductPrice > 0.0 {
+            let view = NAdditionalView()
+            view.translatesAutoresizingMaskIntoConstraints = false
+            self.containerView.addSubview(view)
+            view.initData(title: "Total", price: totalProductPrice)
+            self.containerView.addConstraints([NSLayoutConstraint(item: view, attribute: .leading, relatedBy: .equal, toItem: self.containerView, attribute: .leading, multiplier: 1, constant: 0), NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: self.containerView, attribute: .trailing, multiplier: 1, constant: 0)])
+            if topView == nil {
+                self.containerView.addConstraint(NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: self.containerView, attribute: .top, multiplier: 1, constant: 0))
+            } else {
+                self.containerView.addConstraint(NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: topView, attribute: .bottom, multiplier: 1, constant: 4))
+            }
+            topView = view
+        }
+        if totalShippingPrice > 0.0 {
+            let view = NAdditionalView()
+            view.translatesAutoresizingMaskIntoConstraints = false
+            self.containerView.addSubview(view)
+            view.initData(title: "Shipping Fee", price: totalShippingPrice)
+            self.containerView.addConstraints([NSLayoutConstraint(item: view, attribute: .leading, relatedBy: .equal, toItem: self.containerView, attribute: .leading, multiplier: 1, constant: 0), NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: self.containerView, attribute: .trailing, multiplier: 1, constant: 0)])
+            if topView == nil {
+                self.containerView.addConstraint(NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: self.containerView, attribute: .top, multiplier: 1, constant: 0))
+            } else {
+                self.containerView.addConstraint(NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: topView, attribute: .bottom, multiplier: 1, constant: 4))
+            }
+            topView = view
         }
         if let additionals = additionals, !additionals.isEmpty {
             for additional in additionals {
@@ -101,6 +111,10 @@ class OrderSummaryCell: NTableViewCell {
 
         if let topView = topView {
             self.containerView.addConstraint(NSLayoutConstraint(item: topView, attribute: .bottom, relatedBy: .equal, toItem: self.containerView, attribute: .bottom, multiplier: 1, constant: 0))
+        }
+        
+        if let date = date {
+            self.orderDateLabel.text = date.formatDate(dateFormat: "dd MMM yyy")
         }
     }
     

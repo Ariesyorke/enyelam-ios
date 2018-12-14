@@ -24,6 +24,7 @@ class CartController: BaseViewController {
         }
     }
     
+    @IBOutlet weak var notFoundLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var checkoutButton: UIButton!
     
@@ -64,6 +65,7 @@ class CartController: BaseViewController {
     }
     
     @objc func onRefresh(_ refreshControl: UIRefreshControl) {
+        self.notFoundLabel.isHidden = true
         self.checkoutButton.isHidden = true
         self.tryLoadCartList()
     }
@@ -86,6 +88,7 @@ class CartController: BaseViewController {
             if let data = response.data {
                 self.cartReturn = data
             } else {
+                self.notFoundLabel.isHidden = false
                 self.checkoutButton.isHidden = true
                 self.tableView.reloadData()
             }
@@ -260,7 +263,7 @@ extension CartController: UITableViewDelegate, UITableViewDataSource {
             quantities.append(String(i+1))
         }
         let actionSheet = ActionSheetStringPicker.init(title: "Change Quantity", rows: quantities, initialSelection: quantity-1, doneBlock: {picker, index, value in
-            
+            self.tryChangeCart(productCartId: productCartId, quantity: index+1)
         }, cancel: {_ in return
         }, origin: self.view)
         actionSheet!.show()

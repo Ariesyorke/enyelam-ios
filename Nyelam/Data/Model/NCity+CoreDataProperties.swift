@@ -2,7 +2,7 @@
 //  NCity+CoreDataProperties.swift
 //  Nyelam
 //
-//  Created by Bobi on 05/12/18.
+//  Created by Bobi on 11/12/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //

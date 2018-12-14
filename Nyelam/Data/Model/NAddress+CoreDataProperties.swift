@@ -2,7 +2,7 @@
 //  NAddress+CoreDataProperties.swift
 //  Nyelam
 //
-//  Created by Bobi on 05/12/18.
+//  Created by Bobi on 11/12/18.
 //  Copyright © 2018 e-Nyelam. All rights reserved.
 //
 //
@@ -25,6 +25,7 @@ extension NAddress {
     @NSManaged public var fullname: String?
     @NSManaged public var phoneNumber: String?
     @NSManaged public var zipcode: String?
+    @NSManaged public var label: String?
     @NSManaged public var city: NCity?
     @NSManaged public var district: NDistrict?
     @NSManaged public var province: NProvince?

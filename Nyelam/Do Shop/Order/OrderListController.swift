@@ -12,9 +12,11 @@ import UIScrollView_InfiniteScroll
 
 class OrderListController: BaseViewController, IndicatorInfoProvider {
     private let orderStatuses: [String] = ["Pending", "Waiting for Payment", "Payment Accepted", "Payment Declined", "Order Canceled", "Order Processed", "Order Sent", "Order Closed"]
+    
     var paymentType: Int = 1
     var page: Int = 1
     var nextPage: Int = -1
+    
     fileprivate var orders: [NOrder]?
 
     @IBOutlet weak var tableView: UITableView!
@@ -136,9 +138,10 @@ extension OrderListController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let order = self.orders![indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "OrderCell") as! OrderCell
-        cell.initData(merchant: order.cart!.merchants![0])
+        cell.initData(merchant: order.cart!.merchants![0], cart: order.cart!, date: order.orderDate as? Date)
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let order = self.orders![indexPath.row]
         let _ = OrderDetailController.push(on: self.navigationController!, orderId: order.orderId!)

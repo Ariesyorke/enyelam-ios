@@ -9,10 +9,16 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="FiraSans-Regular.ttf">
+            <string>FiraSans-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CartController" customModule="Nyelam" customModuleProvider="target">
             <connections>
                 <outlet property="checkoutButton" destination="DmW-Bh-mAZ" id="ksl-bs-pci"/>
+                <outlet property="notFoundLabel" destination="0HN-qw-smR" id="BBL-Pu-uoK"/>
                 <outlet property="tableView" destination="9Tf-pM-ywM" id="B55-Xz-can"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -44,12 +50,21 @@
                         <action selector="checkoutButtonAction:" destination="-1" eventType="touchUpInside" id="nOa-09-n3r"/>
                     </connections>
                 </button>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cart Empty" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0HN-qw-smR">
+                    <rect key="frame" x="8" y="335" width="359" height="17"/>
+                    <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="0HN-qw-smR" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="3eu-5X-2Nd"/>
+                <constraint firstItem="0HN-qw-smR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="Abb-cH-q7X"/>
                 <constraint firstItem="DmW-Bh-mAZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="CQf-KC-FNd"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="DmW-Bh-mAZ" secondAttribute="trailing" constant="16" id="EEM-Bk-qyw"/>
                 <constraint firstItem="9Tf-pM-ywM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="LaJ-CJ-tF3"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="0HN-qw-smR" secondAttribute="trailing" constant="8" id="Wlk-sJ-WPU"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="DmW-Bh-mAZ" secondAttribute="bottom" constant="16" id="e3F-5R-q8D"/>
                 <constraint firstItem="DmW-Bh-mAZ" firstAttribute="top" secondItem="9Tf-pM-ywM" secondAttribute="bottom" id="fb9-VF-uh3"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="9Tf-pM-ywM" secondAttribute="trailing" id="kf0-fC-fxU"/>
