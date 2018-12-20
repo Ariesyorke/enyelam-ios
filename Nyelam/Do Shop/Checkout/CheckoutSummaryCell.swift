@@ -48,7 +48,7 @@ class CheckoutSummaryCell: NTableViewCell {
         for merchant in merchants {
             if let products = merchant.products, !products.isEmpty {
                 for product in products {
-                    grandTotal += product.specialPrice
+                    grandTotal += (product.specialPrice * Double(product.qty))
                 }
             }
         }
@@ -67,36 +67,36 @@ class CheckoutSummaryCell: NTableViewCell {
             topView = view
         }
 
-        if let couriers = couriers, let courierTypes = courierTypes {
-            var i = 0
-            var totalPrice: Double = 0.0
-            
-            for courier in couriers {
-                if let code = courier.code, !code.isEmpty {
-                    var price: Double = 0.0
-                    let courierType = courierTypes[i]
-                    if let costs = courierType.costs, !costs.isEmpty {
-                        price = Double(costs[0].value)
-                    }
-                    totalPrice += price
-                }
-                i += 1
-            }
-            if totalPrice > 0.0 {
-                grandTotal += totalPrice
-                let view = NAdditionalView()
-                view.translatesAutoresizingMaskIntoConstraints = false
-                self.detailContainerView.addSubview(view)
-                view.initData(title: "Shipping Fee", price: totalPrice)
-                self.detailContainerView.addConstraints([NSLayoutConstraint(item: view, attribute: .leading, relatedBy: .equal, toItem: self.detailContainerView, attribute: .leading, multiplier: 1, constant: 0), NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: self.detailContainerView, attribute: .trailing, multiplier: 1, constant: 0)])
-                if topView == nil {
-                    self.detailContainerView.addConstraint(NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: self.detailContainerView, attribute: .top, multiplier: 1, constant: 0))
-                } else {
-                    self.detailContainerView.addConstraint(NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: topView, attribute: .bottom, multiplier: 1, constant: 4))
-                }
-                topView = view
-            }
-        }
+//        if let couriers = couriers, let courierTypes = courierTypes {
+//            var i = 0
+//            var totalPrice: Double = 0.0
+//            
+//            for courier in couriers {
+//                if let code = courier.code, !code.isEmpty {
+//                    var price: Double = 0.0
+//                    let courierType = courierTypes[i]
+//                    if let costs = courierType.costs, !costs.isEmpty {
+//                        price = Double(costs[0].value)
+//                    }
+//                    totalPrice += price
+//                }
+//                i += 1
+//            }
+//            if totalPrice > 0.0 {
+//                grandTotal += totalPrice
+//                let view = NAdditionalView()
+//                view.translatesAutoresizingMaskIntoConstraints = false
+//                self.detailContainerView.addSubview(view)
+//                view.initData(title: "Shipping Fee", price: totalPrice)
+//                self.detailContainerView.addConstraints([NSLayoutConstraint(item: view, attribute: .leading, relatedBy: .equal, toItem: self.detailContainerView, attribute: .leading, multiplier: 1, constant: 0), NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: self.detailContainerView, attribute: .trailing, multiplier: 1, constant: 0)])
+//                if topView == nil {
+//                    self.detailContainerView.addConstraint(NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: self.detailContainerView, attribute: .top, multiplier: 1, constant: 0))
+//                } else {
+//                    self.detailContainerView.addConstraint(NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: topView, attribute: .bottom, multiplier: 1, constant: 4))
+//                }
+//                topView = view
+//            }
+//        }
         
         if let additionals = additionals, !additionals.isEmpty {
             for additional in additionals {

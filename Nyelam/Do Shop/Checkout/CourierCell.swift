@@ -51,7 +51,7 @@ class CourierCell: NTableViewCell {
                 if topView == nil {
                     self.productItemContainer.addConstraint(NSLayoutConstraint(item: self.productItemContainer, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0))
                 } else {
-                    self.productItemContainer.addConstraint(NSLayoutConstraint(item: topView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 8))
+                    self.productItemContainer.addConstraint(NSLayoutConstraint(item: topView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: -8))
                 }
                 topView = view
                 if i >= products.count - 1 {

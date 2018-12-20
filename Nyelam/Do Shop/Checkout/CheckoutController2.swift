@@ -19,6 +19,7 @@ class CheckoutController2: BaseViewController {
     var pickedCourierTypes: [CourierType] = []
     var cartReturn: CartReturn?
     var checked: Bool = false
+    var totalShippingFee = 0.0
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -56,7 +57,7 @@ class CheckoutController2: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if self.firstTime {
-            self.firstTime = true
+            self.firstTime = false
             MBProgressHUD.showAdded(to: self.view, animated: true)
             self.tryLoadAddress(type: "billing", completion: {
                 self.tryLoadAddress(type: "shipping", completion: {
@@ -117,7 +118,6 @@ class CheckoutController2: BaseViewController {
                 var currentCount = 0
                 for pickedCourierType in self.pickedCourierTypes {
                     if let costs = pickedCourierType.costs, !costs.isEmpty {
-                        print("PANGGIL 1")
                         currentCount+=1
                         if grandTotal < 0 {
                             self.grandTotal = 0
@@ -229,7 +229,7 @@ class CheckoutController2: BaseViewController {
     
     fileprivate func handlePaymentMethodType(order: NOrder, paymentType: String) {
         if paymentType == "2" || paymentType == "3" {
-            self.payUsingMidtrans(orderId: order.orderId!, value: order.cart!.total, billingAddress: order.billingAddress!, shippingAddress: order.shippingAddress!, merchants: order.cart!.merchants!, additionals: order.additionals, voucher: order.cart!.voucher, veritransToken: order.veritransToken!, paymentType: Int(paymentType)!)
+            self.payUsingMidtrans(orderId: order.orderId!, value: order.cart!.total, billingAddress: order.billingAddress!, shippingAddress: order.shippingAddress!, merchants: order.cart!.merchants!, additionals: self.cartReturn!.additionals, voucher: self.cartReturn!.cart!.voucher, veritransToken: order.veritransToken!, paymentType: Int(paymentType)!)
         } else if paymentType == "4" {
             self.payUsingPaypal(order: order)
         } else {
@@ -268,16 +268,18 @@ class CheckoutController2: BaseViewController {
         preferences.set(billingAddress.phoneNumber!, forKey: "phone_number")
         
         var itemDetails: [MidtransItemDetail] = []
+        var itemID = -1
+
         for merchant in merchants {
             if let products = merchant.products, !products.isEmpty {
                 for product in products {
                     let itemDetail = MidtransItemDetail(itemID: product.productCartId!, name: product.productName!, price: NSNumber(value: product.specialPrice/Double(product.qty)), quantity: NSNumber(value: product.qty))
                     itemDetails.append(itemDetail!)
                 }
-                
             }
         }
-        var itemID = -1
+        
+
 
         if let additionals = additionals, !additionals.isEmpty {
             for additional in additionals {
@@ -301,8 +303,39 @@ class CheckoutController2: BaseViewController {
         self.present(vc!, animated: true, completion: nil)
     }
 
-    
-    fileprivate func tryChangePayment(paymentType: Int) {
+    fileprivate func tryChangePayment(paymentType: Int, deliveryServiceHasmap: [String: String]?, voucherCode: String?) {
+        var id: String = ""
+        if let order = self.order {
+            id = order.orderId!
+        } else if let cartReturn = self.cartReturn {
+            id = cartReturn.cartToken!
+        }
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        NHTTPHelper.httpChangePaymentMethodFee(paymentMethodId: String(paymentType), orderId: id, voucherCode:voucherCode, deliveryServiceMapping: deliveryServiceHasmap, complete: {response in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            if let error = response.error {
+                if error.isKind(of: NotConnectedInternetError.self) {
+                    NHelper.handleConnectionError(completion: {
+                        self.tryChangePayment(paymentType: paymentType, deliveryServiceHasmap: deliveryServiceHasmap)
+                    })
+                }
+                return
+            }
+            if let data = response.data {
+                self.cartReturn = data
+                if let _ = self.order {
+                    self.order!.cart!.additionals = data.cart!.additionals
+                    self.order!.additionals = data.additionals!
+                }
+                self.tableView.reloadRows(at: [IndexPath(item: 0, section: 2),  IndexPath(item: 0, section: 3)], with: .automatic)
+                
+                //                self.tableView.reloadRows(at: [IndexPath(item: 0, section: 3),  IndexPath(item: 0, section: 4)], with: .automatic)
+            }
+        })
+    }
+
+    fileprivate func tryChangePayment(paymentType: Int, deliveryServiceHasmap: [String: String]?) {
         var id: String = ""
         if let order = self.order {
             id = order.orderId!
@@ -316,17 +349,18 @@ class CheckoutController2: BaseViewController {
         }
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        NHTTPHelper.httpChangePaymentMethodFee(paymentMethodId: String(paymentType), orderId: id, voucherCode:voucherCode, complete: {response in
+        NHTTPHelper.httpChangePaymentMethodFee(paymentMethodId: String(paymentType), orderId: id, voucherCode:voucherCode, deliveryServiceMapping: deliveryServiceHasmap, complete: {response in
             MBProgressHUD.hide(for: self.view, animated: true)
             if let error = response.error {
                 if error.isKind(of: NotConnectedInternetError.self) {
                     NHelper.handleConnectionError(completion: {
-                        self.tryChangePayment(paymentType: paymentType)
+                        self.tryChangePayment(paymentType: paymentType, deliveryServiceHasmap: deliveryServiceHasmap)
                     })
                 }
                 return
             }
             if let data = response.data {
+                print("DATA \(data)")
                 self.cartReturn = data
                 if let _ = self.order {
                     self.order!.cart!.additionals = data.cart!.additionals
@@ -411,11 +445,12 @@ extension CheckoutController2: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PersonalInformationCell", for: indexPath) as! PersonalInformationCell
-            if cell.row == 0 {
+            cell.row = indexPath.row
+            if indexPath.row == 0 {
                 if let billingAddress = self.billingAddress {
                     cell.initData(address: billingAddress)
                 }
-            } else if cell.row == 1 {
+            } else if indexPath.row == 1 {
                 if let shippingAddress = self.shippingAddress {
                     cell.initData(address: shippingAddress)
                 }
@@ -430,19 +465,30 @@ extension CheckoutController2: UITableViewDelegate, UITableViewDataSource {
                         self.billingAddress = address
                     } else {
                         self.shippingAddress = address
+                        if self.shippingAddress != nil {
+                            self.pickedCouriers = NHelper.calculateCourier(merchants: self.cartReturn!.cart!.merchants!)
+                            self.pickedCourierTypes = NHelper.calculateCourierTypes(merchants: self.cartReturn!.cart!.merchants!)
+                            self.cartReturn!.additionals = nil
+                            self.paymentMethodType = 1
+                            self.tableView.reloadData()
+                        }
                     }
                     if sameasbilling {
                         self.shippingAddress = address
+                        if self.shippingAddress != nil {
+                            self.pickedCouriers = NHelper.calculateCourier(merchants: self.cartReturn!.cart!.merchants!)
+                            self.pickedCourierTypes = NHelper.calculateCourierTypes(merchants: self.cartReturn!.cart!.merchants!)
+                            self.paymentMethodType = 1
+                            self.tableView.reloadData()
+                        }
                     }
-                    if self.shippingAddress != nil {
-                        self.pickedCourierTypes = []
-                        self.pickedCouriers = []
-                    }
+                    
 //                    self.tableView.reloadRows(at: [IndexPath(row: 0, col: 1), IndexPath(row: 1, col: 1)], with: .automatic)
 //                    self.tableView.reloadSections(IndexSet(integer: 2), with: .automatic)
 //                    self.tableView.reloadSections(IndexSet(integer: 4), with: .automatic)
                     
-                    self.tableView.reloadRows(at: [IndexPath(row: 0, col: 0), IndexPath(row: 1, col: 0)], with: .automatic)
+//                    self.tableView.reloadRows(at: [IndexPath(row: 0, col: 0), IndexPath(row: 1, col: 0)], with: .automatic)
+                    self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
                     self.tableView.reloadSections(IndexSet(integer: 1), with: .automatic)
                     self.tableView.reloadSections(IndexSet(integer: 3), with: .automatic)
                 })
@@ -477,16 +523,31 @@ extension CheckoutController2: UITableViewDelegate, UITableViewDataSource {
                         self.pickedCouriers.append(cour)
                         self.pickedCourierTypes.append(courType)
                     }
-                    self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                 //   self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                    self.calculateGrandTotal()
+                    if self.grandTotal < 0 || self.billingAddress == nil || self.shippingAddress == nil {
+                        return
+                    } else {
+                        let deliveryMapping = self.formatPostDeliveryOrder(merchants: self.cartReturn!.cart!.merchants!, couriers: self.pickedCouriers, courierTypes: self.pickedCourierTypes)
+                        self.tryChangePayment(paymentType: 1, deliveryServiceHasmap: deliveryMapping)
+                    }
+                    
                 })
             }
             return cell
         } else if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PaymentMethodCell", for: indexPath) as! PaymentMethodCell
             cell.paymentType = self.paymentMethodType
+            self.calculateGrandTotal()
+            if self.grandTotal < 0 || self.billingAddress == nil || self.shippingAddress == nil {
+                cell.disabled = true
+            } else {
+                cell.disabled = false
+            }
             cell.onChangePaymentType = {paymentType in
                 self.paymentMethodType = paymentType
-                self.tryChangePayment(paymentType: self.paymentMethodType)
+                let deliveryMapping = self.formatPostDeliveryOrder(merchants: self.cartReturn!.cart!.merchants!, couriers: self.pickedCouriers, courierTypes: self.pickedCourierTypes)
+                self.tryChangePayment(paymentType: self.paymentMethodType, deliveryServiceHasmap: deliveryMapping)
             }
             cell.initPayment(paymentType: self.paymentMethodType)
             return cell
@@ -532,6 +593,7 @@ extension CheckoutController2: PayPalPaymentDelegate, PayPalFuturePaymentDelegat
                 MBProgressHUD.showAdded(to: self.view, animated: true)
                 NHTTPHelper.httpVeritransNotification(parameters: transactionResult.serialized(), complete: {response in
                     MBProgressHUD.hide(for: self.view, animated: true)
+                    _ = OrderDetailController.push(on: self.navigationController!, orderId: self.order!.orderId!, isComeFromOrder: true)
                 })
             })
         })

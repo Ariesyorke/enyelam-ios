@@ -13,12 +13,19 @@ extension NHTTPHelper {
     static func httpChangePaymentMethodFee(paymentMethodId: String,
                                            orderId: String,
                                            voucherCode: String?,
+                                           deliveryServiceMapping: [String: String]?,
                                            complete: @escaping(NHTTPResponse<CartReturn>) -> ()) {
         var param: [String: Any] = ["payment_method_id": paymentMethodId, "cart_token": orderId]
         if let voucherCode = voucherCode {
             param["voucher_code"] = voucherCode
         }
+        if let deliveryServiceMapping = deliveryServiceMapping {
+            for (key, value) in deliveryServiceMapping {
+                param[key] = value
+            }
+        }
         self.basicAuthRequest(URLString: HOST_URL + API_PATH_DO_SHOP_PAYMENT_METHOD_FEE, parameters: param, headers: nil, complete: {status, data, error in
+            
             if let error = error {
                 complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
                 return
@@ -86,11 +93,12 @@ extension NHTTPHelper {
         if let voucherCode = voucherCode {
             param["voucher_code"] = voucherCode
         }
-        self.basicAuthRequest(URLString: HOST_URL + API_PATH_DO_SHOP_SUBMIT_ORDER, parameters: param, headers: nil, complete: {status, data, error in
+        self.basicAuthStringRequest(URLString: HOST_URL + API_PATH_DO_SHOP_SUBMIT_ORDER, parameters: param, headers: nil, complete: {status, data, error in
             if let error = error {
                 complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
                 return
             }
+            print("ORDER DATA \(data)")
             if let data = data, let json = data as? [String: Any] {
                 var order: NOrder? = nil
                 if let orderJson = json["order"] as? [String: Any] {

@@ -11,6 +11,7 @@ import UINavigationControllerWithCompletionBlock
 
 class AddressListController: BaseViewController {
     var type: String = "billing"
+    
     let refreshControl: UIRefreshControl = UIRefreshControl()
     var addresses: [NAddress]? {
         didSet {
@@ -80,6 +81,7 @@ class AddressListController: BaseViewController {
             }
         })
     }
+    
     @objc func addButtonAction(_ sender: UIBarButtonItem) {
         let _ = AddAddressViewController.push(on: self.navigationController!, defaultShipping: type == "shipping" ? 1 : 0, defaultBillng: type == "billing" ? 1 : 0, successCompletion: {sameasbiiling, address in
             self.navigationController!.popViewController(animated: true, withCompletionBlock: {

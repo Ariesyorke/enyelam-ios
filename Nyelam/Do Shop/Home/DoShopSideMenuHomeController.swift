@@ -10,7 +10,7 @@ import UIKit
 import ExpyTableView
 
 class DoShopSideMenuHomeController: BaseViewController {
-    let contents: [String] = ["Payment History","Categories", "Exit"]
+    let contents: [String] = ["Back To e-Nyelam", "Payment History","Categories"]
     @IBOutlet weak var tableView: ExpyTableView!
     var categories: [NProductCategory]? = nil {
         didSet {
@@ -86,21 +86,21 @@ extension DoShopSideMenuHomeController: ExpyTableViewDataSource, ExpyTableViewDe
         switch indexPath.section {
         case 0:
             if let navigationController = self.navigationController as? DoShopSideMenuNavigationController {
-                navigationController.onSideMenuClicked(DoShopSideMenuType.order, nil)
+                navigationController.onSideMenuClicked(DoShopSideMenuType.exit, nil)
             }
             break
         case 1:
-            if indexPath.row >= 1 {
-                if let navigationController = self.navigationController as? DoShopSideMenuNavigationController {
-                    let index = indexPath.row - 1
-                    let category = self.categories![index]
-                    navigationController.onSideMenuClicked(DoShopSideMenuType.category, category)
-                }
+            if let navigationController = self.navigationController as? DoShopSideMenuNavigationController {
+                navigationController.onSideMenuClicked(DoShopSideMenuType.order, nil)
             }
             break
         default:
-            if let navigationController = self.navigationController as? DoShopSideMenuNavigationController {
-                navigationController.onSideMenuClicked(DoShopSideMenuType.exit, nil)
+            if indexPath.row >= 1 {
+                if let navigationController = self.navigationController as? DoShopSideMenuNavigationController {
+                    let index = indexPath.row - 2
+                    let category = self.categories![index]
+                    navigationController.onSideMenuClicked(DoShopSideMenuType.category, category)
+                }
             }
             break
         }
@@ -115,13 +115,13 @@ extension DoShopSideMenuHomeController: ExpyTableViewDataSource, ExpyTableViewDe
         switch section {
         case 0:
             return 1
-        case 1:
+        case 2:
             if let categories = self.categories, !categories.isEmpty {
                 return categories.count + 1
             } else {
                 return 1
             }
-        case 2:
+        case 1:
             return 1
         default:
             return 0
@@ -131,7 +131,7 @@ extension DoShopSideMenuHomeController: ExpyTableViewDataSource, ExpyTableViewDe
     func tableView(_ tableView: ExpyTableView, expandableCellForSection section: Int) -> UITableViewCell {
         let cell = UITableViewCell()
         cell.selectionStyle = .none
-        cell.textLabel!.text = contents[section]
+        cell.textLabel!.text = self.contents[section]
         return cell
     }
     

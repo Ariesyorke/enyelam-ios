@@ -1022,7 +1022,6 @@ class NHTTPHelper {
             }
         }
         Alamofire.request(URLString, method: .post, parameters: param, encoding: URLEncoding.httpBody, headers: headers).responseString(completionHandler: {response in
-            
             if let error = response.error as? URLError {
                 if error.code == URLError.Code.notConnectedToInternet {
                     complete(false, nil, NotConnectedInternetError(statusCode: error.code.rawValue, title: "Connection Error", message: ""))

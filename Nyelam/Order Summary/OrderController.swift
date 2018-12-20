@@ -552,6 +552,7 @@ class PaymentMethodCell: NTableViewCell {
     @IBOutlet weak var paymentButton: DLRadioButton!
     var paymentType: Int = 0
     var onChangePaymentType: (Int)->() = {paymentType in }
+    var disabled: Bool = false
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -564,21 +565,24 @@ class PaymentMethodCell: NTableViewCell {
     }
     
     @IBAction func changePaymentButtonAction(_ sender: UIControl) {
-        if sender.tag == 1 {
-            self.paymentButton.isSelected = true
-            for button in self.paymentButton.otherButtons {
-                button.isSelected = false
-            }
-        } else {
-            self.paymentButton.isSelected = false
-            for button in self.paymentButton.otherButtons {
-                if button.tag == sender.tag {
-                    button.isSelected = true
-                    break
+        if !self.disabled {
+            if sender.tag == 1 {
+                self.paymentButton.isSelected = true
+                for button in self.paymentButton.otherButtons {
+                    button.isSelected = false
+                }
+            } else {
+                self.paymentButton.isSelected = false
+                for button in self.paymentButton.otherButtons {
+                    if button.tag == sender.tag {
+                        button.isSelected = true
+                        break
+                    }
                 }
             }
+            self.onChangePaymentType(sender.tag)
+
         }
-        self.onChangePaymentType(sender.tag)
     }
     
     func initPayment(paymentType: Int) {
