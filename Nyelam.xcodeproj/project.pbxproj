@@ -647,6 +647,7 @@
 		C038343621B3AADB004E8173 /* OrderInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderInfoCell.swift; sourceTree = "<group>"; };
 		C038343721B3AADB004E8173 /* OrderInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderInfoCell.xib; sourceTree = "<group>"; };
 		C03A03C020B7F97F00056E35 /* NDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NDisplay.swift; sourceTree = "<group>"; };
+		C03C28A721CB9C210074EA2D /* Nyelam.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Nyelam.entitlements; sourceTree = "<group>"; };
 		C03D79A321BA20ED008FF183 /* DoShopSortByCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoShopSortByCell.swift; sourceTree = "<group>"; };
 		C03D79A421BA20ED008FF183 /* DoShopSortByCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DoShopSortByCell.xib; sourceTree = "<group>"; };
 		C040B97720B6B1CA00A19D7E /* background_blur.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_blur.png; sourceTree = "<group>"; };
@@ -1426,6 +1427,7 @@
 		C037AD5A2070A38800DD5CBC /* Nyelam */ = {
 			isa = PBXGroup;
 			children = (
+				C03C28A721CB9C210074EA2D /* Nyelam.entitlements */,
 				C09AC93B2192CE3F005CAF05 /* Do Shop */,
 				C0D66796214F5A0700F45039 /* Inbox */,
 				C090E1262121467100EE0654 /* Onboarding */,
@@ -2083,6 +2085,11 @@
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					C037AD6E2070A38800DD5CBC = {
 						CreatedOnToolsVersion = 9.2;
@@ -2974,6 +2981,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Nyelam/Nyelam.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LJ9K37KG2H;
@@ -3002,6 +3010,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Nyelam/Nyelam.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LJ9K37KG2H;

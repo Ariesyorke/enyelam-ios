@@ -799,6 +799,16 @@ class NHTTPHelper {
         }
     }
     
+    static var API_PATH_ADD_UPDATE_FIREBASE: String {
+        switch NConstant.URL_TYPE {
+        case .production:
+            return "user/firebase"
+        default:
+            return "api/user/firebase"
+        }
+    }
+
+    
     internal static func basicRajaOngkirRequest(URLString: URLConvertible,
                                                 method: HTTPMethod = HTTPMethod.get,
                                                 parameters: [String: Any]? = nil,

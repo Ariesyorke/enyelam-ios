@@ -24,6 +24,9 @@ class StarterViewController: BaseViewController {
     }
 
     internal func getUpdate() {
+        if let _ = NAuthReturn.authUser() {
+            AppDelegate.updateFirebase()
+        }
         NHTTPHelper.httpGetUpdateVersion(complete: {response in
             if let error = response.error {
                 UIAlertController.handleErrorMessage(viewController: self, error: error, completion: {error in

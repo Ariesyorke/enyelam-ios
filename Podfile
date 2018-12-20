@@ -45,6 +45,7 @@ target 'Nyelam' do
   pod 'CollectionKit', '~> 2.1.0'
   pod 'ExpyTableView'
   pod 'MIBadgeButton-Swift', :git => 'https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git', :branch => 'master'
+  pod 'Firebase/Messaging'
 
   target 'NyelamTests' do
     inherit! :search_paths

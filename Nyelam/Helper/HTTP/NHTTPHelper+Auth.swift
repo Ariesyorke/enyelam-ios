@@ -13,6 +13,22 @@ import Alamofire
 import AlamofireImage
 
 extension NHTTPHelper {
+    
+    static func httpAddUpdateFirebaseToken(firebaseToken: String,
+                                           complete: @escaping (NHTTPResponse<Bool>)->()) {
+        self.basicAuthRequest(URLString: HOST_URL + API_PATH_ADD_UPDATE_FIREBASE,
+                              parameters: ["firebase_token": firebaseToken,
+                                           "platform": NConstant.platform],
+                              headers: nil,
+                              complete: {status, data, error in
+            if let error = error {
+                complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
+                return
+            }
+            complete(NHTTPResponse(resultStatus: true, data: true, error: nil))
+        })
+    }
+    
     //LOGIN REQUEST
     static func httpLogin(email: String, password: String, complete: @escaping (NHTTPResponse<NAuthReturn>)->()) {
         self.basicPostRequest(URLString: HOST_URL + API_PATH_LOGIN,
@@ -28,6 +44,7 @@ extension NHTTPHelper {
                 let authReturn = NSEntityDescription.insertNewObject(forEntityName: "NAuthReturn", into: AppDelegate.sharedManagedContext) as! NAuthReturn
                 authReturn.parse(json: json)
                 NSManagedObjectContext.saveData()
+                AppDelegate.updateFirebase()
                 complete(NHTTPResponse(resultStatus: true, data: authReturn, error: nil))
             }
         })
@@ -54,6 +71,7 @@ extension NHTTPHelper {
                                     let authReturn = NSEntityDescription.insertNewObject(forEntityName: "NAuthReturn", into: AppDelegate.sharedManagedContext) as! NAuthReturn
                                     authReturn.parse(json: json)
                                     NSManagedObjectContext.saveData()
+                                    AppDelegate.updateFirebase()
                                     complete(NHTTPResponse(resultStatus: true, data: authReturn, error: nil))
                                 }
         })
@@ -102,6 +120,7 @@ extension NHTTPHelper {
                                     let authReturn = NSEntityDescription.insertNewObject(forEntityName: "NAuthReturn", into: AppDelegate.sharedManagedContext) as! NAuthReturn
                                     authReturn.parse(json: json)
                                     NSManagedObjectContext.saveData {
+                                        AppDelegate.updateFirebase()
                                         complete(NHTTPResponse(resultStatus: true, data: authReturn, error: nil))
                                     }
                                 }

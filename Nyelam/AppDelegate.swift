@@ -14,6 +14,8 @@ import MidtransCoreKit
 import Google
 import Firebase
 import Fabric
+import UserNotifications
+import FirebaseMessaging
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,21 +28,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GIDSignIn.sharedInstance().clientID =  NConstant.GOOGLE_CLIENT_ID
         MidtransConfig.shared().setClientKey(NConstant.MIDTRANS_CLIENT_ID, environment: NConstant.MIDTRANS_ENVIRONTMENT, merchantServerURL: NConstant.MIDTRANS_URL)
          PayPalMobile.initializeWithClientIds(forEnvironments: [NConstant.PAYPAL_ENVIRONTMENT:NConstant.PAYPAL_CLIENT_ID])
-        FirebaseApp.configure()
-        if NConstant.URL_TYPE == .production {
-            Crash.sharedInstance().isCrashCollectionEnabled = true
-        } else {
-            Fabric.sharedSDK().debug = true
-            Crash.sharedInstance().isCrashCollectionEnabled = false
-        }
         
+        FirebaseApp.configure()
+        Messaging.messaging().delegate = self
+        
+        //NOTIFICATION
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {granted, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    UNUserNotificationCenter.current().delegate = self
+                    UNUserNotificationCenter.current().getNotificationSettings(completionHandler: {settings in
+                        DispatchQueue.main.async(execute: {
+                            application.registerForRemoteNotifications()
+                        })
+                    })
+                }
+            })
+        } else {
+            let notificationSettings = UIUserNotificationSettings(types: [.badge, .alert, .sound], categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(notificationSettings)
+            DispatchQueue.main.async(execute: {
+                application.registerForRemoteNotifications()
+            })
+            
+            if let launchOptions = launchOptions, let notification =  (launchOptions[UIApplicationLaunchOptionsKey.remoteNotification] as? [AnyHashable: Any]) {
+                print("app received notification from remote\(notification)")
+                self.application(application, didReceiveRemoteNotification: notification)
+            } else {
+                print("app did not receive notification")
+            }
+            // Fallback on earlier versions
+        }
         UITableViewCell.appearance().preservesSuperviewLayoutMargins = false
         UITableViewCell.appearance().contentView.preservesSuperviewLayoutMargins = false
 
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
     }
+    
+    func connectToFCM() {
+        Messaging.messaging().shouldEstablishDirectChannel = true
+    }
 
+    func disconnectToFCM() {
+        Messaging.messaging().shouldEstablishDirectChannel = false
+    }
     // For iOS 9+
     @available(iOS 9.0, *)
     func application(_ application: UIApplication, open url: URL,
@@ -68,6 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        self.disconnectToFCM()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -76,6 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        self.connectToFCM()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -158,5 +194,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return sharedDelegate.managedObjectContext
     }
 
+    static func updateFirebase() {
+        if let _ = NAuthReturn.authUser() {
+            let newToken = InstanceID.instanceID().token()
+            if let token = newToken {
+                NHTTPHelper.httpAddUpdateFirebaseToken(firebaseToken: token, complete: {_ in
+                    AppDelegate.sharedDelegate.connectToFCM()
+                })
+            }
+        }
+    }
 }
 
+extension AppDelegate: MessagingDelegate, UNUserNotificationCenterDelegate {
+    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
+        if let _ = NAuthReturn.authUser() {
+            let newToken = InstanceID.instanceID().token()
+            if let token = newToken {
+                NHTTPHelper.httpAddUpdateFirebaseToken(firebaseToken: token, complete: {_ in
+                    self.connectToFCM()
+                })
+            }
+        } else {
+            self.connectToFCM()
+        }
+    }
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        var userInfo = response.notification.request.content.userInfo
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+        
+    }
+}
