@@ -9,11 +9,6 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="FiraSans-Regular.ttf">
-            <string>FiraSans-Regular</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -24,31 +19,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="127.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GoB-vq-1Hi">
-                        <rect key="frame" x="16" y="11" width="288" height="17"/>
-                        <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fPh-Fw-w9f" userLabel="Container">
-                        <rect key="frame" x="16" y="36" width="288" height="75.5"/>
+                        <rect key="frame" x="16" y="16" width="288" height="95.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="GoB-vq-1Hi" firstAttribute="leading" secondItem="fPh-Fw-w9f" secondAttribute="leading" id="4tR-kR-6VX"/>
-                    <constraint firstItem="fPh-Fw-w9f" firstAttribute="top" secondItem="GoB-vq-1Hi" secondAttribute="bottom" constant="8" id="D0S-YY-SHp"/>
                     <constraint firstAttribute="bottom" secondItem="fPh-Fw-w9f" secondAttribute="bottom" constant="16" id="Jkv-pA-5RY"/>
-                    <constraint firstItem="GoB-vq-1Hi" firstAttribute="trailing" secondItem="fPh-Fw-w9f" secondAttribute="trailing" id="PUf-hn-AzS"/>
-                    <constraint firstItem="GoB-vq-1Hi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="Qju-H0-u1q"/>
                     <constraint firstAttribute="trailing" secondItem="fPh-Fw-w9f" secondAttribute="trailing" constant="16" id="Ri7-Rw-HE3"/>
+                    <constraint firstItem="fPh-Fw-w9f" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="ad9-yQ-71G"/>
                     <constraint firstItem="fPh-Fw-w9f" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="eTx-5t-i5P"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="containerView" destination="fPh-Fw-w9f" id="pxd-Qe-bcz"/>
-                <outlet property="orderDateLabel" destination="GoB-vq-1Hi" id="BVf-FN-8kN"/>
             </connections>
             <point key="canvasLocation" x="137.59999999999999" y="168.21589205397302"/>
         </tableViewCell>

@@ -10,7 +10,7 @@ import UIKit
 import MBProgressHUD
 
 class OrderDetailController: BaseViewController {
-    private let sections = ["Your Order ID:", "Order Info", "Payment"]
+    private let sections = ["Your Order ID:", "Billing Address", "Shipping Address", "Summary", "Payment"]
 
     var orderId: String?
     var order: NOrder? {
@@ -51,7 +51,8 @@ class OrderDetailController: BaseViewController {
         self.tableView.register(UINib(nibName: "OrderSummaryCell", bundle: nil), forCellReuseIdentifier: "OrderSummaryCell")
         self.tableView.register(UINib(nibName: "OrderInfoCell", bundle: nil), forCellReuseIdentifier: "OrderInfoCell")
         self.tableView.register(UINib(nibName: "PaymentProofCell", bundle: nil), forCellReuseIdentifier: "PaymentProofCell")
-        
+        self.tableView.register(UINib(nibName: "AddressCell", bundle: nil), forCellReuseIdentifier: "AddressCell")
+
         // Do any additional setup after loading the view.
     }
     
@@ -138,9 +139,8 @@ class OrderDetailController: BaseViewController {
 }
 
 extension OrderDetailController: UITableViewDataSource, UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        var sectionTitle = NBookingTitleSection(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
+        var sectionTitle = NBookingTitleSection(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 40))
         if section == 0 {
             sectionTitle.subtitleLabel.isHidden = false
         } else {
@@ -155,16 +155,14 @@ extension OrderDetailController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        return 40
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let order = self.order, let cart = order.cart, let merchants = cart.merchants, !merchants.isEmpty {
             if section == 0 {
-                return 1
-            } else if section == 1 {
                 return merchants.count
-            } else if section == 2 {
+            } else {
                 return 1
             }
         }
@@ -173,8 +171,8 @@ extension OrderDetailController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if let order = self.order {
-            var section = 2
-            if let status = order.status, status.lowercased() == "pending" || status.lowercased() == "waiting for payment", order.veritransToken == nil && order.paypalCurrency == nil {
+            var section = 4
+            if let status = order.status, (status.lowercased() == "pending" || status.lowercased() == "waiting for payment") && (order.veritransToken == nil && order.paypalCurrency == nil) {
                 section += 1
             }
             return section
@@ -187,14 +185,39 @@ extension OrderDetailController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "OrderInfoCell") as! OrderInfoCell
+            if indexPath.row == 0 {
+                cell.orderDateLabel.isHidden = false
+                cell.orderDateLabelHeight.constant = 17
+                cell.orderDateVerticalSpacing.constant = 8
+            } else {
+                cell.orderDateLabel.isHidden = true
+                cell.orderDateLabelHeight.constant = 0
+                cell.orderDateVerticalSpacing.constant = 0
+            }
+            if let date = self.order!.orderDate as? Date {
+                cell.orderDateLabel.text = date.formatDate(dateFormat: "dd MMMM yyyy")
+            }
+            cell.initData(merchant: self.order!.cart!.merchants![indexPath.row])
+            return cell
+        } else if indexPath.section == 1 || indexPath.section == 2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AddressCell", for: indexPath) as! AddressCell
+            cell.editButton.isHidden = true
+            if indexPath.section == 1 {
+                if let billingAddress = self.order!.billingAddress {
+                    cell.initData(address: billingAddress)
+                }
+            } else {
+                if let shippingAddress = self.order!.shippingAddress {
+                    cell.initData(address: shippingAddress)
+                }
+            }
+            return cell
+        } else if indexPath.section == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "OrderSummaryCell") as! OrderSummaryCell
             cell.initData(cart: self.order!.cart!, merchants: self.order!.cart!.merchants!, voucher: self.order!.cart!.voucher, additionals: self.order!.additionals, date: self.order!.orderDate as? Date)
             return cell
-        } else if indexPath.section == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "OrderInfoCell") as! OrderInfoCell
-            cell.initData(merchant: self.order!.cart!.merchants![indexPath.row])
-            return cell
-        } else if indexPath.section == 2 {
+        } else if indexPath.section == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PaymentProofCell") as! PaymentProofCell
             cell.onChangePhoto = {
                 UIAlertController.showAlertWithMultipleChoices(title: "Change Profile Photo", message: nil, viewController: self, buttons: [
@@ -218,7 +241,7 @@ extension OrderDetailController: UITableViewDataSource, UITableViewDelegate {
                     UIAlertAction(title: "Cancel", style: .default, handler: {alert in
                         
                     })
-                 ])
+                    ])
             }
             return cell
         }

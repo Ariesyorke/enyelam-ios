@@ -11,6 +11,8 @@ import UIKit
 class AddressCell: NTableViewCell {
     @IBOutlet weak var fullnameLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var editButton: UIButton!
+    
     var address: NAddress?
     var onAddressClicked: (NAddress) -> () = {address in }
     override func awakeFromNib() {

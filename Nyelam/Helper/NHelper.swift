@@ -112,6 +112,7 @@ class NHelper {
         }
         return false
     }
+    
     static func calculateCourier(merchants: [Merchant]) -> [Courier] {
         var couriers: [Courier] = []
         for _ in merchants {
@@ -119,6 +120,7 @@ class NHelper {
         }
         return couriers
     }
+    
     static func calculateCourierTypes(merchants: [Merchant]) -> [CourierType] {
         var courierTypes: [CourierType] = []
         for _ in merchants {
@@ -126,7 +128,15 @@ class NHelper {
         }
         return courierTypes
     }
+    
     static func calculateDiscount(normalPrice: Double, specialPrice: Double) -> Int {
         return Int(((normalPrice - specialPrice)/normalPrice)*100)
+    }
+    
+    static func logout(completion: @escaping () -> ()) {
+        AppDelegate.sharedDelegate.disconnectToFCM()
+        NHTTPHelper.httpAddUpdateFirebaseToken(firebaseToken: "ios_logout", complete: {response in
+            completion()
+        })
     }
 }

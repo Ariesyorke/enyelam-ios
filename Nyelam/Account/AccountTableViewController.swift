@@ -125,10 +125,14 @@ UINavigationControllerDelegate, PECropViewControllerDelegate {
         case 6:
             UIAlertController.showAlertWithMultipleChoices(title: "Are you sure want to logout?", message: "", viewController: self, buttons: [
                 UIAlertAction(title: "Yes", style: .default, handler: {alert in
+                MBProgressHUD.showAdded(to: self.view, animated: true)
                 if let parent = self.parent as? MainRootController {
-                    _ = NAuthReturn.deleteAllAuth()
-                    _ = NSummary.deleteAllOrder()
-                    parent.checkLoginState()
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    NHelper.logout(completion: {
+                        _ = NAuthReturn.deleteAllAuth()
+                        _ = NSummary.deleteAllOrder()
+                        parent.checkLoginState()
+                    })
                 } else if let navigation = self.navigationController {
                     navigation.popViewController(animated: true)
                 }

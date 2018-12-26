@@ -9,11 +9,13 @@
 import UIKit
 
 class MainNavigationController: BaseNavigationController {
-    
-    static func present(on controller: UIViewController) -> MainNavigationController {
+    var inbox: Inbox?
+    static func present(on controller: UIViewController, with inbox: Inbox?) -> MainNavigationController {
         let root: MainRootController = MainRootController(nibName: "MainRootController", bundle: nil)
         let nav: MainNavigationController = MainNavigationController(rootViewController: root)
+        nav.inbox = inbox
         controller.present(nav, animated: true, completion: nil)
+        
         return nav
     }
     
@@ -25,6 +27,16 @@ class MainNavigationController: BaseNavigationController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        if self.firstime, let inbox = inbox {
+            self.firstime = false
+            var closed = true
+            if let status = inbox.status, status.lowercased() == "open" {
+                closed = false
+            }
+            if let authReturn = NAuthReturn.authUser(), let user = authReturn.user {
+                let _ = InboxDetailController.push(on: self, inbox: inbox, senderId: user.id!, closed: closed)
+            }
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

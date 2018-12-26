@@ -154,11 +154,6 @@ class InboxDetailController: BaseViewController {
     }
     
     override func backButtonAction(_ sender: UIBarButtonItem) {
-        if let navigation = self.navigationController as? BaseNavigationController {
-            self.moveSafeAreaInsets()
-            navigation.setNavigationBarHidden(true, animated: true)
-            navigation.navigationBar.barTintColor = UIColor.primary
-        }
         super.backButtonAction(sender)
     }
 

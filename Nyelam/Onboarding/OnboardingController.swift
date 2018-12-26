@@ -44,12 +44,12 @@ class OnboardingController: UIViewController {
             self.scrollView.scrollRectToVisible(rect, animated: true)
             self.pageControl.currentPage = self.currentPage
         } else {
-            let _ = MainNavigationController.present(on: self)
+            let _ = MainNavigationController.present(on: self, with: nil)
         }
     }
     
     @IBAction func skipButtonAction(_ sender: Any) {
-        let _ = MainNavigationController.present(on: self)
+        let _ = MainNavigationController.present(on: self, with: nil)
     }
     
     fileprivate func createView(atindex: Int) -> UIView {

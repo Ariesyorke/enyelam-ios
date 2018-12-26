@@ -11,6 +11,7 @@ import CoreData
 import Crashlytics
 
 class StarterViewController: BaseViewController {
+    var inbox: Inbox?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,6 +132,6 @@ class StarterViewController: BaseViewController {
     }
     internal func goToHomepage() {
 //        let _ = MainRootController.present(on: self)
-        let _ = MainNavigationController.present(on: self)
+        let _ = MainNavigationController.present(on: self, with: inbox)
     }
 }

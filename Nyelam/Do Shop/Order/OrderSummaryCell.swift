@@ -10,7 +10,6 @@ import UIKit
 
 class OrderSummaryCell: NTableViewCell {
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var orderDateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -112,10 +111,10 @@ class OrderSummaryCell: NTableViewCell {
         if let topView = topView {
             self.containerView.addConstraint(NSLayoutConstraint(item: topView, attribute: .bottom, relatedBy: .equal, toItem: self.containerView, attribute: .bottom, multiplier: 1, constant: 0))
         }
-        
-        if let date = date {
-            self.orderDateLabel.text = date.formatDate(dateFormat: "dd MMM yyy")
-        }
+//        
+//        if let date = date {
+//            self.orderDateLabel.text = date.formatDate(dateFormat: "dd MMM yyy")
+//        }
     }
     
     fileprivate func createView(for product: CartProduct) -> NProductItemView {

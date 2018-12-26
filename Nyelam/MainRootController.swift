@@ -46,6 +46,14 @@ class MainRootController: BaseViewController {
         self.automaticallyAdjustsScrollViewInsets = false
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let navigation = self.navigationController as? BaseNavigationController {
+            self.moveSafeAreaInsets()
+            navigation.setNavigationBarHidden(true, animated: true)
+            navigation.navigationBar.barTintColor = UIColor.primary
+        }
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }

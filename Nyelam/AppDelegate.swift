@@ -223,9 +223,110 @@ extension AppDelegate: MessagingDelegate, UNUserNotificationCenterDelegate {
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         var userInfo = response.notification.request.content.userInfo
+        if let window = AppDelegate.sharedDelegate.window {
+            if let rootController = window.rootViewController {
+                if let mainNavigation = rootController.presentedViewController as? BaseNavigationController {
+                    if let inboxJsonString = userInfo["gcm.notification.inbox"] as? String {
+                        do {
+                            if let authReturn = NAuthReturn.authUser(), let user = authReturn.user {
+                                let data = inboxJsonString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                                let inboxJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                                let inbox = Inbox(json: inboxJson)
+                                var closed = true
+                                if let status = inbox.status, status.lowercased() == "open" {
+                                    closed = false
+                                }
+                                var navigation = mainNavigation
+                                if let doshopNavigation = navigation.presentedViewController as? DoShopNavigationController {
+                                    navigation = doshopNavigation
+                                }
+                                let _ = InboxDetailController.push(on: navigation, inbox: inbox, senderId: user.id!, closed: closed)
+                            }
+                        } catch {
+                            print(error)
+                        }
+                    }
+                } else if let viewController = rootController as? StarterViewController {
+                    if let inboxJsonString = userInfo["gcm.notification.inbox"] as? String {
+                        do {
+                            let data = inboxJsonString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                            let inboxJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                            let inbox = Inbox(json: inboxJson)
+                            if let authReturn = NAuthReturn.authUser(), let _ = authReturn.user {
+                                viewController.inbox = inbox
+                            }
+                        } catch {
+                            print(error)
+                        }
+                    }
+                }
+            }
+        }
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
-        
+        if #available(iOS 10.0, *) {
+            if let window = AppDelegate.sharedDelegate.window {
+                if let rootController = window.rootViewController {
+                    if let mainNavigation = rootController.presentedViewController as? BaseNavigationController {
+                        mainNavigation.handleInnerPushNotification(userInfo: userInfo)
+                    } else if let viewController = rootController as? StarterViewController {
+                        if let inboxJsonString = userInfo["gcm.notification.inbox"] as? String {
+                            do {
+                                let data = inboxJsonString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                                let inboxJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                                let inbox = Inbox(json: inboxJson)
+                                if let authReturn = NAuthReturn.authUser(), let _ = authReturn.user {
+                                }
+                            } catch {
+                                print(error)
+                            }
+                        }
+                    }
+                }
+            }
+
+        } else {
+            if let window = AppDelegate.sharedDelegate.window {
+                if let rootController = window.rootViewController {
+                    if let mainNavigation = rootController.presentedViewController as? BaseNavigationController {
+                        
+                        if let inboxJsonString = userInfo["gcm.notification.inbox"] as? String {
+                            do {
+                                let data = inboxJsonString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                                let inboxJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                                let inbox = Inbox(json: inboxJson)
+                                var closed = true
+                                if let status = inbox.status, status.lowercased() == "open" {
+                                    closed = false
+                                }
+                                var navigation = mainNavigation
+                                if let doshopNavigation = navigation.presentedViewController as? DoShopNavigationController {
+                                    navigation = doshopNavigation
+                                }
+                                if let authReturn = NAuthReturn.authUser(), let user = authReturn.user {
+                                    let _ = InboxDetailController.push(on: navigation, inbox: inbox, senderId: user.id!, closed: closed)
+                                }
+                            } catch {
+                                print(error)
+                            }
+                        }
+                    } else if let viewController = rootController as? StarterViewController {
+                        if let inboxJsonString = userInfo["gcm.notification.inbox"] as? String {
+                            do {
+                                let data = inboxJsonString.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                                let inboxJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+                                let inbox = Inbox(json: inboxJson)
+                                if let authReturn = NAuthReturn.authUser(), let _ = authReturn.user {
+                                    viewController.inbox = inbox
+                                }
+                            } catch {
+                                print(error)
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

@@ -13,6 +13,9 @@ class OrderInfoCell: NTableViewCell {
     @IBOutlet weak var productItemContainer: UIView!
     @IBOutlet weak var courierContainer: UIView!
     @IBOutlet weak var trackingNameLabel: UILabel!
+    @IBOutlet weak var orderDateLabel: UILabel!
+    @IBOutlet weak var orderDateLabelHeight: NSLayoutConstraint!
+    @IBOutlet weak var orderDateVerticalSpacing: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
