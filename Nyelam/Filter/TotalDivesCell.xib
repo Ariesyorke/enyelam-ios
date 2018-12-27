@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZB-6w-OU1" customClass="DLRadioButton">
-                        <rect key="frame" x="16" y="16" width="50" height="30.5"/>
+                        <rect key="frame" x="8" y="16" width="50" height="30.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="jed-cx-XUr"/>
                         </constraints>
@@ -37,7 +37,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A4H-qg-UlR" customClass="DLRadioButton">
-                        <rect key="frame" x="74" y="16" width="50" height="30.5"/>
+                        <rect key="frame" x="66" y="16" width="50" height="30.5"/>
                         <state key="normal" title="2x">
                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
@@ -49,7 +49,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XDR-AH-N8T" customClass="DLRadioButton">
-                        <rect key="frame" x="132" y="16" width="50" height="30.5"/>
+                        <rect key="frame" x="124" y="16" width="50" height="30.5"/>
                         <state key="normal" title="3x">
                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
@@ -61,7 +61,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="La7-tt-kEu" customClass="DLRadioButton">
-                        <rect key="frame" x="190" y="16" width="50" height="30.5"/>
+                        <rect key="frame" x="182" y="16" width="50" height="30.5"/>
                         <state key="normal" title="&gt;4">
                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
@@ -79,7 +79,7 @@
                     <constraint firstItem="XDR-AH-N8T" firstAttribute="bottom" secondItem="A4H-qg-UlR" secondAttribute="bottom" id="860-CO-wmr"/>
                     <constraint firstItem="XDR-AH-N8T" firstAttribute="leading" secondItem="A4H-qg-UlR" secondAttribute="trailing" constant="8" id="GyH-Dz-tvu"/>
                     <constraint firstItem="XDR-AH-N8T" firstAttribute="top" secondItem="A4H-qg-UlR" secondAttribute="top" id="HUm-u7-MWo"/>
-                    <constraint firstItem="aZB-6w-OU1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="KJl-bi-7xP"/>
+                    <constraint firstItem="aZB-6w-OU1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="KJl-bi-7xP"/>
                     <constraint firstItem="La7-tt-kEu" firstAttribute="bottom" secondItem="XDR-AH-N8T" secondAttribute="bottom" id="Nsz-yB-rYZ"/>
                     <constraint firstItem="La7-tt-kEu" firstAttribute="leading" secondItem="XDR-AH-N8T" secondAttribute="trailing" constant="8" id="Odr-za-XpB"/>
                     <constraint firstItem="A4H-qg-UlR" firstAttribute="top" secondItem="aZB-6w-OU1" secondAttribute="top" id="awz-AI-74v"/>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -50,16 +50,16 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to e-Nyelam" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4rw-mb-8m5">
-                            <rect key="frame" x="16" y="123" width="342" height="24"/>
+                            <rect key="frame" x="8" y="123" width="359" height="24"/>
                             <fontDescription key="fontDescription" name="FiraSans-Bold" family="Fira Sans" pointSize="20"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2u6-jh-KpI">
-                            <rect key="frame" x="16" y="179" width="342" height="201"/>
+                            <rect key="frame" x="8" y="179" width="359" height="201"/>
                             <subviews>
                                 <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CSB-O3-fvj">
-                                    <rect key="frame" x="32" y="32" width="278" height="40"/>
+                                    <rect key="frame" x="32" y="32" width="295" height="40"/>
                                     <color key="backgroundColor" red="0.33725490196078434" green="0.50980392156862742" blue="0.69803921568627447" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="kxk-9K-UET"/>
@@ -71,7 +71,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address*" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E7A-c8-uaz">
-                                    <rect key="frame" x="40" y="37" width="262" height="30"/>
+                                    <rect key="frame" x="40" y="37" width="279" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="I8j-aK-dgC"/>
                                     </constraints>
@@ -80,7 +80,7 @@
                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
                                 </textField>
                                 <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="82s-EF-cjO">
-                                    <rect key="frame" x="32" y="88" width="278" height="40"/>
+                                    <rect key="frame" x="32" y="88" width="295" height="40"/>
                                     <color key="backgroundColor" red="0.33725490200000002" green="0.50980392159999999" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="IE1-ht-WcM"/>
@@ -92,7 +92,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password*" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h5U-Ar-xUI">
-                                    <rect key="frame" x="40" y="93" width="262" height="30"/>
+                                    <rect key="frame" x="40" y="93" width="279" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="acu-Ji-aI6"/>
                                     </constraints>
@@ -101,7 +101,7 @@
                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wfL-6r-TsQ">
-                                    <rect key="frame" x="32" y="136" width="278" height="33"/>
+                                    <rect key="frame" x="32" y="136" width="295" height="33"/>
                                     <fontDescription key="fontDescription" name="FiraSans-Light" family="Fira Sans" pointSize="17"/>
                                     <state key="normal" title="Forgot Password">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -137,7 +137,7 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TK2-lm-5wh">
-                            <rect key="frame" x="16" y="396" width="342" height="40"/>
+                            <rect key="frame" x="8" y="396" width="359" height="40"/>
                             <color key="backgroundColor" red="0.0" green="0.66666666666666663" blue="0.88627450980392153" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="nij-47-1pF"/>
@@ -156,13 +156,13 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="maE-X6-3dt">
-                            <rect key="frame" x="179" y="452" width="16" height="19.5"/>
+                            <rect key="frame" x="179.5" y="452" width="16" height="19.5"/>
                             <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vca-eJ-GdF">
-                            <rect key="frame" x="104" y="479" width="166" height="75"/>
+                            <rect key="frame" x="104.5" y="479" width="166" height="75"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Gb-4i-bLg">
                                     <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
@@ -207,7 +207,7 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sKb-4V-lQM">
-                            <rect key="frame" x="16" y="570" width="342" height="40"/>
+                            <rect key="frame" x="8" y="570" width="359" height="40"/>
                             <color key="backgroundColor" red="0.0" green="0.66666666669999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="Jjf-G0-PZu"/>
@@ -229,11 +229,11 @@
                     <constraints>
                         <constraint firstItem="vca-eJ-GdF" firstAttribute="centerX" secondItem="oMA-Mr-izT" secondAttribute="centerX" id="32Z-oD-oFl"/>
                         <constraint firstItem="maE-X6-3dt" firstAttribute="top" secondItem="TK2-lm-5wh" secondAttribute="bottom" constant="16" id="6ZZ-HR-8bR"/>
-                        <constraint firstAttribute="trailing" secondItem="4rw-mb-8m5" secondAttribute="trailing" constant="16" id="CJt-kz-ynr"/>
+                        <constraint firstAttribute="trailing" secondItem="4rw-mb-8m5" secondAttribute="trailing" constant="8" id="CJt-kz-ynr"/>
                         <constraint firstItem="sKb-4V-lQM" firstAttribute="leading" secondItem="TK2-lm-5wh" secondAttribute="leading" id="CyO-rv-YnX"/>
                         <constraint firstItem="4rw-mb-8m5" firstAttribute="top" secondItem="JFE-cg-EBG" secondAttribute="bottom" constant="16" id="GNQ-74-NQx"/>
                         <constraint firstItem="2u6-jh-KpI" firstAttribute="leading" secondItem="4rw-mb-8m5" secondAttribute="leading" id="HPu-ap-N7O"/>
-                        <constraint firstItem="4rw-mb-8m5" firstAttribute="leading" secondItem="oMA-Mr-izT" secondAttribute="leading" constant="16" id="HXg-m6-zJN"/>
+                        <constraint firstItem="4rw-mb-8m5" firstAttribute="leading" secondItem="oMA-Mr-izT" secondAttribute="leading" constant="8" id="HXg-m6-zJN"/>
                         <constraint firstItem="maE-X6-3dt" firstAttribute="centerX" secondItem="oMA-Mr-izT" secondAttribute="centerX" id="He5-vP-Rdh"/>
                         <constraint firstItem="TK2-lm-5wh" firstAttribute="leading" secondItem="2u6-jh-KpI" secondAttribute="leading" id="UJl-Wn-bM5"/>
                         <constraint firstItem="2u6-jh-KpI" firstAttribute="top" secondItem="4rw-mb-8m5" secondAttribute="bottom" constant="32" id="WtS-Ja-Diu"/>

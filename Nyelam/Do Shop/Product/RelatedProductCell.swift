@@ -53,7 +53,7 @@ class RelatedProductCell: NTableViewCell {
             if leftView == nil {
                 self.relatedProductContainer.addConstraint(NSLayoutConstraint(item: self.relatedProductContainer, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0))
             } else {
-                self.relatedProductContainer.addConstraint(NSLayoutConstraint(item: leftView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 8))
+                self.relatedProductContainer.addConstraint(NSLayoutConstraint(item: leftView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: -8))
             }
             leftView = view
             if i >= products.count - 1 && products.count > 1 {

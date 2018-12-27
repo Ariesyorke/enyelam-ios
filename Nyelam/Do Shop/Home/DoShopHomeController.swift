@@ -44,11 +44,11 @@ class DoShopHomeController: BaseDoShopViewController {
         let contentH = categoryLabelH + nameLabelH + codeLabelH + priceLabelH
         let screenWidth: CGFloat = CGFloat(Float(UIScreen.main.bounds.size.width))
         let columnCount = 2
-        let columnWidth: CGFloat = (screenWidth  - 40) / CGFloat(columnCount)
+        let columnWidth: CGFloat = (screenWidth  - 24) / CGFloat(columnCount)
         let categoryColumnWidth: CGFloat = (screenWidth - 8)/CGFloat(columnCount)
-        let imageH: CGFloat = columnWidth - 32
+        let imageH: CGFloat = columnWidth - 16
         
-        self.productGridSize = CGSize(width: columnWidth, height: imageH + contentH + (40))
+        self.productGridSize = CGSize(width: columnWidth, height: imageH + contentH + (24))
         self.categoryGridSize = CGSize(width: categoryColumnWidth, height: categoryColumnWidth)
         self.bannerSize = CGSize(width: screenWidth, height: (screenWidth * 2)/3)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_navigation_drawer"), style: .plain, target: self, action: #selector(DoShopHomeController.onNavigation(_:)))
@@ -137,7 +137,7 @@ class DoShopHomeController: BaseDoShopViewController {
                                                                 return self.productGridSize
         },
                                                             layout: FlowLayout(spacing: 8, justifyContent: .start, alignItems: .start)
-                                                                .inset(by: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)),
+                                                                .inset(by: UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)),
                                                             animator: nil,
                                                             tapHandler: {context in
                                                                 let _ = DoShopProductDetailController.push(on: self.navigationController!, productId: context.data.productId!)
@@ -164,7 +164,7 @@ class DoShopHomeController: BaseDoShopViewController {
                                                                     return self.bannerSize
         },
                                                                  layout: FlowLayout(spacing: 1, justifyContent: .start, alignItems: .start)
-                                                                    .inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)),
+                                                                    .inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0)),
                                                                  animator: nil,
                                                                  tapHandler: {context in
                 if let banners = context.view.doShopBanners, !banners.isEmpty {

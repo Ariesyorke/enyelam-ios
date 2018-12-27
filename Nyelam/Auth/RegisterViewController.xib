@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -34,7 +34,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PSp-KP-bhy" userLabel="Email Address" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                            <rect key="frame" x="16" y="16" width="343" height="30"/>
+                            <rect key="frame" x="8" y="16" width="359" height="30"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
@@ -50,7 +50,7 @@
                             </userDefinedRuntimeAttributes>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hxc-Zt-6IA">
-                            <rect key="frame" x="16" y="265.5" width="343" height="40"/>
+                            <rect key="frame" x="8" y="265.5" width="359" height="40"/>
                             <color key="backgroundColor" red="0.0" green="0.66666666669999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="aMZ-fX-X7W"/>
@@ -69,7 +69,7 @@
                             </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kuo-7i-lDu" customClass="UIControl">
-                            <rect key="frame" x="16" y="62" width="62" height="30"/>
+                            <rect key="frame" x="8" y="62" width="62" height="30"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+ 62" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ozo-mV-aQh">
                                     <rect key="frame" x="8" y="13" width="30" height="17"/>
@@ -78,7 +78,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_down_arrow_black" translatesAutoresizingMaskIntoConstraints="NO" id="x2b-VL-Yzo">
-                                    <rect key="frame" x="46" y="18" width="8" height="8"/>
+                                    <rect key="frame" x="46" y="17.5" width="8" height="8"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="8" id="oFd-kU-3Oa"/>
                                         <constraint firstAttribute="width" constant="8" id="rE0-pk-mCq"/>
@@ -97,7 +97,7 @@
                             </connections>
                         </view>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tey-vg-zKd" userLabel="Phone Number" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                            <rect key="frame" x="86" y="62" width="273" height="30"/>
+                            <rect key="frame" x="78" y="62" width="289" height="30"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad" returnKeyType="next"/>
@@ -113,7 +113,7 @@
                             </userDefinedRuntimeAttributes>
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iNi-cJ-rdT" userLabel="Password" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                            <rect key="frame" x="16" y="108" width="343" height="30"/>
+                            <rect key="frame" x="8" y="108" width="359" height="30"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next" secureTextEntry="YES" textContentType="password"/>
@@ -129,7 +129,7 @@
                             </userDefinedRuntimeAttributes>
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GBg-cd-RMR" userLabel="Confirm Password" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                            <rect key="frame" x="16" y="154" width="343" height="30"/>
+                            <rect key="frame" x="8" y="154" width="359" height="30"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
@@ -145,13 +145,13 @@
                             </userDefinedRuntimeAttributes>
                         </textField>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your data will be protected and will not shared" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P3p-hq-7Kb">
-                            <rect key="frame" x="42" y="216" width="317" height="17"/>
+                            <rect key="frame" x="34" y="216" width="333" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_lock" translatesAutoresizingMaskIntoConstraints="NO" id="raG-pP-3yW">
-                            <rect key="frame" x="16" y="215.5" width="18" height="18"/>
+                            <rect key="frame" x="8" y="215.5" width="18" height="18"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="18" id="VSd-MK-eQe"/>
                                 <constraint firstAttribute="width" constant="18" id="ju3-Ex-bEz"/>
@@ -189,11 +189,11 @@
                     <constraints>
                         <constraint firstItem="GBg-cd-RMR" firstAttribute="trailing" secondItem="PSp-KP-bhy" secondAttribute="trailing" id="31H-gg-nIY"/>
                         <constraint firstItem="tey-vg-zKd" firstAttribute="top" secondItem="PSp-KP-bhy" secondAttribute="bottom" constant="16" id="4gd-xl-hXR"/>
-                        <constraint firstAttribute="trailing" secondItem="PSp-KP-bhy" secondAttribute="trailing" constant="16" id="6fZ-Ci-3gs"/>
+                        <constraint firstAttribute="trailing" secondItem="PSp-KP-bhy" secondAttribute="trailing" constant="8" id="6fZ-Ci-3gs"/>
                         <constraint firstItem="PSp-KP-bhy" firstAttribute="centerX" secondItem="lS7-Md-SFZ" secondAttribute="centerX" id="COg-tg-dck"/>
                         <constraint firstItem="P3p-hq-7Kb" firstAttribute="trailing" secondItem="GBg-cd-RMR" secondAttribute="trailing" id="Eh8-0Z-F41"/>
                         <constraint firstItem="tey-vg-zKd" firstAttribute="leading" secondItem="kuo-7i-lDu" secondAttribute="trailing" constant="8" id="FQA-ag-VaX"/>
-                        <constraint firstItem="PSp-KP-bhy" firstAttribute="leading" secondItem="lS7-Md-SFZ" secondAttribute="leading" constant="16" id="LpS-zg-10a"/>
+                        <constraint firstItem="PSp-KP-bhy" firstAttribute="leading" secondItem="lS7-Md-SFZ" secondAttribute="leading" constant="8" id="LpS-zg-10a"/>
                         <constraint firstItem="MyB-2E-MoR" firstAttribute="centerX" secondItem="lS7-Md-SFZ" secondAttribute="centerX" id="M1S-LV-MuN"/>
                         <constraint firstItem="P3p-hq-7Kb" firstAttribute="top" secondItem="GBg-cd-RMR" secondAttribute="bottom" constant="32" id="MhN-R3-8FT"/>
                         <constraint firstItem="P3p-hq-7Kb" firstAttribute="leading" secondItem="raG-pP-3yW" secondAttribute="trailing" constant="8" id="N7s-73-FCP"/>

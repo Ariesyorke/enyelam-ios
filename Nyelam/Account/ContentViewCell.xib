@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -19,24 +19,24 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="52" id="KGk-i7-Jjw" customClass="ContentViewCell" customModule="Nyelam" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="52"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="51.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yco-XO-Sgz">
-                        <rect key="frame" x="16" y="17" width="252" height="18"/>
+                        <rect key="frame" x="8" y="17" width="268" height="18"/>
                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_arrow_right_grey" translatesAutoresizingMaskIntoConstraints="NO" id="0aK-Jy-Dua">
-                        <rect key="frame" x="284" y="16" width="20" height="20"/>
+                        <rect key="frame" x="292" y="16" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="20" id="1m9-b5-6Nf"/>
                             <constraint firstAttribute="height" constant="20" id="ano-F4-ihT"/>
                         </constraints>
                     </imageView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iqH-D0-fs6" userLabel="Line View">
+                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iqH-D0-fs6" userLabel="Line View">
                         <rect key="frame" x="0.0" y="50.5" width="320" height="1"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -50,9 +50,9 @@
                     <constraint firstItem="0aK-Jy-Dua" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="6Dr-a3-oa7"/>
                     <constraint firstAttribute="bottom" secondItem="iqH-D0-fs6" secondAttribute="bottom" id="8hi-gk-hXN"/>
                     <constraint firstAttribute="bottom" secondItem="0aK-Jy-Dua" secondAttribute="bottom" constant="16" id="BzE-je-fgE"/>
-                    <constraint firstItem="yco-XO-Sgz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Pck-qr-dMe"/>
+                    <constraint firstItem="yco-XO-Sgz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Pck-qr-dMe"/>
                     <constraint firstItem="yco-XO-Sgz" firstAttribute="centerY" secondItem="0aK-Jy-Dua" secondAttribute="centerY" id="cqr-uE-02C"/>
-                    <constraint firstAttribute="trailing" secondItem="0aK-Jy-Dua" secondAttribute="trailing" constant="16" id="myp-98-KXb"/>
+                    <constraint firstAttribute="trailing" secondItem="0aK-Jy-Dua" secondAttribute="trailing" constant="8" id="myp-98-KXb"/>
                     <constraint firstItem="iqH-D0-fs6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="uZk-e0-2Ff"/>
                 </constraints>
             </tableViewCellContentView>

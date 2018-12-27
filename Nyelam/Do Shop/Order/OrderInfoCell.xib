@@ -28,7 +28,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Od6-6l-kBS">
-                        <rect key="frame" x="16" y="16" width="288" height="17"/>
+                        <rect key="frame" x="8" y="16" width="304" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="0Kp-TK-m5A"/>
                         </constraints>
@@ -37,14 +37,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="tid-JI-Sjt">
-                        <rect key="frame" x="16" y="82" width="288" height="0.0"/>
+                        <rect key="frame" x="8" y="82" width="304" height="0.0"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KBP-OM-21O" userLabel="Merchant Container">
-                        <rect key="frame" x="16" y="41" width="288" height="33"/>
+                        <rect key="frame" x="8" y="41" width="304" height="33"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vkp-Ub-mAm">
-                                <rect key="frame" x="8" y="8" width="272" height="17"/>
+                                <rect key="frame" x="8" y="8" width="288" height="17"/>
                                 <viewLayoutGuide key="safeArea" id="PYZ-yO-YUy"/>
                                 <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                                 <nil key="textColor"/>
@@ -60,34 +60,36 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Tracking No." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxI-WZ-roR">
-                        <rect key="frame" x="16" y="98" width="288" height="17"/>
+                        <rect key="frame" x="8" y="98" width="304" height="17"/>
                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vms-wM-sPi">
-                        <rect key="frame" x="16" y="124" width="288" height="17"/>
+                        <rect key="frame" x="8" y="124" width="304" height="17"/>
                         <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="a6B-cP-IzU">
-                        <rect key="frame" x="16" y="90" width="288" height="0.0"/>
+                        <rect key="frame" x="8" y="90" width="304" height="0.0"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="KBP-OM-21O" firstAttribute="bottom" secondItem="tid-JI-Sjt" secondAttribute="top" constant="-8" id="4Iu-pv-DEt"/>
-                    <constraint firstAttribute="trailing" secondItem="KBP-OM-21O" secondAttribute="trailing" constant="16" id="5DJ-Wr-QHc"/>
+                    <constraint firstAttribute="trailing" secondItem="KBP-OM-21O" secondAttribute="trailing" constant="8" id="5DJ-Wr-QHc"/>
                     <constraint firstItem="fxI-WZ-roR" firstAttribute="trailing" secondItem="a6B-cP-IzU" secondAttribute="trailing" id="5lW-Ui-a6O"/>
+                    <constraint firstItem="fxI-WZ-roR" firstAttribute="leading" secondItem="KBP-OM-21O" secondAttribute="leading" id="8ET-PG-quH"/>
                     <constraint firstItem="fxI-WZ-roR" firstAttribute="top" secondItem="a6B-cP-IzU" secondAttribute="bottom" constant="8" id="9fb-eh-F1T"/>
                     <constraint firstItem="fxI-WZ-roR" firstAttribute="leading" secondItem="a6B-cP-IzU" secondAttribute="leading" id="BKU-Re-slE"/>
                     <constraint firstItem="KBP-OM-21O" firstAttribute="top" secondItem="Od6-6l-kBS" secondAttribute="bottom" constant="8" id="C7Z-oM-2Iy"/>
-                    <constraint firstItem="KBP-OM-21O" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="D6L-Ej-745"/>
-                    <constraint firstAttribute="trailing" secondItem="Od6-6l-kBS" secondAttribute="trailing" constant="16" id="E1K-qx-4tx"/>
+                    <constraint firstItem="fxI-WZ-roR" firstAttribute="trailing" secondItem="KBP-OM-21O" secondAttribute="trailing" id="D5y-bk-9Uk"/>
+                    <constraint firstItem="KBP-OM-21O" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="D6L-Ej-745"/>
+                    <constraint firstAttribute="trailing" secondItem="Od6-6l-kBS" secondAttribute="trailing" constant="8" id="E1K-qx-4tx"/>
                     <constraint firstItem="Vms-wM-sPi" firstAttribute="top" secondItem="fxI-WZ-roR" secondAttribute="bottom" constant="9" id="Esh-Bi-Fkq"/>
                     <constraint firstAttribute="trailing" secondItem="tid-JI-Sjt" secondAttribute="trailing" constant="16" id="KW5-BR-8qE"/>
-                    <constraint firstItem="Od6-6l-kBS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="KsN-Ot-11I"/>
+                    <constraint firstItem="Od6-6l-kBS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="KsN-Ot-11I"/>
                     <constraint firstItem="Vms-wM-sPi" firstAttribute="trailing" secondItem="fxI-WZ-roR" secondAttribute="trailing" id="Nd0-fb-jCe"/>
                     <constraint firstItem="Od6-6l-kBS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="SOu-y0-J1G"/>
                     <constraint firstAttribute="bottom" secondItem="Vms-wM-sPi" secondAttribute="bottom" constant="8" id="Whe-8o-xIq"/>

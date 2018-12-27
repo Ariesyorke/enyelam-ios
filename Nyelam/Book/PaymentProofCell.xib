@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -27,36 +27,36 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Transfer To Mandiri Bank" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PGd-LT-2bV">
-                        <rect key="frame" x="16" y="16" width="546" height="22"/>
+                        <rect key="frame" x="8" y="16" width="562" height="22"/>
                         <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="18"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70n-UE-dYb">
-                        <rect key="frame" x="16" y="54" width="273" height="17"/>
+                        <rect key="frame" x="8" y="54" width="281" height="17"/>
                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBt-Fm-lgo">
-                        <rect key="frame" x="16" y="79" width="273" height="17"/>
+                        <rect key="frame" x="8" y="79" width="281" height="17"/>
                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="070-000-9713921" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kNt-wM-6kO">
-                        <rect key="frame" x="289" y="54" width="273" height="17"/>
+                        <rect key="frame" x="289" y="54" width="281" height="17"/>
                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wimiku Indo Digital" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZY-c4-aJx">
-                        <rect key="frame" x="289" y="79" width="273" height="17"/>
+                        <rect key="frame" x="289" y="79" width="281" height="17"/>
                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="33F-GP-CXU">
-                        <rect key="frame" x="16" y="112" width="546" height="29.5"/>
+                        <rect key="frame" x="8" y="112" width="562" height="29.5"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wWY-1c-01K">
                                 <rect key="frame" x="0.0" y="0.0" width="150" height="29.5"/>
@@ -83,7 +83,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="TBt-Fm-lgo" firstAttribute="leading" secondItem="70n-UE-dYb" secondAttribute="leading" id="0Nm-Cn-tau"/>
-                    <constraint firstItem="PGd-LT-2bV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="1KV-Lh-fop"/>
+                    <constraint firstItem="PGd-LT-2bV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="1KV-Lh-fop"/>
                     <constraint firstItem="70n-UE-dYb" firstAttribute="top" secondItem="PGd-LT-2bV" secondAttribute="bottom" constant="16" id="4dO-X4-RJt"/>
                     <constraint firstItem="WZY-c4-aJx" firstAttribute="top" secondItem="TBt-Fm-lgo" secondAttribute="top" id="5B5-jh-Kak"/>
                     <constraint firstItem="WZY-c4-aJx" firstAttribute="trailing" secondItem="kNt-wM-6kO" secondAttribute="trailing" id="92T-3e-V0q"/>
@@ -96,7 +96,7 @@
                     <constraint firstItem="70n-UE-dYb" firstAttribute="width" secondItem="kNt-wM-6kO" secondAttribute="width" id="aC1-OE-UlB"/>
                     <constraint firstItem="70n-UE-dYb" firstAttribute="leading" secondItem="PGd-LT-2bV" secondAttribute="leading" id="e0r-pK-vxW"/>
                     <constraint firstAttribute="bottom" secondItem="33F-GP-CXU" secondAttribute="bottom" constant="16" id="hPV-Up-fPK"/>
-                    <constraint firstAttribute="trailing" secondItem="PGd-LT-2bV" secondAttribute="trailing" constant="16" id="la4-pF-JIc"/>
+                    <constraint firstAttribute="trailing" secondItem="PGd-LT-2bV" secondAttribute="trailing" constant="8" id="la4-pF-JIc"/>
                     <constraint firstItem="33F-GP-CXU" firstAttribute="top" secondItem="TBt-Fm-lgo" secondAttribute="bottom" constant="16" id="q0R-r5-lE0"/>
                     <constraint firstItem="33F-GP-CXU" firstAttribute="leading" secondItem="70n-UE-dYb" secondAttribute="leading" id="rIf-Ny-9nR"/>
                     <constraint firstItem="kNt-wM-6kO" firstAttribute="leading" secondItem="70n-UE-dYb" secondAttribute="trailing" id="vNf-Cj-tF9"/>

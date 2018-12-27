@@ -61,7 +61,7 @@ class CategoryGridView: UIView {
     }
     
     func initData(category: NProductCategory) {
-        self.categoryNameLabel.text = category.categoryName
+        self.categoryNameLabel.text = category.categoryName?.uppercased()
         if let imageUrl = category.categoryImage, let url = URL(string: imageUrl) {
             self.categoryImageView.af_setImage(withURL: url, placeholderImage: UIImage(named: "image_default"), filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: true, completion: nil)
         } else {

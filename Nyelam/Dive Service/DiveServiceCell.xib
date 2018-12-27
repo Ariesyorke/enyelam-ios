@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment version="2304" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cy3-aH-1O7" customClass="NServiceView" customModule="Nyelam" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="16" width="0.0" height="0.5"/>
+                        <rect key="frame" x="8" y="16" width="316" height="354.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -31,8 +31,8 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="cy3-aH-1O7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="3qI-5v-PG2"/>
-                    <constraint firstAttribute="trailing" secondItem="cy3-aH-1O7" secondAttribute="trailing" constant="16" id="6Wc-BH-Q8r"/>
-                    <constraint firstItem="cy3-aH-1O7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="OdN-he-6GZ"/>
+                    <constraint firstAttribute="trailing" secondItem="cy3-aH-1O7" secondAttribute="trailing" constant="8" id="6Wc-BH-Q8r"/>
+                    <constraint firstItem="cy3-aH-1O7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="OdN-he-6GZ"/>
                     <constraint firstAttribute="bottom" secondItem="cy3-aH-1O7" secondAttribute="bottom" constant="16" id="UxB-LG-9gF"/>
                 </constraints>
             </tableViewCellContentView>

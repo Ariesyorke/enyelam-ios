@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -30,13 +30,13 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LABEL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tla-yO-rUe">
-                            <rect key="frame" x="16" y="0.0" width="33" height="667"/>
+                            <rect key="frame" x="8" y="0.0" width="33" height="667"/>
                             <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="12"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1nW-X9-Bs2">
-                            <rect key="frame" x="359" y="334" width="0.0" height="0.0"/>
+                            <rect key="frame" x="367" y="333.5" width="0.0" height="0.0"/>
                             <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="12"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -45,10 +45,10 @@
                     <color key="backgroundColor" red="0.0" green="0.66666666669999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="Tla-yO-rUe" firstAttribute="top" secondItem="tsn-RJ-tYG" secondAttribute="top" id="8J7-Yf-eDc"/>
-                        <constraint firstItem="Tla-yO-rUe" firstAttribute="leading" secondItem="tsn-RJ-tYG" secondAttribute="leading" constant="16" id="Lhv-HU-vCQ"/>
+                        <constraint firstItem="Tla-yO-rUe" firstAttribute="leading" secondItem="tsn-RJ-tYG" secondAttribute="leading" constant="8" id="Lhv-HU-vCQ"/>
                         <constraint firstItem="1nW-X9-Bs2" firstAttribute="centerY" secondItem="tsn-RJ-tYG" secondAttribute="centerY" id="bGv-u2-iSD"/>
                         <constraint firstItem="Tla-yO-rUe" firstAttribute="centerY" secondItem="tsn-RJ-tYG" secondAttribute="centerY" id="mjN-6C-Zgn"/>
-                        <constraint firstAttribute="trailing" secondItem="1nW-X9-Bs2" secondAttribute="trailing" constant="16" id="sIh-Ba-y43"/>
+                        <constraint firstAttribute="trailing" secondItem="1nW-X9-Bs2" secondAttribute="trailing" constant="8" id="sIh-Ba-y43"/>
                     </constraints>
                 </view>
             </subviews>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m0b-7M-tk6">
-                        <rect key="frame" x="16" y="16" width="116" height="148.5"/>
+                        <rect key="frame" x="8" y="16" width="116" height="148.5"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="87b-LN-Gof">
                                 <rect key="frame" x="8" y="20" width="100" height="75"/>
@@ -84,13 +84,14 @@
                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="m0b-7M-tk6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="5dJ-kz-Vh4"/>
-                    <constraint firstItem="m0b-7M-tk6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="7gE-gx-gLb"/>
+                    <constraint firstItem="m0b-7M-tk6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="7gE-gx-gLb"/>
                     <constraint firstAttribute="bottom" secondItem="m0b-7M-tk6" secondAttribute="bottom" constant="16" id="FT7-b1-mcT"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="m0b-7M-tk6" secondAttribute="trailing" constant="16" id="rLF-PH-Na8"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="container" destination="m0b-7M-tk6" id="ehr-OZ-TVc"/>
                 <outlet property="dateLabel" destination="Xc7-xX-ppN" id="GHC-p6-Vs0"/>
                 <outlet property="messageImageView" destination="87b-LN-Gof" id="6Nq-Sz-XGw"/>
                 <outlet property="messageLabel" destination="vTI-Eg-dva" id="zhl-8o-Bv9"/>

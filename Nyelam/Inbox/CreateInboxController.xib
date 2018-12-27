@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -41,22 +41,22 @@
                             <rect key="frame" x="0.0" y="16" width="375" height="56"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Report Type*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Urf-84-HQa">
-                                    <rect key="frame" x="16" y="0.0" width="343" height="17"/>
+                                    <rect key="frame" x="8" y="0.0" width="359" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wWo-d0-qCr" customClass="UIControl">
-                                    <rect key="frame" x="16" y="28" width="343" height="28"/>
+                                    <rect key="frame" x="8" y="28" width="359" height="28"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="General" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDP-Es-KIc">
-                                            <rect key="frame" x="16" y="5" width="295" height="17"/>
+                                            <rect key="frame" x="16" y="5" width="311" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_down_arrow_black" translatesAutoresizingMaskIntoConstraints="NO" id="o6M-cv-5FN">
-                                            <rect key="frame" x="319" y="10" width="8" height="8"/>
+                                            <rect key="frame" x="335" y="10" width="8" height="8"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="8" id="UAn-En-NZJ"/>
                                                 <constraint firstAttribute="width" constant="8" id="e3u-Ti-hra"/>
@@ -86,27 +86,27 @@
                                 <constraint firstItem="wWo-d0-qCr" firstAttribute="leading" secondItem="Urf-84-HQa" secondAttribute="leading" id="3A4-8i-sOU"/>
                                 <constraint firstItem="wWo-d0-qCr" firstAttribute="trailing" secondItem="Urf-84-HQa" secondAttribute="trailing" id="SSc-89-kpS"/>
                                 <constraint firstAttribute="bottom" secondItem="wWo-d0-qCr" secondAttribute="bottom" id="SdL-eE-6xs"/>
-                                <constraint firstAttribute="trailing" secondItem="Urf-84-HQa" secondAttribute="trailing" constant="16" id="g0h-J6-tbp"/>
+                                <constraint firstAttribute="trailing" secondItem="Urf-84-HQa" secondAttribute="trailing" constant="8" id="g0h-J6-tbp"/>
                                 <constraint firstAttribute="height" constant="56" id="kJ7-RA-lF4"/>
                                 <constraint firstItem="wWo-d0-qCr" firstAttribute="top" secondItem="Urf-84-HQa" secondAttribute="bottom" constant="11" id="nIJ-2u-Iob"/>
                                 <constraint firstItem="Urf-84-HQa" firstAttribute="top" secondItem="9nn-vV-51u" secondAttribute="top" id="pi9-hA-0n8"/>
-                                <constraint firstItem="Urf-84-HQa" firstAttribute="leading" secondItem="9nn-vV-51u" secondAttribute="leading" constant="16" id="zLx-h2-eVj"/>
+                                <constraint firstItem="Urf-84-HQa" firstAttribute="leading" secondItem="9nn-vV-51u" secondAttribute="leading" constant="8" id="zLx-h2-eVj"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4a2-ew-WiK" userLabel="Message Container">
                             <rect key="frame" x="0.0" y="90" width="375" height="168"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YsL-NC-s6l">
-                                    <rect key="frame" x="16" y="0.0" width="343" height="17"/>
+                                    <rect key="frame" x="8" y="0.0" width="359" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mxm-vf-mWO">
-                                    <rect key="frame" x="16" y="24" width="343" height="128"/>
+                                    <rect key="frame" x="8" y="24" width="359" height="128"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8St-8H-ywk" customClass="MultilineTextField" customModule="MultilineTextField">
-                                            <rect key="frame" x="8" y="0.0" width="327" height="128"/>
+                                            <rect key="frame" x="8" y="0.0" width="343" height="128"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="radius">
                                                     <real key="value" value="0.0"/>
@@ -131,12 +131,12 @@
                             </subviews>
                             <constraints>
                                 <constraint firstItem="Mxm-vf-mWO" firstAttribute="top" secondItem="YsL-NC-s6l" secondAttribute="bottom" constant="7" id="5hL-Mh-uUB"/>
-                                <constraint firstAttribute="trailing" secondItem="YsL-NC-s6l" secondAttribute="trailing" constant="16" id="9rF-hP-rXs"/>
+                                <constraint firstAttribute="trailing" secondItem="YsL-NC-s6l" secondAttribute="trailing" constant="8" id="9rF-hP-rXs"/>
                                 <constraint firstItem="YsL-NC-s6l" firstAttribute="top" secondItem="4a2-ew-WiK" secondAttribute="top" id="Dn0-yd-j0E"/>
                                 <constraint firstAttribute="bottom" secondItem="Mxm-vf-mWO" secondAttribute="bottom" constant="16" id="dIq-2Z-T5F"/>
                                 <constraint firstItem="Mxm-vf-mWO" firstAttribute="leading" secondItem="YsL-NC-s6l" secondAttribute="leading" id="fa4-6H-hsF"/>
                                 <constraint firstItem="Mxm-vf-mWO" firstAttribute="trailing" secondItem="YsL-NC-s6l" secondAttribute="trailing" id="jrs-bT-ysS"/>
-                                <constraint firstItem="YsL-NC-s6l" firstAttribute="leading" secondItem="4a2-ew-WiK" secondAttribute="leading" constant="16" id="sbo-qM-JbE"/>
+                                <constraint firstItem="YsL-NC-s6l" firstAttribute="leading" secondItem="4a2-ew-WiK" secondAttribute="leading" constant="8" id="sbo-qM-JbE"/>
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSS-in-zOh">
@@ -182,7 +182,7 @@
                     </constraints>
                 </scrollView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zrk-uh-uLj">
-                    <rect key="frame" x="16" y="621" width="343" height="30"/>
+                    <rect key="frame" x="8" y="621" width="359" height="30"/>
                     <color key="backgroundColor" red="0.086274509799999996" green="0.45882352939999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="15"/>
                     <state key="normal" title="Send">
@@ -203,8 +203,8 @@
                 <constraint firstItem="LDY-9P-f5p" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="8mG-1T-92a"/>
                 <constraint firstItem="Zrk-uh-uLj" firstAttribute="top" secondItem="LDY-9P-f5p" secondAttribute="bottom" id="PFF-w4-jJp"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="LDY-9P-f5p" secondAttribute="trailing" id="ZCw-lt-tQh"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Zrk-uh-uLj" secondAttribute="trailing" constant="16" id="csu-Kx-dgO"/>
-                <constraint firstItem="Zrk-uh-uLj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="i1b-5g-78r"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Zrk-uh-uLj" secondAttribute="trailing" constant="8" id="csu-Kx-dgO"/>
+                <constraint firstItem="Zrk-uh-uLj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="i1b-5g-78r"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Zrk-uh-uLj" secondAttribute="bottom" constant="16" id="iEm-rx-6Bg"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="LDY-9P-f5p" secondAttribute="top" id="ybs-RJ-agz"/>
             </constraints>

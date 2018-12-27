@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -23,8 +23,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="370" height="105.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qm4-w0-wD7" customClass="DLRadioButton">
-                        <rect key="frame" x="16" y="16" width="338" height="33"/>
+                    <button opaque="NO" tag="2" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qm4-w0-wD7" customClass="DLRadioButton">
+                        <rect key="frame" x="8" y="16" width="354" height="33"/>
                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="17"/>
                         <state key="normal" title="Lowest Price">
                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -34,8 +34,8 @@
                             <outletCollection property="otherButtons" destination="6BM-0v-48Z" id="GRg-o7-A8g"/>
                         </connections>
                     </button>
-                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6BM-0v-48Z" customClass="DLRadioButton">
-                        <rect key="frame" x="16" y="57" width="338" height="33"/>
+                    <button opaque="NO" tag="1" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6BM-0v-48Z" customClass="DLRadioButton">
+                        <rect key="frame" x="8" y="57" width="354" height="33"/>
                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="17"/>
                         <state key="normal" title="Highest Price">
                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -50,8 +50,8 @@
                     <constraint firstAttribute="bottom" secondItem="6BM-0v-48Z" secondAttribute="bottom" constant="16" id="9Uk-hP-cf7"/>
                     <constraint firstItem="6BM-0v-48Z" firstAttribute="leading" secondItem="qm4-w0-wD7" secondAttribute="leading" id="HKc-Mw-YtT"/>
                     <constraint firstItem="6BM-0v-48Z" firstAttribute="trailing" secondItem="qm4-w0-wD7" secondAttribute="trailing" id="RZs-h4-FDy"/>
-                    <constraint firstItem="qm4-w0-wD7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="hcn-au-DzW"/>
-                    <constraint firstAttribute="trailing" secondItem="qm4-w0-wD7" secondAttribute="trailing" constant="16" id="mpv-AA-Fkd"/>
+                    <constraint firstItem="qm4-w0-wD7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="hcn-au-DzW"/>
+                    <constraint firstAttribute="trailing" secondItem="qm4-w0-wD7" secondAttribute="trailing" constant="8" id="mpv-AA-Fkd"/>
                     <constraint firstItem="qm4-w0-wD7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="xSJ-Sp-Ckq"/>
                 </constraints>
             </tableViewCellContentView>

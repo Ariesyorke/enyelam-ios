@@ -20,15 +20,15 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fPh-Fw-w9f" userLabel="Container">
-                        <rect key="frame" x="16" y="16" width="288" height="95.5"/>
+                        <rect key="frame" x="8" y="16" width="304" height="95.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="fPh-Fw-w9f" secondAttribute="bottom" constant="16" id="Jkv-pA-5RY"/>
-                    <constraint firstAttribute="trailing" secondItem="fPh-Fw-w9f" secondAttribute="trailing" constant="16" id="Ri7-Rw-HE3"/>
+                    <constraint firstAttribute="trailing" secondItem="fPh-Fw-w9f" secondAttribute="trailing" constant="8" id="Ri7-Rw-HE3"/>
                     <constraint firstItem="fPh-Fw-w9f" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="ad9-yQ-71G"/>
-                    <constraint firstItem="fPh-Fw-w9f" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="eTx-5t-i5P"/>
+                    <constraint firstItem="fPh-Fw-w9f" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="eTx-5t-i5P"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

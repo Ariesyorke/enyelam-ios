@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,10 +28,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bbp-hx-b5h">
-                        <rect key="frame" x="0.0" y="0.0" width="283.5" height="92.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="292" height="92.5"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_default.png" translatesAutoresizingMaskIntoConstraints="NO" id="faN-rz-HjU">
-                                <rect key="frame" x="16" y="16" width="60" height="60"/>
+                                <rect key="frame" x="8" y="16" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="jk0-Jr-8Lp"/>
                                     <constraint firstAttribute="height" constant="60" id="p2z-ZM-R1h"/>
@@ -41,13 +41,13 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dive Guide Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcE-vz-lHl">
-                                <rect key="frame" x="84" y="16" width="131.5" height="20"/>
+                                <rect key="frame" x="76" y="16" width="131.5" height="20"/>
                                 <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dive Guide License" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zig-M6-AE7">
-                                <rect key="frame" x="84" y="36" width="117.5" height="17"/>
+                                <rect key="frame" x="76" y="36" width="117.5" height="17"/>
                                 <fontDescription key="fontDescription" name="FiraSans-Light" family="Fira Sans" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -56,7 +56,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="faN-rz-HjU" secondAttribute="bottom" constant="16" id="4AK-Sm-NKV"/>
-                            <constraint firstItem="faN-rz-HjU" firstAttribute="leading" secondItem="bbp-hx-b5h" secondAttribute="leading" constant="16" id="7sG-XX-1r6"/>
+                            <constraint firstItem="faN-rz-HjU" firstAttribute="leading" secondItem="bbp-hx-b5h" secondAttribute="leading" constant="8" id="7sG-XX-1r6"/>
                             <constraint firstItem="PcE-vz-lHl" firstAttribute="top" secondItem="faN-rz-HjU" secondAttribute="top" id="PkQ-87-slG"/>
                             <constraint firstItem="faN-rz-HjU" firstAttribute="top" secondItem="bbp-hx-b5h" secondAttribute="top" constant="16" id="VEa-I8-JGy"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Zig-M6-AE7" secondAttribute="bottom" constant="16" id="iDO-OR-oPh"/>
@@ -66,7 +66,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hns-GP-aqk">
-                        <rect key="frame" x="283.5" y="36.5" width="20" height="20"/>
+                        <rect key="frame" x="292" y="36.5" width="20" height="20"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_arrow_right_grey" translatesAutoresizingMaskIntoConstraints="NO" id="UxE-xl-ZPf">
                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
@@ -93,7 +93,7 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="hns-GP-aqk" secondAttribute="trailing" constant="16" id="6FQ-zQ-e5e"/>
+                    <constraint firstAttribute="trailing" secondItem="hns-GP-aqk" secondAttribute="trailing" constant="8" id="6FQ-zQ-e5e"/>
                     <constraint firstAttribute="bottom" secondItem="bbp-hx-b5h" secondAttribute="bottom" id="6Ts-nq-qhr"/>
                     <constraint firstItem="bbp-hx-b5h" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="9KD-B3-cEe"/>
                     <constraint firstItem="bbp-hx-b5h" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Sap-bk-co5"/>

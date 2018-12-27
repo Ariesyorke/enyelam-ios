@@ -25,7 +25,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7e5-hR-dbj" customClass="DLRadioButton">
-                        <rect key="frame" x="16" y="16" width="288" height="33"/>
+                        <rect key="frame" x="8" y="16" width="304" height="33"/>
                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="17"/>
                         <state key="normal" title="Latest">
                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -37,7 +37,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qdf-jC-MXR" customClass="DLRadioButton">
-                        <rect key="frame" x="16" y="57" width="288" height="33"/>
+                        <rect key="frame" x="8" y="57" width="304" height="33"/>
                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="17"/>
                         <state key="normal" title="Lowest Price">
                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -47,7 +47,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEg-Pp-xdQ" customClass="DLRadioButton">
-                        <rect key="frame" x="16" y="98" width="288" height="33"/>
+                        <rect key="frame" x="8" y="98" width="304" height="33"/>
                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="17"/>
                         <state key="normal" title="Highest Price">
                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -60,13 +60,13 @@
                 <constraints>
                     <constraint firstItem="qdf-jC-MXR" firstAttribute="leading" secondItem="7e5-hR-dbj" secondAttribute="leading" id="64T-fu-QVU"/>
                     <constraint firstItem="PEg-Pp-xdQ" firstAttribute="top" secondItem="qdf-jC-MXR" secondAttribute="bottom" constant="8" id="6Ok-rP-OuY"/>
-                    <constraint firstItem="7e5-hR-dbj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="CCr-qO-Ey6"/>
+                    <constraint firstItem="7e5-hR-dbj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="CCr-qO-Ey6"/>
                     <constraint firstItem="qdf-jC-MXR" firstAttribute="trailing" secondItem="7e5-hR-dbj" secondAttribute="trailing" id="CkO-0X-sk2"/>
                     <constraint firstItem="PEg-Pp-xdQ" firstAttribute="trailing" secondItem="qdf-jC-MXR" secondAttribute="trailing" id="DUe-yt-kwS"/>
                     <constraint firstItem="qdf-jC-MXR" firstAttribute="top" secondItem="7e5-hR-dbj" secondAttribute="bottom" constant="8" id="DiR-cJ-O9L"/>
                     <constraint firstItem="7e5-hR-dbj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="fAR-O6-5Uw"/>
                     <constraint firstItem="PEg-Pp-xdQ" firstAttribute="leading" secondItem="qdf-jC-MXR" secondAttribute="leading" id="fYs-ju-iG9"/>
-                    <constraint firstAttribute="trailing" secondItem="7e5-hR-dbj" secondAttribute="trailing" constant="16" id="ny9-8u-9Wu"/>
+                    <constraint firstAttribute="trailing" secondItem="7e5-hR-dbj" secondAttribute="trailing" constant="8" id="ny9-8u-9Wu"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

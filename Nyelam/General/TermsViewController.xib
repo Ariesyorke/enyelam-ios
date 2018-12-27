@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -31,279 +30,279 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="2335"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E6j-wn-PzE">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="2296"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="2212.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright 2018 All Rights Reserved." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39P-Zo-jlk">
-                                    <rect key="frame" x="16" y="2263" width="343" height="17"/>
+                                    <rect key="frame" x="8" y="2179.5" width="359" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NC8-Tq-Jrd">
-                                    <rect key="frame" x="16" y="16" width="31" height="17"/>
+                                    <rect key="frame" x="8" y="16" width="32.5" height="17"/>
                                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQt-m9-Ex4">
-                                    <rect key="frame" x="47" y="37" width="312" height="117"/>
-                                    <string key="text">e-Nyelam is offered to you, the user, conditioned on your acceptance of the terms, conditions and notices contained or incorporated by reference herein and such additional terms and conditions, agreements, and notices that may apply to any page or section of the site.</string>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pcg-tM-xCw">
-                                    <rect key="frame" x="16" y="162" width="31" height="17"/>
+                                    <rect key="frame" x="8" y="145.5" width="32.5" height="17"/>
                                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbj-Ym-IY0">
-                                    <rect key="frame" x="16" y="358.5" width="31" height="17"/>
+                                    <rect key="frame" x="8" y="342" width="32.5" height="17"/>
                                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oxm-3k-XDK">
-                                    <rect key="frame" x="16" y="655.5" width="31" height="17"/>
+                                    <rect key="frame" x="8" y="622" width="32.5" height="17"/>
                                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Oz-P7-d2z" userLabel="5.">
-                                    <rect key="frame" x="16" y="885" width="31" height="17"/>
+                                    <rect key="frame" x="8" y="851.5" width="32.5" height="17"/>
                                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cHj-NX-Dwu">
-                                    <rect key="frame" x="16" y="1198.5" width="31" height="17"/>
+                                    <rect key="frame" x="8" y="1148" width="32.5" height="17"/>
                                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voM-7W-Jz5">
-                                    <rect key="frame" x="16" y="1361.5" width="31" height="17"/>
+                                    <rect key="frame" x="8" y="1311" width="32.5" height="17"/>
                                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1yj-iv-yNf">
-                                    <rect key="frame" x="16" y="1507.5" width="31" height="17"/>
+                                    <rect key="frame" x="8" y="1440.5" width="32.5" height="17"/>
                                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ECv-Jx-4np">
-                                    <rect key="frame" x="16" y="1653.5" width="31" height="17"/>
+                                    <rect key="frame" x="8" y="1586.5" width="32.5" height="17"/>
                                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPp-Yo-Tgm">
-                                    <rect key="frame" x="16" y="1799.5" width="31" height="17"/>
+                                    <rect key="frame" x="8" y="1716" width="32.5" height="17"/>
                                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aga-1C-lCi">
-                                    <rect key="frame" x="16" y="1962.5" width="31" height="17"/>
+                                    <rect key="frame" x="8" y="1879" width="32.5" height="17"/>
                                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edx-Yk-vA2">
-                                    <rect key="frame" x="16" y="2025" width="31" height="17"/>
+                                    <rect key="frame" x="8" y="1941.5" width="32.5" height="17"/>
                                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfw-hg-uKC">
-                                    <rect key="frame" x="16" y="2138" width="31" height="17"/>
+                                    <rect key="frame" x="8" y="2054.5" width="32.5" height="17"/>
                                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E34-VS-lxP">
-                                    <rect key="frame" x="16" y="2184" width="31" height="17"/>
+                                    <rect key="frame" x="8" y="2100.5" width="32.5" height="17"/>
                                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CONDITIONS OF USE" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQ6-zp-YYE">
-                                    <rect key="frame" x="47" y="16" width="312" height="17"/>
+                                    <rect key="frame" x="40.5" y="16" width="326.5" height="17"/>
                                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CANCELLATION" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvN-4Z-n5B">
-                                    <rect key="frame" x="47" y="2138" width="312" height="17"/>
+                                    <rect key="frame" x="40.5" y="2054.5" width="326.5" height="17"/>
                                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADDITIONAL COSTS AND REFUND" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tOJ-yl-FJF">
-                                    <rect key="frame" x="47" y="2184" width="312" height="17"/>
+                                    <rect key="frame" x="40.5" y="2100.5" width="326.5" height="17"/>
                                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OVERVIEW" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9g-Vm-48q">
-                                    <rect key="frame" x="47" y="162" width="312" height="17"/>
+                                    <rect key="frame" x="40.5" y="145.5" width="326.5" height="17"/>
                                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MODIFICATION OF THE SITE AND THESE TERMS &amp; CONDITIONS" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajx-qK-A8b">
-                                    <rect key="frame" x="47" y="358.5" width="312" height="34"/>
+                                    <rect key="frame" x="40.5" y="342" width="326.5" height="34"/>
                                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COPYRIGHTS" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFO-Ll-RuR">
-                                    <rect key="frame" x="47" y="655.5" width="312" height="17"/>
+                                    <rect key="frame" x="40.5" y="622" width="326.5" height="17"/>
                                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SIGN UP" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vy8-Dk-5TZ">
-                                    <rect key="frame" x="47" y="885" width="312" height="17"/>
+                                    <rect key="frame" x="40.5" y="851.5" width="326.5" height="17"/>
                                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ELECTRONIC COMMUNICATIONS" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJJ-AV-cq4">
-                                    <rect key="frame" x="47" y="1198.5" width="312" height="17"/>
+                                    <rect key="frame" x="40.5" y="1148" width="326.5" height="17"/>
                                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SERVICES DESCRIPTIONS" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DTv-Qi-7an">
-                                    <rect key="frame" x="47" y="1361.5" width="312" height="17"/>
+                                    <rect key="frame" x="40.5" y="1311" width="326.5" height="17"/>
                                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PRIVACY POLICY" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CnF-sI-p8d">
-                                    <rect key="frame" x="47" y="1507.5" width="312" height="17"/>
+                                    <rect key="frame" x="40.5" y="1440.5" width="326.5" height="17"/>
                                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cancelation Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PNx-ci-VKh">
-                                    <rect key="frame" x="47" y="2159" width="312" height="17"/>
+                                    <rect key="frame" x="40.5" y="2075.5" width="326.5" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Additional Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uL7-Fs-Sy7">
-                                    <rect key="frame" x="47" y="2205" width="312" height="17"/>
+                                    <rect key="frame" x="40.5" y="2121.5" width="326.5" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INDEMNITY" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NOX-EP-tu5">
-                                    <rect key="frame" x="47" y="1653.5" width="312" height="17"/>
+                                    <rect key="frame" x="40.5" y="1586.5" width="326.5" height="17"/>
                                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DISCLAIMER" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0lC-Az-euS">
-                                    <rect key="frame" x="47" y="1799.5" width="312" height="17"/>
+                                    <rect key="frame" x="40.5" y="1716" width="326.5" height="17"/>
                                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="APPLICABLE LAWS" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1kj-db-bUF">
-                                    <rect key="frame" x="47" y="1962.5" width="312" height="17"/>
+                                    <rect key="frame" x="40.5" y="1879" width="326.5" height="17"/>
                                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QUESTIONS AND FEEDBACK" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zbu-iE-2ZD">
-                                    <rect key="frame" x="47" y="2025" width="312" height="17"/>
+                                    <rect key="frame" x="40.5" y="1941.5" width="326.5" height="17"/>
                                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="e-nyelam is a brand by PT Wimiku Indo Digital" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3Q-ED-Ijg">
-                                    <rect key="frame" x="16" y="2238" width="343" height="17"/>
+                                    <rect key="frame" x="8" y="2154.5" width="359" height="17"/>
                                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SqS-XT-4Ab">
-                                    <rect key="frame" x="47" y="183" width="312" height="167.5"/>
+                                    <rect key="frame" x="40.5" y="166.5" width="326.5" height="167.5"/>
                                     <string key="text">Your use of this site constitutes your agreement to all terms, conditions and notices. Please read them carefully. By using this Site, you agree to these Terms and Conditions, as well as any other terms, guidelines or rules that are applicable to any portion of this Site, without limitation or qualification. If you do not agree to these Terms and Conditions, you must exit the Site immediately and discontinue any use of information or products from this site.</string>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9lt-YP-E9J">
-                                    <rect key="frame" x="47" y="396.5" width="312" height="251"/>
+                                    <rect key="frame" x="40.5" y="380" width="326.5" height="234"/>
                                     <string key="text">e-Nyelam reserves the right to change, modify, alter, update or discontinue the terms, conditions, and notices under which this Site is offered and the links, content, information, prices and any other materials offered via this Site at any time and from time to time without notice or further obligation to you except as may be provided therein. We have the right to adjust prices from time to time. If for some reason there may have been a price mistake, e-nyelam has the right to refuse the order. By your continued use of the Site following such modifications, alterations, or updates you agree to be bound by such modifications, alterations, or updates.</string>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKV-MB-11M">
-                                    <rect key="frame" x="47" y="676.5" width="312" height="200.5"/>
+                                    <rect key="frame" x="40.5" y="643" width="326.5" height="200.5"/>
                                     <string key="text">This site is owned and operated by e-Nyelam. Unless otherwise specified, all materials on this Site, trademarks, service marks, logos are the property of e-Nyelam and are protected by the copyright laws of Indonesia and, throughout the world by the applicable copyright laws. No materials published by e-Nyelam on this Site, in whole or in part, may be copied, reproduced, modified, republished, uploaded, posted, transmitted, or distributed in any form or by any means without prior written permission from e-Nyelam.</string>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8EE-4y-jA1">
-                                    <rect key="frame" x="47" y="906" width="312" height="284.5"/>
+                                    <rect key="frame" x="40.5" y="872.5" width="326.5" height="267.5"/>
                                     <string key="text">You need to sign up this site to order the services by insert your username and password. You will get benefits such as newsletters, updates, and special offers by signing up. You will be asked to provide accurate and current information on all registration forms on this site. You are solely responsible for maintaining the confidentiality of any username and password that you choose or is chosen by your web administrator on your behalf, to access this site as well as any activity that occur under your username/password. You will not misuse or share your username or password, misrepresent your identity or your affiliation with an entity, impersonate any person or entity, or misstate the origin of any materials you are exposed to through this site.</string>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3K-qW-Aml">
-                                    <rect key="frame" x="47" y="1219.5" width="312" height="134"/>
+                                    <rect key="frame" x="40.5" y="1169" width="326.5" height="134"/>
                                     <string key="text">You agree that e-Nyelam may send electronic mails to you for the purpose of advising you of changes or additions to this site, about any of e-Nyelam’s services, or for such other purpose(s) as we deem appropriate. If you wish to unsubscribe from our newsletters, please click on "Newsletters" in your account page and unsubscribe.</string>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZdR-uo-9Zf">
-                                    <rect key="frame" x="47" y="1382.5" width="312" height="117"/>
+                                    <rect key="frame" x="40.5" y="1332" width="326.5" height="100.5"/>
                                     <string key="text">We always try our best to display the information and colors of the products that appear on the Site as accurately as possible. However, we cannot guarantee that your monitor's display of any color will be accurate as the actual colors you see depends on your monitor quality.</string>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OAV-Uj-nz6">
-                                    <rect key="frame" x="47" y="1528.5" width="312" height="117"/>
+                                    <rect key="frame" x="40.5" y="1461.5" width="326.5" height="117"/>
                                     <string key="text">Your information is safe with us. e-Nyelam understands that privacy concerns are extremely important to our customers. You can rest assured that any information you submit to us will not be misused, abused or sold to any other parties. We only use your personal information to complete your order.</string>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ceU-1W-0UV">
-                                    <rect key="frame" x="47" y="1674.5" width="312" height="117"/>
+                                    <rect key="frame" x="40.5" y="1607.5" width="326.5" height="100.5"/>
                                     <string key="text">You agree to indemnify, defend and hold e-Nyelam harmless from and against any and all third party claims, liabilities, damages, losses or expenses (including reasonable attorney's fees and costs) arising out of, based on or in connection with your access and/or use of this site.</string>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="15t-qG-gy0">
-                                    <rect key="frame" x="47" y="1820.5" width="312" height="134"/>
+                                    <rect key="frame" x="40.5" y="1737" width="326.5" height="134"/>
                                     <string key="text">e-Nyelam assumes no responsibility for accuracy, correctness, timeliness, or content of the Materials provided on this Site. You should not assume that the Materials on this Site are continuously updated or otherwise contain current information. e-nyelam is not responsible for supplying content or materials from the site that have expired or have been removed.</string>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="These Terms and Conditions are governed by the law in force in Indonesia." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3jZ-Wl-CQ3">
-                                    <rect key="frame" x="47" y="1983.5" width="312" height="33.5"/>
+                                    <rect key="frame" x="40.5" y="1900" width="326.5" height="33.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9C-lF-cwh">
-                                    <rect key="frame" x="47" y="2046" width="312" height="84"/>
+                                    <rect key="frame" x="40.5" y="1962.5" width="326.5" height="84"/>
                                     <string key="text">We welcome your questions, comments, and concerns about privacy or any of the information collected from you or about you. Please send us any and all feedback pertaining to privacy, or any other issue. Legal Notice</string>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQt-m9-Ex4">
+                                    <rect key="frame" x="40.5" y="37" width="326.5" height="100.5"/>
+                                    <string key="text">e-Nyelam is offered to you, the user, conditioned on your acceptance of the terms, conditions and notices contained or incorporated by reference herein and such additional terms and conditions, agreements, and notices that may apply to any page or section of the site.</string>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -416,14 +415,14 @@
                                 <constraint firstItem="Q9C-lF-cwh" firstAttribute="bottom" secondItem="yfw-hg-uKC" secondAttribute="top" constant="-8" id="mJo-dk-VoG"/>
                                 <constraint firstItem="E34-VS-lxP" firstAttribute="trailing" secondItem="yfw-hg-uKC" secondAttribute="trailing" id="mMz-ho-W12"/>
                                 <constraint firstItem="b3Q-ED-Ijg" firstAttribute="trailing" secondItem="SqS-XT-4Ab" secondAttribute="trailing" id="mQ9-h3-9bd"/>
-                                <constraint firstAttribute="trailing" secondItem="KQ6-zp-YYE" secondAttribute="trailing" constant="16" id="mpE-2m-POd"/>
+                                <constraint firstAttribute="trailing" secondItem="KQ6-zp-YYE" secondAttribute="trailing" constant="8" id="mpE-2m-POd"/>
                                 <constraint firstItem="b3Q-ED-Ijg" firstAttribute="bottom" secondItem="39P-Zo-jlk" secondAttribute="top" constant="-8" id="ntT-dJ-10d"/>
                                 <constraint firstItem="BJJ-AV-cq4" firstAttribute="leading" secondItem="vy8-Dk-5TZ" secondAttribute="leading" id="pMW-bo-wHk"/>
                                 <constraint firstItem="cHj-NX-Dwu" firstAttribute="trailing" secondItem="3Oz-P7-d2z" secondAttribute="trailing" id="pXX-0J-cdB"/>
                                 <constraint firstItem="KQ6-zp-YYE" firstAttribute="leading" secondItem="NC8-Tq-Jrd" secondAttribute="trailing" id="pYD-Ke-z2x"/>
                                 <constraint firstItem="3jZ-Wl-CQ3" firstAttribute="bottom" secondItem="edx-Yk-vA2" secondAttribute="top" constant="-8" id="qCZ-rl-nnL"/>
                                 <constraint firstItem="CnF-sI-p8d" firstAttribute="leading" secondItem="DTv-Qi-7an" secondAttribute="leading" id="qLK-QN-rvT"/>
-                                <constraint firstItem="NC8-Tq-Jrd" firstAttribute="leading" secondItem="E6j-wn-PzE" secondAttribute="leading" constant="16" id="qUE-X3-pJ1"/>
+                                <constraint firstItem="NC8-Tq-Jrd" firstAttribute="leading" secondItem="E6j-wn-PzE" secondAttribute="leading" constant="8" id="qUE-X3-pJ1"/>
                                 <constraint firstItem="uvN-4Z-n5B" firstAttribute="trailing" secondItem="KQ6-zp-YYE" secondAttribute="trailing" id="qrs-qm-wZD"/>
                                 <constraint firstItem="b9g-Vm-48q" firstAttribute="trailing" secondItem="KQ6-zp-YYE" secondAttribute="trailing" id="qyW-Ap-ncn"/>
                                 <constraint firstItem="Zbu-iE-2ZD" firstAttribute="leading" secondItem="1kj-db-bUF" secondAttribute="leading" id="rZg-sh-5Dx"/>

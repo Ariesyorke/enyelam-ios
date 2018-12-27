@@ -44,7 +44,6 @@ class HomeController: BaseViewController, UIScrollViewDelegate, MFMailComposeVie
                 var leftView: UIView? = nil
                 self.bannerPageControl.numberOfPages = self.banners!.count
                 for banner: Banner in self.banners! {
-
                     let view: UIControl = self.createView(for: banner, atindex: i)
                     view.tag = i
                     view.addTarget(self, action: #selector(HomeController.onBannerClicked(at:)), for: UIControlEvents.touchUpInside)
@@ -98,13 +97,13 @@ class HomeController: BaseViewController, UIScrollViewDelegate, MFMailComposeVie
                         ])
                     
                     if leftView == nil {
-                        self.doTripScroller.addConstraint(NSLayoutConstraint(item: self.doTripScroller, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.left, multiplier: 1, constant: -16))
+                        self.doTripScroller.addConstraint(NSLayoutConstraint(item: self.doTripScroller, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.left, multiplier: 1, constant: -8))
                     } else {
                         self.doTripScroller.addConstraint(NSLayoutConstraint(item: leftView!, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.left, multiplier: 1, constant: -8))
                     }
                     
                     if i == self.doTrips!.count - 1 {
-                        self.doTripScroller.addConstraint(NSLayoutConstraint(item: self.doTripScroller, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 16))
+                        self.doTripScroller.addConstraint(NSLayoutConstraint(item: self.doTripScroller, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 8))
                     }
                     i += 1
                     leftView = view

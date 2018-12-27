@@ -21,17 +21,27 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XUi-QH-Urz" customClass="ExpyTableView" customModule="ExpyTableView">
-                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QD7-8u-wa7">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                    <color key="backgroundColor" red="0.086274509803921567" green="0.45882352941176469" blue="0.81176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="g7K-hb-eUp"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XUi-QH-Urz" customClass="ExpyTableView" customModule="ExpyTableView">
+                    <rect key="frame" x="0.0" y="40" width="375" height="627"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="QD7-8u-wa7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="3Ow-82-upu"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="XUi-QH-Urz" secondAttribute="trailing" id="Ao3-rj-ioP"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="XUi-QH-Urz" secondAttribute="bottom" id="XJl-Wx-7my"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="QD7-8u-wa7" secondAttribute="trailing" id="aeR-0N-gWn"/>
+                <constraint firstItem="QD7-8u-wa7" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="-20" id="iK6-4n-uB3"/>
                 <constraint firstItem="XUi-QH-Urz" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="jdG-y4-HR8"/>
-                <constraint firstItem="XUi-QH-Urz" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="qex-FH-gp9"/>
+                <constraint firstItem="XUi-QH-Urz" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="qex-FH-gp9"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -28,10 +27,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xkr-VN-tvD" userLabel="General Info">
-                        <rect key="frame" x="16" y="16" width="288" height="79.5"/>
+                        <rect key="frame" x="8" y="16" width="304" height="79.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fx-N4-6Cn">
-                                <rect key="frame" x="0.0" y="0.0" width="288" height="20.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="304" height="20.5"/>
                                 <fontDescription key="fontDescription" name="FiraSans-Bold" family="Fira Sans" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -45,19 +44,19 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKe-g2-ePp">
-                                <rect key="frame" x="114" y="20.5" width="174" height="0.0"/>
+                                <rect key="frame" x="114" y="20.5" width="190" height="0.0"/>
                                 <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fUU-sg-cqJ">
-                                <rect key="frame" x="26" y="36.5" width="262" height="17"/>
+                                <rect key="frame" x="26" y="36.5" width="278" height="17"/>
                                 <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Phone Number" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRc-q8-2we">
-                                <rect key="frame" x="26" y="62" width="262" height="17"/>
+                                <rect key="frame" x="26" y="62" width="278" height="17"/>
                                 <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -100,23 +99,23 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A5f-NI-mJT" customClass="GMSMapView">
-                        <rect key="frame" x="16" y="111.5" width="288" height="288"/>
+                        <rect key="frame" x="8" y="111.5" width="304" height="288"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="A5f-NI-mJT" secondAttribute="height" multiplier="1:1" id="DSX-rE-ICY"/>
                         </constraints>
                     </view>
                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="E3y-Q8-mAB">
-                        <rect key="frame" x="16" y="111" width="288" height="287"/>
+                        <rect key="frame" x="8" y="111" width="304" height="287"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="E3y-Q8-mAB" secondAttribute="height" multiplier="1:1" constant="1" id="mUI-W3-1SE"/>
                         </constraints>
                     </mapView>
                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FfV-1P-xpj">
-                        <rect key="frame" x="16" y="111.5" width="288" height="288"/>
+                        <rect key="frame" x="8" y="111.5" width="304" height="288"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vgM-vX-zkR">
-                                <rect key="frame" x="0.0" y="259" width="288" height="29"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vgM-vX-zkR">
+                                <rect key="frame" x="0.0" y="275" width="304" height="29"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                                 <state key="normal" title="Open Map">
@@ -135,13 +134,13 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Who We Are" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Wr-0B-QUK">
-                        <rect key="frame" x="16" y="415.5" width="288" height="22"/>
+                        <rect key="frame" x="8" y="415.5" width="304" height="22"/>
                         <fontDescription key="fontDescription" name="FiraSans-Bold" family="Fira Sans" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XvM-h2-LF4">
-                        <rect key="frame" x="16" y="453.5" width="288" height="17"/>
+                        <rect key="frame" x="8" y="453.5" width="304" height="17"/>
                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -149,7 +148,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="FfV-1P-xpj" firstAttribute="trailing" secondItem="A5f-NI-mJT" secondAttribute="trailing" id="2yM-K1-obE"/>
-                    <constraint firstAttribute="trailing" secondItem="Xkr-VN-tvD" secondAttribute="trailing" constant="16" id="88i-QJ-3ke"/>
+                    <constraint firstAttribute="trailing" secondItem="Xkr-VN-tvD" secondAttribute="trailing" constant="8" id="88i-QJ-3ke"/>
                     <constraint firstItem="E3y-Q8-mAB" firstAttribute="top" secondItem="Xkr-VN-tvD" secondAttribute="bottom" constant="16" id="8b4-vS-TU3"/>
                     <constraint firstItem="3Wr-0B-QUK" firstAttribute="top" secondItem="E3y-Q8-mAB" secondAttribute="bottom" constant="17" id="9St-73-3jp"/>
                     <constraint firstItem="FfV-1P-xpj" firstAttribute="bottom" secondItem="A5f-NI-mJT" secondAttribute="bottom" id="BWw-wh-s31"/>
@@ -164,7 +163,7 @@
                     <constraint firstItem="FfV-1P-xpj" firstAttribute="leading" secondItem="A5f-NI-mJT" secondAttribute="leading" id="XGU-uW-ITc"/>
                     <constraint firstItem="FfV-1P-xpj" firstAttribute="top" secondItem="A5f-NI-mJT" secondAttribute="top" id="cS0-4W-oRG"/>
                     <constraint firstItem="Xkr-VN-tvD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="cxt-gY-pqT"/>
-                    <constraint firstItem="Xkr-VN-tvD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="eqz-X1-k4e"/>
+                    <constraint firstItem="Xkr-VN-tvD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="eqz-X1-k4e"/>
                     <constraint firstItem="A5f-NI-mJT" firstAttribute="leading" secondItem="Xkr-VN-tvD" secondAttribute="leading" id="kPo-Gm-BfJ"/>
                     <constraint firstItem="3Wr-0B-QUK" firstAttribute="leading" secondItem="Xkr-VN-tvD" secondAttribute="leading" id="nRc-43-0D7"/>
                     <constraint firstItem="A5f-NI-mJT" firstAttribute="top" secondItem="Xkr-VN-tvD" secondAttribute="bottom" constant="16" id="xDu-wK-TNF"/>

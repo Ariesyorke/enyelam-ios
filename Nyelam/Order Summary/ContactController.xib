@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -33,10 +33,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qS8-KH-1dT" userLabel="Title Button" customClass="UIControl">
-                            <rect key="frame" x="16" y="16" width="343" height="30"/>
+                            <rect key="frame" x="8" y="16" width="359" height="30"/>
                             <subviews>
                                 <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vRs-Kx-xbw" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                    <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="359" height="30"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next"/>
@@ -52,7 +52,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </textField>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_down_arrow_black" translatesAutoresizingMaskIntoConstraints="NO" id="OVV-vd-QWo">
-                                    <rect key="frame" x="335" y="11" width="8" height="8"/>
+                                    <rect key="frame" x="351" y="11" width="8" height="8"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="8" id="wIF-v6-q2W"/>
                                         <constraint firstAttribute="height" constant="8" id="yXW-EQ-bTM"/>
@@ -72,7 +72,7 @@
                             </connections>
                         </view>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9is-CX-Nao" userLabel="Fullname" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                            <rect key="frame" x="16" y="62" width="343" height="30"/>
+                            <rect key="frame" x="8" y="62" width="359" height="30"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next"/>
@@ -88,7 +88,7 @@
                             </userDefinedRuntimeAttributes>
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ID-kJ-RXa" userLabel="Email Address" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                            <rect key="frame" x="16" y="108" width="343" height="30"/>
+                            <rect key="frame" x="8" y="108" width="359" height="30"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
@@ -104,7 +104,7 @@
                             </userDefinedRuntimeAttributes>
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NdJ-Mg-p7R" userLabel="Phone Number" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                            <rect key="frame" x="86" y="154" width="273" height="30"/>
+                            <rect key="frame" x="78" y="154" width="289" height="30"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad" returnKeyType="next"/>
@@ -120,7 +120,7 @@
                             </userDefinedRuntimeAttributes>
                         </textField>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yW3-nf-IXY" customClass="UIControl">
-                            <rect key="frame" x="16" y="154" width="62" height="30"/>
+                            <rect key="frame" x="8" y="154" width="62" height="30"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+ 62" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ha-OU-2Ss">
                                     <rect key="frame" x="8" y="13" width="30" height="17"/>
@@ -129,7 +129,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_down_arrow_black" translatesAutoresizingMaskIntoConstraints="NO" id="LDe-G7-Feo">
-                                    <rect key="frame" x="46" y="18" width="8" height="8"/>
+                                    <rect key="frame" x="46" y="17.5" width="8" height="8"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="8" id="AYw-T9-G1h"/>
                                         <constraint firstAttribute="width" constant="8" id="nE7-1b-eto"/>
@@ -148,7 +148,7 @@
                             </connections>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ExQ-Pc-2bv">
-                            <rect key="frame" x="16" y="200" width="343" height="40"/>
+                            <rect key="frame" x="8" y="200" width="359" height="40"/>
                             <color key="backgroundColor" red="0.0" green="0.66666666669999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="eq3-I8-dfc"/>
@@ -168,19 +168,19 @@
                         </button>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="9is-CX-Nao" secondAttribute="trailing" constant="16" id="0u6-EH-LLZ"/>
+                        <constraint firstAttribute="trailing" secondItem="9is-CX-Nao" secondAttribute="trailing" constant="8" id="0u6-EH-LLZ"/>
                         <constraint firstItem="yW3-nf-IXY" firstAttribute="bottom" secondItem="NdJ-Mg-p7R" secondAttribute="bottom" id="1hN-0X-lUJ"/>
                         <constraint firstItem="NdJ-Mg-p7R" firstAttribute="leading" secondItem="yW3-nf-IXY" secondAttribute="trailing" constant="8" id="1j0-BO-qWc"/>
                         <constraint firstItem="1ID-kJ-RXa" firstAttribute="top" secondItem="9is-CX-Nao" secondAttribute="bottom" constant="16" id="4Zm-7A-rVV"/>
-                        <constraint firstItem="9is-CX-Nao" firstAttribute="leading" secondItem="Mes-iH-fX6" secondAttribute="leading" constant="16" id="947-vs-uB9"/>
+                        <constraint firstItem="9is-CX-Nao" firstAttribute="leading" secondItem="Mes-iH-fX6" secondAttribute="leading" constant="8" id="947-vs-uB9"/>
                         <constraint firstItem="yW3-nf-IXY" firstAttribute="leading" secondItem="1ID-kJ-RXa" secondAttribute="leading" id="MuK-DU-P7d"/>
                         <constraint firstItem="ExQ-Pc-2bv" firstAttribute="top" secondItem="NdJ-Mg-p7R" secondAttribute="bottom" constant="16" id="NYa-vT-yKk"/>
                         <constraint firstItem="9is-CX-Nao" firstAttribute="top" secondItem="qS8-KH-1dT" secondAttribute="bottom" constant="16" id="PBP-dn-jCn"/>
                         <constraint firstItem="ExQ-Pc-2bv" firstAttribute="leading" secondItem="9is-CX-Nao" secondAttribute="leading" id="R4Z-7C-QDk"/>
-                        <constraint firstItem="qS8-KH-1dT" firstAttribute="leading" secondItem="Mes-iH-fX6" secondAttribute="leading" constant="16" id="Sxz-0K-Qzm"/>
+                        <constraint firstItem="qS8-KH-1dT" firstAttribute="leading" secondItem="Mes-iH-fX6" secondAttribute="leading" constant="8" id="Sxz-0K-Qzm"/>
                         <constraint firstItem="ExQ-Pc-2bv" firstAttribute="trailing" secondItem="9is-CX-Nao" secondAttribute="trailing" id="VLM-5g-xee"/>
                         <constraint firstItem="NdJ-Mg-p7R" firstAttribute="top" secondItem="1ID-kJ-RXa" secondAttribute="bottom" constant="16" id="XbA-Ng-da5"/>
-                        <constraint firstAttribute="trailing" secondItem="qS8-KH-1dT" secondAttribute="trailing" constant="16" id="lvX-vF-mC6"/>
+                        <constraint firstAttribute="trailing" secondItem="qS8-KH-1dT" secondAttribute="trailing" constant="8" id="lvX-vF-mC6"/>
                         <constraint firstItem="9is-CX-Nao" firstAttribute="centerX" secondItem="Mes-iH-fX6" secondAttribute="centerX" id="nRR-Zp-rOO"/>
                         <constraint firstItem="NdJ-Mg-p7R" firstAttribute="trailing" secondItem="1ID-kJ-RXa" secondAttribute="trailing" id="oeb-mn-XcU"/>
                         <constraint firstItem="yW3-nf-IXY" firstAttribute="top" secondItem="NdJ-Mg-p7R" secondAttribute="top" id="ppE-G5-mtF"/>

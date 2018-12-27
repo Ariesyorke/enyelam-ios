@@ -18,8 +18,6 @@ class InboxCell: NTableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.container.layer.borderWidth = 1
-        self.container.layer.borderColor = UIColor.lightGray.cgColor
         // Initialization code
     }
 

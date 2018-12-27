@@ -222,7 +222,9 @@ UINavigationControllerDelegate, PECropViewControllerDelegate {
             return cell
         } else if contents[0] == "section" {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SectionViewCell", for: indexPath) as! SectionViewCell
+            cell.contentView.backgroundColor = UIColor.primary
             cell.sectionNameLabel.text = contents[1]
+            cell.sectionNameLabel.textColor = UIColor.white
             return cell
         } else if contents[0] == "content" {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ContentViewCell", for: indexPath) as! ContentViewCell

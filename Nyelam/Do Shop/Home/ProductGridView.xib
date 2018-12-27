@@ -30,23 +30,23 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="155" height="230"/>
+            <rect key="frame" x="0.0" y="0.0" width="155" height="250"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c0r-7U-ATJ">
-                    <rect key="frame" x="14" y="14" width="127" height="127"/>
+                    <rect key="frame" x="0.0" y="14" width="155" height="155"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="c0r-7U-ATJ" secondAttribute="height" multiplier="1:1" id="91Q-yr-4JB"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lc2-NH-WYt">
-                    <rect key="frame" x="8" y="149" width="139" height="17"/>
+                    <rect key="frame" x="8" y="177" width="139" height="17"/>
                     <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ovm-WK-re3" userLabel="Normal Price Container">
-                    <rect key="frame" x="8" y="170" width="139" height="14.5"/>
+                    <rect key="frame" x="8" y="198" width="139" height="14.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rp. 99.999.999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4l-jV-0cm">
                             <rect key="frame" x="31.5" y="0.0" width="76" height="14.5"/>
@@ -73,7 +73,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ObA-56-C0p" userLabel="Special Price Container">
-                    <rect key="frame" x="8" y="186.5" width="139" height="24"/>
+                    <rect key="frame" x="8" y="214.5" width="139" height="24"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rp. 99.999.999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBJ-vT-Hi8">
                             <rect key="frame" x="0.0" y="0.0" width="139" height="24"/>
@@ -95,7 +95,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ar0-al-UwL" customClass="UIControl">
-                    <rect key="frame" x="0.0" y="0.0" width="155" height="230"/>
+                    <rect key="frame" x="0.0" y="0.0" width="155" height="250"/>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -108,18 +108,18 @@
                 <constraint firstItem="ObA-56-C0p" firstAttribute="top" secondItem="ovm-WK-re3" secondAttribute="bottom" constant="2" id="Uvx-RR-WUc"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="lc2-NH-WYt" secondAttribute="trailing" constant="8" id="X6p-Z7-0Mt"/>
                 <constraint firstItem="ovm-WK-re3" firstAttribute="top" secondItem="lc2-NH-WYt" secondAttribute="bottom" constant="4" id="i6f-Nl-qt5"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="c0r-7U-ATJ" secondAttribute="trailing" constant="14" id="iZf-e8-5ns"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="c0r-7U-ATJ" secondAttribute="trailing" id="iZf-e8-5ns"/>
                 <constraint firstItem="ar0-al-UwL" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="lI9-vl-u41"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="ar0-al-UwL" secondAttribute="bottom" id="pBy-7s-lY5"/>
                 <constraint firstItem="ovm-WK-re3" firstAttribute="leading" secondItem="lc2-NH-WYt" secondAttribute="leading" id="qdS-cW-PYO"/>
                 <constraint firstItem="ObA-56-C0p" firstAttribute="trailing" secondItem="lc2-NH-WYt" secondAttribute="trailing" id="qec-3K-6lJ"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="leading" secondItem="ar0-al-UwL" secondAttribute="leading" id="uhX-q7-SdJ"/>
                 <constraint firstItem="c0r-7U-ATJ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="14" id="wzX-ly-bhS"/>
-                <constraint firstItem="c0r-7U-ATJ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="14" id="zHo-cv-MZ4"/>
+                <constraint firstItem="c0r-7U-ATJ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="zHo-cv-MZ4"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="-76.5" y="-164"/>
+            <point key="canvasLocation" x="-77.599999999999994" y="-155.62218890554723"/>
         </view>
     </objects>
 </document>

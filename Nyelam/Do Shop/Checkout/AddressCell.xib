@@ -28,7 +28,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bdE-gy-RJe">
-                        <rect key="frame" x="264" y="8" width="40" height="30"/>
+                        <rect key="frame" x="272" y="8" width="40" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="5vb-Tv-7ez"/>
                             <constraint firstAttribute="height" constant="30" id="6Ev-pE-iJa"/>
@@ -41,13 +41,13 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPj-ww-Ku2">
-                        <rect key="frame" x="16" y="8" width="244" height="17"/>
+                        <rect key="frame" x="8" y="8" width="260" height="17"/>
                         <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIi-37-Y7X">
-                        <rect key="frame" x="16" y="33" width="244" height="17"/>
+                        <rect key="frame" x="8" y="33" width="260" height="17"/>
                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -55,11 +55,11 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="bdE-gy-RJe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="0du-BG-ELi"/>
-                    <constraint firstItem="hPj-ww-Ku2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Aqi-6d-SzW"/>
+                    <constraint firstItem="hPj-ww-Ku2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Aqi-6d-SzW"/>
                     <constraint firstItem="bIi-37-Y7X" firstAttribute="top" secondItem="hPj-ww-Ku2" secondAttribute="bottom" constant="8" id="OCF-1d-NFi"/>
                     <constraint firstAttribute="bottom" secondItem="bIi-37-Y7X" secondAttribute="bottom" constant="16" id="P2T-R5-qA7"/>
                     <constraint firstItem="bIi-37-Y7X" firstAttribute="trailing" secondItem="hPj-ww-Ku2" secondAttribute="trailing" id="Tj9-xe-UOn"/>
-                    <constraint firstAttribute="trailing" secondItem="bdE-gy-RJe" secondAttribute="trailing" constant="16" id="Vmf-13-dlp"/>
+                    <constraint firstAttribute="trailing" secondItem="bdE-gy-RJe" secondAttribute="trailing" constant="8" id="Vmf-13-dlp"/>
                     <constraint firstItem="bdE-gy-RJe" firstAttribute="leading" secondItem="hPj-ww-Ku2" secondAttribute="trailing" constant="4" id="ZlU-L8-adK"/>
                     <constraint firstItem="hPj-ww-Ku2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="m0M-GM-d6p"/>
                     <constraint firstItem="bIi-37-Y7X" firstAttribute="leading" secondItem="hPj-ww-Ku2" secondAttribute="leading" id="rG6-h8-1Qn"/>

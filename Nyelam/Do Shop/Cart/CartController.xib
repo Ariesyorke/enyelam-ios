@@ -33,11 +33,12 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DmW-Bh-mAZ">
-                    <rect key="frame" x="16" y="611" width="343" height="40"/>
+                    <rect key="frame" x="8" y="611" width="359" height="40"/>
                     <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="ra3-lN-WLx"/>
                     </constraints>
+                    <viewLayoutGuide key="safeArea" id="kKi-A6-Int"/>
                     <state key="normal" title="PROCEED TO CHECKOUT">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
@@ -61,8 +62,8 @@
             <constraints>
                 <constraint firstItem="0HN-qw-smR" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="3eu-5X-2Nd"/>
                 <constraint firstItem="0HN-qw-smR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="Abb-cH-q7X"/>
-                <constraint firstItem="DmW-Bh-mAZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="CQf-KC-FNd"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="DmW-Bh-mAZ" secondAttribute="trailing" constant="16" id="EEM-Bk-qyw"/>
+                <constraint firstItem="DmW-Bh-mAZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="CQf-KC-FNd"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="DmW-Bh-mAZ" secondAttribute="trailing" constant="8" id="EEM-Bk-qyw"/>
                 <constraint firstItem="9Tf-pM-ywM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="LaJ-CJ-tF3"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="0HN-qw-smR" secondAttribute="trailing" constant="8" id="Wlk-sJ-WPU"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="DmW-Bh-mAZ" secondAttribute="bottom" constant="16" id="e3F-5R-q8D"/>

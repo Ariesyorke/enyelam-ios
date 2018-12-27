@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -28,37 +27,37 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DKT-af-fLz">
-                        <rect key="frame" x="16" y="16" width="262" height="20"/>
+                        <rect key="frame" x="8" y="16" width="278" height="20.5"/>
                         <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+62855555555" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sTp-It-bIa">
-                        <rect key="frame" x="144" y="44" width="192" height="17"/>
+                        <rect key="frame" x="142.5" y="44.5" width="201.5" height="17"/>
                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bobbymarwan@gmail.com" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ic1-rW-qrK">
-                        <rect key="frame" x="144" y="69" width="192" height="17"/>
+                        <rect key="frame" x="142.5" y="69.5" width="201.5" height="17"/>
                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e78-D0-Vtc">
-                        <rect key="frame" x="16" y="69" width="128" height="17"/>
+                        <rect key="frame" x="8" y="69.5" width="134.5" height="17"/>
                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone Number" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VJv-Bv-Jdx">
-                        <rect key="frame" x="16" y="44" width="128" height="17"/>
+                        <rect key="frame" x="8" y="44.5" width="134.5" height="17"/>
                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s91-3R-UvQ">
-                        <rect key="frame" x="286" y="16" width="50" height="20"/>
+                        <rect key="frame" x="294" y="16" width="50" height="20.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="Hix-LW-jSR"/>
                         </constraints>
@@ -72,7 +71,7 @@
                 <constraints>
                     <constraint firstItem="ic1-rW-qrK" firstAttribute="trailing" secondItem="sTp-It-bIa" secondAttribute="trailing" id="1eJ-qv-yTs"/>
                     <constraint firstItem="e78-D0-Vtc" firstAttribute="leading" secondItem="VJv-Bv-Jdx" secondAttribute="leading" id="8cs-Uj-Ta8"/>
-                    <constraint firstItem="DKT-af-fLz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="AVd-kc-P1f"/>
+                    <constraint firstItem="DKT-af-fLz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="AVd-kc-P1f"/>
                     <constraint firstItem="s91-3R-UvQ" firstAttribute="leading" secondItem="DKT-af-fLz" secondAttribute="trailing" constant="8" id="Br3-zI-4P5"/>
                     <constraint firstItem="s91-3R-UvQ" firstAttribute="height" secondItem="DKT-af-fLz" secondAttribute="height" id="GK8-zd-3Gi"/>
                     <constraint firstAttribute="bottom" secondItem="ic1-rW-qrK" secondAttribute="bottom" constant="16" id="GmA-MW-let"/>
@@ -86,7 +85,7 @@
                     <constraint firstItem="ic1-rW-qrK" firstAttribute="leading" secondItem="sTp-It-bIa" secondAttribute="leading" id="jXn-Px-ZhS"/>
                     <constraint firstItem="ic1-rW-qrK" firstAttribute="top" secondItem="e78-D0-Vtc" secondAttribute="top" id="sWY-lj-0pZ"/>
                     <constraint firstItem="sTp-It-bIa" firstAttribute="leading" secondItem="VJv-Bv-Jdx" secondAttribute="trailing" id="u2q-OG-gkm"/>
-                    <constraint firstAttribute="trailing" secondItem="s91-3R-UvQ" secondAttribute="trailing" constant="16" id="uIz-YW-Xd0"/>
+                    <constraint firstAttribute="trailing" secondItem="s91-3R-UvQ" secondAttribute="trailing" constant="8" id="uIz-YW-Xd0"/>
                     <constraint firstItem="e78-D0-Vtc" firstAttribute="trailing" secondItem="VJv-Bv-Jdx" secondAttribute="trailing" id="x0A-Zq-LXJ"/>
                     <constraint firstItem="DKT-af-fLz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="zcc-MQ-pgj"/>
                 </constraints>

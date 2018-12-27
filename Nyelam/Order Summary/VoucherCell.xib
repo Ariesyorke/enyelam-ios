@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,11 +21,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="74.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Voucher Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dKs-P7-dwy">
-                        <rect key="frame" x="16" y="16" width="186.5" height="30"/>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Voucher Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dKs-P7-dwy">
+                        <rect key="frame" x="8" y="16" width="197.5" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="hIv-jt-jVK"/>
                         </constraints>
@@ -34,15 +33,15 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" returnKeyType="send"/>
                     </textField>
-                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CIh-Q1-OVX">
-                        <rect key="frame" x="16" y="48" width="186.5" height="1"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CIh-Q1-OVX">
+                        <rect key="frame" x="8" y="48" width="197.5" height="1"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="BJn-kF-M0W"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Er6-7q-bBG">
-                        <rect key="frame" x="210.5" y="16" width="93.5" height="30"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Er6-7q-bBG">
+                        <rect key="frame" x="213.5" y="16" width="98.5" height="30"/>
                         <color key="backgroundColor" red="0.0" green="0.66666666669999997" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="15"/>
                         <state key="normal" title="Apply">
@@ -60,8 +59,8 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="CIh-Q1-OVX" firstAttribute="trailing" secondItem="dKs-P7-dwy" secondAttribute="trailing" id="3D2-KJ-Qyj"/>
-                    <constraint firstItem="dKs-P7-dwy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="A4g-jg-9XE"/>
-                    <constraint firstAttribute="trailing" secondItem="Er6-7q-bBG" secondAttribute="trailing" constant="16" id="aDG-fC-bwR"/>
+                    <constraint firstItem="dKs-P7-dwy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="A4g-jg-9XE"/>
+                    <constraint firstAttribute="trailing" secondItem="Er6-7q-bBG" secondAttribute="trailing" constant="8" id="aDG-fC-bwR"/>
                     <constraint firstItem="CIh-Q1-OVX" firstAttribute="leading" secondItem="dKs-P7-dwy" secondAttribute="leading" id="gxn-hz-fMr"/>
                     <constraint firstItem="Er6-7q-bBG" firstAttribute="top" secondItem="dKs-P7-dwy" secondAttribute="top" id="j48-4A-t8Z"/>
                     <constraint firstItem="Er6-7q-bBG" firstAttribute="leading" secondItem="dKs-P7-dwy" secondAttribute="trailing" constant="8" id="jhR-mx-zm1"/>

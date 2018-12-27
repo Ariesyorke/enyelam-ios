@@ -14,10 +14,16 @@ class OutcomingImageMessageCell: NTableViewCell {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var container: UIView!
+    
+    
     var viewController: UIViewController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.container.layer.borderWidth = 1
+        self.container.layer.borderColor = UIColor.lightGray.cgColor
+
         // Initialization code
     }
 

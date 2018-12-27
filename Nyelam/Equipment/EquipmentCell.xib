@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -31,7 +31,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S98-ih-oF8">
-                        <rect key="frame" x="282" y="14.5" width="108" height="62"/>
+                        <rect key="frame" x="290" y="14.5" width="108" height="62"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X75-7l-h8R" customClass="UIControl">
                                 <rect key="frame" x="0.0" y="16" width="30" height="30"/>
@@ -100,22 +100,22 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ga-xr-PKW">
-                        <rect key="frame" x="16" y="16" width="258" height="59"/>
+                        <rect key="frame" x="8" y="16" width="274" height="58.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Gear Basic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRA-EC-y5D" userLabel="Equipment Name Label">
-                                <rect key="frame" x="0.0" y="0.0" width="250" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Full Gear Basic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRA-EC-y5D" userLabel="Equipment Name Label">
+                                <rect key="frame" x="0.0" y="0.0" width="266" height="17"/>
                                 <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@ Rp. 100.000,-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZN-Xa-mTT" userLabel="Equipment Price Label">
-                                <rect key="frame" x="0.0" y="21" width="250" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="@ Rp. 100.000,-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZN-Xa-mTT" userLabel="Equipment Price Label">
+                                <rect key="frame" x="0.0" y="21" width="266" height="17"/>
                                 <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stock : 10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifO-Kh-wXV">
-                                <rect key="frame" x="0.0" y="42" width="250" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Stock : 10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifO-Kh-wXV">
+                                <rect key="frame" x="0.0" y="42" width="266" height="17"/>
                                 <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -142,10 +142,10 @@
                     <constraint firstItem="0Ga-xr-PKW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="IKz-d5-EvK"/>
                     <constraint firstAttribute="bottom" secondItem="0Ga-xr-PKW" secondAttribute="bottom" constant="16" id="IYc-SC-I4T"/>
                     <constraint firstItem="S98-ih-oF8" firstAttribute="leading" secondItem="0Ga-xr-PKW" secondAttribute="trailing" constant="8" id="hIe-mb-yix"/>
-                    <constraint firstAttribute="trailing" secondItem="S98-ih-oF8" secondAttribute="trailing" constant="16" id="kiZ-d2-PfJ"/>
+                    <constraint firstAttribute="trailing" secondItem="S98-ih-oF8" secondAttribute="trailing" constant="8" id="kiZ-d2-PfJ"/>
                     <constraint firstAttribute="bottom" secondItem="dsC-Nl-DvQ" secondAttribute="bottom" id="rLG-Vf-cFI"/>
                     <constraint firstItem="S98-ih-oF8" firstAttribute="centerY" secondItem="0Ga-xr-PKW" secondAttribute="centerY" id="vdm-3a-S0U"/>
-                    <constraint firstItem="0Ga-xr-PKW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="vta-HQ-dt6"/>
+                    <constraint firstItem="0Ga-xr-PKW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="vta-HQ-dt6"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

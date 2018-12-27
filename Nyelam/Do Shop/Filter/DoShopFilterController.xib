@@ -38,7 +38,7 @@
                     <rect key="frame" x="0.0" y="595" width="375" height="72"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUt-gg-7gb">
-                            <rect key="frame" x="191.5" y="16" width="167.5" height="40"/>
+                            <rect key="frame" x="191.5" y="16" width="175.5" height="40"/>
                             <color key="backgroundColor" red="0.086274509799999996" green="0.45882352939999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="HFl-8n-gar"/>
@@ -57,7 +57,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PWI-9R-fzb">
-                            <rect key="frame" x="16" y="16" width="167.5" height="40"/>
+                            <rect key="frame" x="8" y="16" width="175.5" height="40"/>
                             <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="17"/>
                             <state key="normal" title="Clear">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -79,8 +79,8 @@
                         <constraint firstItem="TUt-gg-7gb" firstAttribute="leading" secondItem="PWI-9R-fzb" secondAttribute="trailing" constant="8" id="T8P-jd-AoR"/>
                         <constraint firstItem="PWI-9R-fzb" firstAttribute="top" secondItem="TUt-gg-7gb" secondAttribute="top" id="VFS-AR-q9l"/>
                         <constraint firstItem="TUt-gg-7gb" firstAttribute="width" secondItem="PWI-9R-fzb" secondAttribute="width" id="ccr-dn-h7Z"/>
-                        <constraint firstAttribute="trailing" secondItem="TUt-gg-7gb" secondAttribute="trailing" constant="16" id="gnn-lx-9zZ"/>
-                        <constraint firstItem="PWI-9R-fzb" firstAttribute="leading" secondItem="BcB-YW-9KV" secondAttribute="leading" constant="16" id="lSV-Qj-xZo"/>
+                        <constraint firstAttribute="trailing" secondItem="TUt-gg-7gb" secondAttribute="trailing" constant="8" id="gnn-lx-9zZ"/>
+                        <constraint firstItem="PWI-9R-fzb" firstAttribute="leading" secondItem="BcB-YW-9KV" secondAttribute="leading" constant="8" id="lSV-Qj-xZo"/>
                         <constraint firstItem="PWI-9R-fzb" firstAttribute="bottom" secondItem="TUt-gg-7gb" secondAttribute="bottom" id="wNQ-fE-U7a"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="Q3j-3r-jfg"/>

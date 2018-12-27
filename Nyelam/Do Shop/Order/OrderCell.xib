@@ -25,13 +25,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Merchant" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VED-TK-cZi">
-                        <rect key="frame" x="74" y="33" width="214" height="16"/>
+                        <rect key="frame" x="66" y="33" width="222" height="16"/>
                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="12"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_app" translatesAutoresizingMaskIntoConstraints="NO" id="3ER-a7-G1k">
-                        <rect key="frame" x="16" y="16" width="50" height="50"/>
+                        <rect key="frame" x="8" y="16" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="5Z4-yS-hP0"/>
                             <constraint firstAttribute="width" constant="50" id="cGY-Qh-uc1"/>
@@ -45,7 +45,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRg-r5-65D">
-                        <rect key="frame" x="74" y="16" width="214" height="17"/>
+                        <rect key="frame" x="66" y="16" width="222" height="17"/>
                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -58,26 +58,26 @@
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_calendar" translatesAutoresizingMaskIntoConstraints="NO" id="8tl-yP-e0u">
-                        <rect key="frame" x="16" y="129.5" width="14" height="14"/>
+                        <rect key="frame" x="8" y="129.5" width="14" height="14"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="2XM-vo-Lb1"/>
                             <constraint firstAttribute="width" constant="14" id="DqN-Ng-gtI"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ivY-OV-2zp">
-                        <rect key="frame" x="38" y="130.5" width="211" height="12"/>
+                        <rect key="frame" x="30" y="130.5" width="227" height="12"/>
                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="10"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bLO-qE-hET">
-                        <rect key="frame" x="279" y="130.5" width="25" height="12"/>
+                        <rect key="frame" x="287" y="130.5" width="25" height="12"/>
                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="10"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_money" translatesAutoresizingMaskIntoConstraints="NO" id="rtR-xq-yaR">
-                        <rect key="frame" x="257" y="129.5" width="14" height="14"/>
+                        <rect key="frame" x="265" y="129.5" width="14" height="14"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="AJY-NK-P8e"/>
                             <constraint firstAttribute="width" constant="14" id="xV5-UR-u1i"/>
@@ -87,7 +87,7 @@
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="8tl-yP-e0u" secondAttribute="bottom" constant="8" id="0Ed-QI-XXn"/>
                     <constraint firstItem="yN0-ij-6KS" firstAttribute="top" relation="greaterThanOrEqual" secondItem="3ER-a7-G1k" secondAttribute="bottom" constant="8" id="3ct-cQ-7bD"/>
-                    <constraint firstAttribute="trailing" secondItem="bLO-qE-hET" secondAttribute="trailing" constant="16" id="3tf-o1-GQR"/>
+                    <constraint firstAttribute="trailing" secondItem="bLO-qE-hET" secondAttribute="trailing" constant="8" id="3tf-o1-GQR"/>
                     <constraint firstAttribute="trailing" secondItem="bVg-mk-BIu" secondAttribute="trailing" constant="8" id="4fR-nJ-vLU"/>
                     <constraint firstItem="bVg-mk-BIu" firstAttribute="leading" secondItem="VRg-r5-65D" secondAttribute="trailing" constant="8" id="5hp-P4-tFf"/>
                     <constraint firstItem="8tl-yP-e0u" firstAttribute="leading" secondItem="3ER-a7-G1k" secondAttribute="leading" id="71K-b7-R9u"/>
@@ -106,7 +106,7 @@
                     <constraint firstAttribute="trailing" secondItem="yN0-ij-6KS" secondAttribute="trailing" id="eNl-HY-U0M"/>
                     <constraint firstItem="ivY-OV-2zp" firstAttribute="leading" secondItem="8tl-yP-e0u" secondAttribute="trailing" constant="8" id="ixw-d3-x07"/>
                     <constraint firstItem="VRg-r5-65D" firstAttribute="top" secondItem="3ER-a7-G1k" secondAttribute="top" id="pqd-RQ-7t9"/>
-                    <constraint firstItem="3ER-a7-G1k" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="qxc-a9-0Mn"/>
+                    <constraint firstItem="3ER-a7-G1k" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="qxc-a9-0Mn"/>
                     <constraint firstItem="rtR-xq-yaR" firstAttribute="top" secondItem="8tl-yP-e0u" secondAttribute="top" id="rzc-6B-dqT"/>
                     <constraint firstItem="yN0-ij-6KS" firstAttribute="bottom" secondItem="8tl-yP-e0u" secondAttribute="top" constant="-8" id="sBO-tP-7in"/>
                     <constraint firstItem="bLO-qE-hET" firstAttribute="leading" secondItem="rtR-xq-yaR" secondAttribute="trailing" constant="8" id="sEN-Md-uct"/>

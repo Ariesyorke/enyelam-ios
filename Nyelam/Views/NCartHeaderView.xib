@@ -26,7 +26,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZP-2E-FGZ">
-                    <rect key="frame" x="16" y="334.5" width="343" height="18"/>
+                    <rect key="frame" x="8" y="334.5" width="359" height="18"/>
                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="15"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -34,9 +34,9 @@
             </subviews>
             <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="TZP-2E-FGZ" secondAttribute="trailing" constant="16" id="BPT-0v-by6"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="TZP-2E-FGZ" secondAttribute="trailing" constant="8" id="BPT-0v-by6"/>
                 <constraint firstItem="TZP-2E-FGZ" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="CpV-W9-JfF"/>
-                <constraint firstItem="TZP-2E-FGZ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="YEf-TM-9h2"/>
+                <constraint firstItem="TZP-2E-FGZ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="YEf-TM-9h2"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
         </view>

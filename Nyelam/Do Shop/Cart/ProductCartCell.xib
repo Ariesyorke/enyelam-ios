@@ -28,7 +28,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="114" height="144.5"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yx5-uy-PnX">
-                                <rect key="frame" x="16" y="16" width="82" height="82"/>
+                                <rect key="frame" x="8" y="16" width="90" height="90"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="yx5-uy-PnX" secondAttribute="height" multiplier="1:1" id="ZNG-kl-Z2V"/>
                                 </constraints>
@@ -36,7 +36,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="yx5-uy-PnX" firstAttribute="leading" secondItem="pc3-5w-Pe9" secondAttribute="leading" constant="16" id="BCW-Yx-9ND"/>
+                            <constraint firstItem="yx5-uy-PnX" firstAttribute="leading" secondItem="pc3-5w-Pe9" secondAttribute="leading" constant="8" id="BCW-Yx-9ND"/>
                             <constraint firstItem="yx5-uy-PnX" firstAttribute="top" secondItem="pc3-5w-Pe9" secondAttribute="top" constant="16" id="hWx-KI-kV7"/>
                             <constraint firstAttribute="trailing" secondItem="yx5-uy-PnX" secondAttribute="trailing" constant="16" id="nXd-qR-CJF"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="yx5-uy-PnX" secondAttribute="bottom" constant="16" id="oI4-XB-Mtd"/>

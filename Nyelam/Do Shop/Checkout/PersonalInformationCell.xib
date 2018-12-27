@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,13 +28,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Billing Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKs-wo-gK9">
-                        <rect key="frame" x="16" y="17.5" width="272" height="17"/>
+                        <rect key="frame" x="8" y="17.5" width="288" height="17"/>
                         <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QtG-hi-ZFM">
-                        <rect key="frame" x="296" y="11" width="100" height="30"/>
+                        <rect key="frame" x="304" y="11" width="100" height="30"/>
                         <color key="backgroundColor" red="0.086274509799999996" green="0.45882352939999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="0mj-Jk-gbU"/>
@@ -53,7 +53,7 @@
                         </connections>
                     </button>
                     <view contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="fX1-zI-aLs">
-                        <rect key="frame" x="16" y="49" width="380" height="0.0"/>
+                        <rect key="frame" x="8" y="49" width="396" height="0.0"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </subviews>
@@ -62,9 +62,9 @@
                     <constraint firstItem="UKs-wo-gK9" firstAttribute="centerY" secondItem="QtG-hi-ZFM" secondAttribute="centerY" id="GtB-kt-se5"/>
                     <constraint firstItem="QtG-hi-ZFM" firstAttribute="leading" secondItem="UKs-wo-gK9" secondAttribute="trailing" constant="8" id="PH5-hc-uoh"/>
                     <constraint firstAttribute="bottom" secondItem="fX1-zI-aLs" secondAttribute="bottom" constant="8" id="Pml-7u-NMt"/>
-                    <constraint firstItem="UKs-wo-gK9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="RHS-j4-0z6"/>
+                    <constraint firstItem="UKs-wo-gK9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="RHS-j4-0z6"/>
                     <constraint firstItem="fX1-zI-aLs" firstAttribute="top" secondItem="QtG-hi-ZFM" secondAttribute="bottom" constant="8" id="VdN-Pd-wlE"/>
-                    <constraint firstAttribute="trailing" secondItem="QtG-hi-ZFM" secondAttribute="trailing" constant="16" id="eCK-Yu-rWg"/>
+                    <constraint firstAttribute="trailing" secondItem="QtG-hi-ZFM" secondAttribute="trailing" constant="8" id="eCK-Yu-rWg"/>
                     <constraint firstItem="QtG-hi-ZFM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="hCw-yw-J45"/>
                     <constraint firstItem="fX1-zI-aLs" firstAttribute="trailing" secondItem="QtG-hi-ZFM" secondAttribute="trailing" id="x2h-qW-TJn"/>
                 </constraints>

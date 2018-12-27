@@ -28,10 +28,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xUn-2f-v90" userLabel="Courier Type" customClass="UIControl">
-                    <rect key="frame" x="187.5" y="36" width="171.5" height="39"/>
+                    <rect key="frame" x="187.5" y="36" width="179.5" height="30"/>
                     <subviews>
                         <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4b8-rR-BhS" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                            <rect key="frame" x="0.0" y="0.0" width="171.5" height="39"/>
+                            <rect key="frame" x="0.0" y="0.0" width="179.5" height="30"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done"/>
@@ -48,7 +48,7 @@
                             </userDefinedRuntimeAttributes>
                         </textField>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_down_arrow_black" translatesAutoresizingMaskIntoConstraints="NO" id="3b4-ls-TXX">
-                            <rect key="frame" x="155.5" y="15.5" width="8" height="8"/>
+                            <rect key="frame" x="163.5" y="11" width="8" height="8"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="8" id="cZA-ZN-GMW"/>
                                 <constraint firstAttribute="height" constant="8" id="fzx-FI-LwV"/>
@@ -68,10 +68,10 @@
                     </connections>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hx8-rY-6aU" userLabel="Courier" customClass="UIControl">
-                    <rect key="frame" x="16" y="36" width="171.5" height="39"/>
+                    <rect key="frame" x="8" y="36" width="179.5" height="30"/>
                     <subviews>
                         <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Djw-Ig-yKZ" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                            <rect key="frame" x="0.0" y="0.0" width="163.5" height="39"/>
+                            <rect key="frame" x="0.0" y="0.0" width="171.5" height="30"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done"/>
@@ -88,7 +88,7 @@
                             </userDefinedRuntimeAttributes>
                         </textField>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_down_arrow_black" translatesAutoresizingMaskIntoConstraints="NO" id="9cJ-Cp-xhZ">
-                            <rect key="frame" x="147.5" y="15.5" width="8" height="8"/>
+                            <rect key="frame" x="155.5" y="11" width="8" height="8"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="8" id="03f-8q-315"/>
                                 <constraint firstAttribute="width" constant="8" id="zBU-EC-oNl"/>
@@ -108,7 +108,7 @@
                     </connections>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5xd-5G-FSh">
-                    <rect key="frame" x="16" y="91" width="343" height="30"/>
+                    <rect key="frame" x="8" y="82" width="359" height="30"/>
                     <color key="backgroundColor" red="0.086274509799999996" green="0.45882352939999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="15"/>
                     <state key="normal" title="Change Courier">
@@ -131,10 +131,10 @@
                 <constraint firstItem="Hx8-rY-6aU" firstAttribute="width" secondItem="xUn-2f-v90" secondAttribute="width" id="NRH-Mj-b7k"/>
                 <constraint firstItem="5xd-5G-FSh" firstAttribute="top" secondItem="xUn-2f-v90" secondAttribute="bottom" constant="16" id="Ugf-Z1-7PE"/>
                 <constraint firstItem="5xd-5G-FSh" firstAttribute="trailing" secondItem="xUn-2f-v90" secondAttribute="trailing" id="f3D-Os-Bh6"/>
-                <constraint firstItem="Hx8-rY-6aU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="gl8-vo-ref"/>
+                <constraint firstItem="Hx8-rY-6aU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="gl8-vo-ref"/>
                 <constraint firstItem="Hx8-rY-6aU" firstAttribute="top" secondItem="4ar-Ko-7GI" secondAttribute="top" constant="16" id="jWe-Rq-G16"/>
                 <constraint firstItem="xUn-2f-v90" firstAttribute="top" secondItem="4ar-Ko-7GI" secondAttribute="top" constant="16" id="r1l-76-yj6"/>
-                <constraint firstAttribute="trailing" secondItem="xUn-2f-v90" secondAttribute="trailing" constant="16" id="rSj-J0-gBd"/>
+                <constraint firstAttribute="trailing" secondItem="xUn-2f-v90" secondAttribute="trailing" constant="8" id="rSj-J0-gBd"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="4ar-Ko-7GI"/>
             <point key="canvasLocation" x="35.5" y="53.5"/>

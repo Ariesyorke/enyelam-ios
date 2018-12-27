@@ -132,6 +132,15 @@ extension DoShopSideMenuHomeController: ExpyTableViewDataSource, ExpyTableViewDe
         let cell = UITableViewCell()
         cell.selectionStyle = .none
         cell.textLabel!.text = self.contents[section]
+        if section == 0 {
+            cell.imageView?.image = UIImage(named: "ic_back_button_white")
+           cell.contentView.backgroundColor = UIColor.primary
+            cell.textLabel?.textColor = UIColor.white
+        } else {
+            cell.imageView?.image = nil
+            cell.contentView.backgroundColor = UIColor.white
+            cell.textLabel?.textColor = UIColor.black
+        }
         return cell
     }
     

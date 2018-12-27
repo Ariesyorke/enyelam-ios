@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -30,19 +30,19 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28 Juli 2017" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="flV-lv-SWU">
-                        <rect key="frame" x="16" y="16" width="288" height="18"/>
+                        <rect key="frame" x="8" y="16" width="304" height="18"/>
                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="15"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGl-iq-72I">
-                        <rect key="frame" x="16" y="42" width="288" height="20"/>
+                        <rect key="frame" x="8" y="42" width="304" height="20.5"/>
                         <fontDescription key="fontDescription" name="FiraSans-Bold" family="Fira Sans" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yqz-El-6IR">
-                        <rect key="frame" x="16" y="62" width="100" height="0.0"/>
+                        <rect key="frame" x="8" y="62.5" width="100" height="0.0"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" id="Eb3-Ue-T0c"/>
@@ -65,13 +65,13 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ivw-Tl-Gol">
-                        <rect key="frame" x="130" y="62" width="174" height="0.0"/>
+                        <rect key="frame" x="122" y="62.5" width="190" height="0.0"/>
                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="15"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i1a-U2-A8h" userLabel="Dive Center Container">
-                        <rect key="frame" x="16" y="70" width="288" height="32.5"/>
+                        <rect key="frame" x="8" y="70.5" width="304" height="32.5"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_pin_map" translatesAutoresizingMaskIntoConstraints="NO" id="X0e-Kg-846">
                                 <rect key="frame" x="0.0" y="4.5" width="24" height="24"/>
@@ -81,16 +81,16 @@
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eem-1t-ziG">
-                                <rect key="frame" x="32" y="0.0" width="232" height="32.5"/>
+                                <rect key="frame" x="32" y="0.0" width="248" height="32.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UCU-EO-aRF">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="18"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="256" height="18"/>
                                         <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2uJ-VR-Wgp">
-                                        <rect key="frame" x="0.0" y="18" width="240" height="14.5"/>
+                                        <rect key="frame" x="0.0" y="18" width="256" height="14.5"/>
                                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="12"/>
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -119,7 +119,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="XJR-f5-Do7" userLabel="Summary Container">
-                        <rect key="frame" x="16" y="118.5" width="288" height="5"/>
+                        <rect key="frame" x="8" y="119" width="304" height="4.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </subviews>
@@ -132,13 +132,13 @@
                     <constraint firstItem="flV-lv-SWU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="VaJ-Od-ddG"/>
                     <constraint firstItem="XJR-f5-Do7" firstAttribute="leading" secondItem="i1a-U2-A8h" secondAttribute="leading" id="XLi-Di-9AM"/>
                     <constraint firstAttribute="bottom" secondItem="XJR-f5-Do7" secondAttribute="bottom" constant="16" id="Ybt-1E-KCe"/>
-                    <constraint firstAttribute="trailing" secondItem="flV-lv-SWU" secondAttribute="trailing" constant="16" id="ZQ3-rE-O0J"/>
+                    <constraint firstAttribute="trailing" secondItem="flV-lv-SWU" secondAttribute="trailing" constant="8" id="ZQ3-rE-O0J"/>
                     <constraint firstItem="ivw-Tl-Gol" firstAttribute="centerY" secondItem="Yqz-El-6IR" secondAttribute="centerY" id="ZrT-oC-6oW"/>
                     <constraint firstItem="XJR-f5-Do7" firstAttribute="trailing" secondItem="i1a-U2-A8h" secondAttribute="trailing" id="bR4-AP-bh3"/>
                     <constraint firstItem="Yqz-El-6IR" firstAttribute="leading" secondItem="lGl-iq-72I" secondAttribute="leading" id="fmP-Ky-yjg"/>
                     <constraint firstItem="lGl-iq-72I" firstAttribute="leading" secondItem="flV-lv-SWU" secondAttribute="leading" id="lxS-dl-Au7"/>
                     <constraint firstItem="i1a-U2-A8h" firstAttribute="leading" secondItem="flV-lv-SWU" secondAttribute="leading" id="nsy-CA-TPs"/>
-                    <constraint firstItem="flV-lv-SWU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="p4D-aG-1PH"/>
+                    <constraint firstItem="flV-lv-SWU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="p4D-aG-1PH"/>
                     <constraint firstItem="i1a-U2-A8h" firstAttribute="top" secondItem="Yqz-El-6IR" secondAttribute="bottom" constant="8" id="rAb-4Z-87e"/>
                     <constraint firstItem="ivw-Tl-Gol" firstAttribute="trailing" secondItem="lGl-iq-72I" secondAttribute="trailing" id="xhc-Fy-OU0"/>
                     <constraint firstItem="XJR-f5-Do7" firstAttribute="top" secondItem="i1a-U2-A8h" secondAttribute="bottom" constant="16" id="zHD-4e-UWs"/>
