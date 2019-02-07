@@ -335,7 +335,7 @@ class CheckoutController2: BaseViewController {
         })
     }
 
-    fileprivate func tryChangePayment(paymentType: Int, deliveryServiceHasmap: [String: String]?) {
+    fileprivate func tryChangePayment(paymentType: Int, deliveryServiceHasmap: [String: String]?, indexPath: IndexPath? = nil) {
         var id: String = ""
         if let order = self.order {
             id = order.orderId!
@@ -354,21 +354,22 @@ class CheckoutController2: BaseViewController {
             if let error = response.error {
                 if error.isKind(of: NotConnectedInternetError.self) {
                     NHelper.handleConnectionError(completion: {
-                        self.tryChangePayment(paymentType: paymentType, deliveryServiceHasmap: deliveryServiceHasmap)
+                        self.tryChangePayment(paymentType: paymentType, deliveryServiceHasmap: deliveryServiceHasmap, indexPath: indexPath)
                     })
                 }
                 return
             }
             if let data = response.data {
-                print("DATA \(data)")
                 self.cartReturn = data
                 if let _ = self.order {
                     self.order!.cart!.additionals = data.cart!.additionals
                     self.order!.additionals = data.additionals!
                 }
-                self.tableView.reloadRows(at: [IndexPath(item: 0, section: 2),  IndexPath(item: 0, section: 3)], with: .automatic)
-
-//                self.tableView.reloadRows(at: [IndexPath(item: 0, section: 3),  IndexPath(item: 0, section: 4)], with: .automatic)
+                var indexPaths = [IndexPath(item: 0, section: 2),  IndexPath(item: 0, section: 3)]
+                if let index = indexPath {
+                    indexPaths.append(index)
+                }
+                self.tableView.reloadRows(at: indexPaths, with: .automatic)
             }
         })
     }
@@ -523,15 +524,14 @@ extension CheckoutController2: UITableViewDelegate, UITableViewDataSource {
                         self.pickedCouriers.append(cour)
                         self.pickedCourierTypes.append(courType)
                     }
-                 //   self.tableView.reloadRows(at: [indexPath], with: .automatic)
                     self.calculateGrandTotal()
                     if self.grandTotal < 0 || self.billingAddress == nil || self.shippingAddress == nil {
+                        self.tableView.reloadRows(at: [indexPath], with: .automatic)
                         return
                     } else {
                         let deliveryMapping = self.formatPostDeliveryOrder(merchants: self.cartReturn!.cart!.merchants!, couriers: self.pickedCouriers, courierTypes: self.pickedCourierTypes)
-                        self.tryChangePayment(paymentType: 1, deliveryServiceHasmap: deliveryMapping)
+                        self.tryChangePayment(paymentType: 1, deliveryServiceHasmap: deliveryMapping, indexPath: indexPath)
                     }
-                    
                 })
             }
             return cell
@@ -564,8 +564,16 @@ extension CheckoutController2: UITableViewDelegate, UITableViewDataSource {
             cell.onPayButtonClicked = {view in
                 self.payButtonAction(view)
             }
+            cell.onPrivacyClicked = {
+                if let url = URL(string: "http://e-nyelam.com/privacy-policy.html") {
+                    if #available(iOS 10.0, *) {
+                        UIApplication.shared.open(url, options: [:])
+                    } else {
+                        UIApplication.shared.openURL(url)
+                    }
+                }
+            }
             return cell
-            
         }
         return UITableViewCell()
     }

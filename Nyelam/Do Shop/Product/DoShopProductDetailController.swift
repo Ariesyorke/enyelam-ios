@@ -94,7 +94,7 @@ class DoShopProductDetailController: BaseViewController {
     }
     
     fileprivate func tryRelatedProduct(categoryId: String) {
-        NHTTPHelper.httpGetProductList(page: 1, keyword: nil, categoryId: categoryId, priceMin: nil, priceMax: nil, sortBy: nil, merchantId: nil, brandId: nil, recommended: 1, complete: {response in
+        NHTTPHelper.httpGetProductList(page: 1, keyword: nil, categoryId: categoryId, priceMin: nil, priceMax: nil, sortBy: nil, merchantId: nil, brands: nil, recommended: 1, complete: {response in
             self.refreshControl.endRefreshing()
             if let error = response.error {
                 if error.isKind(of: NotConnectedInternetError.self) {
@@ -250,6 +250,17 @@ extension DoShopProductDetailController: UITableViewDelegate, UITableViewDataSou
             }
             cell.onUpdateQuantity = {qty in
                 self.qty = qty
+            }
+            cell.onChatMerchantClicked = {productId in
+                if let authUser = NAuthReturn.authUser() {
+                    CreateInboxController.push(on: self.navigationController!, inboxType: 6, fromHome: false, refId: productId, subject: self.product!.productName!, completion: {})
+                } else {
+                    self.goToAuth(completion: {
+                        if let authUser = NAuthReturn.authUser() {
+                            CreateInboxController.push(on: self.navigationController!, inboxType: 6, fromHome: false, refId: productId, subject: self.product!.productName!, completion: {})
+                        }
+                    })
+                }
             }
             return cell
         } else {

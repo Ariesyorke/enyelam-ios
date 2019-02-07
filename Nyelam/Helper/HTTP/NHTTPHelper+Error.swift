@@ -1038,7 +1038,9 @@ class NHTTPHelper {
                 }
                 return
             }
+
             if let value = response.value {
+                print("VALUE \(response.value)")
                 let data = value.data(using: String.Encoding.utf8, allowLossyConversion: true)
                 do {
                     let jsonResult: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]

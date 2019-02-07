@@ -18,7 +18,7 @@ extension NHTTPHelper {
         }
         param["service_id"] = serviceId
         param["certificate"] = String(certificate)
-        param["date"] = String(date.timeIntervalSince1970)
+        param["date"] = String(Int64(date.timeIntervalSince1970))
         param["diver"] = String(diver)
         
         self.basicPostRequest(URLString: HOST_URL+API_PATH_DETAIL_SERVICE,
@@ -122,7 +122,7 @@ extension NHTTPHelper {
             param["user_id"] = user.user!.id!
         }
         param["do_course_id"] = doCourseId
-        param["date"] = String(date.timeIntervalSince1970)
+        param["date"] = String(Int64(date.timeIntervalSince1970))
         param["diver"] = String(diver)
         
         self.basicPostRequest(URLString: HOST_URL+API_PATH_DO_COURSE_DETAIL,
@@ -173,7 +173,7 @@ extension NHTTPHelper {
         
         param["service_id"] = doTripId
         param["certificate"] = String(certificate)
-        param["date"] = String(date.timeIntervalSince1970)
+        param["date"] = String(Int64(date.timeIntervalSince1970))
         param["diver"] = String(diver)
         
         self.basicPostRequest(URLString: HOST_URL+API_PATH_DO_TRIP_DETAIL,

@@ -24,7 +24,8 @@ class DoShopProductListController: BaseDoShopViewController {
     fileprivate var nextPage: Int = -1
     fileprivate var searchController : UISearchController?
     fileprivate var price: Price?
-    
+    fileprivate var brands: [Brand]?
+
     static func push(on controller: UINavigationController, filter: DoShopFilter) -> DoShopProductListController {
         let vc = DoShopProductListController(nibName: "DoShopProductListController", bundle: nil)
         vc.filter = filter
@@ -40,22 +41,23 @@ class DoShopProductListController: BaseDoShopViewController {
         self.refreshControl.backgroundColor = UIColor.clear
         self.collectionView.addSubview(self.refreshControl)
         self.collectionView.addInfiniteScroll(handler: {scrollView in
-            if self.nextPage > 0 {
+//            if self.nextPage > 0 {
                 self.tryLoadProductList(filter: self.filter)
-            } else {
-                self.collectionView.finishInfiniteScroll()
-            }
+//            } else {
+//                self.collectionView.finishInfiniteScroll()
+//            }
         })
         
+        let merchantLabelH = CGFloat(16)
         let categoryLabelH = CGFloat(14)
         let nameLabelH = CGFloat(16)
         let codeLabelH = CGFloat(21)
         let priceLabelH = CGFloat(16)
-        let contentH = categoryLabelH + nameLabelH + codeLabelH + priceLabelH
+        let contentH = categoryLabelH + nameLabelH + codeLabelH + priceLabelH + merchantLabelH
         let screenWidth: CGFloat = CGFloat(Float(UIScreen.main.bounds.size.width))
         let columnCount = 2
-        let columnWidth: CGFloat = (screenWidth  - 40) / CGFloat(columnCount)
-        let imageH: CGFloat = columnWidth - 32
+        let columnWidth: CGFloat = (screenWidth  - 24) / CGFloat(columnCount)
+        let imageH: CGFloat = columnWidth - 16
         
         self.productGridSize = CGSize(width: columnWidth, height: imageH + contentH + (40))
         self.initCollectionView()
@@ -102,7 +104,7 @@ class DoShopProductListController: BaseDoShopViewController {
     }
     
     fileprivate func tryGetMinMaxPrice(filter: DoShopFilter) {
-        NHTTPHelper.httpDoShopMinMax(keyword: filter.keyword, categoryId: filter.categoryId, brandId: filter.brandId, complete: {response in
+        NHTTPHelper.httpDoShopProductFilter(keyword: filter.keyword, categoryId: filter.categoryId, brandId: filter.brandId, complete: {response in
             if let error = response.error {
                 if error.isKind(of: NotConnectedInternetError.self) {
                     NHelper.handleConnectionError(completion: {
@@ -114,21 +116,25 @@ class DoShopProductListController: BaseDoShopViewController {
                     })
                 }
             }
-            
             if let data = response.data {
-                self.price = data
-                self.filter.selectedPriceMin = data.lowestPrice
-                self.filter.selectedPriceMax = data.highestPrice
-                self.tryLoadProductList(filter: self.filter)
-            } else {
-                self.refreshControl.endRefreshing()
-                self.notFoundLabel.isHidden = false
+                if let brands = data.brands, !brands.isEmpty {
+                    self.brands = brands
+                }
+                if let price = data.price {
+                    self.price = price
+                    self.filter.selectedPriceMin = price.lowestPrice
+                    self.filter.selectedPriceMax = price.highestPrice
+                    self.tryLoadProductList(filter: self.filter)
+                    return
+                }
             }
+            self.refreshControl.endRefreshing()
+            self.notFoundLabel.isHidden = false
         })
     }
     
     fileprivate func tryLoadProductList(filter: DoShopFilter) {
-        NHTTPHelper.httpGetProductList(page: self.page, keyword: filter.keyword, categoryId: filter.categoryId, priceMin: filter.selectedPriceMin, priceMax: filter.selectedPriceMax, sortBy: filter.sortBy, merchantId: filter.merchantId, brandId: filter.brandId, recommended: filter.recommended, complete: {response in
+        NHTTPHelper.httpGetProductList(page: self.page, keyword: filter.keyword, categoryId: filter.categoryId, priceMin: filter.selectedPriceMin, priceMax: filter.selectedPriceMax, sortBy: filter.sortBy, merchantId: filter.merchantId, brands: filter.selectedBrands, recommended: filter.recommended, complete: {response in
             self.refreshControl.endRefreshing()
             self.collectionView.finishInfiniteScroll()
             if let error = response.error {
@@ -171,7 +177,7 @@ class DoShopProductListController: BaseDoShopViewController {
                                                             return self.productGridSize
         },
                                                            layout: FlowLayout(spacing: 8, justifyContent: .start, alignItems: .start)
-                                                            .inset(by: UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)),
+                                                            .inset(by: UIEdgeInsets(top: 0, left: 8, bottom: 8, right: 8)),
                                                            animator: nil,
                                                            tapHandler: {context in
                                                             let _ = DoShopProductDetailController.push(on: self.navigationController!, productId: context.data.productId!)
@@ -181,7 +187,7 @@ class DoShopProductListController: BaseDoShopViewController {
     }
 
     @IBAction func filterButtonAction(_ sender: Any) {
-        let _ = DoShopFilterController.present(on: self.navigationController!, price: self.price!, filter: self.filter, onUpdateFilter: {filter in
+        let _ = DoShopFilterController.present(on: self.navigationController!, price: self.price!, filter: self.filter, brands: self.brands, onUpdateFilter: {filter in
             self.filter = filter
             self.refreshControl.beginRefreshing()
             self.onRefresh(self.refreshControl)
@@ -231,8 +237,9 @@ class DoShopFilter {
     var categoryId: String?
     var selectedPriceMax: CGFloat?
     var selectedPriceMin: CGFloat?
+    var selectedBrands: [String]?
     var sortBy: Int = 0
     var merchantId: String?
-    var brandId: String?
     var recommended: Int?
+    var brandId: String?
 }

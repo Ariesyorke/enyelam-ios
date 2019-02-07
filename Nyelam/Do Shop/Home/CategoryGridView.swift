@@ -62,10 +62,24 @@ class CategoryGridView: UIView {
     
     func initData(category: NProductCategory) {
         self.categoryNameLabel.text = category.categoryName?.uppercased()
+        self.categoryImageView.image = nil
         if let imageUrl = category.categoryImage, let url = URL(string: imageUrl) {
-            self.categoryImageView.af_setImage(withURL: url, placeholderImage: UIImage(named: "image_default"), filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: true, completion: nil)
+            self.categoryImageView.af_setImage(withURL: url, placeholderImage: UIImage(named: "image_not_found"), filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: true, completion: nil)
         } else {
-            self.categoryImageView.image = UIImage(named: "image_default")
+            self.categoryImageView.image = UIImage(named: "image_not_found")
         }
     }
+    
+    func initData(category: NProductCategory, color: UIColor, index: Int) {
+        self.categoryNameLabel.text = category.categoryName?.uppercased()
+        self.categoryImageView.backgroundColor = UIColor.clear
+        self.categoryImageView.image = nil
+        if let imageUrl = category.categoryImage, let url = URL(string: imageUrl), index < 3 {
+            self.categoryImageView.af_setImage(withURL: url, placeholderImage: UIImage(named: "image_not_found"), filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: true, completion: nil)
+        } else {
+            self.categoryImageView.backgroundColor = color
+            self.backgroundColor = color
+        }
+    }
+
 }

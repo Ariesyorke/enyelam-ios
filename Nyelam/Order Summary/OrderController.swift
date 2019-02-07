@@ -150,8 +150,8 @@ class OrderController: BaseViewController {
                     })
                 } else if error.isKind(of: StatusFailedError.self) {
                     UIAlertController.handleErrorMessage(viewController: self, error: error, completion: { _ in
-                        let err = error as! StatusFailedError
-                        
+//                        let err = error as! StatusFailedError
+
                     })
                 }
                 return
@@ -436,6 +436,8 @@ extension OrderController: UITableViewDelegate, UITableViewDataSource {
         response.transactionDetails = transactionDetails
         
         let vc = MidtransUIPaymentViewController(token: response, andPaymentFeature: paymentFeature)
+//        let vc = MidtransUIPaymentViewController(token: response)
+
         vc?.paymentDelegate = self
         self.present(vc!, animated: true, completion: nil)
     }

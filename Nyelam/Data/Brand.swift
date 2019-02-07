@@ -12,7 +12,8 @@ public class Brand: NSObject, NSCoding, Parseable {
     private let KEY_ID = "id"
     private let KEY_BRAND_NAME = "brand_name"
     private let KEY_BRAND_LOGO = "brand_logo"
-    
+    private let KEY_NAME = "name"
+
     var id: String?
     var name: String?
     var image: String?
@@ -23,6 +24,7 @@ public class Brand: NSObject, NSCoding, Parseable {
         }
         self.init(json: json)
     }
+
     public func encode(with aCoder: NSCoder) {
         aCoder.encode(self.serialized(), forKey: "json")
     }
@@ -34,7 +36,11 @@ public class Brand: NSObject, NSCoding, Parseable {
 
     func parse(json: [String : Any]) {
         self.id = json[KEY_ID] as? String
-        self.name = json[KEY_BRAND_NAME] as? String
+        if let name = json[KEY_BRAND_NAME] as? String {
+            self.name = name
+        } else if let name =  json[KEY_NAME] as? String {
+            self.name = name
+        }
         self.image = json[KEY_BRAND_LOGO] as? String
     }
     

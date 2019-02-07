@@ -17,6 +17,7 @@ class ProductGridView: UIControl {
     @IBOutlet weak var normalPriceLabel: UILabel!
     @IBOutlet weak var specialPriceLabel: UILabel!
     @IBOutlet weak var control: UIControl!
+    @IBOutlet weak var merchantNameLabel: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -68,13 +69,19 @@ class ProductGridView: UIControl {
         } else {
             self.normalPriceContainer.isHidden = false
         }
+        if let merchant = product.merchant, let name = merchant.merchantName {
+            self.merchantNameLabel.text = name.uppercased()
+        } else {
+            self.merchantNameLabel.text = "-"
+        }
+        
         self.normalPriceLabel.text = product.normalPrice.toCurrencyFormatString(currency: "Rp")
         self.specialPriceLabel.text = product.specialPrice.toCurrencyFormatString(currency: "Rp")
         self.imageView.clipsToBounds = true
         if let imageUrl = product.featuredImage, let url = URL(string: imageUrl) {
-            self.imageView.af_setImage(withURL: url, placeholderImage: UIImage(named: "image_default"), filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: true, completion: nil)
+            self.imageView.af_setImage(withURL: url, placeholderImage: UIImage(named: "image_not_found"), filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: true, completion: nil)
         } else {
-            self.imageView.image = UIImage(named: "image_default")
+            self.imageView.image = UIImage(named: "image_not_found")
         }
     }
 }

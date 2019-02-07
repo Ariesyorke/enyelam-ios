@@ -12,8 +12,8 @@ import AlamofireImage
 import CoreData
 
 extension NHTTPHelper {
-    static func httpDoShopMinMax(keyword: String?, categoryId: String?,
-                                 brandId: String?, complete: @escaping (NHTTPResponse<Price>) -> ()) {
+    static func httpDoShopProductFilter(keyword: String?, categoryId: String?,
+                                 brandId: String?, complete: @escaping (NHTTPResponse<DoShopProductFilter>) -> ()) {
         var param: [String: Any] = [:]
         if let keyword = keyword {
             param["keyword"] = keyword
@@ -35,23 +35,15 @@ extension NHTTPHelper {
                     complete(NHTTPResponse(resultStatus: false, data: nil, error: error))
                     return
                 }
-                var price: Price? = nil
+                var filter: DoShopProductFilter? = nil
                 if let data = data, let json = data as? [String: Any] {
-                    if let priceJson = json["price"] as? [String: Any] {
-                        price = Price(json: priceJson)
-                    } else if let priceString = json["price"] as? String {
-                        do {
-                            let data = priceString.data(using: String.Encoding.utf8, allowLossyConversion: true)
-                            let priceJson: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
-                            price = Price(json: priceJson)
-                        } catch {
-                            print(error)
-                        }
-                    }
+                    print("DATA \(data)")
+                    filter = DoShopProductFilter(json: json)
                 }
-                complete(NHTTPResponse(resultStatus: true, data: price, error: nil))
+                complete(NHTTPResponse(resultStatus: true, data: filter, error: nil))
         })
     }
+
     static func httpProductDetail(productId: String,
                                   complete: @escaping (NHTTPResponse<NProduct>)->()) {
         self.basicPostRequest(URLString: HOST_URL + API_PATH_PRODUCT_DETAIL, parameters: ["product_id": productId], headers: nil, complete: {status, data, error in
@@ -96,7 +88,7 @@ extension NHTTPHelper {
                                    priceMax: CGFloat?,
                                    sortBy: Int?,
                                    merchantId: String?,
-                                   brandId: String?,
+                                   brands: [String]?,
                                    recommended: Int? = nil,
                                    complete: @escaping (NHTTPResponse<ProductReturn>)->()) {
         var params: [String: Any] = ["page": String(page)]
@@ -121,8 +113,8 @@ extension NHTTPHelper {
         if let merchantId = merchantId {
             params["merchant_id"] = merchantId
         }
-        if let brandId = brandId {
-            params["brand_id"] = brandId
+        if let brands = brands, !brands.isEmpty {
+            params["brand_id"] = brands
         }
         self.basicPostRequest(URLString: HOST_URL + API_PATH_DO_SHOP_PRODUCT_LIST, parameters: params, headers: nil, complete: {status, data, error in
             if let error = error {

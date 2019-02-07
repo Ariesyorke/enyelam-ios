@@ -112,7 +112,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZnL-ba-hUG" userLabel="Price Container">
                         <rect key="frame" x="8" y="314.5" width="304" height="58"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xSe-1J-viA" userLabel="Normal Price Container">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xSe-1J-viA" userLabel="Normal Price Container">
                                 <rect key="frame" x="0.0" y="0.0" width="304" height="17"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rp. 99.999.999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4iT-rz-D1f">
@@ -122,7 +122,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You Save: 25%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epC-k8-ohK">
-                                        <rect key="frame" x="97" y="1" width="76.5" height="14.5"/>
+                                        <rect key="frame" x="97" y="1.5" width="76.5" height="14"/>
                                         <fontDescription key="fontDescription" name="FiraSans-Regular" family="Fira Sans" pointSize="12"/>
                                         <color key="textColor" red="0.0" green="0.56031829119999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -211,13 +211,13 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="done" textContentType="cc-number"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IN STOCK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GTP-FG-Wzl">
-                                <rect key="frame" x="0.0" y="137" width="304" height="17"/>
+                                <rect key="frame" x="0.0" y="81" width="304" height="17"/>
                                 <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
                                 <color key="textColor" red="0.31764705879999999" green="0.58431372550000005" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jew-mh-GDO">
-                                <rect key="frame" x="0.0" y="162" width="304" height="40"/>
+                                <rect key="frame" x="0.0" y="106" width="304" height="40"/>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="UXc-nD-6xD"/>
@@ -248,28 +248,51 @@
                                     <constraint firstAttribute="height" constant="1" id="xuM-jw-569"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xmq-Ji-tXN">
+                                <rect key="frame" x="0.0" y="162" width="304" height="40"/>
+                                <color key="backgroundColor" red="0.086274509799999996" green="0.45882352939999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="HcA-ay-9U1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="FiraSans-SemiBold" family="Fira Sans" pointSize="14"/>
+                                <inset key="imageEdgeInsets" minX="-16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Chat Merchant" image="ic_inbox_small">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="chatButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="D76-TH-mLB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="I0i-ZM-uC2" firstAttribute="bottom" secondItem="cmY-uZ-IYo" secondAttribute="top" constant="-8" id="0OK-1n-qja"/>
-                            <constraint firstItem="X4X-CX-AhA" firstAttribute="top" secondItem="jew-mh-GDO" secondAttribute="bottom" constant="8" id="0UG-M1-OQz"/>
-                            <constraint firstAttribute="bottom" secondItem="SmH-uh-nxs" secondAttribute="bottom" id="2XN-zx-b6r"/>
                             <constraint firstItem="GTP-FG-Wzl" firstAttribute="leading" secondItem="cmY-uZ-IYo" secondAttribute="leading" id="6Ie-RJ-oSC"/>
                             <constraint firstAttribute="trailing" secondItem="SmH-uh-nxs" secondAttribute="trailing" id="9jY-86-pc8"/>
                             <constraint firstItem="SmH-uh-nxs" firstAttribute="top" secondItem="X4X-CX-AhA" secondAttribute="bottom" constant="8" id="AvX-ri-uaD"/>
                             <constraint firstItem="IbG-RA-tUa" firstAttribute="leading" secondItem="yh3-f2-1Rh" secondAttribute="leading" id="CS7-kH-hbu"/>
                             <constraint firstItem="X4X-CX-AhA" firstAttribute="trailing" secondItem="jew-mh-GDO" secondAttribute="trailing" id="H51-AH-d14"/>
+                            <constraint firstItem="xmq-Ji-tXN" firstAttribute="trailing" secondItem="jew-mh-GDO" secondAttribute="trailing" id="HVZ-ew-52O"/>
                             <constraint firstItem="I0i-ZM-uC2" firstAttribute="top" secondItem="IbG-RA-tUa" secondAttribute="bottom" id="IYr-9w-3EY"/>
                             <constraint firstItem="I0i-ZM-uC2" firstAttribute="trailing" secondItem="IbG-RA-tUa" secondAttribute="trailing" id="KaZ-mo-2bb"/>
                             <constraint firstItem="cmY-uZ-IYo" firstAttribute="leading" secondItem="IbG-RA-tUa" secondAttribute="leading" id="LnX-mP-DYN"/>
+                            <constraint firstItem="xmq-Ji-tXN" firstAttribute="bottom" secondItem="X4X-CX-AhA" secondAttribute="top" constant="-8" id="TDj-7V-Hax"/>
                             <constraint firstAttribute="trailing" secondItem="IbG-RA-tUa" secondAttribute="trailing" id="Wap-l4-NpR"/>
                             <constraint firstItem="GTP-FG-Wzl" firstAttribute="top" secondItem="cmY-uZ-IYo" secondAttribute="bottom" constant="8" id="Z0U-01-Q8c"/>
                             <constraint firstItem="IbG-RA-tUa" firstAttribute="top" secondItem="yh3-f2-1Rh" secondAttribute="top" id="cCv-qx-PoX"/>
                             <constraint firstItem="I0i-ZM-uC2" firstAttribute="leading" secondItem="IbG-RA-tUa" secondAttribute="leading" id="cYx-s4-MKo"/>
+                            <constraint firstAttribute="bottom" secondItem="SmH-uh-nxs" secondAttribute="bottom" id="dsp-tA-rY1"/>
+                            <constraint firstItem="xmq-Ji-tXN" firstAttribute="top" secondItem="jew-mh-GDO" secondAttribute="bottom" constant="16" id="gnJ-AG-a3j"/>
                             <constraint firstItem="SmH-uh-nxs" firstAttribute="leading" secondItem="yh3-f2-1Rh" secondAttribute="leading" id="h6V-bM-tR4"/>
                             <constraint firstItem="cmY-uZ-IYo" firstAttribute="trailing" secondItem="IbG-RA-tUa" secondAttribute="trailing" id="lUk-gJ-GLg"/>
                             <constraint firstItem="jew-mh-GDO" firstAttribute="top" secondItem="GTP-FG-Wzl" secondAttribute="bottom" constant="8" id="mT4-mW-x4b"/>
                             <constraint firstItem="jew-mh-GDO" firstAttribute="leading" secondItem="yh3-f2-1Rh" secondAttribute="leading" id="o8r-S7-JZn"/>
+                            <constraint firstItem="xmq-Ji-tXN" firstAttribute="leading" secondItem="jew-mh-GDO" secondAttribute="leading" id="ruH-6z-9gJ"/>
                             <constraint firstAttribute="trailing" secondItem="jew-mh-GDO" secondAttribute="trailing" id="uWj-mN-mz3"/>
                             <constraint firstItem="GTP-FG-Wzl" firstAttribute="trailing" secondItem="cmY-uZ-IYo" secondAttribute="trailing" id="vmd-lV-4rh"/>
                             <constraint firstItem="X4X-CX-AhA" firstAttribute="leading" secondItem="jew-mh-GDO" secondAttribute="leading" id="voE-IZ-6e8"/>
@@ -314,5 +337,6 @@
     </objects>
     <resources>
         <image name="ic_app" width="50" height="50"/>
+        <image name="ic_inbox_small" width="20" height="20"/>
     </resources>
 </document>

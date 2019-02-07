@@ -61,7 +61,7 @@ class CreateInboxController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Create Inbox"
-        if self.inboxType < 3 {
+        if self.inboxType < 3 || inboxType == 6 {
             self.downArrow.isHidden = true
             self.reportTypeHeightConstraint.constant = 0
             self.messageContainerVerticalSpacing.constant = 0

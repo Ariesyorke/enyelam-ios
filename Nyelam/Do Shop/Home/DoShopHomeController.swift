@@ -38,17 +38,18 @@ class DoShopHomeController: BaseDoShopViewController {
         self.collectionView.addSubview(self.refreshControl)
         
         let categoryLabelH = CGFloat(14)
+        let merchantLabelH = CGFloat(16)
         let nameLabelH = CGFloat(16)
         let codeLabelH = CGFloat(21)
         let priceLabelH = CGFloat(16)
-        let contentH = categoryLabelH + nameLabelH + codeLabelH + priceLabelH
+        let contentH = categoryLabelH + nameLabelH + codeLabelH + priceLabelH + merchantLabelH
         let screenWidth: CGFloat = CGFloat(Float(UIScreen.main.bounds.size.width))
         let columnCount = 2
         let columnWidth: CGFloat = (screenWidth  - 24) / CGFloat(columnCount)
         let categoryColumnWidth: CGFloat = (screenWidth - 8)/CGFloat(columnCount)
         let imageH: CGFloat = columnWidth - 16
         
-        self.productGridSize = CGSize(width: columnWidth, height: imageH + contentH + (24))
+        self.productGridSize = CGSize(width: columnWidth, height: imageH + contentH + (34))
         self.categoryGridSize = CGSize(width: categoryColumnWidth, height: categoryColumnWidth)
         self.bannerSize = CGSize(width: screenWidth, height: (screenWidth * 2)/3)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_navigation_drawer"), style: .plain, target: self, action: #selector(DoShopHomeController.onNavigation(_:)))
@@ -107,7 +108,8 @@ class DoShopHomeController: BaseDoShopViewController {
         
         let categoryViewSource: ClosureViewSource = ClosureViewSource(viewUpdater: {
             (view: CategoryGridView, data: NProductCategory, index: Int) in
-            view.initData(category: data)
+            view.initData(category: data, color: UIColor.primary, index: index)
+
         })
         
         let categoryProvider: BasicProvider = BasicProvider(dataSource: self.categoryDataSource,

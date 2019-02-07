@@ -17,6 +17,7 @@ class OrderViewController: ButtonBarPagerTabStripViewController {
         return vc
     }
     override func viewDidLoad() {
+        
         self.settings.style.buttonBarBackgroundColor = UIColor.primary
         self.settings.style.buttonBarItemFont = UIFont(name: "FiraSans-Bold", size: 14)!
         self.settings.style.buttonBarItemTitleColor = UIColor.darkGray
@@ -30,8 +31,8 @@ class OrderViewController: ButtonBarPagerTabStripViewController {
             oldCell?.label.textColor = UIColor.white
             newCell?.label.textColor = UIColor.white
         }
-
         super.viewDidLoad()
+
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_back_button_white"), style: .plain, target: self, action: #selector(backButtonAction(_:)))
         self.title = "Orders"
         // Do any additional setup after loading the view.
@@ -42,6 +43,17 @@ class OrderViewController: ButtonBarPagerTabStripViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+            }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if #available(iOS 11.0, *) {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.navigationController!.additionalSafeAreaInsets = UIEdgeInsets(top: 30, left: 0, bottom: 0, right: 0)
+            })
+        }
+    }
 
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         return [OrderListController.create(paymentType: 1), OrderListController.create(paymentType: 2),
@@ -54,6 +66,14 @@ class OrderViewController: ButtonBarPagerTabStripViewController {
         self.navigationItem.leftBarButtonItem = nil
     }
     
+    func resetInsets() {
+        if #available(iOS 11.0, *) {
+            if let navigation = self.navigationController {
+                navigation.additionalSafeAreaInsets = UIEdgeInsets.zero
+            }
+        }
+    }
+
     func handleAuthResponse(response: NHTTPResponse<NAuthReturn>, errorCompletion: @escaping (BaseError)->(), successCompletion: @escaping(NAuthReturn)->()) {
         MBProgressHUD.hide(for: self.view, animated: true)
         if let error = response.error {
@@ -102,6 +122,7 @@ class OrderViewController: ButtonBarPagerTabStripViewController {
     }
     @objc func backButtonAction(_ sender: UIBarButtonItem) {
         self.view.endEditing(true)
+        self.resetInsets()
         if let navigation = self.navigationController as? BaseNavigationController {
             if (self.isKind(of: SearchFormController.self) || self.isKind(of: EcoTripIntroductionController.self) || self.isKind(of: DiveServiceSearchResultController.self) || self.isKind(of: DiveServiceController.self)
                 || self.isKind(of: BookingDetailController.self) || self.isKind(of: EditProfileViewController.self) || self.isKind(of: ChangePasswordViewController.self) || self.isKind(of: TermsViewController.self)) && navigation.viewControllers.count == 2 {
@@ -131,13 +152,6 @@ class OrderViewController: ButtonBarPagerTabStripViewController {
         }
     }
     
-    func resetInsets() {
-        if #available(iOS 11.0, *) {
-            if let navigation = self.navigationController {
-                navigation.additionalSafeAreaInsets = UIEdgeInsets.zero
-            }
-        }
-    }
     /*
     // MARK: - Navigation
 

@@ -9,9 +9,11 @@
 import UIKit
 
 class DoShopFilterController: BaseViewController {
-    private let titles = ["Sort by", "Price Range"]
+    private let titles = ["Sort by", "Price Range", "Brands"]
     var filter: DoShopFilter?
     var price: Price?
+    var brands: [Brand]?
+
     var onUpdateFilter: (DoShopFilter) -> () = {filter in}
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var clearButton: UIButton!
@@ -27,15 +29,19 @@ class DoShopFilterController: BaseViewController {
         self.tableView.dataSource = self
         self.tableView.register(UINib(nibName: "DoShopSortByCell", bundle: nil), forCellReuseIdentifier: "DoShopSortByCell")
         self.tableView.register(UINib(nibName: "PriceRangeCell", bundle: nil), forCellReuseIdentifier: "PriceRangeCell")
+        self.tableView.register(UINib(nibName: "DoShopBrandFilterCell", bundle: nil), forCellReuseIdentifier: "DoShopBrandFilterCell")
+
         self.tableView.reloadData()
 
         // Do any additional setup after loading the view.
     }
     
-    static func present(on controller: UINavigationController, price: Price, filter: DoShopFilter, onUpdateFilter: @escaping (DoShopFilter)->()) -> DoShopFilterController {
+    static func present(on controller: UINavigationController, price: Price, filter: DoShopFilter,
+                        brands: [Brand]?, onUpdateFilter: @escaping (DoShopFilter)->()) -> DoShopFilterController {
         let vc: DoShopFilterController = DoShopFilterController(nibName: "DoShopFilterController", bundle: nil)
         vc.filter = filter
         vc.price = price
+        vc.brands = brands
         vc.onUpdateFilter = onUpdateFilter
         controller.present(vc, animated: true, completion: {})
         return vc
@@ -114,11 +120,25 @@ extension DoShopFilterController: UITableViewDelegate, UITableViewDataSource {
                 self.filter!.selectedPriceMax = CGFloat(priceMax)
             }
             return cell
+        } else if section == 2 {
+            let cell: DoShopBrandFilterCell = tableView.dequeueReusableCell(withIdentifier: "DoShopBrandFilterCell", for: indexPath) as! DoShopBrandFilterCell
+            cell.selectedBrands = filter!.selectedBrands
+            cell.brands = self.brands
+            cell.initView()
+            cell.reloadData = {selectedBrands in
+                self.filter!.selectedBrands = selectedBrands
+                self.tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
+            return cell
         }
         return UITableViewCell()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        var count = 2
+        if let _ = self.brands {
+            count += 1
+        }
+        return count
     }
 }

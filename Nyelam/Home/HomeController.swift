@@ -258,7 +258,6 @@ extension HomeController {
 //            UIAlertController.handlePopupMessage(viewController: self, title: "Coming Soon!", actionButtonTitle: "OK", completion: {})
             _ = SearchFormController.push(on: self.navigationController!, forDoCourse: true)
         } else if sender == self.btDoShop {
-//            _ = DoShopHomeController.push(on: self.navigationController!)
             _ = DoShopNavigationController.present(on: self.navigationController!)
 //            UIAlertController.handlePopupMessage(viewController: self, title: "Coming Soon!", actionButtonTitle: "OK", completion: {})
         }

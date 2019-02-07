@@ -8,16 +8,25 @@
 
 import UIKit
 import DLRadioButton
+import ActiveLabel
 
 class CheckoutSummaryCell: NTableViewCell {
     @IBOutlet weak var detailContainerView: UIView!
     @IBOutlet weak var checkButton: DLRadioButton!
+    @IBOutlet weak var privacyLabel: ActiveLabel!
+    
     var checked: Bool = false
     var onCheckedClicked: (Bool) -> () = {checked in }
     var onPayButtonClicked: (UIView) -> () = {view in}
-    
+    var onPrivacyClicked: () -> () = {}
     override func awakeFromNib() {
         super.awakeFromNib()
+        let customType = ActiveType.custom(pattern: "terms and conditions")
+        self.privacyLabel.enabledTypes = [customType]
+        self.privacyLabel.customColor[customType] = UIColor.primary
+        self.privacyLabel.handleCustomTap(for: customType) { element in
+            self.onPrivacyClicked()
+        }
         // Initialization code
     }
 
@@ -39,7 +48,10 @@ class CheckoutSummaryCell: NTableViewCell {
         self.onPayButtonClicked(sender)
     }
     
-    func initData(merchants: [Merchant], voucher: Voucher?, couriers: [Courier]?, courierTypes: [CourierType]?, additionals: [Additional]?) {
+    func initData(merchants: [Merchant], voucher: Voucher?,
+                  couriers: [Courier]?, 
+                  courierTypes: [CourierType]?,
+                  additionals: [Additional]?) {
         for subview in self.detailContainerView.subviews {
             subview.removeFromSuperview()
         }
@@ -142,5 +154,9 @@ class CheckoutSummaryCell: NTableViewCell {
         if let topView = topView {
             self.detailContainerView.addConstraint(NSLayoutConstraint(item: topView, attribute: .bottom, relatedBy: .equal, toItem: self.detailContainerView, attribute: .bottom, multiplier: 1, constant: 0))
         }
+    }
+    
+    @objc func handleTap(_ sender: UIGestureRecognizer) {
+        print("TAP!")
     }
 }

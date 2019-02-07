@@ -715,7 +715,7 @@ class DiveServiceDetailCell: NTableViewCell {
     fileprivate var diveService: NDiveService?
     var onDiveCenterClicked: (NDiveCenter) -> () = {divecenter in }
     var onChatDCClicked: (String) -> () = {serviceId in }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

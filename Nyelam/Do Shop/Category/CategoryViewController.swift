@@ -33,7 +33,7 @@ class CategoryViewController: BaseDoShopViewController {
         let priceLabelH = CGFloat(16)
         let screenWidth: CGFloat = CGFloat(Float(UIScreen.main.bounds.size.width))
         let columnCount = 2
-        let columnWidth: CGFloat = (screenWidth  - 40) / CGFloat(columnCount)
+        let columnWidth: CGFloat = (screenWidth  - 24) / CGFloat(columnCount)
 //        let categoryColumnWidth: CGFloat = (screenWidth - 40)/CGFloat(columnCount)
         
         self.categoryGridSize = CGSize(width: columnWidth, height: columnWidth)
@@ -81,7 +81,7 @@ class CategoryViewController: BaseDoShopViewController {
                                                                 return self.categoryGridSize
         },
                                                             layout: FlowLayout(spacing: 8, justifyContent: .start, alignItems: .start)
-                                                                .inset(by: UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)),
+                                                                .inset(by: UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)),
                                                             animator: nil,
                                                             tapHandler: {context in
                                                                 let filter = DoShopFilter()

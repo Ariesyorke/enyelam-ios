@@ -56,7 +56,6 @@ extension NHTTPHelper {
                 
                 if let detailJson = json["detail"] as? [String: Any] {
                     inbox = Inbox(json: detailJson)
-                    print("INBOX DETAIL \(inbox!.inboxDetails)")
                 } else if let detailString = json["detail"] as? String {
                     do {
                         let data = detailString.data(using: String.Encoding.utf8, allowLossyConversion: true)

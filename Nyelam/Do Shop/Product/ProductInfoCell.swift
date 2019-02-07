@@ -27,7 +27,8 @@ class ProductInfoCell: NTableViewCell, UITextFieldDelegate, UIScrollViewDelegate
     @IBOutlet weak var discountLabel: UILabel!
     
     var product: NProduct?
-    
+    var onChatMerchantClicked: (String) -> () = {serviceId in }
+
     var onAddToCart: () -> () = {}
     var onVariationTriggered: (Variation, NVariationView) -> () = {variation, view in }
     var onOpenBrand: (Brand) -> () = {brand in }
@@ -237,4 +238,7 @@ class ProductInfoCell: NTableViewCell, UITextFieldDelegate, UIScrollViewDelegate
         return control
     }
     
+    @IBAction func chatButtonAction(_ sender: Any) {
+        self.onChatMerchantClicked(self.product!.productId!)
+    }
 }
