@@ -427,6 +427,9 @@ extension OrderController: UITableViewDelegate, UITableViewDataSource {
         if let voucher = voucher {
             itemDetails.append(MidtransItemDetail(itemID: String(itemID), name: "Voucher(\(voucher.code!))", price: NSNumber(value: -voucher.value), quantity: 1))
         }
+        if paymentType == 2 {
+            MidtransCreditCardConfig.shared().secure3DEnabled = true
+        }
         let paymentFeature = (paymentType==2 ? MidtransPaymentFeature.MidtransPaymentFeatureCreditCard : MidtransPaymentFeature.MidtransPaymentFeatureBankTransfer)
         let response = MidtransTransactionTokenResponse()
         

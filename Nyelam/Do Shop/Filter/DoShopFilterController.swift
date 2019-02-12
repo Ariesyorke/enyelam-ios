@@ -96,7 +96,6 @@ extension DoShopFilterController: UITableViewDelegate, UITableViewDataSource {
             let cell: DoShopSortByCell = tableView.dequeueReusableCell(withIdentifier: "DoShopSortByCell", for: indexPath) as! DoShopSortByCell
             cell.sortType = filter!.sortBy
             cell.onChangeSort = {sortType in
-                print("SORT BY \(sortType)")
                 self.filter!.sortBy = sortType
             }
             cell.initSort()
